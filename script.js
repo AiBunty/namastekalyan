@@ -45,6 +45,145 @@ galleryItems.forEach((item) => {
     });
 });
 
+const foodGallerySlots = document.querySelectorAll('[data-food-gallery-slot]');
+
+if (foodGallerySlots.length) {
+    const foodGalleryImages = [
+        {
+            src: 'assets/food-gallery/food-01.jpg',
+            alt: 'Signature plated dish from Namaste Kalyan food gallery',
+            tag: "Chef's Pick",
+            title: 'Signature Plate',
+        },
+        {
+            src: 'assets/food-gallery/food-02.jpg',
+            alt: 'Fresh plated meal from Namaste Kalyan food gallery',
+            tag: 'Fresh Drop',
+            title: 'Kitchen Showcase',
+        },
+        {
+            src: 'assets/food-gallery/food-03.webp',
+            alt: 'Close-up plating detail from Namaste Kalyan food gallery',
+            tag: 'Table Star',
+            title: 'Plating Detail',
+        },
+        {
+            src: 'assets/food-gallery/food-04.jpg',
+            alt: 'Restaurant food presentation from Namaste Kalyan food gallery',
+            tag: "Chef's Pick",
+            title: 'Dining Moment',
+        },
+        {
+            src: 'assets/food-gallery/food-05.jpg',
+            alt: 'Premium dish styling from Namaste Kalyan food gallery',
+            tag: 'Fresh Drop',
+            title: 'Premium Bite',
+        },
+        {
+            src: 'assets/food-gallery/food-06.jpg',
+            alt: 'Curated dish selection from Namaste Kalyan food gallery',
+            tag: 'Table Star',
+            title: 'Curated Course',
+        },
+        {
+            src: 'assets/food-gallery/food-07.jpg',
+            alt: 'Rich entree plating from Namaste Kalyan food gallery',
+            tag: 'Chef Special',
+            title: 'Bold Entree',
+        },
+        {
+            src: 'assets/food-gallery/food-08.jpg',
+            alt: 'Hand-finished dish detail from Namaste Kalyan food gallery',
+            tag: 'Fresh Drop',
+            title: 'Hand Finished',
+        },
+        {
+            src: 'assets/food-gallery/food-09.webp',
+            alt: 'Textured plate composition from Namaste Kalyan food gallery',
+            tag: 'Table Star',
+            title: 'Textured Plating',
+        },
+        {
+            src: 'assets/food-gallery/food-10.jpg',
+            alt: 'Celebration-style food presentation from Namaste Kalyan food gallery',
+            tag: 'Chef Special',
+            title: 'Celebration Plate',
+        },
+        {
+            src: 'assets/food-gallery/food-11.jpeg',
+            alt: 'Close-up gourmet serving from Namaste Kalyan food gallery',
+            tag: 'Fresh Drop',
+            title: 'Gourmet Finish',
+        },
+    ];
+
+    const activeIndexes = foodGalleryImages.slice(0, foodGallerySlots.length).map((_, index) => index);
+    let replacementCursor = foodGallerySlots.length % foodGalleryImages.length;
+    let slotCursor = 0;
+
+    const renderFoodGallerySlot = (slot, imageIndex) => {
+        const image = foodGalleryImages[imageIndex];
+        const slotImage = slot.querySelector('img');
+        const slotTag = slot.querySelector('.food-gallery-card-tag');
+        const slotTitle = slot.querySelector('.food-gallery-card-title');
+
+        if (!image || !slotImage) {
+            return;
+        }
+
+        slot.dataset.full = image.src;
+        slot.setAttribute('aria-label', `Open food gallery image ${imageIndex + 1}`);
+        slotImage.src = image.src;
+        slotImage.alt = image.alt;
+
+        if (slotTag) {
+            slotTag.textContent = image.tag;
+        }
+
+        if (slotTitle) {
+            slotTitle.textContent = image.title;
+        }
+    };
+
+    const getNextFoodGalleryIndex = () => {
+        for (let attempt = 0; attempt < foodGalleryImages.length; attempt += 1) {
+            const candidateIndex = (replacementCursor + attempt) % foodGalleryImages.length;
+
+            if (!activeIndexes.includes(candidateIndex)) {
+                replacementCursor = (candidateIndex + 1) % foodGalleryImages.length;
+                return candidateIndex;
+            }
+        }
+
+        const fallbackIndex = replacementCursor;
+        replacementCursor = (replacementCursor + 1) % foodGalleryImages.length;
+        return fallbackIndex;
+    };
+
+    foodGallerySlots.forEach((slot, index) => {
+        renderFoodGallerySlot(slot, activeIndexes[index]);
+    });
+
+    window.setInterval(() => {
+        const slotIndex = slotCursor % foodGallerySlots.length;
+        const slot = foodGallerySlots[slotIndex];
+        const nextImageIndex = getNextFoodGalleryIndex();
+
+        slot.classList.add('is-swapping');
+
+        window.setTimeout(() => {
+            activeIndexes[slotIndex] = nextImageIndex;
+            renderFoodGallerySlot(slot, nextImageIndex);
+        }, 220);
+
+        window.setTimeout(() => {
+            slot.classList.remove('is-swapping');
+        }, 700);
+
+        slotCursor += 1;
+    }, 2600);
+}
+
 if (lightboxClose) {
     lightboxClose.addEventListener('click', closeLightbox);
 }

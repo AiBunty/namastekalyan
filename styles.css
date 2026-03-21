@@ -1045,9 +1045,10 @@ main > section,
     -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 4px 16px rgba(0,0,0,0.4);
 }
-.scroll-top-btn svg {
+.scroll-top-icon {
     width: 22px;
     height: 22px;
+    display: block;
 }
 .scroll-top-btn.visible {
     opacity: 1;
