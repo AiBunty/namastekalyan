@@ -15,9 +15,17 @@
         rel="stylesheet"
     >
     <link rel="stylesheet" href="styles.css?v=20260321-3">
+    <link rel="stylesheet" href="modal-styles.css">
 </head>
 <body>
     <div class="page-shell">
+        <!-- Top Brand Strip with Main Logo -->
+        <div class="brand-strip">
+            <a class="brand-strip-logo" href="#top" aria-label="Namaste Kalyan">
+                <img src="assets/Logo/Namaste Kalyan by AWG -04.png" alt="Namaste Kalyan logo">
+            </a>
+        </div>
+
         <header class="site-header">
             <a class="brand-mark" href="#top" aria-label="Namaste Kalyan home">
                 <img src="assets/Logo/Namaste Kalyan by AWG -02.png" alt="Namaste Kalyan by AWG logo">
@@ -27,6 +35,7 @@
                 <a href="#events">Events</a>
                 <a href="#gallery">Gallery</a>
                 <a href="#contact">Contact</a>
+                <button id="getOffersBtn" class="get-offers-btn" aria-label="Get Offers">Get Offers</button>
             </nav>
             <div class="order-online-wrap">
                 <button class="header-cta order-online-btn" aria-haspopup="true" aria-expanded="false">
@@ -385,6 +394,24 @@
         <img class="scroll-top-icon" src="assets/icons/ui/arrow-up.svg?v=20260321-3" alt="" loading="lazy" decoding="async">
     </button>
 
+    <div id="offersModal" class="offers-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeOffersBtn" aria-label="Close modal">&times;</button>
+            <h2 class="modal-heading">Get Regular Offers for your Birthdays & Special Occasions</h2>
+            <iframe
+              src="https://admin.aibunty.com/widget/form/a31c3158-b981-4b4f-b263-e46139f256d2"
+              style="width:100%;height:600px;border:none;border-radius:3px"
+              id="inline-a31c3158-b981-4b4f-b263-e46139f256d2"
+              data-form-name="Send a Message"
+              data-layout-iframe-id="inline-a31c3158-b981-4b4f-b263-e46139f256d2"
+              data-form-id="a31c3158-b981-4b4f-b263-e46139f256d2"
+              data-height="600"
+              title="Send a Message">
+            </iframe>
+        </div>
+    </div>
+
     <script src="script.js?v=20260321-4"></script>
+    <script src="https://myappzchat.com/production/master/widget/embed-widget.umd.js" data-widget-id="edb91eb3-7293-4749-9138-9e5871f0082a" async></script>
 </body>
 </html>

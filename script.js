@@ -260,3 +260,59 @@ if (orderWrap && orderBtn) {
         }
     });
 }
+
+// ── Offers Modal Popup ──────────────────────────────────
+const offersModal = document.querySelector('#offersModal');
+const getOffersBtn = document.querySelector('#getOffersBtn');
+const closeOffersBtn = document.querySelector('#closeOffersBtn');
+
+const openOffersModal = () => {
+    if (offersModal) {
+        offersModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+const closeOffersModal = () => {
+    if (offersModal) {
+        offersModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};
+
+// Show modal after 10 seconds on page load
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        openOffersModal();
+    }, 10000);
+});
+
+// Show modal when Get Offers button is clicked
+if (getOffersBtn) {
+    getOffersBtn.addEventListener('click', () => {
+        openOffersModal();
+    });
+}
+
+// Close modal when close button is clicked
+if (closeOffersBtn) {
+    closeOffersBtn.addEventListener('click', () => {
+        closeOffersModal();
+    });
+}
+
+// Close modal when clicking outside the modal content (on the background)
+if (offersModal) {
+    offersModal.addEventListener('click', (event) => {
+        if (event.target === offersModal) {
+            closeOffersModal();
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && offersModal.classList.contains('active')) {
+            closeOffersModal();
+        }
+    });
+}

@@ -1,0 +1,495 @@
+/* ================================================================
+   shared-page.css — Inner Pages Master of Truth
+   Applied to: menu.html, cocktail.html
+   DO NOT modify index.html, styles-copy.css, or modal-styles.css.
+
+   Purpose: Aligns all inner-page chrome (body, cards, filter bar,
+   side nav, loader, scroll-top btn) to the same dark-gold palette
+   used on index.html. Zero impact on data fetch / JS logic.
+   ================================================================ */
+
+
+/* ── 1. CSS Variable Master Registry ─────────────────────────── */
+:root {
+    /* ── Page metrics */
+    --header-h:     170px;
+    --radius-card:  20px;
+    --radius-lg:    50px;
+    --shadow-soft:  0 10px 30px rgba(0, 0, 0, 0.28);
+
+    /* ── Surface colors (dark glass) */
+    --color-bg-primary:    #0c0908;
+    --color-bg-secondary:  rgba(255, 255, 255, 0.05);
+    --color-card-bg:       rgba(255, 255, 255, 0.04);
+
+    /* ── Typography */
+    --color-text-primary:   #f7f0e6;
+    --color-text-secondary: rgba(247, 240, 230, 0.65);
+
+    /* ── Accents */
+    --color-accent-maroon:  #C62828;
+    --color-accent-gold:    #f0c48f;
+
+    /* ── Diet indicators — NEVER change these */
+    --color-veg:    #4A7C59;
+    --color-nonveg: #C62828;
+    --color-jain:   #FF9800;
+
+    /* ── Cocktail page vars — remapped to dark-gold palette      */
+    /* (cocktail.html component CSS still references these names) */
+    --burgundy-deep:  #100c0a;
+    --burgundy-rich:  #1c1511;
+    --gold-cream:     #f4e4c7;      /* same as --cream in styles-copy */
+    --gold-bright:    #f0c48f;      /* same as --gold  in styles-copy */
+    --text-light:     #f7f0e6;      /* same as --text  in styles-copy */
+    --border-gold:    rgba(240, 196, 143, 0.45);
+}
+
+
+/* ── 2. Body ──────────────────────────────────────────────────── */
+html,
+body.concept-body {
+    background:
+        radial-gradient(circle at top left, rgba(201, 151, 64, 0.16), transparent 26%),
+        radial-gradient(circle at 85% 10%, rgba(98, 115, 88, 0.14), transparent 20%),
+        linear-gradient(180deg, #090605 0%, #120d0b 38%, #090605 100%) !important;
+}
+
+body.concept-body {
+    color: var(--color-text-primary);
+    font-family: "Manrope", sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+
+/* ── 3. Sticky filter / controls bar ─────────────────────────── */
+.top-controls-bar {
+    position: sticky !important;
+    top: var(--header-h) !important;
+    z-index: 1200 !important;
+    background: rgba(12, 9, 8, 0.94) !important;
+    border-bottom: 1px solid rgba(240, 196, 143, 0.14) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* Menu page: keep header visually dominant over sticky toggle strip */
+body#menuBody .top-controls-bar {
+    position: static !important;
+    top: auto !important;
+    z-index: 900 !important;
+}
+
+.square-toggle-group {
+    background: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Active filter chip — gold gradient replaces maroon */
+.square-btn.active {
+    background: linear-gradient(90deg, #f0c48f, #8f5923) !important;
+    color: #1a0d06 !important;
+    box-shadow: 0 4px 14px rgba(240, 196, 143, 0.22) !important;
+}
+
+
+/* ── 4. Menu item cards ───────────────────────────────────────── */
+.card {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.card-body {
+    background: transparent !important;
+}
+
+.card:hover,
+.card:active {
+    border-color: rgba(255, 255, 255, 0.14) !important;
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.30) !important;
+}
+
+/* Cocktail list items use .menu-item, not .card */
+.menu-frame .menu-item {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 18px 14px !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Veg/nonveg type badge — white-on-white fix for dark bg */
+.badge-type {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+/* Circular food photo border */
+.img-container-circle {
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+
+/* ── 5. Typography inside cards ──────────────────────────────── */
+.item-name {
+    color: var(--color-text-primary) !important;
+}
+
+/* Price row — separator + color */
+.price {
+    color: var(--color-accent-gold) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Section headings */
+.section-title {
+    color: var(--color-accent-gold) !important;
+    border-bottom-color: rgba(240, 196, 143, 0.22) !important;
+    font-weight: 600 !important;
+}
+
+/* Protein / serving variant chips */
+.variant-chip,
+.qty-chip {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
+    color: var(--color-text-secondary) !important;
+}
+
+/* Serving remark pill (e.g. "per piece") */
+.serving-remark {
+    background: rgba(240, 196, 143, 0.12) !important;
+    color: var(--color-accent-gold) !important;
+}
+
+
+/* ── 6. Side category navigation drawer ──────────────────────── */
+#sideNavContainer {
+    background: rgba(14, 9, 7, 0.97) !important;
+    backdrop-filter: blur(22px) !important;
+    -webkit-backdrop-filter: blur(22px) !important;
+    border-left: 1px solid rgba(240, 196, 143, 0.20) !important;
+    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.55) !important;
+}
+
+.cat-link {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: var(--color-text-secondary) !important;
+    transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.cat-link:hover {
+    background: rgba(240, 196, 143, 0.10) !important;
+    border-color: rgba(240, 196, 143, 0.32) !important;
+    color: var(--color-accent-gold) !important;
+}
+
+
+/* ── 7. Vertical jump / trigger button ───────────────────────── */
+#menuTriggerBtn {
+    background: linear-gradient(180deg, #f0c48f 0%, #8f5923 100%) !important;
+    color: #1a0d06 !important;
+    border: none !important;
+    box-shadow: -4px 0 18px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Cocktail page nav drawer */
+#navDrawer {
+    background: rgba(14, 9, 7, 0.98) !important;
+    border-left: 2px solid rgba(240, 196, 143, 0.28) !important;
+    backdrop-filter: blur(22px) !important;
+    -webkit-backdrop-filter: blur(22px) !important;
+    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.55) !important;
+}
+
+.nav-link {
+    background: rgba(240, 196, 143, 0.07) !important;
+    color: var(--gold-cream) !important;
+    border-color: rgba(240, 196, 143, 0.20) !important;
+}
+
+.nav-link:hover {
+    background: rgba(240, 196, 143, 0.16) !important;
+    border-color: rgba(240, 196, 143, 0.40) !important;
+}
+
+
+/* ── 8. Scroll-to-top button ──────────────────────────────────── */
+#scrollTopBtn {
+    background: linear-gradient(135deg, rgba(26, 16, 8, 0.9), rgba(42, 24, 0, 0.9)) !important;
+    color: #f0c48f !important;
+    border: 1px solid rgba(240, 196, 143, 0.35) !important;
+    border-radius: 999px !important;
+    width: 48px !important;
+    height: 48px !important;
+    padding: 0 !important;
+    font-size: 1.1rem !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.42) !important;
+}
+
+
+/* ── 9. Page loader — shared dark-gold style ──────────────────── */
+/* Each page keeps its own loader HTML; this just fixes loader bg  */
+/* on cocktail.html (was burgund red). menu.html loader is already */
+/* dark so the specificity here only helps cocktail.               */
+#loader {
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba(201, 151, 64, 0.16) 0%,
+        #090605 60%,
+        #000 100%
+    ) !important;
+}
+
+
+/* ── 10. Cocktail page: section frame + category heading ─────── */
+/* Keep brand identity; just unify gold tone                       */
+.menu-frame {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+.category-title::after {
+    background: rgba(240, 196, 143, 0.45) !important;
+}
+.branch-card {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Cocktail page had an inline light section; keep it in dark theme */
+#order-online {
+    background: rgba(12, 9, 8, 0.9) !important;
+    border-top: 1px solid rgba(240, 196, 143, 0.16) !important;
+    border-bottom: 1px solid rgba(240, 196, 143, 0.16) !important;
+}
+
+#order-online h2,
+#order-online a,
+#order-online span {
+    color: var(--color-text-primary) !important;
+}
+
+/* Menu page footer should match index dark panel mood (not flat black) */
+body#menuBody footer {
+    background: #140f0d !important;
+    color: var(--color-text-primary) !important;
+    border-top: 1px solid rgba(240, 196, 143, 0.22) !important;
+}
+
+body#menuBody .branch-item {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+#order-online a {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(240, 196, 143, 0.24) !important;
+}
+
+/* Breads section chip accents */
+.card[data-cat="breads"] .qty-chip.chip-plain {
+    background: rgba(151, 127, 92, 0.22) !important;
+    border-color: rgba(217, 189, 143, 0.48) !important;
+    color: #f7e8cf !important;
+}
+
+.card[data-cat="breads"] .qty-chip.chip-butter {
+    background: rgba(224, 170, 62, 0.24) !important;
+    border-color: rgba(245, 209, 126, 0.52) !important;
+    color: #ffeec8 !important;
+}
+
+.card[data-cat="breads"] .qty-chip.chip-half {
+    background:
+        linear-gradient(90deg, rgba(240, 196, 143, 0.36), rgba(240, 196, 143, 0.30)) no-repeat,
+        rgba(255, 255, 255, 0.05) !important;
+    background-size: 0% 100%, 100% 100% !important;
+    animation: halfFillLoad 1.1s ease-out forwards;
+    border-color: rgba(240, 196, 143, 0.48) !important;
+    color: #f6e6cc !important;
+}
+
+.card[data-cat="breads"] .qty-chip.chip-full {
+    background:
+        linear-gradient(90deg, rgba(240, 196, 143, 0.48), rgba(240, 196, 143, 0.30)) no-repeat,
+        rgba(255, 255, 255, 0.05) !important;
+    background-size: 0% 100%, 100% 100% !important;
+    animation: fullFillLoad 1.15s ease-out forwards;
+    border-color: rgba(240, 196, 143, 0.52) !important;
+    color: #ffeacc !important;
+}
+
+.card[data-cat="breads"] .qty-chip.chip-full::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+    animation: fullChipSweep 2.2s linear infinite;
+}
+
+@keyframes halfFillLoad {
+    from { background-size: 0% 100%, 100% 100%; }
+    to   { background-size: 50% 100%, 100% 100%; }
+}
+
+@keyframes fullFillLoad {
+    from { background-size: 0% 100%, 100% 100%; }
+    to   { background-size: 100% 100%, 100% 100%; }
+}
+
+@keyframes fullChipSweep {
+    to { left: 140%; }
+}
+
+
+/* ── 10. Symbol Legend — Frosted Glass Cards ─────────────────── */
+.legend-section {
+    padding: 50px 20px 60px;
+    text-align: center;
+}
+
+.legend-title {
+    font-family: 'Cinzel', 'Fraunces', serif;
+    font-size: 1.8rem;
+    color: var(--gold-cream, #f4e5c2);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+}
+
+.legend-subtitle {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.legend-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 16px;
+    padding: 22px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.legend-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: radial-gradient(ellipse at 30% 0%, rgba(255,255,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.legend-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.18);
+    border-color: rgba(212, 175, 55, 0.25);
+}
+
+.legend-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 32px;
+}
+
+.legend-icon .badge-type {
+    width: 22px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.legend-icon .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.legend-icon .dot.veg    { background: var(--color-veg); }
+.legend-icon .dot.nonveg { background: var(--color-nonveg); }
+.legend-icon .dot.jain   { background: var(--color-jain); }
+
+.legend-icon .jain-badge {
+    background: var(--color-jain);
+    color: #fff;
+    font-size: 0.5rem;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.legend-emoji {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.legend-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gold-cream, #f4e5c2);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.legend-desc {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+    .legend-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .legend-title { font-size: 1.3rem; letter-spacing: 2px; }
+    .legend-card { padding: 16px 10px 14px; }
+}

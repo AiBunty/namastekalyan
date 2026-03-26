@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Sheet Fetch Test</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --muted: #94a3b8;
+      --text: #e5e7eb;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --err: #ef4444;
+      --line: #273449;
+      --accent: #38bdf8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top right, #12233b 0%, var(--bg) 55%);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    p.sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(17, 24, 39, 0.92), rgba(15, 23, 42, 0.92));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #0b1325;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    textarea { min-height: 72px; resize: vertical; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: #111f38;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button.primary {
+      background: linear-gradient(180deg, #0ea5e9, #0284c7);
+      border-color: #0ea5e9;
+      color: #031122;
+    }
+
+    .tip {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    .status {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: #0b1325;
+    }
+
+    .status h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .ok { background: rgba(34, 197, 94, 0.15); color: var(--ok); border: 1px solid rgba(34, 197, 94, 0.35); }
+    .warn { background: rgba(245, 158, 11, 0.15); color: var(--warn); border: 1px solid rgba(245, 158, 11, 0.35); }
+    .err { background: rgba(239, 68, 68, 0.15); color: var(--err); border: 1px solid rgba(239, 68, 68, 0.35); }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+      background: #0b1325;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 8px 10px;
+      font-size: 13px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #bfdbfe;
+      background: #0f1c34;
+      position: sticky;
+      top: 0;
+    }
+
+    code {
+      color: #c7d2fe;
+      background: #121d33;
+      border: 1px solid #2f3e5b;
+      border-radius: 6px;
+      padding: 1px 6px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Bug collector window */
+    .bug-window {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      width: min(440px, calc(100vw - 20px));
+      max-height: 56vh;
+      border: 1px solid #522;
+      background: linear-gradient(180deg, #210f12 0%, #13090c 100%);
+      color: #ffd7de;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      z-index: 9999;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+      resize: both;
+      overflow: hidden;
+    }
+
+    .bug-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      border-bottom: 1px solid #433;
+      background: #2a1217;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .bug-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .bug-actions button {
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+      background: #30181f;
+      border: 1px solid #5a2c37;
+      color: #ffd7de;
+    }
+
+    .bug-log {
+      overflow: auto;
+      padding: 8px;
+      font-size: 12px;
+      line-height: 1.35;
+      flex: 1;
+    }
+
+    .bug-item {
+      border: 1px solid #4b2530;
+      border-radius: 8px;
+      padding: 7px;
+      margin-bottom: 6px;
+      background: rgba(44, 18, 24, 0.85);
+    }
+
+    .bug-item .meta {
+      color: #ffb8c8;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .bug-item .msg {
+      color: #ffe8ee;
+      word-break: break-word;
+    }
+
+    .hidden { display: none; }
+
+    @media (max-width: 920px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Sheet Fetch Testing Console</h1>
+    <p class="sub">Use this page to verify Google Sheet fetch, per-column mapping, and data quality for each tab.</p>
+
+    <section class="panel">
+      <div class="grid">
+        <div class="field">
+          <label for="sheetId">Google Sheet ID</label>
+          <input id="sheetId" value="15-fEg0mC9oUcYi6WKW9hyrrtPyiLAvQk2Jhbk4uWYw8" />
+        </div>
+        <div class="field">
+          <label for="format">Fetch Format</label>
+          <select id="format">
+            <option value="gviz-json" selected>GViz JSON</option>
+            <option value="csv">CSV</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:10px;">
+        <label for="tabs">Tab Names (one per line)</label>
+        <textarea id="tabs">AWGNK MENU
+    BAR MENU NK</textarea>
+      </div>
+
+      <div class="actions">
+        <button class="primary" id="runTestsBtn">Run Full Test</button>
+        <button id="testMenuBtn">Test Menu Tab Set</button>
+        <button id="testBarBtn">Test Bar Tab Set</button>
+        <button id="clearResultsBtn">Clear Results</button>
+      </div>
+
+      <div class="tip">
+        Tip: if this file is opened via <code>file://</code> and CORS blocks fetch, use a local server (for example VS Code Live Server).
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Run Summary</h2>
+      <div class="status-grid" id="summaryGrid"></div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin-top:0;">Column-Level Check</h2>
+      <div id="columnChecks"></div>
+    </section>
+  </div>
+
+  <aside class="bug-window" id="bugWindow" aria-label="Bug collection window">
+    <div class="bug-header">
+      <span>Bug Collection Window</span>
+      <div class="bug-actions">
+        <button id="copyBugBtn">Copy</button>
+        <button id="downloadBugBtn">Download</button>
+        <button id="toggleBugBtn">Hide</button>
+        <button id="clearBugBtn">Clear</button>
+      </div>
+    </div>
+    <div class="bug-log" id="bugLog"></div>
+  </aside>
+
+  <script>
+    const state = {
+      bugs: [],
+      runs: []
+    };
+
+    const sheetIdEl = document.getElementById('sheetId');
+    const formatEl = document.getElementById('format');
+    const tabsEl = document.getElementById('tabs');
+    const summaryGrid = document.getElementById('summaryGrid');
+    const columnChecks = document.getElementById('columnChecks');
+    const bugLog = document.getElementById('bugLog');
+    const bugWindow = document.getElementById('bugWindow');
+
+    function nowStamp() {
+      return new Date().toLocaleTimeString();
+    }
+
+    function addBug(level, source, message, detail) {
+      const bug = {
+        time: nowStamp(),
+        level,
+        source,
+        message,
+        detail: detail ? String(detail) : ''
+      };
+      state.bugs.push(bug);
+      renderBug(bug);
+    }
+
+    function renderBug(bug) {
+      const div = document.createElement('div');
+      div.className = 'bug-item';
+      div.innerHTML =
+        '<div class="meta">[' + bug.time + '] ' + bug.level.toUpperCase() + ' | ' + bug.source + '</div>' +
+        '<div class="msg">' + escapeHtml(bug.message) + '</div>' +
+        (bug.detail ? '<div class="small" style="margin-top:4px;">' + escapeHtml(bug.detail) + '</div>' : '');
+      bugLog.prepend(div);
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    window.addEventListener('error', (event) => {
+      addBug('error', 'window.onerror', event.message || 'Unknown runtime error', event.filename + ':' + event.lineno);
+    });
+
+    window.addEventListener('unhandledrejection', (event) => {
+      const reason = event.reason && event.reason.message ? event.reason.message : String(event.reason || 'Unknown rejection');
+      addBug('error', 'unhandledrejection', reason, 'Promise rejection');
+    });
+
+    function parseTabsFromInput() {
+      return tabsEl.value
+        .split(/\r?\n/)
+        .map(x => x.trim())
+        .filter(Boolean);
+    }
+
+    function buildUrl(sheetId, tabName, format) {
+      const tab = encodeURIComponent(tabName);
+      if (format === 'csv') {
+        return 'https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:csv&sheet=' + tab;
+      }
+      return 'https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:json&sheet=' + tab;
+    }
+
+    async function fetchWithTimeout(url, timeoutMs) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const response = await fetch(url, { signal: controller.signal, redirect: 'follow', cache: 'no-store' });
+        const text = await response.text();
+        return { response, text };
+      } finally {
+        clearTimeout(timeout);
+      }
+    }
+
+    function parseGvizJsonPayload(text) {
+      const start = text.indexOf('{');
+      const end = text.lastIndexOf('}');
+      if (start < 0 || end < 0 || end <= start) {
+        throw new Error('GViz JSON wrapper parse failed');
+      }
+      return JSON.parse(text.substring(start, end + 1));
+    }
+
+    function csvToMatrix(csv) {
+      const arr = [];
+      let quote = false;
+      for (let row = 0, col = 0, c = 0; c < csv.length; c += 1) {
+        const cc = csv[c];
+        const nc = csv[c + 1];
+        arr[row] = arr[row] || [];
+        arr[row][col] = arr[row][col] || '';
+        if (cc === '"' && quote && nc === '"') {
+          arr[row][col] += cc;
+          c += 1;
+          continue;
+        }
+        if (cc === '"') {
+          quote = !quote;
+          continue;
+        }
+        if (cc === ',' && !quote) {
+          col += 1;
+          continue;
+        }
+        if (cc === '\n' && !quote) {
+          row += 1;
+          col = 0;
+          continue;
+        }
+        arr[row][col] += cc;
+      }
+      return arr;
+    }
+
+    function analyzeFromGviz(json) {
+      const cols = Array.isArray(json.table && json.table.cols) ? json.table.cols : [];
+      const rows = Array.isArray(json.table && json.table.rows) ? json.table.rows : [];
+      const normalizedRows = rows.map(r => {
+        const cells = Array.isArray(r.c) ? r.c : [];
+        return cols.map((_, idx) => {
+          const cell = cells[idx];
+          if (!cell) return '';
+          const value = Object.prototype.hasOwnProperty.call(cell, 'v') ? cell.v : '';
+          return value == null ? '' : String(value).trim();
+        });
+      });
+      return { cols, rows: normalizedRows };
+    }
+
+    function analyzeFromCsv(csvText) {
+      const matrix = csvToMatrix(csvText);
+      const headers = (matrix[0] || []).map((h, i) => ({ label: (h || '').trim(), type: 'string', id: 'c' + i }));
+      const rows = matrix.slice(1).map(r => headers.map((_, idx) => String((r[idx] || '')).trim()));
+      return { cols: headers, rows };
+    }
+
+    function computeColumnStats(cols, rows) {
+      return cols.map((col, idx) => {
+        const label = (col.label || col.id || ('Column ' + idx)).trim();
+        let blank = 0;
+        for (const row of rows) {
+          if (!row[idx]) blank += 1;
+        }
+        const total = rows.length || 1;
+        const blankPct = Math.round((blank / total) * 100);
+        return {
+          index: idx,
+          label,
+          type: col.type || 'string',
+          blank,
+          blankPct
+        };
+      });
+    }
+
+    function renderRunSummary(run) {
+      const statusClass = run.ok ? 'ok' : 'err';
+      const statusText = run.ok ? 'OK' : 'FAILED';
+      const card = document.createElement('article');
+      card.className = 'status';
+      card.innerHTML =
+        '<h3>' + escapeHtml(run.tab) + '<span class="pill ' + statusClass + '">' + statusText + '</span></h3>' +
+        '<div class="small">Format: ' + escapeHtml(run.format) + '</div>' +
+        '<div class="small">Rows: ' + run.rows + ' | Columns: ' + run.cols + '</div>' +
+        '<div class="small" style="margin-top:6px;">URL: <code>' + escapeHtml(run.url) + '</code></div>' +
+        (run.error ? '<div class="small" style="margin-top:6px;color:#fda4af;">Error: ' + escapeHtml(run.error) + '</div>' : '');
+      summaryGrid.appendChild(card);
+    }
+
+    function renderColumnTable(run, stats, headerSample) {
+      const wrap = document.createElement('div');
+      wrap.className = 'panel';
+
+      const requiredHeaders = ['Item Name', 'Description', 'Category', 'Image URL'];
+      const available = new Set(stats.map(s => s.label.toLowerCase()));
+      const missingRequired = requiredHeaders.filter(h => !available.has(h.toLowerCase()));
+
+      const health = missingRequired.length ? 'warn' : 'ok';
+      const msg = missingRequired.length
+        ? ('Missing required columns: ' + missingRequired.join(', '))
+        : 'Required columns are present.';
+
+      wrap.innerHTML =
+        '<h3 style="margin-top:0;">' + escapeHtml(run.tab) + ' <span class="pill ' + health + '">' + (missingRequired.length ? 'CHECK' : 'PASS') + '</span></h3>' +
+        '<div class="small">Header sample: ' + escapeHtml(headerSample) + '</div>' +
+        '<div class="small" style="margin-top:6px;">' + escapeHtml(msg) + '</div>';
+
+      const tableWrap = document.createElement('div');
+      tableWrap.className = 'table-wrap';
+      const table = document.createElement('table');
+      table.innerHTML =
+        '<thead><tr><th>#</th><th>Column</th><th>Type</th><th>Blank Cells</th><th>Blank %</th><th>Quality</th></tr></thead>' +
+        '<tbody>' +
+        stats.map(s => {
+          let q = 'Good';
+          if (s.blankPct > 60) q = 'High blank rate';
+          else if (s.blankPct > 30) q = 'Moderate blank rate';
+          return '<tr>' +
+            '<td>' + s.index + '</td>' +
+            '<td>' + escapeHtml(s.label) + '</td>' +
+            '<td>' + escapeHtml(s.type) + '</td>' +
+            '<td>' + s.blank + '</td>' +
+            '<td>' + s.blankPct + '%</td>' +
+            '<td>' + q + '</td>' +
+            '</tr>';
+        }).join('') +
+        '</tbody>';
+
+      tableWrap.appendChild(table);
+      wrap.appendChild(tableWrap);
+      columnChecks.appendChild(wrap);
+
+      if (missingRequired.length) {
+        addBug('warn', run.tab, 'Required header validation failed', msg);
+      }
+    }
+
+    async function testSingleTab(sheetId, tab, format) {
+      const url = buildUrl(sheetId, tab, format);
+      const run = {
+        tab,
+        format,
+        url,
+        ok: false,
+        rows: 0,
+        cols: 0,
+        error: ''
+      };
+
+      try {
+        const { response, text } = await fetchWithTimeout(url, 12000);
+
+        if (!response.ok) {
+          throw new Error('HTTP ' + response.status + ' ' + response.statusText);
+        }
+
+        if (!text || !text.trim()) {
+          throw new Error('Empty response body');
+        }
+
+        const parsed = format === 'csv'
+          ? analyzeFromCsv(text)
+          : analyzeFromGviz(parseGvizJsonPayload(text));
+
+        const stats = computeColumnStats(parsed.cols, parsed.rows);
+
+        run.ok = true;
+        run.rows = parsed.rows.length;
+        run.cols = parsed.cols.length;
+
+        renderRunSummary(run);
+        const headerSample = parsed.cols.slice(0, 8).map(c => c.label || c.id || '').join(', ');
+        renderColumnTable(run, stats, headerSample || '(no headers)');
+      } catch (err) {
+        run.error = err && err.message ? err.message : String(err);
+        renderRunSummary(run);
+        addBug('error', tab, 'Tab fetch failed', run.error + ' | URL: ' + url);
+      }
+
+      state.runs.push(run);
+      return run;
+    }
+
+    async function runTests(tabList) {
+      const sheetId = sheetIdEl.value.trim();
+      const format = formatEl.value;
+
+      if (!sheetId) {
+        addBug('error', 'input', 'Missing Google Sheet ID', 'Please enter Sheet ID first.');
+        return;
+      }
+      if (!tabList.length) {
+        addBug('error', 'input', 'No tabs provided', 'Enter one or more tab names.');
+        return;
+      }
+
+      if (location.protocol === 'file:') {
+        addBug('warn', 'runtime', 'Running from file:// protocol', 'Browser may block fetch. Use a local server if needed.');
+      }
+
+      summaryGrid.innerHTML = '';
+      columnChecks.innerHTML = '';
+      state.runs = [];
+
+      for (const tab of tabList) {
+        await testSingleTab(sheetId, tab, format);
+      }
+
+      const okCount = state.runs.filter(r => r.ok).length;
+      const failCount = state.runs.length - okCount;
+      addBug('info', 'summary', 'Run completed', 'Total: ' + state.runs.length + ', Success: ' + okCount + ', Failed: ' + failCount);
+    }
+
+    document.getElementById('runTestsBtn').addEventListener('click', async () => {
+      const tabs = parseTabsFromInput();
+      await runTests(tabs);
+    });
+
+    document.getElementById('testMenuBtn').addEventListener('click', async () => {
+      const menuTabs = ['AWGNK MENU'];
+      await runTests(menuTabs);
+    });
+
+    document.getElementById('testBarBtn').addEventListener('click', async () => {
+      const barTabs = ['BAR MENU NK'];
+      await runTests(barTabs);
+    });
+
+    document.getElementById('clearResultsBtn').addEventListener('click', () => {
+      summaryGrid.innerHTML = '';
+      columnChecks.innerHTML = '';
+      addBug('info', 'ui', 'Results cleared');
+    });
+
+    document.getElementById('copyBugBtn').addEventListener('click', async () => {
+      const payload = JSON.stringify({ bugs: state.bugs, runs: state.runs }, null, 2);
+      try {
+        await navigator.clipboard.writeText(payload);
+        addBug('info', 'clipboard', 'Bug report copied to clipboard');
+      } catch (err) {
+        addBug('warn', 'clipboard', 'Clipboard copy failed', err.message || String(err));
+      }
+    });
+
+    document.getElementById('downloadBugBtn').addEventListener('click', () => {
+      const payload = JSON.stringify({ bugs: state.bugs, runs: state.runs }, null, 2);
+      const blob = new Blob([payload], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'sheet-fetch-bug-report.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+      addBug('info', 'download', 'Bug report JSON downloaded');
+    });
+
+    document.getElementById('clearBugBtn').addEventListener('click', () => {
+      state.bugs = [];
+      bugLog.innerHTML = '';
+      addBug('info', 'ui', 'Bug log cleared');
+    });
+
+    document.getElementById('toggleBugBtn').addEventListener('click', (event) => {
+      if (bugLog.classList.contains('hidden')) {
+        bugLog.classList.remove('hidden');
+        event.target.textContent = 'Hide';
+      } else {
+        bugLog.classList.add('hidden');
+        event.target.textContent = 'Show';
+      }
+    });
+
+    addBug('info', 'init', 'Testing console ready');
+  </script>
+</body>
+</html>
