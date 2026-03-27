@@ -74,11 +74,13 @@ body.concept-body {
     -webkit-backdrop-filter: blur(16px);
 }
 
-/* Menu page: keep header visually dominant over sticky toggle strip */
-body#menuBody .top-controls-bar {
-    position: static !important;
-    top: auto !important;
-    z-index: 900 !important;
+/* Menu page: static on desktop, sticky on mobile for easy toggle access */
+@media (min-width: 769px) {
+    body#menuBody .top-controls-bar {
+        position: static !important;
+        top: auto !important;
+        z-index: 900 !important;
+    }
 }
 
 .square-toggle-group {

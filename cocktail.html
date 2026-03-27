@@ -3,9 +3,27 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-  <title>
-   Asian Wok &amp; Grill | Premium Bar Menu
-  </title>
+  <title>Bar & Cocktail Menu | Namaste Kalyan by AWG — Premium Drinks in Kalyan</title>
+  <meta name="description" content="Explore the premium bar and cocktail menu at Namaste Kalyan by AWG — signature cocktails, whisky, vodka, gin specials and more in Kalyan, Maharashtra.">
+  <meta name="keywords" content="Namaste Kalyan bar menu, cocktail menu Kalyan, premium bar Kalyan, drinks menu, cocktails Kalyan, bar near me Kalyan, AWG bar">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://namastekalyan.in/cocktail.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant.menu">
+  <meta property="og:title" content="Bar & Cocktail Menu | Namaste Kalyan by AWG">
+  <meta property="og:description" content="Signature cocktails, whisky, vodka & gin specials at Namaste Kalyan's premium bar.">
+  <meta property="og:image" content="https://namastekalyan.in/assets/Logo/Namaste Kalyan by AWG -02.png">
+  <meta property="og:url" content="https://namastekalyan.in/cocktail.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bar & Cocktail Menu | Namaste Kalyan by AWG">
+  <meta name="twitter:description" content="Signature cocktails & premium spirits at Namaste Kalyan, Kalyan.">
+  <meta name="twitter:image" content="https://namastekalyan.in/assets/Logo/Namaste Kalyan by AWG -02.png">
+  <meta name="theme-color" content="#1a0a0a">
+  <link rel="icon" type="image/png" href="assets/Logo/Namaste Kalyan by AWG -02.png">
+  <link rel="apple-touch-icon" href="assets/Logo/Namaste Kalyan by AWG -02.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -23,7 +41,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-          background: transparent;
           color: var(--text-light);
           font-family: 'Manrope', sans-serif;
           overflow-x: hidden;
@@ -69,9 +86,76 @@
         #navOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 3800; display: none; }
 
         .menu-frame { border: 2px solid var(--border-gold); padding: 50px 30px; position: relative; background: rgba(0, 0, 0, 0.15); backdrop-filter: blur(10px); }
-        .category-section { margin-bottom: 50px; scroll-margin-top: 100px; }
-        .category-title { font-family: 'Cinzel', serif; font-size: 1.8rem; text-align: center; color: var(--gold-cream); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 30px; position: relative; padding-bottom: 15px; }
-        .category-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: var(--border-gold); }
+        .category-section {
+            --category-accent: var(--gold-bright);
+            --category-accent-soft: rgba(240, 196, 143, 0.18);
+            --category-accent-glow: rgba(240, 196, 143, 0.16);
+            margin-bottom: 50px;
+            scroll-margin-top: 100px;
+        }
+        .category-section[data-accent="gold"] {
+            --category-accent: #f0c48f;
+            --category-accent-soft: rgba(240, 196, 143, 0.18);
+            --category-accent-glow: rgba(240, 196, 143, 0.16);
+        }
+        .category-section[data-accent="copper"] {
+            --category-accent: #d79a72;
+            --category-accent-soft: rgba(215, 154, 114, 0.18);
+            --category-accent-glow: rgba(215, 154, 114, 0.16);
+        }
+        .category-section[data-accent="ruby"] {
+            --category-accent: #d66a7a;
+            --category-accent-soft: rgba(214, 106, 122, 0.16);
+            --category-accent-glow: rgba(214, 106, 122, 0.14);
+        }
+        .category-section[data-accent="olive"] {
+            --category-accent: #a7b07c;
+            --category-accent-soft: rgba(167, 176, 124, 0.16);
+            --category-accent-glow: rgba(167, 176, 124, 0.14);
+        }
+        .category-title {
+            width: min(100%, 620px);
+            margin: 0 auto 34px;
+            padding: 18px 28px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            text-align: center;
+            color: var(--gold-cream);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            border-radius: 20px;
+            border: 1px solid var(--category-accent-soft);
+            border-left: 4px solid var(--category-accent);
+            border-right: 4px solid var(--category-accent);
+            background:
+                radial-gradient(circle at center, var(--category-accent-soft) 0%, rgba(0, 0, 0, 0) 72%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.22));
+            box-shadow:
+                0 16px 34px rgba(0, 0, 0, 0.28),
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+                0 0 24px var(--category-accent-glow);
+            overflow: hidden;
+        }
+        .category-title::before {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            pointer-events: none;
+        }
+        .category-title::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 8px;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--category-accent), transparent);
+            box-shadow: 0 0 16px var(--category-accent-glow);
+        }
 
         /* ⚠️ TYPOGRAPHY: SENTENCE CASE FOR ITEMS (LOCKED) */
         .menu-item { margin-bottom: 35px; text-align: center; }
@@ -115,6 +199,13 @@
             .hero-title { padding-top: 80px; }
             .menu-frame { padding: 30px 15px; }
             .item-name { font-size: 2.4rem; }
+            .category-title {
+                width: 100%;
+                padding: 16px 18px;
+                font-size: 1.35rem;
+                letter-spacing: 2px;
+            }
+            .category-title::after { width: 96px; }
         }
 
         /* ── Bar Info Popup ─────────────────────────────── */
@@ -243,12 +334,12 @@
             opacity: 0.7; margin: 0; position: relative;
         }
   </style>
-  <link rel="stylesheet" href="shared-page.css">
+  <link rel="stylesheet" href="shared-page.css?v=20260326-1">
 
  </head>
  <body class="concept-body">
   <div id="loader">
-   <img alt="Namaste Kalyan logo" src="assets/Logo/Namaste Kalyan by AWG -02.png" style="height:72px;object-fit:contain;margin-bottom:12px;"/>
+   <img alt="AWG Namaste Kalyan logo" src="assets/Logo/Namaste Kalyan by AWG -02.png" style="height:72px;object-fit:contain;margin-bottom:12px;"/>
    <div class="spinner">
    </div>
     <div id="loaderTypedText" class="loader-typed"></div>
@@ -256,7 +347,7 @@
   </div>
   <header class="concept-header">
    <a class="concept-brand" href="index.html#top" aria-label="Namaste Kalyan home">
-    <img src="assets/Logo/Namaste Kalyan by AWG -02.png" alt="Namaste Kalyan by AWG logo">
+    <img src="assets/Logo/Namaste Kalyan by AWG -02.png" alt="AWG Namaste Kalyan logo">
    </a>
 
    <nav class="concept-nav" aria-label="Primary">
@@ -411,7 +502,7 @@
 
    <article class="property-footer-card reveal">
     <div class="property-footer-head">
-    <img class="property-footer-logo" src="assets/Logo/Namaste Kalyan by AWG -02.png" alt="Namaste Kalyan by AWG logo">
+    <img class="property-footer-logo" src="assets/Logo/Namaste Kalyan by AWG -02.png" alt="AWG Namaste Kalyan logo">
     <div>
      <h3>Namaste Kalyan</h3>
      <p>Celebration-first dining in Kalyan with premium ambience, cocktails, and group-ready tables.</p>
@@ -629,11 +720,13 @@
             }
 
             if (main) {
-                main.innerHTML = categories.map(cat => {
+                const accentCycle = ['gold', 'copper', 'ruby', 'olive'];
+                main.innerHTML = categories.map((cat, index) => {
                     const catId = this.getCategoryId(cat);
                     const catItems = items.filter(i => i.cat === cat);
+                    const accent = accentCycle[index % accentCycle.length];
                     return `
-                        <div class="category-section" id="${catId}">
+                        <div class="category-section" id="${catId}" data-accent="${accent}">
                             <h2 class="category-title">${cat}</h2>
                             ${catItems.map(item => {
                                 let activeUnits = DataLayer.SUPPORTED_UNITS.filter(u => item.prices[u]);
