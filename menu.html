@@ -31,8 +31,14 @@
       href="https://fonts.googleapis.com/css2?family=Allura&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
   >
-  <link rel="stylesheet" href="styles-copy.css?v=20260321-4">
+  <link rel="stylesheet" href="styles-copy.css?v=20260327-1">
   <link rel="stylesheet" href="modal-styles.css">
+  <!-- New CSS Architecture -->
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/menu-page.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/popups.css?v=20260327-4">
+  <link rel="stylesheet" href="css/loader.css">
   <style>
    /* 1. CORE SYSTEM */
    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -48,12 +54,40 @@
     box-shadow: 0 4px 10px rgba(198,40,40,0.10);
 }
    
-  #menuTriggerBtn { position: fixed; right: 0; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; text-orientation: mixed; background: var(--color-accent-maroon); color: #fff; padding: 20px 10px; border-radius: 12px 0 0 12px; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; z-index: 2500; cursor: pointer; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+  /* ════════ HAMBURGER MENU BUTTON ════════ */
+  .hamburger-menu {
+    position: fixed; top: 14px; right: 16px; width: 40px; height: 40px;
+    background: var(--color-accent-maroon); color: #fff; border: none;
+    border-radius: 8px; cursor: pointer; z-index: 2600; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 5px; font-size: 1.2rem; font-weight: 800;
+  }
+  .hamburger-menu:hover { background: rgba(198, 40, 40, 0.9); }
+  .hamburger-line { width: 22px; height: 2px; background: #fff; border-radius: 1px; }
+  /* Hide navbar links - all navigation in hamburger menu only */
+  .concept-nav { display: none !important; }
+  .concept-header-actions { display: none !important; }
+
+  .floating-actions-group { position: fixed; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 2500; transition: transform 0.25s ease, opacity 0.25s ease; }
+  .floating-actions-group.is-hidden { transform: translateY(-50%) translateX(120%); opacity: 0; pointer-events: none; }
+  .floating-action-btn { border: none; cursor: pointer; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+  .floating-action-btn.menu-action { writing-mode: vertical-rl; text-orientation: mixed; background: var(--color-accent-maroon); padding: 20px 10px; border-radius: 12px 0 0 12px; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; min-height: 112px; }
+  .floating-action-btn.icon-action { width: 44px; height: 44px; border-radius: 12px 0 0 12px; font-size: 1.1rem; font-weight: 800; }
+  .floating-action-btn.whatsapp-action { background: #25d366; }
+  .floating-action-btn.call-action { background: var(--color-accent-gold); color: #23180f; }
+  .floating-action-btn.hide-action { width: 32px; height: 32px; border-radius: 10px 0 0 10px; background: rgba(22, 22, 22, 0.9); font-size: 0.95rem; }
+  #floatingActionsReveal { position: fixed; right: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 64px; border: none; border-radius: 12px 0 0 12px; background: rgba(22, 22, 22, 0.94); color: #fff; display: none; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; z-index: 2500; cursor: pointer; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+  #floatingActionsReveal.visible { display: flex; }
+  #reviewBtn { position: fixed; left: 20px; bottom: 72px; background: var(--color-accent-gold); color: #23180f; padding: 8px 12px; border-radius: 12px; font-weight: 800; font-size: 0.75rem; border: none; cursor: pointer; z-index: 2600; display: none; box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
+  #reviewBtn:hover { filter: brightness(0.96); }
   #scrollTopBtn { position: fixed; left: 20px; bottom: 24px; background: var(--color-accent-maroon); color: #fff; padding: 10px 12px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; border: none; cursor: pointer; z-index: 2600; display: none; box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
    #sideNavContainer { position: fixed; right: -280px; top: 0; bottom: 0; width: 260px; background: var(--color-bg-secondary); z-index: 3000; padding: 40px 20px; box-shadow: -10px 0 30px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
    #sideNavContainer.open { transform: translateX(-280px); }
-   .cat-link { padding: 15px; background: var(--color-bg-primary); border-radius: 12px; font-size: 0.85rem; font-weight: 700; color: var(--color-text-primary); text-align: center; cursor: pointer; border: 1px solid rgba(0,0,0,0.05); }
-   #sideNavOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2800; display: none; backdrop-filter: blur(2px); }
+   #categoryNavOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2800; display: none; backdrop-filter: blur(2px); }
+  #categoryNav { position: fixed; right: -280px; top: 0; bottom: 0; width: 260px; background: rgba(16, 12, 12, 0.82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-left: 1px solid rgba(255,255,255,0.08); z-index: 3000; padding: 40px 20px; box-shadow: -10px 0 30px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+   #categoryNav.open { transform: translateX(-280px); }
+   .cat-link { padding: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: rgba(255, 255, 255, 0.95); text-align: center; cursor: pointer; border: 1px solid rgba(0,0,0,0.05); transition: all 0.2s ease; text-decoration: none; display: block; }
+   .cat-link:hover { background: rgba(0, 0, 0, 0.4); transform: translateX(-2px); }
 
    main { position: relative; width: 100%; min-height: 80vh; } 
    .container { padding: 1rem; max-width: 1200px; margin: 0 auto; scroll-margin-top: 160px; }
@@ -61,6 +95,8 @@
      --category-accent: var(--color-accent-gold);
      --category-accent-soft: rgba(240, 196, 143, 0.18);
      --category-accent-glow: rgba(240, 196, 143, 0.16);
+     content-visibility: auto;
+     contain-intrinsic-size: 1200px;
    }
    .menu-category[data-accent="gold"] {
      --category-accent: #f0c48f;
@@ -131,12 +167,11 @@
    
    .card { background: var(--color-card-bg); border-radius: var(--radius-card); overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: var(--shadow-soft); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid rgba(0,0,0,0.02); }
    .card:hover, .card:active { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--color-accent-gold); }
+   .card { contain: layout paint style; }
    .img-box { padding: 15px 15px 0; display: flex; justify-content: center; align-items: center; transition: 0.3s; position: relative; }
    .img-container-circle { width: 100%; aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; border: 3px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
    .img-main { width: 100%; height: 100%; object-fit: cover; }
    
-   .hide-images .img-box { display: none; }
-   .hide-images .card { padding-top: 10px; }
 
    .card-body { padding: 12px; flex-grow: 1; position: relative; }
    .card-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; width: 100%; margin-bottom: 4px; }
@@ -163,9 +198,30 @@
    .variant-chip.active.v-veg { background: var(--color-veg) !important; color: #FFFFFF !important; border-color: var(--color-veg) !important; }
    .variant-chip.active.v-non { background: var(--color-nonveg) !important; color: #FFFFFF !important; border-color: var(--color-nonveg) !important; }
    .variant-chip.active.v-jain { background: var(--color-jain) !important; color: #FFFFFF !important; border-color: var(--color-jain) !important; }
-   .qty-chip.active { background: var(--color-accent-maroon); color: #FFFFFF; border-color: var(--color-accent-maroon); }
+  .qty-chip.active { background: var(--color-accent-maroon); color: #FFFFFF; border-color: var(--color-accent-maroon); box-shadow: 0 0 0 2px rgba(255,255,255,0.32), 0 8px 18px rgba(0,0,0,0.16); transform: translateY(-1px); }
+  .qty-chip.active.chip-medium,
+  .qty-chip.active.chip-large { background: linear-gradient(135deg, #b71c1c, #d84343); border-color: #d84343; }
    
    .price { font-size: 1.1rem; font-weight: 800; color: var(--color-text-primary); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px; margin-top: 5px; display: flex; justify-content: space-between; align-items: center; }
+
+   body.menu-performance-mode .card {
+     backdrop-filter: none !important;
+     -webkit-backdrop-filter: none !important;
+     box-shadow: 0 12px 24px rgba(0,0,0,0.16) !important;
+   }
+   body.menu-performance-mode .card:hover,
+   body.menu-performance-mode .card:active {
+     transform: none;
+     box-shadow: 0 14px 26px rgba(0,0,0,0.18) !important;
+   }
+   body.menu-performance-mode .menu-category .section-title,
+   body.menu-performance-mode #sideNavOverlay {
+     backdrop-filter: none;
+     -webkit-backdrop-filter: none;
+   }
+   body.menu-performance-mode .img-container-circle {
+     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+   }
 
    footer { background: #000000; color: #F2EDE4; padding: 4rem 1.5rem; text-align: center; border-top: 2px solid var(--color-accent-gold); }
    .branch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; text-align: left; max-width: 1200px; margin: 0 auto; }
@@ -211,90 +267,8 @@
     .legend-title { font-size: 1rem !important; margin-bottom: 1rem !important; }
   }
 
-  /* ── Menu Symbol Guide Popup ─────────────────────── */
-  .symbol-popup-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0, 0, 0, 0.78);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      z-index: 8000;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 1; transition: opacity 0.4s ease;
-  }
-  .symbol-popup-overlay.hidden { opacity: 0; pointer-events: none; }
-
-  .symbol-popup-modal {
-      background: rgba(15, 18, 28, 0.88);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(212, 175, 55, 0.18);
-      border-radius: 22px;
-      padding: 36px 28px 28px;
-      max-width: 420px; width: 92%;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.05);
-      animation: symbolPopIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      max-height: 88vh; overflow-y: auto;
-  }
-  @keyframes symbolPopIn {
-      from { opacity: 0; transform: scale(0.9) translateY(20px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
-  }
-
-  .symbol-popup-close {
-      position: absolute; top: 10px; right: 14px;
-      background: none; border: none; color: rgba(255,255,255,0.5);
-      font-size: 1.5rem; cursor: pointer; transition: color 0.2s;
-  }
-  .symbol-popup-close:hover { color: #fff; }
-
-  .symbol-popup-heading {
-      font-family: 'Fraunces', serif;
-      font-size: 1.3rem; color: var(--color-accent-gold);
-      letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 6px;
-  }
-  .symbol-popup-sub {
-      font-size: 0.72rem; color: rgba(255,255,255,0.45);
-      letter-spacing: 1.2px; text-transform: uppercase;
-      margin-bottom: 22px;
-  }
-
-  .symbol-popup-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 10px; margin-bottom: 22px;
-  }
-  .symbol-popup-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 12px; padding: 14px 8px 10px;
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-  }
-  .symbol-popup-item .sp-icon { font-size: 1.4rem; line-height: 1; min-height: 24px; display: flex; align-items: center; justify-content: center; gap: 4px; }
-  .symbol-popup-item .sp-icon .badge-type { width: 20px; height: 20px; background: rgba(255,255,255,0.9); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
-  .symbol-popup-item .sp-icon .dot { width: 9px; height: 9px; border-radius: 50%; }
-  .symbol-popup-item .sp-icon .dot.veg { background: var(--color-veg); }
-  .symbol-popup-item .sp-icon .dot.nonveg { background: var(--color-nonveg); }
-  .symbol-popup-item .sp-icon .dot.jain { background: var(--color-jain); }
-  .symbol-popup-item .sp-icon .jain-badge { background: var(--color-jain); color: #fff; font-size: 0.45rem; font-weight: 900; padding: 1px 4px; border-radius: 3px; text-transform: uppercase; }
-  .symbol-popup-item .sp-label { font-size: 0.68rem; font-weight: 700; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.5px; }
-
-  .symbol-popup-cta {
-      background: linear-gradient(135deg, var(--color-accent-gold), #c9a84c);
-      color: #0f121c; border: none;
-      padding: 11px 36px; border-radius: 10px;
-      font-family: 'Fraunces', serif; font-size: 0.85rem;
-      font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .symbol-popup-cta:hover { transform: scale(1.04); box-shadow: 0 6px 20px rgba(184, 147, 85, 0.35); }
-
-  @media (max-width: 400px) {
-      .symbol-popup-grid { grid-template-columns: repeat(2, 1fr); }
-      .symbol-popup-modal { padding: 28px 18px 22px; }
-  }
   </style>
-  <link rel="stylesheet" href="shared-page.css?v=20260326-1">
+  <link rel="stylesheet" href="shared-page.css?v=20260327-1">
 
  </head>
  <body class="concept-body" id="menuBody">
@@ -309,51 +283,57 @@
     <div class="loader-sub">Fetching live menu from Namaste Kalyans Kitchen</div>
   </div>
 
-  <!-- ═══ SYMBOL GUIDE POPUP ═══ -->
-  <div id="symbolPopupOverlay" class="symbol-popup-overlay">
-    <div class="symbol-popup-modal">
-      <button class="symbol-popup-close" onclick="dismissSymbolPopup()" aria-label="Close">&times;</button>
-      <h2 class="symbol-popup-heading">Menu Symbols</h2>
-      <p class="symbol-popup-sub">Quick guide to icons on our menu</p>
-      <div class="symbol-popup-grid">
-        <div class="symbol-popup-item">
-          <span class="sp-icon"><span class="badge-type"><span class="dot veg"></span></span></span>
-          <span class="sp-label">Veg</span>
+  <!-- ═══ FRESH MENU GUIDE POPUP ═══ -->
+  <div id="menuGuidePopupId">
+    <div class="guide-modal">
+      <button class="guide-close" onclick="dismissMenuGuidePopup()" aria-label="Close popup">&times;</button>
+      <div class="guide-content">
+        <h2 class="guide-title">Menu Symbols Guide</h2>
+        <p class="guide-subtitle">Learn what each icon means</p>
+        
+        <div class="symbols-container">
+          <div class="symbol-guide-card">
+            <div class="symbol-guide-row">
+              <span class="symbol-icon"><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(255,255,255,0.93);border-radius:4px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--color-veg);display:block;"></span></span></span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Veg</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Vegetarian</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon"><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(255,255,255,0.93);border-radius:4px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--color-nonveg);display:block;"></span></span></span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Non-Veg</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Meat/Seafood</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon"><span style="display:inline-flex;align-items:center;justify-content:center;gap:2px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:rgba(255,255,255,0.93);border-radius:3px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--color-jain);display:block;"></span></span><span style="background:var(--color-jain);color:#fff;font-size:0.35rem;font-weight:900;padding:1px 3px;border-radius:2px;text-transform:uppercase;white-space:nowrap;">Jain</span></span></span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Jain</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">No roots</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🌶️🌶️</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Spicy</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Very hot</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🌶️</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Medium</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Moderate heat</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🍃</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Mild</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">No heat</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🍯</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Sweet</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Sweet taste</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🍬</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Mild Sweet</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Lightly sweet</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">👨‍🍳</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Chef Pick</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Recommended</span></div>
+            </div>
+          </div>
         </div>
-        <div class="symbol-popup-item">
-          <span class="sp-icon"><span class="badge-type"><span class="dot nonveg"></span></span></span>
-          <span class="sp-label">Non-Veg</span>
-        </div>
-        <div class="symbol-popup-item">
-          <span class="sp-icon"><span class="badge-type"><span class="dot jain"></span></span> <span class="jain-badge">JAIN</span></span>
-          <span class="sp-label">Jain</span>
-        </div>
-        <div class="symbol-popup-item">
-          <span class="sp-icon">🌶️🌶️</span>
-          <span class="sp-label">Spicy</span>
-        </div>
-        <div class="symbol-popup-item">
-          <span class="sp-icon">🌶️</span>
-          <span class="sp-label">Medium</span>
-        </div>
-        <div class="symbol-popup-item">
-          <span class="sp-icon">🍃</span>
-          <span class="sp-label">Non Spicy</span>
-        </div>
-        <div class="symbol-popup-item">
-          <span class="sp-icon">🍯</span>
-          <span class="sp-label">Sweet</span>
-        </div>
-        <div class="symbol-popup-item">
-          <span class="sp-icon">🍬</span>
-          <span class="sp-label">Mild Sweet</span>
-        </div>
-        <div class="symbol-popup-item">
-          <span class="sp-icon">👨‍🍳</span>
-          <span class="sp-label">Chef Special</span>
-        </div>
+        
+        <button class="guide-button" onclick="dismissMenuGuidePopup()">Explore Menu</button>
       </div>
-      <button class="symbol-popup-cta" onclick="dismissSymbolPopup()">Explore Menu</button>
     </div>
   </div>
 
@@ -362,34 +342,7 @@
     <img src="assets/Logo/Namaste Kalyan by AWG -02.png" alt="AWG Namaste Kalyan logo">
    </a>
 
-   <nav class="concept-nav" aria-label="Primary">
-    <a href="menu.html">Menu</a>
-    <a href="cocktail.html">Cocktail</a>
-    <a href="index.html#events">Events</a>
-    <a href="index.html#gallery">Gallery</a>
-    <a href="index.html#contact">Contact</a>
-    <button id="getOffersBtn" class="get-offers-btn" aria-label="Get Offers">Get Offers</button>
-   </nav>
 
-   <div class="concept-header-actions">
-    <a class="ghost-link" href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" rel="noopener noreferrer">Reserve</a>
-    <div class="order-online-wrap">
-     <button class="header-pill order-online-btn" aria-haspopup="true" aria-expanded="false">
-      Order Online
-      <svg class="caret-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-     </button>
-     <div class="order-dropdown" role="menu">
-      <a class="order-option" href="https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout" target="_blank" rel="noopener noreferrer" role="menuitem">
-       <img class="platform-logo" src="assets/Online order Logo/vecteezy_swiggy-app-icon-with-transparent-background_56850705.png" alt="Swiggy">
-       Order on Swiggy
-      </a>
-      <a class="order-option" href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" rel="noopener noreferrer" role="menuitem">
-       <img class="platform-logo" src="assets/Online order Logo/vecteezy_zomato-logo-png-zomato-icon-transparent-png_20975665.png" alt="Zomato">
-       Order on Zomato
-      </a>
-     </div>
-    </div>
-   </div>
   </header>
   <div class="top-controls-bar">
    <div class="square-toggle-group">
@@ -419,30 +372,40 @@
      ⭐ CHEF
     </button>
    </div>
-   <div class="square-toggle-group">
-    <button class="square-btn active" id="img-on" onclick="setImageToggle(true)">
-     IMG ON
-    </button>
-    <button class="square-btn" id="img-off" onclick="setImageToggle(false)">
-     OFF
-    </button>
-   </div>
   </div>
-  <div id="menuTriggerBtn" onclick="toggleSideNav(true)">
-   MENU
-  </div>
+  <button class="hamburger-menu" onclick="toggleSideNav(true)" aria-label="Toggle navigation menu">
+   <div class="hamburger-line"></div>
+   <div class="hamburger-line"></div>
+   <div class="hamburger-line"></div>
+  </button>
+  <button id="reviewBtn" onclick="openGoogleReview()" aria-label="Write a Google review">⭐ REVIEW</button>
   <button id="scrollTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">↑ TOP</button>
+  <div class="floating-actions-group" id="floatingActionsGroup">
+   <button class="floating-action-btn menu-action" onclick="toggleCategoryNav(true)" aria-label="Open category menu">MENU</button>
+   <a class="floating-action-btn icon-action whatsapp-action" href="https://wa.me/919371519999" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><img src="assets/icons/social/whatsapp.svg" alt="WhatsApp" style="width:26px;height:26px;"></a>
+   <a class="floating-action-btn icon-action call-action" href="tel:+919371519999" aria-label="Call Namaste Kalyan">📞</a>
+   <button class="floating-action-btn hide-action" onclick="toggleFloatingActions(false)" aria-label="Hide floating actions">×</button>
+  </div>
+  <button id="floatingActionsReveal" onclick="toggleFloatingActions(true)" aria-label="Show floating actions">☰</button>
   <div id="sideNavOverlay" onclick="toggleSideNav(false)">
   </div>
   <div id="sideNavContainer">
-   <h3 style="color:var(--color-accent-gold); letter-spacing:3px; font-weight:300; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
-    SECTIONS
-   </h3>
-   <div id="sideNavList">
+   <a href="index.html" class="cat-link">🏠 Home</a>
+   <a href="menu.html" class="cat-link">🍽️ Food Menu</a>
+   <a href="cocktail.html" class="cat-link">🍸 Cocktail Menu</a>
+   <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 10px 0;">
+   <a href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" class="cat-link">📅 Reserve Table</a>
+   <a href="https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout" target="_blank" class="cat-link">🛵 Order on Swiggy</a>
+   <a href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" class="cat-link">🍔 Order on Zomato</a>
+   <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 10px 0;">
+   <a href="https://www.instagram.com/namaste_kalyan_by_awg/" target="_blank" class="cat-link">📸 Instagram</a>
+   <a href="https://www.facebook.com/namastekalyanbyawg" target="_blank" class="cat-link">👍 Facebook</a>
+   <a href="https://wa.me/919371519999" target="_blank" class="cat-link">💬 WhatsApp</a>
+  </div>
+  <div id="categoryNavOverlay" onclick="toggleCategoryNav(false)"></div>
+  <div id="categoryNav">
+   <div id="categoryList">
    </div>
-   <a href="https://asianwokandgrill.in" style="margin-top:auto; padding:15px; background:var(--color-accent-maroon); color:#fff; text-decoration:none; border-radius:12px; font-size:0.85rem; font-weight:700; text-align:center;">
-    Back to Website
-   </a>
   </div>
   <main id="menuMain">
   </main>
@@ -648,24 +611,94 @@
    let activeQty = {}; 
 
     const MENU_CACHE_KEY = 'menu-cache:menu:v3';
+    const MENU_WARM_IMAGE_LIMIT = 10;
+    const MENU_FETCH_TIMEOUT_MS = 20000;
+    const MENU_FETCH_RETRY_TIMEOUT_MS = 30000;
+    let menuRenderToken = 0;
+    let menuPerformanceMode = false;
+
+     function shouldEnableMenuPerformanceMode(itemCount = 0) {
+       const ua = navigator.userAgent || '';
+       const mobileViewport = window.matchMedia('(max-width: 900px)').matches;
+       const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+       const saveData = !!(navigator.connection && navigator.connection.saveData);
+       const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
+       const isMobileChrome = /(Chrome|CriOS)\//i.test(ua) && !/(EdgA|OPR|SamsungBrowser)\//i.test(ua) && /(Android|iPhone|iPad|iPod)/i.test(ua);
+       return mobileViewport && coarsePointer && (isMobileChrome || lowMemory || saveData || itemCount >= 90);
+     }
+
+     function applyMenuPerformanceMode(itemCount = 0) {
+       menuPerformanceMode = shouldEnableMenuPerformanceMode(itemCount);
+       document.body.classList.toggle('menu-performance-mode', menuPerformanceMode);
+     }
+
+     function normalizeImageUrl(rawUrl) {
+       const fallback = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400';
+       const value = String(rawUrl || '').trim();
+       if (!value) return fallback;
+
+       if (value.startsWith('//')) return `https:${value}`;
+       if (/^https?:\/\//i.test(value)) return value.replace(/\s/g, '%20');
+
+       try {
+         const resolved = new URL(value, window.location.href).toString();
+         return resolved.replace(/\s/g, '%20');
+       } catch (_) {
+         return fallback;
+       }
+     }
 
      function registerMenuCacheWorker() {
        if (!('serviceWorker' in navigator)) return;
-       navigator.serviceWorker.register('/menu-cache-sw.js').catch(() => {});
+       const swUrl = new URL('./menu-cache-sw.js', window.location.href).pathname;
+       navigator.serviceWorker.register(swUrl, { scope: './' }).catch(() => {});
+     }
+
+     function isAbortError(err) {
+       return !!(err && (
+         err.name === 'AbortError' ||
+         (typeof err.message === 'string' && /aborted/i.test(err.message))
+       ));
+     }
+
+     async function fetchMenuTextWithTimeout(url, timeoutMs) {
+       const controller = new AbortController();
+       const timeoutId = setTimeout(() => {
+         try {
+           controller.abort('SHEET_FETCH_TIMEOUT');
+         } catch (_) {
+           controller.abort();
+         }
+       }, timeoutMs);
+
+       try {
+         const res = await fetch(url, { cache: 'no-store', signal: controller.signal });
+         const text = await res.text();
+         return { res, text };
+       } catch (err) {
+         if (controller.signal.aborted || isAbortError(err)) {
+           throw new Error('SHEET_FETCH_TIMEOUT');
+         }
+         throw err;
+       } finally {
+         clearTimeout(timeoutId);
+       }
      }
 
      async function fetchMenuDataFromSheet() {
        const url = buildMenuApiUrl(SHEET_NAME);
-       const controller = new AbortController();
-       const timeoutId = setTimeout(() => controller.abort(), 12000);
        let res;
        let text;
 
        try {
-         res = await fetch(url, { cache: 'no-store', signal: controller.signal });
-         text = await res.text();
-       } finally {
-         clearTimeout(timeoutId);
+         const result = await fetchMenuTextWithTimeout(url, MENU_FETCH_TIMEOUT_MS);
+         res = result.res;
+         text = result.text;
+       } catch (err) {
+         if (!(err && err.message === 'SHEET_FETCH_TIMEOUT')) throw err;
+         const retry = await fetchMenuTextWithTimeout(url, MENU_FETCH_RETRY_TIMEOUT_MS);
+         res = retry.res;
+         text = retry.text;
        }
 
        if (!res.ok) {
@@ -754,8 +787,10 @@
      }
 
      function warmMenuAssets(items) {
-       if (!('serviceWorker' in navigator)) return;
-       const imageUrls = [...new Set((items || []).map(i => i && i.img).filter(Boolean))];
+       if (!('serviceWorker' in navigator) || menuPerformanceMode) return;
+       if (navigator.connection && navigator.connection.saveData) return;
+       const warmLimit = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4 ? 4 : MENU_WARM_IMAGE_LIMIT;
+       const imageUrls = [...new Set((items || []).map(i => i && i.img).filter(Boolean))].slice(0, warmLimit);
       const urls = [ACTIVE_MENU_API_URL, ...imageUrls];
        navigator.serviceWorker.ready.then((reg) => {
          const target = reg.active || reg.waiting || reg.installing;
@@ -922,7 +957,7 @@
                    chef: (chefRaw === "Yes" || chefRaw === "YES" || chefRaw === true),
                    spice: d[map["Spice Level"]]?.v || "",
                    jainPrice: jVal,
-                   img: d[map["Image URL"]]?.v || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+                   img: normalizeImageUrl(d[map["Image URL"]]?.v),
                    isVeg: finalIsVeg,
                    rowDiet: finalIsVeg ? 'veg' : 'nonveg'
                };
@@ -936,6 +971,7 @@
            if (footerCount) {
              footerCount.innerText = `Total Selections: ${MENU_DB.length}`;
            }
+               applyMenuPerformanceMode(MENU_DB.length);
                warmMenuAssets(MENU_DB);
     hideMenuLoader();
 
@@ -968,9 +1004,16 @@
     return false;
   }
 
+  function buildCategoryMarkup(category, items, index) {
+       const accentCycle = ['gold', 'copper', 'ruby', 'olive'];
+       const slug = category.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+       const accent = accentCycle[index % accentCycle.length];
+       return `<section class="container menu-category" id="${slug}" data-accent="${accent}"><h2 class="section-title">${category}</h2><div class="grid">${items.map(i => generateCard(i)).join('')}</div></section>`;
+  }
+
   function render() {
        const main = document.getElementById('menuMain');
-       const sideList = document.getElementById('sideNavList');
+       const categoryList = document.getElementById('categoryList');
        const cats = [...new Set(MENU_DB.map(i => i.cat))];
        let db = MENU_DB;
 
@@ -981,20 +1024,50 @@
          }
          if(showChefOnly) db = db.filter(i => i.chef);
 
-       const accentCycle = ['gold', 'copper', 'ruby', 'olive'];
-       main.innerHTML = cats.map((c, index) => {
-           const items = db.filter(i => i.cat === c);
-           if(items.length === 0) return ""; 
+       const categoryEntries = cats
+         .map(c => ({ name: c, items: db.filter(i => i.cat === c) }))
+         .filter(entry => entry.items.length);
+
+       const catHtml = categoryEntries.map(({ name: c }) => {
            const slug = c.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-           const accent = accentCycle[index % accentCycle.length];
-           return `<section class="container menu-category" id="${slug}" data-accent="${accent}"><h2 class="section-title">${c}</h2><div class="grid">${items.map(i => generateCard(i)).join('')}</div></section>`;
+           return `<div class="cat-link" onclick="snapTo('${slug}'); toggleCategoryNav(false);">${c}</div>`;
        }).join('');
 
-       const filteredCats = cats.filter(c => db.some(i => i.cat === c));
-       sideList.innerHTML = filteredCats.map(c => {
-           const slug = c.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-           return `<div class="cat-link" onclick="snapTo('${slug}')">${c}</div>`;
-       }).join('');
+       categoryList.innerHTML = catHtml;
+
+       const renderToken = ++menuRenderToken;
+       if (!menuPerformanceMode) {
+         main.innerHTML = categoryEntries.map((entry, index) => buildCategoryMarkup(entry.name, entry.items, index)).join('');
+         return;
+       }
+
+       main.innerHTML = '';
+       let cursor = 0;
+       const batchSize = 2;
+
+       function appendNextBatch() {
+         if (renderToken !== menuRenderToken) return;
+
+         const batch = categoryEntries.slice(cursor, cursor + batchSize);
+         const fragment = document.createDocumentFragment();
+
+         batch.forEach((entry, index) => {
+           const wrapper = document.createElement('div');
+           wrapper.innerHTML = buildCategoryMarkup(entry.name, entry.items, cursor + index);
+           if (wrapper.firstElementChild) {
+             fragment.appendChild(wrapper.firstElementChild);
+           }
+         });
+
+         main.appendChild(fragment);
+         cursor += batch.length;
+
+         if (cursor < categoryEntries.length) {
+           requestAnimationFrame(appendNextBatch);
+         }
+       }
+
+       requestAnimationFrame(appendNextBatch);
    }
 
      function generateCardBody(i) {
@@ -1007,6 +1080,8 @@
            if (k === 'butter') return 'chip-butter';
            if (k === 'half') return 'chip-half';
            if (k === 'full') return 'chip-full';
+           if (k === 'medium') return 'chip-medium';
+           if (k === 'large') return 'chip-large';
            return '';
          };
        
@@ -1017,11 +1092,19 @@
            else activeVariant[i.id] = proteinKeys[0] || servingKeys[0];
        }
        
-       const selV = activeVariant[i.id];
-       
-       let dietType = i.rowDiet; 
-       if (selV === "Veg" || vegXpcs.includes(selV)) dietType = "veg";
-       else if (selV === "Jain") dietType = "jain";
+      const selV = activeVariant[i.id];
+      const normalizeVariantKey = (val) => String(val || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      const isSelectedVariant = (candidate) => normalizeVariantKey(selV) === normalizeVariantKey(candidate);
+
+      const selectedVariant = String(selV || '').trim().toLowerCase();
+      const selectedIsVeg = selectedVariant === 'veg' || vegXpcs.some(v => v.toLowerCase() === selectedVariant);
+      const selectedIsJain = selectedVariant === 'jain';
+      const selectedIsNonVeg = !selectedIsVeg && !selectedIsJain && (window.NON_VEG_WORDS || []).some(w => selectedVariant.includes(String(w).toLowerCase()));
+
+      let dietType = 'nonveg';
+      if (selectedIsJain) dietType = 'jain';
+      else if (selectedIsVeg) dietType = 'veg';
+      else if (!selectedIsNonVeg) dietType = i.rowDiet === 'veg' ? 'veg' : 'nonveg';
 
        let displayPrice = "--";
        if(selV === 'Jain') displayPrice = i.jainPrice;
@@ -1040,21 +1123,20 @@
                <div class="card-header-row">
                     <div class="item-name">${i.name} ${spiceIcons ? `<span class="spice-indicator">${spiceIcons}</span>` : ''}</div>
                     <div class="header-right-symbols">
-                        <div class="badge-type"><div class="dot ${dietType}"></div></div>
-                        ${i.jainPrice !== null ? `<div class="jain-badge">JAIN</div>` : ''}
+                        ${selectedIsJain ? `<div class="jain-badge">JAIN</div>` : `<div class="badge-type"><div class="dot ${dietType}"></div></div>`}
                         ${i.chef ? `<div class="chef-badge">👨‍🍳</div>` : ''}
                     </div>
                </div>
                ${i.servingUnit ? `<div class="serving-remark">Serving: ${i.servingUnit}</div>` : ''}
                <div class="item-desc collapsed" onclick="toggleDesc(this)">${i.desc}</div>
                <div class="variant-container">
-                   ${proteinKeys.map(v => `<div class="variant-chip ${selV === v ? 'active ' + (v === 'Veg' ? 'v-veg' : 'v-non') : ''}" onclick="setVariant(${i.id}, '${v}')">${v}</div>`).join('')}
-                   ${vegXpcs.filter(k => i.servings[k]).map(v => `<div class="variant-chip ${selV === v ? 'active v-veg' : ''}" onclick="setVariant(${i.id}, '${v}')">${v}</div>`).join('')}
-                   ${i.jainPrice !== null ? `<div class="variant-chip jain-type ${selV === 'Jain' ? 'active v-jain' : ''}" onclick="setVariant(${i.id}, 'Jain')">Jain</div>` : ''}
+                     ${proteinKeys.map(v => `<div class="variant-chip ${isSelectedVariant(v) ? 'active ' + (v === 'Veg' ? 'v-veg' : 'v-non') : ''}" onclick="setVariant(${i.id}, '${v}')">${v}</div>`).join('')}
+                     ${vegXpcs.filter(k => i.servings[k]).map(v => `<div class="variant-chip ${isSelectedVariant(v) ? 'active v-veg' : ''}" onclick="setVariant(${i.id}, '${v}')">${v}</div>`).join('')}
+                     ${i.jainPrice !== null ? `<div class="variant-chip jain-type ${isSelectedVariant('Jain') ? 'active v-jain' : ''}" onclick="setVariant(${i.id}, 'Jain')">Jain</div>` : ''}
                </div>
                    ${Object.keys(i.dynamic || {}).length ? `<div class="variant-container">${Object.entries(i.dynamic).map(([k,v]) => `<div class="variant-chip" title="${v}">${k}</div>`).join('')}</div>` : ''}
                <div class="qty-container">
-                   ${servingKeys.filter(k => !vegXpcs.includes(k)).map(q => `<div class="qty-chip ${classifyQtyChip(q)} ${selV === q ? 'active ' + (dietType === 'veg' ? 'v-veg' : 'v-non') : ''}" onclick="setVariant(${i.id}, '${q}')">${q}</div>`).join('')}
+                     ${servingKeys.filter(k => !vegXpcs.includes(k)).map(q => `<div class="qty-chip ${classifyQtyChip(q)} ${isSelectedVariant(q) ? 'active ' + (dietType === 'veg' ? 'v-veg' : 'v-non') : ''}" onclick="setVariant(${i.id}, '${q}')">${q}</div>`).join('')}
                </div>
                <div class="price"><span>Total</span> ₹${displayPrice}</div>
            </div>
@@ -1066,7 +1148,7 @@
        return `<div class="card" id="card-${i.id}" data-cat="${catSlug}">
            <div class="img-box">
                <div class="img-container-circle">
-                   <img src="${i.img}" class="img-main" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'">
+                   <img src="${i.img}" class="img-main" alt="" loading="lazy" decoding="async" fetchpriority="low" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'">
                </div>
            </div>
            ${generateCardBody(i)}
@@ -1091,9 +1173,17 @@
    function updateFilter(val) { foodFilter = val; if(val !== 'VEG') showJainOnly = false; activeVariant = {}; document.querySelectorAll('.top-controls-bar .square-btn').forEach(b => { if(b.id && b.id.startsWith('f-')) b.classList.remove('active'); }); document.getElementById('f-' + val.toLowerCase()).classList.add('active'); render(); }
    function setChefToggle(val) { showChefOnly = val; document.getElementById('chef-on').classList.toggle('active', val); document.getElementById('chef-off').classList.toggle('active', !val); render(); }
    function setJainToggle(val) { showJainOnly = val; activeVariant = {}; if(val) updateFilter('VEG'); document.getElementById('jain-on').classList.toggle('active', val); document.getElementById('jain-off').classList.toggle('active', !val); render(); }
-   function setImageToggle(val) { document.getElementById('menuBody').classList.toggle('hide-images', !val); document.getElementById('img-on').classList.toggle('active', val); document.getElementById('img-off').classList.toggle('active', !val); }
    function toggleTheme() { const target = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; document.body.setAttribute('data-theme', target); document.getElementById('themeIconBtn').innerText = target === 'dark' ? '☀️' : '🌙'; }
    function toggleSideNav(show) { const drawer = document.getElementById('sideNavContainer'); const overlay = document.getElementById('sideNavOverlay'); if(show) { drawer.classList.add('open'); overlay.style.display = 'block'; } else { drawer.classList.remove('open'); overlay.style.display = 'none'; } }
+   function toggleCategoryNav(show) { const drawer = document.getElementById('categoryNav'); const overlay = document.getElementById('categoryNavOverlay'); if(show) { drawer.classList.add('open'); overlay.style.display = 'block'; } else { drawer.classList.remove('open'); overlay.style.display = 'none'; } }
+  function toggleFloatingActions(show) {
+    const group = document.getElementById('floatingActionsGroup');
+    const reveal = document.getElementById('floatingActionsReveal');
+    if (!group || !reveal) return;
+    group.classList.toggle('is-hidden', !show);
+    reveal.classList.toggle('visible', !show);
+  }
+  function openGoogleReview() { window.open('https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1', '_blank', 'noopener,noreferrer'); }
    // Scroll-to-top behavior
    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
    let menuLoaderTypingTimer = null;
@@ -1121,9 +1211,16 @@
    }
    (function setupScrollTop() {
      const btn = document.getElementById('scrollTopBtn');
+     const reviewBtn = document.getElementById('reviewBtn');
      if(!btn) return;
      function onScroll() {
-       if(window.scrollY > 300) btn.style.display = 'block'; else btn.style.display = 'none';
+      if(window.scrollY > 300) {
+        btn.style.display = 'block';
+        if (reviewBtn) reviewBtn.style.display = 'block';
+      } else {
+        btn.style.display = 'none';
+        if (reviewBtn) reviewBtn.style.display = 'none';
+      }
      }
      window.addEventListener('scroll', onScroll, { passive: true });
      // initial state
@@ -1179,24 +1276,28 @@ if (navMenu) {
 }
 </script>
 <script>
-  /* ── Symbol Guide Popup — show once per session ── */
-  function dismissSymbolPopup() {
-    const overlay = document.getElementById('symbolPopupOverlay');
-    if (overlay) {
-      overlay.classList.add('hidden');
-      setTimeout(() => overlay.remove(), 450);
+  /* ── Fresh Menu Guide Popup Handler ── */
+  function dismissMenuGuidePopup() {
+    const popup = document.getElementById('menuGuidePopupId');
+    if (popup) {
+      popup.classList.add('hidden');
+      setTimeout(() => {
+        popup.remove();
+        try { sessionStorage.setItem('menuGuideSeen', '1'); } catch(e) {}
+      }, 300);
     }
-    try { sessionStorage.setItem('menuSymbolsSeen', '1'); } catch(e) {}
   }
-  (function() {
+  
+  (function initMenuGuide() {
     try {
-      if (sessionStorage.getItem('menuSymbolsSeen') === '1') {
-        const el = document.getElementById('symbolPopupOverlay');
-        if (el) el.remove();
+      if (sessionStorage.getItem('menuGuideSeen') === '1') {
+        const popup = document.getElementById('menuGuidePopupId');
+        if (popup) popup.remove();
       }
     } catch(e) {}
   })();
 </script>
-<script src="script.js?v=20260321-4"></script>
+<script src="script.js?v=20260327-fresh"></script>
+<script src="https://myappzchat.com/production/master/widget/embed-widget.umd.js" data-widget-id="edb91eb3-7293-4749-9138-9e5871f0082a" async></script>
  </body>
 </html>

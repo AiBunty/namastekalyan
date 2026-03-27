@@ -83,6 +83,15 @@ body.concept-body {
     }
 }
 
+@media (max-width: 768px) {
+    body#menuBody .top-controls-bar {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1400 !important;
+        padding-top: max(12px, env(safe-area-inset-top, 0px)) !important;
+    }
+}
+
 .square-toggle-group {
     background: rgba(255, 255, 255, 0.07) !important;
 }

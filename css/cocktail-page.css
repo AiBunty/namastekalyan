@@ -1,0 +1,361 @@
+/* ════════════════════════════════════════════════════════════════════════════════
+   COCKTAIL-PAGE.CSS — Cocktail Page Specific Styles
+   Contains: Hero title, menu frame, item styling, cocktail-specific themes
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Header Bar (Cocktail Page) ───────────────────────────────────────────── */
+.header-bar {
+    text-align: center;
+    padding: 25px 20px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.header-logo {
+    height: 60px;
+    filter: drop-shadow(0 0 12px rgba(244, 229, 194, 0.4));
+    margin-bottom: 10px;
+}
+
+.header-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--gold-cream);
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* ── Container (Cocktail) ─────────────────────────────────────────────────── */
+.container-cocktail {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 15px 40px;
+}
+
+/* ── Hero Title (Great Vibes Font) ────────────────────────────────────────── */
+.hero-title {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 100px;
+}
+
+.hero-title h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5rem;
+    color: var(--gold-cream);
+    line-height: 1;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-title .cocktail-word {
+    font-size: 6rem;
+    display: block;
+    margin-bottom: -20px;
+}
+
+.hero-title .menu-word {
+    font-size: 5rem;
+    font-style: italic;
+    margin-left: 60px;
+}
+
+/* ── Menu Frame (Cocktail) ────────────────────────────────────────────────── */
+.menu-frame {
+    border: 2px solid var(--border-gold);
+    padding: 50px 30px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+/* ── Category Section (Cocktail) ──────────────────────────────────────────── */
+.category-section {
+    --category-accent: var(--gold-bright);
+    --category-accent-soft: rgba(240, 196, 143, 0.18);
+    --category-accent-glow: rgba(240, 196, 143, 0.16);
+    margin-bottom: 50px;
+    scroll-margin-top: 100px;
+}
+
+.category-section[data-accent="gold"] {
+    --category-accent: #f0c48f;
+    --category-accent-soft: rgba(240, 196, 143, 0.18);
+    --category-accent-glow: rgba(240, 196, 143, 0.16);
+}
+
+.category-section[data-accent="copper"] {
+    --category-accent: #d79a72;
+    --category-accent-soft: rgba(215, 154, 114, 0.18);
+    --category-accent-glow: rgba(215, 154, 114, 0.16);
+}
+
+.category-section[data-accent="ruby"] {
+    --category-accent: #d66a7a;
+    --category-accent-soft: rgba(214, 106, 122, 0.16);
+    --category-accent-glow: rgba(214, 106, 122, 0.14);
+}
+
+.category-section[data-accent="olive"] {
+    --category-accent: #a7b07c;
+    --category-accent-soft: rgba(167, 176, 124, 0.16);
+    --category-accent-glow: rgba(167, 176, 124, 0.14);
+}
+
+/* ── Category Title (Cinzel) ──────────────────────────────────────────────── */
+.category-title {
+    width: min(100%, 620px);
+    margin: 0 auto 34px;
+    padding: 18px 28px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--gold-cream);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    border-radius: 20px;
+    border: 1px solid var(--category-accent-soft);
+    border-left: 4px solid var(--category-accent);
+    border-right: 4px solid var(--category-accent);
+    background: radial-gradient(circle at center, var(--category-accent-soft) 0%, rgba(0, 0, 0, 0) 72%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.22));
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28),
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+                0 0 24px var(--category-accent-glow);
+    overflow: hidden;
+}
+
+.category-title::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    pointer-events: none;
+}
+
+.category-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--category-accent), transparent);
+    box-shadow: 0 0 16px var(--category-accent-glow);
+}
+
+/* ── Menu Item (Cocktail) ─────────────────────────────────────────────────── */
+.menu-item {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+/* ── Item Name (Great Vibes, Sentence Case) ───────────────────────────────── */
+.item-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: var(--gold-cream);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    text-transform: lowercase;
+}
+
+.item-name::first-letter {
+    text-transform: uppercase;
+}
+
+/* ── Item Description ─────────────────────────────────────────────────────── */
+.item-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+    font-style: italic;
+    font-weight: 300;
+}
+
+/* ── Price Display ────────────────────────────────────────────────────────── */
+.price-display {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.price-item {
+    font-size: 0.9rem;
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.price-item .unit {
+    opacity: 0.8;
+    font-size: 0.75rem;
+    margin-right: 4px;
+    text-transform: uppercase;
+}
+
+.price-item .amount {
+    font-weight: 700;
+}
+
+/* ── Navigation Trigger Button (Cocktail) ────────────────────────────────── */
+#menuTriggerBtn {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    background: var(--gold-bright);
+    color: #000;
+    padding: 25px 12px;
+    border-radius: 15px 0 0 15px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    z-index: 3500;
+    cursor: pointer;
+    border: 1px solid var(--gold-cream);
+    border-right: none;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+}
+
+#menuTriggerBtn:hover {
+    right: -2px;
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Navigation Drawer (Cocktail) ────────────────────────────────────────── */
+#navDrawer {
+    position: fixed;
+    right: -280px;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    background: var(--burgundy-deep);
+    z-index: 4000;
+    padding: 50px 20px;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 2px solid var(--gold-bright);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+#navDrawer.open {
+    transform: translateX(-280px);
+}
+
+.nav-link {
+    padding: 18px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gold-cream);
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.5);
+}
+
+#navOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 3800;
+    display: none;
+}
+
+/* ── Branches Grid (Footer) ───────────────────────────────────────────────── */
+.branches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.branch-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-gold);
+    padding: 25px 20px;
+    border-radius: 8px;
+}
+
+/* ── Scroll Top Button (Cocktail) ────────────────────────────────────────── */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gold-bright);
+    color: #000;
+    border: 2px solid var(--gold-cream);
+    cursor: pointer;
+    z-index: 3000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s;
+}
+
+#scrollTopBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        padding-top: 80px;
+    }
+
+    .hero-title h1 {
+        font-size: 3.5rem;
+    }
+
+    .menu-frame {
+        padding: 30px 15px;
+    }
+
+    .item-name {
+        font-size: 2.4rem;
+    }
+
+    .category-title {
+        width: 100%;
+        padding: 16px 18px;
+        font-size: 1.35rem;
+        letter-spacing: 2px;
+    }
+
+    .category-title::after {
+        width: 96px;
+    }
+}

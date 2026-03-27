@@ -909,6 +909,18 @@ button {
     gap: 18px;
 }
 
+.property-footer-grid > .property-footer-card:nth-child(1) {
+    order: 3;
+}
+
+.property-footer-grid > .property-footer-card:nth-child(2) {
+    order: 2;
+}
+
+.property-footer-grid > .property-footer-card:nth-child(3) {
+    order: 1;
+}
+
 .property-footer-card {
     display: grid;
     gap: 18px;

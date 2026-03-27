@@ -1,0 +1,135 @@
+/* ════════════════════════════════════════════════════════════════════════════════
+   LOADER.CSS — Page Loader & Animation Styles
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Menu Loader (Menu.html) ──────────────────────────────────────────────── */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, #17202f 0%, #090d14 58%, #000 100%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    transition: opacity 0.45s ease;
+}
+
+#loader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── Loader Orbit (Spinner) ───────────────────────────────────────────────── */
+.loader-orbit {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    display: grid;
+    place-items: center;
+}
+
+.loader-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-top-color: var(--color-accent-gold);
+    animation: spin 1.05s linear infinite;
+}
+
+.loader-ring.inner {
+    inset: 12px;
+    border-top-color: var(--color-accent-maroon);
+    animation-duration: 1.5s;
+    animation-direction: reverse;
+}
+
+.loader-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+    animation: pulse 0.95s ease-in-out infinite alternate;
+}
+
+/* ── Loader Text ──────────────────────────────────────────────────────────── */
+.loader-typed {
+    min-height: 20px;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.loader-sub {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.63rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+/* ── Cocktail Loader (Cocktail.html) ──────────────────────────────────────── */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, #8B2020 0%, #6B1313 58%, #3A0B0B 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
+    gap: 14px;
+    transition: opacity 0.45s ease;
+}
+
+#loader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── Spinner (Cocktail) ───────────────────────────────────────────────────── */
+.spinner {
+    width: 54px;
+    height: 54px;
+    border: 4px solid rgba(244, 229, 194, 0.4);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.75);
+        opacity: 0.6;
+    }
+    to {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+/* ── Typing Effect ────────────────────────────────────────────────────────── */
+@keyframes typeIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}

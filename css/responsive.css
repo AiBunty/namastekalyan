@@ -1,0 +1,718 @@
+/* ════════════════════════════════════════════════════════════════════════════════
+   RESPONSIVE.CSS — All Media Queries & Responsive Layouts
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   TABLET BREAKPOINT (@768px)
+   ═════════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    /* ── Typography Adjustments ────────────────────────────────────────────── */
+    .section-title {
+        width: 100%;
+        padding: 16px 18px;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+
+    .section-title::after {
+        width: 88px;
+    }
+
+    .category-title {
+        width: 100%;
+        padding: 16px 18px;
+        font-size: 1.35rem;
+        letter-spacing: 2px;
+    }
+
+    .category-title::after {
+        width: 96px;
+    }
+
+    /* ── Hero Title ────────────────────────────────────────────────────────────── */
+    .hero-title {
+        padding-top: 80px;
+    }
+
+    .hero-title h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-title .cocktail-word {
+        font-size: 3.8rem;
+        margin-bottom: -10px;
+    }
+
+    .hero-title .menu-word {
+        font-size: 3rem;
+        margin-left: 30px;
+    }
+
+    /* ── Menu Frame ────────────────────────────────────────────────────────────── */
+    .menu-frame {
+        padding: 30px 15px;
+    }
+
+    .container-cocktail {
+        padding: 15px 12px 30px;
+    }
+
+    /* ── Item Name ────────────────────────────────────────────────────────────── */
+    .item-name {
+        font-size: 2.4rem;
+    }
+
+    /* ── Legend Grid ───────────────────────────────────────────────────────────── */
+    .legend-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .legend-card {
+        padding: 10px !important;
+        border-radius: 10px !important;
+    }
+
+    .legend-card > div {
+        font-size: 0.98rem !important;
+    }
+
+    .legend-card span {
+        font-size: 0.85rem !important;
+        color: #777 !important;
+    }
+
+    .legend-title {
+        font-size: 1.1rem !important;
+    }
+
+    /* ── Concept Header ────────────────────────────────────────────────────────── */
+    .concept-header {
+        flex-direction: column;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .concept-brand {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .concept-nav {
+        width: 100%;
+        order: 3;
+        gap: 10px;
+    }
+
+    .concept-header-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* ── Grid Layout ───────────────────────────────────────────────────────────── */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 8px;
+    }
+
+    /* ── Property Footer Grid ──────────────────────────────────────────────────── */
+    .property-footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .property-footer-card {
+        text-align: center;
+    }
+
+    .property-footer-head {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .property-socials {
+        justify-content: center;
+    }
+
+    .property-order-links {
+        justify-content: center;
+    }
+
+    /* ── Hamburger Menu ────────────────────────────────────────────────────────── */
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .concept-nav:not(.active) {
+        display: none;
+    }
+
+    .concept-nav.active {
+        display: flex;
+        position: static;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* ── Top Controls Bar ──────────────────────────────────────────────────────── */
+    .top-controls-bar {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* ── Side Nav Sizing ───────────────────────────────────────────────────────── */
+    #sideNavContainer {
+        width: 240px;
+    }
+
+    #sideNavContainer.open {
+        transform: translateX(-240px);
+    }
+
+    .floating-action-btn.menu-action {
+        padding: 18px 8px;
+        min-height: 102px;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   MEDIUM MOBILE BREAKPOINT (@620px)
+   ═════════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 620px) {
+    /* ── Grid Layout ───────────────────────────────────────────────────────────── */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 6px;
+    }
+
+    /* ── Legend Grid ───────────────────────────────────────────────────────────── */
+    .legend-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    .legend-card {
+        padding: 8px !important;
+    }
+
+    /* ── Typography ────────────────────────────────────────────────────────────── */
+    .hero-title {
+        padding-top: 60px;
+    }
+
+    .hero-title h1 {
+        font-size: 3rem;
+    }
+
+    .item-name {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        padding: 14px 16px;
+        font-size: 1.1rem;
+    }
+
+    .category-title {
+        padding: 14px 16px;
+        font-size: 1.2rem;
+    }
+
+    /* ── Card Sizing ───────────────────────────────────────────────────────────── */
+    .card {
+        border-radius: 16px;
+    }
+
+    .img-container-circle {
+        border: 2px solid #fff;
+    }
+
+    /* ── Padding Reductions ────────────────────────────────────────────────────── */
+    .menu-frame {
+        padding: 20px 10px;
+    }
+
+    .container-cocktail {
+        padding: 10px 8px 20px;
+    }
+
+    main {
+        min-height: 60vh;
+    }
+
+    /* ── Side Nav Sizing ───────────────────────────────────────────────────────── */
+    #sideNavContainer {
+        width: 220px;
+        padding: 30px 15px;
+    }
+
+    .floating-action-btn.menu-action {
+        font-size: 0.7rem;
+        padding: 16px 8px;
+        min-height: 96px;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   SMALL MOBILE BREAKPOINT (@420px)
+   ═════════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 420px) {
+    /* ── Legend Grid (Single Column) ───────────────────────────────────────────── */
+    .legend-grid {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    .legend-card {
+        padding: 8px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+
+    .legend-card > div {
+        font-size: 0.95rem !important;
+        margin: 0 !important;
+        flex: 0 0 auto !important;
+    }
+
+    .legend-card span {
+        font-size: 0.82rem !important;
+    }
+
+    .legend-card span + span {
+        display: none !important;
+    }
+
+    .legend-title {
+        font-size: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* ── Hero Title ────────────────────────────────────────────────────────────── */
+    .hero-title {
+        padding-top: 40px;
+        margin-bottom: 30px;
+    }
+
+    .hero-title h1 {
+        font-size: 2.5rem;
+        line-height: 1.1;
+    }
+
+    .hero-title .cocktail-word {
+        font-size: 3rem;
+        margin-bottom: -8px;
+    }
+
+    .hero-title .menu-word {
+        font-size: 2.2rem;
+        margin-left: 20px;
+    }
+
+    /* ── Typography Cuts ───────────────────────────────────────────────────────── */
+    .section-title {
+        padding: 12px 12px;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        margin: 1.5rem auto 1rem;
+    }
+
+    .section-title::after {
+        width: 70px;
+        height: 1px;
+    }
+
+    .category-title {
+        padding: 12px 12px;
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
+    .category-title::after {
+        width: 60px;
+    }
+
+    .item-name {
+        font-size: 1.8rem;
+    }
+
+    /* ── Grid Layout ───────────────────────────────────────────────────────────── */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 4px;
+    }
+
+    /* ── Menu Frame ────────────────────────────────────────────────────────────── */
+    .menu-frame {
+        padding: 15px 8px;
+        border: 1px solid var(--border-gold);
+    }
+
+    .container-cocktail {
+        padding: 8px 6px 15px;
+    }
+
+    /* ── Card Adjustments ──────────────────────────────────────────────────────── */
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-body {
+        padding: 10px;
+    }
+
+    .img-box {
+        padding: 12px 12px 0;
+    }
+
+    .img-container-circle {
+        border: 2px solid #fff;
+    }
+
+    /* ── Item Details Sizing ───────────────────────────────────────────────────── */
+    .item-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .item-desc {
+        font-size: 0.7rem;
+    }
+
+    .price {
+        font-size: 1rem;
+        gap: 8px;
+    }
+
+    .badge-type {
+        width: 16px;
+        height: 16px;
+    }
+
+    .dot {
+        width: 7px;
+        height: 7px;
+    }
+
+    /* ── Chips Sizing ──────────────────────────────────────────────────────────── */
+    .variant-chip,
+    .qty-chip {
+        padding: 4px 10px;
+        font-size: 0.6rem;
+        border-radius: 6px;
+    }
+
+    /* ── Header Adjustments ────────────────────────────────────────────────────── */
+    .concept-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 12px;
+    }
+
+    .concept-nav {
+        gap: 8px;
+    }
+
+    .concept-nav a {
+        font-size: 0.8rem;
+    }
+
+    .header-pill {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .ghost-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* ── Side Nav Sizing ───────────────────────────────────────────────────────── */
+    #sideNavContainer {
+        width: 200px;
+        padding: 25px 12px;
+    }
+
+    .cat-link {
+        padding: 12px;
+        font-size: 0.8rem;
+    }
+
+    .floating-action-btn.menu-action {
+        font-size: 0.65rem;
+        padding: 15px 6px;
+        letter-spacing: 1px;
+        min-height: 90px;
+    }
+
+    /* ── Scroll Top Button ────────────────────────────────────────────────────── */
+    #scrollTopBtn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+        bottom: 16px;
+        left: 16px;
+    }
+
+    /* ── Footer Adjustments ────────────────────────────────────────────────────── */
+    footer {
+        padding: 2rem 1rem;
+    }
+
+    .footer-intro h2 {
+        font-size: 1.5rem;
+    }
+
+    .property-footer-card {
+        padding: 15px;
+    }
+
+    .property-footer-address {
+        font-size: 0.8rem;
+    }
+
+    /* ── Bar Notice ────────────────────────────────────────────────────────────── */
+    .bar-notice-card {
+        padding: 30px 20px;
+    }
+
+    .bar-notice-icon {
+        font-size: 2rem;
+    }
+
+    .bar-notice-title {
+        font-size: 1.1rem;
+    }
+
+    .bar-notice-list li {
+        font-size: 0.85rem;
+    }
+
+    .bar-notice-tagline {
+        font-size: 1.2rem;
+    }
+
+    /* ── Bar Info Modal ────────────────────────────────────────────────────────── */
+    .bar-info-modal {
+        padding: 30px 20px 20px;
+        max-width: 90%;
+    }
+
+    .bar-info-heading {
+        font-size: 1.2rem;
+    }
+
+    .bar-info-list li {
+        font-size: 0.85rem;
+    }
+
+    /* ── Popup Content ────────────────────────────────────────────────────────── */
+    #menuGuidePopupId .guide-content {
+        padding: 20px 12px 16px !important;
+    }
+
+    #menuGuidePopupId .guide-title {
+        font-size: 1.1rem !important;
+    }
+
+    #menuGuidePopupId .symbols-container {
+        max-height: min(56vh, 420px) !important;
+    }
+
+    #menuGuidePopupId .symbol-guide-card {
+        padding: 8px !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+    }
+
+    #menuGuidePopupId .symbol-guide-row {
+        gap: 7px !important;
+        padding: 8px 6px !important;
+        min-height: 64px !important;
+    }
+
+    #menuGuidePopupId .symbol-icon {
+        font-size: 1.35rem !important;
+        min-width: 32px !important;
+    }
+
+    #menuGuidePopupId .symbol-label {
+        font-size: 0.6rem !important;
+    }
+
+    #menuGuidePopupId .symbol-desc {
+        font-size: 0.54rem !important;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   ULTRA SMALL MOBILE BREAKPOINT (@380px)
+   ═════════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 380px) {
+    /* ── Hero Title (Ultra Small) ──────────────────────────────────────────────── */
+    .hero-title {
+        padding-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .hero-title h1 {
+        font-size: 2rem;
+    }
+
+    .hero-title .cocktail-word {
+        font-size: 2.4rem;
+        margin-bottom: -5px;
+    }
+
+    .hero-title .menu-word {
+        font-size: 1.8rem;
+        margin-left: 15px;
+    }
+
+    /* ── Menu Frame Narrow ────────────────────────────────────────────────────── */
+    .menu-frame {
+        padding: 12px 6px;
+    }
+
+    .section-title {
+        padding: 10px 10px;
+        font-size: 0.95rem;
+    }
+
+    .category-title {
+        padding: 10px 10px;
+        font-size: 0.95rem;
+    }
+
+    /* ── Grid Ultra Narrow ────────────────────────────────────────────────────── */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 2px;
+    }
+
+    /* ── Popup Narrow Mode ────────────────────────────────────────────────────── */
+    #menuGuidePopupId .guide-content {
+        padding: 18px 10px 14px !important;
+    }
+
+    #menuGuidePopupId .symbols-container {
+        max-height: min(54vh, 360px) !important;
+    }
+
+    #menuGuidePopupId .symbol-guide-card {
+        padding: 8px !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+    }
+
+    #menuGuidePopupId .symbol-guide-row {
+        gap: 6px !important;
+        padding: 7px 5px !important;
+        min-height: 60px !important;
+    }
+
+    #menuGuidePopupId .symbol-icon {
+        font-size: 1.25rem !important;
+        min-width: 30px !important;
+    }
+
+    #menuGuidePopupId .symbol-label {
+        font-size: 0.58rem !important;
+    }
+
+    #menuGuidePopupId .symbol-desc {
+        font-size: 0.52rem !important;
+    }
+
+    /* ── Card Ultra Compact ────────────────────────────────────────────────────── */
+    .card {
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 8px;
+    }
+
+    /* ── Scroll Button Ultra Small ────────────────────────────────────────────── */
+    #scrollTopBtn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+
+    /* ── Side Nav Ultra Narrow ────────────────────────────────────────────────── */
+    #sideNavContainer {
+        width: 180px;
+    }
+
+    .floating-actions-group,
+    #floatingActionsReveal {
+        right: 0;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   LANDSCAPE ORIENTATION
+   ═════════════════════════════════════════════════════════════════════════════ */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero-title {
+        padding-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .hero-title h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        min-height: auto;
+    }
+
+    footer {
+        padding: 2rem 1rem;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   HIGH DPI / RETINA DISPLAYS
+   ═════════════════════════════════════════════════════════════════════════════ */
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .img-main {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════
+   PRINT STYLES
+   ═════════════════════════════════════════════════════════════════════════════ */
+@media print {
+    #loader,
+    .floating-actions-group,
+    #floatingActionsReveal,
+    #scrollTopBtn,
+    #navOverlay,
+    #navDrawer,
+    #sideNavOverlay,
+    #sideNavContainer {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}

@@ -1,0 +1,560 @@
+/* ════════════════════════════════════════════════════════════════════════════════
+   POPUPS.CSS — Modal & Popup Styling (Menu Guide, Bar Info)
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Menu Guide Popup (Fresh Rewrite) ─────────────────────────────────────── */
+@keyframes menuGuidePopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#menuGuidePopupId {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.88) !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    opacity: 1 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+#menuGuidePopupId.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+#menuGuidePopupId .guide-modal {
+    background: #0f1419 !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: 16px !important;
+    width: 100% !important;
+    max-width: 95vw !important;
+    max-height: 88vh !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+    animation: menuGuidePopIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9) !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#menuGuidePopupId .guide-close {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    width: 32px !important;
+    height: 32px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50% !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    transition: all 0.2s ease !important;
+    z-index: 10001 !important;
+}
+
+#menuGuidePopupId .guide-close:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
+}
+
+#menuGuidePopupId .guide-content {
+    padding: 28px 18px 22px !important;
+    box-sizing: border-box !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#menuGuidePopupId .guide-title {
+    font-family: 'Fraunces', serif !important;
+    font-size: 1.4rem !important;
+    color: var(--color-accent-gold) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2.2px !important;
+    margin: 0 0 6px 0 !important;
+    padding: 0 !important;
+    font-weight: 700 !important;
+}
+
+#menuGuidePopupId .guide-subtitle {
+    font-size: 0.65rem !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    margin: 0 0 18px 0 !important;
+    line-height: 1.4 !important;
+}
+
+#menuGuidePopupId .symbols-container {
+    display: block !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+    max-height: min(58vh, 460px) !important;
+    overflow-y: auto !important;
+    padding-right: 4px !important;
+}
+
+#menuGuidePopupId .symbols-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+#menuGuidePopupId .symbols-container::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 116, 0.45);
+    border-radius: 999px;
+}
+
+#menuGuidePopupId .symbol-guide-card {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+}
+
+#menuGuidePopupId .symbol-guide-row {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    padding: 10px 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border-radius: 10px !important;
+    background: rgba(0, 0, 0, 0.16) !important;
+    min-height: 72px !important;
+}
+
+#menuGuidePopupId .symbol-guide-row:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09) !important;
+}
+
+#menuGuidePopupId .symbol-cell {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    min-height: unset !important;
+    padding: 10px 0 !important;
+    text-align: left !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+#menuGuidePopupId .symbol-cell:last-child {
+    border-bottom: none !important;
+}
+
+#menuGuidePopupId .symbol-icon {
+    font-size: 1.5rem !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 38px !important;
+    height: 32px !important;
+    flex-shrink: 0 !important;
+}
+
+#menuGuidePopupId .symbol-text {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    text-align: left !important;
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#menuGuidePopupId .symbol-label {
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    color: #fff !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+    line-height: 1.2 !important;
+    display: block !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#menuGuidePopupId .symbol-desc {
+    font-size: 0.62rem !important;
+    color: rgba(255, 255, 255, 0.62) !important;
+    line-height: 1.3 !important;
+    font-weight: 400 !important;
+    display: block !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#menuGuidePopupId .symbol-guide-row * {
+    writing-mode: horizontal-tb !important;
+}
+
+#menuGuidePopupId .guide-button {
+    display: block !important;
+    width: 100% !important;
+    padding: 13px 0 !important;
+    margin-top: auto !important;
+    background: linear-gradient(135deg, #d4a574 0%, #8f5923 100%) !important;
+    color: #1a0a0a !important;
+    border: none !important;
+    border-radius: 9px !important;
+    font-family: 'Fraunces', serif !important;
+    font-size: 0.86rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.8px !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    transition: all 0.25s ease !important;
+}
+
+#menuGuidePopupId .guide-button:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 420px) {
+    #menuGuidePopupId .guide-content {
+        padding: 20px 12px 16px !important;
+    }
+
+    #menuGuidePopupId .guide-title {
+        font-size: 1.1rem !important;
+    }
+
+    #menuGuidePopupId .symbols-container {
+        max-height: min(56vh, 420px) !important;
+    }
+
+    #menuGuidePopupId .symbol-guide-card {
+        padding: 8px !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+    }
+
+    #menuGuidePopupId .symbol-guide-row {
+        gap: 7px !important;
+        padding: 8px 6px !important;
+        min-height: 64px !important;
+    }
+
+    #menuGuidePopupId .symbol-icon {
+        font-size: 1.35rem !important;
+        min-width: 32px !important;
+    }
+
+    #menuGuidePopupId .symbol-label {
+        font-size: 0.6rem !important;
+    }
+
+    #menuGuidePopupId .symbol-desc {
+        font-size: 0.54rem !important;
+    }
+}
+
+@media (max-width: 380px) {
+    #menuGuidePopupId .guide-content {
+        padding: 24px 14px 16px !important;
+    }
+
+    #menuGuidePopupId .guide-title {
+        font-size: 1.15rem !important;
+        letter-spacing: 1.8px !important;
+        margin-bottom: 4px !important;
+    }
+
+    #menuGuidePopupId .symbols-container {
+        max-height: min(56vh, 400px) !important;
+    }
+
+    #menuGuidePopupId .symbol-guide-card {
+        padding: 8px !important;
+        gap: 6px !important;
+    }
+
+    #menuGuidePopupId .symbol-guide-row {
+        gap: 7px !important;
+        padding: 8px 6px !important;
+        min-height: 66px !important;
+    }
+
+    #menuGuidePopupId .symbol-icon {
+        font-size: 1.35rem !important;
+        min-width: 32px !important;
+        height: 28px !important;
+    }
+
+    #menuGuidePopupId .symbol-label {
+        font-size: 0.62rem !important;
+    }
+
+    #menuGuidePopupId .symbol-desc {
+        font-size: 0.56rem !important;
+    }
+}
+
+/* ── Desktop: constrain Menu Guide popup width ──────────────────────────── */
+@media (min-width: 769px) {
+    #menuGuidePopupId .guide-modal {
+        max-width: 460px !important;
+        max-height: 80vh !important;
+    }
+
+    #menuGuidePopupId .guide-content {
+        padding: 28px 24px 20px !important;
+    }
+
+    #menuGuidePopupId .symbols-container {
+        max-height: min(52vh, 380px) !important;
+    }
+}
+
+/* ── Bar Info Popup (Cocktail Page) ───────────────────────────────────────── */
+.bar-info-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 6000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.bar-info-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bar-info-modal {
+    background: rgba(60, 15, 15, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 20px;
+    padding: 40px 32px 32px;
+    max-width: 380px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    animation: barModalIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes barModalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.bar-info-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--gold-cream);
+    font-size: 1.6rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.bar-info-close:hover {
+    opacity: 1;
+}
+
+.bar-info-icon {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.bar-info-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--gold-cream);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.bar-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.bar-info-list li {
+    font-size: 0.92rem;
+    color: rgba(244, 229, 194, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.bar-info-list strong {
+    color: var(--gold-bright);
+}
+
+.bar-info-bullet {
+    color: var(--gold-bright);
+    font-size: 0.7rem;
+}
+
+.bar-info-cta {
+    background: linear-gradient(135deg, var(--gold-bright), #c9a84c);
+    color: #1a0505;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bar-info-cta:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 24px rgba(212, 175, 55, 0.35);
+}
+
+/* ── Bar Notice End Card ──────────────────────────────────────────────────── */
+.bar-notice-section {
+    padding: 50px 20px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.bar-notice-card {
+    position: relative;
+    overflow: hidden;
+    background: rgba(60, 15, 15, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    padding: 40px 32px 36px;
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+.bar-notice-glow {
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.bar-notice-icon {
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.bar-notice-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--gold-cream);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.bar-notice-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.bar-notice-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bar-notice-list li {
+    font-size: 0.9rem;
+    color: rgba(244, 229, 194, 0.88);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.bar-notice-list strong {
+    color: var(--gold-bright);
+}
+
+.bar-notice-star {
+    color: var(--gold-bright);
+    font-size: 0.65rem;
+}
+
+.bar-notice-tagline {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.4rem;
+    color: var(--gold-cream);
+    opacity: 0.7;
+    margin: 0;
+    position: relative;
+}

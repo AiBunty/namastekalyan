@@ -46,6 +46,46 @@
     >
     <link rel="stylesheet" href="styles-copy.css?v=20260321-4">
     <link rel="stylesheet" href="modal-styles.css">
+    <!-- New CSS Architecture -->
+
+    <link rel="stylesheet" href="css/popups.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+      /* ════════ HAMBURGER MENU BUTTON ════════ */
+      .hamburger-menu {
+        position: fixed; top: 14px; right: 16px; width: 40px; height: 40px;
+        background: var(--color-accent-maroon); color: #fff; border: none;
+        border-radius: 8px; cursor: pointer; z-index: 2600; display: flex;
+        flex-direction: column; align-items: center; justify-content: center;
+        gap: 5px; font-size: 1.2rem; font-weight: 800;
+      }
+      .hamburger-menu:hover { background: rgba(198, 40, 40, 0.9); }
+      .hamburger-line { width: 22px; height: 2px; background: #fff; border-radius: 1px; }
+      /* Hide navbar links - all navigation in hamburger menu only */
+      .concept-nav { display: none !important; }
+      .concept-header-actions { display: none !important; }
+      
+      #sideNavOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2800; display: none; backdrop-filter: blur(2px); }
+      #sideNavContainer { position: fixed; right: -280px; top: 0; bottom: 0; width: 260px; background: var(--color-bg-secondary); z-index: 3000; padding: 40px 20px; box-shadow: -10px 0 30px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+      #sideNavContainer.open { transform: translateX(-280px); }
+      .cat-link { padding: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: rgba(255, 255, 255, 0.95); text-align: center; cursor: pointer; border: 1px solid rgba(0,0,0,0.05); transition: all 0.2s ease; text-decoration: none; display: block; }
+      .cat-link:hover { background: rgba(0, 0, 0, 0.4); transform: translateX(-2px); }
+    .floating-actions-group { position: fixed; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 2500; transition: transform 0.25s ease, opacity 0.25s ease; }
+    .floating-actions-group.is-hidden { transform: translateY(-50%) translateX(120%); opacity: 0; pointer-events: none; }
+    .floating-action-btn { border: none; cursor: pointer; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+    .floating-action-btn.menu-action { writing-mode: vertical-rl; text-orientation: mixed; background: var(--color-accent-maroon); padding: 20px 10px; border-radius: 12px 0 0 12px; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; min-height: 112px; }
+    .floating-action-btn.icon-action { width: 44px; height: 44px; border-radius: 12px 0 0 12px; font-size: 1.1rem; font-weight: 800; }
+    .floating-action-btn.whatsapp-action { background: #25d366; }
+    .floating-action-btn.call-action { background: var(--color-accent-gold); color: #23180f; }
+    .floating-action-btn.hide-action { width: 32px; height: 32px; border-radius: 10px 0 0 10px; background: rgba(22, 22, 22, 0.9); font-size: 0.95rem; }
+    #floatingActionsReveal { position: fixed; right: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 64px; border: none; border-radius: 12px 0 0 12px; background: rgba(22, 22, 22, 0.94); color: #fff; display: none; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; z-index: 2500; cursor: pointer; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+    #floatingActionsReveal.visible { display: flex; }
+            #reviewBtn { position: fixed; left: 20px; bottom: 82px; background: var(--color-accent-gold); color: #23180f; padding: 8px 12px; border-radius: 12px; font-weight: 800; font-size: 0.75rem; border: none; cursor: pointer; z-index: 2600; display: none; box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
+            #reviewBtn:hover { filter: brightness(0.96); }
+            #scrollTopBtn.scroll-top-btn { left: 20px; right: auto; bottom: 24px; z-index: 2600; }
+    </style>
 
     <!-- Structured Data: Restaurant (Schema.org) -->
     <script type="application/ld+json">
@@ -136,34 +176,38 @@
                 <img src="assets/Logo/Namaste Kalyan by AWG -02.png" alt="Namaste Kalyan by AWG logo">
             </a>
 
-            <nav class="concept-nav" aria-label="Primary">
-                <a href="#menu">Menu</a>
-                <a href="#events">Events</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#contact">Contact</a>
-                <button id="getOffersBtn" class="get-offers-btn" aria-label="Get Offers">Get Offers</button>
-            </nav>
-
-            <div class="concept-header-actions">
-                <a class="ghost-link" href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" rel="noopener noreferrer">Reserve</a>
-                <div class="order-online-wrap">
-                    <button class="header-pill order-online-btn" aria-haspopup="true" aria-expanded="false">
-                        Order Online
-                        <svg class="caret-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                    <div class="order-dropdown" role="menu">
-                        <a class="order-option" href="https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout" target="_blank" rel="noopener noreferrer" role="menuitem">
-                            <img class="platform-logo" src="assets/Online order Logo/vecteezy_swiggy-app-icon-with-transparent-background_56850705.png" alt="Swiggy">
-                            Order on Swiggy
-                        </a>
-                        <a class="order-option" href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" rel="noopener noreferrer" role="menuitem">
-                            <img class="platform-logo" src="assets/Online order Logo/vecteezy_zomato-logo-png-zomato-icon-transparent-png_20975665.png" alt="Zomato">
-                            Order on Zomato
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <button class="hamburger-menu" onclick="toggleSideNav(true)" aria-label="Open navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </header>
+
+        <div id="sideNavOverlay" onclick="toggleSideNav(false)"></div>
+                <div class="floating-actions-group" id="floatingActionsGroup">
+                    <button class="floating-action-btn menu-action" onclick="toggleSideNav(true)" aria-label="Open navigation menu">MENU</button>
+                    <a class="floating-action-btn icon-action whatsapp-action" href="https://wa.me/919371519999" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><img src="assets/icons/social/whatsapp.svg" alt="WhatsApp" style="width:26px;height:26px;"></a>
+                    <a class="floating-action-btn icon-action call-action" href="tel:+919371519999" aria-label="Call Namaste Kalyan">📞</a>
+                    <button class="floating-action-btn hide-action" onclick="toggleFloatingActions(false)" aria-label="Hide floating actions">×</button>
+                </div>
+                <button id="floatingActionsReveal" onclick="toggleFloatingActions(true)" aria-label="Show floating actions">☰</button>
+        <div id="sideNavContainer">
+          <a href="index.html" class="cat-link">🏠 Home</a>
+          <a href="menu.html" class="cat-link">🍽️ Food Menu</a>
+          <a href="cocktail.html" class="cat-link">🍸 Cocktail Menu</a>
+          <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 10px 0;">
+          <a href="#menu" class="cat-link" onclick="toggleSideNav(false)">📋 Menus & Offers</a>
+          <a href="#gallery" class="cat-link" onclick="toggleSideNav(false)">🖼️ Gallery</a>
+          <a href="#contact" class="cat-link" onclick="toggleSideNav(false)">📞 Contact</a>
+          <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 10px 0;">
+          <a href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" class="cat-link">📅 Reserve Table</a>
+          <a href="https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout" target="_blank" class="cat-link">🛵 Order on Swiggy</a>
+          <a href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" class="cat-link">🍔 Order on Zomato</a>
+          <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 10px 0;">
+          <a href="https://www.instagram.com/namaste_kalyan_by_awg/" target="_blank" class="cat-link">📸 Instagram</a>
+          <a href="https://www.facebook.com/namastekalyanbyawg" target="_blank" class="cat-link">👍 Facebook</a>
+          <a href="https://wa.me/919371519999" target="_blank" class="cat-link">💬 WhatsApp</a>
+        </div>
 
         <main id="top">
             <section class="hero-stage">
@@ -558,6 +602,8 @@
         <img class="lightbox-image" src="" alt="Expanded gallery view">
     </div>
 
+    <button id="reviewBtn" onclick="openGoogleReview()" aria-label="Write a Google review">⭐ REVIEW</button>
+
     <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" title="Back to top">
         <img class="scroll-top-icon" src="assets/icons/ui/arrow-up.svg?v=20260321-3" alt="" loading="lazy" decoding="async">
     </button>
@@ -581,5 +627,43 @@
 
     <script src="script.js?v=20260321-4"></script>
     <script src="https://myappzchat.com/production/master/widget/embed-widget.umd.js" data-widget-id="edb91eb3-7293-4749-9138-9e5871f0082a" async></script>
+    
+    <script>
+      function toggleSideNav(show) {
+        const drawer = document.getElementById('sideNavContainer');
+        const overlay = document.getElementById('sideNavOverlay');
+        if(show) {
+          drawer.classList.add('open');
+          overlay.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        } else {
+          drawer.classList.remove('open');
+          overlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      }
+
+            function toggleFloatingActions(show) {
+                const group = document.getElementById('floatingActionsGroup');
+                const reveal = document.getElementById('floatingActionsReveal');
+                if (!group || !reveal) return;
+                group.classList.toggle('is-hidden', !show);
+                reveal.classList.toggle('visible', !show);
+            }
+
+            function openGoogleReview() {
+                window.open('https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1', '_blank', 'noopener,noreferrer');
+            }
+
+            (function setupReviewButton() {
+                const reviewBtn = document.getElementById('reviewBtn');
+                if (!reviewBtn) return;
+                function onScroll() {
+                    reviewBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+                }
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
+            })();
+    </script>     
 </body>
 </html>

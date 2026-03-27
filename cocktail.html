@@ -33,6 +33,11 @@
   <link rel="stylesheet" href="styles-copy.css?v=20260321-4">
   <link rel="stylesheet" href="modal-styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Tangerine:wght@400;700&amp;family=Cinzel:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+  <!-- New CSS Architecture -->
+  <link rel="stylesheet" href="css/cocktail-page.css">
+  <link rel="stylesheet" href="css/popups.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/responsive.css">
   <style>
    /* ============================================================
             ⚠️ GLOBAL THEME RULE — CLASSIC BURGUNDY COCKTAIL MENU (LOCKED)
@@ -59,31 +64,73 @@
         .hero-title .menu-word { font-size: 5rem; font-style: italic; margin-left: 60px; }
 
         /* ============================================================
-           ⚠️ GLOBAL UX FEATURE — VERTICAL JUMP MENU
+           HAMBURGER MENU BUTTON IN NAVBAR
            ============================================================ */
-        #menuTriggerBtn {
-            position: fixed; right: 0; top: 50%; transform: translateY(-50%);
-            writing-mode: vertical-rl; background: var(--gold-bright); color: #000;
-            padding: 25px 12px; border-radius: 15px 0 0 15px;
-            font-size: 0.8rem; font-weight: 900; letter-spacing: 3px;
-            z-index: 3500; cursor: pointer; border: 1px solid var(--gold-cream); border-right: none;
-            box-shadow: -4px 0 15px rgba(0,0,0,0.4);
+        .hamburger-menu {
+            position: fixed; top: 14px; right: 16px; width: 40px; height: 40px;
+            background: var(--color-accent-maroon); color: #fff; border: none;
+            border-radius: 8px; cursor: pointer; z-index: 2600; display: flex;
+            flex-direction: column; align-items: center; justify-content: center;
+            gap: 5px; font-size: 1.2rem; font-weight: 800; letter-spacing: 1px;
         }
+        .hamburger-menu:hover { background: rgba(198, 40, 40, 0.9); }
+        .hamburger-line { width: 22px; height: 2px; background: #fff; border-radius: 1px; }
+        
+        .floating-actions-group {
+          position: fixed; right: 0; top: 50%; transform: translateY(-50%);
+          display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+          z-index: 2500; transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .floating-actions-group.is-hidden { transform: translateY(-50%) translateX(120%); opacity: 0; pointer-events: none; }
+        .floating-action-btn {
+          border: none; cursor: pointer; color: #fff; text-decoration: none;
+          display: flex; align-items: center; justify-content: center;
+          box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+        }
+        .floating-action-btn.menu-action {
+          writing-mode: vertical-rl; text-orientation: mixed; background: var(--color-accent-maroon); color: #fff;
+          padding: 20px 10px; border-radius: 12px 0 0 12px;
+          font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; min-height: 112px;
+        }
+        .floating-action-btn.icon-action { width: 44px; height: 44px; border-radius: 12px 0 0 12px; font-size: 1.1rem; font-weight: 800; }
+        .floating-action-btn.whatsapp-action { background: #25d366; }
+        .floating-action-btn.call-action { background: var(--gold-bright); color: #1f0f0f; }
+        .floating-action-btn.hide-action { width: 32px; height: 32px; border-radius: 10px 0 0 10px; background: rgba(22, 22, 22, 0.9); font-size: 0.95rem; }
+        #floatingActionsReveal {
+          position: fixed; right: 0; top: 50%; transform: translateY(-50%);
+          width: 38px; height: 64px; border: none; border-radius: 12px 0 0 12px;
+          background: rgba(22, 22, 22, 0.94); color: #fff; display: none;
+          align-items: center; justify-content: center; font-size: 1rem; font-weight: 800;
+          z-index: 2500; cursor: pointer; box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+        }
+        #floatingActionsReveal.visible { display: flex; }
+
         #navDrawer {
             position: fixed; right: -280px; top: 0; bottom: 0; width: 260px;
-            background: var(--burgundy-deep); z-index: 4000; padding: 50px 20px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; gap: 12px;
-            border-left: 2px solid var(--gold-bright); box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.95); z-index: 3000; padding: 80px 20px 40px;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; gap: 10px; overflow-y: auto;
         }
         #navDrawer.open { transform: translateX(-280px); }
-        .nav-link {
-            padding: 18px; background: rgba(212, 175, 55, 0.1); border-radius: 8px;
-            font-size: 0.85rem; font-weight: 600; color: var(--gold-cream);
-            text-align: center; text-transform: uppercase; border: 1px solid rgba(212, 175, 55, 0.3);
-            cursor: pointer; letter-spacing: 1px;
+        #catNavOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2800; display: none; backdrop-filter: blur(2px); }
+        #catNav {
+          position: fixed; right: -280px; top: 0; bottom: 0; width: 260px;
+          background: rgba(16, 12, 12, 0.82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-left: 1px solid rgba(255,255,255,0.08); z-index: 3000; padding: 40px 20px;
+          box-shadow: -10px 0 30px rgba(0,0,0,0.5); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          display: flex; flex-direction: column; gap: 10px; overflow-y: auto;
         }
-        #navOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 3800; display: none; }
+        #catNav.open { transform: translateX(-280px); }
+        .nav-link {
+            padding: 12px; background: rgba(212, 175, 55, 0.15); border-radius: 8px;
+            font-size: 0.8rem; font-weight: 600; color: rgba(255, 255, 255, 0.95);
+            text-align: center; cursor: pointer; border: 1px solid rgba(212, 175, 55, 0.25);
+            transition: all 0.2s ease; text-decoration: none; display: block;
+        }
+        .nav-link:hover { background: rgba(212, 175, 55, 0.25); transform: translateX(-2px); }
+        #navOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2800; display: none; backdrop-filter: blur(2px); }
+        /* Hide navbar links - all navigation in hamburger menu only */
+        .concept-nav { display: none !important; }
+        .concept-header-actions { display: none !important; }
 
         .menu-frame { border: 2px solid var(--border-gold); padding: 50px 30px; position: relative; background: rgba(0, 0, 0, 0.15); backdrop-filter: blur(10px); }
         .category-section {
@@ -183,6 +230,8 @@
         .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 25px; }
         .branch-card { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-gold); padding: 25px 20px; border-radius: 8px; }
 
+        #reviewBtn { position: fixed; left: 20px; bottom: 84px; background: var(--gold-bright); color: #1f0f0f; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--gold-cream); cursor: pointer; z-index: 3000; display: none; font-weight: 800; font-size: 0.74rem; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        #reviewBtn:hover { filter: brightness(0.95); }
         #scrollTopBtn { position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--gold-bright); color: #000; border: 2px solid var(--gold-cream); cursor: pointer; z-index: 3000; display: none; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 
         /* legacy site-header-cocktail CSS removed — navbar provided by concept-header in styles-copy.css */
@@ -349,46 +398,38 @@
    <a class="concept-brand" href="index.html#top" aria-label="Namaste Kalyan home">
     <img src="assets/Logo/Namaste Kalyan by AWG -02.png" alt="AWG Namaste Kalyan logo">
    </a>
-
-   <nav class="concept-nav" aria-label="Primary">
-    <a href="menu.html">Menu</a>
-    <a href="index.html#events">Events</a>
-    <a href="index.html#gallery">Gallery</a>
-    <a href="index.html#contact">Contact</a>
-    <button id="getOffersBtn" class="get-offers-btn" aria-label="Get Offers">Get Offers</button>
-   </nav>
-
-   <div class="concept-header-actions">
-    <a class="ghost-link" href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" rel="noopener noreferrer">Reserve</a>
-    <div class="order-online-wrap">
-     <button class="header-pill order-online-btn" aria-haspopup="true" aria-expanded="false">
-      Order Online
-      <svg class="caret-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-     </button>
-     <div class="order-dropdown" role="menu">
-      <a class="order-option" href="https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout" target="_blank" rel="noopener noreferrer" role="menuitem">
-       <img class="platform-logo" src="assets/Online order Logo/vecteezy_swiggy-app-icon-with-transparent-background_56850705.png" alt="Swiggy">
-       Order on Swiggy
-      </a>
-      <a class="order-option" href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" rel="noopener noreferrer" role="menuitem">
-       <img class="platform-logo" src="assets/Online order Logo/vecteezy_zomato-logo-png-zomato-icon-transparent-png_20975665.png" alt="Zomato">
-       Order on Zomato
-      </a>
-     </div>
-    </div>
-   </div>
   </header>
-  <div id="menuTriggerBtn" onclick="toggleNav(true)">
-   MENU
+  <button class="hamburger-menu" onclick="toggleNav(true)" aria-label="Toggle navigation menu">
+   <div class="hamburger-line"></div>
+   <div class="hamburger-line"></div>
+   <div class="hamburger-line"></div>
+  </button>
+  <div class="floating-actions-group" id="floatingActionsGroup">
+   <button class="floating-action-btn menu-action" onclick="toggleCatNav(true)" aria-label="Open category menu">MENU</button>
+   <a class="floating-action-btn icon-action whatsapp-action" href="https://wa.me/919371519999" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><img src="assets/icons/social/whatsapp.svg" alt="WhatsApp" style="width:26px;height:26px;"></a>
+   <a class="floating-action-btn icon-action call-action" href="tel:+919371519999" aria-label="Call Namaste Kalyan">📞</a>
+   <button class="floating-action-btn hide-action" onclick="toggleFloatingActions(false)" aria-label="Hide floating actions">×</button>
   </div>
-  <div id="navOverlay" onclick="toggleNav(false)">
-  </div>
+  <button id="floatingActionsReveal" onclick="toggleFloatingActions(true)" aria-label="Show floating actions">☰</button>
+  <div id="navOverlay" onclick="toggleNav(false)"></div>
+  <div id="catNavOverlay" onclick="toggleCatNav(false)"></div>
+  <div id="catNav"></div>
   <div id="navDrawer">
-   <div style="font-family: 'Cinzel'; color: var(--gold-bright); text-align: center; margin-bottom: 25px; border-bottom: 1px solid var(--border-gold); padding-bottom: 10px;">
-    SECTIONS
-   </div>
-   <div id="navLinkList">
-   </div>
+   <a href="index.html" class="nav-link">🏠 Home</a>
+   <a href="menu.html" class="nav-link">🍽️ Food Menu</a>
+   <a href="cocktail.html" class="nav-link">🍸 Cocktail Menu</a>
+   <hr style="border: none; border-top: 1px solid rgba(212, 175, 55, 0.2); margin: 10px 0;">
+   <a href="index.html#events" class="nav-link">🎉 Events</a>
+   <a href="index.html#gallery" class="nav-link">🖼️ Gallery</a>
+   <a href="index.html#contact" class="nav-link">📞 Contact</a>
+   <hr style="border: none; border-top: 1px solid rgba(212, 175, 55, 0.2); margin: 10px 0;">
+   <a href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" class="nav-link">📅 Reserve Table</a>
+   <a href="https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout" target="_blank" class="nav-link">🛵 Order on Swiggy</a>
+   <a href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane" target="_blank" class="nav-link">🍔 Order on Zomato</a>
+   <hr style="border: none; border-top: 1px solid rgba(212, 175, 55, 0.2); margin: 10px 0;">
+   <a href="https://www.instagram.com/namaste_kalyan_by_awg/" target="_blank" class="nav-link">📸 Instagram</a>
+   <a href="https://www.facebook.com/namastekalyanbyawg" target="_blank" class="nav-link">👍 Facebook</a>
+   <a href="https://wa.me/919371519999" target="_blank" class="nav-link">💬 WhatsApp</a>
   </div>
   <!-- ═══ BAR INFO POPUP ═══ -->
   <div id="barInfoOverlay" class="bar-info-overlay">
@@ -522,6 +563,7 @@
    </article>
   </div>
   </footer>
+  <button id="reviewBtn" onclick="openGoogleReview()" aria-label="Write a Google review">⭐ REVIEW</button>
   <button id="scrollTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
    ▲
   </button>
@@ -709,6 +751,7 @@
         render(items, source) {
             const main = document.getElementById('menuMain');
             const navList = document.getElementById('navLinkList');
+            const catNav = document.getElementById('catNav');
             const categories = [...new Set(items.map(i => i.cat))];
             
             // Only update navList if it exists (old navigation structure)
@@ -716,6 +759,14 @@
                 navList.innerHTML = categories.map(cat => {
                     const catId = this.getCategoryId(cat);
                     return `<div class="nav-link" onclick="scrollToCat('${catId}')">${cat}</div>`;
+                }).join('');
+            }
+
+            // Update category nav for floating MENU button
+            if (catNav) {
+                catNav.innerHTML = categories.map(cat => {
+                    const catId = this.getCategoryId(cat);
+                    return `<div class="nav-link" onclick="scrollToCat('${catId}'); toggleCatNav(false);">${cat}</div>`;
                 }).join('');
             }
 
@@ -766,6 +817,20 @@
         document.getElementById('navOverlay').style.display = show ? 'block' : 'none';
     }
 
+    function toggleCatNav(show) {
+        // Toggle category navigation for cocktail sections
+        document.getElementById('catNav').classList.toggle('open', show);
+        document.getElementById('catNavOverlay').style.display = show ? 'block' : 'none';
+    }
+
+    function toggleFloatingActions(show) {
+      const group = document.getElementById('floatingActionsGroup');
+      const reveal = document.getElementById('floatingActionsReveal');
+      if (!group || !reveal) return;
+      group.classList.toggle('is-hidden', !show);
+      reveal.classList.toggle('visible', !show);
+    }
+
     function scrollToCat(id) {
         // Normalize the ID to ensure it matches the category section
         const normalizedId = id.trim().toLowerCase().replace(/\s+/g, '-');
@@ -788,7 +853,16 @@
         }
     }
 
-    window.onscroll = () => { document.getElementById('scrollTopBtn').style.display = window.scrollY > 400 ? 'flex' : 'none'; };
+    function openGoogleReview() {
+      window.open('https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1', '_blank', 'noopener,noreferrer');
+    }
+
+    window.onscroll = () => {
+      const show = window.scrollY > 400;
+      document.getElementById('scrollTopBtn').style.display = show ? 'flex' : 'none';
+      const reviewBtn = document.getElementById('reviewBtn');
+      if (reviewBtn) reviewBtn.style.display = show ? 'block' : 'none';
+    };
 
     let cocktailLoaderTypingTimer = null;
     let cocktailLoaderTypingIndex = 0;
@@ -911,5 +985,6 @@
     })();
   </script>
   <script src="script.js?v=20260321-4"></script>
+  <script src="https://myappzchat.com/production/master/widget/embed-widget.umd.js" data-widget-id="edb91eb3-7293-4749-9138-9e5871f0082a" async></script>
  </body>
 </html>
