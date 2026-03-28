@@ -5,4 +5,4 @@ Disallow: /sheet-fetch-test.html
 Disallow: /index1.html
 Disallow: /index%20copy.html
 
-Sitemap: https://namastekalyan.in/sitemap.xml
+Sitemap: https://namastekalyan.asianwokandgrill.in/sitemap.xml
