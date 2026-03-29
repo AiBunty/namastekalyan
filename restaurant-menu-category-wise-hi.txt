@@ -1,0 +1,1544 @@
+Namaste Kalyan - Menu Items Category Wise with Description (Hindi)
+Generated: 2026-03-29 14:08
+
+Source: Live AWGNK MENU sheet-backed API.
+Rule: Crab price is not fixed. Please ask waiter for current price when not listed.
+
+==============================
+श्रेणी: All Time Favourite
+==============================
+- Item: Bull Basil Mojito
+  विवरण: Refreshing Basil Mojito With Red Bull
+  कीमत/वेरिएंट: Veg: 349
+- Item: Fruit Punch
+  विवरण: Seasonal Fruit, Ice Cream
+  कीमत/वेरिएंट: Veg: 269
+- Item: V.Pinacolada
+  विवरण: Pineapple Juice, Vanilla Ice Cream
+  कीमत/वेरिएंट: Veg: 269
+- Item: V.Mojito
+  विवरण: Mint Leaves, Lemon Wedges, Ice And Sprite
+  कीमत/वेरिएंट: Veg: 229
+- Item: Blue Lagoon
+  विवरण: Blue Curaco Syrup, Lemon Juice, Sprite
+  कीमत/वेरिएंट: Veg: 229
+- Item: Shirley Temple
+  विवरण: Lime Juice,Giner Ale, Granadine Tooped With Ice And Soda
+  कीमत/वेरिएंट: Veg: 229
+- Item: Cold Coffee
+  विवरण: Coffee, Ice Cream, Milk
+  कीमत/वेरिएंट: Veg: 239
+
+==============================
+श्रेणी: Bao
+==============================
+- Item: Fire Cracker Bao
+  विवरण: Finger Cottage Cheese ,Chilli Pest,Wrap With Thred Wontan
+  कीमत/वेरिएंट: Veg: 379 | Jain: 379
+- Item: Tempura
+  विवरण: Deep Fried Exotic Vegetable, Tempura In Light Crispy  Battered Served With  Chilli Mayo Deep
+  कीमत/वेरिएंट: Veg: 429
+- Item: Chilli Bao
+  विवरण: Cottage Cheese / Chilli Chicken , Bell Paper ,Spring Onion & Corinder
+  कीमत/वेरिएंट: Veg: 379 | Chicken: 429
+- Item: Sriracha Prawn Bao
+  विवरण: Fried Prawns ,Siracha Sauces , Spring Onion Served With Chilli Mayo Suces
+  कीमत/वेरिएंट: Prawns: 479
+- Item: Stuffed Bao
+  विवरण: Stuffed With Mushroom , Bell Pepper, Spring Onion &Carrot
+  कीमत/वेरिएंट: Veg: 379 | Chicken: 429
+- Item: Curried Chicken
+  विवरण: Steamed Bao Served With Flavouered Chicken & Chilly Mayo Deep
+  कीमत/वेरिएंट: Chicken: 429
+- Item: Butter Chicken Bao
+  विवरण: Steamed Bao Served With Flavouered Chicken & Chilly Mayo Deep
+  कीमत/वेरिएंट: Chicken: 429
+
+==============================
+श्रेणी: Bowls
+==============================
+- Item: Thukpa
+  विवरण: Tibetan Flavour Broth Mixed In Homemade Flat Noodles, Exotic Vegetable, Tomato & Chilli’S.
+  कीमत/वेरिएंट: Veg: 509 | Chicken: 559 | Basa: 649 | Prawns: 609
+- Item: Laksa
+  विवरण: Rice Noodles Mixed In Curry Paste, Pok Choy, Coconut Milk & Curry Oil.
+  कीमत/वेरिएंट: Chicken: 559 | Basa: 649 | Prawns: 609
+- Item: Khow Suey
+  विवरण: Classic Burmese Curried Noodle Dish Eaten With Condiments Like Tofu, Fried Peanuts,Fried Shallots, Crispy Fried Noodles & Lime.,
+  कीमत/वेरिएंट: Veg: 599 | Chicken: 649 | Basa: 699 | Prawns: 699
+- Item: Asian Noodles
+  विवरण: Chicken Meat Ball, Exotic Vegetable, Ginger, Garlic & Vermicelli Noodles.
+  कीमत/वेरिएंट: Chicken: 559
+- Item: Ramen Bowl
+  विवरण: One Of The Variety Types Of Noodles With Combination Of Rich Flavoured Broth Along With Vtopped With Boiled Egg & Baby Pok Choy.
+  कीमत/वेरिएंट: Veg: 529 | Chicken: 549 | Basa: 669
+
+==============================
+श्रेणी: Breads
+==============================
+- Item: Tandoori Roti
+  विवरण: Tandoori Cooked Whole Wheat Bread.
+  कीमत/वेरिएंट: Plain: 49 | Butter: 64
+- Item: Naan
+  विवरण: Tandoori Cooked Giant Refined Flour Bread.
+  कीमत/वेरिएंट: Plain: 89 | Butter: 104
+- Item: Roomali Roti
+  विवरण: Paper-Thin Refined Flour Bread
+  कीमत/वेरिएंट: Butter: 129
+- Item: Warqi Paratha
+  विवरण: Rich Flex Refined Flour Bread, Brushed With Clarified Butter
+  कीमत/वेरिएंट: Butter: 109
+- Item: Lachcha Paratha
+  विवरण: Whole Wheat Lacchadar Paratha Cooked In Clay Oven.
+  कीमत/वेरिएंट: Plain: 99 | Butter: 114
+- Item: Garlic Naan
+  विवरण: Indian Bread Topped With  Garlic
+  कीमत/वेरिएंट: Plain: 149 | Butter: 164
+- Item: Missi Roti
+  विवरण: Made With A Mix Of Whole Wheat Flour, Gram Flour & Spices.
+  कीमत/वेरिएंट: Plain: 99 | Butter: 114
+- Item: Kulcha
+  विवरण: Bread With Appetizing Aroma & Mild Flavour Of Nigella Seeds.
+  कीमत/वेरिएंट: Plain: 99 | Butter: 114
+- Item: Stuffed Paratha(Aloo/Gobi/Mint/Methi/Ajwain)
+  विवरण: ( Aloo / Gobi / Mint / Methi / Ajwain )
+  कीमत/वेरिएंट: Plain: 189 | Butter: 204
+- Item: Onion Garlic Kulcha
+  विवरण: Traditional Indian Flatbread Made With Flour Garlic & Onion Toppings.
+  कीमत/वेरिएंट: Plain: 169 | Butter: 184
+- Item: Afgani Naan
+  विवरण: Crispy Puff Naan Served With Dry Fruit.
+  कीमत/वेरिएंट: Plain: 179 | Butter: 194
+- Item: Malabar Paratha
+  विवरण: Tindian Which Is Very Common In Kerala & Tamil Nadu.
+  कीमत/वेरिएंट: Plain: 99 | Butter: 114
+- Item: Cheese Garlic Naan
+  विवरण: Indian Bread Topped With Garlic & Cheese.
+  कीमत/वेरिएंट: Plain: 179 | Butter: 194
+- Item: Har Mirch Ka Paratha
+  विवरण: Soft And Delicious Leavened Fine Flour/Whole Wheat Bread With A Delightful Filling Of Chillies And Finely Chopped Garlic
+  कीमत/वेरिएंट: Plain: 129 | Butter: 144
+- Item: Lal Mirch Ka Paratha
+  विवरण: Whole Wheat Bread With A Delightful Filling Of Chillies And Finely Chopped Garlic
+  कीमत/वेरिएंट: Plain: 129 | Butter: 144
+- Item: Olive Naan
+  विवरण: Soft And Delicious Leavened Fine Flour
+  कीमत/वेरिएंट: Plain: 179 | Butter: 194
+- Item: Olive Paratha
+  विवरण: Whole Wheat Bread With Stuffing Of Finely Chopped Green Olives
+  कीमत/वेरिएंट: Plain: 179 | Butter: 194
+- Item: Makkai Ki Roti
+  विवरण: Corn-Based Unleavened Flatbreads Are Delicious, Slightly Sweet From The Maize Flour, Especially Served With Sarson Ka Saag.
+  कीमत/वेरिएंट: Plain: 109 | Butter: 124
+- Item: Assorted Bread Basket
+  विवरण: Assorted Tandoori Breads 7 Types
+  कीमत/वेरिएंट: Butter: 479
+
+==============================
+श्रेणी: Chicken Wings
+==============================
+- Item: Drums Of Heaven Fry
+  विवरण: Chicken Lollypop Tossed In Sweet & Spicy Sauce.(Fried
+  कीमत/वेरिएंट: Chicken: 449
+- Item: Drums Of Heaven Toasted
+  विवरण: Chicken Lollypop Tossed In Sweet & Spicy Sauce. Tossed)
+  कीमत/वेरिएंट: Chicken: 449
+- Item: Barbeqe
+  विवरण: Chicken Wings Marinated Withgarlic, Homemade Barbaque Sauces Topped With Spring Onion
+  कीमत/वेरिएंट: Chicken: 449
+- Item: Hong Kong Style
+  विवरण: Deep Fried Chicken Wings Tossed With Garlic , Green Onion & Hong Kong  Paste
+  कीमत/वेरिएंट: Chicken: 449
+- Item: Korean
+  विवरण: Deep Fried Chicken Wings Tossed With Garlic , Green Onion &Korean Paste
+  कीमत/वेरिएंट: Chicken: 449
+
+==============================
+श्रेणी: Cold Ones
+==============================
+- Item: Aerated Float
+  विवरण: Ice Cream & Aerated Drink
+  कीमत/वेरिएंट: Veg: 179
+- Item: Red Bull
+  विवरण: Energy Drink
+  कीमत/वेरिएंट: Veg: 239
+- Item: Bull Float
+  विवरण: Red Bull & Ice Cream
+  कीमत/वेरिएंट: Veg: 299
+- Item: Aerated Drinks (600 Ml)
+  विवरण: Coke , Sprite , Thums Up
+  कीमत/वेरिएंट: Veg: 129
+- Item: Aerated Drinks Can
+  विवरण: Coke, Sprite , Thmsup , Ginger Ale, Tonic Water
+  कीमत/वेरिएंट: Veg: 99
+- Item: Fresh Lime Water
+  विवरण: Lime Juice
+  कीमत/वेरिएंट: Veg: 129
+- Item: Masala Cola
+  विवरण: Lime Juice , Masala ,
+  कीमत/वेरिएंट: Veg: 139
+- Item: Fresh Lime Soda
+  विवरण: Lime Juice ,Simple Syrup
+  कीमत/वेरिएंट: Veg: 129
+- Item: Jaljeera Soda
+  विवरण: Jaljeera ,Soda , Simple Syrup
+  कीमत/वेरिएंट: Veg: 129
+- Item: Jaljeera Water
+  विवरण: Jaljeera ,Water , Simple Syrup
+  कीमत/वेरिएंट: Veg: 129
+- Item: Canned Juice(300 Ml)
+  विवरण: Mango ,  Guava , Orange , Cranbeery , Pinapple
+  कीमत/वेरिएंट: Veg: 159
+- Item: Soda(750 Ml)
+  विवरण: Description not available.
+  कीमत/वेरिएंट: Veg: 79
+- Item: Ginger Ale
+  विवरण: Description not available.
+  कीमत/वेरिएंट: Veg: 149
+- Item: Tonic Water
+  विवरण: Description not available.
+  कीमत/वेरिएंट: Veg: 149
+- Item: Lassi
+  विवरण: Choice Of Kesar Elaichi/Mango/Gulkand/Sweet
+  कीमत/वेरिएंट: Veg: 189
+- Item: Butter Milk  Masala
+  विवरण: Chat Masala , Corinder ,Chilli ,Milk
+  कीमत/वेरिएंट: Veg: 139
+- Item: Butter Milk Plain
+  विवरण: Corinder ,Chilli ,Milk
+  कीमत/वेरिएंट: Veg: 139
+- Item: Bottled Water
+  विवरण: Description not available.
+  कीमत/वेरिएंट: Veg: 39
+
+==============================
+श्रेणी: Crackers & Dahi
+==============================
+- Item: Crackers
+  विवरण: A Thin, Crisp Disc-Shaped Indian Cracker,From Urad Flour, Fry2Pieces
+  कीमत/वेरिएंट: Veg: 89
+- Item: Urad Papad
+  विवरण: A Thin, Crisp Disc-Shaped Indian Cracker,From Urad Flour, Roasted- 2Pieces
+  कीमत/वेरिएंट: Veg: 89 | Jain: 89
+- Item: Nagli Papad
+  विवरण: A Thin, Round Shape Seasoned Doughmade From Nachni Flour, - 2Pieces
+  कीमत/वेरिएंट: Veg: 109 | Jain: 109
+- Item: Masla Papad
+  विवरण: Delicious Thin Roasted Or Fried Papad Topped With A Tangy & Spicy Onion, Tomato Mix,
+  कीमत/वेरिएंट: Veg: 169 | Jain: 169
+- Item: Sindhi Papad
+  विवरण: Papad Of Urad Dal Flavoured Witha Blend Of Spices, Black Pepper & Salt.
+  कीमत/वेरिएंट: Veg: 199
+- Item: Pineapple Raita
+  विवरण: Tangy & Sweet Pineapple
+  कीमत/वेरिएंट: Veg: 199 | Jain: 199
+- Item: Boondi Raita
+  विवरण: Boondi Combine With Whisked Curd & Spicy Powder.
+  कीमत/वेरिएंट: Veg: 199 | Jain: 199
+- Item: Mix Fruit Raita
+  विवरण: Finely Chopped Seasonal Fresh Fruit, Sweet Curd & Relish.
+  कीमत/वेरिएंट: Veg: 199 | Jain: 199
+- Item: Plain Dahi
+  विवरण: Home Style Full Cream Yougurt.
+  कीमत/वेरिएंट: Veg: 149 | Jain: 149
+
+==============================
+श्रेणी: Curries
+==============================
+- Item: Kari Kapitan
+  विवरण: Malaysian Curry Cooked In Coconut Milk & Kari Spice & Shallot. Served With Steamed Rice
+  कीमत/वेरिएंट: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+- Item: Kaeng Phet
+  विवरण: Thai Red Curry With Pea Aubergines, Hot Basil & Fresh Red Chilli.Served With Steamed Rice
+  कीमत/वेरिएंट: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+- Item: Gaeng Kiew Wan
+  विवरण: Thai Green Curry With Pea Aubergines, Hot Basil & Coconut Milk.Served With Steamed Rice
+  कीमत/वेरिएंट: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+- Item: Shrimp& Mushroom Thai Red Curry
+  विवरण: Thai Green Curry With Pea Aubergines, Hot Basil & Coconut Milk. Served With Steamed Rice
+  कीमत/वेरिएंट: Prawns: 599
+
+==============================
+श्रेणी: Dal Wali Gali
+==============================
+- Item: Dal Tadka
+  विवरण: Yellow Lentil Tempered With Cumin Seeds, Onions & Tomatoes With Tadka
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249
+- Item: Dal Fry
+  विवरण: Yellow Lentil Tempered With Cumin Seeds, Onions & Tomatoes.
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249
+- Item: Dal Panchmel
+  विवरण: Also Known As Panchratna Dal Is Of5 Different Lentils Or Dals. Healthy & Nutritious
+  कीमत/वेरिएंट: Veg: 329
+- Item: Dal Makhan Wali
+  विवरण: Overnight Cooked Black Lentils, Flavoured With Fenugreek Dust & Enriched With Fresh Cream
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Punjabi Kadhi
+  विवरण: North Indian Speciality Kadhi Served With Pakodas.
+  कीमत/वेरिएंट: Veg: 299 | Jain: 299
+- Item: Dal Palak
+  विवरण: Yellow Lentil Temped With Cumin Seeds, Onion & Tomatoes Palak
+  कीमत/वेरिएंट: Veg: 299 | Jain: 299
+- Item: Dal Methi
+  विवरण: Yellow Lentil Temped With Cumin Seeds, Onion & Tomatoes Methi.
+  कीमत/वेरिएंट: Veg: 299 | Jain: 299
+
+==============================
+श्रेणी: Deep Fry
+==============================
+- Item: Corn Cheese Balls
+  विवरण: Corn Kernels, Fresh Red Chilli, Stuffed Cheese Coated With Panko Served With Thai Sweet Chilli
+  कीमत/वेरिएंट: Veg: 359
+- Item: Japanese Korokke
+  विवरण: Smashed Potato, Mozzarella & Soft Cheese, Coatd With Panko Served With Chilli Mayo Deep
+  कीमत/वेरिएंट: Veg: 359 | Chicken: 479
+- Item: Tempura
+  विवरण: Deep Fried Exotic Vegetable, /Prawns Tempura In Light Crispy  Battered Served With  Chilli Mayo Deep
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429 | Prawns: 609
+- Item: Chow;S Finger Chips
+  विवरण: Potato Tossed With Garlic,Scaillian, Fresh Red & Green Chilli , Spring Onion & Black Papper.
+  कीमत/वेरिएंट: Veg: 429
+- Item: Cheese Finger Chips
+  विवरण: Potato Dices
+  कीमत/वेरिएंट: Veg: 429
+- Item: Peri Peri Chips
+  विवरण: Peri Peri Masala With Potato Dices
+  कीमत/वेरिएंट: Veg: 429
+- Item: Chinese Fried
+  विवरण: Leg Boneless Chicken Marinated With Ginger , Garlic, Soya Sauces, & Deep Fried Served With French Fries &Mayo
+  कीमत/वेरिएंट: Chicken: 489
+
+==============================
+श्रेणी: Dessert
+==============================
+- Item: Fried Ice Cream
+  विवरण: Vanilla Ice Cream Stuffed In Choco Chips & Nuts Coated With Desiccated Coconut Powder, Served With Caramel Sauce.
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249
+- Item: Gulab Jamun  With Ice Cream
+  विवरण: Soft Milk Dumplings In Sugar Syrup With Vanilla Ice Cream
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249
+- Item: Crispy Honey Noodels With Ice Cream
+  विवरण: Golden Fried Noodles Drizzled With Honey, Served With A Scoop Of Vanilla Ice Cream.
+  कीमत/वेरिएंट: Veg: 329 | Jain: 329
+- Item: Gajar Ka Halwa
+  विवरण: Ghee-Roasted Fresh Carrot  Halwa With Vanilla Ice Cream
+  कीमत/वेरिएंट: Veg: 329 | Jain: 329
+- Item: Chocolate Nutty Brownie Sizzler
+  विवरण: Sizzling Brownie Served With Ice Cream Scoop & Chocolate Sauce.
+  कीमत/वेरिएंट: Veg: 329 | Jain: 329
+- Item: Blue Berry Cheese Cake
+  विवरण: Philadelphia Cheese, Whipped Cream, Egg & Blueberry Fruit Filling.
+  कीमत/वेरिएंट: Egg: 379
+- Item: Fruit Platter
+  विवरण: Seasonal Fresh Fruits.
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249
+- Item: Choice If Ice Cream ( V/C/S/M/Bs)
+  विवरण: Please Ask For The Flavoured Of Your Choice.
+  कीमत/वेरिएंट: Veg: 199 | Jain: 199
+- Item: Kulfi
+  विवरण: Please Ask For The Flavoured Of Your Choice.
+  कीमत/वेरिएंट: Veg: 209 | Jain: 209
+- Item: Desseri Of The Day
+  विवरण: Our Chef’S Special Dessert To End Your Meal On A Sweet Note
+  कीमत/वेरिएंट: Veg: 259 | Jain: 259
+
+==============================
+श्रेणी: Dimsum
+==============================
+- Item: Asian Wok & Grill (6 Pcs)
+  विवरण: Chef Special
+  कीमत/वेरिएंट: Veg: 349
+- Item: Cottage Cheese & Broccoli
+  विवरण: Ginger, Green Onian &Sesme Oil
+  कीमत/वेरिएंट: Veg: 379
+- Item: Mushroom & Waterchestnut
+  विवरण: Ginger, Garlic, Green Onion & Sesame Oil
+  कीमत/वेरिएंट: Veg: 379
+- Item: Hot Basil
+  विवरण: Basil,Fresh Red Chilli, Oyster Suces
+  कीमत/वेरिएंट: Chicken: 399
+- Item: Poached Beijing
+  विवरण: Oyster Suces, Brunt Garlic , Pok Choy,Soya Suces
+  कीमत/वेरिएंट: Chicken: 369
+- Item: Suimai Dimsum
+  विवरण: Thin Wonton Wrapped
+  कीमत/वेरिएंट: Veg: 379 | Chicken: 429
+- Item: Har Gao Dim Sum
+  विवरण: Ginger,Garlic,& Sesame, Minced Prawns
+  कीमत/वेरिएंट: Basa: 509
+- Item: Sambal Dimsum
+  विवरण: Samble Drressed Prawns ,Ginger, Garlic, Green Onion
+  कीमत/वेरिएंट: Basa: 509
+
+==============================
+श्रेणी: Fish Curry Specialities
+==============================
+- Item: Pomfret Masala
+  विवरण: Pomfret  Masala Is A Spicy, Thick, Based Curry. Pomfret Is A Very Delicate, Fleshy, Tender & Tasty Fish
+  कीमत/वेरिएंट: Pomfret: 799
+- Item: Surmai Masala
+  विवरण: Surmai Masala Is A Spicy, Thick, Based Curry. Pomfret Is A Very Delicate, Fleshy, Tender & Tasty Fish
+  कीमत/वेरिएंट: Surmai: 799
+- Item: Fish Tikka Masala
+  विवरण: Rich, Delicious, Zingy Dish That Is Full Of Flavour. Fish Is Marinated & Cooked In Tandoor. It Is Then Added To A Creamy Masala Sauce.
+  कीमत/वेरिएंट: Basa: 629
+- Item: Prawns Hara Dhaniya
+  विवरण: A Blender, Add The Coriander Leaves, Coconut, Ginger Paste, Garlic Paste & Green Chillies.
+  कीमत/वेरिएंट: Prawns: 749
+- Item: Lobster Curry
+  विवरण: Rich Flavours Of Delicious Lobster Curry Made With Coconut Milk, Giving You Taste Of The Coast
+  कीमत/वेरिएंट: Price not listed; please ask waiter.
+- Item: Crab Masala
+  विवरण: Marinated Tandoori Crab Added Into The Masala & Cooked Together, Crab Also Called Nandu In Tamil & Great To Have With Plain Rice.
+  कीमत/वेरिएंट: Price not listed; please ask waiter.
+  नोट: Crab price is not fixed. Please ask waiter for current price.
+- Item: Jhinga Masaleder
+  विवरण: Prawns Cooked In A Spicy Indian Curry
+  कीमत/वेरिएंट: Prawns: 749
+- Item: Prawns Chettinad
+  विवरण: A Finger-Licking Good South Indian Style Prawn Curry. It Is Spicy, Bold & Perfect Curry To Serve With Malabar Paratha.
+  कीमत/वेरिएंट: Prawns: 749
+
+==============================
+श्रेणी: From The Grill
+==============================
+- Item: Corn Cheese & Water Chestnut
+  विवरण: Mixed With Ginger, Garlic,Fresh Red Chilli, Seasoning & Grilled.
+  कीमत/वेरिएंट: Veg: 389
+- Item: Assorted Mushroom
+  विवरण: Shiitake Mushroom Marinade In Oriental Spices & Grilled, Served With Lettuce Salad.
+  कीमत/वेरिएंट: Veg: 469
+- Item: Asian Barbeque
+  विवरण: Leg Chicken Marinade In Ginger, Garlic Chilli , Soya Sauce, Served With Spicy Barbeque Sauce.
+  कीमत/वेरिएंट: Veg: 449 | Chicken: 499
+- Item: Lemongrass
+  विवरण: Leg Chicken Marinade In Lemon Grass, Fresh Chilli, Minced Garlic, Fish Sauce, Soya Sauce, Lime Juice Served With Lettuce Salad.
+  कीमत/वेरिएंट: Chicken: 429
+- Item: Sriracha
+  विवरण: Leg Chicken Marinade In Siracha Sauces, Fresh Chilli, Minced Garlic, Fish Sauce, Soya Sauce, Lime Juice Served With Lettuce Salad.
+  कीमत/वेरिएंट: Price not listed; please ask waiter.
+- Item: Chilli Basil
+  विवरण: Prawns Marinade In Fresh Red Chilli, Hot Basil Paste, Fish Sauce, Served With Homemade Salad.
+  कीमत/वेरिएंट: Chicken: 499 | Prawns: 539
+- Item: Lemongrass Pomfret
+  विवरण: Fish Marinated With Light Soya,Ginger Garlic Paste And Grilled With Spicy Lemon Grass Sauce And Served With Lettuce Salads
+  कीमत/वेरिएंट: Surmai: 799 | Pomfret: 799
+- Item: Pan Fried Chilli
+  विवरण: Fish, Marinade In Ginger, Garlic,Chilli Oil Served With Homemade Salad.
+  कीमत/वेरिएंट: Basa: 439 | Surmai: 749 | Pomfret: 799
+
+==============================
+श्रेणी: Ghosht Curry Specialities
+==============================
+- Item: Mutton Mataha
+  विवरण: Lamb Cooked In Local Style.
+  कीमत/वेरिएंट: Mutton: 599
+- Item: Deo Gosht
+  विवरण: Lamb Cooked In Mild Spiced With Freshly Pursed Spinach & Fenugreek.
+  कीमत/वेरिएंट: Mutton: 609
+- Item: Kashmiri Rogan Josh
+  विवरण: Tender Lamb Cooked With Traditional Herbs & Youghurt.
+  कीमत/वेरिएंट: Mutton: 629
+- Item: Bhuna Mitton Chaap
+  विवरण: Indian Spice Marinated Mutton Chaap Cooked With Red & Green Bell Pepper, Finish With Shredded Ginger.
+  कीमत/वेरिएंट: Mutton: 659
+- Item: Gosht Khada Masala
+  विवरण: Tender Lamb On Bone Cooked With Whole Spices.
+  कीमत/वेरिएंट: Mutton: 609
+- Item: Keema Muttar
+  विवरण: A Minced Mutton & Green Peas Delicacy Stewed With Indian Spices In Brown Gravy
+  कीमत/वेरिएंट: Mutton: 579
+- Item: Keema Muttar Masala
+  विवरण: A Minced Mutton & Green Peas Delicacy Stewed With Indian Spices In Brown Gravy
+  कीमत/वेरिएंट: Mutton: 579
+- Item: Bhuna Mitton  Pepper Fry
+  विवरण: Indian Spice Marinated Mutton Cooked With Red & Green Bell Pepper.
+  कीमत/वेरिएंट: Mutton: 629
+
+==============================
+श्रेणी: Iced Tea
+==============================
+- Item: Classic
+  विवरण: Lemon Ice Tea
+  कीमत/वेरिएंट: Veg: 209
+- Item: Black Current
+  विवरण: Black Current Crush , Tea Concotion , Lime Juice
+  कीमत/वेरिएंट: Veg: 209
+- Item: Strawberry & Peach
+  विवरण: Strawberry & Peach  Crush , Tea Concotion, Lime Juice & Simple Syrup
+  कीमत/वेरिएंट: Veg: 209
+- Item: Orange &Peach Apricot
+  विवरण: Orange & Peach Apricot Crush , Tea Concotion, Lime Juice & Simple Syrup
+  कीमत/वेरिएंट: Veg: 209
+- Item: Yuzu & Mint
+  विवरण: Yuzu & Mint Crush , Lime Juuce ,
+  कीमत/वेरिएंट: Veg: 229
+
+==============================
+श्रेणी: Icy Virgin Margaritas
+==============================
+- Item: Strwberry & Mango Slushie
+  विवरण: Strawberry Crush, Mango Crush, Ice
+  कीमत/वेरिएंट: Veg: 269
+- Item: Peach & Mint Slushie
+  विवरण: Peach And Mint, Ice
+  कीमत/वेरिएंट: Veg: 279
+- Item: Spicy Blackcurrent Sluhie
+  विवरण: Blackcurrant Crush, Chilli, Ice
+  कीमत/वेरिएंट: Veg: 259
+- Item: Litchi & Dragoan Fruit Slushie
+  विवरण: Litchi Crush, Dragan Fruit, Ice
+  कीमत/वेरिएंट: Veg: 259
+- Item: Rose Gulkand Slushie
+  विवरण: Rose Gulkand Syrup, Ice
+  कीमत/वेरिएंट: Veg: 279
+
+==============================
+श्रेणी: Indian Mains Bageeche Se
+==============================
+- Item: Punjabi Style Paneer Tikka Masala
+  विवरण: Cottage Cheese Tikka With Yoghurt With Onion, Tomato & Capsicum.
+  कीमत/वेरिएंट: Veg: 469 | Jain: 469
+- Item: Paneer Amiritsari
+  विवरण: Cottage Cheese, Onions, Ginger, Garlic, Garam Masala, Tandoori Masala In Punjabi Or Lahori Style.
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479
+- Item: Paneer Lahori
+  विवरण: Cottage Cheese, Onions, Ginger, Garlic, Garam Masala,  Cshwnut Gruey Finish With Cream
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479
+- Item: Desi Paneer Bhurji
+  विवरण: Chopped Onion , Tomato, Chilli With Indian Spicese
+  कीमत/वेरिएंट: Veg: 459 | Jain: 459
+- Item: Paneer Lababadar
+  विवरण: Cottage Cheese In A Creamy, Mildly Tangy & Faintly Sweet Gravy. Onions, Tomatoes,Cottage Cheese In A Creamy, Mildly Tangy & Faintly Sweet Gravy. Onions, Tomatoes,
+Cashews & Spices Make This A Rich, Flavourful & Delicious.
+  कीमत/वेरिएंट: Veg: 459 | Jain: 459
+- Item: Paneer Makhani
+  विवरण: Cottage Cheese In A Creamy Greavy Finish With Cream And Butter 
+Cashews & Spices Make This A Rich, Flavourful & Delicious.
+  कीमत/वेरिएंट: Veg: 459 | Jain: 459
+- Item: Paneer Mirch Masala
+  विवरण: Cottage Cheese Cooked In Kadai In Rich Spiced Masala Crowded Cream.
+  कीमत/वेरिएंट: Veg: 439
+- Item: Palak Paneer
+  विवरण: Cottage Cheese Cooked In Palak Pest With Indian Spice
+  कीमत/वेरिएंट: Veg: 439 | Jain: 439
+- Item: Paneer Kasturi
+  विवरण: Diced Of Cottage Cheese Cooked With Red & Yellow Rich Gravy Flavoured With Kasturi Methi.
+  कीमत/वेरिएंट: Veg: 449 | Jain: 449
+- Item: Paneer Do-Pyaza
+  विवरण: A Rich, Creamy Curry Of Paneer & Plenty Of Onions In A Wonderful Medley Of Spices, Herbs & Tomatoes.
+  कीमत/वेरिएंट: Veg: 449
+- Item: Paneer Kadhi
+  विवरण: A Rich, Creamy Curry Of Paneer & Plenty Of Onions In A Wonderful Medley Of Spices, Herbs & Tomatoes.
+  कीमत/वेरिएंट: Veg: 449
+- Item: Paneer Hand
+  विवरण: Panner Cooked On A Low Flame For A Long Time, Handi Is A Hindi Word For An Earthen Pot.
+  कीमत/वेरिएंट: Veg: 449 | Jain: 449
+- Item: Malai Kofta
+  विवरण: Creamy Cottage Cheese Cooked In Cashewnut Gravy
+  कीमत/वेरिएंट: Veg: 459 | Jain: 459
+- Item: Paneer Angara
+  विवरण: An Exotic Smokey Flavour. It Is Prepared With The Help Of A Coal & Smoke Cooking Helps To Enhance Its Taste.
+  कीमत/वेरिएंट: Veg: 479
+- Item: Paneer Pasanda
+  विवरण: Paneer Pasanda Is A Rich & Delicious Dish Of Shallow Fried Stuffed Paneer Sandwiches Smooth Tomato Cashw Greavy
+  कीमत/वेरिएंट: Veg: 469 | Jain: 469
+- Item: Shahi Paneer
+  विवरण: Cottage Cheese Cooked In Rich Cashwnut Gruevy  Finished With Cream N Butter
+  कीमत/वेरिएंट: Veg: 469 | Jain: 469
+- Item: Banarasi Kofta Curry
+  विवरण: Traditional Banarasi Kofta In Nawabi Style.
+  कीमत/वेरिएंट: Veg: 429
+- Item: Methi Matar Malai
+  विवरण: Cottage Cheese, Matar & Methi Cooked In Rich Muglai Style.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429
+- Item: Methi Matar Masala
+  विवरण: Matar & Methi Cooked In Rich Muglai Style.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429
+- Item: Tandoori Dhingri Masala
+  विवरण: Mushroom Marinated In Tandoori Masala & Cooked In Spice Indian Gravy.
+  कीमत/वेरिएंट: Veg: 409 | Jain: 409
+- Item: Maratha Vegetable Kofta Curry
+  विवरण: Vegetable Dumpling Served In Black Gravy.
+  कीमत/वेरिएंट: Veg: 389
+- Item: Masala Wangi
+  विवरण: Indian Seasoning Brinjal Served In Maharashtraian Style.
+  कीमत/वेरिएंट: Veg: 379
+- Item: Sarso Ka Saag (Seasonal)
+  विवरण: Traditional Punjabi Dish Made Of Mustard Leaf & Spice.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429
+- Item: Veg Khurchan
+  विवरण: Mixed Vegetable Cooked With Mustard Capsicum With Cream.
+  कीमत/वेरिएंट: Veg: 399 | Jain: 399
+- Item: Navratna Kprma
+  विवरण: Nine Types Of Assorted Vegetables, Gently Cooked In Creamy Rich Korma Greavy
+  कीमत/वेरिएंट: Veg: 409 | Jain: 409
+- Item: Tawa Sabzi
+  विवरण: Assorted Vegetables Cooked On Tawa.
+  कीमत/वेरिएंट: Veg: 369
+- Item: Aloo Gobi Matar
+  विवरण: A Curry Recipe With A Base Of Onion-Tomato Gravy With These Vegetables
+  कीमत/वेरिएंट: Veg: 349
+- Item: Aloo Matar
+  विवरण: Potato, Green Pices Cooked In Tomato Gravy Mixed With Indian Spices
+  कीमत/वेरिएंट: Veg: 349
+- Item: Sev Bhaji
+  विवरण: Combination Of Spicy Gathiya & Curry From Khandeshi Kala Masala.
+  कीमत/वेरिएंट: Veg: 299
+- Item: Jeera Aloo
+  विवरण: Boiled Potato Tossed With Cumin Seedes And Inndian Spicese
+  कीमत/वेरिएंट: Veg: 299
+- Item: Bhindi Kurkuri
+  विवरण: A Spicy, Tasty & Super Crispy Fries Made With Tender Okra Pods Or Ladies Fingergram Flour & Spices.,
+  कीमत/वेरिएंट: Veg: 339 | Jain: 339
+- Item: Bhindi Masala
+  विवरण: A Spicy, Tasty & Super Crispy Fries Made With Tender Okra Pods Or Ladies Fingergram Flour & Spices.,
+  कीमत/वेरिएंट: Veg: 339 | Jain: 339
+- Item: Veg Kolhapuri
+  विवरण: A Classic Maharashtrian Dish Of Fresh Vegetables In A Bold Kolhapuri Spice Blend, Perfectly Balancing Heat And Flavour.
+  कीमत/वेरिएंट: Veg: 369
+- Item: Diwani Handi
+  विवरण: A Royal Mix Of Fresh Vegetables In A Rich Cashew-Tomato Gravy, Infused With Spices And Finished With A Touch Of Cream
+  कीमत/वेरिएंट: Veg: 449 | Jain: 449
+- Item: Namaste Kalyan Special Veg
+  विवरण: Namaste Kalyan Chef Special With Lot Of Vegetable Comes With Butter Gravy & Hariyali Style
+  कीमत/वेरिएंट: Veg: 489
+- Item: Veg Kadai
+  विवरण: Fresh Vegetables In A Rich Tomato-Onion Gravy, Spiced With Rustic Kadai Masala.
+  कीमत/वेरिएंट: Veg: 449
+- Item: Veg Patiala
+  विवरण: Spiced Vegetable Koftas In A Rich Tomato-Cashew Gravy, Infused With Aromatic Spices For A Royal Taste.
+  कीमत/वेरिएंट: Veg: 369 | Jain: 369
+- Item: Lasooni Palak
+  विवरण: Smooth Spinach Purée Tempered With Golden Garlic For A Wholesome Delicacy
+  कीमत/वेरिएंट: Veg: 369
+- Item: Lasooni Methi
+  विवरण: Smooth Spinach Purée Tempered With Golden Garlic For A Wholesome
+  कीमत/वेरिएंट: Veg: 369
+- Item: Veg Haryali
+  विवरण: A Medley Of Vegetables In A Spinach, Coriander, And Mint Gravy, Delicately Spiced For A Fresh Finish.
+  कीमत/वेरिएंट: Veg: 369 | Jain: 369
+- Item: Mushroom Tikka Masala
+  विवरण: Char-Grilled Mushrooms In A Rich Spiced Tomato-Cashew Gravy With A Velvety Finish
+  कीमत/वेरिएंट: Veg: 369
+- Item: Mix Veg
+  विवरण: Seasonal Vegetables In A Mildly Spiced, Flavorful Gravy For A Wholesome Delight
+  कीमत/वेरिएंट: Veg: 369 | Jain: 369
+
+==============================
+श्रेणी: Koyle Ka Kamal
+==============================
+- Item: Methi Mirchi Ka Paneer Tikka
+  विवरण: Cottage Cheese Steaks Marinated In Spicy Fenugreek Flavoured Yoghurt, Cooked In Tandoor.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429
+- Item: Paneer Dohara Tikka
+  विवरण: Two Different Flavoured Stuffed Paneer Tikka Cooked In Clay Oven.
+  कीमत/वेरिएंट: Veg: 429
+- Item: Classic Paneer
+  विवरण: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate
+  कीमत/वेरिएंट: Veg: 399 | Jain: 399
+- Item: Paneer Tikka Achari
+  विवरण: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate With Pickle
+  कीमत/वेरिएंट: Veg: 399
+- Item: Paneer Tikka Ajwain
+  विवरण: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate With Ajwin
+  कीमत/वेरिएंट: Veg: 399 | Jain: 399
+- Item: Paneer Tikka Lasooni
+  विवरण: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate Garlic
+  कीमत/वेरिएंट: Veg: 399
+- Item: Paneer Malai Kali Miri
+  विवरण: Marinated Cottage Cheese With Black Pepper, Cheese & Yoghurt.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429
+- Item: Cheese Makai Seekh Kebab
+  विवरण: Mildly Spiced Paneer, Cheese & American Corn Cooked In Clay Oven.
+  कीमत/वेरिएंट: Veg: 359 | Jain: 359
+- Item: Veg Seekh
+  विवरण: Minced Vegetables & Spices Are Shaped On Skewers, Cooked In Clay Oven & Served With Green Chutney.
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Chilli Milli Seekh
+  विवरण: Minced Vegetables & Spices Are Shaped On Skewers, Cooked In Clay Oven & Served With Green Chutney.
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Soya Chaap Tikka
+  विवरण: Spice-Marinated Soya Chaap Cooked In Tandoor
+  कीमत/वेरिएंट: Veg: 339 | Jain: 339
+- Item: Ajwani Soya Chaap
+  विवरण: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  कीमत/वेरिएंट: Veg: 339 | Jain: 339
+- Item: Malai Soya Chaap
+  विवरण: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  कीमत/वेरिएंट: Veg: 339 | Jain: 339
+- Item: Pahadi Soya Chaap
+  विवरण: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  कीमत/वेरिएंट: Veg: 339
+- Item: Subz Shikampuri Kebab
+  विवरण: Garden Fresh Vegetable Cutlets Stuffed With Mintly Onion Relish Deep Fried
+  कीमत/वेरिएंट: Veg: 339 | Jain: 339
+- Item: Paneer Naram Dil Kebab
+  विवरण: Minced Cottage Cheese & Green Peas Marinated In Indian Spice Deep Fry With Corn Flakes.
+  कीमत/वेरिएंट: Veg: 379
+- Item: Mushroom Ki Nazakat
+  विवरण: Stuffed Button Mushrooms Marinated With Cheese & Coated Cream Glazed In Tandoor.
+  कीमत/वेरिएंट: Veg: 429
+- Item: Mushroom & Babycorn Tikka
+  विवरण: Mushroom & Babycorn Marinated In Tandoori Masala & Finished In Tandoor.
+  कीमत/वेरिएंट: Veg: 399
+- Item: Veg.Cheese Crispy Rolls
+  विवरण: Yummy & Stuffed Cheesy Rolls Filled With Healthy Vegetables.
+  कीमत/वेरिएंट: Veg: 369
+- Item: Assorted Tandoori Platter
+  विवरण: Assortment Of Vegetables Cooking In Tandoor.
+  कीमत/वेरिएंट: Veg: 999
+- Item: Murg Nazakat
+  विवरण: Chicken Supremes Stuffed With Minced Chicken, Cheese With Mild Spices, Fragrant Mint Masala Paste.
+  कीमत/वेरिएंट: Chicken: 529
+- Item: Murg Ke Sholey
+  विवरण: Hot & Spicy Chicken Marinated In Indian Spices Finished In Tandoor.
+  कीमत/वेरिएंट: Chicken: 499
+- Item: Sharabi Kebab
+  विवरण: Hot & Spicy Chicken Marinated In Indian Spices Finished In Tandoor.Served Smooky With Rum
+  कीमत/वेरिएंट: Chicken: 529
+- Item: Murg Alishan Kebab
+  विवरण: Morsels Of Chicken Marinated In Yoghurt &Beetroot Juice With Exotic Spices Grilled In Clay Oven.
+  कीमत/वेरिएंट: Chicken: 459
+- Item: Tandoori Murgh  Half
+  विवरण: Chicken Marinated In Yougurt, Tandoori Potli Masala, Cooked In Clay Oven.
+  कीमत/वेरिएंट: Half: 439
+- Item: Tandoori Murgh Full
+  विवरण: Chicken Marinated In Yougurt, Tandoori Potli Masala, Cooked In Clay Oven.
+  कीमत/वेरिएंट: Full: 699
+- Item: Murgh Malai Tikka
+  विवरण: Chicken Marinated With Hung Curd Cheese & Cashew Paste Served With Green Chutney.
+  कीमत/वेरिएंट: Chicken: 479
+- Item: Kalmi Kebab
+  विवरण: Gently Cooked Coriander,Mint & Chilli Marinated Chicken Legs.
+  कीमत/वेरिएंट: Chicken: 529
+- Item: Classic Chiken Tikka
+  विवरण: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  कीमत/वेरिएंट: Chicken: 479
+- Item: Classic Chiken Tikka Banjara
+  विवरण: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked With Yellow Spice
+  कीमत/वेरिएंट: Chicken: 479
+- Item: Classic Chiken Tikka Pahadi
+  विवरण: Boneless Chicken Pieces Are Marinated With Green Chutney  A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  कीमत/वेरिएंट: Chicken: 479
+- Item: Classic Chiken Tikka  Achri
+  विवरण: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  कीमत/वेरिएंट: Chicken: 479
+- Item: Classic Chiken Tikka   Ajwain
+  विवरण: Boneless Chicken Pieces Are Marinated Withajwin  A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  कीमत/वेरिएंट: Chicken: 479
+- Item: Tandoori Chicken Platter
+  विवरण: Assortment Of Five Of The Choicest Kebabs (18 Pieces).
+  कीमत/वेरिएंट: Chicken: 1199
+- Item: Methi Mirch Ka Chicken Tikka
+  विवरण: Boneless Chicken Marinated With Fresh Mint & Green Pepper & Indian
+  कीमत/वेरिएंट: Chicken: 459
+- Item: Murgh Galafi Seekh
+  विवरण: Marinated Chicken Minced Placed Over A Skewers In Cylindrical Shape Covering With Chopped Vegetables.
+  कीमत/वेरिएंट: Chicken: 459
+- Item: Chicken Rolly Kebab
+  विवरण: Miced Chicken Stuffed With A Egg And Cooked In Tandoor
+  कीमत/वेरिएंट: Chicken: 489
+- Item: Muttan Lahori Seekh Kebaba
+  विवरण: Divine Skewers Of Kid Spiced With Cardamon,Clove, Cinamon & Enriched With Nuts.
+  कीमत/वेरिएंट: Mutton: 599
+- Item: Tunda Kebeb
+  विवरण: Minced Of Tender Lamb Marinated With Chopped Onion, Spice & Cooked Shallow Fried.
+  कीमत/वेरिएंट: Mutton: 609
+- Item: Mutton Boti Kebeb
+  विवरण: Cubed Mutton Pieces, Which Are Marinated With In Green Chilli, Garlic, Garam Masala & Red Chilli & Finished In Tandoor.
+  कीमत/वेरिएंट: Mutton: 589
+- Item: Hariyali Pomfret
+  विवरण: Fresh Pomfret  Marinated In Lemon Coriander & Mint Chutney Cooked In Tandoor.
+  कीमत/वेरिएंट: Pomfret: 789
+- Item: Hariyali Surmai
+  विवरण: Surmai, Marinated In Lemon Coriander & Mint Chutney Cooked In Tandoor.
+  कीमत/वेरिएंट: Surmai: 759
+- Item: Samundar Ki Shaan
+  विवरण: Tandoori Pomfret.
+  कीमत/वेरिएंट: Pomfret: 789
+- Item: Jheenga Dum Ajwain
+  विवरण: Carom Seeds & Tandoori Masala, Fresh Prawns Cooked In Clay Oven.
+  कीमत/वेरिएंट: Prawns: 789
+- Item: Classic Fish Tikka
+  विवरण: Chunks Of Fish Marinated With Spicy Yougurt Flavour With Carom
+  कीमत/वेरिएंट: Basa: 559
+- Item: Classic Fish Tikka Ajwain
+  विवरण: Chunks Of Fish Marinated With Ajwin N  Yougurt Flavour With Carom
+  कीमत/वेरिएंट: Basa: 559
+- Item: Mahi Curry Patta Surmai
+  विवरण: Fish Marinated In South Curry Leaves & Spices, Cooked In Tandoor
+  कीमत/वेरिएंट: Surmai: 759
+- Item: Mahi Curry Patta Basa
+  विवरण: Fish Marinated In South Curry Leaves & Spices, Cooked In Tandoor
+  कीमत/वेरिएंट: Basa: 559
+- Item: Crab Tikka
+  विवरण: Crab Marinated With A Spices & Then Grilled Until Nicely Cooked &Slightly Charred.
+  कीमत/वेरिएंट: Crab: Ask
+- Item: Tandoori Platter Non Veg
+  विवरण: Assortment Of Chicken, Mutton,
+ 
+Fish & Prawns Cooked In Clay Oven (22 Pieces)
+  कीमत/वेरिएंट: Chicken: 1899
+
+==============================
+श्रेणी: Lemonades
+==============================
+- Item: Blue Litchi & Coconut
+  विवरण: Litchi Crush, Blue Curacao Syrup, Coconut Syrup
+  कीमत/वेरिएंट: Veg: 229
+- Item: Blueberry & Basil
+  विवरण: Blueberry Crush, Basil Leaves, Lime Juice, Sprite
+  कीमत/वेरिएंट: Veg: 229
+- Item: Passion , Rosemary &Chilli
+  विवरण: Passion Fruit Puree, Rosemary, Green Chilli, Sprite
+  कीमत/वेरिएंट: Veg: 229
+- Item: Cucumber & Strawberry
+  विवरण: Curry Leaves, Cucumber Syrup, Lemon, Sprite
+  कीमत/वेरिएंट: Veg: 229
+- Item: Cucumber & Curry Leaf
+  विवरण: Cucumber Syrup, Lemon Juice, Sprite , Curry Leaf
+  कीमत/वेरिएंट: Veg: 229
+- Item: Cucumber Lime Refresher
+  विवरण: Cucumber Syrup, Lemon Juice, Sprite .
+  कीमत/वेरिएंट: Veg: 199
+
+==============================
+श्रेणी: Lettuce Cups
+==============================
+- Item: Asian Vegetables
+  विवरण: Carrot, Zucchni, Bell Peppers, Corn , Broccoli , Crispy  Vermiceilli Sweet & Spicy Deep Served With Lettuce
+  कीमत/वेरिएंट: Veg: 429
+- Item: Thai Chicken
+  विवरण: Cube Chicken Tossed With Red Thai Curry, Fresh Red Chilli Swet Basil Topped With Crushed Peanuts.
+  कीमत/वेरिएंट: Chicken: 459
+- Item: Barbeque Chicken
+  विवरण: Geilled Chicken Tossed With Barbeque Sauces, Served With Crunchy Lettuce
+  कीमत/वेरिएंट: Chicken: 479
+
+==============================
+श्रेणी: Main Course
+==============================
+- Item: Asian Veggies Red Pepper Sauce
+  विवरण: Exotic Vegetables Cooked With Ginger, Garlic, Fresh Red Chilli & Spring Onion.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429 | Chicken: 479 | Basa: 559 | Prawns: 699
+- Item: Stir Fried Asian Green With Chilli Basil
+  विवरण: Leaf Vegetables Cooked With Ginger, Sweet Basil, Fresh Red Chilli, Oyster Sauce, Soya Sauce Chilli Oil.
+  कीमत/वेरिएंट: Veg: 429
+- Item: Shanghi Style
+  विवरण: Diced Broccoli, Baby Corn, Zucchini, Water Chestnut, Pok Choy Cooked With Ginger, Garlic, Chilli Paste & Spring Onion.
+  कीमत/वेरिएंट: Veg: 409 | Jain: 409 | Chicken: 479 | Basa: 549 | Prawns: 699
+- Item: Classic Manchurian Gravy
+  विवरण: Deep Fried Vegetable Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429 | Chicken: 449
+- Item: Sichuan
+  विवरण: Cottage Cheese Cooked With Ginger, Garlic, Dry Red Chilli, Sichuan Sauce, Light Soya, Chilli Paste & Spring Onion.
+  कीमत/वेरिएंट: Veg: 449 | Chicken: 479 | Basa: 549 | Prawns: 699
+- Item: Classic Chilli Oyster
+  विवरण: Cube Cottage Cheese Cooked With Ginger, Garlic, Green Chilli, Spring Onion, Bell Pepper & Soya Sauce.
+  कीमत/वेरिएंट: Veg: 449 | Jain: 449 | Chicken: 479 | Basa: 549 | Prawns: 649
+- Item: Burma Delight
+  विवरण: Diced Exotic Vegetable Cooked With Garlic, Soya Sauce, Chilli, Cooking Wine & Cilantro.
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479
+- Item: Pepper & Garlic
+  विवरण: Shredded Chicken / Slice Fish / Scallion, Red & Green Pepper
+  कीमत/वेरिएंट: Chicken: 479 | Basa: 549 | Prawns: 699
+- Item: Dak Galbi
+  विवरण: Shredded Chicken Cooked With Fresh Garlic, Scallion, Red & Green Pepper & Sesame Oil.
+  कीमत/वेरिएंट: Chicken: 549
+- Item: Ca Oup Xa
+  विवरण: Lemongrass Sauce, Fresh Red Pepper & Scallion.
+  कीमत/वेरिएंट: Chicken: 549 | Basa: 549
+- Item: Brunt Garlic Fish
+  विवरण: Sliced Fish Cooked With Garlic, Chinese Cabbage, Spinach & Cooking Wine.
+  कीमत/वेरिएंट: Basa: 599 | Prawns: 699
+- Item: Prawns With Seasonal Greens
+  विवरण: Deep Fried Prawns Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  कीमत/वेरिएंट: Prawns: 699
+
+==============================
+श्रेणी: Mocktails
+==============================
+- Item: Lost Island
+  विवरण: A Medley Of Mango, Passion & Coconut Cream Perked Up With Fresh Mint.
+  कीमत/वेरिएंट: Veg: 229
+- Item: Watermelon & Kaffer Lime Lemonade
+  विवरण: Refreshing Tall Watermelon Fizz With A Hint Of Kaffir Lime.
+  कीमत/वेरिएंट: Veg: 249
+- Item: Guava Mary
+  विवरण: Spicy & Iced Guava Juice Sipped Through Chilli Salt.
+  कीमत/वेरिएंट: Veg: 239
+- Item: Asian Itch
+  विवरण: Tall & Cool With Lemongrass, Ginger Lime, Litchi.
+  कीमत/वेरिएंट: Veg: 229
+- Item: Pineapple Yuzu Jalapeno Sour On The Rock
+  विवरण: Ice & Fruity Spice With Pineapple, Chilli & Citrus Yuzu.
+  कीमत/वेरिएंट: Veg: 259
+- Item: Red Ginger Fizz
+  विवरण: Cranberry & Pomegranate, Topped With Sprite & Ginger Lime.
+  कीमत/वेरिएंट: Veg: 229
+- Item: Vitamin C
+  विवरण: Orange Juice, Passion Fruitsyrup, Lime Juice Topped With Soda.
+  कीमत/वेरिएंट: Veg: 239
+- Item: Awg Virgin Sangria
+  विवरण: Pomegranate, Cranberry, Grape, Orange Juice, Lime, Honeywith House Churned Fruits.
+  कीमत/वेरिएंट: Veg: 239
+- Item: Masala Virgin Mojito
+  विवरण: Refreshing Drink With Namaste Twisted Paan & Gulkand
+  कीमत/वेरिएंट: Veg: 249
+- Item: Paan Gulkand Mojito
+  विवरण: Refreshing Drink With Namaste Twisted Paan & Gulkand
+  कीमत/वेरिएंट: Veg: 249
+- Item: Namaste Kalyan Spical
+  विवरण: Fresh Apple, Basil Leaves, Pineapple Juice, Kiwi Cursh, Blue Curacao & Grenadine Syrup & Topped Soda
+  कीमत/वेरिएंट: Veg: 269
+- Item: Coco Berry
+  विवरण: Fresh Cream, Pinepple Juice, Blueberry Crush & Coconut Syrup
+  कीमत/वेरिएंट: Veg: 259
+- Item: Mixed Fantasy
+  विवरण: Strawberry Crush, Blueberry Roseberry Syrup & Fresh Cream
+  कीमत/वेरिएंट: Veg: 259
+- Item: Wake Me Up
+  विवरण: Coffee, Coconut Syrup, Pineapple Juice & Lime Juice
+  कीमत/वेरिएंट: Veg: 239
+
+==============================
+श्रेणी: Murg Curry Specialities
+==============================
+- Item: Murgh Makhani(Butter Chicken)
+  विवरण: A Universal Favourite, Tender, Roasted Chicken Pieces Simmered In A Satin Smooth Tomato & Cream Gravy Redolent Of Kasturi Methi.
+  कीमत/वेरिएंट: Chicken: 489
+- Item: Kukul Mass
+  विवरण: Chicken Cooked In All Indian  Green Spice Coconut Gravy
+  कीमत/वेरिएंट: Chicken: 469
+- Item: Chicken Malvani
+  विवरण: Chicken Cooked In All Indian Green Spice Coconut Gravy.
+  कीमत/वेरिएंट: Chicken: 469
+- Item: Murgh Rara
+  विवरण: Soft & Juicy Boneless Chicken Pieces Are Cooked In Spicy & Scrumptious Chicken Mince Gravy & Sreved With Tandoori Bread Or Rice.
+  कीमत/वेरिएंट: Chicken: 499
+- Item: Murgh Kadhai Mirichi Wala
+  विवरण: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper.
+  कीमत/वेरिएंट: Chicken: 469
+- Item: Kolhapuri
+  विवरण: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper.
+  कीमत/वेरिएंट: Chicken: 469
+- Item: Do-Pyaza
+  विवरण: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper Toppeed With Dice Onion
+  कीमत/वेरिएंट: Chicken: 469
+- Item: Murgh Tikka Masala
+  विवरण: Spiced Chicken Tikka Simmered In Fenugreek With Rich Creamy Tomato Gravy.
+  कीमत/वेरिएंट: Chicken: 499
+- Item: Murgh Khurchan
+  विवरण: Shredded Chicken Cooked In A Rich Cashew Gravy, Topped With Sliced Boiled Egg.
+  कीमत/वेरिएंट: Chicken: 499
+- Item: Chicken Kala Masala
+  विवरण: Chicken Cooked In Local Kala Masala.
+  कीमत/वेरिएंट: Chicken: 479
+- Item: Chicken Kebab Masala
+  विवरण: Marinated Chicken Minced Placed Over A Skewers Cooked In Tandoor, These Kababs Are Served In A Flavourful Gravy.
+  कीमत/वेरिएंट: Chicken: 499
+- Item: Chicken Saagwala
+  विवरण: Delicious Saag Wala Chicken Or Palak Chicken Spinach, Chicken & Aromatic Spices Is Creamy & Flavoursome
+  कीमत/वेरिएंट: Chicken: 489
+- Item: Murgh Khada Masala
+  विवरण: Soft & Juicy Pieces Of Boneless Chicken Cooked In Aromatic Masala To Give You A Taste Of Real Indian Flavours
+  कीमत/वेरिएंट: Chicken: 499
+- Item: Tandoori Chicken Masala Half
+  विवरण: Chicken Is Marinated In Tandoori Spices & Yoghurt Then Grilled, Prepare The Curry Sauce And The Chicken.
+  कीमत/वेरिएंट: Half: 499
+- Item: Tandoori Chicken Masala Full
+  विवरण: Chicken Is Marinated In Tandoori Spices & Yoghurt Then Grilled, Prepare The Curry Sauce And The Chicken.
+  कीमत/वेरिएंट: Full: 899
+- Item: Chicken Handi Half
+  विवरण: Handi Chicken Is A Delicious Dish With Chicken Cooked On A Low Flame For A Long Time.
+  कीमत/वेरिएंट: Half: 479
+- Item: Chicken Handi Full
+  विवरण: Handi Chicken Is A Delicious Dish With Chicken Cooked On A Low Flame For A Long Time.
+  कीमत/वेरिएंट: Full: 799
+- Item: Egg Masala
+  विवरण: A Dish Made With Boiled Eggs, Onions, Tomatoes, Whole Spices & Spice Powders.
+  कीमत/वेरिएंट: Egg: 379
+
+==============================
+श्रेणी: Noodles
+==============================
+- Item: Pan Fried White Sauce
+  विवरण: Pan Fried Noodles Topped With  Sauce
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+- Item: Pan Fried  Hunan
+  विवरण: Pan Fried Noodles Topped With Sichuan Or Hunan Sauce
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+- Item: Pan Fried  Sichuan
+  विवरण: Pan Fried Noodles Topped With  Siuchuan Sauce.
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+- Item: Hot Pepper Garlic
+  विवरण: Wok Tossed Noodles With Shredded Vegetable, Crushed Chilli, Garlic & Spring Onion.
+  कीमत/वेरिएंट: Veg: 429 | Chicken: 479 | Prawns: 499
+- Item: Hakka
+  विवरण: Wok Tossed Noodles With Shredded Vegetables, Soya Sauce & Spring Onion
+  कीमत/वेरिएंट: Veg: 379 | Jain: 379 | Chicken: 399 | Prawns: 409
+- Item: Sichuan
+  विवरण: Noodles Tossed With Shredded Vegetables, Ginger, Garlic, Dry Red Chilli, Chilli Paste & Spring Onion
+  कीमत/वेरिएंट: Veg: 369 | Chicken: 389 | Prawns: 479
+- Item: American Chop Suey
+  विवरण: Sweet & Sour Vegetables With Bed Of Crispy Noodles
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479 | Chicken: 509
+- Item: Korean
+  विवरण: Homemade Flat Noodles Tossed With Korean Chilli Paste, Garlic, Soya Sauce & Spring Onion.
+  कीमत/वेरिएंट: Veg: 429 | Chicken: 479 | Prawns: 499
+- Item: All Time Favourite Chow Mein
+  विवरण: Wok Tossed Noodles With Ginger, Vegetable, Soya Sauce, Bell Pepper, Celery & Spring Onion
+  कीमत/वेरिएंट: Veg: 429 | Chicken: 479 | Prawns: 499
+- Item: Cantonses
+  विवरण: Wok Tossed Rice Noodles With Bean Sprout, Napa Cabbage Carrot Soy Sauce & Spring Onion
+  कीमत/वेरिएंट: Veg: 429 | Chicken: 479 | Prawns: 499
+- Item: Pad Thai
+  विवरण: Flat Rice Stick Noodles Tossed With Crushed Peanuts, Chilli Flakes, Seasoned With Tamrind And Plum Sugar
+  कीमत/वेरिएंट: Veg: 409 | Chicken: 459 | Prawns: 509
+
+==============================
+श्रेणी: Pasta
+==============================
+- Item: Penne With Tomato Basil Sauce
+  विवरण: Penne Pomodoro Is The Tomato Pasta Made With An, Flavour-Packed Tomato Sauce & Fresh Basil Leaves.
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479 | Chicken: 499
+- Item: Mac N Cheese
+  विवरण: A Rich & Creamy Dish Consisting Of Macaroni Pasta Mixed With A Cheesy Sauce.
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479 | Chicken: 499
+- Item: Macaroni With Exotic Veg With Creamy Sauce
+  विवरण: A Rich & Creamy Dish Consisting Of Macaroni Pasta Mixed With A Cheesy Sauce.
+  कीमत/वेरिएंट: Veg: 479 | Chicken: 499
+- Item: Spaghettti Aglio E Olio With Chicken Sausages
+  विवरण: Tossed With Grilled Chicken Sausages & Exotic Vegetables.
+  कीमत/वेरिएंट: Chicken: 529
+- Item: Fusilli With Grilled Chicken,Cherry Tomato In Cream Sauce
+  विवरण: Chicken Grilled, Exotic Vegetable, Ginger, Garlic & Vermicelli Noodles.
+  कीमत/वेरिएंट: Chicken: 529
+- Item: Makr Your Own Pasta-Penne/Spaghetti/Fusilli/Macaroni
+  विवरण: Sauce Choices - Alfredo / Arrabiata / Pesto / Marinara.
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479 | Chicken: 499
+- Item: Homemaade Baked Lasagna
+  विवरण: Tomato Sauce & A Deliciously Cheesy Filling. Traditional Homemade Lasagna Filling With Cottage Cheese / Chicken & Parmesan. Serve With A Leafy Green Salad & Crusty Garlic Bread
+  कीमत/वेरिएंट: Veg: 559 | Chicken: 599
+
+==============================
+श्रेणी: Pehels Kadam
+==============================
+- Item: Roomali Khakra  Masala Cheese &Garlic
+  विवरण: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala Cheese N Garlic
+  कीमत/वेरिएंट: Veg: 299
+- Item: Roomali Khakra  Masala
+  विवरण: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala
+  कीमत/वेरिएंट: Veg: 239
+- Item: Roomali Khakra  Masala Cheese
+  विवरण: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala Cheese
+  कीमत/वेरिएंट: Veg: 249
+- Item: Double Fried Mushroom With Cheddar & Fine Herbs
+  विवरण: Cultured Mushrooms Stuffed With Cheese & Herbs-Coated & Deep Fried.
+  कीमत/वेरिएंट: Veg: 379
+- Item: French Fries
+  विवरण: Classic Golden Potato Fries, Crisp On The Outside And Fluffy Inside, Served Hot And Perfectly Seasoned.
+  कीमत/वेरिएंट: Veg: 329
+- Item: Cheese Cherry Pineapple
+  विवरण: Cube Cheese And Pineapple Top With Red Cherry Served In Crush Ice.
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Dahi Ke Sholey
+  विवरण: Golden-Crisp Bread Rolls Stuffed With Spiced
+Hung Curd And Veggies, Deep-Fried To A Crunchy Delight
+  कीमत/वेरिएंट: Veg: 349
+- Item: Kathi Rolls
+  विवरण: Tandoor Roasted Paneer Or Chicken Tikka Roll Served With Kuchumber & Chutney.
+  कीमत/वेरिएंट: Veg: 349
+- Item: Egg Pakoda
+  विवरण: Egg Coated In Seasoned Gram Flour Batter & Deep Fried.
+  कीमत/वेरिएंट: Egg: 289
+- Item: Chicken Koliwada
+  विवरण: Deep Fried Chunk Chicken In A Spicy Marinate, Served With Mint Chutney
+  कीमत/वेरिएंट: Chicken: 389
+- Item: Chicken Nuggets
+  विवरण: A Small Piece Of Deboned Chicken Meat That Is Breaded Battered, Then Deep Fried & Served With Mustard Sauce.
+  कीमत/वेरिएंट: Chicken: 429
+- Item: Fish Koliwada
+  विवरण: Deep Fried Fish Fillet In A Spicy Marinate, Served With Mint Chutney.
+  कीमत/वेरिएंट: Basa: 479
+- Item: Fish & Chipes
+  विवरण: Deep Fried Fish Fillet In A Marinate, Served With Tomato Kecthup
+  कीमत/वेरिएंट: Basa: 439
+- Item: Fish Finger
+  विवरण: Crumb Fried Fish Finger Served With Tartar Sauce.
+  कीमत/वेरिएंट: Basa: 439
+- Item: Fish Tava Fry  Pomfret
+  विवरण: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  कीमत/वेरिएंट: Pomfret: 749
+- Item: Fish Tava Fry Surmai
+  विवरण: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  कीमत/वेरिएंट: Surmai: 649
+- Item: Fish Tava Fry Basa
+  विवरण: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  कीमत/वेरिएंट: Basa: 549
+
+==============================
+श्रेणी: Pizza
+==============================
+- Item: Tomato Basil Pizza
+  विवरण: Fresh Tomato Sauce, Basil Leaves & Melted Mozzarella On A Crisp Crust.
+  कीमत/वेरिएंट: Medium: 269 | Large: 369
+- Item: Margarita Pizza
+  विवरण: Tomato, Mozzarella & Fresh Basil On A Classic Crust.
+  कीमत/वेरिएंट: Medium: 269 | Large: 369
+- Item: Veg  Delight Pizza
+  विवरण: Garden Vegetables & Melted Cheese On A Crisp Crust.
+  कीमत/वेरिएंट: Medium: 289 | Large: 389
+- Item: Tandoori Paneer
+  विवरण: Spicy Marinated Paneer, Peppers, Onions, Cheese On Crispy Crust.​
+  कीमत/वेरिएंट: Medium: 329 | Large: 409
+- Item: Mushroom Veg Pizza
+  विवरण: Mushrooms, Mixed Veggies & Melted Cheese On A Crisp Crust.
+  कीमत/वेरिएंट: Medium: 289 | Large: 389
+- Item: Bbq Chicken Pizza
+  विवरण: Bbq Sauce, Grilled Chicken, Red Onions, Cilantro, Cheese On Crispy Crust.
+ ​
+  कीमत/वेरिएंट: Medium: 399 | Large: 479
+- Item: Chicken Pizza
+  विवरण: Tandoori Marinated Chicken, Peppers, Onions, Cheese On Crispy Crust.​
+  कीमत/वेरिएंट: Medium: 359 | Large: 479
+- Item: Chiken Peri-Peri Pizza
+  विवरण: Spicy Peri Peri Marinated Chicken, Peppers, Onions, Cheese On Crispy Crust.​
+  कीमत/वेरिएंट: Medium: 399 | Large: 479
+
+==============================
+श्रेणी: Rice
+==============================
+- Item: Sada Basmati Chawal
+  विवरण: Steamed Boiled Rice.
+  कीमत/वेरिएंट: Veg: 209 | Jain: 209
+- Item: Jeera Rice
+  विवरण: Temper With Cumin Seeds.(Half / Full).
+  कीमत/वेरिएंट: Half: 189 | Full: 279
+- Item: Peas Pulao
+  विवरण: Emper With Cumin  Peas Seeds Corianders.
+  कीमत/वेरिएंट: Veg: 299 | Jain: 299
+- Item: Veg Pulao
+  विवरण: Vegetable  Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  कीमत/वेरिएंट: Veg: 299 | Jain: 299
+- Item: Curd Rice
+  विवरण: Emper With Cumin Seeds,
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Dal Khichdi
+  विवरण: Prepared With Dal
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Kadhi Khichdi
+  विवरण: Prepared With Curd & Indian Spice
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Palak Khichdi
+  विवरण: Description not available.
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Paneer Pulao
+  विवरण: Paneer  Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  कीमत/वेरिएंट: Veg: 379 | Jain: 379
+- Item: Kasmiri Pulao
+  विवरण: Fruits & Dry Fruits Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  कीमत/वेरिएंट: Veg: 379 | Jain: 379
+- Item: Subz Dum
+  विवरण: Garden Fresh Vegetables & Flavourful Basmati Rice.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429
+- Item: Veg Hydrabadi Biryani
+  विवरण: Garden Fresh Vegetables & Flavourful Basmati Rice Tossed With Spenach And Mint Sauces
+  कीमत/वेरिएंट: Veg: 429
+- Item: Avadhi Murgh Biryani
+  विवरण: Delicious Flavoured Chicken Biryani In Rich With Nuts & Saffron.
+  कीमत/वेरिएंट: Chicken: 499
+- Item: Egg Biryani
+  विवरण: Fragrant Basmati Rice Cooked With Aromatic Biryani Spices, Herbs & Boiled Eggs
+  कीमत/वेरिएंट: Egg: 369
+- Item: Kachcha Ghost Biryani
+  विवरण: Lamb & Finest Basmati Rice Cooked In Nizami Style.
+  कीमत/वेरिएंट: Mutton: 629
+- Item: Hyderabadi Muttan Biryani
+  विवरण: Lamb & Finest Basmati Rice Cooked In Nizami Style Tossed With Spenach And Mint Sauces
+  कीमत/वेरिएंट: Mutton: 629
+- Item: Prawns Dum Biryani
+  विवरण: Aromatic Basmati Rice Dum Cooked With Prawns, Herbs & Spice Powder
+  कीमत/वेरिएंट: Prawns: 629
+- Item: Brunt Garlic Rice
+  विवरण: Wok Tossed Fried Rice With Cube Vegetables & Burnt Garlic.
+  कीमत/वेरिएंट: Veg: 379 | Chicken: 429 | Prawns: 529
+- Item: Steam Rice
+  विवरण: Basmati Rice
+  कीमत/वेरिएंट: Veg: 209
+- Item: Steam Jasmin Rice
+  विवरण: Jasmin Rice
+  कीमत/वेरिएंट: Veg: 379
+- Item: Mongolian Pot Rice
+  विवरण: Wok Tossed Butter Rice Topped With Vegetables & Spicy Red Sauce.
+  कीमत/वेरिएंट: Veg: 479 | Jain: 479 | Chicken: 499 | Prawns: 579
+- Item: Korean
+  विवरण: Wok Tossed Rice With Star Anise, Chilli Flakes & Korean Spice.
+  कीमत/वेरिएंट: Veg: 379 | Chicken: 429 | Prawns: 479
+- Item: Chilli Garlic
+  विवरण: Wok Tossed Rice With Chilli Flakes, Garlic & Spring Onion
+  कीमत/वेरिएंट: Veg: 379 | Chicken: 389 | Prawns: 479
+- Item: Sichuan
+  विवरण: Rice Tossed With Ginger, Garlic,Siuchan Sauce & Spring Onion.
+  कीमत/वेरिएंट: Veg: 339 | Chicken: 389 | Prawns: 479
+- Item: Awg Classic
+  विवरण: Chef'S Special
+  कीमत/वेरिएंट: Veg: 379 | Jain: 379 | Chicken: 429 | Prawns: 469
+- Item: Classic Fried Rice
+  विवरण: Wok Tossed Fried Rice With Cube Vegetables.
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349 | Chicken: 389 | Prawns: 479
+- Item: Jasmine Brunt Garlic Fried Rice
+  विवरण: Wok Tossed Jasmine Rice With Cube Veggies And Spring Onion Along With Golden Fried Garlic
+  कीमत/वेरिएंट: Veg: 399 | Chicken: 449 | Prawns: 529
+- Item: Khao Pad Prik
+  विवरण: Sweet Basil & Chilli Fried Rice Seasoned With Thai Chilli Paste & Soya Sauce
+  कीमत/वेरिएंट: Veg: 369 | Chicken: 409
+- Item: Nasi Goreng
+  विवरण: Malaysian Village Style Fried Rice With Satay Prawns / Chicken, Prawns Crackers & Served With Egg.
+  कीमत/वेरिएंट: Chicken: 559 | Prawns: 629
+- Item: Egg Fried Rice
+  विवरण: Wok Tossed Fried Rice With Egg.
+  कीमत/वेरिएंट: Egg: 309
+
+==============================
+श्रेणी: Rolls
+==============================
+- Item: Awg Classic
+  विवरण: Chef Special
+  कीमत/वेरिएंट: Veg: 309 | Jain: 309 | Chicken: 399 | Prawns: 439
+- Item: Cigar
+  विवरण: Roll Sheets, Bel Pepper, Cottage Cheese , Corinder Served With Chilli Mayo Deep
+  कीमत/वेरिएंट: Veg: 369 | Jain: 369
+- Item: Popia Tod
+  विवरण: Roll Sheets, Minced Chicken/ Prawns , Carrot ,Ginger , Garlic Served With Sweet Chilli Deep
+  कीमत/वेरिएंट: Chicken: 399 | Prawns: 479
+
+==============================
+श्रेणी: Salads
+==============================
+- Item: Greek Salad
+  विवरण: Sliced Cucumbers, Tomatoes, Green Bell Pepper, Red Onion, Olive, Feta Cheese & Crunchy Iceberg (Vegetable & Chicken)
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249 | Chicken: 329
+- Item: Tazza Salad
+  विवरण: Crispy Greens Seasonal Vegetables.
+  कीमत/वेरिएंट: Veg: 199
+- Item: Sprout Salad
+  विवरण: Sprout, Chopped Onion, Tomatos,Green Chilly, Coriander & Lime Dressing.
+  कीमत/वेरिएंट: Veg: 239 | Jain: 239
+- Item: Chicken Hawaiian Salad
+  विवरण: In Pineapple & Coconut, Drizzled With A Tasty Coriander Lime & Mayonnaise Dressing.
+  कीमत/वेरिएंट: Chicken: 339
+- Item: Waldorf Salad
+  विवरण: Apple, Celery, Walnuts, Grapes & Mayonnaise.
+  कीमत/वेरिएंट: Veg: 349 | Chicken: 399
+- Item: Pasta Salad
+  विवरण: Pasta Of The Day, Bellpepper, Iceberg & Mayo.
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249 | Chicken: 349
+- Item: Prussian Salad
+  विवरण: Potato, Peas & Carrot Mix With Eggless Mayonnaise,Vegetable
+  कीमत/वेरिएंट: Veg: 269 | Chicken: 379
+- Item: Sauted Broccoli Chicken Salad
+  विवरण: Potato, Peas & Carrot Mix With Eggless Mayonnais, Chicken
+  कीमत/वेरिएंट: Chicken: 399
+- Item: Chicken Tikka Salad
+  विवरण: Chunks Of Tandoor Grilled Chicken Tangy Lime Dressing.
+  कीमत/वेरिएंट: Chicken: 399
+- Item: Crispy Salad
+  विवरण: Crispy Vegetable / Shredded Chickencrispy Wonton, Rice Noodles, Marinade With Chilli Dressing.
+  कीमत/वेरिएंट: Veg: 249 | Chicken: 319
+
+==============================
+श्रेणी: Sancks
+==============================
+- Item: Mix Veg Pakoda
+  विवरण: Mix Vegetables Coated In Seasoned Gram Flour Batter & Deep Fried.
+  कीमत/वेरिएंट: Veg: 279 | Jain: 279
+- Item: Onion Ring Pakoda
+  विवरण: Ring Onion Coated In Seasoned Gram Flour Batter & Deep Fried.
+  कीमत/वेरिएंट: Veg: 299
+- Item: Potato Pakoda
+  विवरण: Potato Coated In Seasoned Gram Flour Batter & Deep Fried.
+  कीमत/वेरिएंट: Veg: 279
+- Item: Paneer Pakoda
+  विवरण: Diced Cottage Cheese Coated In Seasoned Gram Flour Batter & Deep Fried
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349
+- Item: Panner Kantaki
+  विवरण: Cube Cottage Cheese Coated With Seasoned Flour & Deep Fried, Served With Chilli Mayo.
+  कीमत/वेरिएंट: Veg: 339
+- Item: Aloo Papdi Chaat
+  विवरण: Potatoes Cubes Flavoured With Ground Spices,Sweet & Sour Date, Finished With Coriander Leaves & Pomegranate Seeds.
+  कीमत/वेरिएंट: Veg: 209
+- Item: Masala Peanut
+  विवरण: Chopped Onion & Tomatoes Mixed With Indian Spices.
+  कीमत/वेरिएंट: Veg: 199
+- Item: Plain Peanut
+  विवरण: Salted Peanut
+  कीमत/वेरिएंट: Veg: 199
+- Item: Hara Bhara Kabab
+  विवरण: Shallow Fried Patties Of Minced Vegetables & Served With Tangy Coriander Chutney.
+  कीमत/वेरिएंट: Veg: 349
+- Item: Garlic& Cheese Crostini
+  विवरण: Toasted Bread Topped With Bell Peppers, Olives, Garlic & Cheese.
+  कीमत/वेरिएंट: Veg: 339
+
+==============================
+श्रेणी: Sandwiches
+==============================
+- Item: Mumbai Toast
+  विवरण: Grated Potato, Cheese, Chopped Chilies & Onion On Toasted Breads.
+  कीमत/वेरिएंट: Veg: 229
+- Item: Veg Delight
+  विवरण: Chopped Vegetables & Cheese With Green Chutney & Mayo, Served With Chips & Salad.
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249
+- Item: Cheese Chilly Tst
+  विवरण: Toasted On Both Side & With Cheese And Bellepepper & Onion , Served With Chips & Salad.
+  कीमत/वेरिएंट: Veg: 289 | Jain: 289
+- Item: Corn Chilly
+  विवरण: Stuffed Corn  Chilli Flakes With Mozzarella Served With Coleslaw Salad & Chips (Grilled)
+  कीमत/वेरिएंट: Veg: 329 | Jain: 329
+- Item: Corn Spinach
+  विवरण: Stuffed Corn Spinach, Chilli Flakes With Mozzarella Served With Coleslaw Salad & Chips (Grilled)
+  कीमत/वेरिएंट: Veg: 329 | Jain: 329
+- Item: Classic Veg
+  विवरण: Cheese, Lettuce, Tomato & Cucumber, Served With Coleslaw Salad & Chips
+  कीमत/वेरिएंट: Veg: 249 | Jain: 249
+- Item: Cheese Brust
+  विवरण: Cheese Sandwich Grilled
+  कीमत/वेरिएंट: Veg: 329 | Jain: 329
+- Item: Veg Clun Sandwich
+  विवरण: Triple Layered Sandwich With Veg Delight, Coleslaw & Cheese
+  कीमत/वेरिएंट: Veg: 309 | Jain: 309
+- Item: Paneer Tikka
+  विवरण: Layered Sandwich With Paneer Tikka, Coleslaw & Cheese
+  कीमत/वेरिएंट: Veg: 329 | Jain: 329
+- Item: Peri Peri Paneer Sandwich
+  विवरण: Layered Sandwich With Peri Peri Panner, Coleslaw & Cheese
+  कीमत/वेरिएंट: Veg: 329
+- Item: Tandoori Paneer
+  विवरण: Layered Sandwich With Tandoori Paneer , Coleslaw & Cheese
+  कीमत/वेरिएंट: Veg: 329
+- Item: Boiled Eggs Sandwichs
+  विवरण: Layered Sandwich With Veg Delight, Coleslaw & Cheese Boiled Eggs
+  कीमत/वेरिएंट: Egg: 329
+- Item: Chciken Delight Sandwich
+  विवरण: Layered Sandwich With Chicken Delight, Coleslaw & Cheese
+  कीमत/वेरिएंट: Chicken: 339
+- Item: Chicken Peri Per
+  विवरण: Layered Sandwich With Peri Peri Chicken, Coleslaw & Cheese
+  कीमत/वेरिएंट: Chicken: 379
+- Item: Chicken Tikka
+  विवरण: Layered Sandwich With Chicken Tikka , Coleslaw & Cheese
+  कीमत/वेरिएंट: Chicken: 379
+- Item: Chicken Club Sandwich
+  विवरण: Triple Layered Sandwich With Chicken, Egg And Cheese
+  कीमत/वेरिएंट: Chicken: 399
+- Item: Bbq Chicken Sandwich
+  विवरण: Layered Sandwich With Barbeque Chicken,  And Cheese
+  कीमत/वेरिएंट: Chicken: 379
+
+==============================
+श्रेणी: Shakes& Smoothies
+==============================
+- Item: Peanut Butter Banana Smoothie
+  विवरण: Peanut Butter, Banana Curd, Ice Cream
+  कीमत/वेरिएंट: Veg: 289
+- Item: Starwberry & Bourbon Shake
+  विवरण: Strawberry Crush, Bourbon Biscuit.
+  कीमत/वेरिएंट: Veg: 289
+- Item: Chocolate& Coconut Shake
+  विवरण: Chocolate & Coconut Syrup, Ice Cream
+  कीमत/वेरिएंट: Veg: 289
+- Item: Coffee, Cookie &Toffee Shake
+  विवरण: Milk, Ice Cream, Coffee And Cookies.
+  कीमत/वेरिएंट: Veg: 289
+- Item: Salted Caramel, Alpenliebe & Popcorn  Shake
+  विवरण: Salted Caramel, Alpenliebe & Popcorn
+  कीमत/वेरिएंट: Veg: 289
+- Item: Blueberry Cheese Cake Smoothi
+  विवरण: Blueberry Crush, Process Cheese
+  कीमत/वेरिएंट: Veg: 349
+- Item: Mango Mint Smoothie
+  विवरण: Mango Crush , Mint Leaves Blend With Curd & Ice Cream
+  कीमत/वेरिएंट: Veg: 269
+- Item: Kiwi Mint Smoothie
+  विवरण: Kiwi Crush , Mint Leaves Blend With Cured Mixed With Ice Cream
+  कीमत/वेरिएंट: Veg: 269
+- Item: Mango Moon
+  विवरण: Honey, Freshcream , Mango Juice
+  कीमत/वेरिएंट: Veg: 269
+
+==============================
+श्रेणी: Sizzlers
+==============================
+- Item: Awg Classic
+  विवरण: Combination Of Thai Corn Cake, Wok Tossed Noodles Or Fried Rice, Chilli Potatoes & Chilli Soya Gravy
+  कीमत/वेरिएंट: Veg: 699 | Chicken: 799 | Prawns: 899
+- Item: Fussion Mexican
+  विवरण: Battered Cottage Cheese In Chef'S Signature Sauce Served On Bed Of Rice & Noodels Served With Exotic G Reen Vegetable Aof Rice & Noodles With Sauted
+  कीमत/वेरिएंट: Veg: 699 | Chicken: 799 | Prawns: 899
+- Item: Classic Manchurian
+  विवरण: Vegetable Balls In Manchurian Sauce Served With Chilli Garlic Noodles Or Rice Chilli Garlic Mushroom
+  कीमत/वेरिएंट: Veg: 699 | Chicken: 799 | Prawns: 899
+- Item: Smoking Cheese Balls Sambal
+  विवरण: Smoking Cheese Balls, Cottage Cheese In Hot Garlic Sauce, Served With Bed Of With Chilli Potatoes.
+  कीमत/वेरिएंट: Veg: 699 | Chicken: 799 | Prawns: 899
+
+==============================
+श्रेणी: Sizzling Plate
+==============================
+- Item: Hunan
+  विवरण: Cottage Cheese, Carrot Broccoli, Bamboo Shoots & Green Onion Served On Sizzling Plate.
+  कीमत/वेरिएंट: Veg: 379
+- Item: Barbeque Onions Chicken
+  विवरण: Juicy Chicken & Peanut Sauces
+  कीमत/वेरिएंट: Chicken: 549
+- Item: Taipei Chicken
+  विवरण: Slice Onion, Spring Onion, Garlic Lemon Juice & Chilli Oil Served On Sizzling Plate.
+  कीमत/वेरिएंट: Chicken: 549
+- Item: Smoked Prawns
+  विवरण: Prawns, Thai Chilli Paste, Spring Onion, Ginger, Garlic & Sesame Oil, Sreved On Sizzling Plate
+  कीमत/वेरिएंट: Prawns: 629
+- Item: Butter Garlic Prawns
+  विवरण: Slow Fried Tossed With Fresh Garlic, Butter, Bell Peppers &Spring Onion, Served On Sizzling Plate.
+  कीमत/वेरिएंट: Prawns: 629
+
+==============================
+श्रेणी: Skewers
+==============================
+- Item: Hot Basil
+  विवरण: Cottage Cheese, Basil Paste, Fresh Red Chilli, Galangal & Garlic.
+  कीमत/वेरिएंट: Veg: 529
+- Item: Satay Gai
+  विवरण: Juicy Chicken & Peanut Sauce.
+  कीमत/वेरिएंट: Chicken: 579
+- Item: Fresh Sambal
+  विवरण: Prawns Girlled With Ginger,
+  कीमत/वेरिएंट: Prawns: 699
+- Item: Sesame Lime
+  विवरण: Garlic, Lime, Fresh Red Chilli & Cilantro.
+  कीमत/वेरिएंट: Prawns: 699
+
+==============================
+श्रेणी: Soup
+==============================
+- Item: Badam Aur Elaichi Ka Shorba
+  विवरण: Our Chefs Speciality Mildly Spiced Almond Soup Flavoured With Cardamom.
+  कीमत/वेरिएंट: Veg: 209 | Jain: 209
+- Item: Dal Shorba
+  विवरण: Indian Traditional Lentil
+  कीमत/वेरिएंट: Veg: 199 | Jain: 199
+- Item: Hariyali Shorba
+  विवरण: Indian Traditional  Tomato
+  कीमत/वेरिएंट: Veg: 199 | Jain: 199
+- Item: Tomato Dhania
+  विवरण: Indian Traditional  Palak Soup
+  कीमत/वेरिएंट: Veg: 199 | Jain: 199
+- Item: Choice Of Cream Soup
+  विवरण: Spinach Soup Served With Bread Croutons / Sticks ( Vegetable/ Tomato/Mushroom /
+  कीमत/वेरिएंट: Veg: 209 | Jain: 209
+- Item: Murg Shorba
+  विवरण: Chicken Stock With Indian Spices.
+  कीमत/वेरिएंट: Chicken: 239
+- Item: Cream Of Chicken Soup
+  विवरण: An All Time Fev Chicken Soup With Bread Croutons/Sticks.
+  कीमत/वेरिएंट: Chicken: 259
+- Item: Clear Broth
+  विवरण: Tofu, Broccoli, Mushroom & Pok Choy.
+  कीमत/वेरिएंट: Veg: 209 | Chicken: 229 | Prawns: 279
+- Item: Lemon Corinder
+  विवरण: Coriander, Ginger, Chopped Fresh Veggies, Fresh Green Chilli & Touch Of Lime Juice.
+  कीमत/वेरिएंट: Veg: 209 | Chicken: 229 | Prawns: 279
+- Item: Sweet Corn
+  विवरण: Creamy Corn & Green Onion
+  कीमत/वेरिएंट: Veg: 209 | Chicken: 229 | Prawns: 279
+- Item: Sour N Pepper
+  विवरण: Tofu, Soya Sauce, Chilli, Mushroom, Bamboo Shoots & Touch Of Vinegar.
+  कीमत/वेरिएंट: Veg: 209 | Chicken: 229 | Prawns: 279
+- Item: Asian Wok & Grill
+  विवरण: Chef’S Special.
+  कीमत/वेरिएंट: Veg: 229 | Chicken: 259 | Prawns: 279
+- Item: Hakka
+  विवरण: Fresh Chilli, Garlic, Soya Sauce,Chopped Veggies Served With Crispy Noodles.
+  कीमत/वेरिएंट: Veg: 239 | Chicken: 259 | Prawns: 279
+- Item: Burmese Traditinal Soup
+  विवरण: Classic Burmsese Curried Noodles Soup
+  कीमत/वेरिएंट: Veg: 229 | Chicken: 249 | Prawns: 299
+- Item: Tom Kha
+  विवरण: Coconut Milk, Cherry Tomato Flavoured With Thai Herbs.
+  कीमत/वेरिएंट: Veg: 249 | Chicken: 329 | Prawns: 319
+- Item: Crispy Wontan Soup
+  विवरण: Exotic Vegetables, Tofu, Chilli Paste & Sriracha, Served With Crispy Wonton.
+  कीमत/वेरिएंट: Veg: 229 | Chicken: 249 | Prawns: 299
+- Item: Bakso Ayam Soup
+  विवरण: Clear Broth, Meat Balls,Vermicelli, Pakchoy & Wanton Strip.
+  कीमत/वेरिएंट: Chicken: 279
+- Item: Spicy Dumpling Soup
+  विवरण: Exotic Vegetables Or Chicken,Tomato, Sriracha Served With Steamed Stuffed Dumplings.
+  कीमत/वेरिएंट: Veg: 259 | Chicken: 279 | Prawns: 289
+
+==============================
+श्रेणी: Western Specialities
+==============================
+- Item: Cheese Nachos With Salsa
+  विवरण: Nachos Served With Tomato Salsa & Creamy Cheese
+  कीमत/वेरिएंट: Veg: 359
+- Item: Corn And Spinach Au Gratin
+  विवरण: Spinach & Corn Tossed In White Sauce Baked With Cheese.
+  कीमत/वेरिएंट: Veg: 479
+- Item: Roasted Chicken
+  विवरण: Rosemary Flavoured Chicken Served With Veggies In Red Wine Juice.
+  कीमत/वेरिएंट: Chicken: 499
+- Item: Grilled Chicken
+  विवरण: Served With Pepper Sauce & Mushrooms.
+  कीमत/वेरिएंट: Chicken: 499
+
+==============================
+श्रेणी: Wok Tossed
+==============================
+- Item: Crispy Corn & Waterchestut
+  विवरण: Deep Fried & Tossed With Ginger, Garlic, Black Pepper & Spring Onion
+  कीमत/वेरिएंट: Veg: 379 | Jain: 379
+- Item: Spicy Broccoli
+  विवरण: Deep Fried Broccoli Tossed With Ginger, Garlic, Red Chilli, Scallion & Korean Paste.
+  कीमत/वेरिएंट: Veg: 449 | Jain: 449
+- Item: Kung Pao
+  विवरण: Exotic Diced Vegetables Tossed With Bell Pepper, Soya Sauce, Scallion, Dry Red Chilli, Peanut
+  कीमत/वेरिएंट: Veg: 389 | Jain: 389 | Chicken: 489
+- Item: Five Spice
+  विवरण: Exotic Vegetables, Ginger, Garlic, Five Spice Powder & Red Chilli Sauce
+  कीमत/वेरिएंट: Veg: 359 | Jain: 359
+- Item: Chilli Classiccottage Cheese
+  विवरण: Batter Fried Mushroom Tossed With Ginger, Garlic, Green Chilli, Spring
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429 | Chicken: 479
+- Item: Chilli Classic Mushroom
+  विवरण: Batter Fried Mushroom Tossed With Ginger, Garlic, Green Chilli, Spring
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429
+- Item: Hunan Sesame Style Tofu/ Cottage Cheese
+  विवरण: Diced Tofu Tossed With Ginger, Dry Red Chilli, Bell Pepper & Chilli Oil.
+  कीमत/वेरिएंट: Veg: 409 | Jain: 409 | Chicken: 479 | Mutton: 649 | Basa: 539
+- Item: Classic Manchurian Dry
+  विवरण: Deep Fried Vegetable Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  कीमत/वेरिएंट: Veg: 349 | Jain: 349 | Chicken: 479
+- Item: Fresh Red Pepper
+  विवरण: Diced Of Cottage Cheese Tossed With Bell Pepper, Scallion, Fresh Red Chilli & Black Pepper.
+  कीमत/वेरिएंट: Veg: 409 | Chicken: 499
+- Item: Asian Wok & Grill Cottage Cheese / Chicken/Fish /Prawns
+  विवरण: Chef’S Special.
+  कीमत/वेरिएंट: Veg: 429 | Jain: 429 | Chicken: 499 | Basa: 559 | Prawns: 629
+- Item: Hot Basil
+  विवरण: Dice Chicken Tossed With Ginger, Garlic, Dry Red Chilli,  Fresh Basil, Light Soya And Bell Pepper
+  कीमत/वेरिएंट: Veg: 429 | Chicken: 459 | Basa: 629
+- Item: Asian Crispy Sesame
+  विवरण: Deep Fried Cube Chicken Tossed With Ginger, Honey, Vinegar, Kikkoman Soya & Topped With Sesame Seeds
+  कीमत/वेरिएंट: Chicken: 459
+- Item: Butter Garlic
+  विवरण: Slow Fried Prawns Tossed With Fresh Garlic, Butter, Bell Peppers & Spring Onion.
+  कीमत/वेरिएंट: Veg: 429 | Chicken: 459 | Basa: 559 | Prawns: 629
+- Item: Thai Spice
+  विवरण: Deep Fried Sliced Fish Tossed With Bell Pepper, Sweet Basil, Garlic, Galangal, Fresh Red Chilli & Fish Sauce.
+  कीमत/वेरिएंट: Basa: 559 | Prawns: 629
+- Item: Sichuan
+  विवरण: Dice Chicken Tossed With Ginger, Garlic, Dry Red Chilli, Sichuan Pepper / Light Soya And Bell Pepper
+  कीमत/वेरिएंट: Veg: 429 | Chicken: 459 | Prawns: 629
+

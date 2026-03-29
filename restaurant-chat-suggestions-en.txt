@@ -1,0 +1,774 @@
+Namaste Kalyan Bot - Chat Conversations & Suggestions (English)
+Generated: 2026-03-29 14:08
+Policy: Bot will not share prices in chat. Always redirect user to menu/category link for latest pricing.
+Total Examples: 214
+
+1. User: Hi
+   Bot: Welcome to Namaste Kalyan by AWG. I can help with menu links, location, reservation, and contact details.
+   Bot: We serve Veg, Non-Veg, and Jain menu options.
+
+2. User: Hello
+   Bot: Hello. Please tell me what you need: food menu, cocktail menu, category link, reservation, or contact details.
+   Bot: We serve Veg, Non-Veg, and Jain menu options.
+
+3. User: Menu
+   Bot: Here is the food menu: https://namastekalyan.asianwokandgrill.in/menu.html
+   Bot: For latest pricing, please refer the menu directly. We serve Veg, Non-Veg, and Jain menu options.
+
+4. User: Do you serve Veg, Non-Veg and Jain?
+   Bot: Yes. We serve Veg, Non-Veg, and Jain menu options.
+   Bot: Please explore categories here: https://namastekalyan.asianwokandgrill.in/menu.html
+
+5. User: What is the price of Paneer Tikka?
+   Bot: I do not provide pricing in chat.
+   Bot: Please check the live menu for latest prices: https://namastekalyan.asianwokandgrill.in/menu.html
+
+6. User: Where are you located?
+   Bot: RockMount Residency, 4th, Khadakpada Circle, Kalyan, Maharashtra 421301.
+   Bot: Call +91 93715 19999 or WhatsApp https://wa.me/919371519999
+
+7. User: Share cocktail menu
+   Bot: Here is the cocktail menu: https://namastekalyan.asianwokandgrill.in/cocktail.html
+
+8. User: Share contact details
+   Bot: Call: +91 93715 19999 | WhatsApp: https://wa.me/919371519999 | Email: namastekalyan09@gmail.com
+
+9. User: I want to reserve a table
+   Bot: Book here (CRM calendar): https://admin.aibunty.com/u2/82800/reservation-for-awg
+
+10. User: I want event booking
+   Bot: For any event booking, use CRM calendar: https://admin.aibunty.com/u2/82800/reservation-for-awg
+
+11. User: Order online
+   Bot: Swiggy: https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout
+   Bot: Zomato: https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane
+
+12. User: I want to write review
+   Bot: Google review link: https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1
+
+13. User: What is crab price?
+   Bot: Crab price is not fixed. Please ask waiter for current price.
+
+14. User: Show veg category link
+   Bot: Please open the menu and choose category: https://namastekalyan.asianwokandgrill.in/menu.html
+
+15. User: Show All Time Favourite menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+   Bot: For latest pricing, please refer this category page.
+
+16. User: I want All Time Favourite items
+   Bot: Please check All Time Favourite here: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+17. User: Give me All Time Favourite category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+
+18. User: Recommend from All Time Favourite
+   Bot: Open All Time Favourite category: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+   Bot: Please refer this page for latest pricing.
+
+19. User: Is All Time Favourite available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+
+20. User: Show Bao menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+   Bot: For latest pricing, please refer this category page.
+
+21. User: I want Bao items
+   Bot: Please check Bao here: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+22. User: Give me Bao category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+
+23. User: Recommend from Bao
+   Bot: Open Bao category: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+   Bot: Please refer this page for latest pricing.
+
+24. User: Is Bao available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+
+25. User: Show Bowls menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+   Bot: For latest pricing, please refer this category page.
+
+26. User: I want Bowls items
+   Bot: Please check Bowls here: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+27. User: Give me Bowls category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+
+28. User: Recommend from Bowls
+   Bot: Open Bowls category: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+   Bot: Please refer this page for latest pricing.
+
+29. User: Is Bowls available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+
+30. User: Show Breads menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+   Bot: For latest pricing, please refer this category page.
+
+31. User: I want Breads items
+   Bot: Please check Breads here: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+32. User: Give me Breads category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+
+33. User: Recommend from Breads
+   Bot: Open Breads category: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+   Bot: Please refer this page for latest pricing.
+
+34. User: Is Breads available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+
+35. User: Show Chicken Wings menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+   Bot: For latest pricing, please refer this category page.
+
+36. User: I want Chicken Wings items
+   Bot: Please check Chicken Wings here: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+37. User: Give me Chicken Wings category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+
+38. User: Recommend from Chicken Wings
+   Bot: Open Chicken Wings category: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+   Bot: Please refer this page for latest pricing.
+
+39. User: Is Chicken Wings available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+
+40. User: Show Cold Ones menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+   Bot: For latest pricing, please refer this category page.
+
+41. User: I want Cold Ones items
+   Bot: Please check Cold Ones here: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+42. User: Give me Cold Ones category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+
+43. User: Recommend from Cold Ones
+   Bot: Open Cold Ones category: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+   Bot: Please refer this page for latest pricing.
+
+44. User: Is Cold Ones available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+
+45. User: Show Crackers & Dahi menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+   Bot: For latest pricing, please refer this category page.
+
+46. User: I want Crackers & Dahi items
+   Bot: Please check Crackers & Dahi here: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+47. User: Give me Crackers & Dahi category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+
+48. User: Recommend from Crackers & Dahi
+   Bot: Open Crackers & Dahi category: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+   Bot: Please refer this page for latest pricing.
+
+49. User: Is Crackers & Dahi available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+
+50. User: Show Curries menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+   Bot: For latest pricing, please refer this category page.
+
+51. User: I want Curries items
+   Bot: Please check Curries here: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+52. User: Give me Curries category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+
+53. User: Recommend from Curries
+   Bot: Open Curries category: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+   Bot: Please refer this page for latest pricing.
+
+54. User: Is Curries available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+
+55. User: Show Dal Wali Gali menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+   Bot: For latest pricing, please refer this category page.
+
+56. User: I want Dal Wali Gali items
+   Bot: Please check Dal Wali Gali here: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+57. User: Give me Dal Wali Gali category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+
+58. User: Recommend from Dal Wali Gali
+   Bot: Open Dal Wali Gali category: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+   Bot: Please refer this page for latest pricing.
+
+59. User: Is Dal Wali Gali available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+
+60. User: Show Deep Fry menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+   Bot: For latest pricing, please refer this category page.
+
+61. User: I want Deep Fry items
+   Bot: Please check Deep Fry here: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+62. User: Give me Deep Fry category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+
+63. User: Recommend from Deep Fry
+   Bot: Open Deep Fry category: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+   Bot: Please refer this page for latest pricing.
+
+64. User: Is Deep Fry available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+
+65. User: Show Dessert menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+   Bot: For latest pricing, please refer this category page.
+
+66. User: I want Dessert items
+   Bot: Please check Dessert here: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+67. User: Give me Dessert category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+
+68. User: Recommend from Dessert
+   Bot: Open Dessert category: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+   Bot: Please refer this page for latest pricing.
+
+69. User: Is Dessert available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+
+70. User: Show Dimsum menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+   Bot: For latest pricing, please refer this category page.
+
+71. User: I want Dimsum items
+   Bot: Please check Dimsum here: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+72. User: Give me Dimsum category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+
+73. User: Recommend from Dimsum
+   Bot: Open Dimsum category: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+   Bot: Please refer this page for latest pricing.
+
+74. User: Is Dimsum available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+
+75. User: Show Fish Curry Specialities menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+   Bot: For latest pricing, please refer this category page.
+
+76. User: I want Fish Curry Specialities items
+   Bot: Please check Fish Curry Specialities here: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+77. User: Give me Fish Curry Specialities category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+
+78. User: Recommend from Fish Curry Specialities
+   Bot: Open Fish Curry Specialities category: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+   Bot: Please refer this page for latest pricing.
+
+79. User: Is Fish Curry Specialities available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+
+80. User: Show From The Grill menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+   Bot: For latest pricing, please refer this category page.
+
+81. User: I want From The Grill items
+   Bot: Please check From The Grill here: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+82. User: Give me From The Grill category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+
+83. User: Recommend from From The Grill
+   Bot: Open From The Grill category: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+   Bot: Please refer this page for latest pricing.
+
+84. User: Is From The Grill available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+
+85. User: Show Ghosht Curry Specialities menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+   Bot: For latest pricing, please refer this category page.
+
+86. User: I want Ghosht Curry Specialities items
+   Bot: Please check Ghosht Curry Specialities here: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+87. User: Give me Ghosht Curry Specialities category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+
+88. User: Recommend from Ghosht Curry Specialities
+   Bot: Open Ghosht Curry Specialities category: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+   Bot: Please refer this page for latest pricing.
+
+89. User: Is Ghosht Curry Specialities available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+
+90. User: Show Iced Tea menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+   Bot: For latest pricing, please refer this category page.
+
+91. User: I want Iced Tea items
+   Bot: Please check Iced Tea here: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+92. User: Give me Iced Tea category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+
+93. User: Recommend from Iced Tea
+   Bot: Open Iced Tea category: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+   Bot: Please refer this page for latest pricing.
+
+94. User: Is Iced Tea available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+
+95. User: Show Icy Virgin Margaritas menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+   Bot: For latest pricing, please refer this category page.
+
+96. User: I want Icy Virgin Margaritas items
+   Bot: Please check Icy Virgin Margaritas here: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+97. User: Give me Icy Virgin Margaritas category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+
+98. User: Recommend from Icy Virgin Margaritas
+   Bot: Open Icy Virgin Margaritas category: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+   Bot: Please refer this page for latest pricing.
+
+99. User: Is Icy Virgin Margaritas available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+
+100. User: Show Indian Mains Bageeche Se menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+   Bot: For latest pricing, please refer this category page.
+
+101. User: I want Indian Mains Bageeche Se items
+   Bot: Please check Indian Mains Bageeche Se here: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+102. User: Give me Indian Mains Bageeche Se category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+
+103. User: Recommend from Indian Mains Bageeche Se
+   Bot: Open Indian Mains Bageeche Se category: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+   Bot: Please refer this page for latest pricing.
+
+104. User: Is Indian Mains Bageeche Se available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+
+105. User: Show Koyle Ka Kamal menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+   Bot: For latest pricing, please refer this category page.
+
+106. User: I want Koyle Ka Kamal items
+   Bot: Please check Koyle Ka Kamal here: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+107. User: Give me Koyle Ka Kamal category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+
+108. User: Recommend from Koyle Ka Kamal
+   Bot: Open Koyle Ka Kamal category: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+   Bot: Please refer this page for latest pricing.
+
+109. User: Is Koyle Ka Kamal available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+
+110. User: Show Lemonades menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+   Bot: For latest pricing, please refer this category page.
+
+111. User: I want Lemonades items
+   Bot: Please check Lemonades here: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+112. User: Give me Lemonades category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+
+113. User: Recommend from Lemonades
+   Bot: Open Lemonades category: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+   Bot: Please refer this page for latest pricing.
+
+114. User: Is Lemonades available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+
+115. User: Show Lettuce Cups menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+   Bot: For latest pricing, please refer this category page.
+
+116. User: I want Lettuce Cups items
+   Bot: Please check Lettuce Cups here: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+117. User: Give me Lettuce Cups category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+
+118. User: Recommend from Lettuce Cups
+   Bot: Open Lettuce Cups category: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+   Bot: Please refer this page for latest pricing.
+
+119. User: Is Lettuce Cups available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+
+120. User: Show Main Course menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+   Bot: For latest pricing, please refer this category page.
+
+121. User: I want Main Course items
+   Bot: Please check Main Course here: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+122. User: Give me Main Course category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+
+123. User: Recommend from Main Course
+   Bot: Open Main Course category: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+   Bot: Please refer this page for latest pricing.
+
+124. User: Is Main Course available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+
+125. User: Show Mocktails menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+   Bot: For latest pricing, please refer this category page.
+
+126. User: I want Mocktails items
+   Bot: Please check Mocktails here: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+127. User: Give me Mocktails category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+
+128. User: Recommend from Mocktails
+   Bot: Open Mocktails category: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+   Bot: Please refer this page for latest pricing.
+
+129. User: Is Mocktails available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+
+130. User: Show Murg Curry Specialities menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+   Bot: For latest pricing, please refer this category page.
+
+131. User: I want Murg Curry Specialities items
+   Bot: Please check Murg Curry Specialities here: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+132. User: Give me Murg Curry Specialities category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+
+133. User: Recommend from Murg Curry Specialities
+   Bot: Open Murg Curry Specialities category: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+   Bot: Please refer this page for latest pricing.
+
+134. User: Is Murg Curry Specialities available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+
+135. User: Show Noodles menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+   Bot: For latest pricing, please refer this category page.
+
+136. User: I want Noodles items
+   Bot: Please check Noodles here: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+137. User: Give me Noodles category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+
+138. User: Recommend from Noodles
+   Bot: Open Noodles category: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+   Bot: Please refer this page for latest pricing.
+
+139. User: Is Noodles available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+
+140. User: Show Pasta menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+   Bot: For latest pricing, please refer this category page.
+
+141. User: I want Pasta items
+   Bot: Please check Pasta here: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+142. User: Give me Pasta category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+
+143. User: Recommend from Pasta
+   Bot: Open Pasta category: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+   Bot: Please refer this page for latest pricing.
+
+144. User: Is Pasta available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+
+145. User: Show Pehels Kadam menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+   Bot: For latest pricing, please refer this category page.
+
+146. User: I want Pehels Kadam items
+   Bot: Please check Pehels Kadam here: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+147. User: Give me Pehels Kadam category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+
+148. User: Recommend from Pehels Kadam
+   Bot: Open Pehels Kadam category: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+   Bot: Please refer this page for latest pricing.
+
+149. User: Is Pehels Kadam available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+
+150. User: Show Pizza menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+   Bot: For latest pricing, please refer this category page.
+
+151. User: I want Pizza items
+   Bot: Please check Pizza here: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+152. User: Give me Pizza category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+
+153. User: Recommend from Pizza
+   Bot: Open Pizza category: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+   Bot: Please refer this page for latest pricing.
+
+154. User: Is Pizza available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+
+155. User: Show Rice menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+   Bot: For latest pricing, please refer this category page.
+
+156. User: I want Rice items
+   Bot: Please check Rice here: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+157. User: Give me Rice category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+
+158. User: Recommend from Rice
+   Bot: Open Rice category: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+   Bot: Please refer this page for latest pricing.
+
+159. User: Is Rice available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+
+160. User: Show Rolls menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+   Bot: For latest pricing, please refer this category page.
+
+161. User: I want Rolls items
+   Bot: Please check Rolls here: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+162. User: Give me Rolls category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+
+163. User: Recommend from Rolls
+   Bot: Open Rolls category: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+   Bot: Please refer this page for latest pricing.
+
+164. User: Is Rolls available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+
+165. User: Show Salads menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+   Bot: For latest pricing, please refer this category page.
+
+166. User: I want Salads items
+   Bot: Please check Salads here: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+167. User: Give me Salads category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+
+168. User: Recommend from Salads
+   Bot: Open Salads category: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+   Bot: Please refer this page for latest pricing.
+
+169. User: Is Salads available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+
+170. User: Show Sancks menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+   Bot: For latest pricing, please refer this category page.
+
+171. User: I want Sancks items
+   Bot: Please check Sancks here: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+172. User: Give me Sancks category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+
+173. User: Recommend from Sancks
+   Bot: Open Sancks category: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+   Bot: Please refer this page for latest pricing.
+
+174. User: Is Sancks available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+
+175. User: Show Sandwiches menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+   Bot: For latest pricing, please refer this category page.
+
+176. User: I want Sandwiches items
+   Bot: Please check Sandwiches here: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+177. User: Give me Sandwiches category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+
+178. User: Recommend from Sandwiches
+   Bot: Open Sandwiches category: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+   Bot: Please refer this page for latest pricing.
+
+179. User: Is Sandwiches available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+
+180. User: Show Shakes& Smoothies menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+   Bot: For latest pricing, please refer this category page.
+
+181. User: I want Shakes& Smoothies items
+   Bot: Please check Shakes& Smoothies here: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+182. User: Give me Shakes& Smoothies category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+
+183. User: Recommend from Shakes& Smoothies
+   Bot: Open Shakes& Smoothies category: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+   Bot: Please refer this page for latest pricing.
+
+184. User: Is Shakes& Smoothies available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+
+185. User: Show Sizzlers menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+   Bot: For latest pricing, please refer this category page.
+
+186. User: I want Sizzlers items
+   Bot: Please check Sizzlers here: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+187. User: Give me Sizzlers category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+
+188. User: Recommend from Sizzlers
+   Bot: Open Sizzlers category: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+   Bot: Please refer this page for latest pricing.
+
+189. User: Is Sizzlers available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+
+190. User: Show Sizzling Plate menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+   Bot: For latest pricing, please refer this category page.
+
+191. User: I want Sizzling Plate items
+   Bot: Please check Sizzling Plate here: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+192. User: Give me Sizzling Plate category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+
+193. User: Recommend from Sizzling Plate
+   Bot: Open Sizzling Plate category: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+   Bot: Please refer this page for latest pricing.
+
+194. User: Is Sizzling Plate available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+
+195. User: Show Skewers menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+   Bot: For latest pricing, please refer this category page.
+
+196. User: I want Skewers items
+   Bot: Please check Skewers here: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+197. User: Give me Skewers category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+
+198. User: Recommend from Skewers
+   Bot: Open Skewers category: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+   Bot: Please refer this page for latest pricing.
+
+199. User: Is Skewers available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+
+200. User: Show Soup menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+   Bot: For latest pricing, please refer this category page.
+
+201. User: I want Soup items
+   Bot: Please check Soup here: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+202. User: Give me Soup category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+
+203. User: Recommend from Soup
+   Bot: Open Soup category: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+   Bot: Please refer this page for latest pricing.
+
+204. User: Is Soup available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+
+205. User: Show Western Specialities menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+   Bot: For latest pricing, please refer this category page.
+
+206. User: I want Western Specialities items
+   Bot: Please check Western Specialities here: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+207. User: Give me Western Specialities category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+
+208. User: Recommend from Western Specialities
+   Bot: Open Western Specialities category: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+   Bot: Please refer this page for latest pricing.
+
+209. User: Is Western Specialities available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+
+210. User: Show Wok Tossed menu
+   Bot: Open this direct category link: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+   Bot: For latest pricing, please refer this category page.
+
+211. User: I want Wok Tossed items
+   Bot: Please check Wok Tossed here: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+   Bot: I can help with recommendations, but pricing is available only on menu links.
+
+212. User: Give me Wok Tossed category link
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+
+213. User: Recommend from Wok Tossed
+   Bot: Open Wok Tossed category: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+   Bot: Please refer this page for latest pricing.
+
+214. User: Is Wok Tossed available?
+   Bot: Please check live category menu here: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+

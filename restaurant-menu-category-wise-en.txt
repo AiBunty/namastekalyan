@@ -1,0 +1,1544 @@
+Namaste Kalyan - Menu Items Category Wise with Description (English)
+Generated: 2026-03-29 14:08
+
+Source: Live AWGNK MENU sheet-backed API.
+Rule: Crab price is not fixed. Please ask waiter for current price when not listed.
+
+==============================
+Category: All Time Favourite
+==============================
+- Item: Bull Basil Mojito
+  Description: Refreshing Basil Mojito With Red Bull
+  Prices/Variants: Veg: 349
+- Item: Fruit Punch
+  Description: Seasonal Fruit, Ice Cream
+  Prices/Variants: Veg: 269
+- Item: V.Pinacolada
+  Description: Pineapple Juice, Vanilla Ice Cream
+  Prices/Variants: Veg: 269
+- Item: V.Mojito
+  Description: Mint Leaves, Lemon Wedges, Ice And Sprite
+  Prices/Variants: Veg: 229
+- Item: Blue Lagoon
+  Description: Blue Curaco Syrup, Lemon Juice, Sprite
+  Prices/Variants: Veg: 229
+- Item: Shirley Temple
+  Description: Lime Juice,Giner Ale, Granadine Tooped With Ice And Soda
+  Prices/Variants: Veg: 229
+- Item: Cold Coffee
+  Description: Coffee, Ice Cream, Milk
+  Prices/Variants: Veg: 239
+
+==============================
+Category: Bao
+==============================
+- Item: Fire Cracker Bao
+  Description: Finger Cottage Cheese ,Chilli Pest,Wrap With Thred Wontan
+  Prices/Variants: Veg: 379 | Jain: 379
+- Item: Tempura
+  Description: Deep Fried Exotic Vegetable, Tempura In Light Crispy  Battered Served With  Chilli Mayo Deep
+  Prices/Variants: Veg: 429
+- Item: Chilli Bao
+  Description: Cottage Cheese / Chilli Chicken , Bell Paper ,Spring Onion & Corinder
+  Prices/Variants: Veg: 379 | Chicken: 429
+- Item: Sriracha Prawn Bao
+  Description: Fried Prawns ,Siracha Sauces , Spring Onion Served With Chilli Mayo Suces
+  Prices/Variants: Prawns: 479
+- Item: Stuffed Bao
+  Description: Stuffed With Mushroom , Bell Pepper, Spring Onion &Carrot
+  Prices/Variants: Veg: 379 | Chicken: 429
+- Item: Curried Chicken
+  Description: Steamed Bao Served With Flavouered Chicken & Chilly Mayo Deep
+  Prices/Variants: Chicken: 429
+- Item: Butter Chicken Bao
+  Description: Steamed Bao Served With Flavouered Chicken & Chilly Mayo Deep
+  Prices/Variants: Chicken: 429
+
+==============================
+Category: Bowls
+==============================
+- Item: Thukpa
+  Description: Tibetan Flavour Broth Mixed In Homemade Flat Noodles, Exotic Vegetable, Tomato & Chilli’S.
+  Prices/Variants: Veg: 509 | Chicken: 559 | Basa: 649 | Prawns: 609
+- Item: Laksa
+  Description: Rice Noodles Mixed In Curry Paste, Pok Choy, Coconut Milk & Curry Oil.
+  Prices/Variants: Chicken: 559 | Basa: 649 | Prawns: 609
+- Item: Khow Suey
+  Description: Classic Burmese Curried Noodle Dish Eaten With Condiments Like Tofu, Fried Peanuts,Fried Shallots, Crispy Fried Noodles & Lime.,
+  Prices/Variants: Veg: 599 | Chicken: 649 | Basa: 699 | Prawns: 699
+- Item: Asian Noodles
+  Description: Chicken Meat Ball, Exotic Vegetable, Ginger, Garlic & Vermicelli Noodles.
+  Prices/Variants: Chicken: 559
+- Item: Ramen Bowl
+  Description: One Of The Variety Types Of Noodles With Combination Of Rich Flavoured Broth Along With Vtopped With Boiled Egg & Baby Pok Choy.
+  Prices/Variants: Veg: 529 | Chicken: 549 | Basa: 669
+
+==============================
+Category: Breads
+==============================
+- Item: Tandoori Roti
+  Description: Tandoori Cooked Whole Wheat Bread.
+  Prices/Variants: Plain: 49 | Butter: 64
+- Item: Naan
+  Description: Tandoori Cooked Giant Refined Flour Bread.
+  Prices/Variants: Plain: 89 | Butter: 104
+- Item: Roomali Roti
+  Description: Paper-Thin Refined Flour Bread
+  Prices/Variants: Butter: 129
+- Item: Warqi Paratha
+  Description: Rich Flex Refined Flour Bread, Brushed With Clarified Butter
+  Prices/Variants: Butter: 109
+- Item: Lachcha Paratha
+  Description: Whole Wheat Lacchadar Paratha Cooked In Clay Oven.
+  Prices/Variants: Plain: 99 | Butter: 114
+- Item: Garlic Naan
+  Description: Indian Bread Topped With  Garlic
+  Prices/Variants: Plain: 149 | Butter: 164
+- Item: Missi Roti
+  Description: Made With A Mix Of Whole Wheat Flour, Gram Flour & Spices.
+  Prices/Variants: Plain: 99 | Butter: 114
+- Item: Kulcha
+  Description: Bread With Appetizing Aroma & Mild Flavour Of Nigella Seeds.
+  Prices/Variants: Plain: 99 | Butter: 114
+- Item: Stuffed Paratha(Aloo/Gobi/Mint/Methi/Ajwain)
+  Description: ( Aloo / Gobi / Mint / Methi / Ajwain )
+  Prices/Variants: Plain: 189 | Butter: 204
+- Item: Onion Garlic Kulcha
+  Description: Traditional Indian Flatbread Made With Flour Garlic & Onion Toppings.
+  Prices/Variants: Plain: 169 | Butter: 184
+- Item: Afgani Naan
+  Description: Crispy Puff Naan Served With Dry Fruit.
+  Prices/Variants: Plain: 179 | Butter: 194
+- Item: Malabar Paratha
+  Description: Tindian Which Is Very Common In Kerala & Tamil Nadu.
+  Prices/Variants: Plain: 99 | Butter: 114
+- Item: Cheese Garlic Naan
+  Description: Indian Bread Topped With Garlic & Cheese.
+  Prices/Variants: Plain: 179 | Butter: 194
+- Item: Har Mirch Ka Paratha
+  Description: Soft And Delicious Leavened Fine Flour/Whole Wheat Bread With A Delightful Filling Of Chillies And Finely Chopped Garlic
+  Prices/Variants: Plain: 129 | Butter: 144
+- Item: Lal Mirch Ka Paratha
+  Description: Whole Wheat Bread With A Delightful Filling Of Chillies And Finely Chopped Garlic
+  Prices/Variants: Plain: 129 | Butter: 144
+- Item: Olive Naan
+  Description: Soft And Delicious Leavened Fine Flour
+  Prices/Variants: Plain: 179 | Butter: 194
+- Item: Olive Paratha
+  Description: Whole Wheat Bread With Stuffing Of Finely Chopped Green Olives
+  Prices/Variants: Plain: 179 | Butter: 194
+- Item: Makkai Ki Roti
+  Description: Corn-Based Unleavened Flatbreads Are Delicious, Slightly Sweet From The Maize Flour, Especially Served With Sarson Ka Saag.
+  Prices/Variants: Plain: 109 | Butter: 124
+- Item: Assorted Bread Basket
+  Description: Assorted Tandoori Breads 7 Types
+  Prices/Variants: Butter: 479
+
+==============================
+Category: Chicken Wings
+==============================
+- Item: Drums Of Heaven Fry
+  Description: Chicken Lollypop Tossed In Sweet & Spicy Sauce.(Fried
+  Prices/Variants: Chicken: 449
+- Item: Drums Of Heaven Toasted
+  Description: Chicken Lollypop Tossed In Sweet & Spicy Sauce. Tossed)
+  Prices/Variants: Chicken: 449
+- Item: Barbeqe
+  Description: Chicken Wings Marinated Withgarlic, Homemade Barbaque Sauces Topped With Spring Onion
+  Prices/Variants: Chicken: 449
+- Item: Hong Kong Style
+  Description: Deep Fried Chicken Wings Tossed With Garlic , Green Onion & Hong Kong  Paste
+  Prices/Variants: Chicken: 449
+- Item: Korean
+  Description: Deep Fried Chicken Wings Tossed With Garlic , Green Onion &Korean Paste
+  Prices/Variants: Chicken: 449
+
+==============================
+Category: Cold Ones
+==============================
+- Item: Aerated Float
+  Description: Ice Cream & Aerated Drink
+  Prices/Variants: Veg: 179
+- Item: Red Bull
+  Description: Energy Drink
+  Prices/Variants: Veg: 239
+- Item: Bull Float
+  Description: Red Bull & Ice Cream
+  Prices/Variants: Veg: 299
+- Item: Aerated Drinks (600 Ml)
+  Description: Coke , Sprite , Thums Up
+  Prices/Variants: Veg: 129
+- Item: Aerated Drinks Can
+  Description: Coke, Sprite , Thmsup , Ginger Ale, Tonic Water
+  Prices/Variants: Veg: 99
+- Item: Fresh Lime Water
+  Description: Lime Juice
+  Prices/Variants: Veg: 129
+- Item: Masala Cola
+  Description: Lime Juice , Masala ,
+  Prices/Variants: Veg: 139
+- Item: Fresh Lime Soda
+  Description: Lime Juice ,Simple Syrup
+  Prices/Variants: Veg: 129
+- Item: Jaljeera Soda
+  Description: Jaljeera ,Soda , Simple Syrup
+  Prices/Variants: Veg: 129
+- Item: Jaljeera Water
+  Description: Jaljeera ,Water , Simple Syrup
+  Prices/Variants: Veg: 129
+- Item: Canned Juice(300 Ml)
+  Description: Mango ,  Guava , Orange , Cranbeery , Pinapple
+  Prices/Variants: Veg: 159
+- Item: Soda(750 Ml)
+  Description: Description not available.
+  Prices/Variants: Veg: 79
+- Item: Ginger Ale
+  Description: Description not available.
+  Prices/Variants: Veg: 149
+- Item: Tonic Water
+  Description: Description not available.
+  Prices/Variants: Veg: 149
+- Item: Lassi
+  Description: Choice Of Kesar Elaichi/Mango/Gulkand/Sweet
+  Prices/Variants: Veg: 189
+- Item: Butter Milk  Masala
+  Description: Chat Masala , Corinder ,Chilli ,Milk
+  Prices/Variants: Veg: 139
+- Item: Butter Milk Plain
+  Description: Corinder ,Chilli ,Milk
+  Prices/Variants: Veg: 139
+- Item: Bottled Water
+  Description: Description not available.
+  Prices/Variants: Veg: 39
+
+==============================
+Category: Crackers & Dahi
+==============================
+- Item: Crackers
+  Description: A Thin, Crisp Disc-Shaped Indian Cracker,From Urad Flour, Fry2Pieces
+  Prices/Variants: Veg: 89
+- Item: Urad Papad
+  Description: A Thin, Crisp Disc-Shaped Indian Cracker,From Urad Flour, Roasted- 2Pieces
+  Prices/Variants: Veg: 89 | Jain: 89
+- Item: Nagli Papad
+  Description: A Thin, Round Shape Seasoned Doughmade From Nachni Flour, - 2Pieces
+  Prices/Variants: Veg: 109 | Jain: 109
+- Item: Masla Papad
+  Description: Delicious Thin Roasted Or Fried Papad Topped With A Tangy & Spicy Onion, Tomato Mix,
+  Prices/Variants: Veg: 169 | Jain: 169
+- Item: Sindhi Papad
+  Description: Papad Of Urad Dal Flavoured Witha Blend Of Spices, Black Pepper & Salt.
+  Prices/Variants: Veg: 199
+- Item: Pineapple Raita
+  Description: Tangy & Sweet Pineapple
+  Prices/Variants: Veg: 199 | Jain: 199
+- Item: Boondi Raita
+  Description: Boondi Combine With Whisked Curd & Spicy Powder.
+  Prices/Variants: Veg: 199 | Jain: 199
+- Item: Mix Fruit Raita
+  Description: Finely Chopped Seasonal Fresh Fruit, Sweet Curd & Relish.
+  Prices/Variants: Veg: 199 | Jain: 199
+- Item: Plain Dahi
+  Description: Home Style Full Cream Yougurt.
+  Prices/Variants: Veg: 149 | Jain: 149
+
+==============================
+Category: Curries
+==============================
+- Item: Kari Kapitan
+  Description: Malaysian Curry Cooked In Coconut Milk & Kari Spice & Shallot. Served With Steamed Rice
+  Prices/Variants: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+- Item: Kaeng Phet
+  Description: Thai Red Curry With Pea Aubergines, Hot Basil & Fresh Red Chilli.Served With Steamed Rice
+  Prices/Variants: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+- Item: Gaeng Kiew Wan
+  Description: Thai Green Curry With Pea Aubergines, Hot Basil & Coconut Milk.Served With Steamed Rice
+  Prices/Variants: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+- Item: Shrimp& Mushroom Thai Red Curry
+  Description: Thai Green Curry With Pea Aubergines, Hot Basil & Coconut Milk. Served With Steamed Rice
+  Prices/Variants: Prawns: 599
+
+==============================
+Category: Dal Wali Gali
+==============================
+- Item: Dal Tadka
+  Description: Yellow Lentil Tempered With Cumin Seeds, Onions & Tomatoes With Tadka
+  Prices/Variants: Veg: 249 | Jain: 249
+- Item: Dal Fry
+  Description: Yellow Lentil Tempered With Cumin Seeds, Onions & Tomatoes.
+  Prices/Variants: Veg: 249 | Jain: 249
+- Item: Dal Panchmel
+  Description: Also Known As Panchratna Dal Is Of5 Different Lentils Or Dals. Healthy & Nutritious
+  Prices/Variants: Veg: 329
+- Item: Dal Makhan Wali
+  Description: Overnight Cooked Black Lentils, Flavoured With Fenugreek Dust & Enriched With Fresh Cream
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Punjabi Kadhi
+  Description: North Indian Speciality Kadhi Served With Pakodas.
+  Prices/Variants: Veg: 299 | Jain: 299
+- Item: Dal Palak
+  Description: Yellow Lentil Temped With Cumin Seeds, Onion & Tomatoes Palak
+  Prices/Variants: Veg: 299 | Jain: 299
+- Item: Dal Methi
+  Description: Yellow Lentil Temped With Cumin Seeds, Onion & Tomatoes Methi.
+  Prices/Variants: Veg: 299 | Jain: 299
+
+==============================
+Category: Deep Fry
+==============================
+- Item: Corn Cheese Balls
+  Description: Corn Kernels, Fresh Red Chilli, Stuffed Cheese Coated With Panko Served With Thai Sweet Chilli
+  Prices/Variants: Veg: 359
+- Item: Japanese Korokke
+  Description: Smashed Potato, Mozzarella & Soft Cheese, Coatd With Panko Served With Chilli Mayo Deep
+  Prices/Variants: Veg: 359 | Chicken: 479
+- Item: Tempura
+  Description: Deep Fried Exotic Vegetable, /Prawns Tempura In Light Crispy  Battered Served With  Chilli Mayo Deep
+  Prices/Variants: Veg: 429 | Jain: 429 | Prawns: 609
+- Item: Chow;S Finger Chips
+  Description: Potato Tossed With Garlic,Scaillian, Fresh Red & Green Chilli , Spring Onion & Black Papper.
+  Prices/Variants: Veg: 429
+- Item: Cheese Finger Chips
+  Description: Potato Dices
+  Prices/Variants: Veg: 429
+- Item: Peri Peri Chips
+  Description: Peri Peri Masala With Potato Dices
+  Prices/Variants: Veg: 429
+- Item: Chinese Fried
+  Description: Leg Boneless Chicken Marinated With Ginger , Garlic, Soya Sauces, & Deep Fried Served With French Fries &Mayo
+  Prices/Variants: Chicken: 489
+
+==============================
+Category: Dessert
+==============================
+- Item: Fried Ice Cream
+  Description: Vanilla Ice Cream Stuffed In Choco Chips & Nuts Coated With Desiccated Coconut Powder, Served With Caramel Sauce.
+  Prices/Variants: Veg: 249 | Jain: 249
+- Item: Gulab Jamun  With Ice Cream
+  Description: Soft Milk Dumplings In Sugar Syrup With Vanilla Ice Cream
+  Prices/Variants: Veg: 249 | Jain: 249
+- Item: Crispy Honey Noodels With Ice Cream
+  Description: Golden Fried Noodles Drizzled With Honey, Served With A Scoop Of Vanilla Ice Cream.
+  Prices/Variants: Veg: 329 | Jain: 329
+- Item: Gajar Ka Halwa
+  Description: Ghee-Roasted Fresh Carrot  Halwa With Vanilla Ice Cream
+  Prices/Variants: Veg: 329 | Jain: 329
+- Item: Chocolate Nutty Brownie Sizzler
+  Description: Sizzling Brownie Served With Ice Cream Scoop & Chocolate Sauce.
+  Prices/Variants: Veg: 329 | Jain: 329
+- Item: Blue Berry Cheese Cake
+  Description: Philadelphia Cheese, Whipped Cream, Egg & Blueberry Fruit Filling.
+  Prices/Variants: Egg: 379
+- Item: Fruit Platter
+  Description: Seasonal Fresh Fruits.
+  Prices/Variants: Veg: 249 | Jain: 249
+- Item: Choice If Ice Cream ( V/C/S/M/Bs)
+  Description: Please Ask For The Flavoured Of Your Choice.
+  Prices/Variants: Veg: 199 | Jain: 199
+- Item: Kulfi
+  Description: Please Ask For The Flavoured Of Your Choice.
+  Prices/Variants: Veg: 209 | Jain: 209
+- Item: Desseri Of The Day
+  Description: Our Chef’S Special Dessert To End Your Meal On A Sweet Note
+  Prices/Variants: Veg: 259 | Jain: 259
+
+==============================
+Category: Dimsum
+==============================
+- Item: Asian Wok & Grill (6 Pcs)
+  Description: Chef Special
+  Prices/Variants: Veg: 349
+- Item: Cottage Cheese & Broccoli
+  Description: Ginger, Green Onian &Sesme Oil
+  Prices/Variants: Veg: 379
+- Item: Mushroom & Waterchestnut
+  Description: Ginger, Garlic, Green Onion & Sesame Oil
+  Prices/Variants: Veg: 379
+- Item: Hot Basil
+  Description: Basil,Fresh Red Chilli, Oyster Suces
+  Prices/Variants: Chicken: 399
+- Item: Poached Beijing
+  Description: Oyster Suces, Brunt Garlic , Pok Choy,Soya Suces
+  Prices/Variants: Chicken: 369
+- Item: Suimai Dimsum
+  Description: Thin Wonton Wrapped
+  Prices/Variants: Veg: 379 | Chicken: 429
+- Item: Har Gao Dim Sum
+  Description: Ginger,Garlic,& Sesame, Minced Prawns
+  Prices/Variants: Basa: 509
+- Item: Sambal Dimsum
+  Description: Samble Drressed Prawns ,Ginger, Garlic, Green Onion
+  Prices/Variants: Basa: 509
+
+==============================
+Category: Fish Curry Specialities
+==============================
+- Item: Pomfret Masala
+  Description: Pomfret  Masala Is A Spicy, Thick, Based Curry. Pomfret Is A Very Delicate, Fleshy, Tender & Tasty Fish
+  Prices/Variants: Pomfret: 799
+- Item: Surmai Masala
+  Description: Surmai Masala Is A Spicy, Thick, Based Curry. Pomfret Is A Very Delicate, Fleshy, Tender & Tasty Fish
+  Prices/Variants: Surmai: 799
+- Item: Fish Tikka Masala
+  Description: Rich, Delicious, Zingy Dish That Is Full Of Flavour. Fish Is Marinated & Cooked In Tandoor. It Is Then Added To A Creamy Masala Sauce.
+  Prices/Variants: Basa: 629
+- Item: Prawns Hara Dhaniya
+  Description: A Blender, Add The Coriander Leaves, Coconut, Ginger Paste, Garlic Paste & Green Chillies.
+  Prices/Variants: Prawns: 749
+- Item: Lobster Curry
+  Description: Rich Flavours Of Delicious Lobster Curry Made With Coconut Milk, Giving You Taste Of The Coast
+  Prices/Variants: Price not listed; please ask waiter.
+- Item: Crab Masala
+  Description: Marinated Tandoori Crab Added Into The Masala & Cooked Together, Crab Also Called Nandu In Tamil & Great To Have With Plain Rice.
+  Prices/Variants: Price not listed; please ask waiter.
+  Note: Crab price is not fixed. Please ask waiter for current price.
+- Item: Jhinga Masaleder
+  Description: Prawns Cooked In A Spicy Indian Curry
+  Prices/Variants: Prawns: 749
+- Item: Prawns Chettinad
+  Description: A Finger-Licking Good South Indian Style Prawn Curry. It Is Spicy, Bold & Perfect Curry To Serve With Malabar Paratha.
+  Prices/Variants: Prawns: 749
+
+==============================
+Category: From The Grill
+==============================
+- Item: Corn Cheese & Water Chestnut
+  Description: Mixed With Ginger, Garlic,Fresh Red Chilli, Seasoning & Grilled.
+  Prices/Variants: Veg: 389
+- Item: Assorted Mushroom
+  Description: Shiitake Mushroom Marinade In Oriental Spices & Grilled, Served With Lettuce Salad.
+  Prices/Variants: Veg: 469
+- Item: Asian Barbeque
+  Description: Leg Chicken Marinade In Ginger, Garlic Chilli , Soya Sauce, Served With Spicy Barbeque Sauce.
+  Prices/Variants: Veg: 449 | Chicken: 499
+- Item: Lemongrass
+  Description: Leg Chicken Marinade In Lemon Grass, Fresh Chilli, Minced Garlic, Fish Sauce, Soya Sauce, Lime Juice Served With Lettuce Salad.
+  Prices/Variants: Chicken: 429
+- Item: Sriracha
+  Description: Leg Chicken Marinade In Siracha Sauces, Fresh Chilli, Minced Garlic, Fish Sauce, Soya Sauce, Lime Juice Served With Lettuce Salad.
+  Prices/Variants: Price not listed; please ask waiter.
+- Item: Chilli Basil
+  Description: Prawns Marinade In Fresh Red Chilli, Hot Basil Paste, Fish Sauce, Served With Homemade Salad.
+  Prices/Variants: Chicken: 499 | Prawns: 539
+- Item: Lemongrass Pomfret
+  Description: Fish Marinated With Light Soya,Ginger Garlic Paste And Grilled With Spicy Lemon Grass Sauce And Served With Lettuce Salads
+  Prices/Variants: Surmai: 799 | Pomfret: 799
+- Item: Pan Fried Chilli
+  Description: Fish, Marinade In Ginger, Garlic,Chilli Oil Served With Homemade Salad.
+  Prices/Variants: Basa: 439 | Surmai: 749 | Pomfret: 799
+
+==============================
+Category: Ghosht Curry Specialities
+==============================
+- Item: Mutton Mataha
+  Description: Lamb Cooked In Local Style.
+  Prices/Variants: Mutton: 599
+- Item: Deo Gosht
+  Description: Lamb Cooked In Mild Spiced With Freshly Pursed Spinach & Fenugreek.
+  Prices/Variants: Mutton: 609
+- Item: Kashmiri Rogan Josh
+  Description: Tender Lamb Cooked With Traditional Herbs & Youghurt.
+  Prices/Variants: Mutton: 629
+- Item: Bhuna Mitton Chaap
+  Description: Indian Spice Marinated Mutton Chaap Cooked With Red & Green Bell Pepper, Finish With Shredded Ginger.
+  Prices/Variants: Mutton: 659
+- Item: Gosht Khada Masala
+  Description: Tender Lamb On Bone Cooked With Whole Spices.
+  Prices/Variants: Mutton: 609
+- Item: Keema Muttar
+  Description: A Minced Mutton & Green Peas Delicacy Stewed With Indian Spices In Brown Gravy
+  Prices/Variants: Mutton: 579
+- Item: Keema Muttar Masala
+  Description: A Minced Mutton & Green Peas Delicacy Stewed With Indian Spices In Brown Gravy
+  Prices/Variants: Mutton: 579
+- Item: Bhuna Mitton  Pepper Fry
+  Description: Indian Spice Marinated Mutton Cooked With Red & Green Bell Pepper.
+  Prices/Variants: Mutton: 629
+
+==============================
+Category: Iced Tea
+==============================
+- Item: Classic
+  Description: Lemon Ice Tea
+  Prices/Variants: Veg: 209
+- Item: Black Current
+  Description: Black Current Crush , Tea Concotion , Lime Juice
+  Prices/Variants: Veg: 209
+- Item: Strawberry & Peach
+  Description: Strawberry & Peach  Crush , Tea Concotion, Lime Juice & Simple Syrup
+  Prices/Variants: Veg: 209
+- Item: Orange &Peach Apricot
+  Description: Orange & Peach Apricot Crush , Tea Concotion, Lime Juice & Simple Syrup
+  Prices/Variants: Veg: 209
+- Item: Yuzu & Mint
+  Description: Yuzu & Mint Crush , Lime Juuce ,
+  Prices/Variants: Veg: 229
+
+==============================
+Category: Icy Virgin Margaritas
+==============================
+- Item: Strwberry & Mango Slushie
+  Description: Strawberry Crush, Mango Crush, Ice
+  Prices/Variants: Veg: 269
+- Item: Peach & Mint Slushie
+  Description: Peach And Mint, Ice
+  Prices/Variants: Veg: 279
+- Item: Spicy Blackcurrent Sluhie
+  Description: Blackcurrant Crush, Chilli, Ice
+  Prices/Variants: Veg: 259
+- Item: Litchi & Dragoan Fruit Slushie
+  Description: Litchi Crush, Dragan Fruit, Ice
+  Prices/Variants: Veg: 259
+- Item: Rose Gulkand Slushie
+  Description: Rose Gulkand Syrup, Ice
+  Prices/Variants: Veg: 279
+
+==============================
+Category: Indian Mains Bageeche Se
+==============================
+- Item: Punjabi Style Paneer Tikka Masala
+  Description: Cottage Cheese Tikka With Yoghurt With Onion, Tomato & Capsicum.
+  Prices/Variants: Veg: 469 | Jain: 469
+- Item: Paneer Amiritsari
+  Description: Cottage Cheese, Onions, Ginger, Garlic, Garam Masala, Tandoori Masala In Punjabi Or Lahori Style.
+  Prices/Variants: Veg: 479 | Jain: 479
+- Item: Paneer Lahori
+  Description: Cottage Cheese, Onions, Ginger, Garlic, Garam Masala,  Cshwnut Gruey Finish With Cream
+  Prices/Variants: Veg: 479 | Jain: 479
+- Item: Desi Paneer Bhurji
+  Description: Chopped Onion , Tomato, Chilli With Indian Spicese
+  Prices/Variants: Veg: 459 | Jain: 459
+- Item: Paneer Lababadar
+  Description: Cottage Cheese In A Creamy, Mildly Tangy & Faintly Sweet Gravy. Onions, Tomatoes,Cottage Cheese In A Creamy, Mildly Tangy & Faintly Sweet Gravy. Onions, Tomatoes,
+Cashews & Spices Make This A Rich, Flavourful & Delicious.
+  Prices/Variants: Veg: 459 | Jain: 459
+- Item: Paneer Makhani
+  Description: Cottage Cheese In A Creamy Greavy Finish With Cream And Butter 
+Cashews & Spices Make This A Rich, Flavourful & Delicious.
+  Prices/Variants: Veg: 459 | Jain: 459
+- Item: Paneer Mirch Masala
+  Description: Cottage Cheese Cooked In Kadai In Rich Spiced Masala Crowded Cream.
+  Prices/Variants: Veg: 439
+- Item: Palak Paneer
+  Description: Cottage Cheese Cooked In Palak Pest With Indian Spice
+  Prices/Variants: Veg: 439 | Jain: 439
+- Item: Paneer Kasturi
+  Description: Diced Of Cottage Cheese Cooked With Red & Yellow Rich Gravy Flavoured With Kasturi Methi.
+  Prices/Variants: Veg: 449 | Jain: 449
+- Item: Paneer Do-Pyaza
+  Description: A Rich, Creamy Curry Of Paneer & Plenty Of Onions In A Wonderful Medley Of Spices, Herbs & Tomatoes.
+  Prices/Variants: Veg: 449
+- Item: Paneer Kadhi
+  Description: A Rich, Creamy Curry Of Paneer & Plenty Of Onions In A Wonderful Medley Of Spices, Herbs & Tomatoes.
+  Prices/Variants: Veg: 449
+- Item: Paneer Hand
+  Description: Panner Cooked On A Low Flame For A Long Time, Handi Is A Hindi Word For An Earthen Pot.
+  Prices/Variants: Veg: 449 | Jain: 449
+- Item: Malai Kofta
+  Description: Creamy Cottage Cheese Cooked In Cashewnut Gravy
+  Prices/Variants: Veg: 459 | Jain: 459
+- Item: Paneer Angara
+  Description: An Exotic Smokey Flavour. It Is Prepared With The Help Of A Coal & Smoke Cooking Helps To Enhance Its Taste.
+  Prices/Variants: Veg: 479
+- Item: Paneer Pasanda
+  Description: Paneer Pasanda Is A Rich & Delicious Dish Of Shallow Fried Stuffed Paneer Sandwiches Smooth Tomato Cashw Greavy
+  Prices/Variants: Veg: 469 | Jain: 469
+- Item: Shahi Paneer
+  Description: Cottage Cheese Cooked In Rich Cashwnut Gruevy  Finished With Cream N Butter
+  Prices/Variants: Veg: 469 | Jain: 469
+- Item: Banarasi Kofta Curry
+  Description: Traditional Banarasi Kofta In Nawabi Style.
+  Prices/Variants: Veg: 429
+- Item: Methi Matar Malai
+  Description: Cottage Cheese, Matar & Methi Cooked In Rich Muglai Style.
+  Prices/Variants: Veg: 429 | Jain: 429
+- Item: Methi Matar Masala
+  Description: Matar & Methi Cooked In Rich Muglai Style.
+  Prices/Variants: Veg: 429 | Jain: 429
+- Item: Tandoori Dhingri Masala
+  Description: Mushroom Marinated In Tandoori Masala & Cooked In Spice Indian Gravy.
+  Prices/Variants: Veg: 409 | Jain: 409
+- Item: Maratha Vegetable Kofta Curry
+  Description: Vegetable Dumpling Served In Black Gravy.
+  Prices/Variants: Veg: 389
+- Item: Masala Wangi
+  Description: Indian Seasoning Brinjal Served In Maharashtraian Style.
+  Prices/Variants: Veg: 379
+- Item: Sarso Ka Saag (Seasonal)
+  Description: Traditional Punjabi Dish Made Of Mustard Leaf & Spice.
+  Prices/Variants: Veg: 429 | Jain: 429
+- Item: Veg Khurchan
+  Description: Mixed Vegetable Cooked With Mustard Capsicum With Cream.
+  Prices/Variants: Veg: 399 | Jain: 399
+- Item: Navratna Kprma
+  Description: Nine Types Of Assorted Vegetables, Gently Cooked In Creamy Rich Korma Greavy
+  Prices/Variants: Veg: 409 | Jain: 409
+- Item: Tawa Sabzi
+  Description: Assorted Vegetables Cooked On Tawa.
+  Prices/Variants: Veg: 369
+- Item: Aloo Gobi Matar
+  Description: A Curry Recipe With A Base Of Onion-Tomato Gravy With These Vegetables
+  Prices/Variants: Veg: 349
+- Item: Aloo Matar
+  Description: Potato, Green Pices Cooked In Tomato Gravy Mixed With Indian Spices
+  Prices/Variants: Veg: 349
+- Item: Sev Bhaji
+  Description: Combination Of Spicy Gathiya & Curry From Khandeshi Kala Masala.
+  Prices/Variants: Veg: 299
+- Item: Jeera Aloo
+  Description: Boiled Potato Tossed With Cumin Seedes And Inndian Spicese
+  Prices/Variants: Veg: 299
+- Item: Bhindi Kurkuri
+  Description: A Spicy, Tasty & Super Crispy Fries Made With Tender Okra Pods Or Ladies Fingergram Flour & Spices.,
+  Prices/Variants: Veg: 339 | Jain: 339
+- Item: Bhindi Masala
+  Description: A Spicy, Tasty & Super Crispy Fries Made With Tender Okra Pods Or Ladies Fingergram Flour & Spices.,
+  Prices/Variants: Veg: 339 | Jain: 339
+- Item: Veg Kolhapuri
+  Description: A Classic Maharashtrian Dish Of Fresh Vegetables In A Bold Kolhapuri Spice Blend, Perfectly Balancing Heat And Flavour.
+  Prices/Variants: Veg: 369
+- Item: Diwani Handi
+  Description: A Royal Mix Of Fresh Vegetables In A Rich Cashew-Tomato Gravy, Infused With Spices And Finished With A Touch Of Cream
+  Prices/Variants: Veg: 449 | Jain: 449
+- Item: Namaste Kalyan Special Veg
+  Description: Namaste Kalyan Chef Special With Lot Of Vegetable Comes With Butter Gravy & Hariyali Style
+  Prices/Variants: Veg: 489
+- Item: Veg Kadai
+  Description: Fresh Vegetables In A Rich Tomato-Onion Gravy, Spiced With Rustic Kadai Masala.
+  Prices/Variants: Veg: 449
+- Item: Veg Patiala
+  Description: Spiced Vegetable Koftas In A Rich Tomato-Cashew Gravy, Infused With Aromatic Spices For A Royal Taste.
+  Prices/Variants: Veg: 369 | Jain: 369
+- Item: Lasooni Palak
+  Description: Smooth Spinach Purée Tempered With Golden Garlic For A Wholesome Delicacy
+  Prices/Variants: Veg: 369
+- Item: Lasooni Methi
+  Description: Smooth Spinach Purée Tempered With Golden Garlic For A Wholesome
+  Prices/Variants: Veg: 369
+- Item: Veg Haryali
+  Description: A Medley Of Vegetables In A Spinach, Coriander, And Mint Gravy, Delicately Spiced For A Fresh Finish.
+  Prices/Variants: Veg: 369 | Jain: 369
+- Item: Mushroom Tikka Masala
+  Description: Char-Grilled Mushrooms In A Rich Spiced Tomato-Cashew Gravy With A Velvety Finish
+  Prices/Variants: Veg: 369
+- Item: Mix Veg
+  Description: Seasonal Vegetables In A Mildly Spiced, Flavorful Gravy For A Wholesome Delight
+  Prices/Variants: Veg: 369 | Jain: 369
+
+==============================
+Category: Koyle Ka Kamal
+==============================
+- Item: Methi Mirchi Ka Paneer Tikka
+  Description: Cottage Cheese Steaks Marinated In Spicy Fenugreek Flavoured Yoghurt, Cooked In Tandoor.
+  Prices/Variants: Veg: 429 | Jain: 429
+- Item: Paneer Dohara Tikka
+  Description: Two Different Flavoured Stuffed Paneer Tikka Cooked In Clay Oven.
+  Prices/Variants: Veg: 429
+- Item: Classic Paneer
+  Description: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate
+  Prices/Variants: Veg: 399 | Jain: 399
+- Item: Paneer Tikka Achari
+  Description: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate With Pickle
+  Prices/Variants: Veg: 399
+- Item: Paneer Tikka Ajwain
+  Description: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate With Ajwin
+  Prices/Variants: Veg: 399 | Jain: 399
+- Item: Paneer Tikka Lasooni
+  Description: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate Garlic
+  Prices/Variants: Veg: 399
+- Item: Paneer Malai Kali Miri
+  Description: Marinated Cottage Cheese With Black Pepper, Cheese & Yoghurt.
+  Prices/Variants: Veg: 429 | Jain: 429
+- Item: Cheese Makai Seekh Kebab
+  Description: Mildly Spiced Paneer, Cheese & American Corn Cooked In Clay Oven.
+  Prices/Variants: Veg: 359 | Jain: 359
+- Item: Veg Seekh
+  Description: Minced Vegetables & Spices Are Shaped On Skewers, Cooked In Clay Oven & Served With Green Chutney.
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Chilli Milli Seekh
+  Description: Minced Vegetables & Spices Are Shaped On Skewers, Cooked In Clay Oven & Served With Green Chutney.
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Soya Chaap Tikka
+  Description: Spice-Marinated Soya Chaap Cooked In Tandoor
+  Prices/Variants: Veg: 339 | Jain: 339
+- Item: Ajwani Soya Chaap
+  Description: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  Prices/Variants: Veg: 339 | Jain: 339
+- Item: Malai Soya Chaap
+  Description: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  Prices/Variants: Veg: 339 | Jain: 339
+- Item: Pahadi Soya Chaap
+  Description: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  Prices/Variants: Veg: 339
+- Item: Subz Shikampuri Kebab
+  Description: Garden Fresh Vegetable Cutlets Stuffed With Mintly Onion Relish Deep Fried
+  Prices/Variants: Veg: 339 | Jain: 339
+- Item: Paneer Naram Dil Kebab
+  Description: Minced Cottage Cheese & Green Peas Marinated In Indian Spice Deep Fry With Corn Flakes.
+  Prices/Variants: Veg: 379
+- Item: Mushroom Ki Nazakat
+  Description: Stuffed Button Mushrooms Marinated With Cheese & Coated Cream Glazed In Tandoor.
+  Prices/Variants: Veg: 429
+- Item: Mushroom & Babycorn Tikka
+  Description: Mushroom & Babycorn Marinated In Tandoori Masala & Finished In Tandoor.
+  Prices/Variants: Veg: 399
+- Item: Veg.Cheese Crispy Rolls
+  Description: Yummy & Stuffed Cheesy Rolls Filled With Healthy Vegetables.
+  Prices/Variants: Veg: 369
+- Item: Assorted Tandoori Platter
+  Description: Assortment Of Vegetables Cooking In Tandoor.
+  Prices/Variants: Veg: 999
+- Item: Murg Nazakat
+  Description: Chicken Supremes Stuffed With Minced Chicken, Cheese With Mild Spices, Fragrant Mint Masala Paste.
+  Prices/Variants: Chicken: 529
+- Item: Murg Ke Sholey
+  Description: Hot & Spicy Chicken Marinated In Indian Spices Finished In Tandoor.
+  Prices/Variants: Chicken: 499
+- Item: Sharabi Kebab
+  Description: Hot & Spicy Chicken Marinated In Indian Spices Finished In Tandoor.Served Smooky With Rum
+  Prices/Variants: Chicken: 529
+- Item: Murg Alishan Kebab
+  Description: Morsels Of Chicken Marinated In Yoghurt &Beetroot Juice With Exotic Spices Grilled In Clay Oven.
+  Prices/Variants: Chicken: 459
+- Item: Tandoori Murgh  Half
+  Description: Chicken Marinated In Yougurt, Tandoori Potli Masala, Cooked In Clay Oven.
+  Prices/Variants: Half: 439
+- Item: Tandoori Murgh Full
+  Description: Chicken Marinated In Yougurt, Tandoori Potli Masala, Cooked In Clay Oven.
+  Prices/Variants: Full: 699
+- Item: Murgh Malai Tikka
+  Description: Chicken Marinated With Hung Curd Cheese & Cashew Paste Served With Green Chutney.
+  Prices/Variants: Chicken: 479
+- Item: Kalmi Kebab
+  Description: Gently Cooked Coriander,Mint & Chilli Marinated Chicken Legs.
+  Prices/Variants: Chicken: 529
+- Item: Classic Chiken Tikka
+  Description: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  Prices/Variants: Chicken: 479
+- Item: Classic Chiken Tikka Banjara
+  Description: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked With Yellow Spice
+  Prices/Variants: Chicken: 479
+- Item: Classic Chiken Tikka Pahadi
+  Description: Boneless Chicken Pieces Are Marinated With Green Chutney  A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  Prices/Variants: Chicken: 479
+- Item: Classic Chiken Tikka  Achri
+  Description: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  Prices/Variants: Chicken: 479
+- Item: Classic Chiken Tikka   Ajwain
+  Description: Boneless Chicken Pieces Are Marinated Withajwin  A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  Prices/Variants: Chicken: 479
+- Item: Tandoori Chicken Platter
+  Description: Assortment Of Five Of The Choicest Kebabs (18 Pieces).
+  Prices/Variants: Chicken: 1199
+- Item: Methi Mirch Ka Chicken Tikka
+  Description: Boneless Chicken Marinated With Fresh Mint & Green Pepper & Indian
+  Prices/Variants: Chicken: 459
+- Item: Murgh Galafi Seekh
+  Description: Marinated Chicken Minced Placed Over A Skewers In Cylindrical Shape Covering With Chopped Vegetables.
+  Prices/Variants: Chicken: 459
+- Item: Chicken Rolly Kebab
+  Description: Miced Chicken Stuffed With A Egg And Cooked In Tandoor
+  Prices/Variants: Chicken: 489
+- Item: Muttan Lahori Seekh Kebaba
+  Description: Divine Skewers Of Kid Spiced With Cardamon,Clove, Cinamon & Enriched With Nuts.
+  Prices/Variants: Mutton: 599
+- Item: Tunda Kebeb
+  Description: Minced Of Tender Lamb Marinated With Chopped Onion, Spice & Cooked Shallow Fried.
+  Prices/Variants: Mutton: 609
+- Item: Mutton Boti Kebeb
+  Description: Cubed Mutton Pieces, Which Are Marinated With In Green Chilli, Garlic, Garam Masala & Red Chilli & Finished In Tandoor.
+  Prices/Variants: Mutton: 589
+- Item: Hariyali Pomfret
+  Description: Fresh Pomfret  Marinated In Lemon Coriander & Mint Chutney Cooked In Tandoor.
+  Prices/Variants: Pomfret: 789
+- Item: Hariyali Surmai
+  Description: Surmai, Marinated In Lemon Coriander & Mint Chutney Cooked In Tandoor.
+  Prices/Variants: Surmai: 759
+- Item: Samundar Ki Shaan
+  Description: Tandoori Pomfret.
+  Prices/Variants: Pomfret: 789
+- Item: Jheenga Dum Ajwain
+  Description: Carom Seeds & Tandoori Masala, Fresh Prawns Cooked In Clay Oven.
+  Prices/Variants: Prawns: 789
+- Item: Classic Fish Tikka
+  Description: Chunks Of Fish Marinated With Spicy Yougurt Flavour With Carom
+  Prices/Variants: Basa: 559
+- Item: Classic Fish Tikka Ajwain
+  Description: Chunks Of Fish Marinated With Ajwin N  Yougurt Flavour With Carom
+  Prices/Variants: Basa: 559
+- Item: Mahi Curry Patta Surmai
+  Description: Fish Marinated In South Curry Leaves & Spices, Cooked In Tandoor
+  Prices/Variants: Surmai: 759
+- Item: Mahi Curry Patta Basa
+  Description: Fish Marinated In South Curry Leaves & Spices, Cooked In Tandoor
+  Prices/Variants: Basa: 559
+- Item: Crab Tikka
+  Description: Crab Marinated With A Spices & Then Grilled Until Nicely Cooked &Slightly Charred.
+  Prices/Variants: Crab: Ask
+- Item: Tandoori Platter Non Veg
+  Description: Assortment Of Chicken, Mutton,
+ 
+Fish & Prawns Cooked In Clay Oven (22 Pieces)
+  Prices/Variants: Chicken: 1899
+
+==============================
+Category: Lemonades
+==============================
+- Item: Blue Litchi & Coconut
+  Description: Litchi Crush, Blue Curacao Syrup, Coconut Syrup
+  Prices/Variants: Veg: 229
+- Item: Blueberry & Basil
+  Description: Blueberry Crush, Basil Leaves, Lime Juice, Sprite
+  Prices/Variants: Veg: 229
+- Item: Passion , Rosemary &Chilli
+  Description: Passion Fruit Puree, Rosemary, Green Chilli, Sprite
+  Prices/Variants: Veg: 229
+- Item: Cucumber & Strawberry
+  Description: Curry Leaves, Cucumber Syrup, Lemon, Sprite
+  Prices/Variants: Veg: 229
+- Item: Cucumber & Curry Leaf
+  Description: Cucumber Syrup, Lemon Juice, Sprite , Curry Leaf
+  Prices/Variants: Veg: 229
+- Item: Cucumber Lime Refresher
+  Description: Cucumber Syrup, Lemon Juice, Sprite .
+  Prices/Variants: Veg: 199
+
+==============================
+Category: Lettuce Cups
+==============================
+- Item: Asian Vegetables
+  Description: Carrot, Zucchni, Bell Peppers, Corn , Broccoli , Crispy  Vermiceilli Sweet & Spicy Deep Served With Lettuce
+  Prices/Variants: Veg: 429
+- Item: Thai Chicken
+  Description: Cube Chicken Tossed With Red Thai Curry, Fresh Red Chilli Swet Basil Topped With Crushed Peanuts.
+  Prices/Variants: Chicken: 459
+- Item: Barbeque Chicken
+  Description: Geilled Chicken Tossed With Barbeque Sauces, Served With Crunchy Lettuce
+  Prices/Variants: Chicken: 479
+
+==============================
+Category: Main Course
+==============================
+- Item: Asian Veggies Red Pepper Sauce
+  Description: Exotic Vegetables Cooked With Ginger, Garlic, Fresh Red Chilli & Spring Onion.
+  Prices/Variants: Veg: 429 | Jain: 429 | Chicken: 479 | Basa: 559 | Prawns: 699
+- Item: Stir Fried Asian Green With Chilli Basil
+  Description: Leaf Vegetables Cooked With Ginger, Sweet Basil, Fresh Red Chilli, Oyster Sauce, Soya Sauce Chilli Oil.
+  Prices/Variants: Veg: 429
+- Item: Shanghi Style
+  Description: Diced Broccoli, Baby Corn, Zucchini, Water Chestnut, Pok Choy Cooked With Ginger, Garlic, Chilli Paste & Spring Onion.
+  Prices/Variants: Veg: 409 | Jain: 409 | Chicken: 479 | Basa: 549 | Prawns: 699
+- Item: Classic Manchurian Gravy
+  Description: Deep Fried Vegetable Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  Prices/Variants: Veg: 429 | Jain: 429 | Chicken: 449
+- Item: Sichuan
+  Description: Cottage Cheese Cooked With Ginger, Garlic, Dry Red Chilli, Sichuan Sauce, Light Soya, Chilli Paste & Spring Onion.
+  Prices/Variants: Veg: 449 | Chicken: 479 | Basa: 549 | Prawns: 699
+- Item: Classic Chilli Oyster
+  Description: Cube Cottage Cheese Cooked With Ginger, Garlic, Green Chilli, Spring Onion, Bell Pepper & Soya Sauce.
+  Prices/Variants: Veg: 449 | Jain: 449 | Chicken: 479 | Basa: 549 | Prawns: 649
+- Item: Burma Delight
+  Description: Diced Exotic Vegetable Cooked With Garlic, Soya Sauce, Chilli, Cooking Wine & Cilantro.
+  Prices/Variants: Veg: 479 | Jain: 479
+- Item: Pepper & Garlic
+  Description: Shredded Chicken / Slice Fish / Scallion, Red & Green Pepper
+  Prices/Variants: Chicken: 479 | Basa: 549 | Prawns: 699
+- Item: Dak Galbi
+  Description: Shredded Chicken Cooked With Fresh Garlic, Scallion, Red & Green Pepper & Sesame Oil.
+  Prices/Variants: Chicken: 549
+- Item: Ca Oup Xa
+  Description: Lemongrass Sauce, Fresh Red Pepper & Scallion.
+  Prices/Variants: Chicken: 549 | Basa: 549
+- Item: Brunt Garlic Fish
+  Description: Sliced Fish Cooked With Garlic, Chinese Cabbage, Spinach & Cooking Wine.
+  Prices/Variants: Basa: 599 | Prawns: 699
+- Item: Prawns With Seasonal Greens
+  Description: Deep Fried Prawns Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  Prices/Variants: Prawns: 699
+
+==============================
+Category: Mocktails
+==============================
+- Item: Lost Island
+  Description: A Medley Of Mango, Passion & Coconut Cream Perked Up With Fresh Mint.
+  Prices/Variants: Veg: 229
+- Item: Watermelon & Kaffer Lime Lemonade
+  Description: Refreshing Tall Watermelon Fizz With A Hint Of Kaffir Lime.
+  Prices/Variants: Veg: 249
+- Item: Guava Mary
+  Description: Spicy & Iced Guava Juice Sipped Through Chilli Salt.
+  Prices/Variants: Veg: 239
+- Item: Asian Itch
+  Description: Tall & Cool With Lemongrass, Ginger Lime, Litchi.
+  Prices/Variants: Veg: 229
+- Item: Pineapple Yuzu Jalapeno Sour On The Rock
+  Description: Ice & Fruity Spice With Pineapple, Chilli & Citrus Yuzu.
+  Prices/Variants: Veg: 259
+- Item: Red Ginger Fizz
+  Description: Cranberry & Pomegranate, Topped With Sprite & Ginger Lime.
+  Prices/Variants: Veg: 229
+- Item: Vitamin C
+  Description: Orange Juice, Passion Fruitsyrup, Lime Juice Topped With Soda.
+  Prices/Variants: Veg: 239
+- Item: Awg Virgin Sangria
+  Description: Pomegranate, Cranberry, Grape, Orange Juice, Lime, Honeywith House Churned Fruits.
+  Prices/Variants: Veg: 239
+- Item: Masala Virgin Mojito
+  Description: Refreshing Drink With Namaste Twisted Paan & Gulkand
+  Prices/Variants: Veg: 249
+- Item: Paan Gulkand Mojito
+  Description: Refreshing Drink With Namaste Twisted Paan & Gulkand
+  Prices/Variants: Veg: 249
+- Item: Namaste Kalyan Spical
+  Description: Fresh Apple, Basil Leaves, Pineapple Juice, Kiwi Cursh, Blue Curacao & Grenadine Syrup & Topped Soda
+  Prices/Variants: Veg: 269
+- Item: Coco Berry
+  Description: Fresh Cream, Pinepple Juice, Blueberry Crush & Coconut Syrup
+  Prices/Variants: Veg: 259
+- Item: Mixed Fantasy
+  Description: Strawberry Crush, Blueberry Roseberry Syrup & Fresh Cream
+  Prices/Variants: Veg: 259
+- Item: Wake Me Up
+  Description: Coffee, Coconut Syrup, Pineapple Juice & Lime Juice
+  Prices/Variants: Veg: 239
+
+==============================
+Category: Murg Curry Specialities
+==============================
+- Item: Murgh Makhani(Butter Chicken)
+  Description: A Universal Favourite, Tender, Roasted Chicken Pieces Simmered In A Satin Smooth Tomato & Cream Gravy Redolent Of Kasturi Methi.
+  Prices/Variants: Chicken: 489
+- Item: Kukul Mass
+  Description: Chicken Cooked In All Indian  Green Spice Coconut Gravy
+  Prices/Variants: Chicken: 469
+- Item: Chicken Malvani
+  Description: Chicken Cooked In All Indian Green Spice Coconut Gravy.
+  Prices/Variants: Chicken: 469
+- Item: Murgh Rara
+  Description: Soft & Juicy Boneless Chicken Pieces Are Cooked In Spicy & Scrumptious Chicken Mince Gravy & Sreved With Tandoori Bread Or Rice.
+  Prices/Variants: Chicken: 499
+- Item: Murgh Kadhai Mirichi Wala
+  Description: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper.
+  Prices/Variants: Chicken: 469
+- Item: Kolhapuri
+  Description: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper.
+  Prices/Variants: Chicken: 469
+- Item: Do-Pyaza
+  Description: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper Toppeed With Dice Onion
+  Prices/Variants: Chicken: 469
+- Item: Murgh Tikka Masala
+  Description: Spiced Chicken Tikka Simmered In Fenugreek With Rich Creamy Tomato Gravy.
+  Prices/Variants: Chicken: 499
+- Item: Murgh Khurchan
+  Description: Shredded Chicken Cooked In A Rich Cashew Gravy, Topped With Sliced Boiled Egg.
+  Prices/Variants: Chicken: 499
+- Item: Chicken Kala Masala
+  Description: Chicken Cooked In Local Kala Masala.
+  Prices/Variants: Chicken: 479
+- Item: Chicken Kebab Masala
+  Description: Marinated Chicken Minced Placed Over A Skewers Cooked In Tandoor, These Kababs Are Served In A Flavourful Gravy.
+  Prices/Variants: Chicken: 499
+- Item: Chicken Saagwala
+  Description: Delicious Saag Wala Chicken Or Palak Chicken Spinach, Chicken & Aromatic Spices Is Creamy & Flavoursome
+  Prices/Variants: Chicken: 489
+- Item: Murgh Khada Masala
+  Description: Soft & Juicy Pieces Of Boneless Chicken Cooked In Aromatic Masala To Give You A Taste Of Real Indian Flavours
+  Prices/Variants: Chicken: 499
+- Item: Tandoori Chicken Masala Half
+  Description: Chicken Is Marinated In Tandoori Spices & Yoghurt Then Grilled, Prepare The Curry Sauce And The Chicken.
+  Prices/Variants: Half: 499
+- Item: Tandoori Chicken Masala Full
+  Description: Chicken Is Marinated In Tandoori Spices & Yoghurt Then Grilled, Prepare The Curry Sauce And The Chicken.
+  Prices/Variants: Full: 899
+- Item: Chicken Handi Half
+  Description: Handi Chicken Is A Delicious Dish With Chicken Cooked On A Low Flame For A Long Time.
+  Prices/Variants: Half: 479
+- Item: Chicken Handi Full
+  Description: Handi Chicken Is A Delicious Dish With Chicken Cooked On A Low Flame For A Long Time.
+  Prices/Variants: Full: 799
+- Item: Egg Masala
+  Description: A Dish Made With Boiled Eggs, Onions, Tomatoes, Whole Spices & Spice Powders.
+  Prices/Variants: Egg: 379
+
+==============================
+Category: Noodles
+==============================
+- Item: Pan Fried White Sauce
+  Description: Pan Fried Noodles Topped With  Sauce
+  Prices/Variants: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+- Item: Pan Fried  Hunan
+  Description: Pan Fried Noodles Topped With Sichuan Or Hunan Sauce
+  Prices/Variants: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+- Item: Pan Fried  Sichuan
+  Description: Pan Fried Noodles Topped With  Siuchuan Sauce.
+  Prices/Variants: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+- Item: Hot Pepper Garlic
+  Description: Wok Tossed Noodles With Shredded Vegetable, Crushed Chilli, Garlic & Spring Onion.
+  Prices/Variants: Veg: 429 | Chicken: 479 | Prawns: 499
+- Item: Hakka
+  Description: Wok Tossed Noodles With Shredded Vegetables, Soya Sauce & Spring Onion
+  Prices/Variants: Veg: 379 | Jain: 379 | Chicken: 399 | Prawns: 409
+- Item: Sichuan
+  Description: Noodles Tossed With Shredded Vegetables, Ginger, Garlic, Dry Red Chilli, Chilli Paste & Spring Onion
+  Prices/Variants: Veg: 369 | Chicken: 389 | Prawns: 479
+- Item: American Chop Suey
+  Description: Sweet & Sour Vegetables With Bed Of Crispy Noodles
+  Prices/Variants: Veg: 479 | Jain: 479 | Chicken: 509
+- Item: Korean
+  Description: Homemade Flat Noodles Tossed With Korean Chilli Paste, Garlic, Soya Sauce & Spring Onion.
+  Prices/Variants: Veg: 429 | Chicken: 479 | Prawns: 499
+- Item: All Time Favourite Chow Mein
+  Description: Wok Tossed Noodles With Ginger, Vegetable, Soya Sauce, Bell Pepper, Celery & Spring Onion
+  Prices/Variants: Veg: 429 | Chicken: 479 | Prawns: 499
+- Item: Cantonses
+  Description: Wok Tossed Rice Noodles With Bean Sprout, Napa Cabbage Carrot Soy Sauce & Spring Onion
+  Prices/Variants: Veg: 429 | Chicken: 479 | Prawns: 499
+- Item: Pad Thai
+  Description: Flat Rice Stick Noodles Tossed With Crushed Peanuts, Chilli Flakes, Seasoned With Tamrind And Plum Sugar
+  Prices/Variants: Veg: 409 | Chicken: 459 | Prawns: 509
+
+==============================
+Category: Pasta
+==============================
+- Item: Penne With Tomato Basil Sauce
+  Description: Penne Pomodoro Is The Tomato Pasta Made With An, Flavour-Packed Tomato Sauce & Fresh Basil Leaves.
+  Prices/Variants: Veg: 479 | Jain: 479 | Chicken: 499
+- Item: Mac N Cheese
+  Description: A Rich & Creamy Dish Consisting Of Macaroni Pasta Mixed With A Cheesy Sauce.
+  Prices/Variants: Veg: 479 | Jain: 479 | Chicken: 499
+- Item: Macaroni With Exotic Veg With Creamy Sauce
+  Description: A Rich & Creamy Dish Consisting Of Macaroni Pasta Mixed With A Cheesy Sauce.
+  Prices/Variants: Veg: 479 | Chicken: 499
+- Item: Spaghettti Aglio E Olio With Chicken Sausages
+  Description: Tossed With Grilled Chicken Sausages & Exotic Vegetables.
+  Prices/Variants: Chicken: 529
+- Item: Fusilli With Grilled Chicken,Cherry Tomato In Cream Sauce
+  Description: Chicken Grilled, Exotic Vegetable, Ginger, Garlic & Vermicelli Noodles.
+  Prices/Variants: Chicken: 529
+- Item: Makr Your Own Pasta-Penne/Spaghetti/Fusilli/Macaroni
+  Description: Sauce Choices - Alfredo / Arrabiata / Pesto / Marinara.
+  Prices/Variants: Veg: 479 | Jain: 479 | Chicken: 499
+- Item: Homemaade Baked Lasagna
+  Description: Tomato Sauce & A Deliciously Cheesy Filling. Traditional Homemade Lasagna Filling With Cottage Cheese / Chicken & Parmesan. Serve With A Leafy Green Salad & Crusty Garlic Bread
+  Prices/Variants: Veg: 559 | Chicken: 599
+
+==============================
+Category: Pehels Kadam
+==============================
+- Item: Roomali Khakra  Masala Cheese &Garlic
+  Description: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala Cheese N Garlic
+  Prices/Variants: Veg: 299
+- Item: Roomali Khakra  Masala
+  Description: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala
+  Prices/Variants: Veg: 239
+- Item: Roomali Khakra  Masala Cheese
+  Description: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala Cheese
+  Prices/Variants: Veg: 249
+- Item: Double Fried Mushroom With Cheddar & Fine Herbs
+  Description: Cultured Mushrooms Stuffed With Cheese & Herbs-Coated & Deep Fried.
+  Prices/Variants: Veg: 379
+- Item: French Fries
+  Description: Classic Golden Potato Fries, Crisp On The Outside And Fluffy Inside, Served Hot And Perfectly Seasoned.
+  Prices/Variants: Veg: 329
+- Item: Cheese Cherry Pineapple
+  Description: Cube Cheese And Pineapple Top With Red Cherry Served In Crush Ice.
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Dahi Ke Sholey
+  Description: Golden-Crisp Bread Rolls Stuffed With Spiced
+Hung Curd And Veggies, Deep-Fried To A Crunchy Delight
+  Prices/Variants: Veg: 349
+- Item: Kathi Rolls
+  Description: Tandoor Roasted Paneer Or Chicken Tikka Roll Served With Kuchumber & Chutney.
+  Prices/Variants: Veg: 349
+- Item: Egg Pakoda
+  Description: Egg Coated In Seasoned Gram Flour Batter & Deep Fried.
+  Prices/Variants: Egg: 289
+- Item: Chicken Koliwada
+  Description: Deep Fried Chunk Chicken In A Spicy Marinate, Served With Mint Chutney
+  Prices/Variants: Chicken: 389
+- Item: Chicken Nuggets
+  Description: A Small Piece Of Deboned Chicken Meat That Is Breaded Battered, Then Deep Fried & Served With Mustard Sauce.
+  Prices/Variants: Chicken: 429
+- Item: Fish Koliwada
+  Description: Deep Fried Fish Fillet In A Spicy Marinate, Served With Mint Chutney.
+  Prices/Variants: Basa: 479
+- Item: Fish & Chipes
+  Description: Deep Fried Fish Fillet In A Marinate, Served With Tomato Kecthup
+  Prices/Variants: Basa: 439
+- Item: Fish Finger
+  Description: Crumb Fried Fish Finger Served With Tartar Sauce.
+  Prices/Variants: Basa: 439
+- Item: Fish Tava Fry  Pomfret
+  Description: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  Prices/Variants: Pomfret: 749
+- Item: Fish Tava Fry Surmai
+  Description: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  Prices/Variants: Surmai: 649
+- Item: Fish Tava Fry Basa
+  Description: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  Prices/Variants: Basa: 549
+
+==============================
+Category: Pizza
+==============================
+- Item: Tomato Basil Pizza
+  Description: Fresh Tomato Sauce, Basil Leaves & Melted Mozzarella On A Crisp Crust.
+  Prices/Variants: Medium: 269 | Large: 369
+- Item: Margarita Pizza
+  Description: Tomato, Mozzarella & Fresh Basil On A Classic Crust.
+  Prices/Variants: Medium: 269 | Large: 369
+- Item: Veg  Delight Pizza
+  Description: Garden Vegetables & Melted Cheese On A Crisp Crust.
+  Prices/Variants: Medium: 289 | Large: 389
+- Item: Tandoori Paneer
+  Description: Spicy Marinated Paneer, Peppers, Onions, Cheese On Crispy Crust.​
+  Prices/Variants: Medium: 329 | Large: 409
+- Item: Mushroom Veg Pizza
+  Description: Mushrooms, Mixed Veggies & Melted Cheese On A Crisp Crust.
+  Prices/Variants: Medium: 289 | Large: 389
+- Item: Bbq Chicken Pizza
+  Description: Bbq Sauce, Grilled Chicken, Red Onions, Cilantro, Cheese On Crispy Crust.
+ ​
+  Prices/Variants: Medium: 399 | Large: 479
+- Item: Chicken Pizza
+  Description: Tandoori Marinated Chicken, Peppers, Onions, Cheese On Crispy Crust.​
+  Prices/Variants: Medium: 359 | Large: 479
+- Item: Chiken Peri-Peri Pizza
+  Description: Spicy Peri Peri Marinated Chicken, Peppers, Onions, Cheese On Crispy Crust.​
+  Prices/Variants: Medium: 399 | Large: 479
+
+==============================
+Category: Rice
+==============================
+- Item: Sada Basmati Chawal
+  Description: Steamed Boiled Rice.
+  Prices/Variants: Veg: 209 | Jain: 209
+- Item: Jeera Rice
+  Description: Temper With Cumin Seeds.(Half / Full).
+  Prices/Variants: Half: 189 | Full: 279
+- Item: Peas Pulao
+  Description: Emper With Cumin  Peas Seeds Corianders.
+  Prices/Variants: Veg: 299 | Jain: 299
+- Item: Veg Pulao
+  Description: Vegetable  Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  Prices/Variants: Veg: 299 | Jain: 299
+- Item: Curd Rice
+  Description: Emper With Cumin Seeds,
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Dal Khichdi
+  Description: Prepared With Dal
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Kadhi Khichdi
+  Description: Prepared With Curd & Indian Spice
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Palak Khichdi
+  Description: Description not available.
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Paneer Pulao
+  Description: Paneer  Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  Prices/Variants: Veg: 379 | Jain: 379
+- Item: Kasmiri Pulao
+  Description: Fruits & Dry Fruits Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  Prices/Variants: Veg: 379 | Jain: 379
+- Item: Subz Dum
+  Description: Garden Fresh Vegetables & Flavourful Basmati Rice.
+  Prices/Variants: Veg: 429 | Jain: 429
+- Item: Veg Hydrabadi Biryani
+  Description: Garden Fresh Vegetables & Flavourful Basmati Rice Tossed With Spenach And Mint Sauces
+  Prices/Variants: Veg: 429
+- Item: Avadhi Murgh Biryani
+  Description: Delicious Flavoured Chicken Biryani In Rich With Nuts & Saffron.
+  Prices/Variants: Chicken: 499
+- Item: Egg Biryani
+  Description: Fragrant Basmati Rice Cooked With Aromatic Biryani Spices, Herbs & Boiled Eggs
+  Prices/Variants: Egg: 369
+- Item: Kachcha Ghost Biryani
+  Description: Lamb & Finest Basmati Rice Cooked In Nizami Style.
+  Prices/Variants: Mutton: 629
+- Item: Hyderabadi Muttan Biryani
+  Description: Lamb & Finest Basmati Rice Cooked In Nizami Style Tossed With Spenach And Mint Sauces
+  Prices/Variants: Mutton: 629
+- Item: Prawns Dum Biryani
+  Description: Aromatic Basmati Rice Dum Cooked With Prawns, Herbs & Spice Powder
+  Prices/Variants: Prawns: 629
+- Item: Brunt Garlic Rice
+  Description: Wok Tossed Fried Rice With Cube Vegetables & Burnt Garlic.
+  Prices/Variants: Veg: 379 | Chicken: 429 | Prawns: 529
+- Item: Steam Rice
+  Description: Basmati Rice
+  Prices/Variants: Veg: 209
+- Item: Steam Jasmin Rice
+  Description: Jasmin Rice
+  Prices/Variants: Veg: 379
+- Item: Mongolian Pot Rice
+  Description: Wok Tossed Butter Rice Topped With Vegetables & Spicy Red Sauce.
+  Prices/Variants: Veg: 479 | Jain: 479 | Chicken: 499 | Prawns: 579
+- Item: Korean
+  Description: Wok Tossed Rice With Star Anise, Chilli Flakes & Korean Spice.
+  Prices/Variants: Veg: 379 | Chicken: 429 | Prawns: 479
+- Item: Chilli Garlic
+  Description: Wok Tossed Rice With Chilli Flakes, Garlic & Spring Onion
+  Prices/Variants: Veg: 379 | Chicken: 389 | Prawns: 479
+- Item: Sichuan
+  Description: Rice Tossed With Ginger, Garlic,Siuchan Sauce & Spring Onion.
+  Prices/Variants: Veg: 339 | Chicken: 389 | Prawns: 479
+- Item: Awg Classic
+  Description: Chef'S Special
+  Prices/Variants: Veg: 379 | Jain: 379 | Chicken: 429 | Prawns: 469
+- Item: Classic Fried Rice
+  Description: Wok Tossed Fried Rice With Cube Vegetables.
+  Prices/Variants: Veg: 349 | Jain: 349 | Chicken: 389 | Prawns: 479
+- Item: Jasmine Brunt Garlic Fried Rice
+  Description: Wok Tossed Jasmine Rice With Cube Veggies And Spring Onion Along With Golden Fried Garlic
+  Prices/Variants: Veg: 399 | Chicken: 449 | Prawns: 529
+- Item: Khao Pad Prik
+  Description: Sweet Basil & Chilli Fried Rice Seasoned With Thai Chilli Paste & Soya Sauce
+  Prices/Variants: Veg: 369 | Chicken: 409
+- Item: Nasi Goreng
+  Description: Malaysian Village Style Fried Rice With Satay Prawns / Chicken, Prawns Crackers & Served With Egg.
+  Prices/Variants: Chicken: 559 | Prawns: 629
+- Item: Egg Fried Rice
+  Description: Wok Tossed Fried Rice With Egg.
+  Prices/Variants: Egg: 309
+
+==============================
+Category: Rolls
+==============================
+- Item: Awg Classic
+  Description: Chef Special
+  Prices/Variants: Veg: 309 | Jain: 309 | Chicken: 399 | Prawns: 439
+- Item: Cigar
+  Description: Roll Sheets, Bel Pepper, Cottage Cheese , Corinder Served With Chilli Mayo Deep
+  Prices/Variants: Veg: 369 | Jain: 369
+- Item: Popia Tod
+  Description: Roll Sheets, Minced Chicken/ Prawns , Carrot ,Ginger , Garlic Served With Sweet Chilli Deep
+  Prices/Variants: Chicken: 399 | Prawns: 479
+
+==============================
+Category: Salads
+==============================
+- Item: Greek Salad
+  Description: Sliced Cucumbers, Tomatoes, Green Bell Pepper, Red Onion, Olive, Feta Cheese & Crunchy Iceberg (Vegetable & Chicken)
+  Prices/Variants: Veg: 249 | Jain: 249 | Chicken: 329
+- Item: Tazza Salad
+  Description: Crispy Greens Seasonal Vegetables.
+  Prices/Variants: Veg: 199
+- Item: Sprout Salad
+  Description: Sprout, Chopped Onion, Tomatos,Green Chilly, Coriander & Lime Dressing.
+  Prices/Variants: Veg: 239 | Jain: 239
+- Item: Chicken Hawaiian Salad
+  Description: In Pineapple & Coconut, Drizzled With A Tasty Coriander Lime & Mayonnaise Dressing.
+  Prices/Variants: Chicken: 339
+- Item: Waldorf Salad
+  Description: Apple, Celery, Walnuts, Grapes & Mayonnaise.
+  Prices/Variants: Veg: 349 | Chicken: 399
+- Item: Pasta Salad
+  Description: Pasta Of The Day, Bellpepper, Iceberg & Mayo.
+  Prices/Variants: Veg: 249 | Jain: 249 | Chicken: 349
+- Item: Prussian Salad
+  Description: Potato, Peas & Carrot Mix With Eggless Mayonnaise,Vegetable
+  Prices/Variants: Veg: 269 | Chicken: 379
+- Item: Sauted Broccoli Chicken Salad
+  Description: Potato, Peas & Carrot Mix With Eggless Mayonnais, Chicken
+  Prices/Variants: Chicken: 399
+- Item: Chicken Tikka Salad
+  Description: Chunks Of Tandoor Grilled Chicken Tangy Lime Dressing.
+  Prices/Variants: Chicken: 399
+- Item: Crispy Salad
+  Description: Crispy Vegetable / Shredded Chickencrispy Wonton, Rice Noodles, Marinade With Chilli Dressing.
+  Prices/Variants: Veg: 249 | Chicken: 319
+
+==============================
+Category: Sancks
+==============================
+- Item: Mix Veg Pakoda
+  Description: Mix Vegetables Coated In Seasoned Gram Flour Batter & Deep Fried.
+  Prices/Variants: Veg: 279 | Jain: 279
+- Item: Onion Ring Pakoda
+  Description: Ring Onion Coated In Seasoned Gram Flour Batter & Deep Fried.
+  Prices/Variants: Veg: 299
+- Item: Potato Pakoda
+  Description: Potato Coated In Seasoned Gram Flour Batter & Deep Fried.
+  Prices/Variants: Veg: 279
+- Item: Paneer Pakoda
+  Description: Diced Cottage Cheese Coated In Seasoned Gram Flour Batter & Deep Fried
+  Prices/Variants: Veg: 349 | Jain: 349
+- Item: Panner Kantaki
+  Description: Cube Cottage Cheese Coated With Seasoned Flour & Deep Fried, Served With Chilli Mayo.
+  Prices/Variants: Veg: 339
+- Item: Aloo Papdi Chaat
+  Description: Potatoes Cubes Flavoured With Ground Spices,Sweet & Sour Date, Finished With Coriander Leaves & Pomegranate Seeds.
+  Prices/Variants: Veg: 209
+- Item: Masala Peanut
+  Description: Chopped Onion & Tomatoes Mixed With Indian Spices.
+  Prices/Variants: Veg: 199
+- Item: Plain Peanut
+  Description: Salted Peanut
+  Prices/Variants: Veg: 199
+- Item: Hara Bhara Kabab
+  Description: Shallow Fried Patties Of Minced Vegetables & Served With Tangy Coriander Chutney.
+  Prices/Variants: Veg: 349
+- Item: Garlic& Cheese Crostini
+  Description: Toasted Bread Topped With Bell Peppers, Olives, Garlic & Cheese.
+  Prices/Variants: Veg: 339
+
+==============================
+Category: Sandwiches
+==============================
+- Item: Mumbai Toast
+  Description: Grated Potato, Cheese, Chopped Chilies & Onion On Toasted Breads.
+  Prices/Variants: Veg: 229
+- Item: Veg Delight
+  Description: Chopped Vegetables & Cheese With Green Chutney & Mayo, Served With Chips & Salad.
+  Prices/Variants: Veg: 249 | Jain: 249
+- Item: Cheese Chilly Tst
+  Description: Toasted On Both Side & With Cheese And Bellepepper & Onion , Served With Chips & Salad.
+  Prices/Variants: Veg: 289 | Jain: 289
+- Item: Corn Chilly
+  Description: Stuffed Corn  Chilli Flakes With Mozzarella Served With Coleslaw Salad & Chips (Grilled)
+  Prices/Variants: Veg: 329 | Jain: 329
+- Item: Corn Spinach
+  Description: Stuffed Corn Spinach, Chilli Flakes With Mozzarella Served With Coleslaw Salad & Chips (Grilled)
+  Prices/Variants: Veg: 329 | Jain: 329
+- Item: Classic Veg
+  Description: Cheese, Lettuce, Tomato & Cucumber, Served With Coleslaw Salad & Chips
+  Prices/Variants: Veg: 249 | Jain: 249
+- Item: Cheese Brust
+  Description: Cheese Sandwich Grilled
+  Prices/Variants: Veg: 329 | Jain: 329
+- Item: Veg Clun Sandwich
+  Description: Triple Layered Sandwich With Veg Delight, Coleslaw & Cheese
+  Prices/Variants: Veg: 309 | Jain: 309
+- Item: Paneer Tikka
+  Description: Layered Sandwich With Paneer Tikka, Coleslaw & Cheese
+  Prices/Variants: Veg: 329 | Jain: 329
+- Item: Peri Peri Paneer Sandwich
+  Description: Layered Sandwich With Peri Peri Panner, Coleslaw & Cheese
+  Prices/Variants: Veg: 329
+- Item: Tandoori Paneer
+  Description: Layered Sandwich With Tandoori Paneer , Coleslaw & Cheese
+  Prices/Variants: Veg: 329
+- Item: Boiled Eggs Sandwichs
+  Description: Layered Sandwich With Veg Delight, Coleslaw & Cheese Boiled Eggs
+  Prices/Variants: Egg: 329
+- Item: Chciken Delight Sandwich
+  Description: Layered Sandwich With Chicken Delight, Coleslaw & Cheese
+  Prices/Variants: Chicken: 339
+- Item: Chicken Peri Per
+  Description: Layered Sandwich With Peri Peri Chicken, Coleslaw & Cheese
+  Prices/Variants: Chicken: 379
+- Item: Chicken Tikka
+  Description: Layered Sandwich With Chicken Tikka , Coleslaw & Cheese
+  Prices/Variants: Chicken: 379
+- Item: Chicken Club Sandwich
+  Description: Triple Layered Sandwich With Chicken, Egg And Cheese
+  Prices/Variants: Chicken: 399
+- Item: Bbq Chicken Sandwich
+  Description: Layered Sandwich With Barbeque Chicken,  And Cheese
+  Prices/Variants: Chicken: 379
+
+==============================
+Category: Shakes& Smoothies
+==============================
+- Item: Peanut Butter Banana Smoothie
+  Description: Peanut Butter, Banana Curd, Ice Cream
+  Prices/Variants: Veg: 289
+- Item: Starwberry & Bourbon Shake
+  Description: Strawberry Crush, Bourbon Biscuit.
+  Prices/Variants: Veg: 289
+- Item: Chocolate& Coconut Shake
+  Description: Chocolate & Coconut Syrup, Ice Cream
+  Prices/Variants: Veg: 289
+- Item: Coffee, Cookie &Toffee Shake
+  Description: Milk, Ice Cream, Coffee And Cookies.
+  Prices/Variants: Veg: 289
+- Item: Salted Caramel, Alpenliebe & Popcorn  Shake
+  Description: Salted Caramel, Alpenliebe & Popcorn
+  Prices/Variants: Veg: 289
+- Item: Blueberry Cheese Cake Smoothi
+  Description: Blueberry Crush, Process Cheese
+  Prices/Variants: Veg: 349
+- Item: Mango Mint Smoothie
+  Description: Mango Crush , Mint Leaves Blend With Curd & Ice Cream
+  Prices/Variants: Veg: 269
+- Item: Kiwi Mint Smoothie
+  Description: Kiwi Crush , Mint Leaves Blend With Cured Mixed With Ice Cream
+  Prices/Variants: Veg: 269
+- Item: Mango Moon
+  Description: Honey, Freshcream , Mango Juice
+  Prices/Variants: Veg: 269
+
+==============================
+Category: Sizzlers
+==============================
+- Item: Awg Classic
+  Description: Combination Of Thai Corn Cake, Wok Tossed Noodles Or Fried Rice, Chilli Potatoes & Chilli Soya Gravy
+  Prices/Variants: Veg: 699 | Chicken: 799 | Prawns: 899
+- Item: Fussion Mexican
+  Description: Battered Cottage Cheese In Chef'S Signature Sauce Served On Bed Of Rice & Noodels Served With Exotic G Reen Vegetable Aof Rice & Noodles With Sauted
+  Prices/Variants: Veg: 699 | Chicken: 799 | Prawns: 899
+- Item: Classic Manchurian
+  Description: Vegetable Balls In Manchurian Sauce Served With Chilli Garlic Noodles Or Rice Chilli Garlic Mushroom
+  Prices/Variants: Veg: 699 | Chicken: 799 | Prawns: 899
+- Item: Smoking Cheese Balls Sambal
+  Description: Smoking Cheese Balls, Cottage Cheese In Hot Garlic Sauce, Served With Bed Of With Chilli Potatoes.
+  Prices/Variants: Veg: 699 | Chicken: 799 | Prawns: 899
+
+==============================
+Category: Sizzling Plate
+==============================
+- Item: Hunan
+  Description: Cottage Cheese, Carrot Broccoli, Bamboo Shoots & Green Onion Served On Sizzling Plate.
+  Prices/Variants: Veg: 379
+- Item: Barbeque Onions Chicken
+  Description: Juicy Chicken & Peanut Sauces
+  Prices/Variants: Chicken: 549
+- Item: Taipei Chicken
+  Description: Slice Onion, Spring Onion, Garlic Lemon Juice & Chilli Oil Served On Sizzling Plate.
+  Prices/Variants: Chicken: 549
+- Item: Smoked Prawns
+  Description: Prawns, Thai Chilli Paste, Spring Onion, Ginger, Garlic & Sesame Oil, Sreved On Sizzling Plate
+  Prices/Variants: Prawns: 629
+- Item: Butter Garlic Prawns
+  Description: Slow Fried Tossed With Fresh Garlic, Butter, Bell Peppers &Spring Onion, Served On Sizzling Plate.
+  Prices/Variants: Prawns: 629
+
+==============================
+Category: Skewers
+==============================
+- Item: Hot Basil
+  Description: Cottage Cheese, Basil Paste, Fresh Red Chilli, Galangal & Garlic.
+  Prices/Variants: Veg: 529
+- Item: Satay Gai
+  Description: Juicy Chicken & Peanut Sauce.
+  Prices/Variants: Chicken: 579
+- Item: Fresh Sambal
+  Description: Prawns Girlled With Ginger,
+  Prices/Variants: Prawns: 699
+- Item: Sesame Lime
+  Description: Garlic, Lime, Fresh Red Chilli & Cilantro.
+  Prices/Variants: Prawns: 699
+
+==============================
+Category: Soup
+==============================
+- Item: Badam Aur Elaichi Ka Shorba
+  Description: Our Chefs Speciality Mildly Spiced Almond Soup Flavoured With Cardamom.
+  Prices/Variants: Veg: 209 | Jain: 209
+- Item: Dal Shorba
+  Description: Indian Traditional Lentil
+  Prices/Variants: Veg: 199 | Jain: 199
+- Item: Hariyali Shorba
+  Description: Indian Traditional  Tomato
+  Prices/Variants: Veg: 199 | Jain: 199
+- Item: Tomato Dhania
+  Description: Indian Traditional  Palak Soup
+  Prices/Variants: Veg: 199 | Jain: 199
+- Item: Choice Of Cream Soup
+  Description: Spinach Soup Served With Bread Croutons / Sticks ( Vegetable/ Tomato/Mushroom /
+  Prices/Variants: Veg: 209 | Jain: 209
+- Item: Murg Shorba
+  Description: Chicken Stock With Indian Spices.
+  Prices/Variants: Chicken: 239
+- Item: Cream Of Chicken Soup
+  Description: An All Time Fev Chicken Soup With Bread Croutons/Sticks.
+  Prices/Variants: Chicken: 259
+- Item: Clear Broth
+  Description: Tofu, Broccoli, Mushroom & Pok Choy.
+  Prices/Variants: Veg: 209 | Chicken: 229 | Prawns: 279
+- Item: Lemon Corinder
+  Description: Coriander, Ginger, Chopped Fresh Veggies, Fresh Green Chilli & Touch Of Lime Juice.
+  Prices/Variants: Veg: 209 | Chicken: 229 | Prawns: 279
+- Item: Sweet Corn
+  Description: Creamy Corn & Green Onion
+  Prices/Variants: Veg: 209 | Chicken: 229 | Prawns: 279
+- Item: Sour N Pepper
+  Description: Tofu, Soya Sauce, Chilli, Mushroom, Bamboo Shoots & Touch Of Vinegar.
+  Prices/Variants: Veg: 209 | Chicken: 229 | Prawns: 279
+- Item: Asian Wok & Grill
+  Description: Chef’S Special.
+  Prices/Variants: Veg: 229 | Chicken: 259 | Prawns: 279
+- Item: Hakka
+  Description: Fresh Chilli, Garlic, Soya Sauce,Chopped Veggies Served With Crispy Noodles.
+  Prices/Variants: Veg: 239 | Chicken: 259 | Prawns: 279
+- Item: Burmese Traditinal Soup
+  Description: Classic Burmsese Curried Noodles Soup
+  Prices/Variants: Veg: 229 | Chicken: 249 | Prawns: 299
+- Item: Tom Kha
+  Description: Coconut Milk, Cherry Tomato Flavoured With Thai Herbs.
+  Prices/Variants: Veg: 249 | Chicken: 329 | Prawns: 319
+- Item: Crispy Wontan Soup
+  Description: Exotic Vegetables, Tofu, Chilli Paste & Sriracha, Served With Crispy Wonton.
+  Prices/Variants: Veg: 229 | Chicken: 249 | Prawns: 299
+- Item: Bakso Ayam Soup
+  Description: Clear Broth, Meat Balls,Vermicelli, Pakchoy & Wanton Strip.
+  Prices/Variants: Chicken: 279
+- Item: Spicy Dumpling Soup
+  Description: Exotic Vegetables Or Chicken,Tomato, Sriracha Served With Steamed Stuffed Dumplings.
+  Prices/Variants: Veg: 259 | Chicken: 279 | Prawns: 289
+
+==============================
+Category: Western Specialities
+==============================
+- Item: Cheese Nachos With Salsa
+  Description: Nachos Served With Tomato Salsa & Creamy Cheese
+  Prices/Variants: Veg: 359
+- Item: Corn And Spinach Au Gratin
+  Description: Spinach & Corn Tossed In White Sauce Baked With Cheese.
+  Prices/Variants: Veg: 479
+- Item: Roasted Chicken
+  Description: Rosemary Flavoured Chicken Served With Veggies In Red Wine Juice.
+  Prices/Variants: Chicken: 499
+- Item: Grilled Chicken
+  Description: Served With Pepper Sauce & Mushrooms.
+  Prices/Variants: Chicken: 499
+
+==============================
+Category: Wok Tossed
+==============================
+- Item: Crispy Corn & Waterchestut
+  Description: Deep Fried & Tossed With Ginger, Garlic, Black Pepper & Spring Onion
+  Prices/Variants: Veg: 379 | Jain: 379
+- Item: Spicy Broccoli
+  Description: Deep Fried Broccoli Tossed With Ginger, Garlic, Red Chilli, Scallion & Korean Paste.
+  Prices/Variants: Veg: 449 | Jain: 449
+- Item: Kung Pao
+  Description: Exotic Diced Vegetables Tossed With Bell Pepper, Soya Sauce, Scallion, Dry Red Chilli, Peanut
+  Prices/Variants: Veg: 389 | Jain: 389 | Chicken: 489
+- Item: Five Spice
+  Description: Exotic Vegetables, Ginger, Garlic, Five Spice Powder & Red Chilli Sauce
+  Prices/Variants: Veg: 359 | Jain: 359
+- Item: Chilli Classiccottage Cheese
+  Description: Batter Fried Mushroom Tossed With Ginger, Garlic, Green Chilli, Spring
+  Prices/Variants: Veg: 429 | Jain: 429 | Chicken: 479
+- Item: Chilli Classic Mushroom
+  Description: Batter Fried Mushroom Tossed With Ginger, Garlic, Green Chilli, Spring
+  Prices/Variants: Veg: 429 | Jain: 429
+- Item: Hunan Sesame Style Tofu/ Cottage Cheese
+  Description: Diced Tofu Tossed With Ginger, Dry Red Chilli, Bell Pepper & Chilli Oil.
+  Prices/Variants: Veg: 409 | Jain: 409 | Chicken: 479 | Mutton: 649 | Basa: 539
+- Item: Classic Manchurian Dry
+  Description: Deep Fried Vegetable Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  Prices/Variants: Veg: 349 | Jain: 349 | Chicken: 479
+- Item: Fresh Red Pepper
+  Description: Diced Of Cottage Cheese Tossed With Bell Pepper, Scallion, Fresh Red Chilli & Black Pepper.
+  Prices/Variants: Veg: 409 | Chicken: 499
+- Item: Asian Wok & Grill Cottage Cheese / Chicken/Fish /Prawns
+  Description: Chef’S Special.
+  Prices/Variants: Veg: 429 | Jain: 429 | Chicken: 499 | Basa: 559 | Prawns: 629
+- Item: Hot Basil
+  Description: Dice Chicken Tossed With Ginger, Garlic, Dry Red Chilli,  Fresh Basil, Light Soya And Bell Pepper
+  Prices/Variants: Veg: 429 | Chicken: 459 | Basa: 629
+- Item: Asian Crispy Sesame
+  Description: Deep Fried Cube Chicken Tossed With Ginger, Honey, Vinegar, Kikkoman Soya & Topped With Sesame Seeds
+  Prices/Variants: Chicken: 459
+- Item: Butter Garlic
+  Description: Slow Fried Prawns Tossed With Fresh Garlic, Butter, Bell Peppers & Spring Onion.
+  Prices/Variants: Veg: 429 | Chicken: 459 | Basa: 559 | Prawns: 629
+- Item: Thai Spice
+  Description: Deep Fried Sliced Fish Tossed With Bell Pepper, Sweet Basil, Garlic, Galangal, Fresh Red Chilli & Fish Sauce.
+  Prices/Variants: Basa: 559 | Prawns: 629
+- Item: Sichuan
+  Description: Dice Chicken Tossed With Ginger, Garlic, Dry Red Chilli, Sichuan Pepper / Light Soya And Bell Pepper
+  Prices/Variants: Veg: 429 | Chicken: 459 | Prawns: 629
+

@@ -1,0 +1,774 @@
+Namaste Kalyan Bot - Chat Conversations & Suggestions (Marathi)
+Generated: 2026-03-29 14:08
+Policy: Bot chat मध्ये किंमत सांगणार नाही. नेहमी latest pricing साठी menu/category link देईल.
+Total Examples: 214
+
+1. User: Hi
+   Bot: Namaste Kalyan by AWG मध्ये स्वागत आहे. मी menu link, location, reservation आणि contact मध्ये मदत करू शकतो.
+   Bot: आमच्याकडे Veg, Non-Veg आणि Jain menu उपलब्ध आहे.
+
+2. User: Hello
+   Bot: नमस्कार. कृपया सांगा: food menu, cocktail menu, category link, reservation किंवा contact details.
+   Bot: आमच्याकडे Veg, Non-Veg आणि Jain menu उपलब्ध आहे.
+
+3. User: Menu
+   Bot: हा food menu link: https://namastekalyan.asianwokandgrill.in/menu.html
+   Bot: Latest pricing साठी कृपया menu पहा. आमच्याकडे Veg, Non-Veg आणि Jain menu उपलब्ध आहे.
+
+4. User: तुमच्याकडे Veg, Non-Veg आणि Jain आहे का?
+   Bot: होय. आमच्याकडे Veg, Non-Veg आणि Jain menu उपलब्ध आहे.
+   Bot: Category-wise menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html
+
+5. User: Paneer Tikka price काय?
+   Bot: मी chat मध्ये किंमत सांगत नाही.
+   Bot: Latest किंमत पाहण्यासाठी हा live menu link वापरा: https://namastekalyan.asianwokandgrill.in/menu.html
+
+6. User: Location सांगा
+   Bot: आमचा पत्ता: RockMount Residency, 4th, Khadakpada Circle, Kalyan, Maharashtra 421301.
+   Bot: Call +91 93715 19999 किंवा WhatsApp https://wa.me/919371519999
+
+7. User: Cocktail menu पाठवा
+   Bot: हा cocktail menu link: https://namastekalyan.asianwokandgrill.in/cocktail.html
+
+8. User: Contact details द्या
+   Bot: Call: +91 93715 19999 | WhatsApp: https://wa.me/919371519999 | Email: namastekalyan09@gmail.com
+
+9. User: Table booking
+   Bot: येथे book करा (CRM calendar): https://admin.aibunty.com/u2/82800/reservation-for-awg
+
+10. User: Event booking
+   Bot: कोणत्याही event booking साठी CRM calendar वापरा: https://admin.aibunty.com/u2/82800/reservation-for-awg
+
+11. User: Online order
+   Bot: Swiggy: https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout
+   Bot: Zomato: https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane
+
+12. User: Review link द्या
+   Bot: Google review link: https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1
+
+13. User: Crab price काय?
+   Bot: Crab price is not fixed. Please ask waiter for current price.
+
+14. User: Veg category link द्या
+   Bot: Menu उघडा: https://namastekalyan.asianwokandgrill.in/menu.html
+
+15. User: All Time Favourite menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+16. User: मला All Time Favourite items पाहिजेत
+   Bot: All Time Favourite साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+17. User: All Time Favourite category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+
+18. User: All Time Favourite मधून recommendation द्या
+   Bot: All Time Favourite category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+   Bot: Latest किंमत category page वर पहा.
+
+19. User: All Time Favourite available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+
+20. User: Bao menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+21. User: मला Bao items पाहिजेत
+   Bot: Bao साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+22. User: Bao category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+
+23. User: Bao मधून recommendation द्या
+   Bot: Bao category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+   Bot: Latest किंमत category page वर पहा.
+
+24. User: Bao available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+
+25. User: Bowls menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+26. User: मला Bowls items पाहिजेत
+   Bot: Bowls साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+27. User: Bowls category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+
+28. User: Bowls मधून recommendation द्या
+   Bot: Bowls category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+   Bot: Latest किंमत category page वर पहा.
+
+29. User: Bowls available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+
+30. User: Breads menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+31. User: मला Breads items पाहिजेत
+   Bot: Breads साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+32. User: Breads category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+
+33. User: Breads मधून recommendation द्या
+   Bot: Breads category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+   Bot: Latest किंमत category page वर पहा.
+
+34. User: Breads available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+
+35. User: Chicken Wings menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+36. User: मला Chicken Wings items पाहिजेत
+   Bot: Chicken Wings साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+37. User: Chicken Wings category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+
+38. User: Chicken Wings मधून recommendation द्या
+   Bot: Chicken Wings category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+   Bot: Latest किंमत category page वर पहा.
+
+39. User: Chicken Wings available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+
+40. User: Cold Ones menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+41. User: मला Cold Ones items पाहिजेत
+   Bot: Cold Ones साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+42. User: Cold Ones category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+
+43. User: Cold Ones मधून recommendation द्या
+   Bot: Cold Ones category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+   Bot: Latest किंमत category page वर पहा.
+
+44. User: Cold Ones available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+
+45. User: Crackers & Dahi menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+46. User: मला Crackers & Dahi items पाहिजेत
+   Bot: Crackers & Dahi साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+47. User: Crackers & Dahi category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+
+48. User: Crackers & Dahi मधून recommendation द्या
+   Bot: Crackers & Dahi category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+   Bot: Latest किंमत category page वर पहा.
+
+49. User: Crackers & Dahi available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+
+50. User: Curries menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+51. User: मला Curries items पाहिजेत
+   Bot: Curries साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+52. User: Curries category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+
+53. User: Curries मधून recommendation द्या
+   Bot: Curries category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+   Bot: Latest किंमत category page वर पहा.
+
+54. User: Curries available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+
+55. User: Dal Wali Gali menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+56. User: मला Dal Wali Gali items पाहिजेत
+   Bot: Dal Wali Gali साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+57. User: Dal Wali Gali category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+
+58. User: Dal Wali Gali मधून recommendation द्या
+   Bot: Dal Wali Gali category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+   Bot: Latest किंमत category page वर पहा.
+
+59. User: Dal Wali Gali available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+
+60. User: Deep Fry menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+61. User: मला Deep Fry items पाहिजेत
+   Bot: Deep Fry साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+62. User: Deep Fry category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+
+63. User: Deep Fry मधून recommendation द्या
+   Bot: Deep Fry category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+   Bot: Latest किंमत category page वर पहा.
+
+64. User: Deep Fry available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+
+65. User: Dessert menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+66. User: मला Dessert items पाहिजेत
+   Bot: Dessert साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+67. User: Dessert category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+
+68. User: Dessert मधून recommendation द्या
+   Bot: Dessert category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+   Bot: Latest किंमत category page वर पहा.
+
+69. User: Dessert available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+
+70. User: Dimsum menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+71. User: मला Dimsum items पाहिजेत
+   Bot: Dimsum साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+72. User: Dimsum category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+
+73. User: Dimsum मधून recommendation द्या
+   Bot: Dimsum category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+   Bot: Latest किंमत category page वर पहा.
+
+74. User: Dimsum available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+
+75. User: Fish Curry Specialities menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+76. User: मला Fish Curry Specialities items पाहिजेत
+   Bot: Fish Curry Specialities साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+77. User: Fish Curry Specialities category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+
+78. User: Fish Curry Specialities मधून recommendation द्या
+   Bot: Fish Curry Specialities category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+   Bot: Latest किंमत category page वर पहा.
+
+79. User: Fish Curry Specialities available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+
+80. User: From The Grill menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+81. User: मला From The Grill items पाहिजेत
+   Bot: From The Grill साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+82. User: From The Grill category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+
+83. User: From The Grill मधून recommendation द्या
+   Bot: From The Grill category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+   Bot: Latest किंमत category page वर पहा.
+
+84. User: From The Grill available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+
+85. User: Ghosht Curry Specialities menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+86. User: मला Ghosht Curry Specialities items पाहिजेत
+   Bot: Ghosht Curry Specialities साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+87. User: Ghosht Curry Specialities category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+
+88. User: Ghosht Curry Specialities मधून recommendation द्या
+   Bot: Ghosht Curry Specialities category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+   Bot: Latest किंमत category page वर पहा.
+
+89. User: Ghosht Curry Specialities available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+
+90. User: Iced Tea menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+91. User: मला Iced Tea items पाहिजेत
+   Bot: Iced Tea साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+92. User: Iced Tea category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+
+93. User: Iced Tea मधून recommendation द्या
+   Bot: Iced Tea category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+   Bot: Latest किंमत category page वर पहा.
+
+94. User: Iced Tea available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+
+95. User: Icy Virgin Margaritas menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+96. User: मला Icy Virgin Margaritas items पाहिजेत
+   Bot: Icy Virgin Margaritas साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+97. User: Icy Virgin Margaritas category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+
+98. User: Icy Virgin Margaritas मधून recommendation द्या
+   Bot: Icy Virgin Margaritas category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+   Bot: Latest किंमत category page वर पहा.
+
+99. User: Icy Virgin Margaritas available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+
+100. User: Indian Mains Bageeche Se menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+101. User: मला Indian Mains Bageeche Se items पाहिजेत
+   Bot: Indian Mains Bageeche Se साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+102. User: Indian Mains Bageeche Se category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+
+103. User: Indian Mains Bageeche Se मधून recommendation द्या
+   Bot: Indian Mains Bageeche Se category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+   Bot: Latest किंमत category page वर पहा.
+
+104. User: Indian Mains Bageeche Se available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+
+105. User: Koyle Ka Kamal menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+106. User: मला Koyle Ka Kamal items पाहिजेत
+   Bot: Koyle Ka Kamal साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+107. User: Koyle Ka Kamal category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+
+108. User: Koyle Ka Kamal मधून recommendation द्या
+   Bot: Koyle Ka Kamal category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+   Bot: Latest किंमत category page वर पहा.
+
+109. User: Koyle Ka Kamal available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+
+110. User: Lemonades menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+111. User: मला Lemonades items पाहिजेत
+   Bot: Lemonades साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+112. User: Lemonades category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+
+113. User: Lemonades मधून recommendation द्या
+   Bot: Lemonades category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+   Bot: Latest किंमत category page वर पहा.
+
+114. User: Lemonades available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+
+115. User: Lettuce Cups menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+116. User: मला Lettuce Cups items पाहिजेत
+   Bot: Lettuce Cups साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+117. User: Lettuce Cups category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+
+118. User: Lettuce Cups मधून recommendation द्या
+   Bot: Lettuce Cups category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+   Bot: Latest किंमत category page वर पहा.
+
+119. User: Lettuce Cups available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+
+120. User: Main Course menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+121. User: मला Main Course items पाहिजेत
+   Bot: Main Course साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+122. User: Main Course category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+
+123. User: Main Course मधून recommendation द्या
+   Bot: Main Course category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+   Bot: Latest किंमत category page वर पहा.
+
+124. User: Main Course available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+
+125. User: Mocktails menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+126. User: मला Mocktails items पाहिजेत
+   Bot: Mocktails साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+127. User: Mocktails category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+
+128. User: Mocktails मधून recommendation द्या
+   Bot: Mocktails category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+   Bot: Latest किंमत category page वर पहा.
+
+129. User: Mocktails available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+
+130. User: Murg Curry Specialities menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+131. User: मला Murg Curry Specialities items पाहिजेत
+   Bot: Murg Curry Specialities साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+132. User: Murg Curry Specialities category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+
+133. User: Murg Curry Specialities मधून recommendation द्या
+   Bot: Murg Curry Specialities category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+   Bot: Latest किंमत category page वर पहा.
+
+134. User: Murg Curry Specialities available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+
+135. User: Noodles menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+136. User: मला Noodles items पाहिजेत
+   Bot: Noodles साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+137. User: Noodles category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+
+138. User: Noodles मधून recommendation द्या
+   Bot: Noodles category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+   Bot: Latest किंमत category page वर पहा.
+
+139. User: Noodles available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+
+140. User: Pasta menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+141. User: मला Pasta items पाहिजेत
+   Bot: Pasta साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+142. User: Pasta category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+
+143. User: Pasta मधून recommendation द्या
+   Bot: Pasta category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+   Bot: Latest किंमत category page वर पहा.
+
+144. User: Pasta available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+
+145. User: Pehels Kadam menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+146. User: मला Pehels Kadam items पाहिजेत
+   Bot: Pehels Kadam साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+147. User: Pehels Kadam category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+
+148. User: Pehels Kadam मधून recommendation द्या
+   Bot: Pehels Kadam category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+   Bot: Latest किंमत category page वर पहा.
+
+149. User: Pehels Kadam available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+
+150. User: Pizza menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+151. User: मला Pizza items पाहिजेत
+   Bot: Pizza साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+152. User: Pizza category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+
+153. User: Pizza मधून recommendation द्या
+   Bot: Pizza category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+   Bot: Latest किंमत category page वर पहा.
+
+154. User: Pizza available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+
+155. User: Rice menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+156. User: मला Rice items पाहिजेत
+   Bot: Rice साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+157. User: Rice category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+
+158. User: Rice मधून recommendation द्या
+   Bot: Rice category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+   Bot: Latest किंमत category page वर पहा.
+
+159. User: Rice available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+
+160. User: Rolls menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+161. User: मला Rolls items पाहिजेत
+   Bot: Rolls साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+162. User: Rolls category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+
+163. User: Rolls मधून recommendation द्या
+   Bot: Rolls category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+   Bot: Latest किंमत category page वर पहा.
+
+164. User: Rolls available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+
+165. User: Salads menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+166. User: मला Salads items पाहिजेत
+   Bot: Salads साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+167. User: Salads category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+
+168. User: Salads मधून recommendation द्या
+   Bot: Salads category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+   Bot: Latest किंमत category page वर पहा.
+
+169. User: Salads available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+
+170. User: Sancks menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+171. User: मला Sancks items पाहिजेत
+   Bot: Sancks साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+172. User: Sancks category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+
+173. User: Sancks मधून recommendation द्या
+   Bot: Sancks category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+   Bot: Latest किंमत category page वर पहा.
+
+174. User: Sancks available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+
+175. User: Sandwiches menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+176. User: मला Sandwiches items पाहिजेत
+   Bot: Sandwiches साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+177. User: Sandwiches category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+
+178. User: Sandwiches मधून recommendation द्या
+   Bot: Sandwiches category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+   Bot: Latest किंमत category page वर पहा.
+
+179. User: Sandwiches available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+
+180. User: Shakes& Smoothies menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+181. User: मला Shakes& Smoothies items पाहिजेत
+   Bot: Shakes& Smoothies साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+182. User: Shakes& Smoothies category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+
+183. User: Shakes& Smoothies मधून recommendation द्या
+   Bot: Shakes& Smoothies category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+   Bot: Latest किंमत category page वर पहा.
+
+184. User: Shakes& Smoothies available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+
+185. User: Sizzlers menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+186. User: मला Sizzlers items पाहिजेत
+   Bot: Sizzlers साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+187. User: Sizzlers category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+
+188. User: Sizzlers मधून recommendation द्या
+   Bot: Sizzlers category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+   Bot: Latest किंमत category page वर पहा.
+
+189. User: Sizzlers available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+
+190. User: Sizzling Plate menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+191. User: मला Sizzling Plate items पाहिजेत
+   Bot: Sizzling Plate साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+192. User: Sizzling Plate category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+
+193. User: Sizzling Plate मधून recommendation द्या
+   Bot: Sizzling Plate category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+   Bot: Latest किंमत category page वर पहा.
+
+194. User: Sizzling Plate available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+
+195. User: Skewers menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+196. User: मला Skewers items पाहिजेत
+   Bot: Skewers साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+197. User: Skewers category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+
+198. User: Skewers मधून recommendation द्या
+   Bot: Skewers category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+   Bot: Latest किंमत category page वर पहा.
+
+199. User: Skewers available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+
+200. User: Soup menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+201. User: मला Soup items पाहिजेत
+   Bot: Soup साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+202. User: Soup category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+
+203. User: Soup मधून recommendation द्या
+   Bot: Soup category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+   Bot: Latest किंमत category page वर पहा.
+
+204. User: Soup available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+
+205. User: Western Specialities menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+206. User: मला Western Specialities items पाहिजेत
+   Bot: Western Specialities साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+207. User: Western Specialities category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+
+208. User: Western Specialities मधून recommendation द्या
+   Bot: Western Specialities category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+   Bot: Latest किंमत category page वर पहा.
+
+209. User: Western Specialities available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+
+210. User: Wok Tossed menu दाखवा
+   Bot: हा direct category link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+   Bot: Latest pricing साठी याच category page ला भेट द्या.
+
+211. User: मला Wok Tossed items पाहिजेत
+   Bot: Wok Tossed साठी हा link उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+   Bot: मी suggestions देऊ शकतो, किंमतीसाठी menu link पहा.
+
+212. User: Wok Tossed category link द्या
+   Bot: Direct link: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+
+213. User: Wok Tossed मधून recommendation द्या
+   Bot: Wok Tossed category उघडा: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+   Bot: Latest किंमत category page वर पहा.
+
+214. User: Wok Tossed available आहे का?
+   Bot: Live category menu येथे पहा: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+
