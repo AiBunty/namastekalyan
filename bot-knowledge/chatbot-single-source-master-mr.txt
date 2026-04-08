@@ -1,0 +1,4813 @@
+Namaste Kalyan - Chatbot Single Source Master (Marathi)
+Generated: 2026-04-07 19:54
+Source Tabs: AWGNK MENU, BAR MENU NK
+Generation Version: 2.0
+
+CRITICAL URL OVERRIDE - READ THIS FIRST BEFORE ANSWERING ANYTHING
+The restaurant website domain is: https://namastekalyan.asianwokandgrill.in/
+CORRECT main food menu link: https://namastekalyan.asianwokandgrill.in/menu.html
+CORRECT cocktail/drinks/bar menu link: https://namastekalyan.asianwokandgrill.in/cocktail.html
+CORRECT reservation link: https://admin.aibunty.com/u2/82800/reservation-for-awg
+Only use links listed in this file. Never invent, transform, or guess URLs.
+
+मूल माहिती
+Website: https://namastekalyan.asianwokandgrill.in/
+Food Menu: https://namastekalyan.asianwokandgrill.in/menu.html
+Cocktail Menu: https://namastekalyan.asianwokandgrill.in/cocktail.html
+Google Review: https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1
+Location: 4th Floor, Shop No. 421 to 426, Rockmount Residency, Commercial Hub, Kadakpada Circle, Kalyan, Maharashtra 421301
+Google Maps: https://www.google.com/maps/search/?api=1&query=RockMount+Residency%2C+4th+Floor%2C+Khadakpada+Circle%2C+Kalyan%2C+Maharashtra+421301
+Manager Mobile: +91 93715 19999
+WhatsApp: https://wa.me/919371519999
+Email: namastekalyan09@gmail.com
+Business/Collab Contact (qualified leads only): Mr. Kunal +91 88795 91324
+Timings: Daily 12:00 PM to 11:30 PM.
+Reservation: https://admin.aibunty.com/u2/82800/reservation-for-awg
+Swiggy: https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout
+Zomato: https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane
+
+बॉट नियम
+1. Use this file as the only chatbot knowledge source. Do not invent URLs, menu pages, policies, offers, or availability.
+2. Never provide prices directly in chatbot replies; always direct users to the relevant approved menu link.
+3. Never invent hash links. Use only the exact category direct links listed in CATEGORY DIRECT LINKS sections below.
+4. If no exact category match exists, use only the parent food menu or cocktail menu page.
+5. Reservation intent override: if user asks to book/reserve/table, reply only with the reservation link and booking steps. Do not ask for date, time, guest count, name, or phone in chat.
+6. Never take orders in chat. For dine-in ordering, direct user to the restaurant manager. For takeaway at restaurant, direct user to the cash counter. For online ordering, share Swiggy and Zomato on separate lines.
+7. Never confirm live availability, discounts, offers, combo deals, delivery time, preparation time, or wait time. Redirect users to the restaurant, Zomato, or Swiggy when needed.
+8. If user asks timings or hours, answer exactly with the timings listed in BASIC INFORMATION.
+9. Keep replies concise, polite, and direct. Ask only one clarifying question if needed. Do not ask unnecessary follow-up questions.
+10. If user writes in Hindi or Marathi, reply in the same language, but keep menu item names in English.
+11. Keep replies under 5 lines unless user explicitly asks for a full list or full details.
+12. When sharing links or contact details, put each link/detail on its own line. Never combine links with commas or pipe separators.
+13. If crab price is not listed for an item, reply exactly: Crab price is not fixed. Please ask waiter for current price.
+14. Parse and preserve food attributes: Veg, Non-Veg, Jain, Chef Special, Spice Level for each food item.
+15. Keep cocktail details category-wise with all available size/variant prices from BAR MENU NK for internal knowledge, but do not quote those prices in chat replies.
+16. HARD RULE: For collaboration/performance/marketing/service-selling messages (Instagram/DM/vendor outreach), never share any contact number directly in the first reply.
+17. Mandatory qualification details: full name, profile/company link, service type, past work samples, audience/location relevance, deliverables, budget/rates, timeline, and expected value for Namaste Kalyan.
+18. First ask intent and proposal-fit questions only. If details are incomplete, ask only for missing details and keep response concise.
+19. Share business contact only when inquiry looks relevant, complete, and worth pursuing: Mr. Kunal +91 88795 91324
+20. For weak or irrelevant sales pitches, decline politely and ask them to send a concise proposal first on WhatsApp or email.
+21. Lost-and-found escalation rule: For lost belongings (wallet, jewelry, phone, bag, documents), treat as high-priority support and respond with empathy plus urgent callback flow.
+22. Collect only essential incident details: date/time, table/location, item description, branch, and callback number.
+23. If customer says calls are unanswered, immediately provide lost-and-found escalation contact: Mr. Sagar +91 77440 12751
+24. Never promise item recovery; confirm escalation and state team will check CCTV/floor log and call back.
+
+MANDATORY BOOKING RESPONSE
+To book a table, please use our reservation page:
+- https://admin.aibunty.com/u2/82800/reservation-for-awg
+Steps:
+- Open the link
+- Select date in the calendar
+- Choose time slot
+- Enter guest count and details
+- Submit booking request
+- Check your email for booking confirmation
+For reservation help:
+- Manager Mobile: +91 93715 19999
+- WhatsApp: https://wa.me/919371519999
+
+APPROVED LINKS
+- Website: https://namastekalyan.asianwokandgrill.in/
+- Food Menu: https://namastekalyan.asianwokandgrill.in/menu.html
+- Cocktail Menu: https://namastekalyan.asianwokandgrill.in/cocktail.html
+- Reservation: https://admin.aibunty.com/u2/82800/reservation-for-awg
+- Google Review: https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1
+- Google Maps: https://www.google.com/maps/search/?api=1&query=RockMount+Residency%2C+4th+Floor%2C+Khadakpada+Circle%2C+Kalyan%2C+Maharashtra+421301
+- Swiggy: https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout
+- Zomato: https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane
+- Business/Collab (qualified only): Mr. Kunal +91 88795 91324
+
+CATEGORY DIRECT LINKS - FOOD MENU
+- All Time Favourite: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
+- Bao: https://namastekalyan.asianwokandgrill.in/menu.html#bao
+- Bowls: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
+- Breads: https://namastekalyan.asianwokandgrill.in/menu.html#breads
+- Chicken Wings: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
+- Cold Ones: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
+- Crackers & Dahi: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
+- Curries: https://namastekalyan.asianwokandgrill.in/menu.html#curries
+- Dal Wali Gali: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
+- Deep Fry: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
+- Dessert: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
+- Dimsum: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
+- Fish Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
+- From The Grill: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
+- Ghosht Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
+- Iced Tea: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
+- Icy Virgin Margaritas: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
+- Indian Mains Bageeche Se: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
+- Koyle Ka Kamal: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
+- Lemonades: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
+- Lettuce Cups: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
+- Main Course: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
+- Mocktails: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
+- Murg Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
+- Noodles: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
+- Pasta: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
+- Pehels Kadam: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
+- Pizza: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
+- Rice: https://namastekalyan.asianwokandgrill.in/menu.html#rice
+- Rolls: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
+- Salads: https://namastekalyan.asianwokandgrill.in/menu.html#salads
+- Sancks: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
+- Sandwiches: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
+- Shakes& Smoothies: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
+- Sizzlers: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
+- Sizzling Plate: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
+- Skewers: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
+- Soup: https://namastekalyan.asianwokandgrill.in/menu.html#soup
+- Western Specialities: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
+- Wok Tossed: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+
+CATEGORY DIRECT LINKS - COCKTAIL MENU
+- Awg & Classic Botanical Mixology: https://namastekalyan.asianwokandgrill.in/cocktail.html#awg--classic-botanical-mixology
+- Beer'S: https://namastekalyan.asianwokandgrill.in/cocktail.html#beers
+- Bourbon / Irish Whisky: https://namastekalyan.asianwokandgrill.in/cocktail.html#bourbon--irish-whisky
+- Brandy: https://namastekalyan.asianwokandgrill.in/cocktail.html#brandy
+- Breezers: https://namastekalyan.asianwokandgrill.in/cocktail.html#breezers
+- Bull Base Cocktail: https://namastekalyan.asianwokandgrill.in/cocktail.html#bull-base-cocktail
+- Dessert  Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#dessert-wine
+- Domestic Rum: https://namastekalyan.asianwokandgrill.in/cocktail.html#domestic-rum
+- Domestic Vodka: https://namastekalyan.asianwokandgrill.in/cocktail.html#domestic-vodka
+- Gin: https://namastekalyan.asianwokandgrill.in/cocktail.html#gin
+- Imported Vodka: https://namastekalyan.asianwokandgrill.in/cocktail.html#imported-vodka
+- Liit Long Glass: https://namastekalyan.asianwokandgrill.in/cocktail.html#liit-long-glass
+- Liquer: https://namastekalyan.asianwokandgrill.in/cocktail.html#liquer
+- Liqueurs: https://namastekalyan.asianwokandgrill.in/cocktail.html#liqueurs
+- Premium Whisky: https://namastekalyan.asianwokandgrill.in/cocktail.html#premium-whisky
+- Red Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#red-wine
+- Rose Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#rose-wine
+- Sangria: https://namastekalyan.asianwokandgrill.in/cocktail.html#sangria
+- Scotch Whisky: https://namastekalyan.asianwokandgrill.in/cocktail.html#scotch-whisky
+- Shots: https://namastekalyan.asianwokandgrill.in/cocktail.html#shots
+- Single Malt: https://namastekalyan.asianwokandgrill.in/cocktail.html#single-malt
+- Sparkling Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#sparkling-wine
+- Special Modern Mixology: https://namastekalyan.asianwokandgrill.in/cocktail.html#special-modern-mixology
+- Tequila: https://namastekalyan.asianwokandgrill.in/cocktail.html#tequila
+- White Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#white-wine
+
+COLLABORATION / SERVICE INQUIRY HANDLING
+Use this when user wants to collaborate, perform/sing, do digital marketing, sell services, or influencer tie-up.
+Step 1: Acknowledge politely and appreciate interest.
+Step 2: Ask for qualification details (one concise checklist):
+- Full name and city
+- Instagram/profile or company website link
+- Service category (creator/reels/performance/marketing/photography/other)
+- Past work links (2-3 examples)
+- Audience details or local relevance (Kalyan/Mumbai reach)
+- Deliverables and expected output
+- Commercials (budget/rates) and timeline
+- Why this collaboration helps Namaste Kalyan specifically
+LOST & FOUND / MISSING BELONGINGS HANDLING
+Use this for messages like: lost gold chain, lost wallet, misplaced phone, missing valuables, no response from property calls.
+Step 1: Start with empathy and urgency acknowledgment.
+Step 2: Capture incident details in one concise list:
+- Date and approximate time of visit
+- Table number/area if known
+- Item lost (short description)
+- Contact number for callback
+- Any previous call attempt details
+Step 3: Escalate immediately to lost-and-found manager:
+- Mr. Sagar: +91 77440 12751
+Step 4: Confirm handoff: We have shared your case with management for immediate callback.
+Step 5: Do not promise recovery. Use: We will try our best and get back to you as soon as possible.
+
+Step 3: If details look relevant and complete, share business contact:
+- Mr. Kunal: +91 88795 91324
+Step 4: If not relevant yet, reply politely: Please share the above details first for internal review.
+
+फूड मेन्यू (AWGNK MENU) - विभागनिहाय
+
+#all-time-favourite
+==============================
+विभाग: All Time Favourite
+==============================
+- Item: Bull Basil Mojito
+  वर्णन: Refreshing Basil Mojito With Red Bull
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349
+
+- Item: Fruit Punch
+  वर्णन: Seasonal Fruit, Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 269
+
+- Item: V.Pinacolada
+  वर्णन: Pineapple Juice, Vanilla Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 269
+
+- Item: V.Mojito
+  वर्णन: Mint Leaves, Lemon Wedges, Ice And Sprite
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Blue Lagoon
+  वर्णन: Blue Curaco Syrup, Lemon Juice, Sprite
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Shirley Temple
+  वर्णन: Lime Juice,Giner Ale, Granadine Tooped With Ice And Soda
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Cold Coffee
+  वर्णन: Coffee, Ice Cream, Milk
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 239
+
+
+#bao
+==============================
+विभाग: Bao
+==============================
+- Item: Fire Cracker Bao
+  वर्णन: Finger Cottage Cheese ,Chilli Pest,Wrap With Thred Wontan
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379 | Jain: 379
+
+- Item: Tempura
+  वर्णन: Deep Fried Exotic Vegetable, Tempura In Light Crispy  Battered Served With  Chilli Mayo Deep
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Chilli Bao
+  वर्णन: Cottage Cheese / Chilli Chicken , Bell Paper ,Spring Onion & Corinder
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 429
+  किंमत/व्हेरिएंट: Veg: 379 | Chicken: 429
+
+- Item: Sriracha Prawn Bao
+  वर्णन: Fried Prawns ,Siracha Sauces , Spring Onion Served With Chilli Mayo Suces
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 479
+  किंमत/व्हेरिएंट: Prawns: 479
+
+- Item: Stuffed Bao
+  वर्णन: Stuffed With Mushroom , Bell Pepper, Spring Onion &Carrot
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 429
+  किंमत/व्हेरिएंट: Veg: 379 | Chicken: 429
+
+- Item: Curried Chicken
+  वर्णन: Steamed Bao Served With Flavouered Chicken & Chilly Mayo Deep
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 429
+  किंमत/व्हेरिएंट: Chicken: 429
+
+- Item: Butter Chicken Bao
+  वर्णन: Steamed Bao Served With Flavouered Chicken & Chilly Mayo Deep
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 429
+  किंमत/व्हेरिएंट: Chicken: 429
+
+
+#bowls
+==============================
+विभाग: Bowls
+==============================
+- Item: Thukpa
+  वर्णन: Tibetan Flavour Broth Mixed In Homemade Flat Noodles, Exotic Vegetable, Tomato & Chilli’S.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 559 | Basa: 649 | Prawns: 609
+  किंमत/व्हेरिएंट: Veg: 509 | Chicken: 559 | Basa: 649 | Prawns: 609
+
+- Item: Laksa
+  वर्णन: Rice Noodles Mixed In Curry Paste, Pok Choy, Coconut Milk & Curry Oil.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 559 | Basa: 649 | Prawns: 609
+  किंमत/व्हेरिएंट: Chicken: 559 | Basa: 649 | Prawns: 609
+
+- Item: Khow Suey
+  वर्णन: Classic Burmese Curried Noodle Dish Eaten With Condiments Like Tofu, Fried Peanuts,Fried Shallots, Crispy Fried Noodles & Lime.,
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 649 | Basa: 699 | Prawns: 699
+  किंमत/व्हेरिएंट: Veg: 599 | Chicken: 649 | Basa: 699 | Prawns: 699
+
+- Item: Asian Noodles
+  वर्णन: Chicken Meat Ball, Exotic Vegetable, Ginger, Garlic & Vermicelli Noodles.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 559
+  किंमत/व्हेरिएंट: Chicken: 559
+
+- Item: Ramen Bowl
+  वर्णन: One Of The Variety Types Of Noodles With Combination Of Rich Flavoured Broth Along With Vtopped With Boiled Egg & Baby Pok Choy.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 549 | Basa: 669
+  किंमत/व्हेरिएंट: Veg: 529 | Chicken: 549 | Basa: 669
+
+
+#breads
+==============================
+विभाग: Breads
+==============================
+- Item: Tandoori Roti
+  वर्णन: Tandoori Cooked Whole Wheat Bread.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 49 | Butter: 64
+
+- Item: Naan
+  वर्णन: Tandoori Cooked Giant Refined Flour Bread.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 89 | Butter: 104
+
+- Item: Roomali Roti
+  वर्णन: Paper-Thin Refined Flour Bread
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Butter: 129
+
+- Item: Warqi Paratha
+  वर्णन: Rich Flex Refined Flour Bread, Brushed With Clarified Butter
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Butter: 109
+
+- Item: Lachcha Paratha
+  वर्णन: Whole Wheat Lacchadar Paratha Cooked In Clay Oven.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 99 | Butter: 114
+
+- Item: Garlic Naan
+  वर्णन: Indian Bread Topped With  Garlic
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 149 | Butter: 164
+
+- Item: Missi Roti
+  वर्णन: Made With A Mix Of Whole Wheat Flour, Gram Flour & Spices.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 99 | Butter: 114
+
+- Item: Kulcha
+  वर्णन: Bread With Appetizing Aroma & Mild Flavour Of Nigella Seeds.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 99 | Butter: 114
+
+- Item: Stuffed Paratha(Aloo/Gobi/Mint/Methi/Ajwain)
+  वर्णन: ( Aloo / Gobi / Mint / Methi / Ajwain )
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 189 | Butter: 204
+
+- Item: Onion Garlic Kulcha
+  वर्णन: Traditional Indian Flatbread Made With Flour Garlic & Onion Toppings.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 169 | Butter: 184
+
+- Item: Afgani Naan
+  वर्णन: Crispy Puff Naan Served With Dry Fruit.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 179 | Butter: 194
+
+- Item: Malabar Paratha
+  वर्णन: Tindian Which Is Very Common In Kerala & Tamil Nadu.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 99 | Butter: 114
+
+- Item: Cheese Garlic Naan
+  वर्णन: Indian Bread Topped With Garlic & Cheese.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 179 | Butter: 194
+
+- Item: Har Mirch Ka Paratha
+  वर्णन: Soft And Delicious Leavened Fine Flour/Whole Wheat Bread With A Delightful Filling Of Chillies And Finely Chopped Garlic
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 129 | Butter: 144
+
+- Item: Lal Mirch Ka Paratha
+  वर्णन: Whole Wheat Bread With A Delightful Filling Of Chillies And Finely Chopped Garlic
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 129 | Butter: 144
+
+- Item: Olive Naan
+  वर्णन: Soft And Delicious Leavened Fine Flour
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 179 | Butter: 194
+
+- Item: Olive Paratha
+  वर्णन: Whole Wheat Bread With Stuffing Of Finely Chopped Green Olives
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 179 | Butter: 194
+
+- Item: Makkai Ki Roti
+  वर्णन: Corn-Based Unleavened Flatbreads Are Delicious, Slightly Sweet From The Maize Flour, Especially Served With Sarson Ka Saag.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Plain: 109 | Butter: 124
+
+- Item: Assorted Bread Basket
+  वर्णन: Assorted Tandoori Breads 7 Types
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Butter: 479
+
+
+#chicken-wings
+==============================
+विभाग: Chicken Wings
+==============================
+- Item: Drums Of Heaven Fry
+  वर्णन: Chicken Lollypop Tossed In Sweet & Spicy Sauce.(Fried
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Mild Sweet
+  नॉनवेज सोर्स: Chicken: 449
+  किंमत/व्हेरिएंट: Chicken: 449
+
+- Item: Drums Of Heaven Toasted
+  वर्णन: Chicken Lollypop Tossed In Sweet & Spicy Sauce. Tossed)
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Mild Sweet
+  नॉनवेज सोर्स: Chicken: 449
+  किंमत/व्हेरिएंट: Chicken: 449
+
+- Item: Barbeqe
+  वर्णन: Chicken Wings Marinated Withgarlic, Homemade Barbaque Sauces Topped With Spring Onion
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Mild Sweet
+  नॉनवेज सोर्स: Chicken: 449
+  किंमत/व्हेरिएंट: Chicken: 449
+
+- Item: Hong Kong Style
+  वर्णन: Deep Fried Chicken Wings Tossed With Garlic , Green Onion & Hong Kong  Paste
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Mild Sweet
+  नॉनवेज सोर्स: Chicken: 449
+  किंमत/व्हेरिएंट: Chicken: 449
+
+- Item: Korean
+  वर्णन: Deep Fried Chicken Wings Tossed With Garlic , Green Onion &Korean Paste
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 449
+  किंमत/व्हेरिएंट: Chicken: 449
+
+
+#cold-ones
+==============================
+विभाग: Cold Ones
+==============================
+- Item: Aerated Float
+  वर्णन: Ice Cream & Aerated Drink
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 179
+
+- Item: Red Bull
+  वर्णन: Energy Drink
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 239
+
+- Item: Bull Float
+  वर्णन: Red Bull & Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299
+
+- Item: Aerated Drinks (600 Ml)
+  वर्णन: Coke , Sprite , Thums Up
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 129
+
+- Item: Aerated Drinks Can
+  वर्णन: Coke, Sprite , Thmsup , Ginger Ale, Tonic Water
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 99
+
+- Item: Fresh Lime Water
+  वर्णन: Lime Juice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 129
+
+- Item: Masala Cola
+  वर्णन: Lime Juice , Masala ,
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 139
+
+- Item: Fresh Lime Soda
+  वर्णन: Lime Juice ,Simple Syrup
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 129
+
+- Item: Jaljeera Soda
+  वर्णन: Jaljeera ,Soda , Simple Syrup
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 129
+
+- Item: Jaljeera Water
+  वर्णन: Jaljeera ,Water , Simple Syrup
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 129
+
+- Item: Canned Juice(300 Ml)
+  वर्णन: Mango ,  Guava , Orange , Cranbeery , Pinapple
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 159
+
+- Item: Soda(750 Ml)
+  वर्णन: Description not available.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 79
+
+- Item: Ginger Ale
+  वर्णन: Description not available.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 149
+
+- Item: Tonic Water
+  वर्णन: Description not available.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 149
+
+- Item: Lassi
+  वर्णन: Choice Of Kesar Elaichi/Mango/Gulkand/Sweet
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 189
+
+- Item: Butter Milk  Masala
+  वर्णन: Chat Masala , Corinder ,Chilli ,Milk
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 139
+
+- Item: Butter Milk Plain
+  वर्णन: Corinder ,Chilli ,Milk
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 139
+
+- Item: Bottled Water
+  वर्णन: Description not available.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Not specified
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 39
+
+
+#crackers---dahi
+==============================
+विभाग: Crackers & Dahi
+==============================
+- Item: Crackers
+  वर्णन: A Thin, Crisp Disc-Shaped Indian Cracker,From Urad Flour, Fry2Pieces
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 89
+
+- Item: Urad Papad
+  वर्णन: A Thin, Crisp Disc-Shaped Indian Cracker,From Urad Flour, Roasted- 2Pieces
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 89 | Jain: 89
+
+- Item: Nagli Papad
+  वर्णन: A Thin, Round Shape Seasoned Doughmade From Nachni Flour, - 2Pieces
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 109 | Jain: 109
+
+- Item: Masla Papad
+  वर्णन: Delicious Thin Roasted Or Fried Papad Topped With A Tangy & Spicy Onion, Tomato Mix,
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 169 | Jain: 169
+
+- Item: Sindhi Papad
+  वर्णन: Papad Of Urad Dal Flavoured Witha Blend Of Spices, Black Pepper & Salt.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199
+
+- Item: Pineapple Raita
+  वर्णन: Tangy & Sweet Pineapple
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199 | Jain: 199
+
+- Item: Boondi Raita
+  वर्णन: Boondi Combine With Whisked Curd & Spicy Powder.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199 | Jain: 199
+
+- Item: Mix Fruit Raita
+  वर्णन: Finely Chopped Seasonal Fresh Fruit, Sweet Curd & Relish.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199 | Jain: 199
+
+- Item: Plain Dahi
+  वर्णन: Home Style Full Cream Yougurt.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 149 | Jain: 149
+
+
+#curries
+==============================
+विभाग: Curries
+==============================
+- Item: Kari Kapitan
+  वर्णन: Malaysian Curry Cooked In Coconut Milk & Kari Spice & Shallot. Served With Steamed Rice
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 549 | Basa: 599 | Prawns: 699
+  किंमत/व्हेरिएंट: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+
+- Item: Kaeng Phet
+  वर्णन: Thai Red Curry With Pea Aubergines, Hot Basil & Fresh Red Chilli.Served With Steamed Rice
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 549 | Basa: 599 | Prawns: 699
+  किंमत/व्हेरिएंट: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+
+- Item: Gaeng Kiew Wan
+  वर्णन: Thai Green Curry With Pea Aubergines, Hot Basil & Coconut Milk.Served With Steamed Rice
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 549 | Basa: 599 | Prawns: 699
+  किंमत/व्हेरिएंट: Veg: 499 | Chicken: 549 | Basa: 599 | Prawns: 699
+
+- Item: Shrimp& Mushroom Thai Red Curry
+  वर्णन: Thai Green Curry With Pea Aubergines, Hot Basil & Coconut Milk. Served With Steamed Rice
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 599
+  किंमत/व्हेरिएंट: Prawns: 599
+
+
+#dal-wali-gali
+==============================
+विभाग: Dal Wali Gali
+==============================
+- Item: Dal Tadka
+  वर्णन: Yellow Lentil Tempered With Cumin Seeds, Onions & Tomatoes With Tadka
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249
+
+- Item: Dal Fry
+  वर्णन: Yellow Lentil Tempered With Cumin Seeds, Onions & Tomatoes.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249
+
+- Item: Dal Panchmel
+  वर्णन: Also Known As Panchratna Dal Is Of5 Different Lentils Or Dals. Healthy & Nutritious
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329
+
+- Item: Dal Makhan Wali
+  वर्णन: Overnight Cooked Black Lentils, Flavoured With Fenugreek Dust & Enriched With Fresh Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Punjabi Kadhi
+  वर्णन: North Indian Speciality Kadhi Served With Pakodas.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299 | Jain: 299
+
+- Item: Dal Palak
+  वर्णन: Yellow Lentil Temped With Cumin Seeds, Onion & Tomatoes Palak
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299 | Jain: 299
+
+- Item: Dal Methi
+  वर्णन: Yellow Lentil Temped With Cumin Seeds, Onion & Tomatoes Methi.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299 | Jain: 299
+
+
+#deep-fry
+==============================
+विभाग: Deep Fry
+==============================
+- Item: Corn Cheese Balls
+  वर्णन: Corn Kernels, Fresh Red Chilli, Stuffed Cheese Coated With Panko Served With Thai Sweet Chilli
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 359
+
+- Item: Japanese Korokke
+  वर्णन: Smashed Potato, Mozzarella & Soft Cheese, Coatd With Panko Served With Chilli Mayo Deep
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Veg: 359 | Chicken: 479
+
+- Item: Tempura
+  वर्णन: Deep Fried Exotic Vegetable, /Prawns Tempura In Light Crispy  Battered Served With  Chilli Mayo Deep
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 609
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429 | Prawns: 609
+
+- Item: Chow;S Finger Chips
+  वर्णन: Potato Tossed With Garlic,Scaillian, Fresh Red & Green Chilli , Spring Onion & Black Papper.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Cheese Finger Chips
+  वर्णन: Potato Dices
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Peri Peri Chips
+  वर्णन: Peri Peri Masala With Potato Dices
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Chinese Fried
+  वर्णन: Leg Boneless Chicken Marinated With Ginger , Garlic, Soya Sauces, & Deep Fried Served With French Fries &Mayo
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 489
+  किंमत/व्हेरिएंट: Chicken: 489
+
+
+#dessert
+==============================
+विभाग: Dessert
+==============================
+- Item: Fried Ice Cream
+  वर्णन: Vanilla Ice Cream Stuffed In Choco Chips & Nuts Coated With Desiccated Coconut Powder, Served With Caramel Sauce.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249
+
+- Item: Gulab Jamun  With Ice Cream
+  वर्णन: Soft Milk Dumplings In Sugar Syrup With Vanilla Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249
+
+- Item: Crispy Honey Noodels With Ice Cream
+  वर्णन: Golden Fried Noodles Drizzled With Honey, Served With A Scoop Of Vanilla Ice Cream.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329 | Jain: 329
+
+- Item: Gajar Ka Halwa
+  वर्णन: Ghee-Roasted Fresh Carrot  Halwa With Vanilla Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329 | Jain: 329
+
+- Item: Chocolate Nutty Brownie Sizzler
+  वर्णन: Sizzling Brownie Served With Ice Cream Scoop & Chocolate Sauce.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329 | Jain: 329
+
+- Item: Blue Berry Cheese Cake
+  वर्णन: Philadelphia Cheese, Whipped Cream, Egg & Blueberry Fruit Filling.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: Egg: 379
+  किंमत/व्हेरिएंट: Egg: 379
+
+- Item: Fruit Platter
+  वर्णन: Seasonal Fresh Fruits.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249
+
+- Item: Choice If Ice Cream ( V/C/S/M/Bs)
+  वर्णन: Please Ask For The Flavoured Of Your Choice.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199 | Jain: 199
+
+- Item: Kulfi
+  वर्णन: Please Ask For The Flavoured Of Your Choice.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209 | Jain: 209
+
+- Item: Desseri Of The Day
+  वर्णन: Our Chef’S Special Dessert To End Your Meal On A Sweet Note
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Sweet
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 259 | Jain: 259
+
+
+#dimsum
+==============================
+विभाग: Dimsum
+==============================
+- Item: Asian Wok & Grill (6 Pcs)
+  वर्णन: Chef Special
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349
+
+- Item: Cottage Cheese & Broccoli
+  वर्णन: Ginger, Green Onian &Sesme Oil
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379
+
+- Item: Mushroom & Waterchestnut
+  वर्णन: Ginger, Garlic, Green Onion & Sesame Oil
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379
+
+- Item: Hot Basil
+  वर्णन: Basil,Fresh Red Chilli, Oyster Suces
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 399
+  किंमत/व्हेरिएंट: Chicken: 399
+
+- Item: Poached Beijing
+  वर्णन: Oyster Suces, Brunt Garlic , Pok Choy,Soya Suces
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 369
+  किंमत/व्हेरिएंट: Chicken: 369
+
+- Item: Suimai Dimsum
+  वर्णन: Thin Wonton Wrapped
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 429
+  किंमत/व्हेरिएंट: Veg: 379 | Chicken: 429
+
+- Item: Har Gao Dim Sum
+  वर्णन: Ginger,Garlic,& Sesame, Minced Prawns
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 509
+  किंमत/व्हेरिएंट: Basa: 509
+
+- Item: Sambal Dimsum
+  वर्णन: Samble Drressed Prawns ,Ginger, Garlic, Green Onion
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 509
+  किंमत/व्हेरिएंट: Basa: 509
+
+
+#fish-curry-specialities
+==============================
+विभाग: Fish Curry Specialities
+==============================
+- Item: Pomfret Masala
+  वर्णन: Pomfret  Masala Is A Spicy, Thick, Based Curry. Pomfret Is A Very Delicate, Fleshy, Tender & Tasty Fish
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Pomfret: 799
+  किंमत/व्हेरिएंट: Pomfret: 799
+
+- Item: Surmai Masala
+  वर्णन: Surmai Masala Is A Spicy, Thick, Based Curry. Pomfret Is A Very Delicate, Fleshy, Tender & Tasty Fish
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Surmai: 799
+  किंमत/व्हेरिएंट: Surmai: 799
+
+- Item: Fish Tikka Masala
+  वर्णन: Rich, Delicious, Zingy Dish That Is Full Of Flavour. Fish Is Marinated & Cooked In Tandoor. It Is Then Added To A Creamy Masala Sauce.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 629
+  किंमत/व्हेरिएंट: Basa: 629
+
+- Item: Prawns Hara Dhaniya
+  वर्णन: A Blender, Add The Coriander Leaves, Coconut, Ginger Paste, Garlic Paste & Green Chillies.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 749
+  किंमत/व्हेरिएंट: Prawns: 749
+
+- Item: Lobster Curry
+  वर्णन: Rich Flavours Of Delicious Lobster Curry Made With Coconut Milk, Giving You Taste Of The Coast
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Price not listed; please ask waiter.
+
+- Item: Crab Masala
+  वर्णन: Marinated Tandoori Crab Added Into The Masala & Cooked Together, Crab Also Called Nandu In Tamil & Great To Have With Plain Rice.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Price not listed; please ask waiter.
+  टीप: Crab price is not fixed. Please ask waiter for current price.
+
+- Item: Jhinga Masaleder
+  वर्णन: Prawns Cooked In A Spicy Indian Curry
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 749
+  किंमत/व्हेरिएंट: Prawns: 749
+
+- Item: Prawns Chettinad
+  वर्णन: A Finger-Licking Good South Indian Style Prawn Curry. It Is Spicy, Bold & Perfect Curry To Serve With Malabar Paratha.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 749
+  किंमत/व्हेरिएंट: Prawns: 749
+
+
+#from-the-grill
+==============================
+विभाग: From The Grill
+==============================
+- Item: Corn Cheese & Water Chestnut
+  वर्णन: Mixed With Ginger, Garlic,Fresh Red Chilli, Seasoning & Grilled.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 389
+
+- Item: Assorted Mushroom
+  वर्णन: Shiitake Mushroom Marinade In Oriental Spices & Grilled, Served With Lettuce Salad.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 469
+
+- Item: Asian Barbeque
+  वर्णन: Leg Chicken Marinade In Ginger, Garlic Chilli , Soya Sauce, Served With Spicy Barbeque Sauce.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Veg: 449 | Chicken: 499
+
+- Item: Lemongrass
+  वर्णन: Leg Chicken Marinade In Lemon Grass, Fresh Chilli, Minced Garlic, Fish Sauce, Soya Sauce, Lime Juice Served With Lettuce Salad.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 429
+  किंमत/व्हेरिएंट: Chicken: 429
+
+- Item: Sriracha
+  वर्णन: Leg Chicken Marinade In Siracha Sauces, Fresh Chilli, Minced Garlic, Fish Sauce, Soya Sauce, Lime Juice Served With Lettuce Salad.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Price not listed; please ask waiter.
+
+- Item: Chilli Basil
+  वर्णन: Prawns Marinade In Fresh Red Chilli, Hot Basil Paste, Fish Sauce, Served With Homemade Salad.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499 | Prawns: 539
+  किंमत/व्हेरिएंट: Chicken: 499 | Prawns: 539
+
+- Item: Lemongrass Pomfret
+  वर्णन: Fish Marinated With Light Soya,Ginger Garlic Paste And Grilled With Spicy Lemon Grass Sauce And Served With Lettuce Salads
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Surmai: 799 | Pomfret: 799
+  किंमत/व्हेरिएंट: Surmai: 799 | Pomfret: 799
+
+- Item: Pan Fried Chilli
+  वर्णन: Fish, Marinade In Ginger, Garlic,Chilli Oil Served With Homemade Salad.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 439 | Surmai: 749 | Pomfret: 799
+  किंमत/व्हेरिएंट: Basa: 439 | Surmai: 749 | Pomfret: 799
+
+
+#ghosht-curry-specialities
+==============================
+विभाग: Ghosht Curry Specialities
+==============================
+- Item: Mutton Mataha
+  वर्णन: Lamb Cooked In Local Style.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 599
+  किंमत/व्हेरिएंट: Mutton: 599
+
+- Item: Deo Gosht
+  वर्णन: Lamb Cooked In Mild Spiced With Freshly Pursed Spinach & Fenugreek.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 609
+  किंमत/व्हेरिएंट: Mutton: 609
+
+- Item: Kashmiri Rogan Josh
+  वर्णन: Tender Lamb Cooked With Traditional Herbs & Youghurt.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 629
+  किंमत/व्हेरिएंट: Mutton: 629
+
+- Item: Bhuna Mitton Chaap
+  वर्णन: Indian Spice Marinated Mutton Chaap Cooked With Red & Green Bell Pepper, Finish With Shredded Ginger.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 659
+  किंमत/व्हेरिएंट: Mutton: 659
+
+- Item: Gosht Khada Masala
+  वर्णन: Tender Lamb On Bone Cooked With Whole Spices.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 609
+  किंमत/व्हेरिएंट: Mutton: 609
+
+- Item: Keema Muttar
+  वर्णन: A Minced Mutton & Green Peas Delicacy Stewed With Indian Spices In Brown Gravy
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 579
+  किंमत/व्हेरिएंट: Mutton: 579
+
+- Item: Keema Muttar Masala
+  वर्णन: A Minced Mutton & Green Peas Delicacy Stewed With Indian Spices In Brown Gravy
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 579
+  किंमत/व्हेरिएंट: Mutton: 579
+
+- Item: Bhuna Mitton  Pepper Fry
+  वर्णन: Indian Spice Marinated Mutton Cooked With Red & Green Bell Pepper.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 629
+  किंमत/व्हेरिएंट: Mutton: 629
+
+
+#iced-tea
+==============================
+विभाग: Iced Tea
+==============================
+- Item: Classic
+  वर्णन: Lemon Ice Tea
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209
+
+- Item: Black Current
+  वर्णन: Black Current Crush , Tea Concotion , Lime Juice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209
+
+- Item: Strawberry & Peach
+  वर्णन: Strawberry & Peach  Crush , Tea Concotion, Lime Juice & Simple Syrup
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209
+
+- Item: Orange &Peach Apricot
+  वर्णन: Orange & Peach Apricot Crush , Tea Concotion, Lime Juice & Simple Syrup
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209
+
+- Item: Yuzu & Mint
+  वर्णन: Yuzu & Mint Crush , Lime Juuce ,
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+
+#icy-virgin-margaritas
+==============================
+विभाग: Icy Virgin Margaritas
+==============================
+- Item: Strwberry & Mango Slushie
+  वर्णन: Strawberry Crush, Mango Crush, Ice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 269
+
+- Item: Peach & Mint Slushie
+  वर्णन: Peach And Mint, Ice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 279
+
+- Item: Spicy Blackcurrent Sluhie
+  वर्णन: Blackcurrant Crush, Chilli, Ice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 259
+
+- Item: Litchi & Dragoan Fruit Slushie
+  वर्णन: Litchi Crush, Dragan Fruit, Ice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 259
+
+- Item: Rose Gulkand Slushie
+  वर्णन: Rose Gulkand Syrup, Ice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 279
+
+
+#indian-mains-bageeche-se
+==============================
+विभाग: Indian Mains Bageeche Se
+==============================
+- Item: Punjabi Style Paneer Tikka Masala
+  वर्णन: Cottage Cheese Tikka With Yoghurt With Onion, Tomato & Capsicum.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 469 | Jain: 469
+
+- Item: Paneer Amiritsari
+  वर्णन: Cottage Cheese, Onions, Ginger, Garlic, Garam Masala, Tandoori Masala In Punjabi Or Lahori Style.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479
+
+- Item: Paneer Lahori
+  वर्णन: Cottage Cheese, Onions, Ginger, Garlic, Garam Masala,  Cshwnut Gruey Finish With Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479
+
+- Item: Desi Paneer Bhurji
+  वर्णन: Chopped Onion , Tomato, Chilli With Indian Spicese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 459 | Jain: 459
+
+- Item: Paneer Lababadar
+  वर्णन: Cottage Cheese In A Creamy, Mildly Tangy & Faintly Sweet Gravy. Onions, Tomatoes,Cottage Cheese In A Creamy, Mildly Tangy & Faintly Sweet Gravy. Onions, Tomatoes,
+Cashews & Spices Make This A Rich, Flavourful & Delicious.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 459 | Jain: 459
+
+- Item: Paneer Makhani
+  वर्णन: Cottage Cheese In A Creamy Greavy Finish With Cream And Butter 
+Cashews & Spices Make This A Rich, Flavourful & Delicious.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 459 | Jain: 459
+
+- Item: Paneer Mirch Masala
+  वर्णन: Cottage Cheese Cooked In Kadai In Rich Spiced Masala Crowded Cream.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 439
+
+- Item: Palak Paneer
+  वर्णन: Cottage Cheese Cooked In Palak Pest With Indian Spice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 439 | Jain: 439
+
+- Item: Paneer Kasturi
+  वर्णन: Diced Of Cottage Cheese Cooked With Red & Yellow Rich Gravy Flavoured With Kasturi Methi.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 449 | Jain: 449
+
+- Item: Paneer Do-Pyaza
+  वर्णन: A Rich, Creamy Curry Of Paneer & Plenty Of Onions In A Wonderful Medley Of Spices, Herbs & Tomatoes.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 449
+
+- Item: Paneer Kadhi
+  वर्णन: A Rich, Creamy Curry Of Paneer & Plenty Of Onions In A Wonderful Medley Of Spices, Herbs & Tomatoes.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 449
+
+- Item: Paneer Hand
+  वर्णन: Panner Cooked On A Low Flame For A Long Time, Handi Is A Hindi Word For An Earthen Pot.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 449 | Jain: 449
+
+- Item: Malai Kofta
+  वर्णन: Creamy Cottage Cheese Cooked In Cashewnut Gravy
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 459 | Jain: 459
+
+- Item: Paneer Angara
+  वर्णन: An Exotic Smokey Flavour. It Is Prepared With The Help Of A Coal & Smoke Cooking Helps To Enhance Its Taste.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 479
+
+- Item: Paneer Pasanda
+  वर्णन: Paneer Pasanda Is A Rich & Delicious Dish Of Shallow Fried Stuffed Paneer Sandwiches Smooth Tomato Cashw Greavy
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 469 | Jain: 469
+
+- Item: Shahi Paneer
+  वर्णन: Cottage Cheese Cooked In Rich Cashwnut Gruevy  Finished With Cream N Butter
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 469 | Jain: 469
+
+- Item: Banarasi Kofta Curry
+  वर्णन: Traditional Banarasi Kofta In Nawabi Style.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Methi Matar Malai
+  वर्णन: Cottage Cheese, Matar & Methi Cooked In Rich Muglai Style.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429
+
+- Item: Methi Matar Masala
+  वर्णन: Matar & Methi Cooked In Rich Muglai Style.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429
+
+- Item: Tandoori Dhingri Masala
+  वर्णन: Mushroom Marinated In Tandoori Masala & Cooked In Spice Indian Gravy.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 409 | Jain: 409
+
+- Item: Maratha Vegetable Kofta Curry
+  वर्णन: Vegetable Dumpling Served In Black Gravy.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 389
+
+- Item: Masala Wangi
+  वर्णन: Indian Seasoning Brinjal Served In Maharashtraian Style.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379
+
+- Item: Sarso Ka Saag (Seasonal)
+  वर्णन: Traditional Punjabi Dish Made Of Mustard Leaf & Spice.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429
+
+- Item: Veg Khurchan
+  वर्णन: Mixed Vegetable Cooked With Mustard Capsicum With Cream.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 399 | Jain: 399
+
+- Item: Navratna Kprma
+  वर्णन: Nine Types Of Assorted Vegetables, Gently Cooked In Creamy Rich Korma Greavy
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 409 | Jain: 409
+
+- Item: Tawa Sabzi
+  वर्णन: Assorted Vegetables Cooked On Tawa.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369
+
+- Item: Aloo Gobi Matar
+  वर्णन: A Curry Recipe With A Base Of Onion-Tomato Gravy With These Vegetables
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349
+
+- Item: Aloo Matar
+  वर्णन: Potato, Green Pices Cooked In Tomato Gravy Mixed With Indian Spices
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349
+
+- Item: Sev Bhaji
+  वर्णन: Combination Of Spicy Gathiya & Curry From Khandeshi Kala Masala.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299
+
+- Item: Jeera Aloo
+  वर्णन: Boiled Potato Tossed With Cumin Seedes And Inndian Spicese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299
+
+- Item: Bhindi Kurkuri
+  वर्णन: A Spicy, Tasty & Super Crispy Fries Made With Tender Okra Pods Or Ladies Fingergram Flour & Spices.,
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339 | Jain: 339
+
+- Item: Bhindi Masala
+  वर्णन: A Spicy, Tasty & Super Crispy Fries Made With Tender Okra Pods Or Ladies Fingergram Flour & Spices.,
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339 | Jain: 339
+
+- Item: Veg Kolhapuri
+  वर्णन: A Classic Maharashtrian Dish Of Fresh Vegetables In A Bold Kolhapuri Spice Blend, Perfectly Balancing Heat And Flavour.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369
+
+- Item: Diwani Handi
+  वर्णन: A Royal Mix Of Fresh Vegetables In A Rich Cashew-Tomato Gravy, Infused With Spices And Finished With A Touch Of Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 449 | Jain: 449
+
+- Item: Namaste Kalyan Special Veg
+  वर्णन: Namaste Kalyan Chef Special With Lot Of Vegetable Comes With Butter Gravy & Hariyali Style
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 489
+
+- Item: Veg Kadai
+  वर्णन: Fresh Vegetables In A Rich Tomato-Onion Gravy, Spiced With Rustic Kadai Masala.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 449
+
+- Item: Veg Patiala
+  वर्णन: Spiced Vegetable Koftas In A Rich Tomato-Cashew Gravy, Infused With Aromatic Spices For A Royal Taste.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369 | Jain: 369
+
+- Item: Lasooni Palak
+  वर्णन: Smooth Spinach Purée Tempered With Golden Garlic For A Wholesome Delicacy
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369
+
+- Item: Lasooni Methi
+  वर्णन: Smooth Spinach Purée Tempered With Golden Garlic For A Wholesome
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369
+
+- Item: Veg Haryali
+  वर्णन: A Medley Of Vegetables In A Spinach, Coriander, And Mint Gravy, Delicately Spiced For A Fresh Finish.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369 | Jain: 369
+
+- Item: Mushroom Tikka Masala
+  वर्णन: Char-Grilled Mushrooms In A Rich Spiced Tomato-Cashew Gravy With A Velvety Finish
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369
+
+- Item: Mix Veg
+  वर्णन: Seasonal Vegetables In A Mildly Spiced, Flavorful Gravy For A Wholesome Delight
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369 | Jain: 369
+
+
+#koyle-ka-kamal
+==============================
+विभाग: Koyle Ka Kamal
+==============================
+- Item: Methi Mirchi Ka Paneer Tikka
+  वर्णन: Cottage Cheese Steaks Marinated In Spicy Fenugreek Flavoured Yoghurt, Cooked In Tandoor.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429
+
+- Item: Paneer Dohara Tikka
+  वर्णन: Two Different Flavoured Stuffed Paneer Tikka Cooked In Clay Oven.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Classic Paneer
+  वर्णन: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 399 | Jain: 399
+
+- Item: Paneer Tikka Achari
+  वर्णन: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate With Pickle
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 399
+
+- Item: Paneer Tikka Ajwain
+  वर्णन: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate With Ajwin
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 399 | Jain: 399
+
+- Item: Paneer Tikka Lasooni
+  वर्णन: All Time Favourite Chargrilled Dices Of Creamy Paneer In A Spicy Marinate Garlic
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 399
+
+- Item: Paneer Malai Kali Miri
+  वर्णन: Marinated Cottage Cheese With Black Pepper, Cheese & Yoghurt.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429
+
+- Item: Cheese Makai Seekh Kebab
+  वर्णन: Mildly Spiced Paneer, Cheese & American Corn Cooked In Clay Oven.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 359 | Jain: 359
+
+- Item: Veg Seekh
+  वर्णन: Minced Vegetables & Spices Are Shaped On Skewers, Cooked In Clay Oven & Served With Green Chutney.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Chilli Milli Seekh
+  वर्णन: Minced Vegetables & Spices Are Shaped On Skewers, Cooked In Clay Oven & Served With Green Chutney.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Soya Chaap Tikka
+  वर्णन: Spice-Marinated Soya Chaap Cooked In Tandoor
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339 | Jain: 339
+
+- Item: Ajwani Soya Chaap
+  वर्णन: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339 | Jain: 339
+
+- Item: Malai Soya Chaap
+  वर्णन: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339 | Jain: 339
+
+- Item: Pahadi Soya Chaap
+  वर्णन: Chaap Is A Delicious North Indian Starter, Soya Chaap Is Then Marinated With Spices, Then Cooked In Tandoor.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339
+
+- Item: Subz Shikampuri Kebab
+  वर्णन: Garden Fresh Vegetable Cutlets Stuffed With Mintly Onion Relish Deep Fried
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339 | Jain: 339
+
+- Item: Paneer Naram Dil Kebab
+  वर्णन: Minced Cottage Cheese & Green Peas Marinated In Indian Spice Deep Fry With Corn Flakes.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379
+
+- Item: Mushroom Ki Nazakat
+  वर्णन: Stuffed Button Mushrooms Marinated With Cheese & Coated Cream Glazed In Tandoor.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Mushroom & Babycorn Tikka
+  वर्णन: Mushroom & Babycorn Marinated In Tandoori Masala & Finished In Tandoor.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 399
+
+- Item: Veg.Cheese Crispy Rolls
+  वर्णन: Yummy & Stuffed Cheesy Rolls Filled With Healthy Vegetables.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369
+
+- Item: Assorted Tandoori Platter
+  वर्णन: Assortment Of Vegetables Cooking In Tandoor.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 999
+
+- Item: Murg Nazakat
+  वर्णन: Chicken Supremes Stuffed With Minced Chicken, Cheese With Mild Spices, Fragrant Mint Masala Paste.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 529
+  किंमत/व्हेरिएंट: Chicken: 529
+
+- Item: Murg Ke Sholey
+  वर्णन: Hot & Spicy Chicken Marinated In Indian Spices Finished In Tandoor.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+- Item: Sharabi Kebab
+  वर्णन: Hot & Spicy Chicken Marinated In Indian Spices Finished In Tandoor.Served Smooky With Rum
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 529
+  किंमत/व्हेरिएंट: Chicken: 529
+
+- Item: Murg Alishan Kebab
+  वर्णन: Morsels Of Chicken Marinated In Yoghurt &Beetroot Juice With Exotic Spices Grilled In Clay Oven.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 459
+  किंमत/व्हेरिएंट: Chicken: 459
+
+- Item: Tandoori Murgh  Half
+  वर्णन: Chicken Marinated In Yougurt, Tandoori Potli Masala, Cooked In Clay Oven.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Half: 439
+
+- Item: Tandoori Murgh Full
+  वर्णन: Chicken Marinated In Yougurt, Tandoori Potli Masala, Cooked In Clay Oven.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Full: 699
+
+- Item: Murgh Malai Tikka
+  वर्णन: Chicken Marinated With Hung Curd Cheese & Cashew Paste Served With Green Chutney.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Chicken: 479
+
+- Item: Kalmi Kebab
+  वर्णन: Gently Cooked Coriander,Mint & Chilli Marinated Chicken Legs.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 529
+  किंमत/व्हेरिएंट: Chicken: 529
+
+- Item: Classic Chiken Tikka
+  वर्णन: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Chicken: 479
+
+- Item: Classic Chiken Tikka Banjara
+  वर्णन: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked With Yellow Spice
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Chicken: 479
+
+- Item: Classic Chiken Tikka Pahadi
+  वर्णन: Boneless Chicken Pieces Are Marinated With Green Chutney  A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Chicken: 479
+
+- Item: Classic Chiken Tikka  Achri
+  वर्णन: Boneless Chicken Pieces Are Marinated With A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Chicken: 479
+
+- Item: Classic Chiken Tikka   Ajwain
+  वर्णन: Boneless Chicken Pieces Are Marinated Withajwin  A Spices & Then Grilled Until Nicely Cooked & Slightly Charred.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Chicken: 479
+
+- Item: Tandoori Chicken Platter
+  वर्णन: Assortment Of Five Of The Choicest Kebabs (18 Pieces).
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 1199
+  किंमत/व्हेरिएंट: Chicken: 1199
+
+- Item: Methi Mirch Ka Chicken Tikka
+  वर्णन: Boneless Chicken Marinated With Fresh Mint & Green Pepper & Indian
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 459
+  किंमत/व्हेरिएंट: Chicken: 459
+
+- Item: Murgh Galafi Seekh
+  वर्णन: Marinated Chicken Minced Placed Over A Skewers In Cylindrical Shape Covering With Chopped Vegetables.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 459
+  किंमत/व्हेरिएंट: Chicken: 459
+
+- Item: Chicken Rolly Kebab
+  वर्णन: Miced Chicken Stuffed With A Egg And Cooked In Tandoor
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 489
+  किंमत/व्हेरिएंट: Chicken: 489
+
+- Item: Muttan Lahori Seekh Kebaba
+  वर्णन: Divine Skewers Of Kid Spiced With Cardamon,Clove, Cinamon & Enriched With Nuts.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 599
+  किंमत/व्हेरिएंट: Mutton: 599
+
+- Item: Tunda Kebeb
+  वर्णन: Minced Of Tender Lamb Marinated With Chopped Onion, Spice & Cooked Shallow Fried.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 609
+  किंमत/व्हेरिएंट: Mutton: 609
+
+- Item: Mutton Boti Kebeb
+  वर्णन: Cubed Mutton Pieces, Which Are Marinated With In Green Chilli, Garlic, Garam Masala & Red Chilli & Finished In Tandoor.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 589
+  किंमत/व्हेरिएंट: Mutton: 589
+
+- Item: Hariyali Pomfret
+  वर्णन: Fresh Pomfret  Marinated In Lemon Coriander & Mint Chutney Cooked In Tandoor.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Pomfret: 789
+  किंमत/व्हेरिएंट: Pomfret: 789
+
+- Item: Hariyali Surmai
+  वर्णन: Surmai, Marinated In Lemon Coriander & Mint Chutney Cooked In Tandoor.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Surmai: 759
+  किंमत/व्हेरिएंट: Surmai: 759
+
+- Item: Samundar Ki Shaan
+  वर्णन: Tandoori Pomfret.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Pomfret: 789
+  किंमत/व्हेरिएंट: Pomfret: 789
+
+- Item: Jheenga Dum Ajwain
+  वर्णन: Carom Seeds & Tandoori Masala, Fresh Prawns Cooked In Clay Oven.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 789
+  किंमत/व्हेरिएंट: Prawns: 789
+
+- Item: Classic Fish Tikka
+  वर्णन: Chunks Of Fish Marinated With Spicy Yougurt Flavour With Carom
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 559
+  किंमत/व्हेरिएंट: Basa: 559
+
+- Item: Classic Fish Tikka Ajwain
+  वर्णन: Chunks Of Fish Marinated With Ajwin N  Yougurt Flavour With Carom
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 559
+  किंमत/व्हेरिएंट: Basa: 559
+
+- Item: Mahi Curry Patta Surmai
+  वर्णन: Fish Marinated In South Curry Leaves & Spices, Cooked In Tandoor
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Surmai: 759
+  किंमत/व्हेरिएंट: Surmai: 759
+
+- Item: Mahi Curry Patta Basa
+  वर्णन: Fish Marinated In South Curry Leaves & Spices, Cooked In Tandoor
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 559
+  किंमत/व्हेरिएंट: Basa: 559
+
+- Item: Crab Tikka
+  वर्णन: Crab Marinated With A Spices & Then Grilled Until Nicely Cooked &Slightly Charred.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Crab: Ask
+  किंमत/व्हेरिएंट: Crab: Ask
+
+- Item: Tandoori Platter Non Veg
+  वर्णन: Assortment Of Chicken, Mutton,
+ 
+Fish & Prawns Cooked In Clay Oven (22 Pieces)
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 1899
+  किंमत/व्हेरिएंट: Chicken: 1899
+
+
+#lemonades
+==============================
+विभाग: Lemonades
+==============================
+- Item: Blue Litchi & Coconut
+  वर्णन: Litchi Crush, Blue Curacao Syrup, Coconut Syrup
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Blueberry & Basil
+  वर्णन: Blueberry Crush, Basil Leaves, Lime Juice, Sprite
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Passion , Rosemary &Chilli
+  वर्णन: Passion Fruit Puree, Rosemary, Green Chilli, Sprite
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Cucumber & Strawberry
+  वर्णन: Curry Leaves, Cucumber Syrup, Lemon, Sprite
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Cucumber & Curry Leaf
+  वर्णन: Cucumber Syrup, Lemon Juice, Sprite , Curry Leaf
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Cucumber Lime Refresher
+  वर्णन: Cucumber Syrup, Lemon Juice, Sprite .
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199
+
+
+#lettuce-cups
+==============================
+विभाग: Lettuce Cups
+==============================
+- Item: Asian Vegetables
+  वर्णन: Carrot, Zucchni, Bell Peppers, Corn , Broccoli , Crispy  Vermiceilli Sweet & Spicy Deep Served With Lettuce
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Thai Chicken
+  वर्णन: Cube Chicken Tossed With Red Thai Curry, Fresh Red Chilli Swet Basil Topped With Crushed Peanuts.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 459
+  किंमत/व्हेरिएंट: Chicken: 459
+
+- Item: Barbeque Chicken
+  वर्णन: Geilled Chicken Tossed With Barbeque Sauces, Served With Crunchy Lettuce
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Chicken: 479
+
+
+#main-course
+==============================
+विभाग: Main Course
+==============================
+- Item: Asian Veggies Red Pepper Sauce
+  वर्णन: Exotic Vegetables Cooked With Ginger, Garlic, Fresh Red Chilli & Spring Onion.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Basa: 559 | Prawns: 699
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429 | Chicken: 479 | Basa: 559 | Prawns: 699
+
+- Item: Stir Fried Asian Green With Chilli Basil
+  वर्णन: Leaf Vegetables Cooked With Ginger, Sweet Basil, Fresh Red Chilli, Oyster Sauce, Soya Sauce Chilli Oil.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Shanghi Style
+  वर्णन: Diced Broccoli, Baby Corn, Zucchini, Water Chestnut, Pok Choy Cooked With Ginger, Garlic, Chilli Paste & Spring Onion.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Basa: 549 | Prawns: 699
+  किंमत/व्हेरिएंट: Veg: 409 | Jain: 409 | Chicken: 479 | Basa: 549 | Prawns: 699
+
+- Item: Classic Manchurian Gravy
+  वर्णन: Deep Fried Vegetable Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 449
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429 | Chicken: 449
+
+- Item: Sichuan
+  वर्णन: Cottage Cheese Cooked With Ginger, Garlic, Dry Red Chilli, Sichuan Sauce, Light Soya, Chilli Paste & Spring Onion.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Basa: 549 | Prawns: 699
+  किंमत/व्हेरिएंट: Veg: 449 | Chicken: 479 | Basa: 549 | Prawns: 699
+
+- Item: Classic Chilli Oyster
+  वर्णन: Cube Cottage Cheese Cooked With Ginger, Garlic, Green Chilli, Spring Onion, Bell Pepper & Soya Sauce.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Basa: 549 | Prawns: 649
+  किंमत/व्हेरिएंट: Veg: 449 | Jain: 449 | Chicken: 479 | Basa: 549 | Prawns: 649
+
+- Item: Burma Delight
+  वर्णन: Diced Exotic Vegetable Cooked With Garlic, Soya Sauce, Chilli, Cooking Wine & Cilantro.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479
+
+- Item: Pepper & Garlic
+  वर्णन: Shredded Chicken / Slice Fish / Scallion, Red & Green Pepper
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Basa: 549 | Prawns: 699
+  किंमत/व्हेरिएंट: Chicken: 479 | Basa: 549 | Prawns: 699
+
+- Item: Dak Galbi
+  वर्णन: Shredded Chicken Cooked With Fresh Garlic, Scallion, Red & Green Pepper & Sesame Oil.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 549
+  किंमत/व्हेरिएंट: Chicken: 549
+
+- Item: Ca Oup Xa
+  वर्णन: Lemongrass Sauce, Fresh Red Pepper & Scallion.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 549 | Basa: 549
+  किंमत/व्हेरिएंट: Chicken: 549 | Basa: 549
+
+- Item: Brunt Garlic Fish
+  वर्णन: Sliced Fish Cooked With Garlic, Chinese Cabbage, Spinach & Cooking Wine.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Basa: 599 | Prawns: 699
+  किंमत/व्हेरिएंट: Basa: 599 | Prawns: 699
+
+- Item: Prawns With Seasonal Greens
+  वर्णन: Deep Fried Prawns Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 699
+  किंमत/व्हेरिएंट: Prawns: 699
+
+
+#mocktails
+==============================
+विभाग: Mocktails
+==============================
+- Item: Lost Island
+  वर्णन: A Medley Of Mango, Passion & Coconut Cream Perked Up With Fresh Mint.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Watermelon & Kaffer Lime Lemonade
+  वर्णन: Refreshing Tall Watermelon Fizz With A Hint Of Kaffir Lime.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249
+
+- Item: Guava Mary
+  वर्णन: Spicy & Iced Guava Juice Sipped Through Chilli Salt.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 239
+
+- Item: Asian Itch
+  वर्णन: Tall & Cool With Lemongrass, Ginger Lime, Litchi.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Pineapple Yuzu Jalapeno Sour On The Rock
+  वर्णन: Ice & Fruity Spice With Pineapple, Chilli & Citrus Yuzu.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 259
+
+- Item: Red Ginger Fizz
+  वर्णन: Cranberry & Pomegranate, Topped With Sprite & Ginger Lime.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Vitamin C
+  वर्णन: Orange Juice, Passion Fruitsyrup, Lime Juice Topped With Soda.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 239
+
+- Item: Awg Virgin Sangria
+  वर्णन: Pomegranate, Cranberry, Grape, Orange Juice, Lime, Honeywith House Churned Fruits.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 239
+
+- Item: Masala Virgin Mojito
+  वर्णन: Refreshing Drink With Namaste Twisted Paan & Gulkand
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249
+
+- Item: Paan Gulkand Mojito
+  वर्णन: Refreshing Drink With Namaste Twisted Paan & Gulkand
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249
+
+- Item: Namaste Kalyan Spical
+  वर्णन: Fresh Apple, Basil Leaves, Pineapple Juice, Kiwi Cursh, Blue Curacao & Grenadine Syrup & Topped Soda
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 269
+
+- Item: Coco Berry
+  वर्णन: Fresh Cream, Pinepple Juice, Blueberry Crush & Coconut Syrup
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 259
+
+- Item: Mixed Fantasy
+  वर्णन: Strawberry Crush, Blueberry Roseberry Syrup & Fresh Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 259
+
+- Item: Wake Me Up
+  वर्णन: Coffee, Coconut Syrup, Pineapple Juice & Lime Juice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 239
+
+
+#murg-curry-specialities
+==============================
+विभाग: Murg Curry Specialities
+==============================
+- Item: Murgh Makhani(Butter Chicken)
+  वर्णन: A Universal Favourite, Tender, Roasted Chicken Pieces Simmered In A Satin Smooth Tomato & Cream Gravy Redolent Of Kasturi Methi.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 489
+  किंमत/व्हेरिएंट: Chicken: 489
+
+- Item: Kukul Mass
+  वर्णन: Chicken Cooked In All Indian  Green Spice Coconut Gravy
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 469
+  किंमत/व्हेरिएंट: Chicken: 469
+
+- Item: Chicken Malvani
+  वर्णन: Chicken Cooked In All Indian Green Spice Coconut Gravy.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 469
+  किंमत/व्हेरिएंट: Chicken: 469
+
+- Item: Murgh Rara
+  वर्णन: Soft & Juicy Boneless Chicken Pieces Are Cooked In Spicy & Scrumptious Chicken Mince Gravy & Sreved With Tandoori Bread Or Rice.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+- Item: Murgh Kadhai Mirichi Wala
+  वर्णन: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 469
+  किंमत/व्हेरिएंट: Chicken: 469
+
+- Item: Kolhapuri
+  वर्णन: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 469
+  किंमत/व्हेरिएंट: Chicken: 469
+
+- Item: Do-Pyaza
+  वर्णन: Chicken Cubes Tossed With Red, Green Chilli, Green Pepper Toppeed With Dice Onion
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 469
+  किंमत/व्हेरिएंट: Chicken: 469
+
+- Item: Murgh Tikka Masala
+  वर्णन: Spiced Chicken Tikka Simmered In Fenugreek With Rich Creamy Tomato Gravy.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+- Item: Murgh Khurchan
+  वर्णन: Shredded Chicken Cooked In A Rich Cashew Gravy, Topped With Sliced Boiled Egg.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+- Item: Chicken Kala Masala
+  वर्णन: Chicken Cooked In Local Kala Masala.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Chicken: 479
+
+- Item: Chicken Kebab Masala
+  वर्णन: Marinated Chicken Minced Placed Over A Skewers Cooked In Tandoor, These Kababs Are Served In A Flavourful Gravy.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+- Item: Chicken Saagwala
+  वर्णन: Delicious Saag Wala Chicken Or Palak Chicken Spinach, Chicken & Aromatic Spices Is Creamy & Flavoursome
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 489
+  किंमत/व्हेरिएंट: Chicken: 489
+
+- Item: Murgh Khada Masala
+  वर्णन: Soft & Juicy Pieces Of Boneless Chicken Cooked In Aromatic Masala To Give You A Taste Of Real Indian Flavours
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+- Item: Tandoori Chicken Masala Half
+  वर्णन: Chicken Is Marinated In Tandoori Spices & Yoghurt Then Grilled, Prepare The Curry Sauce And The Chicken.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Half: 499
+
+- Item: Tandoori Chicken Masala Full
+  वर्णन: Chicken Is Marinated In Tandoori Spices & Yoghurt Then Grilled, Prepare The Curry Sauce And The Chicken.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Full: 899
+
+- Item: Chicken Handi Half
+  वर्णन: Handi Chicken Is A Delicious Dish With Chicken Cooked On A Low Flame For A Long Time.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Half: 479
+
+- Item: Chicken Handi Full
+  वर्णन: Handi Chicken Is A Delicious Dish With Chicken Cooked On A Low Flame For A Long Time.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Full: 799
+
+- Item: Egg Masala
+  वर्णन: A Dish Made With Boiled Eggs, Onions, Tomatoes, Whole Spices & Spice Powders.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Egg: 379
+  किंमत/व्हेरिएंट: Egg: 379
+
+
+#noodles
+==============================
+विभाग: Noodles
+==============================
+- Item: Pan Fried White Sauce
+  वर्णन: Pan Fried Noodles Topped With  Sauce
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 529 | Prawns: 569
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+
+- Item: Pan Fried  Hunan
+  वर्णन: Pan Fried Noodles Topped With Sichuan Or Hunan Sauce
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 529 | Prawns: 569
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+
+- Item: Pan Fried  Sichuan
+  वर्णन: Pan Fried Noodles Topped With  Siuchuan Sauce.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 529 | Prawns: 569
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479 | Chicken: 529 | Prawns: 569
+
+- Item: Hot Pepper Garlic
+  वर्णन: Wok Tossed Noodles With Shredded Vegetable, Crushed Chilli, Garlic & Spring Onion.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Prawns: 499
+  किंमत/व्हेरिएंट: Veg: 429 | Chicken: 479 | Prawns: 499
+
+- Item: Hakka
+  वर्णन: Wok Tossed Noodles With Shredded Vegetables, Soya Sauce & Spring Onion
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 399 | Prawns: 409
+  किंमत/व्हेरिएंट: Veg: 379 | Jain: 379 | Chicken: 399 | Prawns: 409
+
+- Item: Sichuan
+  वर्णन: Noodles Tossed With Shredded Vegetables, Ginger, Garlic, Dry Red Chilli, Chilli Paste & Spring Onion
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 389 | Prawns: 479
+  किंमत/व्हेरिएंट: Veg: 369 | Chicken: 389 | Prawns: 479
+
+- Item: American Chop Suey
+  वर्णन: Sweet & Sour Vegetables With Bed Of Crispy Noodles
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 509
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479 | Chicken: 509
+
+- Item: Korean
+  वर्णन: Homemade Flat Noodles Tossed With Korean Chilli Paste, Garlic, Soya Sauce & Spring Onion.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Prawns: 499
+  किंमत/व्हेरिएंट: Veg: 429 | Chicken: 479 | Prawns: 499
+
+- Item: All Time Favourite Chow Mein
+  वर्णन: Wok Tossed Noodles With Ginger, Vegetable, Soya Sauce, Bell Pepper, Celery & Spring Onion
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Prawns: 499
+  किंमत/व्हेरिएंट: Veg: 429 | Chicken: 479 | Prawns: 499
+
+- Item: Cantonses
+  वर्णन: Wok Tossed Rice Noodles With Bean Sprout, Napa Cabbage Carrot Soy Sauce & Spring Onion
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Prawns: 499
+  किंमत/व्हेरिएंट: Veg: 429 | Chicken: 479 | Prawns: 499
+
+- Item: Pad Thai
+  वर्णन: Flat Rice Stick Noodles Tossed With Crushed Peanuts, Chilli Flakes, Seasoned With Tamrind And Plum Sugar
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 459 | Prawns: 509
+  किंमत/व्हेरिएंट: Veg: 409 | Chicken: 459 | Prawns: 509
+
+
+#pasta
+==============================
+विभाग: Pasta
+==============================
+- Item: Penne With Tomato Basil Sauce
+  वर्णन: Penne Pomodoro Is The Tomato Pasta Made With An, Flavour-Packed Tomato Sauce & Fresh Basil Leaves.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479 | Chicken: 499
+
+- Item: Mac N Cheese
+  वर्णन: A Rich & Creamy Dish Consisting Of Macaroni Pasta Mixed With A Cheesy Sauce.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479 | Chicken: 499
+
+- Item: Macaroni With Exotic Veg With Creamy Sauce
+  वर्णन: A Rich & Creamy Dish Consisting Of Macaroni Pasta Mixed With A Cheesy Sauce.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Veg: 479 | Chicken: 499
+
+- Item: Spaghettti Aglio E Olio With Chicken Sausages
+  वर्णन: Tossed With Grilled Chicken Sausages & Exotic Vegetables.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 529
+  किंमत/व्हेरिएंट: Chicken: 529
+
+- Item: Fusilli With Grilled Chicken,Cherry Tomato In Cream Sauce
+  वर्णन: Chicken Grilled, Exotic Vegetable, Ginger, Garlic & Vermicelli Noodles.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 529
+  किंमत/व्हेरिएंट: Chicken: 529
+
+- Item: Makr Your Own Pasta-Penne/Spaghetti/Fusilli/Macaroni
+  वर्णन: Sauce Choices - Alfredo / Arrabiata / Pesto / Marinara.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479 | Chicken: 499
+
+- Item: Homemaade Baked Lasagna
+  वर्णन: Tomato Sauce & A Deliciously Cheesy Filling. Traditional Homemade Lasagna Filling With Cottage Cheese / Chicken & Parmesan. Serve With A Leafy Green Salad & Crusty Garlic Bread
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 599
+  किंमत/व्हेरिएंट: Veg: 559 | Chicken: 599
+
+
+#pehels-kadam
+==============================
+विभाग: Pehels Kadam
+==============================
+- Item: Roomali Khakra  Masala Cheese &Garlic
+  वर्णन: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala Cheese N Garlic
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299
+
+- Item: Roomali Khakra  Masala
+  वर्णन: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 239
+
+- Item: Roomali Khakra  Masala Cheese
+  वर्णन: Crispy Roomali Brushed With Butter & Drizzled With Peanut Masala Cheese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249
+
+- Item: Double Fried Mushroom With Cheddar & Fine Herbs
+  वर्णन: Cultured Mushrooms Stuffed With Cheese & Herbs-Coated & Deep Fried.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379
+
+- Item: French Fries
+  वर्णन: Classic Golden Potato Fries, Crisp On The Outside And Fluffy Inside, Served Hot And Perfectly Seasoned.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329
+
+- Item: Cheese Cherry Pineapple
+  वर्णन: Cube Cheese And Pineapple Top With Red Cherry Served In Crush Ice.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Dahi Ke Sholey
+  वर्णन: Golden-Crisp Bread Rolls Stuffed With Spiced
+Hung Curd And Veggies, Deep-Fried To A Crunchy Delight
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349
+
+- Item: Kathi Rolls
+  वर्णन: Tandoor Roasted Paneer Or Chicken Tikka Roll Served With Kuchumber & Chutney.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349
+
+- Item: Egg Pakoda
+  वर्णन: Egg Coated In Seasoned Gram Flour Batter & Deep Fried.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Egg: 289
+  किंमत/व्हेरिएंट: Egg: 289
+
+- Item: Chicken Koliwada
+  वर्णन: Deep Fried Chunk Chicken In A Spicy Marinate, Served With Mint Chutney
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 389
+  किंमत/व्हेरिएंट: Chicken: 389
+
+- Item: Chicken Nuggets
+  वर्णन: A Small Piece Of Deboned Chicken Meat That Is Breaded Battered, Then Deep Fried & Served With Mustard Sauce.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 429
+  किंमत/व्हेरिएंट: Chicken: 429
+
+- Item: Fish Koliwada
+  वर्णन: Deep Fried Fish Fillet In A Spicy Marinate, Served With Mint Chutney.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 479
+  किंमत/व्हेरिएंट: Basa: 479
+
+- Item: Fish & Chipes
+  वर्णन: Deep Fried Fish Fillet In A Marinate, Served With Tomato Kecthup
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Basa: 439
+  किंमत/व्हेरिएंट: Basa: 439
+
+- Item: Fish Finger
+  वर्णन: Crumb Fried Fish Finger Served With Tartar Sauce.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Basa: 439
+  किंमत/व्हेरिएंट: Basa: 439
+
+- Item: Fish Tava Fry  Pomfret
+  वर्णन: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Pomfret: 749
+  किंमत/व्हेरिएंट: Pomfret: 749
+
+- Item: Fish Tava Fry Surmai
+  वर्णन: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Surmai: 649
+  किंमत/व्हेरिएंट: Surmai: 649
+
+- Item: Fish Tava Fry Basa
+  वर्णन: Flavoured Shallow Fried Seafood Made With A Few Indian Spices & Herbs & Cooked On A Flat Pan
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 549
+  किंमत/व्हेरिएंट: Basa: 549
+
+
+#pizza
+==============================
+विभाग: Pizza
+==============================
+- Item: Tomato Basil Pizza
+  वर्णन: Fresh Tomato Sauce, Basil Leaves & Melted Mozzarella On A Crisp Crust.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Medium: 269 | Large: 369
+
+- Item: Margarita Pizza
+  वर्णन: Tomato, Mozzarella & Fresh Basil On A Classic Crust.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Medium: 269 | Large: 369
+
+- Item: Veg  Delight Pizza
+  वर्णन: Garden Vegetables & Melted Cheese On A Crisp Crust.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Medium: 289 | Large: 389
+
+- Item: Tandoori Paneer
+  वर्णन: Spicy Marinated Paneer, Peppers, Onions, Cheese On Crispy Crust.​
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Medium: 329 | Large: 409
+
+- Item: Mushroom Veg Pizza
+  वर्णन: Mushrooms, Mixed Veggies & Melted Cheese On A Crisp Crust.
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Medium: 289 | Large: 389
+
+- Item: Bbq Chicken Pizza
+  वर्णन: Bbq Sauce, Grilled Chicken, Red Onions, Cilantro, Cheese On Crispy Crust.
+ ​
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Medium: 399 | Large: 479
+
+- Item: Chicken Pizza
+  वर्णन: Tandoori Marinated Chicken, Peppers, Onions, Cheese On Crispy Crust.​
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Medium: 359 | Large: 479
+
+- Item: Chiken Peri-Peri Pizza
+  वर्णन: Spicy Peri Peri Marinated Chicken, Peppers, Onions, Cheese On Crispy Crust.​
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Medium: 399 | Large: 479
+
+
+#rice
+==============================
+विभाग: Rice
+==============================
+- Item: Sada Basmati Chawal
+  वर्णन: Steamed Boiled Rice.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209 | Jain: 209
+
+- Item: Jeera Rice
+  वर्णन: Temper With Cumin Seeds.(Half / Full).
+  डायटरी: Veg=No | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Half: 189 | Full: 279
+
+- Item: Peas Pulao
+  वर्णन: Emper With Cumin  Peas Seeds Corianders.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299 | Jain: 299
+
+- Item: Veg Pulao
+  वर्णन: Vegetable  Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299 | Jain: 299
+
+- Item: Curd Rice
+  वर्णन: Emper With Cumin Seeds,
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Dal Khichdi
+  वर्णन: Prepared With Dal
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Kadhi Khichdi
+  वर्णन: Prepared With Curd & Indian Spice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Palak Khichdi
+  वर्णन: Description not available.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Paneer Pulao
+  वर्णन: Paneer  Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379 | Jain: 379
+
+- Item: Kasmiri Pulao
+  वर्णन: Fruits & Dry Fruits Is A Fragrant, Delicious & Mildly Spiced Rice Dish Made With Freshly Ground Pulao Masala, Basmati Rice, Onions, Spices.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379 | Jain: 379
+
+- Item: Subz Dum
+  वर्णन: Garden Fresh Vegetables & Flavourful Basmati Rice.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429
+
+- Item: Veg Hydrabadi Biryani
+  वर्णन: Garden Fresh Vegetables & Flavourful Basmati Rice Tossed With Spenach And Mint Sauces
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429
+
+- Item: Avadhi Murgh Biryani
+  वर्णन: Delicious Flavoured Chicken Biryani In Rich With Nuts & Saffron.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+- Item: Egg Biryani
+  वर्णन: Fragrant Basmati Rice Cooked With Aromatic Biryani Spices, Herbs & Boiled Eggs
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Egg: 369
+  किंमत/व्हेरिएंट: Egg: 369
+
+- Item: Kachcha Ghost Biryani
+  वर्णन: Lamb & Finest Basmati Rice Cooked In Nizami Style.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 629
+  किंमत/व्हेरिएंट: Mutton: 629
+
+- Item: Hyderabadi Muttan Biryani
+  वर्णन: Lamb & Finest Basmati Rice Cooked In Nizami Style Tossed With Spenach And Mint Sauces
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Mutton: 629
+  किंमत/व्हेरिएंट: Mutton: 629
+
+- Item: Prawns Dum Biryani
+  वर्णन: Aromatic Basmati Rice Dum Cooked With Prawns, Herbs & Spice Powder
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 629
+  किंमत/व्हेरिएंट: Prawns: 629
+
+- Item: Brunt Garlic Rice
+  वर्णन: Wok Tossed Fried Rice With Cube Vegetables & Burnt Garlic.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 429 | Prawns: 529
+  किंमत/व्हेरिएंट: Veg: 379 | Chicken: 429 | Prawns: 529
+
+- Item: Steam Rice
+  वर्णन: Basmati Rice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209
+
+- Item: Steam Jasmin Rice
+  वर्णन: Jasmin Rice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379
+
+- Item: Mongolian Pot Rice
+  वर्णन: Wok Tossed Butter Rice Topped With Vegetables & Spicy Red Sauce.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499 | Prawns: 579
+  किंमत/व्हेरिएंट: Veg: 479 | Jain: 479 | Chicken: 499 | Prawns: 579
+
+- Item: Korean
+  वर्णन: Wok Tossed Rice With Star Anise, Chilli Flakes & Korean Spice.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 429 | Prawns: 479
+  किंमत/व्हेरिएंट: Veg: 379 | Chicken: 429 | Prawns: 479
+
+- Item: Chilli Garlic
+  वर्णन: Wok Tossed Rice With Chilli Flakes, Garlic & Spring Onion
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 389 | Prawns: 479
+  किंमत/व्हेरिएंट: Veg: 379 | Chicken: 389 | Prawns: 479
+
+- Item: Sichuan
+  वर्णन: Rice Tossed With Ginger, Garlic,Siuchan Sauce & Spring Onion.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 389 | Prawns: 479
+  किंमत/व्हेरिएंट: Veg: 339 | Chicken: 389 | Prawns: 479
+
+- Item: Awg Classic
+  वर्णन: Chef'S Special
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 429 | Prawns: 469
+  किंमत/व्हेरिएंट: Veg: 379 | Jain: 379 | Chicken: 429 | Prawns: 469
+
+- Item: Classic Fried Rice
+  वर्णन: Wok Tossed Fried Rice With Cube Vegetables.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 389 | Prawns: 479
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349 | Chicken: 389 | Prawns: 479
+
+- Item: Jasmine Brunt Garlic Fried Rice
+  वर्णन: Wok Tossed Jasmine Rice With Cube Veggies And Spring Onion Along With Golden Fried Garlic
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 449 | Prawns: 529
+  किंमत/व्हेरिएंट: Veg: 399 | Chicken: 449 | Prawns: 529
+
+- Item: Khao Pad Prik
+  वर्णन: Sweet Basil & Chilli Fried Rice Seasoned With Thai Chilli Paste & Soya Sauce
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 409
+  किंमत/व्हेरिएंट: Veg: 369 | Chicken: 409
+
+- Item: Nasi Goreng
+  वर्णन: Malaysian Village Style Fried Rice With Satay Prawns / Chicken, Prawns Crackers & Served With Egg.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 559 | Prawns: 629
+  किंमत/व्हेरिएंट: Chicken: 559 | Prawns: 629
+
+- Item: Egg Fried Rice
+  वर्णन: Wok Tossed Fried Rice With Egg.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Egg: 309
+  किंमत/व्हेरिएंट: Egg: 309
+
+
+#rolls
+==============================
+विभाग: Rolls
+==============================
+- Item: Awg Classic
+  वर्णन: Chef Special
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 399 | Prawns: 439
+  किंमत/व्हेरिएंट: Veg: 309 | Jain: 309 | Chicken: 399 | Prawns: 439
+
+- Item: Cigar
+  वर्णन: Roll Sheets, Bel Pepper, Cottage Cheese , Corinder Served With Chilli Mayo Deep
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 369 | Jain: 369
+
+- Item: Popia Tod
+  वर्णन: Roll Sheets, Minced Chicken/ Prawns , Carrot ,Ginger , Garlic Served With Sweet Chilli Deep
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 399 | Prawns: 479
+  किंमत/व्हेरिएंट: Chicken: 399 | Prawns: 479
+
+
+#salads
+==============================
+विभाग: Salads
+==============================
+- Item: Greek Salad
+  वर्णन: Sliced Cucumbers, Tomatoes, Green Bell Pepper, Red Onion, Olive, Feta Cheese & Crunchy Iceberg (Vegetable & Chicken)
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 329
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249 | Chicken: 329
+
+- Item: Tazza Salad
+  वर्णन: Crispy Greens Seasonal Vegetables.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199
+
+- Item: Sprout Salad
+  वर्णन: Sprout, Chopped Onion, Tomatos,Green Chilly, Coriander & Lime Dressing.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 239 | Jain: 239
+
+- Item: Chicken Hawaiian Salad
+  वर्णन: In Pineapple & Coconut, Drizzled With A Tasty Coriander Lime & Mayonnaise Dressing.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 339
+  किंमत/व्हेरिएंट: Chicken: 339
+
+- Item: Waldorf Salad
+  वर्णन: Apple, Celery, Walnuts, Grapes & Mayonnaise.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 399
+  किंमत/व्हेरिएंट: Veg: 349 | Chicken: 399
+
+- Item: Pasta Salad
+  वर्णन: Pasta Of The Day, Bellpepper, Iceberg & Mayo.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 349
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249 | Chicken: 349
+
+- Item: Prussian Salad
+  वर्णन: Potato, Peas & Carrot Mix With Eggless Mayonnaise,Vegetable
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 379
+  किंमत/व्हेरिएंट: Veg: 269 | Chicken: 379
+
+- Item: Sauted Broccoli Chicken Salad
+  वर्णन: Potato, Peas & Carrot Mix With Eggless Mayonnais, Chicken
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 399
+  किंमत/व्हेरिएंट: Chicken: 399
+
+- Item: Chicken Tikka Salad
+  वर्णन: Chunks Of Tandoor Grilled Chicken Tangy Lime Dressing.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 399
+  किंमत/व्हेरिएंट: Chicken: 399
+
+- Item: Crispy Salad
+  वर्णन: Crispy Vegetable / Shredded Chickencrispy Wonton, Rice Noodles, Marinade With Chilli Dressing.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 319
+  किंमत/व्हेरिएंट: Veg: 249 | Chicken: 319
+
+
+#sancks
+==============================
+विभाग: Sancks
+==============================
+- Item: Mix Veg Pakoda
+  वर्णन: Mix Vegetables Coated In Seasoned Gram Flour Batter & Deep Fried.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 279 | Jain: 279
+
+- Item: Onion Ring Pakoda
+  वर्णन: Ring Onion Coated In Seasoned Gram Flour Batter & Deep Fried.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 299
+
+- Item: Potato Pakoda
+  वर्णन: Potato Coated In Seasoned Gram Flour Batter & Deep Fried.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 279
+
+- Item: Paneer Pakoda
+  वर्णन: Diced Cottage Cheese Coated In Seasoned Gram Flour Batter & Deep Fried
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349
+
+- Item: Panner Kantaki
+  वर्णन: Cube Cottage Cheese Coated With Seasoned Flour & Deep Fried, Served With Chilli Mayo.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339
+
+- Item: Aloo Papdi Chaat
+  वर्णन: Potatoes Cubes Flavoured With Ground Spices,Sweet & Sour Date, Finished With Coriander Leaves & Pomegranate Seeds.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209
+
+- Item: Masala Peanut
+  वर्णन: Chopped Onion & Tomatoes Mixed With Indian Spices.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199
+
+- Item: Plain Peanut
+  वर्णन: Salted Peanut
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199
+
+- Item: Hara Bhara Kabab
+  वर्णन: Shallow Fried Patties Of Minced Vegetables & Served With Tangy Coriander Chutney.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349
+
+- Item: Garlic& Cheese Crostini
+  वर्णन: Toasted Bread Topped With Bell Peppers, Olives, Garlic & Cheese.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 339
+
+
+#sandwiches
+==============================
+विभाग: Sandwiches
+==============================
+- Item: Mumbai Toast
+  वर्णन: Grated Potato, Cheese, Chopped Chilies & Onion On Toasted Breads.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 229
+
+- Item: Veg Delight
+  वर्णन: Chopped Vegetables & Cheese With Green Chutney & Mayo, Served With Chips & Salad.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249
+
+- Item: Cheese Chilly Tst
+  वर्णन: Toasted On Both Side & With Cheese And Bellepepper & Onion , Served With Chips & Salad.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 289 | Jain: 289
+
+- Item: Corn Chilly
+  वर्णन: Stuffed Corn  Chilli Flakes With Mozzarella Served With Coleslaw Salad & Chips (Grilled)
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329 | Jain: 329
+
+- Item: Corn Spinach
+  वर्णन: Stuffed Corn Spinach, Chilli Flakes With Mozzarella Served With Coleslaw Salad & Chips (Grilled)
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329 | Jain: 329
+
+- Item: Classic Veg
+  वर्णन: Cheese, Lettuce, Tomato & Cucumber, Served With Coleslaw Salad & Chips
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 249 | Jain: 249
+
+- Item: Cheese Brust
+  वर्णन: Cheese Sandwich Grilled
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329 | Jain: 329
+
+- Item: Veg Clun Sandwich
+  वर्णन: Triple Layered Sandwich With Veg Delight, Coleslaw & Cheese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 309 | Jain: 309
+
+- Item: Paneer Tikka
+  वर्णन: Layered Sandwich With Paneer Tikka, Coleslaw & Cheese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329 | Jain: 329
+
+- Item: Peri Peri Paneer Sandwich
+  वर्णन: Layered Sandwich With Peri Peri Panner, Coleslaw & Cheese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329
+
+- Item: Tandoori Paneer
+  वर्णन: Layered Sandwich With Tandoori Paneer , Coleslaw & Cheese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 329
+
+- Item: Boiled Eggs Sandwichs
+  वर्णन: Layered Sandwich With Veg Delight, Coleslaw & Cheese Boiled Eggs
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Egg: 329
+  किंमत/व्हेरिएंट: Egg: 329
+
+- Item: Chciken Delight Sandwich
+  वर्णन: Layered Sandwich With Chicken Delight, Coleslaw & Cheese
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 339
+  किंमत/व्हेरिएंट: Chicken: 339
+
+- Item: Chicken Peri Per
+  वर्णन: Layered Sandwich With Peri Peri Chicken, Coleslaw & Cheese
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 379
+  किंमत/व्हेरिएंट: Chicken: 379
+
+- Item: Chicken Tikka
+  वर्णन: Layered Sandwich With Chicken Tikka , Coleslaw & Cheese
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 379
+  किंमत/व्हेरिएंट: Chicken: 379
+
+- Item: Chicken Club Sandwich
+  वर्णन: Triple Layered Sandwich With Chicken, Egg And Cheese
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 399
+  किंमत/व्हेरिएंट: Chicken: 399
+
+- Item: Bbq Chicken Sandwich
+  वर्णन: Layered Sandwich With Barbeque Chicken,  And Cheese
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 379
+  किंमत/व्हेरिएंट: Chicken: 379
+
+
+#shakes--smoothies
+==============================
+विभाग: Shakes& Smoothies
+==============================
+- Item: Peanut Butter Banana Smoothie
+  वर्णन: Peanut Butter, Banana Curd, Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 289
+
+- Item: Starwberry & Bourbon Shake
+  वर्णन: Strawberry Crush, Bourbon Biscuit.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 289
+
+- Item: Chocolate& Coconut Shake
+  वर्णन: Chocolate & Coconut Syrup, Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 289
+
+- Item: Coffee, Cookie &Toffee Shake
+  वर्णन: Milk, Ice Cream, Coffee And Cookies.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 289
+
+- Item: Salted Caramel, Alpenliebe & Popcorn  Shake
+  वर्णन: Salted Caramel, Alpenliebe & Popcorn
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 289
+
+- Item: Blueberry Cheese Cake Smoothi
+  वर्णन: Blueberry Crush, Process Cheese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 349
+
+- Item: Mango Mint Smoothie
+  वर्णन: Mango Crush , Mint Leaves Blend With Curd & Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 269
+
+- Item: Kiwi Mint Smoothie
+  वर्णन: Kiwi Crush , Mint Leaves Blend With Cured Mixed With Ice Cream
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 269
+
+- Item: Mango Moon
+  वर्णन: Honey, Freshcream , Mango Juice
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 269
+
+
+#sizzlers
+==============================
+विभाग: Sizzlers
+==============================
+- Item: Awg Classic
+  वर्णन: Combination Of Thai Corn Cake, Wok Tossed Noodles Or Fried Rice, Chilli Potatoes & Chilli Soya Gravy
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 799 | Prawns: 899
+  किंमत/व्हेरिएंट: Veg: 699 | Chicken: 799 | Prawns: 899
+
+- Item: Fussion Mexican
+  वर्णन: Battered Cottage Cheese In Chef'S Signature Sauce Served On Bed Of Rice & Noodels Served With Exotic G Reen Vegetable Aof Rice & Noodles With Sauted
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 799 | Prawns: 899
+  किंमत/व्हेरिएंट: Veg: 699 | Chicken: 799 | Prawns: 899
+
+- Item: Classic Manchurian
+  वर्णन: Vegetable Balls In Manchurian Sauce Served With Chilli Garlic Noodles Or Rice Chilli Garlic Mushroom
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 799 | Prawns: 899
+  किंमत/व्हेरिएंट: Veg: 699 | Chicken: 799 | Prawns: 899
+
+- Item: Smoking Cheese Balls Sambal
+  वर्णन: Smoking Cheese Balls, Cottage Cheese In Hot Garlic Sauce, Served With Bed Of With Chilli Potatoes.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 799 | Prawns: 899
+  किंमत/व्हेरिएंट: Veg: 699 | Chicken: 799 | Prawns: 899
+
+
+#sizzling-plate
+==============================
+विभाग: Sizzling Plate
+==============================
+- Item: Hunan
+  वर्णन: Cottage Cheese, Carrot Broccoli, Bamboo Shoots & Green Onion Served On Sizzling Plate.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379
+
+- Item: Barbeque Onions Chicken
+  वर्णन: Juicy Chicken & Peanut Sauces
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 549
+  किंमत/व्हेरिएंट: Chicken: 549
+
+- Item: Taipei Chicken
+  वर्णन: Slice Onion, Spring Onion, Garlic Lemon Juice & Chilli Oil Served On Sizzling Plate.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 549
+  किंमत/व्हेरिएंट: Chicken: 549
+
+- Item: Smoked Prawns
+  वर्णन: Prawns, Thai Chilli Paste, Spring Onion, Ginger, Garlic & Sesame Oil, Sreved On Sizzling Plate
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 629
+  किंमत/व्हेरिएंट: Prawns: 629
+
+- Item: Butter Garlic Prawns
+  वर्णन: Slow Fried Tossed With Fresh Garlic, Butter, Bell Peppers &Spring Onion, Served On Sizzling Plate.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Prawns: 629
+  किंमत/व्हेरिएंट: Prawns: 629
+
+
+#skewers
+==============================
+विभाग: Skewers
+==============================
+- Item: Hot Basil
+  वर्णन: Cottage Cheese, Basil Paste, Fresh Red Chilli, Galangal & Garlic.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 529
+
+- Item: Satay Gai
+  वर्णन: Juicy Chicken & Peanut Sauce.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 579
+  किंमत/व्हेरिएंट: Chicken: 579
+
+- Item: Fresh Sambal
+  वर्णन: Prawns Girlled With Ginger,
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 699
+  किंमत/व्हेरिएंट: Prawns: 699
+
+- Item: Sesame Lime
+  वर्णन: Garlic, Lime, Fresh Red Chilli & Cilantro.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Prawns: 699
+  किंमत/व्हेरिएंट: Prawns: 699
+
+
+#soup
+==============================
+विभाग: Soup
+==============================
+- Item: Badam Aur Elaichi Ka Shorba
+  वर्णन: Our Chefs Speciality Mildly Spiced Almond Soup Flavoured With Cardamom.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209 | Jain: 209
+
+- Item: Dal Shorba
+  वर्णन: Indian Traditional Lentil
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199 | Jain: 199
+
+- Item: Hariyali Shorba
+  वर्णन: Indian Traditional  Tomato
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199 | Jain: 199
+
+- Item: Tomato Dhania
+  वर्णन: Indian Traditional  Palak Soup
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 199 | Jain: 199
+
+- Item: Choice Of Cream Soup
+  वर्णन: Spinach Soup Served With Bread Croutons / Sticks ( Vegetable/ Tomato/Mushroom /
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 209 | Jain: 209
+
+- Item: Murg Shorba
+  वर्णन: Chicken Stock With Indian Spices.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 239
+  किंमत/व्हेरिएंट: Chicken: 239
+
+- Item: Cream Of Chicken Soup
+  वर्णन: An All Time Fev Chicken Soup With Bread Croutons/Sticks.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 259
+  किंमत/व्हेरिएंट: Chicken: 259
+
+- Item: Clear Broth
+  वर्णन: Tofu, Broccoli, Mushroom & Pok Choy.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 229 | Prawns: 279
+  किंमत/व्हेरिएंट: Veg: 209 | Chicken: 229 | Prawns: 279
+
+- Item: Lemon Corinder
+  वर्णन: Coriander, Ginger, Chopped Fresh Veggies, Fresh Green Chilli & Touch Of Lime Juice.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 229 | Prawns: 279
+  किंमत/व्हेरिएंट: Veg: 209 | Chicken: 229 | Prawns: 279
+
+- Item: Sweet Corn
+  वर्णन: Creamy Corn & Green Onion
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 229 | Prawns: 279
+  किंमत/व्हेरिएंट: Veg: 209 | Chicken: 229 | Prawns: 279
+
+- Item: Sour N Pepper
+  वर्णन: Tofu, Soya Sauce, Chilli, Mushroom, Bamboo Shoots & Touch Of Vinegar.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 229 | Prawns: 279
+  किंमत/व्हेरिएंट: Veg: 209 | Chicken: 229 | Prawns: 279
+
+- Item: Asian Wok & Grill
+  वर्णन: Chef’S Special.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: Yes
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 259 | Prawns: 279
+  किंमत/व्हेरिएंट: Veg: 229 | Chicken: 259 | Prawns: 279
+
+- Item: Hakka
+  वर्णन: Fresh Chilli, Garlic, Soya Sauce,Chopped Veggies Served With Crispy Noodles.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 259 | Prawns: 279
+  किंमत/व्हेरिएंट: Veg: 239 | Chicken: 259 | Prawns: 279
+
+- Item: Burmese Traditinal Soup
+  वर्णन: Classic Burmsese Curried Noodles Soup
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 249 | Prawns: 299
+  किंमत/व्हेरिएंट: Veg: 229 | Chicken: 249 | Prawns: 299
+
+- Item: Tom Kha
+  वर्णन: Coconut Milk, Cherry Tomato Flavoured With Thai Herbs.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 329 | Prawns: 319
+  किंमत/व्हेरिएंट: Veg: 249 | Chicken: 329 | Prawns: 319
+
+- Item: Crispy Wontan Soup
+  वर्णन: Exotic Vegetables, Tofu, Chilli Paste & Sriracha, Served With Crispy Wonton.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 249 | Prawns: 299
+  किंमत/व्हेरिएंट: Veg: 229 | Chicken: 249 | Prawns: 299
+
+- Item: Bakso Ayam Soup
+  वर्णन: Clear Broth, Meat Balls,Vermicelli, Pakchoy & Wanton Strip.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 279
+  किंमत/व्हेरिएंट: Chicken: 279
+
+- Item: Spicy Dumpling Soup
+  वर्णन: Exotic Vegetables Or Chicken,Tomato, Sriracha Served With Steamed Stuffed Dumplings.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 279 | Prawns: 289
+  किंमत/व्हेरिएंट: Veg: 259 | Chicken: 279 | Prawns: 289
+
+
+#western-specialities
+==============================
+विभाग: Western Specialities
+==============================
+- Item: Cheese Nachos With Salsa
+  वर्णन: Nachos Served With Tomato Salsa & Creamy Cheese
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 359
+
+- Item: Corn And Spinach Au Gratin
+  वर्णन: Spinach & Corn Tossed In White Sauce Baked With Cheese.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 479
+
+- Item: Roasted Chicken
+  वर्णन: Rosemary Flavoured Chicken Served With Veggies In Red Wine Juice.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+- Item: Grilled Chicken
+  वर्णन: Served With Pepper Sauce & Mushrooms.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Chicken: 499
+
+
+#wok-tossed
+==============================
+विभाग: Wok Tossed
+==============================
+- Item: Crispy Corn & Waterchestut
+  वर्णन: Deep Fried & Tossed With Ginger, Garlic, Black Pepper & Spring Onion
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 379 | Jain: 379
+
+- Item: Spicy Broccoli
+  वर्णन: Deep Fried Broccoli Tossed With Ginger, Garlic, Red Chilli, Scallion & Korean Paste.
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 449 | Jain: 449
+
+- Item: Kung Pao
+  वर्णन: Exotic Diced Vegetables Tossed With Bell Pepper, Soya Sauce, Scallion, Dry Red Chilli, Peanut
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 489
+  किंमत/व्हेरिएंट: Veg: 389 | Jain: 389 | Chicken: 489
+
+- Item: Five Spice
+  वर्णन: Exotic Vegetables, Ginger, Garlic, Five Spice Powder & Red Chilli Sauce
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 359 | Jain: 359
+
+- Item: Chilli Classiccottage Cheese
+  वर्णन: Batter Fried Mushroom Tossed With Ginger, Garlic, Green Chilli, Spring
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429 | Chicken: 479
+
+- Item: Chilli Classic Mushroom
+  वर्णन: Batter Fried Mushroom Tossed With Ginger, Garlic, Green Chilli, Spring
+  डायटरी: Veg=Yes | NonVeg=No | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: None
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429
+
+- Item: Hunan Sesame Style Tofu/ Cottage Cheese
+  वर्णन: Diced Tofu Tossed With Ginger, Dry Red Chilli, Bell Pepper & Chilli Oil.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479 | Mutton: 649 | Basa: 539
+  किंमत/व्हेरिएंट: Veg: 409 | Jain: 409 | Chicken: 479 | Mutton: 649 | Basa: 539
+
+- Item: Classic Manchurian Dry
+  वर्णन: Deep Fried Vegetable Balls Cooked With Chopped Ginger, Garlic, Onion Chilli & Coriander Leaf.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 479
+  किंमत/व्हेरिएंट: Veg: 349 | Jain: 349 | Chicken: 479
+
+- Item: Fresh Red Pepper
+  वर्णन: Diced Of Cottage Cheese Tossed With Bell Pepper, Scallion, Fresh Red Chilli & Black Pepper.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 499
+  किंमत/व्हेरिएंट: Veg: 409 | Chicken: 499
+
+- Item: Asian Wok & Grill Cottage Cheese / Chicken/Fish /Prawns
+  वर्णन: Chef’S Special.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=Yes
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 499 | Basa: 559 | Prawns: 629
+  किंमत/व्हेरिएंट: Veg: 429 | Jain: 429 | Chicken: 499 | Basa: 559 | Prawns: 629
+
+- Item: Hot Basil
+  वर्णन: Dice Chicken Tossed With Ginger, Garlic, Dry Red Chilli,  Fresh Basil, Light Soya And Bell Pepper
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Spicy
+  नॉनवेज सोर्स: Chicken: 459 | Basa: 629
+  किंमत/व्हेरिएंट: Veg: 429 | Chicken: 459 | Basa: 629
+
+- Item: Asian Crispy Sesame
+  वर्णन: Deep Fried Cube Chicken Tossed With Ginger, Honey, Vinegar, Kikkoman Soya & Topped With Sesame Seeds
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 459
+  किंमत/व्हेरिएंट: Chicken: 459
+
+- Item: Butter Garlic
+  वर्णन: Slow Fried Prawns Tossed With Fresh Garlic, Butter, Bell Peppers & Spring Onion.
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Non Spicy
+  नॉनवेज सोर्स: Chicken: 459 | Basa: 559 | Prawns: 629
+  किंमत/व्हेरिएंट: Veg: 429 | Chicken: 459 | Basa: 559 | Prawns: 629
+
+- Item: Thai Spice
+  वर्णन: Deep Fried Sliced Fish Tossed With Bell Pepper, Sweet Basil, Garlic, Galangal, Fresh Red Chilli & Fish Sauce.
+  डायटरी: Veg=No | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Basa: 559 | Prawns: 629
+  किंमत/व्हेरिएंट: Basa: 559 | Prawns: 629
+
+- Item: Sichuan
+  वर्णन: Dice Chicken Tossed With Ginger, Garlic, Dry Red Chilli, Sichuan Pepper / Light Soya And Bell Pepper
+  डायटरी: Veg=Yes | NonVeg=Yes | Jain=No
+  शेफ स्पेशल: No
+  स्पाइस लेवल: Medium Spicy
+  नॉनवेज सोर्स: Chicken: 459 | Prawns: 629
+  किंमत/व्हेरिएंट: Veg: 429 | Chicken: 459 | Prawns: 629
+
+
+कॉकटेल मेन्यू (BAR MENU NK) - विभागनिहाय
+
+#awg--classic-botanical-mixology
+==============================
+विभाग: Awg & Classic Botanical Mixology
+==============================
+- Item: Breezer Twist
+  वर्णन: White Rum,Strawberry Crush,Lime Juice,Sugar Syrup Top Up With Breezers.
+  किंमत/व्हेरिएंट: Glass: 529
+
+- Item: Mai Tai
+  वर्णन: White Rum,Coconut Milk,Orange Juice,Pineapple Juice,Ice.
+  किंमत/व्हेरिएंट: Glass: 399
+
+- Item: Old Monk Punch
+  वर्णन: Rum, Pineapple Juice, Cardamom, Rosemerry, Sweet & Sour.
+  किंमत/व्हेरिएंट: Glass: 379
+
+- Item: Classic Mojito
+  वर्णन: White Rum, Mint Leaves, Lime Wedges Topped With Soda
+  किंमत/व्हेरिएंट: Glass: 349
+
+- Item: Classic Pinacolada
+  वर्णन: Pineapple Juice, Coconut Cream With White Rum
+  किंमत/व्हेरिएंट: Glass: 349
+
+- Item: Tom & Jerry
+  वर्णन: White Rum,Egg,Sugar Syrup,Brandy,Milk.
+  किंमत/व्हेरिएंट: Glass: 379
+
+- Item: Sky Blue Colada
+  वर्णन: White Rum, Pineapple Juice, Blue Curacao Syrup,Coco Syrup,Fresh Cream.
+  किंमत/व्हेरिएंट: Glass: 379
+
+- Item: Daiquiri
+  वर्णन: White Rum, Lime Juice & Sugar Syrup
+  किंमत/व्हेरिएंट: Glass: 349
+
+- Item: Pain Killer
+  वर्णन: White Rum,Coconut Milk,Orange Juice,Pineapple Juice,Ice.
+  किंमत/व्हेरिएंट: Glass: 349
+
+- Item: Cuba Libra
+  वर्णन: White Rum, Cola & Fresh Lime & Mint.
+  किंमत/व्हेरिएंट: Glass: 329
+
+- Item: Spicy Chilli Beer
+  वर्णन: Vodka,Larger Beer,Worcestershire Sauce,Tbasco,Green Chilli.
+  किंमत/व्हेरिएंट: Glass: 529
+
+- Item: Sex On The Beach
+  वर्णन: Vodka, Orange Juice, Cranberry Juice & Peach Syrup
+  किंमत/व्हेरिएंट: Glass: 379
+
+- Item: Classic Guava Marry
+  वर्णन: Vodka, Lime, Tobasco, Worcestershire Mixed With Guava Juice
+  किंमत/व्हेरिएंट: Glass: 379
+
+- Item: Chocotini
+  वर्णन: Vodka,Chocolate Syrup,Simple Syrup,Fresh Cream.
+  किंमत/व्हेरिएंट: Glass: 379
+
+- Item: Passion Star Martini
+  वर्णन: Vodka, Orange Juice & Peach Syrup
+  किंमत/व्हेरिएंट: Glass: 349
+
+- Item: Poison Love
+  वर्णन: Vodka, Orange Juice,Lime Juice
+  किंमत/व्हेरिएंट: Glass: 349
+
+- Item: Cosmopolitan
+  वर्णन: Vodka, Cranberry Juice, Cointreau, Lime Juice
+  किंमत/व्हेरिएंट: Glass: 329
+
+- Item: Classic Blue Lagoon
+  वर्णन: Vodka, Blue Curacao & Soda
+  किंमत/व्हेरिएंट: Glass: 329
+
+- Item: New York Sour
+  वर्णन: Bourbon Whiskey,Lemon, Sugar Syrup, Egg(Optional), Top Up With Red Wine.
+  किंमत/व्हेरिएंट: Glass: 529
+
+- Item: Whiskey Sour
+  वर्णन: Bourbon Whiskey,Sugar Syrup,Lemon,Egg(Optional),Angostura Bitters,Ice.
+  किंमत/व्हेरिएंट: Glass: 479
+
+- Item: Old Fashioned
+  वर्णन: Bourbon Whiskey,Angostura Bitters,Orange Bitters,Water,Ice
+  किंमत/व्हेरिएंट: Glass: 499
+
+- Item: Mint Julep
+  वर्णन: Bourbon Whiskey, Simple Syrup, Mint With Crushed Ice
+  किंमत/व्हेरिएंट: Glass: 449
+
+- Item: Hot Toddy
+  वर्णन: Whiskey,Honey,Lemon,Water.
+  किंमत/व्हेरिएंट: Glass: 399
+
+- Item: Orange Julep
+  वर्णन: Whiskey, Fresh Orange,Simple Syrup, Mint With Crushed Ice
+  किंमत/व्हेरिएंट: Glass: 399
+
+- Item: Let'S Detox
+  वर्णन: Gin,Watermelon Juice,Fresh Cucumber,Mint Leaves,Lime Juice & Symple Syrup.
+  किंमत/व्हेरिएंट: Glass: 449
+
+- Item: Awgtini  (Martini)
+  वर्णन: Gin , Dry Vermouth, Olive
+  किंमत/व्हेरिएंट: Glass: 469
+
+- Item: Chilli Basil Martini
+  वर्णन: Gin,Fresh Basil Leaves,Lime Juice,Sugar Syrup,Green Chilli.
+  किंमत/व्हेरिएंट: Glass: 399
+
+- Item: White
+  वर्णन: Gin, Triple Sec,Lime Juice & Sugar Syrup.
+  किंमत/व्हेरिएंट: Glass: 399
+
+- Item: Pink Lady
+  वर्णन: Gin, Triple Sec,Lime Juice & Sugar Syrup.
+  किंमत/व्हेरिएंट: Glass: 399
+
+- Item: Gimlet
+  वर्णन: Gin, Lime Juice, Sugar Syrup
+  किंमत/व्हेरिएंट: Glass: 349
+
+- Item: Green Maxican
+  वर्णन: Tequila,Midori,Lemon,Sugar Syrup,Ice.
+  किंमत/व्हेरिएंट: Glass: 599
+
+- Item: Tequila Sunrise
+  वर्णन: Tequila, Orange Juice, Grenadine
+  किंमत/व्हेरिएंट: Glass: 499
+
+- Item: Margarita
+  वर्णन: Tequila, Cointreau, Lime Juice
+  किंमत/व्हेरिएंट: Glass: 499
+
+
+#beers
+==============================
+विभाग: Beer'S
+==============================
+- Item: Hoegaarden
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 409
+
+- Item: Corona
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 409
+
+- Item: Budweiser Magnum
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 349
+
+- Item: Budweiser Premium
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 329
+
+- Item: Kingfisher Ultra
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 329
+
+- Item: Heineken
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 329
+
+- Item: Heineken  Silver
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 329
+
+- Item: Carlsberg Elephent
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 329
+
+- Item: Carlsberg Smooth
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 289
+
+- Item: Tuborg Strong
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 279
+
+- Item: Kingfisher Premium
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 330Ml: 269
+
+
+#bourbon--irish-whisky
+==============================
+विभाग: Bourbon / Irish Whisky
+==============================
+- Item: Jack Daniel'S Old No.07
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 429
+
+- Item: Jack Daniel'S Old No.07  Honey
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 429
+
+- Item: Jack Daniel'S Old No.07  Fire
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 429
+
+- Item: Jim Beam
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 359
+
+- Item: Jameson
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 359
+
+
+#brandy
+==============================
+विभाग: Brandy
+==============================
+- Item: Hennessy V.S.
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 599
+
+
+#breezers
+==============================
+विभाग: Breezers
+==============================
+- Item: Cranberry
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 275Ml: 299
+
+- Item: Jamaican Passion
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 275Ml: 299
+
+
+#bull-base-cocktail
+==============================
+विभाग: Bull Base Cocktail
+==============================
+- Item: Bull Frog
+  वर्णन: Five Spirits Mixed With Red Bull And Tonic With Crushed Ice
+  किंमत/व्हेरिएंट: Glass: 699
+
+- Item: Flying Bull
+  वर्णन: White & Dark Rum, Orange Juice & Red Bull
+  किंमत/व्हेरिएंट: Glass: 529
+
+- Item: Bull Exotica
+  वर्णन: Vodka, Cranberry Juice, Peach Syrup & Red Bull
+  किंमत/व्हेरिएंट: Glass: 529
+
+
+#dessert-wine
+==============================
+विभाग: Dessert  Wine
+==============================
+- Item: Sula Late Harvest
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 439 | Btl: 2199
+
+
+#domestic-rum
+==============================
+विभाग: Domestic Rum
+==============================
+- Item: Bacardi White Rum
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 159
+
+- Item: Bacardi  Black Rum
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 159
+
+- Item: Old Monk Coffee
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 209
+
+- Item: Captain Morgan
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 159
+
+- Item: Old Monk White
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 129
+
+- Item: Old Monk Regular
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 129
+
+
+#domestic-vodka
+==============================
+विभाग: Domestic Vodka
+==============================
+- Item: Smirnoff
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 209
+
+- Item: Smirnoff Flavor
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 209
+
+- Item: Magic Moment
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 149
+
+
+#gin
+==============================
+विभाग: Gin
+==============================
+- Item: Jaisalmer
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 399
+
+- Item: Bombay Sapphire
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 329
+
+- Item: Beefeater
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 299
+
+- Item: Blue Riband
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 149
+
+
+#imported-vodka
+==============================
+विभाग: Imported Vodka
+==============================
+- Item: Grey Goose
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 599
+
+- Item: Cîroc
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 579
+
+- Item: Absolut
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 329
+
+- Item: Absolut Flavor
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 329
+
+
+#liit-long-glass
+==============================
+विभाग: Liit Long Glass
+==============================
+- Item: Awg Liit
+  वर्णन: Five White Spirits, Peach Syrup Topped With Redwine
+  किंमत/व्हेरिएंट: Glass: 729
+
+- Item: Beer Liit
+  वर्णन: Five White Spirits Topped With Beer, Choice Of Flavour
+  किंमत/व्हेरिएंट: Glass: 699
+
+- Item: Boom Boom Liit
+  वर्णन: Vodka, Tequilla, Rum Topped With Red Bull And Crushed Ice
+  किंमत/व्हेरिएंट: Glass: 699
+
+- Item: Cranberry Liit
+  वर्णन: Five Spirits Topped With Grenadine And Cranberry Juice
+  किंमत/व्हेरिएंट: Glass: 649
+
+- Item: Classic Liit
+  वर्णन: Five Spirits Mixed With Cola
+  किंमत/व्हेरिएंट: Glass: 649
+
+
+#liquer
+==============================
+विभाग: Liquer
+==============================
+- Item: Malibu
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 399
+
+
+#liqueurs
+==============================
+विभाग: Liqueurs
+==============================
+- Item: Triple Sec
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 499
+
+- Item: Cointreau
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 499
+
+- Item: Jagermeister
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 499
+
+- Item: Baileys
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 399
+
+- Item: Sambuca
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 379
+
+- Item: Kahlua
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 379
+
+- Item: Midori
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 379
+
+- Item: Martini
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 379
+
+
+#premium-whisky
+==============================
+विभाग: Premium Whisky
+==============================
+- Item: Teachers 50
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 379
+
+- Item: Black Dog Triple Gold
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 369
+
+- Item: Teachers Highland Cream
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 309
+
+- Item: Black & White
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 299
+
+- Item: 100 Pipers
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 299
+
+- Item: Vat 69
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 299
+
+- Item: Ballentine’S Finest
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 289
+
+- Item: Willam Lawson'S
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 249
+
+- Item: The Glenwalk
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 249
+
+- Item: Blenders Pride Reserved
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 209
+
+- Item: Antiquity Blue
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 209
+
+- Item: Signature
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 199
+
+- Item: Blenders Pride
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 199
+
+- Item: Oaksmith Gold
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 199
+
+- Item: Oaksmith Silver
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 199
+
+- Item: Okan Glow
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 159
+
+
+#red-wine
+==============================
+विभाग: Red Wine
+==============================
+- Item: Jacob Creak Merlot
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Btl: 2699
+
+- Item: Shiraz
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Btl: 2699
+
+- Item: Sula Dindori
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 479 | Btl: 1999
+
+- Item: Sula Cabernet Shiraz
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 399 | Btl: 1899
+
+- Item: Sula  Satroi
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 399 | Btl: 1899
+
+- Item: Fratelli Classic Merlot
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 349 | Btl: 1599
+
+- Item: Fratell Cabernet Shiraz
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 349 | Btl: 1599
+
+
+#rose-wine
+==============================
+विभाग: Rose Wine
+==============================
+- Item: Sula Zinfandel Rose
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 349 | Btl: 1599
+
+- Item: Rose
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 349 | Btl: 1499
+
+
+#sangria
+==============================
+विभाग: Sangria
+==============================
+- Item: White Wine Sangria
+  वर्णन: White Wine,Fresh Orange & Apple,Brandy,Sugar,Soda
+  किंमत/व्हेरिएंट: Glass: 429 | Pitcher(1.5 Lit): 2999
+
+- Item: Red Wine Sangria
+  वर्णन: Red Wine,Fresh Orange & Apple,Brandy,Sugar,Soda
+  किंमत/व्हेरिएंट: Glass: 429 | Pitcher(1.5 Lit): 2999
+
+
+#scotch-whisky
+==============================
+विभाग: Scotch Whisky
+==============================
+- Item: Dewar'S 15 Yo
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 549
+
+- Item: Dewar'S 12 Yo
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 459
+
+- Item: Dewar'S Portuguese Smooth
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 359
+
+- Item: Dewar'S White Label
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 299
+
+- Item: Johnnie Walker Blue Label
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 2299
+
+- Item: Royal Salute 21Yrs
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 2299
+
+- Item: Johnnie Walker Double Black
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 549
+
+- Item: Monkey Shoulder
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 549
+
+- Item: Chivas Regal 12 Y.O.
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 459
+
+- Item: Johnnie Walker Black Label 12 Yrs.
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 459
+
+- Item: J & B
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 329
+
+- Item: Johnnie Walker Red Label
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 299
+
+
+#shots
+==============================
+विभाग: Shots
+==============================
+- Item: Jager Bomb
+  वर्णन: Jagermeister And Red Bull
+  किंमत/व्हेरिएंट: Glass: 579
+
+- Item: Bacadi  Mango Chilli Shot
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 299
+
+- Item: B52
+  वर्णन: Kahlua, Baileys, Triple Sec
+  किंमत/व्हेरिएंट: Glass: 579
+
+- Item: Bmw
+  वर्णन: Baileys, Malibu, Whiskey
+  किंमत/व्हेरिएंट: Glass: 579
+
+- Item: Jack Sparrow
+  वर्णन: Jd & Sambuca
+  किंमत/व्हेरिएंट: Glass: 549
+
+- Item: Jack Sparrow
+  वर्णन: Jd & Sambuca
+  किंमत/व्हेरिएंट: Glass: 549
+
+- Item: Irish Frog
+  वर्णन: Baileys, Midori.
+  किंमत/व्हेरिएंट: Glass: 549
+
+- Item: Drunk Melon
+  वर्णन: Sambuca,Gin,Midori,Lemon.
+  किंमत/व्हेरिएंट: Glass: 529
+
+- Item: Passion Blondy
+  वर्णन: Bacardi, Cointreau, Lime Juice
+  किंमत/व्हेरिएंट: Glass: 529
+
+- Item: Fighting Bull
+  वर्णन: Grenadine, Vodka, Red Bull
+  किंमत/व्हेरिएंट: Glass: 429
+
+- Item: Kamikazi
+  वर्णन: Vodka, Cointreau, Lime Juice
+  किंमत/व्हेरिएंट: Glass: 429
+
+
+#single-malt
+==============================
+विभाग: Single Malt
+==============================
+- Item: Laphroaig 10 Y.O.
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 949
+
+- Item: Glenfiddich 12 Yrs.
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 729
+
+- Item: Talisker 10 Yrs.
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 729
+
+- Item: Glenlivet 12 Yrs.
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 729
+
+- Item: Glenmorangie. 10 Yrs.
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 729
+
+- Item: Aberfeldy 12Yo
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 800
+
+- Item: Amrut
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 529
+
+
+#sparkling-wine
+==============================
+विभाग: Sparkling Wine
+==============================
+- Item: Sula Brut
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Btl: 2599
+
+- Item: Sula Seco
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Btl: 1699
+
+
+#special-modern-mixology
+==============================
+विभाग: Special Modern Mixology
+==============================
+- Item: Drunk Maghai Paan
+  वर्णन: Vodka, Paan Syrup, Fresh Cream, Fresh Mint
+  किंमत/व्हेरिएंट: Glass: 499
+
+- Item: Sunset Melon
+  वर्णन: Vodka,Fresh Watermelon,Lime Wedges,Fresh Mint,Pineapple Juice,Sprite.
+  किंमत/व्हेरिएंट: Glass: 499
+
+- Item: The Awg Punch
+  वर्णन: Fresh Fruit, Vodka, Rum, Tequila, Mix Fruit Juice
+  किंमत/व्हेरिएंट: Glass: 499
+
+- Item: Cranberry Kiss
+  वर्णन: Cranberry Juice, Vodka, Lime
+  किंमत/व्हेरिएंट: Glass: 499
+
+- Item: Lost In Litchi
+  वर्णन: Gin,Litchi Juice,Cranberry Juice,Elderflower Syrup,Lime Juice
+  किंमत/व्हेरिएंट: Glass: 499
+
+- Item: Trust In Me
+  वर्णन: Whiskey,Mulled Wine,Egg White,Lime Juice
+  किंमत/व्हेरिएंट: Glass: 499
+
+
+#tequila
+==============================
+विभाग: Tequila
+==============================
+- Item: Patron
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Silver: 949 | Repesado: 1099 | Anezo: 949
+
+- Item: Tequila Camino Gold
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 409
+
+- Item: Tequila Camino Silver
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 409
+
+- Item: Don Angel
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: 30Ml: 379
+
+
+#white-wine
+==============================
+विभाग: White Wine
+==============================
+- Item: Jacob Creak Chordonnay
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Btl: 2599
+
+- Item: Sula Chenin Blanc
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 349 | Btl: 1599
+
+- Item: Sula  Sauvignon Blanc
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 349 | Btl: 1599
+
+- Item: Fratelli Chenin Blane
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 349 | Btl: 1599
+
+- Item: Fratelli Chardonnay
+  वर्णन: Description not available.
+  किंमत/व्हेरिएंट: Glass: 349 | Btl: 1599
+

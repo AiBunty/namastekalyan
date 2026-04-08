@@ -1,0 +1,662 @@
+NAMASTE KALYAN by ASIAN WOK & GRILL - AI INTENT ACTIVATION GUIDE
+Location: Kalyan, Maharashtra
+Generated: 2026-04-07 17:32
+
+Purpose:
+Use AI to recognize customer intent based on topic, not just exact keywords.
+This file defines activation rules, trigger keywords, intent topics, and customer prompt examples.
+All pricing-related responses redirect to menu links with category hash anchors.
+
+==================================================
+1) AI AGENT ACTIVATION LOGIC
+==================================================
+Recommended routing model:
+1. Activate AI for every inbound customer text message except empty or obvious spam messages.
+2. Detect intent category with confidence score.
+3. Respond by intent topic, not by fixed keyword matching.
+4. ALWAYS include hash links with category anchors when directing to menus.
+5. NEVER quote prices directly; redirect to menu links instead.
+6. For booking intent, NEVER ask date, time, guest count, name, or phone in chat. Send the reservation link and steps only.
+
+Confidence policy:
+- Confidence >= 0.60: answer directly with hash link recommendations.
+- Confidence 0.35 to 0.59: ask one clarifying question.
+- Confidence < 0.35: send fallback options (menu categories or general help).
+
+==================================================
+2) PRIMARY TRIGGER KEYWORDS
+==================================================
+Use these as high-priority trigger words/phrases:
+- hi, hello, hey, good evening, anyone there
+- menu, categories, items, dishes
+- book, reservation, table, booking
+- order, delivery, online, parcel
+- veg, vegetarian, pure veg
+- jain, onion, garlic, jain-friendly
+- spicy, mild, hot, less spice, kids menu
+- price, cost, budget, affordable, expensive
+- location, address, branch, outlet, where, directions
+- contact, call, phone, whatsapp, email
+- timings, hours, opening, closing
+- party, event, function, celebration, group, birthday
+- franchise, partnership, business
+- review, rating, feedback, complaint, experience
+- cocktail, drink, beverage, bar, liquor
+- delivery, swiggy, zomato, online order
+- special, chef special, recommendation, suggest
+
+Hinglish trigger phrases:
+- booking karna hai, table chahiye, reservation chahiye
+- menu bhejo, menu dokhao, menu dikha
+- location bhejo, address batao, kaha par ho
+- order kaise kare, online kaise order karu
+- veg kya hai, jain kya hai, spicy kya hai
+- price kitna hai, budget friendly kya hai
+- party karna hai, event booking, birthday party
+- franchise chahiye, business opportunity
+- contact number, phone number, whatsapp number
+- delivery hota hai, home delivery, online order link
+- swiggy link, zomato link, order link
+- review link, rating kaise doon, feedback kaise doon
+
+==================================================
+3) INTENT TOPICS TO RECOGNIZE + HASH ANCHORS
+==================================================
+When responding to each intent, include relevant hash anchors:
+
+FOOD MENU CATEGORIES WITH HASH ANCHORS:
+#food-all-time-favourite - All Time Favourite dishes
+#food-bao - Bao selections
+#food-bowls - Noodle & rice bowls
+#food-breads - Breads & rotis
+#food-chicken-wings - Chicken wings
+#food-cold-ones - Cold appetizers
+#food-crackers-dahi - Crackers with dahi
+#food-curries - Various curries
+#food-dal-wali-gali - Dal preparations
+#food-deep-fry - Deep fried items
+#food-dessert - Desserts
+#food-dimsum - Dim sum selection
+#food-fish-curry-specialities - Fish specialties
+#food-from-the-grill - Grilled items
+#food-ghosht-curry-specialities - Meat curries
+#food-iced-tea - Iced teas
+#food-icy-virgin-margaritas - Mocktails
+#food-indian-mains-bageeche-se - Indian main courses
+#food-koyle-ka-kamal - Special selections
+#food-lemonades - Lemonades
+#food-lettuce-cups - Lettuce wraps
+#food-main-course - Main course
+#food-mocktails - Mocktails
+#food-murg-curry-specialities - Chicken curries
+#food-noodles - Noodle dishes
+#food-pasta - Pasta dishes
+#food-pehels-kadam - First steps/starters
+#food-pizza - Pizzas
+#food-rice - Rice dishes
+#food-salads - Salads
+#food-semi-cooked - Semi-cooked items
+#food-short-eats - Short eats
+#food-soups - Soups
+#food-spring-rolls - Spring rolls
+#food-steamed-momos - Steamed dumplings
+#food-stir-fry - Stir fry options
+#food-tandoori - Tandoori items
+#food-thai-selection - Thai dishes
+#food-toast - Toast options
+#food-vietnamese-specialities - Vietnamese dishes
+#food-whole-wheat-pizza - Wheat pizzas
+
+COCKTAIL MENU CATEGORIES WITH HASH ANCHORS:
+#cocktails-blended-margaritas - Blended margaritas
+#cocktails-champagne-prosecco - Champagne & Prosecco
+#cocktails-cognacs - Cognacs
+#cocktails-dark-rum - Dark Rum
+#cocktails-gin - Gin cocktails
+#cocktails-house-cocktails - House specials
+#cocktails-light-rum - Light Rum
+#cocktails-mocktails - Non-alcoholic cocktails
+#cocktails-premium-vodka - Premium vodka drinks
+#cocktails-rum - Rum cocktails
+#cocktails-sangria-wine - Sangria & Wine
+#cocktails-single-malt - Single Malt Scotch
+#cocktails-sparkling-wine - Sparkling wine
+#cocktails-special-modern-mixology - Modern creations
+#cocktails-tequila - Tequila drinks
+#cocktails-white-wine - White wine options
+
+==================================================
+4) CUSTOMER PROMPTS THAT SHOULD ACTIVATE AI
+==================================================
+
+GREETING INTENT:
+Triggers: Hi | Hello | Good evening | Good morning | Hey | Anyone there | Good night
+Response approach: Greet back, offer quick help with menus/booking/location
+Hash links: None needed for greeting; wait for next question
+
+Examples:
+- "Hi"
+- "Hello, anyone there?"
+- "Good evening!"
+- "Hey, I need some help"
+- "Namaste! Menu bhejo"
+
+---
+
+MAIN FOOD MENU REQUEST:
+Triggers: Send menu | Menu link | Food menu | Show menu items | Category options
+Response approach: Provide Food Menu link with category hash anchor suggestions
+Hash links: https://namastekalyan.asianwokandgrill.in/menu.html#food-{category}
+
+Examples:
+- "Send me menu"
+- "Main menu link please"
+- "Show your food menu"
+- "I want to check menu items"
+- "Menu bhejo"
+- "Kya kya items hain?"
+- "Menu dikha"
+
+---
+
+COCKTAIL/BAR MENU REQUEST:
+Triggers: Cocktail | Bar menu | Drinks menu | Beverage | Liquor | Alcohol
+Response approach: Provide Cocktail Menu link with category hash anchors
+Hash links: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-{category}
+
+Examples:
+- "Send cocktail menu"
+- "Bar menu link please"
+- "Drinks menu bhejo"
+- "Cocktail page link"
+- "Show beverage menu"
+- "Alcohol options kya hain?"
+
+---
+
+CATEGORY RECOMMENDATIONS:
+Triggers: What should I order | Best seller | Recommend | Suggest | First time
+Response approach: Suggest relevant category hash link based on dietary preference
+Hash links: https://namastekalyan.asianwokandgrill.in/menu.html#food-{specific-category}
+
+Examples:
+- "What should I order?"
+- "Best seller kya hai?"
+- "Recommend veg starter and main course"
+- "Suggest something spicy"
+- "First time hu, kya try karu?"
+- "Acha dish suggest karo"
+- "Best non-veg starter?"
+
+---
+
+VEGETARIAN INTENT:
+Triggers: Veg | Vegetarian | Pure veg | No meat | Plant-based
+Response approach: Direct to food menu with veg-friendly category hash links
+Hash links: #food-all-time-favourite or #food-pehels-kadam (veg starters)
+
+Examples:
+- "Do you have veg options?"
+- "Non veg available?"
+- "Pure veg dishes kaunse hain?"
+- "Veg and non veg dono milta hai?"
+- "Sirf vegetarian dishes"
+
+---
+
+JAIN FOOD INTENT:
+Triggers: Jain | Without onion garlic | Jain-friendly | No onion | No garlic
+Response approach: Direct to food menu noting Jain availability; reference menu
+Hash links: https://namastekalyan.asianwokandgrill.in/menu.html (note: check Jain column in master file)
+
+Examples:
+- "Jain food available?"
+- "Without onion garlic options?"
+- "Jain starter suggest karo"
+- "Jain main course kya hai?"
+- "Can you make Jain version?"
+- "Pyaaz-lehsun wale nahi chahiye"
+
+---
+
+SPICE LEVEL INTENT:
+Triggers: Spicy | Mild | Hot | Less spice | Non spicy | Kids menu | Medium spice
+Response approach: Direct to food menu; offer to mention spice preference
+Hash links: https://namastekalyan.asianwokandgrill.in/menu.html (reference spice level column)
+
+Examples:
+- "Is food spicy?"
+- "Less spicy bana sakte ho?"
+- "Medium spice options batao"
+- "Very spicy dishes kaunse hain?"
+- "Kids ke liye mild options do"
+- "Mild khana chahiye"
+
+---
+
+PRICE/BUDGET INTENT:
+Triggers: Price | Cost | Budget | Expensive | Affordable | How much | Kitna
+Response approach: STRICT: NEVER quote price; redirect to menu link immediately
+Hash links: https://namastekalyan.asianwokandgrill.in/menu.html or #cocktails-{category}
+
+Response template:
+"Please visit our menu for current pricing: {link}"
+OR
+"Price details are on the menu: {link}"
+NEVER say actual prices directly.
+
+Examples:
+- "Price of this dish?"
+- "Approx cost for 2?"
+- "Budget friendly options batao"
+- "Is this expensive?"
+- "Menu with prices bhejo"
+- "Kitna rupees hoga?"
+- "Sasta kya hai?"
+
+---
+
+RESERVATION & BOOKING INTENT:
+Triggers: Book | Reservation | Table | Dinner booking | Lunch booking | Party booking
+Response approach: Provide only the reservation link and booking steps. Do not ask for date/time/party size/name/phone in chat.
+Hash links: https://admin.aibunty.com/u2/82800/reservation-for-awg
+
+Examples:
+- "Table booking available?"
+- "I want to reserve for tonight"
+- "Book a table for 6"
+- "Reservation link bhejo"
+- "Dinner booking karni hai"
+- "Lunch ke liye table chahiye"
+
+---
+
+EVENT/PARTY BOOKING INTENT:
+Triggers: Party | Event | Function | Celebration | Group | Birthday | Corporate | Wedding | Engagement
+Response approach: Share the reservation link for booking and the manager mobile/WhatsApp for custom coordination. Do not collect booking details in chat.
+Hash links: Reservation link + manager contact details
+
+Examples:
+- "Birthday party booking"
+- "Corporate dinner arrange karna hai"
+- "Engagement function ke liye space hai?"
+- "Group booking for 20 people"
+- "Event menu options batao"
+- "Kya party laga sakte ho?"
+
+---
+
+LOCATION/ADDRESS INTENT:
+Triggers: Where | Location | Address | Branch | Outlet | Directions | How to reach
+Response approach: Provide address and location link
+Hash links: https://namastekalyan.asianwokandgrill.in/ (website has address)
+
+Address & Location Details:
+Location: RockMount Residency, 4th Floor, Khadakpada Circle, Kalyan, Maharashtra 421301
+Google Maps: https://www.google.com/maps/search/?api=1&query=RockMount+Residency%2C+4th+Floor%2C+Khadakpada+Circle%2C+Kalyan%2C+Maharashtra+421301
+Website: https://namastekalyan.asianwokandgrill.in/
+
+Examples:
+- "Where are you located?"
+- "Branches kaha kaha hain?"
+- "Send location link"
+- "Nearest outlet ka address"
+- "Kalyan branch address bhejo"
+- "Kaise pahunchthe hain?"
+
+---
+
+CONTACT/SUPPORT INTENT:
+Triggers: Contact | Call | Phone | WhatsApp | Email | Support | Speak to team
+Response approach: Provide all contact options immediately
+Hash links: None; direct contact details
+
+Contact Details:
+Manager Mobile: +91 93715 19999
+WhatsApp: https://wa.me/919371519999
+Email: namastekalyan09@gmail.com
+
+Examples:
+- "Contact number please"
+- "How can I speak to your team?"
+- "Call back chahiye"
+- "Support chahiye"
+- "WhatsApp contact do"
+- "Phone number batao"
+
+---
+
+DELIVERY/ONLINE ORDER INTENT:
+Triggers: Delivery | Online order | Swiggy | Zomato | Home delivery | Parcel | Online
+Response approach: Provide order links for both platforms
+Hash links: None; direct order links
+
+Order Links:
+Swiggy: https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout
+Zomato: https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane
+
+Examples:
+- "Delivery available?"
+- "Order online kaise kare?"
+- "Swiggy or Zomato link?"
+- "Home delivery karte ho?"
+- "Parcel order karna hai"
+- "Online order link bhejo"
+- "Zomato link bhejo"
+- "Swiggy link bhejo"
+
+---
+
+COLLABORATION / PERFORMANCE / SERVICE SALES INTENT:
+Triggers: Collaboration | Collab | Influencer | Creator | Reel | UGC | Performance | Singing | Live act | Digital marketing | Agency | SEO | Ads | Sell service
+Response approach: Appreciate interest, collect qualification details first, then share business contact only if relevant.
+Hash links: None
+
+Mandatory qualification details to collect:
+- Full name and city
+- Instagram/profile or company website link
+- Service category (creator/reels/performance/marketing/photography/other)
+- Past work links (2-3 examples)
+- Audience details or local relevance (Kalyan/Mumbai reach)
+- Deliverables and expected output
+- Commercials (budget/rates) and timeline
+- Why this collaboration/service helps Namaste Kalyan specifically
+
+Escalation rule:
+- If details are complete and relevant, share: Mr. Kunal +91 88795 91324
+- If details are incomplete, ask for missing details first and do not share contact yet
+
+Examples:
+- "I’m a food creator, let’s collaborate"
+- "Can I perform live at your restaurant?"
+- "We provide digital marketing for restaurants"
+- "I can handle your Instagram reels"
+- "Need to discuss brand partnership"
+
+---
+
+FRANCHISE/PARTNERSHIP INTENT:
+Triggers: Franchise | Partnership | Business | Investment | How to start | FOCO
+Response approach: Gather inquiry details; direct to official channels or phone
+Hash links: None; suggest phone call for details
+
+Examples:
+- "Franchise chahiye"
+- "How to take franchise?"
+- "Franchise investment details"
+- "Business opportunity chahiye"
+- "FOCO model details"
+
+---
+
+GOOGLE REVIEW INTENT:
+Triggers: Review | Rating | Feedback | Google | Share review | Leave review
+Response approach: Provide Google review link
+Hash links: https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1
+
+Examples:
+- "Send Google reviews link"
+- "Where can I leave a review?"
+- "Google ratings page link"
+- "Review dena hai"
+- "Share review link please"
+
+---
+
+COMPLAINT/SERVICE RECOVERY INTENT:
+Triggers: Complaint | Issue | Problem | Bad experience | Wrong item | Delayed | Quality | Not satisfied
+Response approach: Show empathy; take details; provide phone/email for escalation
+Hash links: None; direct to support channels
+
+Examples:
+- "I had a bad experience"
+- "Order was delayed"
+- "Food quality issue hai"
+- "Wrong item delivered"
+- "I want to report a complaint"
+
+---
+
+LOST & FOUND / MISSING BELONGINGS INTENT:
+Triggers: Lost chain | Lost gold chain | Lost wallet | Lost phone | Missing item | Belongings missing | Forgot my item | No response from property calls
+Response approach: Treat as urgent. Show empathy, collect only essential details, and escalate to lost-and-found manager immediately.
+Hash links: None
+
+Essential details to capture:
+- Date and approximate time
+- Table number/area
+- Item description
+- Callback number
+- Previous call attempts/no response note
+
+Escalation contact:
+- Mr. Sagar: +91 77440 12751
+
+Rules:
+- Do not promise recovery
+- Confirm immediate escalation and callback request
+- Keep response concise and supportive
+
+Examples:
+- "I lost my gold chain at your restaurant"
+- "I left my wallet at table 8"
+- "I called many times but no one answered"
+- "Please ask manager to call me back"
+
+---
+
+CONVERSATION CLOSING INTENT:
+Triggers: Thanks | Thank you | Bye | Good night | Done | That is all | See you
+Response approach: Thank customer; offer help if needed
+Hash links: None; friendly closing
+
+Examples:
+- "Thanks"
+- "Thank you, done"
+- "Bye"
+- "That is all"
+- "Good night"
+- "See you soon"
+
+==================================================
+5) HASH LINK QUICK REFERENCE
+==================================================
+
+FOOD MENU:
+Base: https://namastekalyan.asianwokandgrill.in/menu.html
+With category anchor examples:
+- All Time Favourite: https://namastekalyan.asianwokandgrill.in/menu.html#food-all-time-favourite
+- Starters: https://namastekalyan.asianwokandgrill.in/menu.html#food-pehels-kadam
+- Breads: https://namastekalyan.asianwokandgrill.in/menu.html#food-breads
+- Chicken Curries: https://namastekalyan.asianwokandgrill.in/menu.html#food-murg-curry-specialities
+- Meat Curries: https://namastekalyan.asianwokandgrill.in/menu.html#food-ghosht-curry-specialities
+- Fish: https://namastekalyan.asianwokandgrill.in/menu.html#food-fish-curry-specialities
+- Noodles: https://namastekalyan.asianwokandgrill.in/menu.html#food-noodles
+- Rice: https://namastekalyan.asianwokandgrill.in/menu.html#food-rice
+- Pasta: https://namastekalyan.asianwokandgrill.in/menu.html#food-pasta
+- Tandoori: https://namastekalyan.asianwokandgrill.in/menu.html#food-tandoori
+- Mocktails: https://namastekalyan.asianwokandgrill.in/menu.html#food-mocktails
+- Desserts: https://namastekalyan.asianwokandgrill.in/menu.html#food-dessert
+(Full list available in chatbot-single-source-master-en.txt with all category hash anchors)
+
+COCKTAIL MENU:
+Base: https://namastekalyan.asianwokandgrill.in/cocktail.html
+With category anchor examples:
+- Mocktails: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-mocktails
+- Sparkling Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-sparkling-wine
+- Single Malt: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-single-malt
+- Rum: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-rum
+- Vodka: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-premium-vodka
+- Gin: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-gin
+- Special Modern Mixology: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-special-modern-mixology
+(Full list available in chatbot-single-source-master-en.txt)
+
+OTHER KEY LINKS:
+Reservation: https://admin.aibunty.com/u2/82800/reservation-for-awg
+Website: https://namastekalyan.asianwokandgrill.in/
+Phone: +91 93715 19999
+WhatsApp: https://wa.me/919371519999
+Email: namastekalyan09@gmail.com
+Swiggy: https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout
+Zomato: https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane
+Google Review: https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1
+
+==================================================
+6) FALLBACK RESPONSE TEMPLATES
+==================================================
+
+When intent confidence is LOW (< 0.35):
+"I can help with menu, booking, events, locations, and reviews. What do you need?"
+
+When intent is AMBIGUOUS:
+"Would you like menu links, reservation help, delivery info, or location details?"
+
+When user asks for PRICE specifically:
+"Please visit our menus for current pricing: https://namastekalyan.asianwokandgrill.in/menu.html"
+OR
+"Check our menus for latest prices: https://namastekalyan.asianwokandgrill.in/menu.html or https://namastekalyan.asianwokandgrill.in/cocktail.html"
+
+When user asks for TIMINGS specifically:
+"We are open Daily 12:00 PM to 11:30 PM."
+
+When user asks for GENERAL HELP:
+"I'm here to help! You can ask about:
+- Menus (food/cocktails) with category details
+- Reservations and table bookings
+- Party and event arrangements
+- Location and contact info
+- Delivery and online orders
+- Reviews and feedback"
+
+When user provides UNCLEAR LOCATION/TIMING:
+"Could you clarify: Are you looking for dine-in reservation, delivery order, or event booking?"
+
+==================================================
+7) CRITICAL RESPONSE RULES
+==================================================
+✓ DO:
+- Always include hash links when directing to menus
+- Use category anchors in menu links (e.g., #food-all-time-favourite)
+- Provide direct phone/WhatsApp for complex inquiries
+- Show empathy for complaints
+- For booking intent, send the reservation link and booking steps only
+- Ask clarifying questions for ambiguous requests
+
+✗ DON'T:
+- Quote prices directly (STRICT: redirect to menu link instead)
+- Make promises about special dishes not in master file
+- Share incomplete contact info (always give phone AND WhatsApp)
+- Assume dietary preferences (ask if not mentioned)
+- Skip hash links when directing to categories
+- Ask date, time, guest count, name, or phone for reservations in chat
+- Combine multiple links on one line with commas or pipe separators
+- Share Mr. Kunal's number before checking collaboration/service details
+
+==================================================
+8) MULTILINGUAL RESPONSE EXAMPLES
+==================================================
+
+English Greeting:
+"Hello! Welcome to Namaste Kalyan. How can I help you today?"
+
+Hindi/Hinglish Greeting:
+"Namaste! Namaste Kalyan mein aapka swagat hai. Main aapki kya madad kar sakta hoon?"
+
+English Menu Request:
+"Here's our food menu: https://namastekalyan.asianwokandgrill.in/menu.html#food-all-time-favourite"
+
+Hindi Menu Request:
+"Yeh menu dekho: https://namastekalyan.asianwokandgrill.in/menu.html#food-all-time-favourite"
+
+English Price Query (correct response):
+"Please check our menus for current pricing: https://namastekalyan.asianwokandgrill.in/menu.html"
+
+Hindi Price Query (correct response):
+"Kripaya pricing ke liye menu check karo: https://namastekalyan.asianwokandgrill.in/menu.html"
+
+English Booking:
+"To book a table, please use our reservation page:
+- https://admin.aibunty.com/u2/82800/reservation-for-awg
+Steps:
+- Open the link
+- Select date in the calendar
+- Choose time slot
+- Enter guest count and details
+- Submit booking request
+- Check your email for booking confirmation"
+
+Hindi Booking:
+"Table booking ke liye hamara reservation page use kijiye:
+- https://admin.aibunty.com/u2/82800/reservation-for-awg
+Steps:
+- Link open kijiye
+- Date select kijiye
+- Time slot choose kijiye
+- Guest count aur details bhariye
+- Booking request submit kijiye
+- Confirmation ke liye email check kijiye"
+
+English Contact:
+"You can reach us at:
+📞 Manager Mobile: +91 93715 19999
+💬 WhatsApp: https://wa.me/919371519999
+📧 Email: namastekalyan09@gmail.com"
+
+Hindi Contact:
+"Aap hamse yahan contact kar sakte hain:
+📞 Manager Mobile: +91 93715 19999
+💬 WhatsApp: https://wa.me/919371519999
+📧 Email: namastekalyan09@gmail.com"
+
+English Lost & Found Example Reply:
+"We are very sorry to hear this and understand this is urgent.
+Please share/confirm these details so we can act immediately:
+- Visit time
+- Table number/area
+- Item description
+- Best callback number
+I am escalating this to Mr. Sagar right away:
+- +91 77440 12751
+We will request an immediate callback from management."
+
+Hindi Lost & Found Example Reply:
+"Humein is baat ka bahut afsos hai, aur hum isko urgent le rahe hain.
+Please yeh details confirm kijiye:
+- Visit time
+- Table number/area
+- Item description
+- Callback number
+Main abhi turant Mr. Sagar ko escalate kar raha/rahi hoon:
+- +91 77440 12751
+Management se immediate callback request kar diya gaya hai."
+
+English Collaboration Qualification Reply:
+"Thanks for reaching out and for your interest in collaborating with Namaste Kalyan.
+Please share these details for review:
+- Profile/company link
+- 2-3 past work samples
+- Service scope and deliverables
+- Local audience relevance (Kalyan/Mumbai)
+- Budget and timeline
+Once details are relevant and complete, we will connect you with Mr. Kunal: +91 88795 91324"
+
+Hindi Collaboration Qualification Reply:
+"Aapke message ke liye dhanyavaad.
+Review ke liye please yeh details share karein:
+- Profile/company link
+- 2-3 past work samples
+- Service scope aur deliverables
+- Kalyan/Mumbai audience relevance
+- Budget aur timeline
+Details relevant aur complete hone par hum aapko Mr. Kunal se connect karenge: +91 88795 91324"
+
+==================================================
+End of Intent Activation Guide
+==================================================
+
+Note: This guide should be paired with:
+1. chatbot-single-source-master-en.txt (complete menu with hash anchors)
+2. chatbot-system-prompt-en.txt (strict instructions and rules)
+3. Actual category hash anchors embedded in menu files
+
+For updates: Re-run generate-bot-knowledge.ps1 to refresh all files with latest menu data.

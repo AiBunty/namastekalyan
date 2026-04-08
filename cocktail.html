@@ -34,10 +34,10 @@
   <link rel="stylesheet" href="modal-styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Tangerine:wght@400;700&amp;family=Cinzel:wght@400;600;700&amp;family=Montserrat:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
   <!-- New CSS Architecture -->
-  <link rel="stylesheet" href="css/cocktail-page.css">
+  <link rel="stylesheet" href="css/cocktail-page.css?v=20260407-1">
   <link rel="stylesheet" href="css/popups.css">
   <link rel="stylesheet" href="css/loader.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/responsive.css?v=20260407-1">
   <style>
    /* ============================================================
             ⚠️ GLOBAL THEME RULE — CLASSIC BURGUNDY COCKTAIL MENU (LOCKED)
@@ -456,6 +456,9 @@
     </span>
    </h1>
   </div>
+  <div class="cocktail-search-wrap">
+   <input id="cocktailSearchInput" type="search" placeholder="Search cocktails, spirits, categories..." aria-label="Search cocktail items" oninput="setCocktailSearchQuery(this.value)">
+  </div>
   <div class="menu-frame">
    <main id="menuMain">
    </main>
@@ -749,10 +752,19 @@
         },
         
         render(items, source) {
+        cocktailAllItems = Array.isArray(items) ? items : [];
+        cocktailDataSource = source || cocktailDataSource;
             const main = document.getElementById('menuMain');
             const navList = document.getElementById('navLinkList');
             const catNav = document.getElementById('catNav');
-            const categories = [...new Set(items.map(i => i.cat))];
+        const query = cocktailSearchQuery.trim().toLowerCase();
+        const filteredItems = query
+          ? cocktailAllItems.filter(i => {
+            const searchable = [i.name, i.desc, i.cat, Object.keys(i.prices || {}).join(' ')].join(' ').toLowerCase();
+            return searchable.includes(query);
+          })
+          : cocktailAllItems;
+        const categories = [...new Set(filteredItems.map(i => i.cat))];
             
             // Only update navList if it exists (old navigation structure)
             if (navList) {
@@ -770,11 +782,16 @@
                 }).join('');
             }
 
+            if (main && !filteredItems.length) {
+              main.innerHTML = `<div class="cocktail-empty-state">No cocktail items found. Try another keyword.</div>`;
+              return;
+            }
+
             if (main) {
                 const accentCycle = ['gold', 'copper', 'ruby', 'olive'];
                 main.innerHTML = categories.map((cat, index) => {
                     const catId = this.getCategoryId(cat);
-                    const catItems = items.filter(i => i.cat === cat);
+                const catItems = filteredItems.filter(i => i.cat === cat);
                     const accent = accentCycle[index % accentCycle.length];
                     return `
                         <div class="category-section" id="${catId}" data-accent="${accent}">
@@ -811,6 +828,15 @@
             }
         }
     };
+
+    let cocktailAllItems = [];
+    let cocktailDataSource = 'live';
+    let cocktailSearchQuery = '';
+
+    function setCocktailSearchQuery(value) {
+      cocktailSearchQuery = String(value || '');
+      UIEngine.render(cocktailAllItems, cocktailDataSource);
+    }
 
     function toggleNav(show) {
         document.getElementById('navDrawer').classList.toggle('open', show);
@@ -851,6 +877,30 @@
                 }
             }
         }
+    }
+
+    function navigateToInitialCocktailHash() {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      const targetId = decodeURIComponent(hash.substring(1));
+      let attempts = 0;
+      const maxAttempts = 8;
+
+      const tryNavigate = () => {
+        const direct = document.getElementById(targetId);
+        if (direct) {
+          scrollToCat(targetId);
+          return;
+        }
+
+        attempts += 1;
+        if (attempts <= maxAttempts) {
+          setTimeout(tryNavigate, 120);
+        }
+      };
+
+      setTimeout(tryNavigate, 80);
     }
 
     function openGoogleReview() {
@@ -897,6 +947,7 @@
             const { data, source } = await DataLayer.getMenuData();
             console.log(`Menu loaded from ${source} with ${data.length} items`);
             UIEngine.render(data, source);
+            navigateToInitialCocktailHash();
             hideCocktailLoader();
         } catch (error) {
             hideCocktailLoader();
@@ -964,6 +1015,13 @@
         });
       });
     }
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash;
+      if (!hash) return;
+      const targetId = decodeURIComponent(hash.substring(1));
+      setTimeout(() => scrollToCat(targetId), 40);
+    });
   </script>
   <script>
     /* ── Bar Info Popup — show once per session ── */

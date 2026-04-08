@@ -34,9 +34,9 @@
   <link rel="stylesheet" href="styles-copy.css?v=20260327-1">
   <link rel="stylesheet" href="modal-styles.css">
   <!-- New CSS Architecture -->
-  <link rel="stylesheet" href="css/shared.css">
-  <link rel="stylesheet" href="css/menu-page.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/shared.css?v=20260407-1">
+  <link rel="stylesheet" href="css/menu-page.css?v=20260407-1">
+  <link rel="stylesheet" href="css/responsive.css?v=20260407-1">
   <link rel="stylesheet" href="css/popups.css?v=20260327-4">
   <link rel="stylesheet" href="css/loader.css">
   <style>
@@ -372,6 +372,9 @@
      ⭐ CHEF
     </button>
    </div>
+    <div class="menu-search-wrap">
+     <input id="menuSearchInput" type="search" placeholder="Search dishes, category, spice..." aria-label="Search menu items" oninput="setMenuSearchQuery(this.value)">
+    </div>
   </div>
   <button class="hamburger-menu" onclick="toggleSideNav(true)" aria-label="Toggle navigation menu">
    <div class="hamburger-line"></div>
@@ -607,6 +610,7 @@
    let foodFilter = 'ALL'; 
    let showChefOnly = false; 
    let showJainOnly = false;
+  let menuSearchQuery = '';
    let activeVariant = {}; 
    let activeQty = {}; 
 
@@ -975,9 +979,8 @@
                warmMenuAssets(MENU_DB);
     hideMenuLoader();
 
-  checkURLParams();
-
   render();
+  checkURLParams();
          } catch (e) { console.error(e); hideMenuLoader(); }
    }
 
@@ -1024,6 +1027,22 @@
          }
          if(showChefOnly) db = db.filter(i => i.chef);
 
+         const query = menuSearchQuery.trim().toLowerCase();
+         if (query) {
+           db = db.filter(i => {
+             const searchable = [
+               i.name,
+               i.desc,
+               i.cat,
+               i.spice,
+               Object.keys(i.proteins || {}).join(' '),
+               Object.keys(i.servings || {}).join(' '),
+               Object.keys(i.dynamic || {}).join(' ')
+             ].join(' ').toLowerCase();
+             return searchable.includes(query);
+           });
+         }
+
        const categoryEntries = cats
          .map(c => ({ name: c, items: db.filter(i => i.cat === c) }))
          .filter(entry => entry.items.length);
@@ -1033,7 +1052,14 @@
            return `<div class="cat-link" onclick="snapTo('${slug}'); toggleCategoryNav(false);">${c}</div>`;
        }).join('');
 
-       categoryList.innerHTML = catHtml;
+       if (categoryList) {
+         categoryList.innerHTML = catHtml;
+       }
+
+       if (!categoryEntries.length) {
+         main.innerHTML = `<section class="container menu-category"><div class="empty-search-state">No items found. Try a different keyword.</div></section>`;
+         return;
+       }
 
        const renderToken = ++menuRenderToken;
        if (!menuPerformanceMode) {
@@ -1068,6 +1094,11 @@
        }
 
        requestAnimationFrame(appendNextBatch);
+   }
+
+   function setMenuSearchQuery(value) {
+     menuSearchQuery = String(value || '');
+     render();
    }
 
      function generateCardBody(i) {
@@ -1245,15 +1276,32 @@ function checkURLParams() {
     document.getElementById('chef-off').classList.remove('active');
   }
   
-  // Handle hash anchor (e.g., #mocktail)
+  // Handle hash anchor after categories are rendered.
   if (hash) {
-    const targetId = hash.substring(1); // Remove the # symbol
-    // Use setTimeout to ensure DOM is fully rendered
-    setTimeout(() => {
-      snapTo(targetId);
-    }, 100);
+    const targetId = decodeURIComponent(hash.substring(1));
+    let attempts = 0;
+    const maxAttempts = 8;
+    const tryNavigate = () => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        snapTo(targetId);
+        return;
+      }
+      attempts += 1;
+      if (attempts <= maxAttempts) {
+        setTimeout(tryNavigate, 120);
+      }
+    };
+    setTimeout(tryNavigate, 80);
   }
 }
+
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash;
+  if (!hash || hash === '#chef-special') return;
+  const targetId = decodeURIComponent(hash.substring(1));
+  setTimeout(() => snapTo(targetId), 40);
+});
 
 /* ===== HAMBURGER MENU ===== */
 const hamburgerMenu = document.getElementById('hamburger-menu');
