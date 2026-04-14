@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaste Kalyan - Menu QR Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .qr-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .qr-label {
+            color: #666;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .qr-code {
+            display: inline-block;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .qr-code img {
+            display: block;
+            width: 250px;
+            height: 250px;
+            border: none;
+        }
+
+        .instructions {
+            background: #fffbea;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .instructions h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .stats {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #20c997;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .stats h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            color: #666;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(32, 201, 151, 0.2);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 600;
+        }
+
+        .scan-count {
+            color: #667eea;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+            display: block;
+        }
+
+        .alert.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+            display: block;
+        }
+
+        .scan-number {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .qr-code img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🍜</div>
+            <h1>Namaste Kalyan</h1>
+            <p class="subtitle">Asian Wok & Grill</p>
+            <div class="divider"></div>
+        </div>
+
+        <div id="alertBox" class="alert"></div>
+
+        <div class="qr-section">
+            <div class="qr-label">Scan to View Menu</div>
+            <div class="qr-code">
+                <img id="qrCodeImage" src="" alt="QR Code">
+            </div>
+        </div>
+
+        <div class="stats">
+            <h3>📊 Scan Analytics</h3>
+            <div class="stat-item">
+                <span class="stat-label">Total Scans:</span>
+                <span class="scan-count" id="totalScans">Loading<span class="loading"></span></span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Email Milestone:</span>
+                <span id="emailMilestone">Every 100 scans</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Next Email:</span>
+                <span id="nextEmail">Loading...</span>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>📱 How to Use</h3>
+            <ol>
+                <li><strong>Print or Display:</strong> Print this QR code or display it on your website/social media</li>
+                <li><strong>Customers Scan:</strong> Customers scan the QR code with their mobile camera</li>
+                <li><strong>View Menu:</strong> They are directed to your digital menu</li>
+                <li><strong>Track Engagement:</strong> Every scan is tracked automatically with timestamp</li>
+                <li><strong>Get Notified:</strong> You receive an email every 100 scans to support@dcoresystem.com</li>
+            </ol>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="downloadQrCode()">
+                ⬇️ Download QR Code
+            </button>
+            <button class="btn btn-secondary" onclick="copyMenuUrl()">
+                📋 Copy Menu URL
+            </button>
+            <button class="btn btn-secondary" onclick="viewReport()">
+                📊 View Full Report
+            </button>
+        </div>
+
+        <div class="footer">
+            <p>QR Code expires never • Tracked by Dcore Systems • Last Updated: <span id="lastUpdate">Now</span></p>
+        </div>
+    </div>
+
+    <script src="data-config.js"></script>
+    <script>
+        // Configuration
+        const APPS_SCRIPT_URL = (window.APPS_SCRIPT_URL || (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || '').trim();
+        const MENU_URL = 'https://namastekalyan.asianwokandgrill.in/menu.html';
+        // scan.html: tracks device, browser, OS, geo client-side before redirecting to menu
+        const QR_TRACK_URL = 'https://namastekalyan.asianwokandgrill.in/scan.html';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            ensureQrSheetReady();
+            generateQrCode();
+            loadScanStats();
+            updateLastModified();
+        });
+
+        function ensureQrSheetReady() {
+            if (!APPS_SCRIPT_URL) return;
+            fetch(APPS_SCRIPT_URL + '?action=ensure_qr_sheet', { method: 'GET' })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data || !data.ok) {
+                        console.log('QR sheet init response:', data);
+                    }
+                })
+                .catch(error => console.log('QR sheet init error (non-critical):', error));
+        }
+
+        // Generate QR Code
+        function generateQrCode() {
+            const qrCodeImg = document.getElementById('qrCodeImage');
+            // Using goqr.me service - no authentication needed
+            const cacheBust = Date.now();
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(QR_TRACK_URL)}&v=${cacheBust}`;
+            qrCodeImg.src = qrUrl;
+            qrCodeImg.alt = 'Menu QR Code';
+        }
+
+        // Load scan statistics
+        function loadScanStats() {
+            if (!APPS_SCRIPT_URL) {
+                console.error('APPS_SCRIPT_URL is not configured. Please check data-config.js');
+                document.getElementById('totalScans').innerHTML = 'N/A';
+                document.getElementById('nextEmail').innerHTML = 'N/A';
+                return;
+            }
+            fetch(APPS_SCRIPT_URL + '?action=qr_report', {
+                method: 'GET',
+                mode: 'cors',
+                cache: 'no-store'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    const totalScans = data.totalScans || 0;
+                    const nextMilestone = Math.ceil((totalScans + 1) / 100) * 100;
+                    
+                    document.getElementById('totalScans').innerHTML = totalScans.toLocaleString('en-IN');
+                    document.getElementById('nextEmail').innerHTML = nextMilestone.toLocaleString('en-IN') + ' scans';
+                } else {
+                    document.getElementById('totalScans').innerHTML = 'N/A';
+                    document.getElementById('nextEmail').innerHTML = 'N/A';
+                }
+            })
+            .catch(error => {
+                console.log('Stats load error (non-critical):', error);
+                document.getElementById('totalScans').innerHTML = 'N/A';
+                document.getElementById('nextEmail').innerHTML = 'N/A';
+            });
+        }
+
+        // Download QR Code
+        async function downloadQrCode() {
+            try {
+                const qrSrc = document.getElementById('qrCodeImage').src;
+                const response = await fetch(qrSrc, { mode: 'cors' });
+                if (!response.ok) throw new Error('QR image fetch failed');
+
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.download = 'namastekalyan-menu-qr-code.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                URL.revokeObjectURL(blobUrl);
+                showAlert('QR Code downloaded successfully!', 'success');
+            } catch (err) {
+                // Fallback: open image in new tab if download is blocked by browser/CORS
+                const qrSrc = document.getElementById('qrCodeImage').src;
+                window.open(qrSrc, '_blank', 'noopener,noreferrer');
+                showAlert('Direct download blocked by browser. QR image opened in new tab for manual save.', 'info');
+            }
+        }
+
+        // Copy QR target URL to clipboard
+        function copyMenuUrl() {
+            const text = QR_TRACK_URL;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showAlert('QR target URL copied to clipboard!', 'success');
+                }).catch(() => {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showAlert('QR target URL copied to clipboard!', 'success');
+        }
+
+        // View full report
+        function viewReport() {
+            // Open standalone report page hosted with the website
+            window.open('qr-report.html', 'QR_Report', 'width=1200,height=800,resizable=yes,scrollbars=yes');
+        }
+
+        // Show alert
+        function showAlert(message, type = 'info') {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.textContent = message;
+            alertBox.className = 'alert ' + type;
+            setTimeout(() => {
+                alertBox.className = 'alert';
+            }, 4000);
+        }
+
+        // Update last modified time
+        function updateLastModified() {
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = now.toLocaleString('en-IN');
+        }
+
+        // Refresh stats periodically
+        setInterval(loadScanStats, 60000); // Every 60 seconds
+    </script>
+</body>
+</html>

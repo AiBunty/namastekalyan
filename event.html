@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details | Namaste Kalyan</title>
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="styles-copy.css?v=20260321-4">
+  <link rel="stylesheet" href="css/site-chrome.css?v=20260413-1">
+  <link rel="stylesheet" href="css/popups.css?v=20260413-1">
+  <style>
+    body {
+      margin: 0;
+      font-family: Manrope, Arial, sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(212, 175, 116, 0.14), transparent 45%), #110b0b;
+      color: #f5ead7;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+    .top-actions {
+      margin-bottom: 18px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #f0c48f;
+      border: 1px solid rgba(240, 196, 143, 0.35);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .event-shell {
+      border: 1px solid rgba(240, 196, 143, 0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(16, 10, 10, 0.92);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+    .media {
+      width: min(100%, 560px);
+      aspect-ratio: 3 / 4;
+      margin: 0 auto;
+      background: #1b1414;
+    }
+    .media img,
+    .media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .body {
+      padding: 20px;
+    }
+    .badge {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(212, 175, 116, 0.15);
+      border: 1px solid rgba(212, 175, 116, 0.35);
+      color: #f6e1c1;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-family: Fraunces, serif;
+      color: #fff;
+    }
+    .subtitle {
+      margin: 10px 0 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+    }
+    .event-timeboard {
+      margin-top: 12px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(180deg, #24262a 0%, #17191d 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+    .event-timeboard-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 12px;
+      background: #08090b;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+    }
+    .event-timeboard-day {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffd7ac;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(240, 196, 143, 0.34);
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.04);
+    }
+    .event-timeboard-date {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffe7c7;
+      font-weight: 800;
+      letter-spacing: 0.75px;
+      font-size: clamp(2.05rem, 6vw, 3.2rem);
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 7px 16px;
+      border: 1px solid rgba(240, 196, 143, 0.3);
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.04);
+      line-height: 1;
+    }
+    .event-timeboard-flip {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+      gap: 10px;
+      padding: 12px;
+      align-items: end;
+    }
+    .event-timeboard-flip::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      border-top: 2px solid rgba(0, 0, 0, 0.8);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .event-timeboard-flip span {
+      position: relative;
+      min-height: 120px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-size: clamp(3.3rem, 11vw, 6rem);
+      line-height: 1;
+      font-weight: 800;
+      color: #f6f6f7;
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      box-shadow: inset 0 8px 16px rgba(255, 255, 255, 0.04), inset 0 -20px 26px rgba(255, 255, 255, 0.05);
+    }
+    .event-timeboard-meridiem {
+      min-height: auto !important;
+      align-self: end;
+      margin-bottom: 6px;
+      padding: 5px 7px;
+      border-radius: 7px;
+      font-size: 0.66rem !important;
+      letter-spacing: 0.55px;
+      font-weight: 800;
+      color: rgba(255, 237, 211, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.04);
+    }
+    .event-countdown {
+      margin-top: 12px;
+      border-radius: 12px;
+      padding: 10px 12px 12px;
+      border: 1px solid rgba(240, 196, 143, 0.3);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .event-countdown-head {
+      color: rgba(255, 227, 192, 0.96);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.75px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+    .event-countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .event-countdown-box {
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(180deg, #26282d 0%, #181a1f 100%);
+      display: grid;
+      justify-items: center;
+      padding: 8px 6px;
+      box-shadow: inset 0 8px 16px rgba(255, 255, 255, 0.04);
+    }
+    .event-countdown-value {
+      position: relative;
+      width: 100%;
+      min-height: 1.48em;
+      font-size: 1.35rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #fff;
+      perspective: 780px;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+    }
+    .event-countdown-value::before {
+      content: '';
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      top: 50%;
+      border-top: 1px solid rgba(0, 0, 0, 0.45);
+      transform: translateY(-50%);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .event-countdown-flip-card {
+      position: relative;
+      width: 100%;
+      height: 1.45em;
+      transform-style: preserve-3d;
+      transition: transform 0.56s cubic-bezier(0.2, 0.78, 0.18, 1);
+    }
+    .event-countdown-value.is-flipping .event-countdown-flip-card {
+      transform: rotateX(-180deg);
+    }
+    .event-countdown-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      backface-visibility: hidden;
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      box-shadow: inset 0 8px 14px rgba(255, 255, 255, 0.05), inset 0 -14px 20px rgba(255, 255, 255, 0.06);
+    }
+    .event-countdown-face.back {
+      transform: rotateX(180deg);
+    }
+    .event-countdown-label {
+      margin-top: 4px;
+      font-size: 0.62rem;
+      letter-spacing: 0.55px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .description {
+      margin: 14px 0 0;
+      color: rgba(255, 255, 255, 0.74);
+      line-height: 1.65;
+      font-size: 0.92rem;
+      white-space: pre-line;
+    }
+    .meta {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.78rem;
+    }
+    .policy {
+      margin-top: 10px;
+      color: rgba(255, 215, 180, 0.9);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+    .cta {
+      margin-top: 18px;
+      display: inline-flex;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      background: linear-gradient(135deg, #d6a76e 0%, #b17235 100%);
+      color: #25130d;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+    .booking-panel {
+      margin-top: 16px;
+      border: 2px solid #ff6a00;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 106, 0, 0.16) 0%, rgba(255, 120, 20, 0.08) 100%);
+      padding: 14px;
+      box-shadow: 0 0 0 1px rgba(255, 149, 0, 0.45), 0 0 22px rgba(255, 106, 0, 0.45);
+    }
+    .booking-panel h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #ffd9a3;
+      text-shadow: 0 0 8px rgba(255, 115, 0, 0.6);
+    }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .booking-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .booking-field.full {
+      grid-column: 1 / -1;
+    }
+    .booking-field label {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.75);
+      letter-spacing: 0.2px;
+    }
+    .booking-field input {
+      border: 1px solid rgba(240, 196, 143, 0.35);
+      background: rgba(10, 7, 7, 0.9);
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .booking-field input:focus {
+      border-color: #f0c48f;
+      box-shadow: 0 0 0 2px rgba(240, 196, 143, 0.18);
+    }
+    .booking-phone-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 8px;
+      align-items: center;
+    }
+    .booking-country-code {
+      border: 1px solid rgba(240, 196, 143, 0.35);
+      background: rgba(10, 7, 7, 0.9);
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .booking-country-code:focus {
+      border-color: #f0c48f;
+      box-shadow: 0 0 0 2px rgba(240, 196, 143, 0.18);
+    }
+    .booking-btn {
+      margin-top: 12px;
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-weight: 800;
+      color: #052100;
+      background: linear-gradient(135deg, #39ff14 0%, #7dff3a 100%);
+      cursor: pointer;
+      box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.7), 0 0 18px rgba(57, 255, 20, 0.55);
+      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+    .booking-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.82), 0 0 24px rgba(57, 255, 20, 0.72);
+    }
+    .booking-note {
+      margin: 8px 0 0;
+      font-size: 0.76rem;
+      color: rgba(255, 215, 180, 0.92);
+    }
+    .booking-status {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.86);
+      white-space: pre-line;
+    }
+    .booking-duplicate-actions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .booking-duplicate-actions[hidden] {
+      display: none !important;
+    }
+    .booking-duplicate-actions button {
+      flex: 1;
+      min-width: 180px;
+      border: 1px solid rgba(240, 196, 143, 0.35);
+      border-radius: 9px;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: #ffe3c3;
+      background: rgba(240, 196, 143, 0.12);
+    }
+    .booking-duplicate-actions .primary {
+      color: #25130d;
+      background: linear-gradient(135deg, #d6a76e 0%, #b17235 100%);
+      border: 0;
+    }
+    .cancellation-panel {
+      margin-top: 14px;
+      border: 1px solid rgba(240, 196, 143, 0.24);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.18);
+      padding: 12px;
+    }
+    .cancellation-panel h4 {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+      color: #ffd7ac;
+    }
+    .cancellation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .cancellation-grid .full {
+      grid-column: 1 / -1;
+    }
+    .cancel-btn {
+      margin-top: 10px;
+      width: 100%;
+      border: 1px solid rgba(240, 196, 143, 0.36);
+      border-radius: 10px;
+      padding: 10px 14px;
+      background: rgba(240, 196, 143, 0.12);
+      color: #ffe6c8;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .cancel-status {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: rgba(255, 232, 204, 0.88);
+      white-space: pre-line;
+    }
+    .loading,
+    .error {
+      border: 1px solid rgba(240, 196, 143, 0.28);
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 12px;
+      padding: 16px;
+      color: rgba(255, 255, 255, 0.82);
+    }
+    .party-loading {
+      position: relative;
+      overflow: hidden;
+      padding: 18px 16px 18px 48px;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(255, 218, 158, 0.2), transparent 35%),
+        radial-gradient(circle at 78% 76%, rgba(255, 120, 90, 0.12), transparent 34%),
+        rgba(0, 0, 0, 0.32);
+      animation: partyGlowPulse 1.8s ease-in-out infinite;
+    }
+    .party-loading::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      transform: translateY(-50%) rotate(45deg);
+      border-radius: 4px;
+      background: linear-gradient(135deg, #ffe9c7 0%, #f2b66c 100%);
+      box-shadow:
+        0 0 0 0 rgba(255, 206, 143, 0.55),
+        0 0 18px rgba(255, 202, 126, 0.5);
+      animation: partySparkPulse 1.25s ease-in-out infinite;
+      z-index: 2;
+    }
+    .party-loading::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255, 235, 184, 0.85) 0 1.2px, transparent 1.4px),
+        radial-gradient(circle, rgba(255, 174, 130, 0.72) 0 1.1px, transparent 1.3px),
+        radial-gradient(circle, rgba(255, 247, 212, 0.66) 0 1px, transparent 1.2px);
+      background-size: 130px 60px, 160px 74px, 180px 84px;
+      background-position: 0 0, 34px 20px, 72px 10px;
+      opacity: 0.45;
+      animation: partySparkleDrift 2.3s linear infinite;
+    }
+    @keyframes partySparkPulse {
+      0%, 100% {
+        transform: translateY(-50%) rotate(45deg) scale(0.92);
+        box-shadow:
+          0 0 0 0 rgba(255, 206, 143, 0.5),
+          0 0 14px rgba(255, 202, 126, 0.46);
+      }
+      50% {
+        transform: translateY(-50%) rotate(45deg) scale(1.08);
+        box-shadow:
+          0 0 0 6px rgba(255, 206, 143, 0),
+          0 0 22px rgba(255, 202, 126, 0.64);
+      }
+    }
+    @keyframes partySparkleDrift {
+      0% {
+        background-position: 0 0, 34px 20px, 72px 10px;
+        opacity: 0.35;
+      }
+      50% {
+        opacity: 0.64;
+      }
+      100% {
+        background-position: 130px -8px, 194px 10px, 252px 0;
+        opacity: 0.35;
+      }
+    }
+    @keyframes partyGlowPulse {
+      0%, 100% {
+        border-color: rgba(240, 196, 143, 0.28);
+      }
+      50% {
+        border-color: rgba(248, 212, 160, 0.58);
+      }
+    }
+    .error { color: #ff9b9b; border-color: rgba(255, 155, 155, 0.32); }
+  </style>
+</head>
+<body class="concept-body">
+  <div class="concept-shell">
+    <div id="nkSharedNavbar"></div>
+    <main class="wrap">
+    <div class="top-actions">
+      <a class="link-btn" href="events.html">Back to All Active Events</a>
+      <a class="link-btn" href="index.html">Home</a>
+    </div>
+    <div id="eventState" class="loading party-loading">Loading event details...</div>
+    <article id="eventShell" class="event-shell" hidden>
+      <div id="eventMedia" class="media"></div>
+      <div class="body">
+        <div id="eventBadge" class="badge" hidden></div>
+        <h1 id="eventTitle"></h1>
+        <p id="eventSubtitle" class="subtitle"></p>
+        <section id="eventTimeBoard" class="event-timeboard" hidden>
+          <div class="event-timeboard-head">
+            <span id="eventTimeDay" class="event-timeboard-day"></span>
+            <span id="eventTimeDate" class="event-timeboard-date"></span>
+          </div>
+          <div class="event-timeboard-flip" aria-hidden="true">
+            <span id="eventTimeHour">--</span>
+            <span id="eventTimeMinute">--</span>
+            <span id="eventTimeMeridiem" class="event-timeboard-meridiem"></span>
+          </div>
+        </section>
+        <section id="eventCountdown" class="event-countdown" hidden>
+          <div id="eventCountdownHead" class="event-countdown-head"></div>
+          <div class="event-countdown-grid">
+            <div class="event-countdown-box">
+              <span id="countDays" class="event-countdown-value">00</span>
+              <span class="event-countdown-label">Days</span>
+            </div>
+            <div class="event-countdown-box">
+              <span id="countHours" class="event-countdown-value">00</span>
+              <span class="event-countdown-label">Hours</span>
+            </div>
+            <div class="event-countdown-box">
+              <span id="countMinutes" class="event-countdown-value">00</span>
+              <span class="event-countdown-label">Minutes</span>
+            </div>
+            <div class="event-countdown-box">
+              <span id="countSeconds" class="event-countdown-value">00</span>
+              <span class="event-countdown-label">Seconds</span>
+            </div>
+          </div>
+        </section>
+        <p id="eventDescription" class="description"></p>
+        <div class="meta">
+          <span id="eventStart"></span>
+          <span id="eventEnd"></span>
+        </div>
+        <p id="eventPolicy" class="policy"></p>
+        <a id="eventCta" class="cta" href="#" hidden>I'm Interested</a>
+        <section id="paidBookingPanel" class="booking-panel" hidden>
+          <h3 id="bookingHeading">Book Event Pass</h3>
+          <form id="paidBookingForm" novalidate>
+            <div class="booking-grid">
+              <div class="booking-field full">
+                <label for="bookingName">Full Name</label>
+                <input id="bookingName" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="booking-field">
+                <label for="bookingEmail">Email</label>
+                <input id="bookingEmail" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="booking-field">
+                <label for="bookingPhone">Phone</label>
+                <div class="booking-phone-row">
+                  <select id="bookingCountryCode" name="countryCode" class="booking-country-code" aria-label="Country code"></select>
+                  <input id="bookingPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" pattern="[0-9]{10}" placeholder="10 digit mobile" required>
+                </div>
+              </div>
+              <div class="booking-field">
+                <label for="bookingQty">No. of Guests Coming</label>
+                <input id="bookingQty" name="qty" type="number" min="1" step="1" value="1" required>
+              </div>
+              <div class="booking-field full" id="bookingAttendeesWrap" hidden>
+                <label for="bookingAttendees">Guest Names For Each Entry Pass (comma or new line separated)</label>
+                <input id="bookingAttendees" name="attendees" type="text" placeholder="Guest 1, Guest 2, Guest 3">
+              </div>
+            </div>
+            <button id="bookingPayBtn" class="booking-btn" type="submit">Proceed to Pay</button>
+            <p id="bookingNote" class="booking-note">No refund once pass is purchased.</p>
+            <p id="bookingStatus" class="booking-status"></p>
+            <div id="bookingDuplicateActions" class="booking-duplicate-actions" hidden>
+              <button id="bookingResendEmailBtn" type="button">Send Email Confirmation Again</button>
+              <button id="bookingRegisterAgainBtn" class="primary" type="button">Still Want To Register Again</button>
+            </div>
+          </form>
+          <section class="cancellation-panel">
+            <h4>Cancellation Request</h4>
+            <div class="cancellation-grid">
+              <div class="booking-field full">
+                <label for="cancelTransactionId">Transaction ID</label>
+                <input id="cancelTransactionId" type="text" placeholder="e.g. EVT-xxxx" autocomplete="off">
+              </div>
+              <div class="booking-field">
+                <label for="cancelPhone">Phone</label>
+                <input id="cancelPhone" type="tel" inputmode="numeric" placeholder="Registered phone">
+              </div>
+              <div class="booking-field">
+                <label for="cancelEmail">Email</label>
+                <input id="cancelEmail" type="email" placeholder="Registered email">
+              </div>
+            </div>
+            <button id="cancelRequestBtn" class="cancel-btn" type="button">Request Cancellation</button>
+            <p class="booking-note">Policy: No refund once pass is purchased.</p>
+            <p id="cancelStatus" class="cancel-status"></p>
+          </section>
+        </section>
+      </div>
+    </article>
+    </main>
+    <div id="nkSharedFooter"></div>
+  </div>
+
+  <script src="data-config.js?v=20260412-4"></script>
+  <script src="shared-site-chrome.js?v=20260413-1"></script>
+  <script src="country-picker.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    (function () {
+      const stateEl = document.getElementById('eventState');
+      const shellEl = document.getElementById('eventShell');
+      const mediaEl = document.getElementById('eventMedia');
+      const badgeEl = document.getElementById('eventBadge');
+      const titleEl = document.getElementById('eventTitle');
+      const subtitleEl = document.getElementById('eventSubtitle');
+      const timeBoardEl = document.getElementById('eventTimeBoard');
+      const timeDayEl = document.getElementById('eventTimeDay');
+      const timeDateEl = document.getElementById('eventTimeDate');
+      const timeHourEl = document.getElementById('eventTimeHour');
+      const timeMinuteEl = document.getElementById('eventTimeMinute');
+      const timeMeridiemEl = document.getElementById('eventTimeMeridiem');
+      const countdownEl = document.getElementById('eventCountdown');
+      const countdownHeadEl = document.getElementById('eventCountdownHead');
+      const countDaysEl = document.getElementById('countDays');
+      const countHoursEl = document.getElementById('countHours');
+      const countMinutesEl = document.getElementById('countMinutes');
+      const countSecondsEl = document.getElementById('countSeconds');
+      const descriptionEl = document.getElementById('eventDescription');
+      const startEl = document.getElementById('eventStart');
+      const endEl = document.getElementById('eventEnd');
+      const policyEl = document.getElementById('eventPolicy');
+      const ctaEl = document.getElementById('eventCta');
+      const bookingPanelEl = document.getElementById('paidBookingPanel');
+      const bookingFormEl = document.getElementById('paidBookingForm');
+      const bookingHeadingEl = document.getElementById('bookingHeading');
+      const bookingNameEl = document.getElementById('bookingName');
+      const bookingEmailEl = document.getElementById('bookingEmail');
+      const bookingCountryCodeEl = document.getElementById('bookingCountryCode');
+      const bookingPhoneEl = document.getElementById('bookingPhone');
+      const bookingQtyEl = document.getElementById('bookingQty');
+      const bookingAttendeesWrapEl = document.getElementById('bookingAttendeesWrap');
+      const bookingAttendeesEl = document.getElementById('bookingAttendees');
+      const bookingPayBtnEl = document.getElementById('bookingPayBtn');
+      const bookingNoteEl = document.getElementById('bookingNote');
+      const bookingStatusEl = document.getElementById('bookingStatus');
+      const bookingDuplicateActionsEl = document.getElementById('bookingDuplicateActions');
+      const bookingResendEmailBtnEl = document.getElementById('bookingResendEmailBtn');
+      const bookingRegisterAgainBtnEl = document.getElementById('bookingRegisterAgainBtn');
+      const cancelTransactionIdEl = document.getElementById('cancelTransactionId');
+      const cancelPhoneEl = document.getElementById('cancelPhone');
+      const cancelEmailEl = document.getElementById('cancelEmail');
+      const cancelRequestBtnEl = document.getElementById('cancelRequestBtn');
+      const cancelStatusEl = document.getElementById('cancelStatus');
+      const cancellationPanelEl = document.querySelector('.cancellation-panel');
+
+      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const EVENT_TIMEZONE = 'Asia/Kolkata';
+      const params = new URLSearchParams(window.location.search);
+      let eventId = (params.get('eventId') || params.get('id') || '').trim();
+      let currentEvent = null;
+      let countdownTimer = null;
+      let allowDuplicateOverride = false;
+      let pendingDuplicateState = null;
+
+      if (bookingDuplicateActionsEl) bookingDuplicateActionsEl.hidden = true;
+
+      const safeUrl = (value) => {
+        const text = String(value || '').trim();
+        if (!text) return '';
+        if (text.startsWith('http://') || text.startsWith('https://') || text.startsWith('/')) return text;
+        return '';
+      };
+
+      const populateBookingCountryCodes = () => {
+        if (!bookingCountryCodeEl) return;
+        if (typeof COUNTRIES_DATA === 'undefined' || !Array.isArray(COUNTRIES_DATA)) {
+          bookingCountryCodeEl.innerHTML = '<option value="91" selected>IN +91</option>';
+          return;
+        }
+        bookingCountryCodeEl.innerHTML = COUNTRIES_DATA.map((country) => {
+          const code = String(country && country.code || '').trim();
+          const dial = String(country && country.dial || '').trim();
+          const selected = dial === '91' ? ' selected' : '';
+          return `<option value="${dial}"${selected}>${code} +${dial}</option>`;
+        }).join('');
+      };
+
+      const normalizeTimeDisplayFormat = (value) => {
+        return String(value || '').trim().toLowerCase() === '24h' ? '24h' : '12h';
+      };
+
+      const getBoardTimeParts = (parsed, timeDisplayFormat) => {
+        const format = normalizeTimeDisplayFormat(timeDisplayFormat);
+
+        if (format === '24h') {
+          return {
+            hour: parsed.toLocaleTimeString('en-GB', { hour: '2-digit', hour12: false, timeZone: EVENT_TIMEZONE }),
+            minute: parsed.toLocaleTimeString('en-GB', { minute: '2-digit', hour12: false, timeZone: EVENT_TIMEZONE }),
+            period: ''
+          };
+        }
+
+        const formatted = parsed.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+          timeZone: EVENT_TIMEZONE
+        });
+        const match = formatted.match(/^(\d{2}):(\d{2})\s*(AM|PM)$/i);
+
+        return {
+          hour: match ? match[1] : formatted,
+          minute: match ? match[2] : '00',
+          period: match ? String(match[3] || '').toUpperCase() : ''
+        };
+      };
+
+      const formatDate = (iso, timeDisplayFormat) => {
+        const value = String(iso || '').trim();
+        if (!value) return '';
+        const parsed = new Date(value);
+        if (Number.isNaN(parsed.getTime())) return '';
+        return parsed.toLocaleString('en-IN', {
+          dateStyle: 'medium',
+          timeStyle: 'short',
+          hour12: normalizeTimeDisplayFormat(timeDisplayFormat) !== '24h',
+          timeZone: EVENT_TIMEZONE
+        });
+      };
+
+      const clearCountdownTimer = () => {
+        if (countdownTimer) {
+          window.clearInterval(countdownTimer);
+          countdownTimer = null;
+        }
+      };
+
+      const pad2 = (value) => String(Math.max(0, Number(value) || 0)).padStart(2, '0');
+
+      const flipValueState = new WeakMap();
+
+      const initFlipValue = (el) => {
+        if (!el) return null;
+        const existing = flipValueState.get(el);
+        if (existing) return existing;
+
+        const initial = String(el.textContent || '00').trim() || '00';
+        el.textContent = '';
+        el.setAttribute('aria-label', initial);
+
+        const card = document.createElement('span');
+        card.className = 'event-countdown-flip-card';
+
+        const front = document.createElement('span');
+        front.className = 'event-countdown-face front';
+        front.textContent = initial;
+
+        const back = document.createElement('span');
+        back.className = 'event-countdown-face back';
+        back.textContent = initial;
+
+        card.appendChild(front);
+        card.appendChild(back);
+        el.appendChild(card);
+
+        const state = { value: initial, front: front, back: back, timer: null };
+        flipValueState.set(el, state);
+        return state;
+      };
+
+      const setFlipValue = (el, nextValue, forceNoAnim) => {
+        const state = initFlipValue(el);
+        if (!state) return;
+
+        const next = String(nextValue || '00').padStart(2, '0');
+        if (state.value === next) return;
+
+        if (state.timer) {
+          window.clearTimeout(state.timer);
+          state.timer = null;
+        }
+
+        if (forceNoAnim) {
+          el.classList.remove('is-flipping');
+          state.front.textContent = next;
+          state.back.textContent = next;
+          state.value = next;
+          el.setAttribute('aria-label', next);
+          return;
+        }
+
+        state.back.textContent = next;
+        el.classList.remove('is-flipping');
+        void el.offsetWidth;
+        el.classList.add('is-flipping');
+
+        state.timer = window.setTimeout(() => {
+          state.front.textContent = next;
+          state.back.textContent = next;
+          state.value = next;
+          el.classList.remove('is-flipping');
+          el.setAttribute('aria-label', next);
+          state.timer = null;
+        }, 560);
+      };
+
+      const renderCountdownValues = (targetMs, heading) => {
+        if (!countdownEl || !countdownHeadEl || !countDaysEl || !countHoursEl || !countMinutesEl || !countSecondsEl) return;
+        const now = Date.now();
+        const deltaMs = Math.max(0, targetMs - now);
+        const totalSeconds = Math.floor(deltaMs / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        countdownEl.hidden = false;
+        countdownHeadEl.textContent = heading;
+        setFlipValue(countDaysEl, pad2(days), false);
+        setFlipValue(countHoursEl, pad2(hours), false);
+        setFlipValue(countMinutesEl, pad2(minutes), false);
+        setFlipValue(countSecondsEl, pad2(seconds), false);
+      };
+
+      const setupDateBoard = (startAtIso, timeDisplayFormat) => {
+        if (!timeBoardEl || !timeDayEl || !timeDateEl || !timeHourEl || !timeMinuteEl) return;
+        const raw = String(startAtIso || '').trim();
+        const parsed = raw ? new Date(raw) : null;
+        if (!parsed || Number.isNaN(parsed.getTime())) {
+          timeBoardEl.hidden = true;
+          return;
+        }
+
+        timeBoardEl.hidden = false;
+        const boardTime = getBoardTimeParts(parsed, timeDisplayFormat);
+        const istParts = new Intl.DateTimeFormat('en-US', {
+          timeZone: EVENT_TIMEZONE,
+          weekday: 'long',
+          day: '2-digit',
+          month: 'long'
+        }).formatToParts(parsed).reduce((acc, part) => {
+          acc[part.type] = part.value;
+          return acc;
+        }, {});
+        const dayName = String(istParts.weekday || '').toUpperCase();
+        const dayNo = String(istParts.day || '').padStart(2, '0');
+        const month = String(istParts.month || '').toUpperCase();
+
+        timeDayEl.textContent = dayName;
+        timeDateEl.textContent = `${dayNo}. ${month}`;
+        timeHourEl.textContent = boardTime.hour;
+        timeMinuteEl.textContent = boardTime.minute;
+        if (timeMeridiemEl) {
+          if (boardTime.period) {
+            timeMeridiemEl.textContent = boardTime.period;
+            timeMeridiemEl.hidden = false;
+          } else {
+            timeMeridiemEl.textContent = '';
+            timeMeridiemEl.hidden = true;
+          }
+        }
+      };
+
+      const setupCountdown = (startAtIso, endAtIso) => {
+        clearCountdownTimer();
+        if (!countdownEl) return;
+
+        const start = String(startAtIso || '').trim() ? new Date(startAtIso) : null;
+        const end = String(endAtIso || '').trim() ? new Date(endAtIso) : null;
+        const now = new Date();
+
+        let target = null;
+        let heading = '';
+
+        if (start && !Number.isNaN(start.getTime()) && start.getTime() > now.getTime()) {
+          target = start;
+          heading = 'Starts In';
+        } else if (end && !Number.isNaN(end.getTime()) && end.getTime() > now.getTime()) {
+          target = end;
+          heading = 'Ends In';
+        }
+
+        if (!target) {
+          if (end && !Number.isNaN(end.getTime()) && end.getTime() <= now.getTime()) {
+            countdownEl.hidden = false;
+            if (countdownHeadEl) countdownHeadEl.textContent = 'Event Ended';
+            if (countDaysEl) setFlipValue(countDaysEl, '00', true);
+            if (countHoursEl) setFlipValue(countHoursEl, '00', true);
+            if (countMinutesEl) setFlipValue(countMinutesEl, '00', true);
+            if (countSecondsEl) setFlipValue(countSecondsEl, '00', true);
+          } else {
+            countdownEl.hidden = true;
+          }
+          return;
+        }
+
+        const tick = () => {
+          renderCountdownValues(target.getTime(), heading);
+          if (Date.now() >= target.getTime()) {
+            clearCountdownTimer();
+            setupCountdown(startAtIso, endAtIso);
+          }
+        };
+
+        tick();
+        countdownTimer = window.setInterval(tick, 1000);
+      };
+
+      const fail = (message) => {
+        clearCountdownTimer();
+        if (countdownEl) countdownEl.hidden = true;
+        stateEl.className = 'error';
+        stateEl.textContent = message;
+        shellEl.hidden = true;
+      };
+
+      const setBookingStatus = (message) => {
+        if (bookingStatusEl) {
+          bookingStatusEl.textContent = String(message || '');
+        }
+      };
+
+      const clearDuplicatePrompt = () => {
+        pendingDuplicateState = null;
+        if (bookingDuplicateActionsEl) bookingDuplicateActionsEl.hidden = true;
+        if (bookingResendEmailBtnEl) {
+          bookingResendEmailBtnEl.hidden = false;
+          bookingResendEmailBtnEl.disabled = false;
+          bookingResendEmailBtnEl.textContent = 'Send Email Confirmation Again';
+        }
+        if (bookingRegisterAgainBtnEl) {
+          bookingRegisterAgainBtnEl.disabled = false;
+          bookingRegisterAgainBtnEl.textContent = 'Still Want To Register Again';
+        }
+      };
+
+      const formatExistingRegistrationLines = (registered) => {
+        const details = registered || {};
+        const createdAt = details.createdAt
+          ? new Date(details.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
+          : '-';
+        const paidAt = details.paidAt
+          ? new Date(details.paidAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
+          : '-';
+
+        const lines = [
+          'You have already registered with below details:',
+          `Transaction ID: ${details.transactionId || '-'}`,
+          `Name: ${details.customerName || '-'}`,
+          `Email: ${details.customerEmail || '-'}`,
+          `Phone: ${details.customerPhone || '-'}`,
+          `Guests: ${Math.max(1, Number(details.qty || 1) || 1)}`,
+          `Status: ${details.status || '-'}`,
+          `Check-in: ${details.checkInStatus || '-'}`,
+          `Created At: ${createdAt}`
+        ];
+
+        if (paidAt !== '-') {
+          lines.push(`Paid At: ${paidAt}`);
+        }
+
+        return lines;
+      };
+
+      const showDuplicatePrompt = (payload, customer, isPaid) => {
+        const details = payload && payload.alreadyRegistered ? payload.alreadyRegistered : {};
+        pendingDuplicateState = {
+          transactionId: String(details.transactionId || ''),
+          customerEmail: String(customer && customer.email || ''),
+          customerPhone: String(customer && customer.phone || ''),
+          isPaid: !!isPaid
+        };
+
+        const messageLines = formatExistingRegistrationLines(details);
+        messageLines.push('Use button below to resend confirmation email.');
+        messageLines.push('If you still want to register again, click "Still Want To Register Again".');
+        setBookingStatus(messageLines.join('\n'));
+
+        if (bookingDuplicateActionsEl) bookingDuplicateActionsEl.hidden = false;
+        if (bookingResendEmailBtnEl) {
+          const canResend = !!(payload && payload.canResendEmail);
+          bookingResendEmailBtnEl.hidden = false;
+          bookingResendEmailBtnEl.disabled = !canResend;
+          bookingResendEmailBtnEl.textContent = canResend ? 'Send Email Confirmation Again' : 'Email Not Ready Yet';
+        }
+      };
+
+      const setBookingBusy = (busy, label) => {
+        if (!bookingPayBtnEl) return;
+        bookingPayBtnEl.disabled = !!busy;
+        bookingPayBtnEl.textContent = busy ? String(label || 'Please wait...') : (currentEvent && ((!!currentEvent.paymentEnabled) || String(currentEvent.eventType || '').toLowerCase() === 'paid') ? 'Proceed to Pay' : 'Register Free');
+      };
+
+      const normalizeAttendeeNames = (raw) => {
+        return String(raw || '')
+          .split(/[\n,;]+/)
+          .map((item) => String(item || '').trim())
+          .filter((item) => item);
+      };
+
+      const syncAttendeeField = () => {
+        const qty = Number(bookingQtyEl && bookingQtyEl.value || 1);
+        const show = Number.isFinite(qty) && qty > 1;
+        if (bookingAttendeesWrapEl) {
+          bookingAttendeesWrapEl.hidden = !show;
+        }
+        if (bookingAttendeesEl) {
+          bookingAttendeesEl.placeholder = show
+            ? `Add exactly ${Math.max(1, Math.floor(qty))} guest name(s), comma or newline separated`
+            : 'Guest 1';
+        }
+      };
+
+      const setCancelStatus = (message) => {
+        if (cancelStatusEl) {
+          cancelStatusEl.textContent = String(message || '');
+        }
+      };
+
+      const postAction = async (action, payload) => {
+        const requestPayload = Object.assign({ action: action }, payload || {});
+        const body = new URLSearchParams({
+          payload: JSON.stringify(requestPayload)
+        });
+
+        const response = await fetch(apiBase, {
+          method: 'POST',
+          body: body
+        });
+        if (!response.ok) {
+          return { ok: false, message: `HTTP ${response.status}` };
+        }
+
+        try {
+          return await response.json();
+        } catch (error) {
+          return { ok: false, message: 'Invalid JSON response from server.' };
+        }
+      };
+
+      const handlePaymentSuccess = async (orderId, paymentResponse) => {
+        const confirmPayload = {
+          orderId: orderId,
+          paymentId: paymentResponse.razorpay_payment_id,
+          signature: paymentResponse.razorpay_signature
+        };
+
+        const confirm = await postAction('confirm_event_payment', confirmPayload);
+        if (!confirm || !confirm.ok) {
+          setBookingStatus('Payment captured, but ticket confirmation failed. Please contact support with your payment id.');
+          return;
+        }
+
+        const successLines = [
+          `Payment confirmed for ${currentEvent ? currentEvent.title : 'event'}.`,
+          `Guest passes generated: ${Math.max(1, Number(confirm.guestPassCount || 0) || 1)}.`,
+          confirm.policy || 'No refund once pass is purchased.'
+        ];
+
+        if (confirm.qrUrl) {
+          successLines.push(`Primary QR access link: ${confirm.qrUrl}`);
+        }
+        if (confirm.verificationUrl) {
+          successLines.push(`Primary verification link: ${confirm.verificationUrl}`);
+        }
+        successLines.push('A separate QR guest pass is sent by email for each guest.');
+
+        setBookingStatus(successLines.join('\n'));
+        setBookingBusy(false);
+      };
+
+      const launchRazorpayCheckout = (orderPayload, customer) => {
+        if (!window.Razorpay) {
+          setBookingStatus('Razorpay checkout could not load. Please refresh and try again.');
+          return;
+        }
+
+        const options = {
+          key: orderPayload.keyId,
+          amount: orderPayload.amountInPaise,
+          currency: orderPayload.currency || 'INR',
+          name: 'Namaste Kalyan',
+          description: currentEvent ? currentEvent.title : 'Event Pass',
+          order_id: orderPayload.order && orderPayload.order.id,
+          prefill: {
+            name: customer.name,
+            email: customer.email,
+            contact: `${customer.countryCode}${customer.phone}`
+          },
+          notes: {
+            eventId: currentEvent ? currentEvent.id : '',
+            transactionId: orderPayload.transactionId || ''
+          },
+          theme: { color: '#b17235' },
+          handler: function (paymentResponse) {
+            handlePaymentSuccess(options.order_id, paymentResponse);
+          },
+          modal: {
+            ondismiss: function () {
+              setBookingBusy(false);
+            }
+          }
+        };
+
+        const razorpay = new window.Razorpay(options);
+        razorpay.on('payment.failed', function (response) {
+          const message = response && response.error && response.error.description
+            ? response.error.description
+            : 'Payment failed. Please try again.';
+          setBookingStatus(message);
+          setBookingBusy(false);
+        });
+        razorpay.open();
+      };
+
+      if (bookingFormEl) {
+        bookingFormEl.addEventListener('submit', async function (event) {
+          event.preventDefault();
+          setBookingStatus('');
+          clearDuplicatePrompt();
+
+          if (!currentEvent) {
+            setBookingStatus('Event details are not ready. Please wait and try again.');
+            return;
+          }
+
+          const isPaid = !!currentEvent.paymentEnabled || String(currentEvent.eventType || '').toLowerCase() === 'paid';
+          const allowDuplicate = !!allowDuplicateOverride;
+          allowDuplicateOverride = false;
+
+          const customer = {
+            name: String(bookingNameEl && bookingNameEl.value || '').trim(),
+            email: String(bookingEmailEl && bookingEmailEl.value || '').trim(),
+            countryCode: String(bookingCountryCodeEl && bookingCountryCodeEl.value || '91').trim(),
+            phone: String(bookingPhoneEl && bookingPhoneEl.value || '').replace(/\D/g, '').slice(0, 10),
+            qty: Number(bookingQtyEl && bookingQtyEl.value || 1),
+            attendees: normalizeAttendeeNames(bookingAttendeesEl && bookingAttendeesEl.value || '')
+          };
+
+          if (!customer.name || !customer.email || !/^[0-9]{10}$/.test(customer.phone) || !Number.isFinite(customer.qty) || customer.qty < 1) {
+            setBookingStatus('Please fill all booking details and enter a valid 10-digit mobile number.');
+            return;
+          }
+
+          if (customer.attendees.length !== Math.floor(customer.qty)) {
+            setBookingStatus(`Please provide exactly ${Math.floor(customer.qty)} guest name(s) so we can generate one QR pass per guest.`);
+            return;
+          }
+
+          setBookingBusy(true, isPaid ? 'Preparing checkout...' : 'Submitting registration...');
+
+          try {
+            const actionName = isPaid ? 'create_event_order' : 'register_free_event';
+            const orderPayload = await postAction(actionName, {
+              eventId: currentEvent.id,
+              customerName: customer.name,
+              customerEmail: customer.email,
+              customerPhone: customer.phone,
+              customerCountryCode: customer.countryCode,
+              qty: Math.floor(customer.qty),
+              attendeeNames: customer.attendees,
+              allowDuplicate: allowDuplicate
+            });
+
+            if (!orderPayload || !orderPayload.ok) {
+              if (orderPayload && String(orderPayload.error || '') === 'ALREADY_REGISTERED' && orderPayload.alreadyRegistered) {
+                showDuplicatePrompt(orderPayload, customer, isPaid);
+                setBookingBusy(false);
+                return;
+              }
+              setBookingStatus(orderPayload && (orderPayload.message || orderPayload.error) ? (orderPayload.message || orderPayload.error) : 'Unable to create booking order.');
+              setBookingBusy(false);
+              return;
+            }
+
+            if (isPaid) {
+              setBookingStatus(orderPayload.policy || 'No refund once pass is purchased.');
+              launchRazorpayCheckout(orderPayload, customer);
+              return;
+            }
+
+            const successLines = [
+              `Registration confirmed for ${currentEvent ? currentEvent.title : 'event'}.`,
+              `Registration ID: ${orderPayload.transactionId || '-'}`,
+              `Guest passes generated: ${Math.max(1, Number(orderPayload.guestPassCount || 0) || 1)}.`,
+              orderPayload.emailSent ? 'Guest pass email with one QR per guest has been sent.' : 'Registration saved. Guest pass email could not be confirmed.'
+            ];
+            if (orderPayload.qrUrl) {
+              successLines.push(`Primary QR access link: ${orderPayload.qrUrl}`);
+            }
+            if (orderPayload.verificationUrl) {
+              successLines.push(`Primary verification link: ${orderPayload.verificationUrl}`);
+            }
+            setBookingStatus(successLines.join('\n'));
+            setBookingBusy(false);
+            clearDuplicatePrompt();
+          } catch (error) {
+            setBookingStatus(isPaid
+              ? 'Unable to start payment right now. Please try again.'
+              : 'Unable to complete free registration right now. Please try again.');
+            setBookingBusy(false);
+          }
+        });
+      }
+
+      if (bookingResendEmailBtnEl) {
+        bookingResendEmailBtnEl.addEventListener('click', async function () {
+          if (!pendingDuplicateState || !pendingDuplicateState.transactionId) {
+            setBookingStatus('No existing registration context found. Please submit again.');
+            return;
+          }
+
+          bookingResendEmailBtnEl.disabled = true;
+          bookingResendEmailBtnEl.textContent = 'Sending...';
+          try {
+            const resendResponse = await postAction('resend_event_confirmation', {
+              transactionId: pendingDuplicateState.transactionId,
+              eventId: currentEvent ? currentEvent.id : '',
+              customerEmail: pendingDuplicateState.customerEmail,
+              customerPhone: pendingDuplicateState.customerPhone
+            });
+
+            if (!resendResponse || !resendResponse.ok) {
+              const message = resendResponse && (resendResponse.message || resendResponse.error)
+                ? (resendResponse.message || resendResponse.error)
+                : 'Unable to resend confirmation email.';
+              setBookingStatus(`${bookingStatusEl ? bookingStatusEl.textContent : ''}\n${message}`.trim());
+              return;
+            }
+
+            setBookingStatus(`${bookingStatusEl ? bookingStatusEl.textContent : ''}\n${resendResponse.message || 'Confirmation email has been sent again successfully.'}`.trim());
+          } catch (error) {
+            setBookingStatus(`${bookingStatusEl ? bookingStatusEl.textContent : ''}\nUnable to resend confirmation email right now.`.trim());
+          } finally {
+            bookingResendEmailBtnEl.disabled = false;
+            bookingResendEmailBtnEl.textContent = 'Send Email Confirmation Again';
+          }
+        });
+      }
+
+      if (bookingRegisterAgainBtnEl) {
+        bookingRegisterAgainBtnEl.addEventListener('click', function () {
+          allowDuplicateOverride = true;
+          clearDuplicatePrompt();
+          if (bookingFormEl && typeof bookingFormEl.requestSubmit === 'function') {
+            bookingFormEl.requestSubmit();
+            return;
+          }
+          if (bookingFormEl) {
+            bookingFormEl.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+          }
+        });
+      }
+
+      if (cancelRequestBtnEl) {
+        cancelRequestBtnEl.addEventListener('click', async function () {
+          setCancelStatus('');
+
+          const transactionId = String(cancelTransactionIdEl && cancelTransactionIdEl.value || '').trim();
+          const phone = String(cancelPhoneEl && cancelPhoneEl.value || '').trim();
+          const email = String(cancelEmailEl && cancelEmailEl.value || '').trim();
+
+          if (!transactionId) {
+            setCancelStatus('Transaction ID is required.');
+            return;
+          }
+          if (!phone && !email) {
+            setCancelStatus('Provide registered phone or email to verify ownership.');
+            return;
+          }
+
+          cancelRequestBtnEl.disabled = true;
+          setCancelStatus('Submitting cancellation request...');
+
+          try {
+            const cancelResponse = await postAction('request_event_cancellation', {
+              transactionId: transactionId,
+              phone: phone,
+              email: email
+            });
+
+            if (!cancelResponse || !cancelResponse.ok) {
+              setCancelStatus(cancelResponse && (cancelResponse.message || cancelResponse.error)
+                ? (cancelResponse.message || cancelResponse.error)
+                : 'Unable to process cancellation request.');
+              return;
+            }
+
+            setCancelStatus(`Request processed. Status: ${cancelResponse.status || 'CancelledNoRefund'}\n${cancelResponse.policy || 'No refund once pass is purchased.'}`);
+          } catch (error) {
+            setCancelStatus('Network/server error while requesting cancellation.');
+          } finally {
+            cancelRequestBtnEl.disabled = false;
+          }
+        });
+      }
+
+      const render = (event) => {
+        currentEvent = event;
+        stateEl.hidden = true;
+        shellEl.hidden = false;
+
+        const title = String(event.title || 'Event');
+        const subtitle = String(event.subtitle || 'Celebrate with us at Namaste Kalyan');
+        const description = String(event.description || 'Event details will be updated soon.');
+        const imageUrl = safeUrl(event.imageUrl) || 'assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.27.42 PM.jpeg';
+        const isPaid = !!event.paymentEnabled || String(event.eventType || '').toLowerCase() === 'paid';
+        const price = Number(event.ticketPrice || 0);
+        const ctaUrl = safeUrl(event.ctaUrl);
+        const timeDisplayFormat = normalizeTimeDisplayFormat(event.timeDisplayFormat);
+
+        if (event.showVideo && safeUrl(event.videoUrl)) {
+          mediaEl.innerHTML = `<video src="${safeUrl(event.videoUrl)}" autoplay muted loop playsinline controls></video>`;
+        } else {
+          mediaEl.innerHTML = `<img src="${imageUrl}" alt="${title.replace(/\"/g, '&quot;')}">`;
+        }
+
+        titleEl.textContent = title;
+        subtitleEl.textContent = subtitle;
+        descriptionEl.textContent = description;
+  setupDateBoard(event.startAtIso, timeDisplayFormat);
+        setupCountdown(event.startAtIso, event.endAtIso);
+
+        const badgeText = String(event.badgeText || '').trim();
+        if (badgeText) {
+          badgeEl.hidden = false;
+          badgeEl.textContent = badgeText;
+        } else {
+          badgeEl.hidden = true;
+          badgeEl.textContent = '';
+        }
+
+        const startText = formatDate(event.startAtIso, timeDisplayFormat);
+        const endText = formatDate(event.endAtIso, timeDisplayFormat);
+        startEl.textContent = startText ? `Starts: ${startText}` : '';
+        endEl.textContent = endText ? `Ends: ${endText}` : '';
+
+        if (policyEl) {
+          if (isPaid) {
+            const currency = String(event.currency || 'INR').toUpperCase();
+            const priceText = Number.isFinite(price) && price > 0 ? `Ticket: ${currency} ${price}` : 'Paid Event';
+            policyEl.textContent = `${priceText} • ${String(event.cancellationPolicyText || 'No refund once pass is purchased.')}`;
+          } else {
+            policyEl.textContent = 'Free Event • Register now to receive your QR entry pass by email.';
+          }
+        }
+
+        if (bookingPanelEl) {
+          bookingPanelEl.hidden = false;
+          setBookingStatus('');
+          if (bookingHeadingEl) {
+            bookingHeadingEl.textContent = isPaid ? 'Book Guest Passes' : 'Register Guest Passes For Free Entry';
+          }
+          if (bookingPayBtnEl) {
+            bookingPayBtnEl.textContent = isPaid ? 'Proceed to Pay' : 'Register Free';
+          }
+          if (bookingNoteEl) {
+            bookingNoteEl.textContent = isPaid
+              ? 'No refund once pass is purchased. One QR guest pass will be issued for each guest name shared.'
+              : 'Your registration details will be saved and one QR guest pass per guest will be emailed to you.';
+          }
+          if (cancellationPanelEl) {
+            cancellationPanelEl.hidden = !isPaid;
+          }
+          setBookingBusy(false);
+          if (bookingQtyEl) {
+            const maxTickets = Number(event.maxTickets || 0);
+            if (Number.isFinite(maxTickets) && maxTickets > 0) {
+              bookingQtyEl.max = String(Math.floor(maxTickets));
+            } else {
+              bookingQtyEl.removeAttribute('max');
+            }
+          }
+          syncAttendeeField();
+        }
+
+        if (ctaUrl) {
+          ctaEl.hidden = false;
+          ctaEl.href = ctaUrl;
+          ctaEl.target = '_blank';
+          ctaEl.rel = 'noopener noreferrer';
+          ctaEl.textContent = String(event.ctaText || (isPaid ? 'Book Now' : "I'm Interested"));
+        } else {
+          ctaEl.hidden = true;
+          ctaEl.removeAttribute('href');
+        }
+      };
+
+      if (bookingQtyEl) {
+        bookingQtyEl.addEventListener('input', syncAttendeeField);
+      }
+
+      if (bookingPhoneEl) {
+        bookingPhoneEl.addEventListener('input', () => {
+          const digits = String(bookingPhoneEl.value || '').replace(/\D/g, '').slice(0, 10);
+          if (bookingPhoneEl.value !== digits) {
+            bookingPhoneEl.value = digits;
+          }
+        });
+      }
+
+      populateBookingCountryCodes();
+
+      const resolveEventId = async () => {
+        if (eventId) {
+          return eventId;
+        }
+
+        try {
+          const listQuery = new URLSearchParams({ action: 'events_list', limit: '1' });
+          const response = await fetch(`${apiBase}?${listQuery.toString()}`, { cache: 'no-store' });
+          if (!response.ok) return '';
+          const payload = await response.json();
+          if (!payload || !payload.ok || !Array.isArray(payload.items) || !payload.items.length) return '';
+
+          const fallbackId = String(payload.items[0] && payload.items[0].id || '').trim();
+          if (!fallbackId) return '';
+
+          eventId = fallbackId;
+          try {
+            const nextUrl = new URL(window.location.href);
+            nextUrl.searchParams.set('eventId', fallbackId);
+            nextUrl.searchParams.delete('id');
+            window.history.replaceState({}, '', nextUrl.toString());
+          } catch (e) {
+            // Ignore URL mutation failures; rendering can still continue.
+          }
+
+          return fallbackId;
+        } catch (error) {
+          return '';
+        }
+      };
+
+      const load = async () => {
+        if (!apiBase) {
+          fail('Apps Script URL missing in data-config.js.');
+          return;
+        }
+
+        const resolvedEventId = await resolveEventId();
+        if (!resolvedEventId) {
+          fail('No active event found right now. Please try again later.');
+          return;
+        }
+
+        // Try to get cached event data from sessionStorage (passed from index.html)
+        const NK_SELECTED_EVENT_KEY = 'nk_selected_event_v1';
+        try {
+          const cachedEventStr = sessionStorage.getItem(NK_SELECTED_EVENT_KEY);
+          if (cachedEventStr) {
+            const cachedEvent = JSON.parse(cachedEventStr);
+            if (cachedEvent && cachedEvent.id === resolvedEventId) {
+              // Cached event matches the requested ID - use it immediately!
+              render(cachedEvent);
+              sessionStorage.removeItem(NK_SELECTED_EVENT_KEY); // Clean up after use
+              return;
+            }
+          }
+        } catch (err) {
+          // Ignore cache errors, fall through to API fetch
+        }
+
+        // Reuse events list cache from index/events pages when available.
+        const NK_EVENTS_CACHE_KEY = 'nk_events_list_cache_v1';
+        const NK_EVENTS_CACHE_TTL = 30 * 60 * 1000;
+        try {
+          const cachedEventsStr = sessionStorage.getItem(NK_EVENTS_CACHE_KEY);
+          if (cachedEventsStr) {
+            const cachedEvents = JSON.parse(cachedEventsStr);
+            const isFresh = cachedEvents && cachedEvents.timestamp && (Date.now() - Number(cachedEvents.timestamp) <= NK_EVENTS_CACHE_TTL);
+            if (isFresh && Array.isArray(cachedEvents.items)) {
+              const matchedEvent = cachedEvents.items.find((item) => String(item && item.id || '') === resolvedEventId);
+              if (matchedEvent) {
+                render(matchedEvent);
+                return;
+              }
+            }
+          }
+        } catch (err) {
+          // Ignore cache errors, fall through to API fetch
+        }
+
+        // No valid cache found, fetch from API
+        const query = new URLSearchParams({ action: 'event_detail', eventId: resolvedEventId });
+        try {
+          const response = await fetch(`${apiBase}?${query.toString()}`, { cache: 'no-store' });
+          if (!response.ok) {
+            fail(`Failed to load event details (HTTP ${response.status}).`);
+            return;
+          }
+          const payload = await response.json();
+          if (!payload || !payload.ok || !payload.found || !payload.event) {
+            fail('Event not found or inactive in source sheet.');
+            return;
+          }
+          render(payload.event);
+        } catch (error) {
+          fail('Network error while loading event details.');
+        }
+      };
+
+      load();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Cashier | Namaste Kalyan</title>
+  <link rel="stylesheet" href="css/admin-animations.css?v=20260413-1">
+  <link rel="stylesheet" href="css/admin-module-theme.css?v=20260413-1">
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search || '');
+      if (!params.has('embedded') && !params.has('standalone')) {
+        window.location.replace('admin-portal.html#cashier');
+      }
+    })();
+  </script>
+  <style>
+    .page { max-width: 1180px; }
+    .stats { margin-top: 10px; }
+    .stat { min-width: 180px; }
+    input, select, textarea { min-width: 180px; }
+    textarea { min-height: 86px; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Admin Cashier Desk</h1>
+      <p>Issue paid event passes against cash, track your daily counter, request handover, and raise cancel requests for superadmin review.</p>
+    </section>
+
+    <section class="panel">
+      <div class="row">
+        <input id="username" type="tel" inputmode="numeric" maxlength="15" placeholder="Username (mobile number)">
+        <input id="password" type="password" maxlength="64" placeholder="Password">
+        <button id="loginBtn" type="button">Login</button>
+        <button id="logoutBtn" class="secondary" type="button" hidden>Logout</button>
+      </div>
+      <div id="authStatus" class="status">Panel is locked. Login as Admin or SuperAdmin.</div>
+    </section>
+
+    <section class="panel">
+      <div class="row">
+        <select id="eventSelect"></select>
+        <input id="ledgerDate" type="date">
+        <button id="refreshBtn" class="secondary" type="button">Refresh Summary</button>
+        <button id="handoverBtn" type="button">Request Cash Handover</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="label">Today Total</span><span class="value" id="statTotal">0</span></div>
+        <div class="stat"><span class="label">Pending Cash</span><span class="value" id="statPending">0</span></div>
+        <div class="stat"><span class="label">Requested Handover</span><span class="value" id="statRequested">0</span></div>
+        <div class="stat"><span class="label">Approved Today</span><span class="value" id="statApproved">0</span></div>
+      </div>
+      <div id="summaryStatus" class="status"></div>
+    </section>
+
+    <section class="panel">
+      <h3>Issue Paid Pass Against Cash</h3>
+      <div class="row">
+        <input id="customerName" type="text" maxlength="80" placeholder="Customer name">
+        <input id="customerPhone" type="tel" inputmode="numeric" maxlength="15" placeholder="Customer phone">
+        <input id="customerEmail" type="email" maxlength="120" placeholder="Customer email (optional)">
+        <input id="qty" type="number" min="1" max="20" value="1" placeholder="Qty">
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <textarea id="attendees" placeholder="Attendee names, comma or newline separated. For 1 pass, leave blank to use customer name."></textarea>
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <textarea id="notes" placeholder="Notes for cash issue (optional)"></textarea>
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <button id="issueBtn" type="button">Issue Cash Paid Pass</button>
+      </div>
+      <div id="issueStatus" class="status"></div>
+    </section>
+
+    <section class="panel">
+      <div class="row" style="justify-content:space-between;">
+        <h3 style="margin:0;">Recent Cash Transactions</h3>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Transaction</th>
+              <th>Event</th>
+              <th>Customer</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="txRows"><tr><td colspan="7">No data yet.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="row" style="justify-content:space-between;">
+        <h3 style="margin:0;">Handover History</h3>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Batch</th>
+              <th>Transactions</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Approved By</th>
+            </tr>
+          </thead>
+          <tbody id="handoverRows"><tr><td colspan="6">No handovers yet.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="data-config.js"></script>
+  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-ui-ux.js?v=20260413-1"></script>
+  <script>
+    (function () {
+      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
+      const authClient = window.NKAdminAuth.createAuthClient({ apiBase: apiBase, onAuthError: function (payload) { clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.'); } });
+      const usernameEl = document.getElementById('username');
+      const passwordEl = document.getElementById('password');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const authStatusEl = document.getElementById('authStatus');
+      const eventSelectEl = document.getElementById('eventSelect');
+      const ledgerDateEl = document.getElementById('ledgerDate');
+      const refreshBtn = document.getElementById('refreshBtn');
+      const handoverBtn = document.getElementById('handoverBtn');
+      const summaryStatusEl = document.getElementById('summaryStatus');
+      const issueStatusEl = document.getElementById('issueStatus');
+      const customerNameEl = document.getElementById('customerName');
+      const customerPhoneEl = document.getElementById('customerPhone');
+      const customerEmailEl = document.getElementById('customerEmail');
+      const qtyEl = document.getElementById('qty');
+      const attendeesEl = document.getElementById('attendees');
+      const notesEl = document.getElementById('notes');
+      const issueBtn = document.getElementById('issueBtn');
+      const txRowsEl = document.getElementById('txRows');
+      const handoverRowsEl = document.getElementById('handoverRows');
+      const statTotalEl = document.getElementById('statTotal');
+      const statPendingEl = document.getElementById('statPending');
+      const statRequestedEl = document.getElementById('statRequested');
+      const statApprovedEl = document.getElementById('statApproved');
+      const authPanelEl = loginBtn.closest('section.panel');
+
+      function applyEmbeddedAuthUi() {
+        if (!embeddedMode) return;
+        if (authPanelEl) authPanelEl.style.display = 'none';
+      }
+
+      function getIstDateParts(value) {
+        const formatter = new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'Asia/Kolkata',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        });
+        const parts = formatter.formatToParts(value instanceof Date ? value : new Date(value || Date.now()));
+        const year = parts.find((part) => part.type === 'year');
+        const month = parts.find((part) => part.type === 'month');
+        const day = parts.find((part) => part.type === 'day');
+        return {
+          year: year ? year.value : '0000',
+          month: month ? month.value : '01',
+          day: day ? day.value : '01'
+        };
+      }
+
+      function todayIso() {
+        const parts = getIstDateParts(new Date());
+        return `${parts.year}-${parts.month}-${parts.day}`;
+      }
+
+      function setAuthStatus(message) { authStatusEl.textContent = String(message || ''); }
+      function setSummaryStatus(message) { summaryStatusEl.textContent = String(message || ''); }
+      function setIssueStatus(message) { issueStatusEl.textContent = String(message || ''); }
+      function formatDate(value) {
+        if (!value) return '-';
+        const d = new Date(value);
+        return Number.isNaN(d.getTime())
+          ? String(value)
+          : d.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Kolkata' });
+      }
+      function formatCurrency(value) { return `INR ${Number(value || 0).toFixed(2)}`; }
+
+      function updateLockedUi(locked) {
+        usernameEl.disabled = !locked;
+        passwordEl.disabled = !locked;
+        loginBtn.hidden = !locked;
+        logoutBtn.hidden = locked;
+        eventSelectEl.disabled = locked;
+        ledgerDateEl.disabled = locked;
+        refreshBtn.disabled = locked;
+        handoverBtn.disabled = locked;
+        customerNameEl.disabled = locked;
+        customerPhoneEl.disabled = locked;
+        customerEmailEl.disabled = locked;
+        qtyEl.disabled = locked;
+        attendeesEl.disabled = locked;
+        notesEl.disabled = locked;
+        issueBtn.disabled = locked;
+        applyEmbeddedAuthUi();
+      }
+
+      function clearSessionAndLock(message) {
+        authClient.clearSession();
+        updateLockedUi(true);
+        usernameEl.value = '';
+        passwordEl.value = '';
+        setAuthStatus(message || 'Panel is locked. Login as Admin or SuperAdmin.');
+      }
+
+      async function apiGet(action, params) { return authClient.apiGet(action, params); }
+      async function apiPost(body) { return authClient.apiPost(body); }
+
+      async function loadPaidEvents() {
+        const payload = await apiGet('events_list', { limit: '20' });
+        const items = payload && payload.ok && Array.isArray(payload.items) ? payload.items.filter((item) => item && (item.paymentEnabled || String(item.eventType || '').toLowerCase() === 'paid')) : [];
+        eventSelectEl.innerHTML = items.length ? '' : '<option value="">No active paid events</option>';
+        items.forEach((item) => {
+          const option = document.createElement('option');
+          option.value = String(item.id || '');
+          option.textContent = `${String(item.title || item.id)} - INR ${Number(item.ticketPrice || 0).toFixed(2)}`;
+          eventSelectEl.appendChild(option);
+        });
+        eventSelectEl.disabled = items.length === 0;
+        issueBtn.disabled = items.length === 0;
+        if (!items.length) {
+          setIssueStatus('No active paid events are currently available from the live events API.');
+        }
+      }
+
+      function renderSummary(summary) {
+        const totals = summary && summary.totals ? summary.totals : {};
+        statTotalEl.textContent = formatCurrency(totals.totalAmount || 0);
+        statPendingEl.textContent = formatCurrency(totals.pendingAmount || 0);
+        statRequestedEl.textContent = formatCurrency(totals.requestedAmount || 0);
+        statApprovedEl.textContent = formatCurrency(totals.approvedAmount || 0);
+
+        const txs = summary && Array.isArray(summary.recentTransactions) ? summary.recentTransactions : [];
+        txRowsEl.innerHTML = txs.length ? '' : '<tr><td colspan="7">No cash transactions found.</td></tr>';
+        txs.forEach((item) => {
+          const tr = document.createElement('tr');
+          const statusClass = String(item.status || '').toLowerCase().indexOf('cancel') !== -1 ? 'cancel' : 'pending';
+          tr.innerHTML = `
+            <td>${String(item.transactionId || '-')}</td>
+            <td>${String(item.eventTitle || '-')}</td>
+            <td>${String(item.customerName || '-')}<br><span style="color:rgba(255,243,224,0.68);">${String(item.customerPhone || '')}</span></td>
+            <td>${formatCurrency(item.amount || 0)}</td>
+            <td><span class="pill ${statusClass}">${String(item.status || '-')}</span></td>
+            <td>${formatDate(item.createdAt)}</td>
+            <td><button class="warn" data-action="cancel" data-tx="${String(item.transactionId || '')}">Request Cancel</button></td>
+          `;
+          txRowsEl.appendChild(tr);
+        });
+
+        const handovers = summary && Array.isArray(summary.handoverHistory) ? summary.handoverHistory : [];
+        handoverRowsEl.innerHTML = handovers.length ? '' : '<tr><td colspan="6">No handovers yet.</td></tr>';
+        handovers.forEach((item) => {
+          const tr = document.createElement('tr');
+          const cls = String(item.status || '').toLowerCase() === 'approved' ? 'approved' : 'requested';
+          tr.innerHTML = `
+            <td>${String(item.ledgerDate || '-')}</td>
+            <td>${String(item.batchKey || '-')}</td>
+            <td>${Number(item.totalTransactions || 0)}</td>
+            <td>${formatCurrency(item.totalAmount || 0)}</td>
+            <td><span class="pill ${cls}">${String(item.status || '-')}</span></td>
+            <td>${String(item.approvedBy || '-')}</td>
+          `;
+          handoverRowsEl.appendChild(tr);
+        });
+      }
+
+      async function loadSummary() {
+        try {
+          setSummaryStatus('Loading summary...');
+          const payload = await apiGet('admin_cash_summary', { ledgerDate: ledgerDateEl.value || todayIso() });
+          renderSummary(payload.summary);
+          setSummaryStatus(`Summary loaded for ${payload.summary && payload.summary.ledgerDate ? payload.summary.ledgerDate : ledgerDateEl.value}.`);
+        } catch (err) {
+          setSummaryStatus(`Unable to load summary: ${err.message}`);
+        }
+      }
+
+      async function issueCashPass() {
+        const eventId = String(eventSelectEl.value || '').trim();
+        const customerName = String(customerNameEl.value || '').trim();
+        const customerPhone = String(customerPhoneEl.value || '').trim();
+        const customerEmail = String(customerEmailEl.value || '').trim();
+        const qty = Math.max(1, Number(qtyEl.value || 1));
+        const attendeeNames = String(attendeesEl.value || '').trim();
+        const notes = String(notesEl.value || '').trim();
+        if (!eventId || !customerName || !customerPhone) {
+          setIssueStatus('Paid event, customer name, and phone are required.');
+          return;
+        }
+        issueBtn.disabled = true;
+        setIssueStatus('Issuing cash paid pass...');
+        try {
+          const payload = await apiPost({ action: 'admin_issue_cash_paid_pass', eventId: eventId, customerName: customerName, customerPhone: customerPhone, customerEmail: customerEmail, qty: qty, attendeeNames: attendeeNames, notes: notes });
+          setIssueStatus(`Cash pass issued.\nTransaction: ${payload.transactionId}\nAmount: ${formatCurrency(payload.amount)}\nQR: ${payload.qrUrl}`);
+          attendeesEl.value = '';
+          notesEl.value = '';
+          await loadSummary();
+        } catch (err) {
+          setIssueStatus(`Issue failed: ${err.message}`);
+        } finally {
+          issueBtn.disabled = false;
+        }
+      }
+
+      async function requestHandover() {
+        handoverBtn.disabled = true;
+        setSummaryStatus('Requesting handover...');
+        try {
+          const payload = await apiPost({ action: 'admin_request_cash_handover', ledgerDate: ledgerDateEl.value || todayIso() });
+          setSummaryStatus(`Handover requested. Batch ${payload.batchKey} for ${formatCurrency(payload.totalAmount)}.`);
+          await loadSummary();
+        } catch (err) {
+          setSummaryStatus(`Handover request failed: ${err.message}`);
+        } finally {
+          handoverBtn.disabled = false;
+        }
+      }
+
+      async function requestCancel(transactionId) {
+        const reason = window.prompt(`Reason for cancel request for ${transactionId}`);
+        if (!reason) return;
+        setSummaryStatus(`Requesting cancel for ${transactionId}...`);
+        try {
+          await apiPost({ action: 'admin_request_cash_cancel', transactionId: transactionId, reason: reason });
+          setSummaryStatus(`Cancel request sent for ${transactionId}.`);
+          await loadSummary();
+        } catch (err) {
+          setSummaryStatus(`Cancel request failed: ${err.message}`);
+        }
+      }
+
+      async function login() {
+        const username = String(usernameEl.value || '').replace(/\D/g, '').trim();
+        const password = String(passwordEl.value || '').trim();
+        if (!username || !password) { setAuthStatus('Enter username and password first.'); return; }
+        loginBtn.disabled = true;
+        setAuthStatus('Logging in...');
+        try {
+          const payload = await authClient.login(username, password, 'admin-cashier');
+          const role = String(payload.user && payload.user.role || '').toLowerCase();
+          if (role !== 'admin' && role !== 'superadmin') throw new Error('Admin or SuperAdmin account is required.');
+          updateLockedUi(false);
+          passwordEl.value = '';
+          setAuthStatus(`Logged in as ${payload.user.username} (${payload.user.role}).`);
+          await loadPaidEvents();
+          await loadSummary();
+        } catch (err) {
+          clearSessionAndLock(`Login failed: ${err.message}`);
+        } finally { loginBtn.disabled = false; }
+      }
+
+      async function restoreSessionIfAny() {
+        try {
+          const payload = await authClient.restoreSession();
+          if (!payload) return;
+          const role = String(payload.user && payload.user.role || '').toLowerCase();
+          if (role !== 'admin' && role !== 'superadmin') { clearSessionAndLock('Admin or SuperAdmin access is required.'); return; }
+          updateLockedUi(false);
+          setAuthStatus(`Logged in as ${payload.user.username} (${payload.user.role}).`);
+          await loadPaidEvents();
+          await loadSummary();
+        } catch (err) {
+          clearSessionAndLock('Session expired. Please login again.');
+        }
+      }
+
+      async function logout() {
+        await authClient.logout();
+        clearSessionAndLock('Logged out successfully.');
+      }
+
+      txRowsEl.addEventListener('click', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        if (String(target.getAttribute('data-action') || '') === 'cancel') {
+          requestCancel(String(target.getAttribute('data-tx') || ''));
+        }
+      });
+
+      ledgerDateEl.value = todayIso();
+      loginBtn.addEventListener('click', login);
+      logoutBtn.addEventListener('click', logout);
+      refreshBtn.addEventListener('click', loadSummary);
+      handoverBtn.addEventListener('click', requestHandover);
+      issueBtn.addEventListener('click', issueCashPass);
+      updateLockedUi(true);
+      restoreSessionIfAny();
+    })();
+  </script>
+</body>
+</html>

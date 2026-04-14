@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal | Namaste Kalyan</title>
+  <link rel="stylesheet" href="css/admin-animations.css?v=20260413-1">
+  <style>
+    :root {
+      --bg: #f5efe3;
+      --bg-soft: #ebe1d0;
+      --canvas: #fcf9f2;
+      --panel: rgba(255, 250, 241, 0.96);
+      --panel-soft: #f7f0e4;
+      --panel-strong: #fffdf8;
+      --sidebar: linear-gradient(180deg, #214038 0%, #1a322c 100%);
+      --sidebar-soft: rgba(255, 255, 255, 0.08);
+      --border: rgba(123, 94, 67, 0.18);
+      --border-strong: rgba(90, 68, 47, 0.28);
+      --ink: #2f241b;
+      --ink-soft: #5f4d3f;
+      --muted: #7d6a59;
+      --accent: #b67b45;
+      --accent-strong: #94592b;
+      --accent-soft: #ead7bf;
+      --sage: #dbe6df;
+      --danger: #a45348;
+      --ok: #4d8164;
+      --shadow: 0 20px 44px rgba(80, 57, 36, 0.12);
+      --shadow-soft: 0 10px 24px rgba(80, 57, 36, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Avenir Next", "Trebuchet MS", Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(182, 123, 69, 0.14), transparent 24%),
+        radial-gradient(circle at 88% 18%, rgba(61, 109, 94, 0.12), transparent 26%),
+        linear-gradient(180deg, var(--canvas) 0%, var(--bg) 58%, var(--bg-soft) 100%);
+    }
+
+    .login-shell {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 14px 40px;
+    }
+
+    .hero,
+    .panel,
+    .dashboard-card,
+    .sidebar,
+    .workspace {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .hero,
+    .panel {
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      color: #34261d;
+      font-size: clamp(1.55rem, 3vw, 2.25rem);
+      letter-spacing: -0.03em;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      max-width: 58ch;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    input,
+    button {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 11px 13px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    input {
+      min-width: 220px;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--ink);
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    }
+
+    input:focus {
+      border-color: rgba(148, 89, 43, 0.46);
+      box-shadow: 0 0 0 3px rgba(182, 123, 69, 0.14);
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 800;
+      color: #fff8ef;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 8px 18px rgba(148, 89, 43, 0.18);
+    }
+
+    button.secondary {
+      background: var(--accent-soft);
+      color: #5a412d;
+      box-shadow: none;
+    }
+
+    button.warn {
+      background: rgba(164, 83, 72, 0.12);
+      color: #7a342b;
+      border-color: rgba(164, 83, 72, 0.28);
+      box-shadow: none;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.58;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 8px;
+      min-height: 18px;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      white-space: pre-line;
+    }
+
+    .status.ok { color: var(--ok); }
+    .status.bad { color: #ffc7bb; }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      min-height: 100vh;
+      gap: 14px;
+      padding: 16px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      padding: 18px;
+      background: var(--sidebar);
+      color: #f4efe6;
+      box-shadow: 0 24px 48px rgba(18, 42, 37, 0.2);
+    }
+
+    .sidebar-head {
+      margin-bottom: 14px;
+      padding: 0 0 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar-head h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #fffaf1;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+    }
+
+    .sidebar-head p {
+      margin: 6px 0 0;
+      color: rgba(244, 239, 230, 0.74);
+      font-size: 0.83rem;
+      line-height: 1.45;
+    }
+
+    .sidebar-tools {
+      margin-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 12px;
+    }
+
+    .sidebar-tools h4 {
+      margin: 0 0 8px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 230, 0.86);
+    }
+
+    .sidebar-tools input {
+      width: 100%;
+      min-width: 0;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .sidebar-tools .status {
+      font-size: 0.82rem;
+      color: rgba(244, 239, 230, 0.84);
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--sidebar-soft);
+      color: #f7f2e8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: none;
+    }
+
+    .nav-btn small {
+      color: rgba(244, 239, 230, 0.66);
+      font-weight: 500;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .nav-btn.active {
+      border-color: rgba(255, 232, 196, 0.34);
+      background: linear-gradient(135deg, rgba(182, 123, 69, 0.38), rgba(145, 89, 53, 0.18));
+      color: #fffdf7;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-btn.active small {
+      color: rgba(255, 248, 237, 0.84);
+    }
+
+    .nav-btn.is-loading {
+      position: relative;
+      padding-right: 34px;
+      border-color: rgba(255, 232, 196, 0.34);
+      background: linear-gradient(135deg, rgba(182, 123, 69, 0.3), rgba(145, 89, 53, 0.16));
+    }
+
+    .nav-btn.is-loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      width: 12px;
+      height: 12px;
+      margin-top: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: rgba(255, 255, 255, 0.95);
+      animation: navBtnSpin 0.75s linear infinite;
+    }
+
+    @keyframes navBtnSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .workspace {
+      padding: 0;
+      overflow: hidden;
+      min-height: calc(100vh - 32px);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: var(--panel-strong);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .workspace-top {
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(123, 94, 67, 0.12);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(234, 215, 191, 0.32), rgba(219, 230, 223, 0.32)),
+        var(--panel-strong);
+      flex-wrap: wrap;
+    }
+
+    .workspace-title {
+      margin: 0;
+      font-size: 1.15rem;
+      color: #2f241b;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .workspace-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .workspace-body {
+      min-height: 0;
+      position: relative;
+    }
+
+    .dashboard {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)),
+        transparent;
+    }
+
+    .dashboard-card {
+      padding: 16px;
+      background: linear-gradient(180deg, #fffdf8 0%, #f7f0e5 100%);
+      border-color: rgba(123, 94, 67, 0.14);
+      box-shadow: 0 10px 22px rgba(74, 56, 38, 0.06);
+    }
+
+    .dashboard-card h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #3a2d22;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .dashboard-card p {
+      margin: 9px 0 0;
+      color: #5f4d3f;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .module-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #f7f2e9;
+      min-height: calc(100vh - 120px);
+    }
+
+    .module-switch-loader {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(247, 242, 233, 0.92);
+      backdrop-filter: blur(2px);
+    }
+
+    .module-switch-loader__spinner {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 3px solid rgba(182, 123, 69, 0.28);
+      border-top-color: #a66a34;
+      animation: moduleLoaderSpin 0.75s linear infinite;
+    }
+
+    .module-switch-loader__text {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #5e4a39;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    @keyframes moduleLoaderSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hidden { display: none !important; }
+
+    .mobile-topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 14px;
+      background: rgba(252, 249, 242, 0.97);
+      border-bottom: 1px solid rgba(123, 94, 67, 0.14);
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(8px);
+    }
+
+    .mobile-topbar h2 {
+      margin: 0;
+      font-size: 1rem;
+      color: #2f241b;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(123, 94, 67, 0.18);
+      background: var(--accent-soft);
+      color: #5a412d;
+      font-size: 1.2rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 40;
+    }
+
+    @media (max-width: 960px) {
+      .mobile-topbar { display: flex; }
+
+      .app-shell {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0;
+      }
+
+      .sidebar {
+        position: fixed;
+        right: -300px;
+        top: 0;
+        width: 300px;
+        max-width: 92vw;
+        height: 100vh;
+        z-index: 60;
+        border-radius: 0;
+        transition: right 0.25s ease;
+      }
+
+      .sidebar.open {
+        right: 0;
+      }
+
+      .overlay.visible {
+        display: block;
+      }
+
+      .workspace {
+        min-height: calc(100vh - 61px);
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .module-iframe {
+        min-height: calc(100vh - 170px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="loginShell" class="login-shell">
+    <section class="hero">
+      <h1>Namaste Kalyan Admin Panel</h1>
+      <p>Single login, role-aware navigation, and one workspace for all admin operations. Modules become visible only after login.</p>
+    </section>
+
+    <section class="panel">
+      <div class="row">
+        <input id="username" type="tel" inputmode="numeric" maxlength="15" placeholder="Username (mobile number)">
+        <input id="password" type="password" maxlength="64" placeholder="Password">
+        <button id="loginBtn" type="button">Login</button>
+      </div>
+      <div id="authStatus" class="status">Panel is locked. Login as Admin or SuperAdmin.</div>
+    </section>
+  </main>
+
+  <div id="mobileTopbar" class="mobile-topbar hidden">
+    <h2>Admin Panel</h2>
+    <button id="menuToggleBtn" class="hamburger" type="button" aria-label="Open menu">☰</button>
+  </div>
+
+  <div id="sidebarOverlay" class="overlay"></div>
+
+  <section id="appShell" class="app-shell hidden">
+    <aside id="sidebar" class="sidebar" aria-label="Admin Navigation">
+      <div class="sidebar-head">
+        <h2 id="sidebarUser">Admin</h2>
+        <p id="sidebarRole">Role: -</p>
+      </div>
+      <div id="navList" class="nav-list"></div>
+      <div class="status" id="navStatus"></div>
+      <div class="row" style="margin-top:10px;">
+        <button id="logoutBtn" class="warn" type="button" style="width:100%;">Logout</button>
+      </div>
+      <section class="sidebar-tools">
+        <h4>Change Password</h4>
+        <input id="sidebarCurrentPassword" type="password" maxlength="64" placeholder="Current password" autocomplete="current-password">
+        <input id="sidebarNewPassword" type="password" maxlength="64" placeholder="New password" autocomplete="new-password">
+        <input id="sidebarConfirmPassword" type="password" maxlength="64" placeholder="Confirm new password" autocomplete="new-password">
+        <button id="sidebarChangePasswordBtn" class="secondary" type="button" style="width:100%;">Update Password</button>
+        <div id="sidebarPasswordStatus" class="status"></div>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="workspace-top">
+        <div>
+          <h3 id="workspaceTitle" class="workspace-title">Dashboard</h3>
+          <p id="workspaceSubtitle" class="workspace-subtitle">Select a module from the sidebar.</p>
+        </div>
+      </div>
+      <div class="workspace-body">
+        <div id="dashboardView" class="dashboard"></div>
+        <iframe id="moduleFrame" class="module-iframe hidden" title="Admin Workspace"></iframe>
+        <div id="moduleSwitchLoader" class="module-switch-loader hidden" aria-live="polite" aria-busy="true">
+          <div class="module-switch-loader__spinner" aria-hidden="true"></div>
+          <p id="moduleSwitchLoaderText" class="module-switch-loader__text">Loading module...</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <script src="data-config.js"></script>
+  <script src="admin-auth.js?v=20260413-2"></script>
+  <script src="admin-ui-ux.js?v=20260413-1"></script>
+  <script src="admin-cache.js?v=20260413-1"></script>
+  <script>
+    (function () {
+      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const authClient = window.NKAdminAuth.createAuthClient({
+        apiBase: apiBase,
+        onAuthError: function (payload) {
+          lockPanel((payload && payload.message) || 'Session expired. Please login again.');
+        }
+      });
+
+      const MODULES = [
+        { id: 'dashboard', title: 'Dashboard', description: 'Overview and quick module launch', permission: 'dashboard', role: 'admin', href: '' },
+        { id: 'cashier', title: 'Cashier', description: 'Issue cash passes and handovers', permission: 'cashier', role: 'admin', href: 'admin-cashier.html?embedded=1' },
+        { id: 'verification', title: 'Coupon Verification', description: 'Verify and redeem coupons', permission: 'verification', role: 'admin', href: 'admin-verification.html?embedded=1' },
+        { id: 'event-guests', title: 'Event Guests', description: 'Registration and guest reports', permission: 'eventGuests', role: 'admin', href: 'admin-event-guests.html?embedded=1' },
+        { id: 'event-entry-scanner', title: 'Event Entry Scanner', description: 'Scan multiple guest QRs and confirm gate entry in batches', permission: 'eventScanner', role: 'admin', href: 'admin-event-entry-scanner.html?embedded=1' },
+        { id: 'event-management', title: 'Event Management', description: 'Create and manage events', permission: 'eventManagement', role: 'admin', href: 'admin-event-management.html?embedded=1' },
+        { id: 'menu-editor', title: 'Menu Bulk Editor', description: 'Sheet-like editor for menu and cocktail rows', permission: 'menuEditor', role: 'admin', href: 'admin-menu-price-editor.html?embedded=1' },
+        { id: 'cash-approvals', title: 'Cash Approvals', description: 'SuperAdmin cash approval desk', permission: 'cashApprovals', role: 'superadmin', href: 'superadmin-cash-approvals.html?embedded=1' },
+        { id: 'user-management', title: 'User Management', description: 'Create users and assign access', permission: 'userManagement', role: 'superadmin', href: 'admin-user-management.html?embedded=1' }
+      ];
+
+      const loginShellEl = document.getElementById('loginShell');
+      const appShellEl = document.getElementById('appShell');
+      const mobileTopbarEl = document.getElementById('mobileTopbar');
+      const sidebarEl = document.getElementById('sidebar');
+      const overlayEl = document.getElementById('sidebarOverlay');
+      const menuToggleBtn = document.getElementById('menuToggleBtn');
+      const usernameEl = document.getElementById('username');
+      const passwordEl = document.getElementById('password');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const authStatusEl = document.getElementById('authStatus');
+      const sidebarUserEl = document.getElementById('sidebarUser');
+      const sidebarRoleEl = document.getElementById('sidebarRole');
+      const navListEl = document.getElementById('navList');
+      const navStatusEl = document.getElementById('navStatus');
+      const dashboardViewEl = document.getElementById('dashboardView');
+      const moduleFrameEl = document.getElementById('moduleFrame');
+      const moduleSwitchLoaderEl = document.getElementById('moduleSwitchLoader');
+      const moduleSwitchLoaderTextEl = document.getElementById('moduleSwitchLoaderText');
+      const workspaceTitleEl = document.getElementById('workspaceTitle');
+      const workspaceSubtitleEl = document.getElementById('workspaceSubtitle');
+      const sidebarCurrentPasswordEl = document.getElementById('sidebarCurrentPassword');
+      const sidebarNewPasswordEl = document.getElementById('sidebarNewPassword');
+      const sidebarConfirmPasswordEl = document.getElementById('sidebarConfirmPassword');
+      const sidebarChangePasswordBtn = document.getElementById('sidebarChangePasswordBtn');
+      const sidebarPasswordStatusEl = document.getElementById('sidebarPasswordStatus');
+
+      let currentUser = null;
+      let allowedModules = [];
+      let currentModuleId = 'dashboard';
+      let moduleLoaderShownAt = 0;
+      let loadingModuleId = '';
+
+      function showModuleSwitchLoader(message) {
+        if (!moduleSwitchLoaderEl) return;
+        if (moduleSwitchLoaderTextEl) {
+          moduleSwitchLoaderTextEl.textContent = String(message || 'Loading module...');
+        }
+        moduleLoaderShownAt = Date.now();
+        moduleSwitchLoaderEl.classList.remove('hidden');
+      }
+
+      function hideModuleSwitchLoader() {
+        if (!moduleSwitchLoaderEl) return;
+        const elapsed = Date.now() - moduleLoaderShownAt;
+        const waitMs = Math.max(0, 200 - elapsed);
+        window.setTimeout(function () {
+          moduleSwitchLoaderEl.classList.add('hidden');
+        }, waitMs);
+      }
+
+      function setModuleButtonLoading(moduleId) {
+        loadingModuleId = String(moduleId || '');
+        navListEl.querySelectorAll('.nav-btn').forEach((button) => {
+          const isMatch = String(button.getAttribute('data-module') || '') === loadingModuleId;
+          button.classList.toggle('is-loading', isMatch);
+        });
+      }
+
+      function clearModuleButtonLoading() {
+        loadingModuleId = '';
+        navListEl.querySelectorAll('.nav-btn').forEach((button) => {
+          button.classList.remove('is-loading');
+        });
+      }
+
+      function normalizeRole(value) {
+        return String(value || '').trim().toLowerCase() === 'superadmin' ? 'superadmin' : 'admin';
+      }
+
+      function normalizePermissions(user) {
+        if (!user || normalizeRole(user.role) === 'superadmin') {
+          return MODULES.map((item) => item.permission);
+        }
+        const raw = Array.isArray(user.permissions) ? user.permissions : [];
+        const map = {};
+        raw.forEach((item) => { map[String(item || '')] = true; });
+        if (map.eventManagement && !map.menuEditor) {
+          map.menuEditor = true;
+        }
+        if (map.eventGuests && !map.eventScanner) {
+          map.eventScanner = true;
+        }
+        return Object.keys(map);
+      }
+
+      function userCanOpenModule(user, module) {
+        if (!user || !module) return false;
+        const role = normalizeRole(user.role);
+        if (module.role === 'superadmin' && role !== 'superadmin') return false;
+        if (role === 'superadmin') return true;
+        const perms = normalizePermissions(user);
+        return perms.indexOf(module.permission) !== -1;
+      }
+
+      function setAuthStatus(message, kind) {
+        authStatusEl.textContent = String(message || '');
+        authStatusEl.className = kind ? `status ${kind}` : 'status';
+      }
+
+      function setNavStatus(message) {
+        navStatusEl.textContent = String(message || '');
+      }
+
+      function setSidebarPasswordStatus(message) {
+        sidebarPasswordStatusEl.textContent = String(message || '');
+      }
+
+      function closeSidebar() {
+        sidebarEl.classList.remove('open');
+        overlayEl.classList.remove('visible');
+        document.body.style.overflow = '';
+      }
+
+      function openSidebar() {
+        sidebarEl.classList.add('open');
+        overlayEl.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function renderDashboard() {
+        dashboardViewEl.innerHTML = allowedModules
+          .filter((item) => item.id !== 'dashboard')
+          .map((item) => `
+            <article class="dashboard-card">
+              <h3>${item.title}</h3>
+              <p>${item.description}</p>
+              <div class="row" style="margin-top:10px;">
+                <button type="button" data-open-module="${item.id}" class="secondary">Open ${item.title}</button>
+              </div>
+            </article>
+          `)
+          .join('');
+      }
+
+      function setActiveNav(moduleId) {
+        navListEl.querySelectorAll('.nav-btn').forEach((button) => {
+          button.classList.toggle('active', String(button.getAttribute('data-module')) === String(moduleId));
+        });
+      }
+
+      function renderSidebar() {
+        navListEl.innerHTML = allowedModules.map((item) => `
+          <button class="nav-btn" type="button" data-module="${item.id}">
+            <span>${item.title}</span>
+            <small>${item.description}</small>
+          </button>
+        `).join('');
+      }
+
+      function getEmbeddedModuleHref(module) {
+        const href = String(module && module.href || '').trim();
+        if (!href) return href;
+
+        const token = String(authClient.getToken() || '').trim();
+        if (!token) return href;
+
+        const separator = href.indexOf('?') === -1 ? '?' : '&';
+        return `${href}${separator}authToken=${encodeURIComponent(token)}`;
+      }
+
+      function openModule(moduleId) {
+        const target = allowedModules.find((item) => item.id === moduleId);
+        if (!target) {
+          setNavStatus('Access denied for requested module.');
+          moduleId = 'dashboard';
+        }
+
+        const module = allowedModules.find((item) => item.id === moduleId) || allowedModules[0];
+        if (!module) return;
+
+        currentModuleId = module.id;
+        window.location.hash = module.id;
+        setActiveNav(module.id);
+        workspaceTitleEl.textContent = module.title;
+        workspaceSubtitleEl.textContent = module.description;
+        setNavStatus('');
+
+        if (module.id === 'dashboard') {
+          clearModuleButtonLoading();
+          hideModuleSwitchLoader();
+          moduleFrameEl.classList.add('hidden');
+          moduleFrameEl.removeAttribute('src');
+          dashboardViewEl.classList.remove('hidden');
+          renderDashboard();
+        } else {
+          setModuleButtonLoading(module.id);
+          showModuleSwitchLoader(`Fetching ${module.title}...`);
+          dashboardViewEl.classList.add('hidden');
+          moduleFrameEl.classList.remove('hidden');
+          const moduleHref = getEmbeddedModuleHref(module);
+          if (moduleFrameEl.getAttribute('src') !== moduleHref) {
+            moduleFrameEl.setAttribute('src', moduleHref);
+          } else {
+            clearModuleButtonLoading();
+            hideModuleSwitchLoader();
+          }
+        }
+
+        if (window.innerWidth <= 960) {
+          closeSidebar();
+        }
+      }
+
+      function getRequestedModuleFromUrl() {
+        return String(window.location.hash || '').replace(/^#/, '').trim().toLowerCase() || 'dashboard';
+      }
+
+      function setUnlockedUi(user) {
+        currentUser = user;
+        allowedModules = MODULES.filter((item) => userCanOpenModule(user, item));
+        if (!allowedModules.length) {
+          lockPanel('No allowed module found for this user. Contact SuperAdmin.');
+          return;
+        }
+
+        sidebarUserEl.textContent = user.displayName || user.username || 'Admin User';
+        sidebarRoleEl.textContent = `Role: ${normalizeRole(user.role)}`;
+
+        loginShellEl.classList.add('hidden');
+        appShellEl.classList.remove('hidden');
+        mobileTopbarEl.classList.remove('hidden');
+
+        renderSidebar();
+
+        const requested = getRequestedModuleFromUrl();
+        const canOpenRequested = allowedModules.some((item) => item.id === requested);
+        openModule(canOpenRequested ? requested : 'dashboard');
+      }
+
+      function lockPanel(message) {
+        authClient.clearSession();
+        currentUser = null;
+        allowedModules = [];
+        currentModuleId = 'dashboard';
+        clearModuleButtonLoading();
+
+        loginShellEl.classList.remove('hidden');
+        appShellEl.classList.add('hidden');
+        mobileTopbarEl.classList.add('hidden');
+        closeSidebar();
+
+        moduleFrameEl.classList.add('hidden');
+        moduleFrameEl.removeAttribute('src');
+        dashboardViewEl.classList.remove('hidden');
+        navListEl.innerHTML = '';
+        window.location.hash = '';
+
+        usernameEl.value = '';
+        passwordEl.value = '';
+        sidebarCurrentPasswordEl.value = '';
+        sidebarNewPasswordEl.value = '';
+        sidebarConfirmPasswordEl.value = '';
+        setSidebarPasswordStatus('');
+        setAuthStatus(message || 'Panel is locked. Login as Admin or SuperAdmin.', 'bad');
+      }
+
+      async function changeOwnPasswordFromSidebar() {
+        const currentPassword = String(sidebarCurrentPasswordEl.value || '').trim();
+        const newPassword = String(sidebarNewPasswordEl.value || '').trim();
+        const confirmPassword = String(sidebarConfirmPasswordEl.value || '').trim();
+
+        if (!currentPassword || !newPassword || !confirmPassword) {
+          setSidebarPasswordStatus('Fill current password, new password, and confirm password.');
+          return;
+        }
+
+        if (newPassword !== confirmPassword) {
+          setSidebarPasswordStatus('New password and confirm password do not match.');
+          return;
+        }
+
+        sidebarChangePasswordBtn.disabled = true;
+        setSidebarPasswordStatus('Updating password...');
+        try {
+          await authClient.apiPost({
+            action: 'auth_change_password',
+            currentPassword: currentPassword,
+            newPassword: newPassword
+          });
+          sidebarCurrentPasswordEl.value = '';
+          sidebarNewPasswordEl.value = '';
+          sidebarConfirmPasswordEl.value = '';
+          setSidebarPasswordStatus('Password updated successfully.');
+          window.adminToast && window.adminToast('Password changed successfully');
+        } catch (err) {
+          setSidebarPasswordStatus(`Password update failed: ${err.message}`);
+        } finally {
+          sidebarChangePasswordBtn.disabled = false;
+        }
+      }
+
+      async function login() {
+        const username = String(usernameEl.value || '').replace(/\D/g, '').trim();
+        const password = String(passwordEl.value || '').trim();
+        if (!username || !password) {
+          setAuthStatus('Enter username and password first.', 'bad');
+          return;
+        }
+
+        loginBtn.disabled = true;
+        setAuthStatus('Logging in...');
+        try {
+          const payload = await authClient.login(username, password, 'admin-portal-unified');
+          passwordEl.value = '';
+          setAuthStatus(`Logged in as ${payload.user.username}.`, 'ok');
+          setUnlockedUi(payload.user || {});
+        } catch (err) {
+          lockPanel(`Login failed: ${err.message}`);
+        } finally {
+          loginBtn.disabled = false;
+        }
+      }
+
+      async function restoreSessionIfAny() {
+        try {
+          const payload = await authClient.restoreSession();
+          if (!payload || !payload.user) {
+            lockPanel('Panel is locked. Login as Admin or SuperAdmin.');
+            return;
+          }
+          setUnlockedUi(payload.user);
+        } catch (err) {
+          lockPanel('Session expired. Please login again.');
+        }
+      }
+
+      async function logout() {
+        await authClient.logout();
+        lockPanel('Logged out successfully.');
+      }
+
+      loginBtn.addEventListener('click', login);
+      logoutBtn.addEventListener('click', logout);
+      usernameEl.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') login();
+      });
+      passwordEl.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') login();
+      });
+      menuToggleBtn.addEventListener('click', openSidebar);
+      overlayEl.addEventListener('click', closeSidebar);
+      sidebarChangePasswordBtn.addEventListener('click', changeOwnPasswordFromSidebar);
+      window.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeSidebar();
+      });
+
+      navListEl.addEventListener('click', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        const button = target.closest('.nav-btn');
+        if (!button) return;
+        const moduleId = String(button.getAttribute('data-module') || 'dashboard');
+        openModule(moduleId);
+      });
+
+      dashboardViewEl.addEventListener('click', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        const moduleId = String(target.getAttribute('data-open-module') || '');
+        if (!moduleId) return;
+        openModule(moduleId);
+      });
+
+      window.addEventListener('hashchange', function () {
+        if (!currentUser) return;
+        const requested = getRequestedModuleFromUrl();
+        if (!requested || requested === currentModuleId) return;
+        openModule(requested);
+      });
+
+      moduleFrameEl.addEventListener('load', function () {
+        clearModuleButtonLoading();
+        hideModuleSwitchLoader();
+      });
+
+      moduleFrameEl.addEventListener('error', function () {
+        clearModuleButtonLoading();
+        hideModuleSwitchLoader();
+        setNavStatus('Unable to load module. Please try again.');
+      });
+
+      lockPanel('Panel is locked. Login as Admin or SuperAdmin.');
+      restoreSessionIfAny();
+    })();
+  </script>
+</body>
+</html>

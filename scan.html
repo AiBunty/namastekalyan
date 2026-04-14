@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Namaste Kalyan — Opening Menu…</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      background: #0d0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .splash {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 40px 32px;
+      animation: fadeIn 0.5s ease;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Logo + spinner ── */
+    .logo-wrap {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2.5px solid rgba(212, 168, 67, 0.15);
+      border-top-color: #d4a843;
+      animation: spin 1.3s linear infinite;
+    }
+
+    .ring.inner {
+      inset: 10px;
+      border-top-color: #c62828;
+      animation-direction: reverse;
+      animation-duration: 1.9s;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Text ── */
+    .name {
+      color: #f2ede4;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .sub {
+      color: #d4a843;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    /* ── Status bar ── */
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #d4a843;
+      flex-shrink: 0;
+      animation: pulse 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.4; transform: scale(0.75); }
+      to   { opacity: 1;   transform: scale(1.2); }
+    }
+
+    .status-text {
+      color: rgba(242, 237, 228, 0.55);
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Progress bar ── */
+    .progress-bar {
+      width: 180px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #c62828, #d4a843);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="splash">
+    <div class="logo-wrap">
+      <div class="ring"></div>
+      <div class="ring inner"></div>
+      <img class="logo-img"
+           src="assets/Logo/Namaste Kalyan by AWG -02.png"
+           alt="Namaste Kalyan"
+           onerror="this.style.display='none'">
+    </div>
+
+    <div>
+      <div class="name">Namaste Kalyan</div>
+      <div class="sub">by Asian Wok &amp; Grill</div>
+    </div>
+
+    <div class="status-row">
+      <span class="pulse-dot"></span>
+      <span class="status-text" id="statusText">Opening menu…</span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <script src="data-config.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var APPS_SCRIPT_URL = (
+        (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) ||
+        window.APPS_SCRIPT_URL || ''
+      ).trim();
+
+      var MENU_URL = 'index.html';
+      var MAX_WAIT_MS = 2800; // absolute max before redirect
+      var statusEl = document.getElementById('statusText');
+      var progressEl = document.getElementById('progressFill');
+
+      function setStatus(msg) {
+        if (statusEl) statusEl.textContent = msg;
+      }
+
+      function setProgress(pct) {
+        if (progressEl) progressEl.style.width = pct + '%';
+      }
+
+      // ── Device detection ────────────────────────────────────────────
+      function detectDevice(ua) {
+        if (/iPad/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1)) return 'Tablet';
+        if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Windows Phone/i.test(ua)) return 'Mobile';
+        return 'Desktop';
+      }
+
+      function detectBrowser(ua) {
+        if (/SamsungBrowser/i.test(ua)) return 'Samsung Browser';
+        if (/UCBrowser/i.test(ua))      return 'UC Browser';
+        if (/Edg\//i.test(ua))          return 'Edge';
+        if (/OPR\/|Opera/i.test(ua))    return 'Opera';
+        if (/YaBrowser/i.test(ua))      return 'Yandex';
+        if (/Firefox\//i.test(ua))      return 'Firefox';
+        if (/Chrome\//i.test(ua) && !/Chromium/i.test(ua)) return 'Chrome';
+        if (/Safari\//i.test(ua) && !/Chrome/i.test(ua))   return 'Safari';
+        return 'Other';
+      }
+
+      function detectOS(ua) {
+        if (/Windows NT/i.test(ua))      return 'Windows';
+        if (/Android/i.test(ua))         return 'Android';
+        if (/iPhone|iPad|iPod/i.test(ua)) return 'iOS';
+        if (/Mac OS X/i.test(ua))        return 'macOS';
+        if (/Linux/i.test(ua))           return 'Linux';
+        return 'Other';
+      }
+
+      // ── Redirect (idempotent) ────────────────────────────────────────
+      var redirected = false;
+      function redirect() {
+        if (redirected) return;
+        redirected = true;
+        clearTimeout(safetyTimer);
+        setProgress(100);
+        window.location.replace(MENU_URL);
+      }
+
+      var safetyTimer = setTimeout(redirect, MAX_WAIT_MS);
+
+      // ── Fire tracking to Apps Script ─────────────────────────────────
+      function fireTracking(geoData) {
+        if (!APPS_SCRIPT_URL) return;
+
+        var ua = navigator.userAgent || '';
+        var payload = {
+          action:    'qr_scan_client',
+          userAgent: ua,
+          device:    detectDevice(ua),
+          browser:   detectBrowser(ua),
+          os:        detectOS(ua),
+          language:  navigator.language || navigator.userLanguage || '',
+          screen:    (screen.width || '') + 'x' + (screen.height || ''),
+          ip:        geoData.ip            || '',
+          city:      geoData.city          || '',
+          region:    geoData.region        || '',
+          country:   geoData.country_name  || '',
+          referer:   document.referrer     || 'QR Code Direct'
+        };
+
+        var body = 'payload=' + encodeURIComponent(JSON.stringify(payload));
+
+        // sendBeacon: guaranteed delivery even during page navigation
+        if (navigator.sendBeacon) {
+          try {
+            var blob = new Blob([body], { type: 'application/x-www-form-urlencoded' });
+            navigator.sendBeacon(APPS_SCRIPT_URL, blob);
+            return;
+          } catch (e) { /* fall through to fetch */ }
+        }
+
+        // Fallback: fetch with keepalive
+        try {
+          fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: body,
+            mode: 'no-cors',
+            keepalive: true
+          }).catch(function () {});
+        } catch (e) {}
+      }
+
+      // ── Main flow ────────────────────────────────────────────────────
+      setProgress(10);
+      setStatus('Detecting your location…');
+
+      // Fetch IP geolocation client-side (gives real device info)
+      fetch('https://ipapi.co/json/?fields=ip,city,region,country_name', {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-store'
+      })
+        .then(function (resp) {
+          if (!resp.ok) throw new Error('geo_fail');
+          return resp.json();
+        })
+        .then(function (geo) {
+          setProgress(70);
+          setStatus('Almost there…');
+          fireTracking(geo);
+          // Small delay so sendBeacon / fetch has time to enqueue before navigation
+          setTimeout(redirect, 250);
+        })
+        .catch(function () {
+          // ipapi failed — still track (device/browser only, no geo)
+          setProgress(50);
+          fireTracking({});
+          setTimeout(redirect, 150);
+        });
+
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+# QR Code System - Quick Reference Card
+
+## 🎁 Your QR Code is Ready!
+
+### Immediate Actions:
+1. ✅ Visit: `https://namastekalyan.asianwokandgrill.in/qr-code.html`
+2. ✅ Download QR code (button on page)
+3. ✅ Print & Display in restaurant
+4. ✅ Start tracking scans!
+
+---
+
+## 📊 What's Included
+
+### System Components:
+- ✅ **QR Code Generator** - Auto-generated via online service
+- ✅ **Scan Tracking** - Automatic logging of each scan
+- ✅ **Analytics Dashboard** - Real-time scan statistics
+- ✅ **Email Alerts** - Automatic email every 100 scans
+- ✅ **Data Sheet** - "QR Scans" in your Google Spreadsheet
+
+### Display Options:
+- **QR Display Page:** `https://namastekalyan.asianwokandgrill.in/qr-code.html`
+- **Menu URL:** `https://namastekalyan.asianwokandgrill.in/menu.html?qr=track`
+- **QR Code Image:** Auto-generated from URL
+
+---
+
+## 📱 The QR Code
+
+**Scans Point To:** `https://namastekalyan.asianwokandgrill.in/menu.html?qr=track`
+
+**Data Tracked Per Scan:**
+- Timestamp (date & time)
+- Device info (mobile/desktop)
+- Browser type
+- IP address
+- Sequential scan number
+
+**Stored In:** Google Sheet "QR Scans" (auto-created)
+
+---
+
+## 📧 Email Notification System
+
+### Email Trigger:
+**Every 100 scans** → Email sent to owner
+
+### Email Details:
+- **From:** noreply@dcoresystems.com
+- **Sender Name:** Dcore Systems Support
+- **To:** support@dcoresystem.com
+- **Subject:** 🎉 Menu QR Code Milestone: {COUNT} Scans!
+- **Content:** Scan statistics, milestone progress, analytics tips
+
+### Email Examples:
+- 100 scans → Email sent ✉️
+- 101-199 scans → No email
+- 200 scans → Email sent ✉️
+- 201-299 scans → No email
+- 300 scans → Email sent ✉️
+- ...and so on
+
+---
+
+## 🔗 Quick Links
+
+| Purpose | URL |
+|---------|-----|
+| **View QR Code** | namastekalyan.asianwokandgrill.in/qr-code.html |
+| **Download Guide** | QR_CODE_SYSTEM_GUIDE.md (in repo) |
+| **Menu Landing Page** | namastekalyan.asianwokandgrill.in/menu.html |
+| **Tracking URL** | namastekalyan.asianwokandgrill.in/menu.html?qr=track |
+| **Google Sheet** | Open "QR Scans" sheet in your spreadsheet |
+
+---
+
+## 🎯 Display Ideas
+
+### Print & Hang:
+- 11x11 inches (A4 size)
+- Black & white
+- Good lighting when photographed
+- At least 200x200 pixels
+
+### Where to Place:
+1. **Restaurant Entrance** - By the door
+2. **Dining Tables** - Central location
+3. **Counter/Till Area** - During payment
+4. **Outdoor Board** - If available
+5. **Menu Cards** - Bottom corner
+6. **Social Media** - All platforms
+7. **Receipt Printers** - Include in receipts
+8. **Delivery Boxes** - On packaging
+
+---
+
+## 📈 Measuring Success
+
+### Check Your Stats:
+1. Visit `https://namastekalyan.asianwokandgrill.in/qr-code.html`
+2. View "Total Scans" section
+3. Updates every 60 seconds
+4. View full detail in Google Sheet
+
+### Track Over Time:
+- **Weekly:** Monitor scan trends
+- **Monthly:** Export data for reports
+- **Quarterly:** Analyze peak hours/days
+
+---
+
+## ✉️ Email Setup Confirmed
+
+### Current Configuration:
+```
+From Email:      noreply@dcoresystems.com
+From Name:       Dcore Systems Support
+To Email:        support@dcoresystem.com
+SMTP Host:       smtp.dcoresystems.com
+SMTP Port:       465 (SSL)
+Email Frequency: Every 100 scans
+```
+
+### Email Will Contain:
+✅ Total scan count milestone
+✅ Previous & next milestone info
+✅ Timestamp of report
+✅ Link to analytics sheet
+✅ Professional HTML template
+
+---
+
+## 🧪 Test Everything
+
+### Step 1: Generate QR Code
+```
+✓ Open: https://namastekalyan.asianwokandgrill.in/qr-code.html
+✓ See QR code displayed
+✓ See scan statistics (loading)
+✓ Click Download button
+✓ Verify file saves as PNG
+```
+
+### Step 2: Scan QR Code
+```
+✓ Open file in image viewer
+✓ Scan with mobile phone camera
+✓ Redirected to menu with ?qr=track parameter
+✓ Menu loads normally
+```
+
+### Step 3: Verify Tracking
+```
+✓ Wait 1-2 minutes
+✓ Refresh QR code page
+✓ Check "Total Scans" increased
+✓ Open Google Sheet "QR Scans" tab
+✓ See new row with scan data
+```
+
+### Step 4: Test Email (at 100 scans)
+```
+✓ Wait for scan count to reach 100
+✓ Check support@dcoresystem.com inbox
+✓ Verify email from noreply@dcoresystems.com arrives
+✓ Confirm email contains scan statistics
+```
+
+---
+
+## 🆘 Quick Fixes
+
+| Issue | Solution |
+|-------|----------|
+| QR Code Not Showing | Try different QR reader app; check image quality |
+| Scans Not Counting | Refresh page; check "QR Scans" sheet exists |
+| Email Not Arriving | Check spam folder; verify email address |
+| Stats Show 0 | Wait 1-2 minutes for first scan to register |
+| Page Loading Slow | Try different browser; clear cache |
+
+---
+
+## 📞 Support Information
+
+**System Provider:** Dcore Systems Support  
+**Support Email:** support@dcoresystem.com  
+**System Email:** noreply@dcoresystems.com
+
+---
+
+## 📋 Next Steps Checklist
+
+- [ ] Visit QR code page: `https://namastekalyan.asianwokandgrill.in/qr-code.html`
+- [ ] Download QR code image
+- [ ] Print QR code (recommended: 200x200 pixels or larger)
+- [ ] Place in restaurant (entrance, tables, etc.)
+- [ ] Share on social media
+- [ ] Test by scanning with mobile phone
+- [ ] Verify scan appears in Google Sheet "QR Scans"
+- [ ] Check email address: support@dcoresystem.com
+- [ ] Wait for first 100 scans to receive milestone email
+- [ ] Monitor analytics weekly
+
+---
+
+**Created:** April 12, 2026  
+**System Status:** ✅ Live & Ready  
+**Version:** 39 (Apps Script Backend)
+
+🎉 **Your QR Code Tracking System is Live!**

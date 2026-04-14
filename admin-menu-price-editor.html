@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Bulk Editor | Namaste Kalyan</title>
+  <link rel="stylesheet" href="css/admin-animations.css?v=20260413-1">
+  <link rel="stylesheet" href="css/admin-module-theme.css?v=20260413-1">
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search || '');
+      if (!params.has('embedded') && !params.has('standalone')) {
+        window.location.replace('admin-portal.html#menu-editor');
+      }
+    })();
+  </script>
+  <style>
+    .page { max-width: 1400px; }
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .toolbar-left,
+    .toolbar-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar select {
+      min-width: 220px;
+    }
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.5);
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      font-weight: 700;
+    }
+    .meta-chip.warn {
+      color: #8d2f2f;
+      border-color: rgba(141, 47, 47, 0.28);
+      background: rgba(141, 47, 47, 0.12);
+    }
+    .table-wrap {
+      max-height: calc(100vh - 280px);
+      overflow: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 1100px;
+      width: max-content;
+    }
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #f5efe2;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 9px 10px;
+      white-space: nowrap;
+    }
+    tbody td {
+      border-bottom: 1px solid var(--border);
+      padding: 6px 8px;
+      min-width: 120px;
+      background: #fff;
+      vertical-align: middle;
+    }
+    tbody tr:hover td {
+      background: rgba(182, 123, 69, 0.06);
+    }
+    .col-select {
+      min-width: 52px;
+      width: 52px;
+      text-align: center;
+    }
+    .col-row {
+      min-width: 70px;
+      width: 70px;
+      text-align: right;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+    .row-selected td {
+      background: rgba(33, 64, 56, 0.08) !important;
+    }
+    .row-dirty td {
+      box-shadow: inset 3px 0 0 rgba(182, 123, 69, 0.7);
+    }
+    .grid-input,
+    .grid-visibility,
+    .grid-select {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 7px 8px;
+      font-size: 0.84rem;
+      border-radius: 8px;
+      border: 1px solid rgba(123, 94, 67, 0.24);
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+    .grid-input:focus,
+    .grid-visibility:focus,
+    .grid-select:focus {
+      border-color: rgba(148, 89, 43, 0.5);
+      box-shadow: 0 0 0 2px rgba(182, 123, 69, 0.18);
+    }
+    .cell-dirty {
+      background: rgba(182, 123, 69, 0.14) !important;
+      border-color: rgba(148, 89, 43, 0.56) !important;
+    }
+    .cell-readonly {
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      white-space: nowrap;
+    }
+    .status {
+      white-space: pre-line;
+    }
+    .danger {
+      background: rgba(164, 83, 72, 0.14);
+      border-color: rgba(164, 83, 72, 0.36);
+      color: #7a342b;
+    }
+    @media (max-width: 900px) {
+      .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .toolbar-right {
+        width: 100%;
+      }
+      .table-wrap {
+        max-height: calc(100vh - 320px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Menu Bulk Editor</h1>
+      <p>Spreadsheet-style editing for AWGNK MENU and BAR MENU NK. You can bulk edit values, add new rows, hard delete selected rows, and toggle visibility from this panel.</p>
+    </section>
+
+    <section class="panel" id="authPanel">
+      <div class="row">
+        <input id="username" type="tel" inputmode="numeric" maxlength="15" placeholder="Username (mobile number)">
+        <input id="password" type="password" maxlength="64" placeholder="Password">
+        <button id="loginBtn" type="button">Login</button>
+        <button id="logoutBtn" class="secondary" type="button" hidden>Logout</button>
+      </div>
+      <div id="authStatus" class="status">Panel is locked. Login as Admin or SuperAdmin.</div>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <select id="sheetSelect" disabled>
+            <option value="AWGNK MENU">AWGNK MENU</option>
+            <option value="BAR MENU NK">BAR MENU NK</option>
+          </select>
+          <button id="reloadBtn" class="secondary" type="button" disabled>Reload</button>
+          <button id="addRowBtn" type="button" disabled>Add Row</button>
+          <button id="deleteRowsBtn" class="danger" type="button" disabled>Delete Selected</button>
+          <button id="setVisibleBtn" class="secondary" type="button" disabled>Set Visible</button>
+          <button id="setHiddenBtn" class="secondary" type="button" disabled>Set Hidden</button>
+          <button id="discardBtn" class="secondary" type="button" disabled>Discard Changes</button>
+          <button id="saveBtn" type="button" disabled>Save Changes</button>
+        </div>
+        <div class="toolbar-right">
+          <span id="changedRowsChip" class="meta-chip">Changed rows: 0</span>
+          <span id="changedCellsChip" class="meta-chip">Changed cells: 0</span>
+          <span id="selectedRowsChip" class="meta-chip">Selected rows: 0</span>
+        </div>
+      </div>
+      <div id="editorStatus" class="status muted" style="margin-top:8px;">Load a sheet to begin.</div>
+    </section>
+
+    <section class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead id="gridHead"></thead>
+          <tbody id="gridBody">
+            <tr><td class="muted">No data loaded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="data-config.js"></script>
+  <script src="admin-auth.js?v=20260413-2"></script>
+  <script src="admin-ui-ux.js?v=20260413-1"></script>
+  <script>
+    (function () {
+      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
+      const authClient = window.NKAdminAuth.createAuthClient({
+        apiBase: apiBase,
+        onAuthError: function (payload) {
+          clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
+        }
+      });
+
+      const authPanelEl = document.getElementById('authPanel');
+      const usernameEl = document.getElementById('username');
+      const passwordEl = document.getElementById('password');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const authStatusEl = document.getElementById('authStatus');
+
+      const sheetSelectEl = document.getElementById('sheetSelect');
+      const reloadBtn = document.getElementById('reloadBtn');
+      const addRowBtn = document.getElementById('addRowBtn');
+      const deleteRowsBtn = document.getElementById('deleteRowsBtn');
+      const setVisibleBtn = document.getElementById('setVisibleBtn');
+      const setHiddenBtn = document.getElementById('setHiddenBtn');
+      const discardBtn = document.getElementById('discardBtn');
+      const saveBtn = document.getElementById('saveBtn');
+
+      const changedRowsChipEl = document.getElementById('changedRowsChip');
+      const changedCellsChipEl = document.getElementById('changedCellsChip');
+      const selectedRowsChipEl = document.getElementById('selectedRowsChip');
+      const editorStatusEl = document.getElementById('editorStatus');
+      const gridHeadEl = document.getElementById('gridHead');
+      const gridBodyEl = document.getElementById('gridBody');
+
+      let currentSheet = 'AWGNK MENU';
+      let headers = [];
+      let editableColumns = {};
+      let baseRows = [];
+      let changedCells = {};
+      let selectedRows = {};
+
+      function applyEmbeddedAuthUi() {
+        if (!embeddedMode) return;
+        if (authPanelEl) authPanelEl.style.display = 'none';
+      }
+
+      function setAuthStatus(message) {
+        authStatusEl.textContent = String(message || '');
+      }
+
+      function setEditorStatus(message) {
+        editorStatusEl.textContent = String(message || '');
+      }
+
+      function escapeHtml(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function normalizeKey(value) {
+        return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      }
+
+      function cellKey(rowNumber, header) {
+        return String(rowNumber) + '|' + String(header || '');
+      }
+
+      function parseCellKey(key) {
+        const split = String(key || '').split('|');
+        return {
+          rowNumber: Number(split[0] || 0),
+          header: split.slice(1).join('|')
+        };
+      }
+
+      function getBaseRowByNumber(rowNumber) {
+        for (let i = 0; i < baseRows.length; i += 1) {
+          if (Number(baseRows[i].rowNumber) === Number(rowNumber)) return baseRows[i];
+        }
+        return null;
+      }
+
+      function getBaseValue(rowNumber, header) {
+        const row = getBaseRowByNumber(rowNumber);
+        if (!row || !row.cells) return '';
+        return String(row.cells[header] == null ? '' : row.cells[header]);
+      }
+
+      function getCurrentValue(rowNumber, header) {
+        const key = cellKey(rowNumber, header);
+        if (Object.prototype.hasOwnProperty.call(changedCells, key)) {
+          return String(changedCells[key] == null ? '' : changedCells[key]);
+        }
+        return getBaseValue(rowNumber, header);
+      }
+
+      function isVisibilityOn(value) {
+        const text = String(value == null ? '' : value).trim().toLowerCase();
+        if (!text) return true;
+        return !(text === 'no' || text === 'hidden' || text === 'inactive' || text === 'off' || text === '0' || text === 'false');
+      }
+
+      function visibilityText(value) {
+        return isVisibilityOn(value) ? 'Yes' : 'No';
+      }
+
+      function chefSpecialText(value) {
+        const text = String(value == null ? '' : value).trim().toLowerCase();
+        return (text === 'yes' || text === 'true' || text === '1' || text === 'on') ? 'Yes' : 'No';
+      }
+
+      function spiceLevelText(value) {
+        const text = String(value == null ? '' : value).trim();
+        if (!text) return '';
+        const key = text.toLowerCase();
+        const map = {
+          mild: 'Mild',
+          low: 'Mild',
+          medium: 'Medium',
+          med: 'Medium',
+          spicy: 'Spicy',
+          hot: 'Hot',
+          high: 'Hot'
+        };
+        return map[key] || text;
+      }
+
+      function buildSpiceOptionsHtml(value) {
+        const normalized = spiceLevelText(value);
+        const options = ['', 'Mild', 'Medium', 'Spicy', 'Hot'];
+        let html = options.map((opt) => {
+          const selected = String(opt) === String(normalized) ? 'selected' : '';
+          const label = opt || 'None';
+          return '<option value="' + escapeHtml(opt) + '" ' + selected + '>' + escapeHtml(label) + '</option>';
+        }).join('');
+
+        if (normalized && options.indexOf(normalized) === -1) {
+          html += '<option value="' + escapeHtml(normalized) + '" selected>' + escapeHtml(normalized) + '</option>';
+        }
+
+        return html;
+      }
+
+      function isLocked() {
+        return !authClient.getToken();
+      }
+
+      function getSelectedRowNumbers() {
+        const rows = Object.keys(selectedRows)
+          .filter((rowNumber) => !!selectedRows[rowNumber])
+          .map((rowNumber) => Number(rowNumber))
+          .filter((rowNumber) => Number.isFinite(rowNumber));
+        rows.sort((a, b) => a - b);
+        return rows;
+      }
+
+      function getDirtySummary() {
+        const dirtyRows = {};
+        const keys = Object.keys(changedCells);
+        for (let i = 0; i < keys.length; i += 1) {
+          const parsed = parseCellKey(keys[i]);
+          if (parsed.rowNumber > 1) dirtyRows[parsed.rowNumber] = true;
+        }
+        return {
+          changedCells: keys.length,
+          changedRows: Object.keys(dirtyRows).length
+        };
+      }
+
+      function updateChips() {
+        const dirty = getDirtySummary();
+        changedRowsChipEl.textContent = 'Changed rows: ' + dirty.changedRows;
+        changedCellsChipEl.textContent = 'Changed cells: ' + dirty.changedCells;
+        selectedRowsChipEl.textContent = 'Selected rows: ' + getSelectedRowNumbers().length;
+
+        changedRowsChipEl.classList.toggle('warn', dirty.changedRows > 0);
+        changedCellsChipEl.classList.toggle('warn', dirty.changedCells > 0);
+        selectedRowsChipEl.classList.toggle('warn', getSelectedRowNumbers().length > 0);
+      }
+
+      function updateToolbarState() {
+        const locked = isLocked();
+        const hasRows = baseRows.length > 0;
+        const dirty = getDirtySummary();
+        const selectedCount = getSelectedRowNumbers().length;
+
+        sheetSelectEl.disabled = locked;
+        reloadBtn.disabled = locked;
+        addRowBtn.disabled = locked;
+        saveBtn.disabled = locked || dirty.changedCells === 0;
+        discardBtn.disabled = locked || dirty.changedCells === 0;
+        deleteRowsBtn.disabled = locked || selectedCount === 0;
+        setVisibleBtn.disabled = locked || selectedCount === 0;
+        setHiddenBtn.disabled = locked || selectedCount === 0;
+
+        if (!hasRows && !locked) {
+          setEditorStatus('No rows found in this sheet. Use Add Row to create entries.');
+        }
+      }
+
+      function renderGrid() {
+        if (!headers.length) {
+          gridHeadEl.innerHTML = '';
+          gridBodyEl.innerHTML = '<tr><td class="muted">No data loaded.</td></tr>';
+          updateChips();
+          updateToolbarState();
+          return;
+        }
+
+        const allSelected = baseRows.length > 0 && baseRows.every((row) => !!selectedRows[String(row.rowNumber)]);
+
+        gridHeadEl.innerHTML = '<tr>'
+          + '<th class="col-select"><input id="selectAllRows" type="checkbox" ' + (allSelected ? 'checked' : '') + '></th>'
+          + '<th class="col-row">Row</th>'
+          + headers.map((header) => '<th>' + escapeHtml(header) + '</th>').join('')
+          + '</tr>';
+
+        if (!baseRows.length) {
+          gridBodyEl.innerHTML = '<tr><td colspan="' + (headers.length + 2) + '" class="muted">No rows found.</td></tr>';
+          updateChips();
+          updateToolbarState();
+          return;
+        }
+
+        gridBodyEl.innerHTML = baseRows.map((row) => {
+          const rowNumber = Number(row.rowNumber);
+          const rowSelected = !!selectedRows[String(rowNumber)];
+          const dirty = Object.keys(changedCells).some((key) => parseCellKey(key).rowNumber === rowNumber);
+
+          const cellsHtml = headers.map((header) => {
+            const key = cellKey(rowNumber, header);
+            const value = getCurrentValue(rowNumber, header);
+            const baseValue = getBaseValue(rowNumber, header);
+            const isDirty = Object.prototype.hasOwnProperty.call(changedCells, key);
+            const isEditable = !!editableColumns[normalizeKey(header)];
+            const editType = editableColumns[normalizeKey(header)] || '';
+
+            if (!isEditable) {
+              return '<td><span class="cell-readonly">' + escapeHtml(value) + '</span></td>';
+            }
+
+            if (editType === 'visibility') {
+              return '<td>'
+                + '<select class="grid-visibility ' + (isDirty ? 'cell-dirty' : '') + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '">'
+                + '<option value="Yes" ' + (isVisibilityOn(value) ? 'selected' : '') + '>Visible</option>'
+                + '<option value="No" ' + (!isVisibilityOn(value) ? 'selected' : '') + '>Hidden</option>'
+                + '</select>'
+                + '</td>';
+            }
+
+            if (editType === 'chef') {
+              return '<td>'
+                + '<select class="grid-select ' + (isDirty ? 'cell-dirty' : '') + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" data-edit-type="chef">'
+                + '<option value="Yes" ' + (chefSpecialText(value) === 'Yes' ? 'selected' : '') + '>Yes</option>'
+                + '<option value="No" ' + (chefSpecialText(value) === 'No' ? 'selected' : '') + '>No</option>'
+                + '</select>'
+                + '</td>';
+            }
+
+            if (editType === 'spice') {
+              return '<td>'
+                + '<select class="grid-select ' + (isDirty ? 'cell-dirty' : '') + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" data-edit-type="spice">'
+                + buildSpiceOptionsHtml(value)
+                + '</select>'
+                + '</td>';
+            }
+
+            return '<td>'
+              + '<input class="grid-input ' + (isDirty ? 'cell-dirty' : '') + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" value="' + escapeHtml(value) + '">'
+              + '</td>';
+          }).join('');
+
+          return '<tr class="' + (rowSelected ? 'row-selected ' : '') + (dirty ? 'row-dirty' : '') + '">'
+            + '<td class="col-select"><input class="row-select" type="checkbox" data-row="' + rowNumber + '" ' + (rowSelected ? 'checked' : '') + '></td>'
+            + '<td class="col-row">' + rowNumber + '</td>'
+            + cellsHtml
+            + '</tr>';
+        }).join('');
+
+        updateChips();
+        updateToolbarState();
+      }
+
+      function buildUpdatesPayload() {
+        const grouped = {};
+        const keys = Object.keys(changedCells);
+        for (let i = 0; i < keys.length; i += 1) {
+          const parsed = parseCellKey(keys[i]);
+          if (!parsed.rowNumber || !parsed.header) continue;
+          const rowKey = String(parsed.rowNumber);
+          grouped[rowKey] = grouped[rowKey] || { rowNumber: parsed.rowNumber, cells: {} };
+          grouped[rowKey].cells[parsed.header] = changedCells[keys[i]];
+        }
+        return Object.keys(grouped).map((rowKey) => grouped[rowKey]);
+      }
+
+      async function loadSheet() {
+        if (isLocked()) return;
+
+        currentSheet = String(sheetSelectEl.value || 'AWGNK MENU');
+        setEditorStatus('Loading ' + currentSheet + '...');
+
+        try {
+          const payload = await authClient.apiPost({
+            action: 'admin_menu_editor_load',
+            sheetName: currentSheet
+          });
+
+          headers = Array.isArray(payload.headers) ? payload.headers.slice() : [];
+          editableColumns = {};
+          const editableMeta = payload && payload.editableMeta && typeof payload.editableMeta === 'object' ? payload.editableMeta : {};
+          (Array.isArray(payload.editableColumns) ? payload.editableColumns : []).forEach((header) => {
+            const key = normalizeKey(header);
+            const type = String(editableMeta[header] || '').trim();
+            editableColumns[key] = type || (key === 'availability' ? 'visibility' : (key === 'item name' || key === 'description' || key === 'category' || key === 'image url' ? 'text' : 'price'));
+          });
+
+          baseRows = Array.isArray(payload.items) ? payload.items : [];
+          changedCells = {};
+          selectedRows = {};
+
+          renderGrid();
+          setEditorStatus('Loaded ' + currentSheet + ' with ' + baseRows.length + ' row(s).');
+        } catch (err) {
+          headers = [];
+          editableColumns = {};
+          baseRows = [];
+          changedCells = {};
+          selectedRows = {};
+          renderGrid();
+          setEditorStatus('Failed to load sheet: ' + err.message);
+        }
+      }
+
+      function clearSessionAndLock(message) {
+        authClient.clearSession();
+        usernameEl.value = '';
+        passwordEl.value = '';
+        changedCells = {};
+        selectedRows = {};
+        headers = [];
+        editableColumns = {};
+        baseRows = [];
+        renderGrid();
+        setAuthStatus(message || 'Panel is locked. Login as Admin or SuperAdmin.');
+        updateLockedUi(true);
+      }
+
+      function updateLockedUi(locked) {
+        usernameEl.disabled = !locked;
+        passwordEl.disabled = !locked;
+        loginBtn.hidden = !locked;
+        logoutBtn.hidden = locked;
+        updateToolbarState();
+      }
+
+      async function login() {
+        const username = String(usernameEl.value || '').replace(/\D/g, '').trim();
+        const password = String(passwordEl.value || '').trim();
+        if (!username || !password) {
+          setAuthStatus('Enter username and password first.');
+          return;
+        }
+
+        loginBtn.disabled = true;
+        setAuthStatus('Logging in...');
+        try {
+          const payload = await authClient.login(username, password, 'admin-menu-price-editor');
+          const role = String(payload.user && payload.user.role || '').toLowerCase();
+          if (role !== 'admin' && role !== 'superadmin') throw new Error('Admin or SuperAdmin account is required.');
+
+          updateLockedUi(false);
+          passwordEl.value = '';
+          setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
+          await loadSheet();
+        } catch (err) {
+          clearSessionAndLock('Login failed: ' + err.message);
+        } finally {
+          loginBtn.disabled = false;
+        }
+      }
+
+      async function restoreSessionIfAny() {
+        try {
+          const payload = await authClient.restoreSession();
+          if (!payload) return;
+
+          const role = String(payload.user && payload.user.role || '').toLowerCase();
+          if (role !== 'admin' && role !== 'superadmin') {
+            clearSessionAndLock('Admin or SuperAdmin access is required.');
+            return;
+          }
+
+          updateLockedUi(false);
+          setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
+          await loadSheet();
+        } catch (err) {
+          clearSessionAndLock('Session expired. Please login again.');
+        }
+      }
+
+      async function logout() {
+        await authClient.logout();
+        clearSessionAndLock('Logged out successfully.');
+      }
+
+      async function addRow() {
+        if (isLocked()) return;
+        addRowBtn.disabled = true;
+        setEditorStatus('Adding a new row...');
+        try {
+          await authClient.apiPost({
+            action: 'admin_menu_editor_add_row',
+            sheetName: currentSheet
+          });
+          setEditorStatus('Row added. Reloading latest sheet data...');
+          await loadSheet();
+        } catch (err) {
+          setEditorStatus('Add row failed: ' + err.message);
+        } finally {
+          addRowBtn.disabled = false;
+          updateToolbarState();
+        }
+      }
+
+      async function deleteSelectedRows() {
+        const rows = getSelectedRowNumbers();
+        if (!rows.length) {
+          setEditorStatus('Select at least one row to delete.');
+          return;
+        }
+
+        const typed = window.prompt('This will permanently delete ' + rows.length + ' row(s). Type DELETE to confirm.');
+        if (typed !== 'DELETE') {
+          setEditorStatus('Delete cancelled.');
+          return;
+        }
+
+        deleteRowsBtn.disabled = true;
+        setEditorStatus('Deleting selected rows...');
+        try {
+          const payload = await authClient.apiPost({
+            action: 'admin_menu_editor_delete_rows',
+            sheetName: currentSheet,
+            rowNumbers: rows
+          });
+          selectedRows = {};
+          setEditorStatus((payload && payload.message) || 'Rows deleted. Reloading latest sheet data...');
+          await loadSheet();
+        } catch (err) {
+          setEditorStatus('Delete failed: ' + err.message);
+        } finally {
+          deleteRowsBtn.disabled = false;
+          updateToolbarState();
+        }
+      }
+
+      async function setVisibilityForSelection(visible) {
+        const rows = getSelectedRowNumbers();
+        if (!rows.length) {
+          setEditorStatus('Select at least one row first.');
+          return;
+        }
+
+        setEditorStatus((visible ? 'Setting rows visible...' : 'Setting rows hidden...'));
+        try {
+          const payload = await authClient.apiPost({
+            action: 'admin_menu_editor_set_visibility',
+            sheetName: currentSheet,
+            rowNumbers: rows,
+            visible: !!visible
+          });
+          setEditorStatus((payload && payload.message) || 'Visibility updated. Reloading latest sheet data...');
+          await loadSheet();
+        } catch (err) {
+          setEditorStatus('Visibility update failed: ' + err.message);
+        } finally {
+          updateToolbarState();
+        }
+      }
+
+      async function saveChanges() {
+        const updates = buildUpdatesPayload();
+        if (!updates.length) {
+          setEditorStatus('No pending changes to save.');
+          return;
+        }
+
+        saveBtn.disabled = true;
+        setEditorStatus('Saving ' + updates.length + ' changed row(s)...');
+        try {
+          const payload = await authClient.apiPost({
+            action: 'admin_menu_editor_save_changes',
+            sheetName: currentSheet,
+            updates: updates
+          });
+
+          let message = (payload && payload.message) || 'Save completed.';
+          if (payload && Array.isArray(payload.errors) && payload.errors.length) {
+            const first = payload.errors.slice(0, 5).map((item) => 'Row ' + item.rowNumber + ': ' + item.message).join('\n');
+            message += '\n\nErrors:\n' + first + (payload.errors.length > 5 ? '\n...' : '');
+          }
+
+          setEditorStatus(message + '\nReloading latest sheet data...');
+          await loadSheet();
+        } catch (err) {
+          setEditorStatus('Save failed: ' + err.message);
+        } finally {
+          saveBtn.disabled = false;
+          updateToolbarState();
+        }
+      }
+
+      function discardChanges() {
+        changedCells = {};
+        renderGrid();
+        setEditorStatus('Unsaved edits were discarded.');
+      }
+
+      loginBtn.addEventListener('click', login);
+      logoutBtn.addEventListener('click', logout);
+      reloadBtn.addEventListener('click', loadSheet);
+      addRowBtn.addEventListener('click', addRow);
+      deleteRowsBtn.addEventListener('click', deleteSelectedRows);
+      setVisibleBtn.addEventListener('click', function () { setVisibilityForSelection(true); });
+      setHiddenBtn.addEventListener('click', function () { setVisibilityForSelection(false); });
+      saveBtn.addEventListener('click', saveChanges);
+      discardBtn.addEventListener('click', discardChanges);
+
+      usernameEl.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') login();
+      });
+      passwordEl.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') login();
+      });
+
+      sheetSelectEl.addEventListener('change', function () {
+        if (getDirtySummary().changedCells > 0) {
+          const shouldContinue = window.confirm('You have unsaved changes. Continue and discard them?');
+          if (!shouldContinue) {
+            sheetSelectEl.value = currentSheet;
+            return;
+          }
+        }
+        loadSheet();
+      });
+
+      gridHeadEl.addEventListener('change', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        if (target.id !== 'selectAllRows') return;
+
+        const checked = !!target.checked;
+        selectedRows = {};
+        if (checked) {
+          for (let i = 0; i < baseRows.length; i += 1) {
+            selectedRows[String(baseRows[i].rowNumber)] = true;
+          }
+        }
+        renderGrid();
+      });
+
+      gridBodyEl.addEventListener('change', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+
+        if (target.classList.contains('row-select')) {
+          const row = String(target.getAttribute('data-row') || '');
+          if (!row) return;
+          selectedRows[row] = !!target.checked;
+          renderGrid();
+          return;
+        }
+
+        if (target.classList.contains('grid-input') || target.classList.contains('grid-visibility') || target.classList.contains('grid-select')) {
+          const rowNumber = Number(target.getAttribute('data-row') || 0);
+          const header = String(target.getAttribute('data-header') || '');
+          if (!rowNumber || !header) return;
+
+          const key = cellKey(rowNumber, header);
+          const baseValue = getBaseValue(rowNumber, header);
+          let nextValue = String(target.value || '').trim();
+          if (target.classList.contains('grid-visibility')) {
+            nextValue = visibilityText(nextValue);
+          } else if (target.classList.contains('grid-select')) {
+            const editType = String(target.getAttribute('data-edit-type') || '').trim();
+            if (editType === 'chef') {
+              nextValue = chefSpecialText(nextValue);
+            } else if (editType === 'spice') {
+              nextValue = spiceLevelText(nextValue);
+            }
+          }
+
+          if (String(baseValue) === String(nextValue)) {
+            delete changedCells[key];
+          } else {
+            changedCells[key] = nextValue;
+          }
+
+          renderGrid();
+        }
+      });
+
+      applyEmbeddedAuthUi();
+      clearSessionAndLock('Panel is locked. Login as Admin or SuperAdmin.');
+      restoreSessionIfAny();
+    })();
+  </script>
+</body>
+</html>

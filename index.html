@@ -49,8 +49,10 @@
     <!-- New CSS Architecture -->
 
     <link rel="stylesheet" href="css/popups.css">
+    <link rel="stylesheet" href="css/menu-blocker.css?v=20260412-3">
     <link rel="stylesheet" href="css/loader.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="country-picker.css">
 
     <style>
       /* ════════ HAMBURGER MENU BUTTON ════════ */
@@ -85,6 +87,484 @@
             #reviewBtn { position: fixed; left: 20px; bottom: 82px; background: var(--color-accent-gold); color: #23180f; padding: 8px 12px; border-radius: 12px; font-weight: 800; font-size: 0.75rem; border: none; cursor: pointer; z-index: 2600; display: none; box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
             #reviewBtn:hover { filter: brightness(0.96); }
             #scrollTopBtn.scroll-top-btn { left: 20px; right: auto; bottom: 24px; z-index: 2600; }
+
+            .events-live-strip {
+                margin: 16px 0 10px;
+                padding: 24px 16px;
+                border-radius: 20px;
+                background:
+                    radial-gradient(circle at 0% 0%, rgba(212, 175, 116, 0.24), transparent 46%),
+                    radial-gradient(circle at 100% 100%, rgba(198, 40, 40, 0.18), transparent 50%),
+                    linear-gradient(135deg, rgba(18, 10, 10, 0.98), rgba(40, 20, 20, 0.98));
+                border: 1px solid rgba(240, 196, 143, 0.25);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+            }
+
+            .events-live-strip[hidden] {
+                display: none !important;
+            }
+
+            .events-live-header {
+                display: flex;
+                align-items: end;
+                justify-content: space-between;
+                gap: 12px;
+                margin-bottom: 14px;
+            }
+
+            .events-live-header h2 {
+                margin: 0;
+                font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+                color: #fff;
+                font-family: 'Fraunces', serif;
+            }
+
+            .events-live-header p {
+                margin: 6px 0 0;
+                color: rgba(255, 245, 227, 0.8);
+                font-size: 0.92rem;
+            }
+
+            .events-live-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                color: #25130d;
+                background: linear-gradient(135deg, #f0c48f, #d79a72);
+                border-radius: 999px;
+                padding: 8px 12px;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
+
+            .events-live-all-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                color: #ffe4be;
+                border: 1px solid rgba(240, 196, 143, 0.34);
+                border-radius: 999px;
+                padding: 8px 12px;
+                text-decoration: none;
+                font-size: 0.7rem;
+                font-weight: 800;
+                letter-spacing: 0.4px;
+                text-transform: uppercase;
+                background: rgba(10, 7, 7, 0.35);
+            }
+
+            .events-live-grid {
+                display: grid;
+                gap: 12px;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+
+            .events-loading {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 14px;
+                border-radius: 999px;
+                border: 1px solid rgba(240, 196, 143, 0.24);
+                background: rgba(0, 0, 0, 0.22);
+                color: rgba(255, 242, 221, 0.9);
+                font-size: 0.78rem;
+                font-weight: 700;
+                letter-spacing: 0.35px;
+            }
+
+            .events-loading[hidden] {
+                display: none !important;
+            }
+
+            .events-loading-orbit {
+                position: relative;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: 1px solid rgba(240, 196, 143, 0.18);
+                animation: eventsLoadingSpin 1.9s linear infinite;
+            }
+
+            .events-loading-orbit::before,
+            .events-loading-orbit::after {
+                content: '';
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            .events-loading-orbit::before {
+                inset: 8px;
+                background: rgba(240, 196, 143, 0.28);
+                box-shadow: 0 0 18px rgba(240, 196, 143, 0.28);
+            }
+
+            .events-loading-orbit::after {
+                width: 7px;
+                height: 7px;
+                top: -2px;
+                left: 50%;
+                margin-left: -3.5px;
+                background: linear-gradient(135deg, #ffd8a9, #f08e67);
+                box-shadow: 0 0 12px rgba(255, 170, 120, 0.72);
+            }
+
+            .events-loading-inline {
+                margin: 14px 0 18px;
+            }
+
+            .events-live-loading-wrap {
+                margin-top: 10px;
+            }
+
+            @keyframes eventsLoadingSpin {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .events-live-card {
+                display: grid;
+                grid-template-rows: auto 1fr;
+                text-decoration: none;
+                border-radius: 14px;
+                overflow: hidden;
+                background: rgba(9, 6, 6, 0.55);
+                border: 1px solid rgba(240, 196, 143, 0.25);
+                transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            }
+
+            .events-live-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.38);
+                border-color: rgba(240, 196, 143, 0.5);
+            }
+
+            .events-live-card img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 3 / 4;
+                object-fit: cover;
+                object-position: center top;
+                display: block;
+            }
+
+            .events-live-copy {
+                padding: 12px;
+            }
+
+            .events-live-badge {
+                display: inline-flex;
+                border-radius: 999px;
+                background: rgba(212, 175, 116, 0.18);
+                border: 1px solid rgba(212, 175, 116, 0.4);
+                color: #f8e3c4;
+                font-size: 0.66rem;
+                font-weight: 800;
+                letter-spacing: 0.4px;
+                padding: 3px 8px;
+                margin-bottom: 8px;
+            }
+
+            .events-live-copy h3 {
+                margin: 0;
+                font-size: 1rem;
+                color: #fff;
+            }
+
+            .events-live-copy p {
+                margin: 8px 0 0;
+                color: rgba(255, 240, 220, 0.84);
+                font-size: 0.84rem;
+                line-height: 1.45;
+            }
+
+            .events-live-cta-inline {
+                margin-top: 10px;
+                display: inline-flex;
+                color: #f4d0a0;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.45px;
+                text-transform: uppercase;
+            }
+
+            .event-timeboard {
+                margin-top: 10px;
+                border-radius: 10px;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                background: linear-gradient(180deg, #222326 0%, #17181b 100%);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            }
+
+            .event-timeboard-head {
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 8px;
+                padding: 6px 9px;
+                background: #08090b;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            }
+
+            .event-timeboard-day {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffd7ac;
+                font-weight: 900;
+                letter-spacing: 0.45px;
+                font-size: 0.62rem;
+                text-transform: uppercase;
+                border-radius: 999px;
+                padding: 3px 9px;
+                border: 1px solid rgba(240, 196, 143, 0.34);
+                background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+                box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.04);
+            }
+
+            .event-timeboard-date {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffe7c7;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                border-radius: 999px;
+                padding: 5px 11px;
+                border: 1px solid rgba(240, 196, 143, 0.3);
+                background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+                box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.04);
+            }
+
+            .event-timeboard-flip {
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+                gap: 8px;
+                padding: 10px 9px 11px;
+                align-items: end;
+            }
+
+            .event-timeboard-flip::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+                border-top: 1px solid rgba(0, 0, 0, 0.8);
+                transform: translateY(-50%);
+                pointer-events: none;
+            }
+
+            .event-timeboard-flip span {
+                position: relative;
+                display: grid;
+                place-items: center;
+                min-height: 42px;
+                border-radius: 8px;
+                font-size: 1.75rem;
+                line-height: 1;
+                font-weight: 800;
+                color: #f4f4f5;
+                background: linear-gradient(180deg, #2a2c30 0%, #17191d 100%);
+                box-shadow: inset 0 8px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 20px rgba(255, 255, 255, 0.05);
+            }
+
+            .event-timeboard-meridiem {
+                min-height: auto !important;
+                align-self: end;
+                margin-bottom: 2px;
+                padding: 4px 6px;
+                border-radius: 6px;
+                font-size: 0.58rem !important;
+                letter-spacing: 0.5px;
+                font-weight: 800;
+                color: rgba(255, 237, 211, 0.92);
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+                box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.04);
+            }
+
+            .event-card .event-timeboard {
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+
+            .event-card .event-timeboard-flip span {
+                min-height: 56px;
+                font-size: 2.2rem;
+            }
+
+            .events-live-copy .event-timeboard {
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+
+            .event-mini-countdown {
+                margin-top: 8px;
+                border-radius: 10px;
+                border: 1px solid rgba(240, 196, 143, 0.24);
+                background: rgba(0, 0, 0, 0.26);
+                padding: 8px;
+            }
+
+            .event-mini-countdown-head {
+                color: rgba(255, 227, 192, 0.92);
+                font-size: 0.62rem;
+                font-weight: 800;
+                letter-spacing: 0.55px;
+                text-transform: uppercase;
+                margin-bottom: 7px;
+            }
+
+            .event-mini-countdown-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 5px;
+            }
+
+            .event-mini-countdown-box {
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+                display: grid;
+                justify-items: center;
+                padding: 5px 4px;
+            }
+
+            .event-mini-countdown-value {
+                font-size: 0.95rem;
+                line-height: 1;
+                font-weight: 800;
+                color: #fff;
+                font-variant-numeric: tabular-nums;
+            }
+
+            .event-mini-countdown-label {
+                margin-top: 2px;
+                font-size: 0.5rem;
+                letter-spacing: 0.4px;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.64);
+            }
+
+            .events-live-price {
+                display: inline-flex;
+                background: rgba(212, 175, 116, 0.22);
+                border: 1px solid rgba(240, 196, 143, 0.4);
+                border-radius: 8px;
+                padding: 5px 10px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                color: #ffd7ac;
+                font-size: 0.85rem;
+                font-weight: 800;
+                letter-spacing: 0.35px;
+            }
+
+            .carousel-wrapper {
+                position: relative;
+                display: grid;
+            }
+
+            .carousel-viewport {
+                display: grid;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+                gap: 12px;
+                padding-bottom: 8px;
+            }
+
+            .carousel-viewport::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .carousel-viewport::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 3px;
+            }
+
+            .carousel-viewport::-webkit-scrollbar-thumb {
+                background: rgba(212, 175, 116, 0.32);
+                border-radius: 3px;
+            }
+
+            .carousel-viewport::-webkit-scrollbar-thumb:hover {
+                background: rgba(212, 175, 116, 0.5);
+            }
+
+            .carousel-grid {
+                display: grid;
+                grid-auto-flow: column;
+                grid-auto-columns: var(--carousel-card-width, 100%);
+                gap: 12px;
+            }
+
+            .carousel-grid .events-live-card {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+
+            .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(10, 7, 7, 0.7);
+                border: 1px solid rgba(240, 196, 143, 0.34);
+                color: #f0c48f;
+                padding: 8px 12px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.2rem;
+                z-index: 10;
+                transition: background 0.2s ease, border-color 0.2s ease;
+            }
+
+            .carousel-nav:hover {
+                background: rgba(10, 7, 7, 0.9);
+                border-color: rgba(240, 196, 143, 0.58);
+            }
+
+            .carousel-nav:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+
+            .carousel-nav-prev {
+                left: 8px;
+            }
+
+            .carousel-nav-next {
+                right: 8px;
+            }
+
+            @media (max-width: 767px) {
+                .carousel-grid {
+                    grid-auto-columns: 100%;
+                }
+
+                .carousel-nav {
+                    padding: 6px 9px;
+                    font-size: 1rem;
+                }
+            }
+
+            @media (min-width: 768px) {
+                .carousel-grid {
+                    grid-auto-columns: 50%;
+                }
+            }
     </style>
 
     <!-- Structured Data: Restaurant (Schema.org) -->
@@ -197,6 +677,7 @@
           <a href="cocktail.html" class="cat-link">🍸 Cocktail Menu</a>
           <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 10px 0;">
           <a href="#menu" class="cat-link" onclick="toggleSideNav(false)">📋 Menus & Offers</a>
+          <a href="events.html" class="cat-link" onclick="toggleSideNav(false)">🎉 Live Events</a>
           <a href="#gallery" class="cat-link" onclick="toggleSideNav(false)">🖼️ Gallery</a>
           <a href="#contact" class="cat-link" onclick="toggleSideNav(false)">📞 Contact</a>
           <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 10px 0;">
@@ -217,7 +698,7 @@
 
                     <div class="hero-actions">
                         <a class="header-pill" href="#menu">Explore Menu</a>
-                        <a class="ghost-link ghost-link-large" href="#events">View Event Spaces</a>
+                        <a class="ghost-link ghost-link-large" href="events.html">View Live Events</a>
                     </div>
                 </div>
 
@@ -265,6 +746,26 @@
                         <img src="assets/Logo/Namaste Kalyan by AWG -04.png" alt="">
                     </div>
                 </div>
+            </section>
+
+            <section class="events-live-strip" id="events-live-strip" hidden>
+                <div class="events-live-header">
+                    <div>
+                        <h2>Live Events This Week</h2>
+                        <p>Music nights, curated experiences, and celebration energy - happening now.</p>
+                    </div>
+                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+                        <span class="events-live-pill">NOW LIVE</span>
+                        <a class="events-live-all-link" href="events.html">View All Active Events</a>
+                    </div>
+                </div>
+                <div class="events-live-loading-wrap">
+                    <div class="events-loading" id="events-live-loading" hidden>
+                        <span class="events-loading-orbit" aria-hidden="true"></span>
+                        <span>Loading live events...</span>
+                    </div>
+                </div>
+                <div class="events-live-grid" id="events-live-grid"></div>
             </section>
 
             <section class="signature-section" id="menu">
@@ -379,6 +880,11 @@
                     <p class="eyebrow">Celebrate Here</p>
                     <h2>Plan your events at Namaste Kalyan.</h2>
                     <p>Spaces that flex between intimate dinners, premium group bookings, and full celebration evenings.</p>
+                </div>
+
+                <div class="events-loading events-loading-inline" id="events-home-loading" hidden>
+                    <span class="events-loading-orbit" aria-hidden="true"></span>
+                    <span>Loading event cards...</span>
                 </div>
 
                 <div class="event-grid">
@@ -594,24 +1100,264 @@
         <img class="scroll-top-icon" src="assets/icons/ui/arrow-up.svg?v=20260321-3" alt="" loading="lazy" decoding="async">
     </button>
 
-    <div id="offersModal" class="offers-modal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeOffersBtn" aria-label="Close modal">&times;</button>
-            <h2 class="modal-heading">Get Regular Offers for your Birthdays & Special Occasions</h2>
-            <iframe
-              src="https://admin.aibunty.com/widget/form/a31c3158-b981-4b4f-b263-e46139f256d2"
-              style="width:100%;height:600px;border:none;border-radius:3px"
-              id="inline-a31c3158-b981-4b4f-b263-e46139f256d2"
-              data-form-name="Send a Message"
-              data-layout-iframe-id="inline-a31c3158-b981-4b4f-b263-e46139f256d2"
-              data-form-id="a31c3158-b981-4b4f-b263-e46139f256d2"
-              data-height="600"
-              title="Send a Message">
-            </iframe>
-        </div>
-    </div>
+        <div id="menuBlockerOverlay" class="mb-overlay" aria-modal="true" role="dialog" aria-label="Unlock menu">
+            <div class="mb-card">
+                <div id="mbStepForm" class="mb-step active">
+                    <h2 class="mb-title">Spin &amp; Win Discounts</h2>
+                    <p class="mb-subtitle">Win upto 50% off on your food bill u just need to fill the form below.</p>
+                    <label class="mb-label" for="mbName">Name *</label>
+                    <input id="mbName" class="mb-input" type="text" maxlength="60" placeholder="Enter your name" autocomplete="name" />
 
-    <script src="script.js?v=20260321-4"></script>
+                    <label class="mb-label" for="mbPhone">Mobile Number *</label>
+                    <div class="mb-phone-row">
+                        <select id="mbCountryCode" class="mb-select" aria-label="Country code">
+                            <option value="93">AF +93</option>
+                            <option value="355">AL +355</option>
+                            <option value="213">DZ +213</option>
+                            <option value="376">AD +376</option>
+                            <option value="244">AO +244</option>
+                            <option value="54">AR +54</option>
+                            <option value="374">AM +374</option>
+                            <option value="61">AU +61</option>
+                            <option value="43">AT +43</option>
+                            <option value="994">AZ +994</option>
+                            <option value="973">BH +973</option>
+                            <option value="880">BD +880</option>
+                            <option value="375">BY +375</option>
+                            <option value="32">BE +32</option>
+                            <option value="501">BZ +501</option>
+                            <option value="229">BJ +229</option>
+                            <option value="975">BT +975</option>
+                            <option value="591">BO +591</option>
+                            <option value="387">BA +387</option>
+                            <option value="267">BW +267</option>
+                            <option value="55">BR +55</option>
+                            <option value="673">BN +673</option>
+                            <option value="359">BG +359</option>
+                            <option value="226">BF +226</option>
+                            <option value="257">BI +257</option>
+                            <option value="855">KH +855</option>
+                            <option value="237">CM +237</option>
+                            <option value="1">CA +1</option>
+                            <option value="238">CV +238</option>
+                            <option value="236">CF +236</option>
+                            <option value="235">TD +235</option>
+                            <option value="56">CL +56</option>
+                            <option value="86">CN +86</option>
+                            <option value="57">CO +57</option>
+                            <option value="269">KM +269</option>
+                            <option value="242">CG +242</option>
+                            <option value="243">CD +243</option>
+                            <option value="506">CR +506</option>
+                            <option value="385">HR +385</option>
+                            <option value="53">CU +53</option>
+                            <option value="357">CY +357</option>
+                            <option value="420">CZ +420</option>
+                            <option value="45">DK +45</option>
+                            <option value="253">DJ +253</option>
+                            <option value="1">DO +1</option>
+                            <option value="593">EC +593</option>
+                            <option value="20">EG +20</option>
+                            <option value="503">SV +503</option>
+                            <option value="240">GQ +240</option>
+                            <option value="291">ER +291</option>
+                            <option value="372">EE +372</option>
+                            <option value="251">ET +251</option>
+                            <option value="679">FJ +679</option>
+                            <option value="358">FI +358</option>
+                            <option value="33">FR +33</option>
+                            <option value="241">GA +241</option>
+                            <option value="220">GM +220</option>
+                            <option value="995">GE +995</option>
+                            <option value="49">DE +49</option>
+                            <option value="233">GH +233</option>
+                            <option value="30">GR +30</option>
+                            <option value="502">GT +502</option>
+                            <option value="224">GN +224</option>
+                            <option value="245">GW +245</option>
+                            <option value="592">GY +592</option>
+                            <option value="509">HT +509</option>
+                            <option value="504">HN +504</option>
+                            <option value="36">HU +36</option>
+                            <option value="354">IS +354</option>
+                            <option value="91" selected>IN +91</option>
+                            <option value="62">ID +62</option>
+                            <option value="98">IR +98</option>
+                            <option value="964">IQ +964</option>
+                            <option value="353">IE +353</option>
+                            <option value="972">IL +972</option>
+                            <option value="39">IT +39</option>
+                            <option value="225">CI +225</option>
+                            <option value="1">JM +1</option>
+                            <option value="81">JP +81</option>
+                            <option value="962">JO +962</option>
+                            <option value="7">KZ +7</option>
+                            <option value="254">KE +254</option>
+                            <option value="965">KW +965</option>
+                            <option value="996">KG +996</option>
+                            <option value="856">LA +856</option>
+                            <option value="371">LV +371</option>
+                            <option value="961">LB +961</option>
+                            <option value="266">LS +266</option>
+                            <option value="231">LR +231</option>
+                            <option value="218">LY +218</option>
+                            <option value="423">LI +423</option>
+                            <option value="370">LT +370</option>
+                            <option value="352">LU +352</option>
+                            <option value="261">MG +261</option>
+                            <option value="265">MW +265</option>
+                            <option value="60">MY +60</option>
+                            <option value="960">MV +960</option>
+                            <option value="223">ML +223</option>
+                            <option value="356">MT +356</option>
+                            <option value="222">MR +222</option>
+                            <option value="230">MU +230</option>
+                            <option value="52">MX +52</option>
+                            <option value="373">MD +373</option>
+                            <option value="377">MC +377</option>
+                            <option value="976">MN +976</option>
+                            <option value="382">ME +382</option>
+                            <option value="212">MA +212</option>
+                            <option value="258">MZ +258</option>
+                            <option value="95">MM +95</option>
+                            <option value="264">NA +264</option>
+                            <option value="977">NP +977</option>
+                            <option value="31">NL +31</option>
+                            <option value="64">NZ +64</option>
+                            <option value="505">NI +505</option>
+                            <option value="227">NE +227</option>
+                            <option value="234">NG +234</option>
+                            <option value="850">KP +850</option>
+                            <option value="47">NO +47</option>
+                            <option value="968">OM +968</option>
+                            <option value="92">PK +92</option>
+                            <option value="970">PS +970</option>
+                            <option value="507">PA +507</option>
+                            <option value="675">PG +675</option>
+                            <option value="595">PY +595</option>
+                            <option value="51">PE +51</option>
+                            <option value="63">PH +63</option>
+                            <option value="48">PL +48</option>
+                            <option value="351">PT +351</option>
+                            <option value="974">QA +974</option>
+                            <option value="40">RO +40</option>
+                            <option value="7">RU +7</option>
+                            <option value="250">RW +250</option>
+                            <option value="966">SA +966</option>
+                            <option value="221">SN +221</option>
+                            <option value="381">RS +381</option>
+                            <option value="248">SC +248</option>
+                            <option value="232">SL +232</option>
+                            <option value="65">SG +65</option>
+                            <option value="421">SK +421</option>
+                            <option value="386">SI +386</option>
+                            <option value="27">ZA +27</option>
+                            <option value="82">KR +82</option>
+                            <option value="211">SS +211</option>
+                            <option value="34">ES +34</option>
+                            <option value="94">LK +94</option>
+                            <option value="249">SD +249</option>
+                            <option value="597">SR +597</option>
+                            <option value="46">SE +46</option>
+                            <option value="41">CH +41</option>
+                            <option value="963">SY +963</option>
+                            <option value="886">TW +886</option>
+                            <option value="992">TJ +992</option>
+                            <option value="255">TZ +255</option>
+                            <option value="66">TH +66</option>
+                            <option value="228">TG +228</option>
+                            <option value="216">TN +216</option>
+                            <option value="90">TR +90</option>
+                            <option value="993">TM +993</option>
+                            <option value="256">UG +256</option>
+                            <option value="380">UA +380</option>
+                            <option value="971">AE +971</option>
+                            <option value="44">UK +44</option>
+                            <option value="1">US +1</option>
+                            <option value="598">UY +598</option>
+                            <option value="998">UZ +998</option>
+                            <option value="58">VE +58</option>
+                            <option value="84">VN +84</option>
+                            <option value="967">YE +967</option>
+                            <option value="260">ZM +260</option>
+                            <option value="263">ZW +263</option>
+                        </select>
+                        <input id="mbPhone" class="mb-input" type="tel" maxlength="10" placeholder="Enter mobile number" autocomplete="tel" inputmode="numeric" />
+                    </div>
+
+                    <div class="mb-two-col">
+                        <div>
+                            <label class="mb-label" for="mbDob">Date of Birth</label>
+                            <div class="mb-date-wrap">
+                                <input id="mbDob" class="mb-input mb-date-input" type="text" maxlength="10" placeholder="DD/MM/YYYY" inputmode="numeric" autocomplete="bday" />
+                                <button id="mbDobPickerBtn" class="mb-date-btn" type="button" aria-label="Select date of birth">📅</button>
+                                <input id="mbDobPicker" class="mb-date-picker" type="date" tabindex="-1" aria-hidden="true" />
+                            </div>
+                            <p class="mb-date-help">Type DD/MM/YYYY or use calendar.</p>
+                        </div>
+                        <div>
+                            <label class="mb-label" for="mbAnniversary">Date of Anniversary</label>
+                            <div class="mb-date-wrap">
+                                <input id="mbAnniversary" class="mb-input mb-date-input" type="text" maxlength="10" placeholder="DD/MM/YYYY" inputmode="numeric" autocomplete="off" />
+                                <button id="mbAnniversaryPickerBtn" class="mb-date-btn" type="button" aria-label="Select date of anniversary">📅</button>
+                                <input id="mbAnniversaryPicker" class="mb-date-picker" type="date" tabindex="-1" aria-hidden="true" />
+                            </div>
+                            <p class="mb-date-help">Optional. Leave blank if not applicable.</p>
+                        </div>
+                    </div>
+
+                    <p id="mbFormStatus" class="mb-subtitle">Fill details and submit to continue to spin.</p>
+                    <p id="mbFormError" class="mb-error" aria-live="polite"></p>
+                    <div class="mb-row">
+                        <button id="mbFormSubmitBtn" class="mb-btn" type="button">Submit &amp; Continue To Spin</button>
+                    </div>
+
+                    <div class="mb-staff-toggle-row">
+                        <button id="mbStaffToggle" class="mb-staff-toggle" type="button">Staff Device Access</button>
+                    </div>
+                    <div id="mbStaffPanel" class="mb-staff-panel" aria-hidden="true">
+                        <input id="mbStaffCode" class="mb-input" type="password" maxlength="40" placeholder="Enter staff secret code" autocomplete="off" />
+                        <div class="mb-row">
+                            <button id="mbStaffBypassBtn" class="mb-btn mb-btn-secondary" type="button">Bypass Blocker</button>
+                        </div>
+                        <p id="mbStaffMsg" class="mb-error" aria-live="polite"></p>
+                    </div>
+                </div>
+
+                <div id="mbStepSpin" class="mb-step">
+                    <h2 class="mb-title">Lucky Spin Wheel</h2>
+                    <p class="mb-subtitle">You can win upto 50% off. Spin now.</p>
+                    <div class="mb-wheel-wrap">
+                        <canvas id="mbWheelCanvas" width="320" height="320" aria-label="Prize wheel"></canvas>
+                        <div class="mb-pointer"></div>
+                    </div>
+                    <div class="mb-row">
+                        <button id="mbSpinBtn" class="mb-btn">Spin Now</button>
+                    </div>
+                    <p id="mbSpinStatus" class="mb-status" aria-live="polite"></p>
+                </div>
+
+                <div id="mbStepResult" class="mb-step">
+                    <h2 class="mb-title">Your Result</h2>
+                    <p id="mbResultText" class="mb-result">Try Again Next Time</p>
+                    <p id="mbResultHint" class="mb-subtitle"></p>
+                    <p id="mbCouponCode" class="mb-result-code" hidden></p>
+                    <div id="mbCouponActions" class="mb-row" hidden>
+                        <button id="mbCopyCouponBtn" class="mb-btn" type="button">Copy Coupon Code</button>
+                        <button id="mbSendCouponBtn" class="mb-btn mb-btn-secondary" type="button">Send To Admin WhatsApp</button>
+                    </div>
+                    <p id="mbCouponActionStatus" class="mb-status" aria-live="polite"></p>
+                    <div class="mb-row">
+                        <button id="mbContinueBtn" class="mb-btn">View Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="data-config.js?v=20260412-4"></script>
+    <script src="script.js?v=20260414-11"></script>
+    <script src="country-picker.js"></script>
+        <script src="menu-blocker.js?v=20260414-1" defer></script>
     <script src="https://myappzchat.com/production/master/widget/embed-widget.umd.js" data-widget-id="edb91eb3-7293-4749-9138-9e5871f0082a" async></script>
     
     <script>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Diagnostic Test | Namaste Kalyan</title>
+  <script src="data-config.js"></script>
+  <style>
+    :root {
+      --bg: #f6f1e7;
+      --panel: rgba(255, 252, 246, 0.96);
+      --ink: #23170f;
+      --muted: #6f5b4d;
+      --accent: #b4471f;
+      --accent-dark: #863113;
+      --ok: #1f7a43;
+      --warn: #a86508;
+      --bad: #b42318;
+      --line: rgba(35, 23, 15, 0.12);
+      --shadow: 0 18px 45px rgba(73, 48, 31, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(180, 71, 31, 0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(134, 49, 19, 0.14), transparent 30%),
+        linear-gradient(135deg, #fbf7f0 0%, var(--bg) 52%, #efe1ce 100%);
+      padding: 32px 18px 40px;
+    }
+
+    .shell {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 28px 28px 18px;
+      background: linear-gradient(135deg, rgba(180, 71, 31, 0.08), rgba(134, 49, 19, 0.02));
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .subhead {
+      margin: 0;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .content {
+      padding: 24px 28px 30px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .value {
+      font-size: 1.02rem;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 18px;
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      background: #efe0d3;
+      color: var(--ink);
+    }
+
+    button:disabled {
+      opacity: 0.58;
+      cursor: wait;
+      transform: none;
+    }
+
+    .status {
+      border-radius: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.78);
+      line-height: 1.55;
+    }
+
+    .status.ok {
+      border-color: rgba(31, 122, 67, 0.22);
+      background: rgba(31, 122, 67, 0.07);
+      color: var(--ok);
+    }
+
+    .status.warn {
+      border-color: rgba(168, 101, 8, 0.24);
+      background: rgba(168, 101, 8, 0.08);
+      color: var(--warn);
+    }
+
+    .status.bad {
+      border-color: rgba(180, 35, 24, 0.25);
+      background: rgba(180, 35, 24, 0.08);
+      color: var(--bad);
+    }
+
+    .steps {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .step-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .step-title {
+      font-weight: 700;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #eee2d5;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .pill.ok {
+      background: rgba(31, 122, 67, 0.12);
+      color: var(--ok);
+    }
+
+    .pill.bad {
+      background: rgba(180, 35, 24, 0.12);
+      color: var(--bad);
+    }
+
+    .step-detail {
+      color: var(--muted);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    pre {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #22160f;
+      color: #f9e9d1;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      overflow: auto;
+    }
+
+    @media (max-width: 640px) {
+      .hero,
+      .content {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .step-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="panel">
+      <div class="hero">
+        <h1>QR Report Diagnostic</h1>
+        <p class="subhead">Runs a controlled live check against the configured Apps Script URL. It first reads the QR report, then inserts a dummy scan, then reads the report again to confirm the scan count increased.</p>
+      </div>
+
+      <div class="content">
+        <div class="grid">
+          <div class="card">
+            <span class="label">Configured Apps Script URL</span>
+            <div class="value" id="apiUrl">Checking...</div>
+          </div>
+          <div class="card">
+            <span class="label">Baseline Scan Count</span>
+            <div class="value" id="beforeCount">-</div>
+          </div>
+          <div class="card">
+            <span class="label">After Dummy Scan</span>
+            <div class="value" id="afterCount">-</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="runBtn" type="button">Run Full Dummy Test</button>
+          <button id="reportBtn" class="secondary" type="button">Open QR Report Page</button>
+        </div>
+
+        <div id="summary" class="status warn">Waiting to run the QR diagnostic test.</div>
+
+        <div id="steps" class="steps"></div>
+
+        <pre id="rawOutput">No test run yet.</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const configuredUrl = (window.APPS_SCRIPT_URL || (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || '').trim();
+    const apiUrlEl = document.getElementById('apiUrl');
+    const beforeCountEl = document.getElementById('beforeCount');
+    const afterCountEl = document.getElementById('afterCount');
+    const summaryEl = document.getElementById('summary');
+    const stepsEl = document.getElementById('steps');
+    const rawOutputEl = document.getElementById('rawOutput');
+    const runBtn = document.getElementById('runBtn');
+    const reportBtn = document.getElementById('reportBtn');
+
+    apiUrlEl.textContent = configuredUrl || 'No Apps Script URL configured';
+    reportBtn.addEventListener('click', () => {
+      window.open('qr-report.html', '_blank', 'noopener');
+    });
+    runBtn.addEventListener('click', runDiagnostic);
+
+    function setSummary(kind, text) {
+      summaryEl.className = `status ${kind}`;
+      summaryEl.textContent = text;
+    }
+
+    function updateStep(title, state, detail) {
+      let node = document.querySelector(`[data-step="${title}"]`);
+      if (!node) {
+        node = document.createElement('div');
+        node.className = 'step';
+        node.dataset.step = title;
+        node.innerHTML = [
+          '<div class="step-head">',
+          `<div class="step-title">${escapeHtml(title)}</div>`,
+          '<div class="pill">Pending</div>',
+          '</div>',
+          '<div class="step-detail"></div>'
+        ].join('');
+        stepsEl.appendChild(node);
+      }
+
+      const pill = node.querySelector('.pill');
+      const detailEl = node.querySelector('.step-detail');
+      pill.textContent = state;
+      pill.className = `pill ${state === 'PASS' ? 'ok' : state === 'FAIL' ? 'bad' : ''}`.trim();
+      detailEl.textContent = detail;
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    async function fetchAction(action) {
+      if (!configuredUrl) {
+        throw new Error('Apps Script URL is missing in data-config.js');
+      }
+
+      const url = new URL(configuredUrl);
+      url.searchParams.set('action', action);
+
+      const response = await fetch(url.toString(), {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json, text/plain, text/html'
+        }
+      });
+
+      const text = await response.text();
+      let parsed = null;
+
+      try {
+        parsed = JSON.parse(text);
+      } catch (error) {
+        parsed = null;
+      }
+
+      return {
+        status: response.status,
+        ok: response.ok,
+        text,
+        json: parsed,
+        contentType: response.headers.get('content-type') || ''
+      };
+    }
+
+    function getReportCount(payload) {
+      if (!payload || typeof payload !== 'object') {
+        return null;
+      }
+
+      if (typeof payload.totalScans === 'number') {
+        return payload.totalScans;
+      }
+
+      if (payload.data && typeof payload.data.totalScans === 'number') {
+        return payload.data.totalScans;
+      }
+
+      return null;
+    }
+
+    async function runDiagnostic() {
+      runBtn.disabled = true;
+      stepsEl.innerHTML = '';
+      rawOutputEl.textContent = 'Running...';
+      beforeCountEl.textContent = '-';
+      afterCountEl.textContent = '-';
+      setSummary('warn', 'Running QR diagnostic test...');
+
+      const snapshots = {};
+
+      try {
+        updateStep('Fetch baseline report', 'RUNNING', 'Requesting ?action=qr_report');
+        const beforeReport = await fetchAction('qr_report');
+        snapshots.beforeReport = beforeReport;
+
+        if (!beforeReport.json) {
+          updateStep('Fetch baseline report', 'FAIL', `Expected JSON but received ${beforeReport.contentType || 'unknown content type'}.`);
+          throw new Error('Baseline QR report did not return JSON. The deployment URL may not be a public web app.');
+        }
+
+        const beforeCount = getReportCount(beforeReport.json);
+        beforeCountEl.textContent = beforeCount == null ? 'Unknown' : beforeCount;
+        updateStep('Fetch baseline report', 'PASS', `Report JSON received. Baseline total scans: ${beforeCount == null ? 'unknown' : beforeCount}`);
+
+        updateStep('Insert dummy scan', 'RUNNING', 'Requesting ?action=add_test_qr_scan');
+        const dummyInsert = await fetchAction('add_test_qr_scan');
+        snapshots.dummyInsert = dummyInsert;
+
+        if (!dummyInsert.json) {
+          updateStep('Insert dummy scan', 'FAIL', `Expected JSON but received ${dummyInsert.contentType || 'unknown content type'}.`);
+          throw new Error('Dummy scan endpoint did not return JSON. The deployment URL may not be a public web app.');
+        }
+
+        const insertedOk = dummyInsert.json.ok !== false;
+        updateStep('Insert dummy scan', insertedOk ? 'PASS' : 'FAIL', JSON.stringify(dummyInsert.json, null, 2));
+
+        if (!insertedOk) {
+          throw new Error('Dummy scan endpoint returned an application error.');
+        }
+
+        updateStep('Fetch report after insert', 'RUNNING', 'Requesting ?action=qr_report again');
+        const afterReport = await fetchAction('qr_report');
+        snapshots.afterReport = afterReport;
+
+        if (!afterReport.json) {
+          updateStep('Fetch report after insert', 'FAIL', `Expected JSON but received ${afterReport.contentType || 'unknown content type'}.`);
+          throw new Error('Post-insert QR report did not return JSON.');
+        }
+
+        const afterCount = getReportCount(afterReport.json);
+        afterCountEl.textContent = afterCount == null ? 'Unknown' : afterCount;
+        updateStep('Fetch report after insert', 'PASS', `Report JSON received. Post-insert total scans: ${afterCount == null ? 'unknown' : afterCount}`);
+
+        const countIncreased =
+          typeof beforeCount === 'number' &&
+          typeof afterCount === 'number' &&
+          afterCount >= beforeCount + 1;
+
+        updateStep(
+          'Validate count change',
+          countIncreased ? 'PASS' : 'FAIL',
+          countIncreased
+            ? `Scan detection works. Count increased from ${beforeCount} to ${afterCount}.`
+            : `Count did not clearly increase. Before: ${beforeCount == null ? 'unknown' : beforeCount}, after: ${afterCount == null ? 'unknown' : afterCount}.`
+        );
+
+        setSummary(
+          countIncreased ? 'ok' : 'bad',
+          countIncreased
+            ? 'QR report is generating and dummy scan detection is working.'
+            : 'The QR endpoints responded, but the report count did not clearly confirm the dummy scan.'
+        );
+      } catch (error) {
+        setSummary('bad', error.message || 'QR diagnostic test failed.');
+      } finally {
+        rawOutputEl.textContent = JSON.stringify(snapshots, null, 2) || 'No output captured.';
+        runBtn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

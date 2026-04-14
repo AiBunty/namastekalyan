@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namaste Kalyan Event Guest Reports</title>
+  <link rel="stylesheet" href="css/admin-animations.css?v=20260413-1">
+  <link rel="stylesheet" href="css/admin-module-theme.css?v=20260413-1">
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search || '');
+      if (!params.has('embedded') && !params.has('standalone')) {
+        window.location.replace('admin-portal.html#event-guests');
+      }
+    })();
+  </script>
+  <style>
+    .page {
+      max-width: 1180px;
+    }
+    .stats { margin-bottom: 18px; }
+    .table-tools {
+      margin-bottom: 12px;
+      display: grid;
+      gap: 10px;
+    }
+    .table-tools .search-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .table-tools .search-row input {
+      flex: 1 1 260px;
+      margin-bottom: 0;
+    }
+    .table-tools .search-row button {
+      min-width: 120px;
+    }
+    .column-filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 8px;
+    }
+    .column-filters .field {
+      display: grid;
+      gap: 4px;
+    }
+    .column-filters label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .column-filters input,
+    .column-filters select {
+      margin-bottom: 0;
+    }
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+      .page {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Event Guest Reports</h1>
+      <p>Review guest registrations event-wise for both free and paid events from the Google Sheet-backed registration log.</p>
+    </section>
+
+    <section class="panel">
+      <div class="lock-row">
+        <input id="username" type="tel" inputmode="numeric" maxlength="15" placeholder="Username (mobile number)">
+        <input id="password" type="password" maxlength="64" placeholder="Password">
+        <button id="unlockBtn" type="button">Login</button>
+        <button id="logoutBtn" class="secondary" type="button" hidden>Logout</button>
+      </div>
+      <div id="lockStatus" class="status">Panel is locked. Login to continue.</div>
+    </section>
+
+    <section class="panel">
+      <div class="filters">
+        <select id="eventFilter" disabled>
+          <option value="">All events</option>
+        </select>
+        <button id="refreshBtn" class="secondary" type="button" disabled>Refresh Report</button>
+      </div>
+      <div id="reportStatus" class="status">Unlock the panel to load registrations.</div>
+    </section>
+
+    <section class="stats" id="stats">
+      <div class="stat-card"><span class="label">Registrations</span><span class="value" id="statRegistrations">0</span></div>
+      <div class="stat-card"><span class="label">Guests</span><span class="value" id="statGuests">0</span></div>
+      <div class="stat-card"><span class="label">Free</span><span class="value" id="statFree">0</span></div>
+      <div class="stat-card"><span class="label">Paid</span><span class="value" id="statPaid">0</span></div>
+      <div class="stat-card"><span class="label">Checked In</span><span class="value" id="statCheckedIn">0</span></div>
+      <div class="stat-card"><span class="label">Razorpay Collected</span><span class="value" id="statRazorpayCollected">INR 0.00</span></div>
+      <div class="stat-card"><span class="label">Cash Collected</span><span class="value" id="statCashCollected">INR 0.00</span></div>
+      <div class="stat-card"><span class="label">Razorpay Pending</span><span class="value" id="statRazorpayPending">INR 0.00</span></div>
+    </section>
+
+    <section class="panel">
+      <h3>Razorpay Reconciliation</h3>
+      <div class="stats" style="margin-bottom:14px;">
+        <div class="stat-card"><span class="label">Collected Rows</span><span class="value" id="reconCollectedRows">0</span></div>
+        <div class="stat-card"><span class="label">Collected Amount</span><span class="value" id="reconCollectedAmount">INR 0.00</span></div>
+        <div class="stat-card"><span class="label">Pending Amount</span><span class="value" id="reconPendingAmount">INR 0.00</span></div>
+        <div class="stat-card"><span class="label">Cancelled</span><span class="value" id="reconCancelledRows">0</span></div>
+      </div>
+      <div class="table-tools">
+        <div class="search-row">
+          <input id="reconSearch" type="text" placeholder="Search reconciliation rows">
+          <button id="clearReconFiltersBtn" class="secondary" type="button">Clear Filters</button>
+        </div>
+        <div class="column-filters">
+          <div class="field"><label for="reconFilterEvent">Event</label><input id="reconFilterEvent" type="text" placeholder="Event"></div>
+          <div class="field"><label for="reconFilterGuest">Guest</label><input id="reconFilterGuest" type="text" placeholder="Guest"></div>
+          <div class="field"><label for="reconFilterTransaction">Transaction</label><input id="reconFilterTransaction" type="text" placeholder="Transaction"></div>
+          <div class="field"><label for="reconFilterOrderPayment">Order / Payment</label><input id="reconFilterOrderPayment" type="text" placeholder="Order / Payment"></div>
+          <div class="field"><label for="reconFilterAmount">Amount</label><input id="reconFilterAmount" type="text" placeholder="Amount"></div>
+          <div class="field"><label for="reconFilterStatus">Status</label><input id="reconFilterStatus" type="text" placeholder="Status"></div>
+          <div class="field"><label for="reconFilterRefund">Refund</label><input id="reconFilterRefund" type="text" placeholder="Refund"></div>
+          <div class="field"><label for="reconFilterCreated">Created</label><input id="reconFilterCreated" type="text" placeholder="Created"></div>
+          <div class="field"><label for="reconFilterConfirmed">Confirmed</label><input id="reconFilterConfirmed" type="text" placeholder="Confirmed"></div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Guest</th>
+              <th>Transaction</th>
+              <th>Order / Payment</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Refund</th>
+              <th>Created</th>
+              <th>Confirmed</th>
+            </tr>
+          </thead>
+          <tbody id="reconRows">
+            <tr><td colspan="9" class="muted">No Razorpay reconciliation rows loaded yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel table-wrap">
+      <div class="table-tools">
+        <div class="search-row">
+          <input id="guestSearch" type="text" placeholder="Search guest registrations">
+          <button id="exportFilteredGuestCsvBtn" type="button">Export Filtered CSV</button>
+          <button id="exportAllGuestExcelBtn" class="secondary" type="button">Download Full Guest Excel</button>
+          <button id="clearGuestFiltersBtn" class="secondary" type="button">Clear Filters</button>
+        </div>
+        <div class="column-filters">
+          <div class="field"><label for="guestFilterEvent">Event</label><input id="guestFilterEvent" type="text" placeholder="Event"></div>
+          <div class="field"><label for="guestFilterGuest">Guest</label><input id="guestFilterGuest" type="text" placeholder="Guest"></div>
+          <div class="field"><label for="guestFilterContact">Contact</label><input id="guestFilterContact" type="text" placeholder="Email / phone"></div>
+          <div class="field"><label for="guestFilterType">Type</label><select id="guestFilterType"><option value="">All</option><option value="free">Free</option><option value="paid">Paid</option></select></div>
+          <div class="field"><label for="guestFilterTickets">Tickets</label><input id="guestFilterTickets" type="text" placeholder="Tickets"></div>
+          <div class="field"><label for="guestFilterAttendees">Attendees</label><input id="guestFilterAttendees" type="text" placeholder="Attendees"></div>
+          <div class="field"><label for="guestFilterStatus">Status</label><input id="guestFilterStatus" type="text" placeholder="Status"></div>
+          <div class="field"><label for="guestFilterRegistered">Registered</label><input id="guestFilterRegistered" type="text" placeholder="Registered"></div>
+          <div class="field"><label for="guestFilterCheckedIn">Checked In</label><input id="guestFilterCheckedIn" type="text" placeholder="Checked In"></div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Guest</th>
+            <th>Contact</th>
+            <th>Type</th>
+            <th>Tickets</th>
+            <th>Attendees</th>
+            <th>Status</th>
+            <th>Registered</th>
+            <th>Checked In</th>
+          </tr>
+        </thead>
+        <tbody id="guestRows">
+          <tr><td colspan="9" class="muted">No data loaded yet.</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="data-config.js"></script>
+  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-ui-ux.js?v=20260413-1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+  <script>
+    (function () {
+      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
+      const usernameEl = document.getElementById('username');
+      const passwordEl = document.getElementById('password');
+      const unlockBtn = document.getElementById('unlockBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const lockStatusEl = document.getElementById('lockStatus');
+      const eventFilterEl = document.getElementById('eventFilter');
+      const refreshBtn = document.getElementById('refreshBtn');
+      const reportStatusEl = document.getElementById('reportStatus');
+      const guestRowsEl = document.getElementById('guestRows');
+
+      const statRegistrationsEl = document.getElementById('statRegistrations');
+      const statGuestsEl = document.getElementById('statGuests');
+      const statFreeEl = document.getElementById('statFree');
+      const statPaidEl = document.getElementById('statPaid');
+      const statCheckedInEl = document.getElementById('statCheckedIn');
+      const statRazorpayCollectedEl = document.getElementById('statRazorpayCollected');
+      const statCashCollectedEl = document.getElementById('statCashCollected');
+      const statRazorpayPendingEl = document.getElementById('statRazorpayPending');
+      const reconCollectedRowsEl = document.getElementById('reconCollectedRows');
+      const reconCollectedAmountEl = document.getElementById('reconCollectedAmount');
+      const reconPendingAmountEl = document.getElementById('reconPendingAmount');
+      const reconCancelledRowsEl = document.getElementById('reconCancelledRows');
+      const reconRowsEl = document.getElementById('reconRows');
+      const authPanelEl = unlockBtn.closest('section.panel');
+      const guestSearchEl = document.getElementById('guestSearch');
+      const exportFilteredGuestCsvBtn = document.getElementById('exportFilteredGuestCsvBtn');
+      const exportAllGuestExcelBtn = document.getElementById('exportAllGuestExcelBtn');
+      const clearGuestFiltersBtn = document.getElementById('clearGuestFiltersBtn');
+      const guestFilterEventEl = document.getElementById('guestFilterEvent');
+      const guestFilterGuestEl = document.getElementById('guestFilterGuest');
+      const guestFilterContactEl = document.getElementById('guestFilterContact');
+      const guestFilterTypeEl = document.getElementById('guestFilterType');
+      const guestFilterTicketsEl = document.getElementById('guestFilterTickets');
+      const guestFilterAttendeesEl = document.getElementById('guestFilterAttendees');
+      const guestFilterStatusEl = document.getElementById('guestFilterStatus');
+      const guestFilterRegisteredEl = document.getElementById('guestFilterRegistered');
+      const guestFilterCheckedInEl = document.getElementById('guestFilterCheckedIn');
+      const reconSearchEl = document.getElementById('reconSearch');
+      const clearReconFiltersBtn = document.getElementById('clearReconFiltersBtn');
+      const reconFilterEventEl = document.getElementById('reconFilterEvent');
+      const reconFilterGuestEl = document.getElementById('reconFilterGuest');
+      const reconFilterTransactionEl = document.getElementById('reconFilterTransaction');
+      const reconFilterOrderPaymentEl = document.getElementById('reconFilterOrderPayment');
+      const reconFilterAmountEl = document.getElementById('reconFilterAmount');
+      const reconFilterStatusEl = document.getElementById('reconFilterStatus');
+      const reconFilterRefundEl = document.getElementById('reconFilterRefund');
+      const reconFilterCreatedEl = document.getElementById('reconFilterCreated');
+      const reconFilterConfirmedEl = document.getElementById('reconFilterConfirmed');
+      let allGuestRows = [];
+      let filteredGuestRows = [];
+      let allReconRows = [];
+      const authClient = window.NKAdminAuth.createAuthClient({
+        apiBase: apiBase,
+        onAuthError: function (payload) {
+          clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
+        }
+      });
+
+      function applyEmbeddedAuthUi() {
+        if (!embeddedMode) return;
+        if (authPanelEl) authPanelEl.style.display = 'none';
+      }
+
+      function sessionToken() {
+        return authClient.getToken();
+      }
+
+      function clearSessionAndLock(message) {
+        authClient.clearSession();
+        usernameEl.value = '';
+        passwordEl.value = '';
+        usernameEl.disabled = false;
+        passwordEl.disabled = false;
+        unlockBtn.hidden = false;
+        logoutBtn.hidden = true;
+        eventFilterEl.disabled = true;
+        refreshBtn.disabled = true;
+        setLockStatus('Panel is locked. Login to continue.');
+        if (message) setReportStatus(message);
+        applyEmbeddedAuthUi();
+      }
+
+      function setReportStatus(message) {
+        reportStatusEl.textContent = String(message || '');
+      }
+
+      function setLockStatus(message) {
+        lockStatusEl.textContent = String(message || '');
+      }
+
+      function normText(value) {
+        return String(value == null ? '' : value).toLowerCase().trim();
+      }
+
+      function containsFilter(value, filterValue) {
+        const filter = normText(filterValue);
+        if (!filter) return true;
+        return normText(value).indexOf(filter) !== -1;
+      }
+
+      function cleanFileNamePart(value) {
+        return String(value == null ? '' : value)
+          .trim()
+          .replace(/[^a-zA-Z0-9_-]+/g, '_')
+          .replace(/^_+|_+$/g, '')
+          .slice(0, 64);
+      }
+
+      function buildGuestFileBaseName() {
+        const selectedEvent = cleanFileNamePart(eventFilterEl.options[eventFilterEl.selectedIndex] && eventFilterEl.options[eventFilterEl.selectedIndex].textContent || 'all-events');
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        return `event-guests_${selectedEvent || 'all-events'}_${timestamp}`;
+      }
+
+      function csvEscape(value) {
+        const text = String(value == null ? '' : value);
+        if (/[",\n]/.test(text)) {
+          return `"${text.replace(/"/g, '""')}"`;
+        }
+        return text;
+      }
+
+      function downloadBlob(content, fileName, mimeType) {
+        const blob = new Blob([content], { type: mimeType || 'application/octet-stream' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+
+      function attendeeText(item) {
+        return Array.isArray(item && item.attendeeDetails) && item.attendeeDetails.length
+          ? item.attendeeDetails.join(', ')
+          : '';
+      }
+
+      function mapGuestForExport(item) {
+        return {
+          Event: String(item.eventTitle || '-'),
+          TransactionId: String(item.transactionId || '-'),
+          GuestName: String(item.customerName || '-'),
+          Email: String(item.customerEmail || '-'),
+          Phone: String(item.customerPhone || '-'),
+          BookingType: String(item.bookingType || '-'),
+          CollectionType: String(item.collectionType || '-'),
+          Tickets: String(item.qty || 0),
+          Attendees: attendeeText(item) || '-',
+          Status: String(item.status || '-'),
+          EmailStatus: String(item.emailStatus || '-'),
+          RegisteredAt: formatDate(item.createdAt),
+          CheckedInAt: formatDate(item.checkedInAt)
+        };
+      }
+
+      function exportFilteredGuestsCsv() {
+        if (!filteredGuestRows.length) {
+          setReportStatus('No filtered guest rows available to export.');
+          return;
+        }
+
+        const mapped = filteredGuestRows.map(mapGuestForExport);
+        const headers = Object.keys(mapped[0]);
+        const lines = [headers.join(',')].concat(mapped.map((row) => headers.map((key) => csvEscape(row[key])).join(',')));
+        const fileName = `${buildGuestFileBaseName()}_filtered.csv`;
+        downloadBlob(lines.join('\n'), fileName, 'text/csv;charset=utf-8');
+        setReportStatus(`Exported ${filteredGuestRows.length} filtered guest row(s) to CSV.`);
+      }
+
+      function exportAllGuestsExcel() {
+        if (!allGuestRows.length) {
+          setReportStatus('No guest rows available to export.');
+          return;
+        }
+
+        if (!window.XLSX || !window.XLSX.utils) {
+          setReportStatus('Excel export library not ready yet. Please wait a second and try again.');
+          return;
+        }
+
+        const mapped = allGuestRows.map(mapGuestForExport);
+        const worksheet = window.XLSX.utils.json_to_sheet(mapped);
+        const workbook = window.XLSX.utils.book_new();
+        window.XLSX.utils.book_append_sheet(workbook, worksheet, 'GuestReport');
+        const fileName = `${buildGuestFileBaseName()}_full.xlsx`;
+        window.XLSX.writeFile(workbook, fileName);
+        setReportStatus(`Downloaded full guest list (${allGuestRows.length} row(s)) as Excel.`);
+      }
+
+      async function apiPost(body) {
+        return authClient.apiPost(body);
+      }
+
+      async function apiGet(action, params) {
+        return authClient.apiGet(action, params);
+      }
+
+      function formatDate(value) {
+        if (!value) return '-';
+        const parsed = new Date(value);
+        if (Number.isNaN(parsed.getTime())) return '-';
+        return parsed.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+      }
+
+      function formatCurrency(amount, currency) {
+        const value = Number(amount || 0) || 0;
+        return `${String(currency || 'INR').toUpperCase()} ${value.toFixed(2)}`;
+      }
+
+      function updateStats(totals) {
+        const safe = totals || {};
+        statRegistrationsEl.textContent = String(safe.registrations || 0);
+        statGuestsEl.textContent = String(safe.guests || 0);
+        statFreeEl.textContent = String(safe.freeRegistrations || 0);
+        statPaidEl.textContent = String(safe.paidRegistrations || 0);
+        statCheckedInEl.textContent = String(safe.checkedInGuests || 0);
+        statRazorpayCollectedEl.textContent = formatCurrency(safe.razorpayCollectedAmount || 0, 'INR');
+        statCashCollectedEl.textContent = formatCurrency(safe.cashCollectedAmount || 0, 'INR');
+        statRazorpayPendingEl.textContent = formatCurrency(safe.razorpayPendingAmount || 0, 'INR');
+      }
+
+      function renderEventOptions(summary, selectedEventId) {
+        const items = Array.isArray(summary) ? summary : [];
+        eventFilterEl.innerHTML = '<option value="">All events</option>';
+        items.forEach((item) => {
+          const option = document.createElement('option');
+          option.value = String(item.eventId || '');
+          option.textContent = `${item.eventTitle || item.eventId} (${item.guests || 0} guests, ${item.freeRegistrations || 0} free, ${item.paidRegistrations || 0} paid)`;
+          if (String(item.eventId || '') === String(selectedEventId || '')) {
+            option.selected = true;
+          }
+          eventFilterEl.appendChild(option);
+        });
+      }
+
+      function renderGuests(guests) {
+        const rows = Array.isArray(guests) ? guests : [];
+        if (!rows.length) {
+          guestRowsEl.innerHTML = '<tr><td colspan="9" class="muted">No registrations found for the selected event.</td></tr>';
+          return;
+        }
+
+        guestRowsEl.innerHTML = '';
+        rows.forEach((item) => {
+          const tr = document.createElement('tr');
+          const attendees = Array.isArray(item.attendeeDetails) && item.attendeeDetails.length
+            ? item.attendeeDetails.join(', ')
+            : '-';
+          tr.innerHTML = `
+            <td><strong>${String(item.eventTitle || '-')}</strong><br><span class="muted">${String(item.transactionId || '-')}</span></td>
+            <td>${String(item.customerName || '-')}</td>
+            <td>${String(item.customerEmail || '-')}<br><span class="muted">${String(item.customerPhone || '-')}</span></td>
+            <td><span class="pill ${String(item.bookingType || '').toLowerCase() === 'free' ? 'free' : 'paid'}">${String(item.bookingType || '-')}</span><br><span class="muted">${String(item.collectionType || '-')}</span></td>
+            <td>${String(item.qty || 0)}</td>
+            <td>${attendees}</td>
+            <td>${String(item.status || '-')}<br><span class="muted">${String(item.emailStatus || '-')}</span></td>
+            <td>${formatDate(item.createdAt)}</td>
+            <td>${formatDate(item.checkedInAt)}</td>
+          `;
+          guestRowsEl.appendChild(tr);
+        });
+      }
+
+      function applyGuestFilters() {
+        const globalSearch = normText(guestSearchEl.value);
+        const filtered = allGuestRows.filter((item) => {
+          const attendees = Array.isArray(item.attendeeDetails) && item.attendeeDetails.length
+            ? item.attendeeDetails.join(', ')
+            : '';
+          const registered = formatDate(item.createdAt);
+          const checkedIn = formatDate(item.checkedInAt);
+          const bookingType = String(item.bookingType || '').toLowerCase();
+
+          const rowSearch = [
+            item.eventTitle,
+            item.transactionId,
+            item.customerName,
+            item.customerEmail,
+            item.customerPhone,
+            item.bookingType,
+            item.collectionType,
+            item.qty,
+            attendees,
+            item.status,
+            item.emailStatus,
+            registered,
+            checkedIn
+          ].map(normText).join(' ');
+
+          if (globalSearch && rowSearch.indexOf(globalSearch) === -1) {
+            return false;
+          }
+
+          if (!containsFilter(item.eventTitle, guestFilterEventEl.value)) return false;
+          if (!containsFilter(item.customerName, guestFilterGuestEl.value)) return false;
+          if (!containsFilter(`${item.customerEmail || ''} ${item.customerPhone || ''}`, guestFilterContactEl.value)) return false;
+          if (!containsFilter(item.qty, guestFilterTicketsEl.value)) return false;
+          if (!containsFilter(attendees, guestFilterAttendeesEl.value)) return false;
+          if (!containsFilter(`${item.status || ''} ${item.emailStatus || ''}`, guestFilterStatusEl.value)) return false;
+          if (!containsFilter(registered, guestFilterRegisteredEl.value)) return false;
+          if (!containsFilter(checkedIn, guestFilterCheckedInEl.value)) return false;
+
+          const typeFilter = normText(guestFilterTypeEl.value);
+          if (typeFilter && bookingType !== typeFilter) return false;
+
+          return true;
+        });
+
+        filteredGuestRows = filtered.slice();
+        renderGuests(filtered);
+        setReportStatus(`Showing ${filtered.length} of ${allGuestRows.length} guest row(s).`);
+      }
+
+      function renderReconciliation(reconciliation) {
+        const safe = reconciliation || {};
+        const totals = safe.totals || {};
+        allReconRows = Array.isArray(safe.entries) ? safe.entries : [];
+
+        reconCollectedRowsEl.textContent = String(totals.collectedRegistrations || 0);
+        reconCollectedAmountEl.textContent = formatCurrency(totals.collectedAmount || 0, 'INR');
+        reconPendingAmountEl.textContent = formatCurrency(totals.pendingAmount || 0, 'INR');
+        reconCancelledRowsEl.textContent = String(totals.cancelledRegistrations || 0);
+
+        applyReconciliationFilters();
+      }
+
+      function renderReconciliationRows(rows) {
+        const list = Array.isArray(rows) ? rows : [];
+
+        if (!list.length) {
+          reconRowsEl.innerHTML = '<tr><td colspan="9" class="muted">No Razorpay reconciliation rows found for the selected event.</td></tr>';
+          return;
+        }
+
+        reconRowsEl.innerHTML = '';
+        list.forEach((item) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><strong>${String(item.eventTitle || '-')}</strong></td>
+            <td>${String(item.customerName || '-')}<br><span class="muted">${String(item.qty || 0)} guest(s)</span></td>
+            <td>${String(item.transactionId || '-')}</td>
+            <td>${String(item.orderId || '-')}<br><span class="muted">${String(item.paymentId || '-')}</span></td>
+            <td>${formatCurrency(item.amount || 0, item.currency || 'INR')}</td>
+            <td>${String(item.status || '-')}</td>
+            <td>${String(item.refundStatus || '-')}</td>
+            <td>${formatDate(item.createdAt)}</td>
+            <td>${formatDate(item.confirmedAt)}</td>
+          `;
+          reconRowsEl.appendChild(tr);
+        });
+      }
+
+      function applyReconciliationFilters() {
+        const globalSearch = normText(reconSearchEl.value);
+        const filtered = allReconRows.filter((item) => {
+          const amountText = formatCurrency(item.amount || 0, item.currency || 'INR');
+          const created = formatDate(item.createdAt);
+          const confirmed = formatDate(item.confirmedAt);
+          const orderPayment = `${item.orderId || ''} ${item.paymentId || ''}`;
+
+          const rowSearch = [
+            item.eventTitle,
+            item.customerName,
+            item.transactionId,
+            orderPayment,
+            amountText,
+            item.status,
+            item.refundStatus,
+            created,
+            confirmed
+          ].map(normText).join(' ');
+
+          if (globalSearch && rowSearch.indexOf(globalSearch) === -1) {
+            return false;
+          }
+
+          if (!containsFilter(item.eventTitle, reconFilterEventEl.value)) return false;
+          if (!containsFilter(item.customerName, reconFilterGuestEl.value)) return false;
+          if (!containsFilter(item.transactionId, reconFilterTransactionEl.value)) return false;
+          if (!containsFilter(orderPayment, reconFilterOrderPaymentEl.value)) return false;
+          if (!containsFilter(amountText, reconFilterAmountEl.value)) return false;
+          if (!containsFilter(item.status, reconFilterStatusEl.value)) return false;
+          if (!containsFilter(item.refundStatus, reconFilterRefundEl.value)) return false;
+          if (!containsFilter(created, reconFilterCreatedEl.value)) return false;
+          if (!containsFilter(confirmed, reconFilterConfirmedEl.value)) return false;
+
+          return true;
+        });
+
+        renderReconciliationRows(filtered);
+      }
+
+      async function loadReport(eventId) {
+        if (!apiBase) {
+          setReportStatus('Apps Script URL is missing in data-config.js.');
+          return;
+        }
+        if (!sessionToken()) {
+          setReportStatus('Login first.');
+          return;
+        }
+
+        eventFilterEl.disabled = true;
+        refreshBtn.disabled = true;
+        setReportStatus('Loading guest report...');
+
+        try {
+          const payload = await apiGet('event_guest_report', eventId ? { eventId: eventId } : null);
+          if (!payload.report) {
+            throw new Error('Report data missing from response.');
+          }
+
+          renderEventOptions(payload.report.eventSummary, payload.report.selectedEventId);
+          updateStats(payload.report.totals);
+          allGuestRows = Array.isArray(payload.report.guests) ? payload.report.guests : [];
+          applyGuestFilters();
+          renderReconciliation(payload.report.razorpayReconciliation);
+          if (!guestSearchEl.value && !guestFilterEventEl.value && !guestFilterGuestEl.value && !guestFilterContactEl.value && !guestFilterTypeEl.value && !guestFilterTicketsEl.value && !guestFilterAttendeesEl.value && !guestFilterStatusEl.value && !guestFilterRegisteredEl.value && !guestFilterCheckedInEl.value) {
+            setReportStatus(`Loaded ${allGuestRows.length} registration row(s).`);
+          }
+        } catch (error) {
+          allGuestRows = [];
+          filteredGuestRows = [];
+          allReconRows = [];
+          updateStats(null);
+          renderGuests([]);
+          renderReconciliationRows([]);
+          setReportStatus(`Unable to load report: ${error.message}`);
+        } finally {
+          eventFilterEl.disabled = false;
+          refreshBtn.disabled = false;
+        }
+      }
+
+      async function loginPanel() {
+        const username = String(usernameEl.value || '').replace(/\D/g, '').trim();
+        const password = String(passwordEl.value || '').trim();
+        if (!username || !password) {
+          setLockStatus('Enter username and password first.');
+          return;
+        }
+
+        unlockBtn.disabled = true;
+        setLockStatus('Logging in...');
+        try {
+          const payload = await authClient.login(username, password, 'admin-event-guests');
+          usernameEl.disabled = true;
+          passwordEl.disabled = true;
+          unlockBtn.hidden = true;
+          logoutBtn.hidden = false;
+          eventFilterEl.disabled = false;
+          refreshBtn.disabled = false;
+          setLockStatus(`Panel unlocked for ${payload.user && payload.user.username ? payload.user.username : 'admin'}.`);
+          await loadReport('');
+        } catch (error) {
+          clearSessionAndLock(`Login failed: ${error.message}`);
+        } finally {
+          unlockBtn.disabled = false;
+        }
+      }
+
+      async function restoreSessionIfAny() {
+        try {
+          const payload = await authClient.restoreSession();
+          if (!payload) {
+            return;
+          }
+          usernameEl.disabled = true;
+          passwordEl.disabled = true;
+          unlockBtn.hidden = true;
+          logoutBtn.hidden = false;
+          eventFilterEl.disabled = false;
+          refreshBtn.disabled = false;
+          setLockStatus(`Panel unlocked for ${payload.user && payload.user.username ? payload.user.username : 'admin'}.`);
+          await loadReport(String(eventFilterEl.value || '').trim());
+        } catch (err) {
+          clearSessionAndLock('Session expired. Please login again.');
+        }
+      }
+
+      async function logoutPanel() {
+        await authClient.logout();
+        clearSessionAndLock('Logged out successfully.');
+      }
+
+      unlockBtn.addEventListener('click', loginPanel);
+      logoutBtn.addEventListener('click', logoutPanel);
+      passwordEl.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') loginPanel();
+      });
+      usernameEl.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') loginPanel();
+      });
+
+      refreshBtn.addEventListener('click', function () {
+        loadReport(String(eventFilterEl.value || '').trim());
+      });
+
+      eventFilterEl.addEventListener('change', function () {
+        loadReport(String(eventFilterEl.value || '').trim());
+      });
+
+      exportFilteredGuestCsvBtn.addEventListener('click', function () {
+        exportFilteredGuestsCsv();
+      });
+
+      exportAllGuestExcelBtn.addEventListener('click', function () {
+        exportAllGuestsExcel();
+      });
+
+      [
+        guestSearchEl,
+        guestFilterEventEl,
+        guestFilterGuestEl,
+        guestFilterContactEl,
+        guestFilterTypeEl,
+        guestFilterTicketsEl,
+        guestFilterAttendeesEl,
+        guestFilterStatusEl,
+        guestFilterRegisteredEl,
+        guestFilterCheckedInEl
+      ].forEach((el) => {
+        el.addEventListener('input', applyGuestFilters);
+        el.addEventListener('change', applyGuestFilters);
+      });
+
+      [
+        reconSearchEl,
+        reconFilterEventEl,
+        reconFilterGuestEl,
+        reconFilterTransactionEl,
+        reconFilterOrderPaymentEl,
+        reconFilterAmountEl,
+        reconFilterStatusEl,
+        reconFilterRefundEl,
+        reconFilterCreatedEl,
+        reconFilterConfirmedEl
+      ].forEach((el) => {
+        el.addEventListener('input', applyReconciliationFilters);
+        el.addEventListener('change', applyReconciliationFilters);
+      });
+
+      clearGuestFiltersBtn.addEventListener('click', function () {
+        guestSearchEl.value = '';
+        guestFilterEventEl.value = '';
+        guestFilterGuestEl.value = '';
+        guestFilterContactEl.value = '';
+        guestFilterTypeEl.value = '';
+        guestFilterTicketsEl.value = '';
+        guestFilterAttendeesEl.value = '';
+        guestFilterStatusEl.value = '';
+        guestFilterRegisteredEl.value = '';
+        guestFilterCheckedInEl.value = '';
+        applyGuestFilters();
+      });
+
+      clearReconFiltersBtn.addEventListener('click', function () {
+        reconSearchEl.value = '';
+        reconFilterEventEl.value = '';
+        reconFilterGuestEl.value = '';
+        reconFilterTransactionEl.value = '';
+        reconFilterOrderPaymentEl.value = '';
+        reconFilterAmountEl.value = '';
+        reconFilterStatusEl.value = '';
+        reconFilterRefundEl.value = '';
+        reconFilterCreatedEl.value = '';
+        reconFilterConfirmedEl.value = '';
+        applyReconciliationFilters();
+      });
+
+      clearSessionAndLock('Login to load registrations.');
+      restoreSessionIfAny();
+    })();
+  </script>
+</body>
+</html>

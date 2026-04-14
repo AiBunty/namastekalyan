@@ -258,6 +258,170 @@
         max-height: min(56vh, 420px) !important;
     }
 
+
+/* ── Events Popup ─────────────────────────────────────────────────────────── */
+.nk-event-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 8, 8, 0.76);
+    backdrop-filter: blur(3px);
+    z-index: 9998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.nk-event-popup.active {
+    display: flex;
+}
+
+.nk-event-popup-dialog {
+    width: min(96vw, 430px);
+    background: #140f0f;
+    border: 1px solid rgba(212, 175, 116, 0.38);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.55);
+}
+
+.nk-event-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.nk-event-nav {
+    position: absolute;
+    top: 104px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nk-event-nav-prev { left: 10px; }
+.nk-event-nav-next { right: 10px; }
+
+.nk-event-media {
+    width: 100%;
+    height: 210px;
+    background: #090707;
+}
+
+.nk-event-media img,
+.nk-event-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.nk-event-body {
+    padding: 18px 18px 20px;
+}
+
+.nk-event-badge,
+.event-card-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(212, 175, 116, 0.16);
+    border: 1px solid rgba(212, 175, 116, 0.35);
+    color: #f4dfbf;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+}
+
+.nk-event-title {
+    margin: 0;
+    color: #fff;
+    font-size: 1.35rem;
+    font-family: 'Fraunces', serif;
+}
+
+.nk-event-subtitle {
+    margin: 6px 0 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.88rem;
+}
+
+.nk-event-description {
+    margin: 10px 0 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+.nk-event-cta {
+    margin-top: 16px;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #d6a76e 0%, #b17235 100%);
+    color: #25130d;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+.nk-event-carousel-meta {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.nk-event-counter {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.68);
+    letter-spacing: 0.4px;
+}
+
+.nk-event-dots {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.nk-event-dot {
+    width: 8px;
+    height: 8px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    padding: 0;
+}
+
+.nk-event-dot.active {
+    background: #f0c48f;
+}
     #menuGuidePopupId .symbol-guide-card {
         padding: 8px !important;
         display: grid !important;

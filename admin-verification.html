@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Namaste Kalyan Staff Coupon Check</title>
+  <link rel="stylesheet" href="css/admin-animations.css?v=20260413-1">
+  <link rel="stylesheet" href="css/admin-module-theme.css?v=20260413-1">
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search || '');
+      if (!params.has('embedded') && !params.has('standalone')) {
+        window.location.replace('admin-portal.html#verification');
+      }
+    })();
+  </script>
+  <style>
+    h1 { margin: 0 0 8px; }
+    p { margin: 0 0 14px; }
+    .meta {
+      margin-top: 8px;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+      padding: 8px 10px;
+      word-break: break-all;
+    }
+    input,
+    select {
+      margin-bottom: 12px;
+    }
+    button {
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .lock-panel {
+      margin: 10px 0 14px;
+      padding: 12px;
+    }
+    .lock-row {
+      align-items: center;
+    }
+    .lock-row input {
+      flex: 1;
+      min-width: 170px;
+      margin-bottom: 0;
+    }
+    .lock-status {
+      margin-top: 8px;
+      font-size: 0.86rem;
+    }
+
+    .gift-summary {
+      margin-top: 12px;
+      padding: 12px;
+    }
+    .gift-summary .title {
+      color: #6c4a32;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+    .gift-summary .gift-line {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 0.93rem;
+    }
+    .gift-summary .gift-line .k {
+      color: var(--muted);
+    }
+
+    .details {
+      margin-top: 14px;
+      padding: 12px;
+      display: none;
+    }
+    .details.show {
+      display: block;
+    }
+    .coupon-tools {
+      margin-top: 12px;
+      padding: 10px;
+      display: none;
+    }
+    .coupon-tools.show {
+      display: block;
+    }
+    .coupon-code {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      color: #6c4a32;
+      margin-bottom: 8px;
+      word-break: break-all;
+    }
+    .line {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 8px;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+    .line .k {
+      color: var(--muted);
+    }
+
+    #result {
+      margin-top: 14px;
+      padding: 12px;
+      min-height: 44px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 520px) {
+      .line {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+    }
+  </style>
+</head>
+<body class="admin-module-centered">
+  <div class="card">
+    <h1>Staff Coupon Verification</h1>
+    <p>Check customer mobile number and redeem offer at billing counter.</p>
+    <div id="apiMeta" class="meta">API: Loading...</div>
+
+    <div id="adminLockPanel" class="lock-panel">
+      <div class="lock-row">
+        <input id="username" type="tel" inputmode="numeric" maxlength="15" placeholder="Username (mobile number)" />
+        <input id="password" type="password" maxlength="64" placeholder="Password" />
+        <button id="unlockBtn" type="button">Login</button>
+        <button id="logoutBtn" class="secondary" type="button" hidden>Logout</button>
+      </div>
+      <div id="lockStatus" class="lock-status">Panel is locked. Login to continue.</div>
+    </div>
+
+    <input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter 10-digit mobile" />
+    <div class="row">
+      <button id="verifyBtn" type="button">Check Offer</button>
+      <button id="redeemBtn" class="secondary" type="button" disabled>Redeem Coupon</button>
+      <button id="regenCouponBtn" class="secondary" type="button">Generate Missing Coupon</button>
+    </div>
+
+    <select id="giftOverride" aria-label="Gift override for coupon generation">
+      <option value="">Gift Override (use only if prize is Try Again)</option>
+      <option value="Dessert on the House">Dessert on the House</option>
+      <option value="Mocktail on the House">Mocktail on the House</option>
+      <option value="Aerated Drink on the House">Aerated Drink on the House</option>
+      <option value="Starter on the House">Starter on the House</option>
+      <option value="10% OFF">10% OFF</option>
+      <option value="15% OFF">15% OFF</option>
+      <option value="20% OFF">20% OFF</option>
+      <option value="25% OFF">25% OFF</option>
+    </select>
+
+    <div id="result">Awaiting verification...</div>
+
+    <div id="giftSummary" class="gift-summary" hidden>
+      <div class="title">Winner Redemption Summary</div>
+      <div class="gift-line"><span class="k">Gift Item</span><span id="giftPrize">-</span></div>
+      <div class="gift-line"><span class="k">Coupon Code</span><span id="giftCoupon">-</span></div>
+    </div>
+
+    <div id="details" class="details" aria-live="polite">
+      <div class="line"><span class="k">Name</span><span id="dName">-</span></div>
+      <div class="line"><span class="k">Mobile</span><span id="dPhone">-</span></div>
+      <div class="line"><span class="k">Prize</span><span id="dPrize">-</span></div>
+      <div class="line"><span class="k">Status</span><span id="dStatus">-</span></div>
+      <div class="line"><span class="k">Coupon Code</span><span id="dCode">-</span></div>
+      <div class="line"><span class="k">DOB</span><span id="dDob">-</span></div>
+      <div class="line"><span class="k">Anniversary</span><span id="dAnn">-</span></div>
+      <div class="line"><span class="k">Source</span><span id="dSource">-</span></div>
+      <div class="line"><span class="k">Timestamp</span><span id="dTime">-</span></div>
+    </div>
+
+    <div id="couponTools" class="coupon-tools">
+      <div id="couponCodeView" class="coupon-code">-</div>
+      <div class="row">
+        <button id="copyCouponBtn" type="button">Copy Coupon Code</button>
+        <button id="sendCouponBtn" class="secondary" type="button">Send to Hotel WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data-config.js?v=20260412-3"></script>
+  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-ui-ux.js?v=20260413-1"></script>
+  <script>
+    const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
+    const APPS_SCRIPT_URL = (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl)
+      ? String(window.NK_DATA_API.appsScriptUrl).trim()
+      : '';
+    const HOTEL_WHATSAPP_NO = (window.NK_DATA_API && window.NK_DATA_API.hotelWhatsappNo)
+      ? String(window.NK_DATA_API.hotelWhatsappNo).replace(/\D/g, '')
+      : '919371519999';
+
+    const result = document.getElementById('result');
+    const phoneInput = document.getElementById('phone');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const redeemBtn = document.getElementById('redeemBtn');
+    const regenCouponBtn = document.getElementById('regenCouponBtn');
+    const details = document.getElementById('details');
+    const apiMeta = document.getElementById('apiMeta');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const lockStatus = document.getElementById('lockStatus');
+    const couponTools = document.getElementById('couponTools');
+    const giftOverride = document.getElementById('giftOverride');
+    const couponCodeView = document.getElementById('couponCodeView');
+    const copyCouponBtn = document.getElementById('copyCouponBtn');
+    const sendCouponBtn = document.getElementById('sendCouponBtn');
+    const giftSummary = document.getElementById('giftSummary');
+    const giftPrize = document.getElementById('giftPrize');
+    const giftCoupon = document.getElementById('giftCoupon');
+    const adminLockPanel = document.getElementById('adminLockPanel');
+    const authClient = window.NKAdminAuth.createAuthClient({
+      apiBase: APPS_SCRIPT_URL,
+      onAuthError: (payload) => {
+        clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
+      }
+    });
+
+    function applyEmbeddedAuthUi() {
+      if (!embeddedMode) return;
+      if (adminLockPanel) adminLockPanel.style.display = 'none';
+    }
+
+    let lastVerifyData = null;
+    let adminUnlocked = false;
+
+    apiMeta.textContent = APPS_SCRIPT_URL
+      ? `API: ${APPS_SCRIPT_URL}`
+      : 'API: Missing. Please set appsScriptUrl in data-config.js';
+
+    function phoneValue() {
+      return String(phoneInput.value || '').trim();
+    }
+
+    function setResult(text, ok) {
+      result.textContent = text;
+      result.className = ok ? 'ok' : 'bad';
+    }
+
+    function setAdminLockedState(locked) {
+      adminUnlocked = !locked;
+      phoneInput.disabled = locked;
+      verifyBtn.disabled = locked;
+      redeemBtn.disabled = true;
+      regenCouponBtn.disabled = locked;
+      copyCouponBtn.disabled = locked;
+      sendCouponBtn.disabled = locked;
+
+      if (locked) {
+        clearDetails();
+        lastVerifyData = null;
+        setResult('Login to unlock verification panel.', false);
+        lockStatus.textContent = 'Panel is locked. Login to continue.';
+        unlockBtn.hidden = false;
+        logoutBtn.hidden = true;
+        usernameInput.disabled = false;
+        passwordInput.disabled = false;
+      } else {
+        const session = authClient.getSession();
+        lockStatus.textContent = `Panel unlocked for ${session && session.user ? session.user.username : 'admin'}.`;
+        setResult('Panel unlocked. You can now verify customer offers.', true);
+        unlockBtn.hidden = true;
+        logoutBtn.hidden = false;
+        usernameInput.disabled = true;
+        passwordInput.disabled = true;
+      }
+      applyEmbeddedAuthUi();
+    }
+
+    function sessionToken() {
+      return authClient.getToken();
+    }
+
+    function clearSessionAndLock(message) {
+      authClient.clearSession();
+      setAdminLockedState(true);
+      usernameInput.value = '';
+      passwordInput.value = '';
+      if (message) {
+        setResult(message, false);
+      }
+    }
+
+    function setDetail(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value || '-';
+    }
+
+    function isWinnerPrize(prize) {
+      const value = String(prize || '').trim().toLowerCase();
+      return !!value && !value.startsWith('try again');
+    }
+
+    function renderDetails(data) {
+      setDetail('dName', data.name);
+      setDetail('dPhone', data.phone);
+      setDetail('dPrize', data.prize);
+      setDetail('dStatus', data.status);
+      setDetail('dCode', data.couponCode || '-');
+      setDetail('dDob', data.dob);
+      setDetail('dAnn', data.anniversary);
+      setDetail('dSource', data.source);
+      setDetail('dTime', data.timestamp);
+      details.classList.add('show');
+
+      const couponCode = String(data.couponCode || '').trim();
+      const isWinner = isWinnerPrize(data.prize);
+
+      if (isWinner) {
+        giftPrize.textContent = data.prize || '-';
+        giftCoupon.textContent = couponCode || 'Not generated yet';
+        giftSummary.hidden = false;
+      } else {
+        giftSummary.hidden = true;
+        giftPrize.textContent = '-';
+        giftCoupon.textContent = '-';
+      }
+
+      if (isWinner && couponCode) {
+        couponCodeView.textContent = couponCode;
+        couponTools.classList.add('show');
+      } else {
+        couponCodeView.textContent = '-';
+        couponTools.classList.remove('show');
+      }
+    }
+
+    function clearDetails() {
+      ['dName', 'dPhone', 'dPrize', 'dStatus', 'dCode', 'dDob', 'dAnn', 'dSource', 'dTime'].forEach((id) => setDetail(id, '-'));
+      details.classList.remove('show');
+      couponCodeView.textContent = '-';
+      couponTools.classList.remove('show');
+      giftSummary.hidden = true;
+      giftPrize.textContent = '-';
+      giftCoupon.textContent = '-';
+    }
+
+    async function apiGet(action, extraParams) {
+      if (!APPS_SCRIPT_URL) {
+        throw new Error('Apps Script URL missing in data-config.js');
+      }
+      if (!adminUnlocked || !sessionToken()) {
+        throw new Error('ADMIN_LOCKED');
+      }
+
+      const phone = phoneValue();
+      if (!/^\d{10}$/.test(phone)) {
+        setResult('Enter a valid 10-digit mobile number.', false);
+        return null;
+      }
+      const query = new URLSearchParams({
+        action: String(action || ''),
+        phone: phone,
+        token: sessionToken()
+      });
+      if (extraParams && typeof extraParams === 'object') {
+        Object.keys(extraParams).forEach((key) => {
+          const val = extraParams[key];
+          if (val !== null && val !== undefined && String(val).trim() !== '') {
+            query.set(key, String(val));
+          }
+        });
+      }
+      return authClient.apiGet(action, Object.fromEntries(query.entries()));
+    }
+
+    async function apiPost(body) {
+      return authClient.apiPost(body);
+    }
+
+    async function unlockPanel() {
+      const username = String(usernameInput.value || '').replace(/\D/g, '').trim();
+      const password = String(passwordInput.value || '').trim();
+
+      if (!username || !password) {
+        lockStatus.textContent = 'Enter username and password first.';
+        return;
+      }
+
+      unlockBtn.disabled = true;
+      lockStatus.textContent = 'Logging in...';
+      try {
+        const payload = await authClient.login(username, password, 'admin-verification');
+
+        setAdminLockedState(false);
+        passwordInput.value = '';
+        if (payload.forcePasswordChange) {
+          setResult('Login success. Password change is required soon.', true);
+        }
+      } catch (err) {
+        authClient.clearSession();
+        setAdminLockedState(true);
+        lockStatus.textContent = 'Login failed.';
+        setResult(`Login failed: ${err.message}`, false);
+      } finally {
+        unlockBtn.disabled = false;
+      }
+    }
+
+    async function restoreSessionIfAny() {
+      try {
+        const payload = await authClient.restoreSession();
+        if (!payload) {
+          return;
+        }
+        setAdminLockedState(false);
+      } catch (err) {
+        clearSessionAndLock('Session expired. Please login again.');
+      }
+    }
+
+    async function logoutPanel() {
+      await authClient.logout();
+      clearSessionAndLock('Logged out successfully.');
+    }
+
+    verifyBtn.addEventListener('click', async () => {
+      try {
+        verifyBtn.disabled = true;
+        redeemBtn.disabled = true;
+        lastVerifyData = null;
+        clearDetails();
+
+        const data = await apiGet('verify');
+        if (!data) return;
+        if (!data.found) {
+          setResult('No Discount record found for this number.', false);
+          renderDetails({ phone: phoneValue(), status: 'Not Found' });
+          return;
+        }
+        renderDetails(data);
+
+        const isWinner = isWinnerPrize(data.prize);
+        const alreadyRedeemed = String(data.status || '').toLowerCase() === 'redeemed';
+
+        if (!isWinner) {
+          setResult('No discount coupon for this mobile number.', false);
+          return;
+        }
+        if (alreadyRedeemed) {
+          setResult(`Already Redeemed: ${data.prize}`, false);
+          return;
+        }
+
+        lastVerifyData = data;
+        redeemBtn.disabled = false;
+        setResult(`Winner: ${data.prize}`, true);
+      } catch (err) {
+        setResult(`Verification failed: ${err.message}`, false);
+      } finally {
+        verifyBtn.disabled = false;
+      }
+    });
+
+    redeemBtn.addEventListener('click', async () => {
+      try {
+        if (!lastVerifyData) {
+          setResult('Please check offer first before redeem.', false);
+          return;
+        }
+
+        redeemBtn.disabled = true;
+        const data = await apiGet('redeem');
+        if (!data) return;
+        if (data.result === 'not_found') {
+          setResult('No record found to redeem.', false);
+          return;
+        }
+        if (data.result === 'already_redeemed') {
+          setResult(`Already Redeemed: ${data.prize}`, false);
+          return;
+        }
+        if (data.result === 'redeemed') {
+          setResult(`Redeemed successfully: ${data.prize}`, true);
+          setDetail('dStatus', 'Redeemed');
+          if (data.couponCode) {
+            setDetail('dCode', data.couponCode);
+            couponCodeView.textContent = data.couponCode;
+            couponTools.classList.add('show');
+          }
+          return;
+        }
+        setResult('Redeem response unknown.', false);
+      } catch (err) {
+        setResult(`Redeem failed: ${err.message}`, false);
+      } finally {
+        if (lastVerifyData) {
+          const status = String(document.getElementById('dStatus').textContent || '').toLowerCase();
+          if (status !== 'redeemed') redeemBtn.disabled = false;
+        }
+      }
+    });
+
+    phoneInput.addEventListener('input', () => {
+      lastVerifyData = null;
+      redeemBtn.disabled = true;
+    });
+
+    copyCouponBtn.addEventListener('click', async () => {
+      const code = String(couponCodeView.textContent || '').trim();
+      if (!code || code === '-') {
+        setResult('No coupon code available to copy.', false);
+        return;
+      }
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(code);
+        } else {
+          const temp = document.createElement('textarea');
+          temp.value = code;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand('copy');
+          document.body.removeChild(temp);
+        }
+        setResult('Coupon code copied.', true);
+      } catch (err) {
+        setResult('Copy failed. Please copy manually.', false);
+      }
+    });
+
+    sendCouponBtn.addEventListener('click', () => {
+      const code = String(couponCodeView.textContent || '').trim();
+      if (!code || code === '-') {
+        setResult('No coupon code available to send.', false);
+        return;
+      }
+
+      if (!HOTEL_WHATSAPP_NO) {
+        setResult('Hotel WhatsApp number is not configured.', false);
+        return;
+      }
+
+      const waUrl = `https://wa.me/${HOTEL_WHATSAPP_NO}?text=${encodeURIComponent(code)}`;
+      window.open(waUrl, '_blank', 'noopener');
+      setResult('Opening WhatsApp with coupon code.', true);
+    });
+
+    regenCouponBtn.addEventListener('click', async () => {
+      try {
+        regenCouponBtn.disabled = true;
+        const selectedGift = String(giftOverride.value || '').trim();
+        const data = await apiGet('regen_coupon', selectedGift ? { giftItem: selectedGift } : null);
+        if (!data) return;
+
+        if (data.result === 'not_found') {
+          setResult('No record found for this number.', false);
+          return;
+        }
+
+        if (data.result === 'not_winner') {
+          setResult('This customer is not a winner, so no coupon code is generated.', false);
+          return;
+        }
+
+        if (data.couponCode) {
+          if (data.prize) {
+            setDetail('dPrize', data.prize);
+            giftPrize.textContent = data.prize;
+          }
+          setDetail('dCode', data.couponCode);
+          giftCoupon.textContent = data.couponCode;
+          giftSummary.hidden = false;
+          couponCodeView.textContent = data.couponCode;
+          couponTools.classList.add('show');
+        }
+
+        if (data.result === 'generated_with_prize_update') {
+          setResult(`Gift updated to ${data.prize} and coupon generated: ${data.couponCode}`, true);
+        } else if (data.result === 'generated') {
+          setResult(`Coupon generated: ${data.couponCode}`, true);
+        } else {
+          setResult(`Coupon already exists: ${data.couponCode}`, true);
+        }
+      } catch (err) {
+        setResult(`Coupon generation failed: ${err.message}`, false);
+      } finally {
+        regenCouponBtn.disabled = false;
+      }
+    });
+
+    unlockBtn.addEventListener('click', unlockPanel);
+    logoutBtn.addEventListener('click', logoutPanel);
+    passwordInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') unlockPanel();
+    });
+    usernameInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') unlockPanel();
+    });
+
+    setAdminLockedState(true);
+    restoreSessionIfAny();
+  </script>
+</body>
+</html>

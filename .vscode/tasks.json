@@ -1,0 +1,82 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Apps Script: Redeploy Active Web App",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/appscript/Deploy-AppScript.ps1",
+        "-Mode",
+        "redeploy",
+        "-DeploymentId",
+        "${input:appsScriptDeploymentId}",
+        "-Description",
+        "${input:appsScriptDeployDescription}",
+        "-UpdateConfig",
+        "-SmokeTest"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/appscript"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Apps Script: Create New Web App Deployment",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/appscript/Deploy-AppScript.ps1",
+        "-Mode",
+        "new",
+        "-Description",
+        "${input:appsScriptDeployDescription}",
+        "-UpdateConfig",
+        "-SmokeTest"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/appscript"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Apps Script: Smoke Test Current URL",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/appscript/Test-AppScript.ps1",
+        "-FromConfig"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/appscript"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "appsScriptDeploymentId",
+      "type": "promptString",
+      "description": "Existing Apps Script deployment ID to redeploy",
+      "default": "AKfycbxZSs8zvsEg0O9lnDqDZikw4Ar936hzKGMzmZCZvFqdIm-ZHd6Uw5-urtUH3hzNLaeX"
+    },
+    {
+      "id": "appsScriptDeployDescription",
+      "type": "promptString",
+      "description": "Version and deployment description",
+      "default": "Apps Script deploy from VS Code"
+    }
+  ]
+}

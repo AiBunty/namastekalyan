@@ -1,0 +1,164 @@
+.admin-page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background:
+    radial-gradient(circle at 22% 16%, rgba(182, 123, 69, 0.18), transparent 34%),
+    radial-gradient(circle at 82% 18%, rgba(77, 129, 100, 0.16), transparent 30%),
+    linear-gradient(180deg, #fcf9f2 0%, #f5efe3 60%, #ebe1d0 100%);
+  transition: opacity 260ms ease, visibility 260ms ease;
+}
+
+.admin-page-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.admin-page-loader__spinner {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 4px solid rgba(182, 123, 69, 0.22);
+  border-top-color: #b67b45;
+  animation: adminSpin 900ms linear infinite;
+  box-shadow: 0 8px 20px rgba(80, 57, 36, 0.14);
+}
+
+.admin-page-loader__text {
+  font-family: "Avenir Next", "Trebuchet MS", Verdana, sans-serif;
+  font-size: 0.9rem;
+  color: #5f4d3f;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+button.btn-saving {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(-1px);
+}
+
+button.btn-saving::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 248, 239, 0.5);
+  border-top-color: rgba(255, 248, 239, 1);
+  animation: adminSpin 640ms linear infinite;
+}
+
+button.btn-saved {
+  animation: adminPulse 380ms ease;
+}
+
+@keyframes adminSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes adminPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.admin-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10000;
+  padding: 12px 16px;
+  border-radius: 4px;
+  background-color: #4d8164;
+  color: #fcf9f2;
+  font-family: "Avenir Next", "Trebuchet MS", Verdana, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 16px rgba(77, 129, 100, 0.28);
+  animation: adminToastSlide 240ms ease-out;
+  animation-fill-mode: both;
+}
+
+.admin-toast.is-leaving {
+  animation: adminToastFade 240ms ease-in forwards;
+}
+
+@keyframes adminToastSlide {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes adminToastFade {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+/* ────────── Module Loading Indicator ────────── */
+.admin-module-loader {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9998;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: rgba(33, 64, 56, 0.94);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  animation: adminModuleLoaderSlide 240ms ease-out;
+}
+
+.admin-loader-spinner {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(182, 123, 69, 0.3);
+  border-top-color: #d4af74;
+  animation: adminSpin 800ms linear infinite;
+}
+
+.admin-loader-text {
+  margin: 0;
+  font-family: "Avenir Next", "Trebuchet MS", Verdana, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #d4af74;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@keyframes adminModuleLoaderSlide {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

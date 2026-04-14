@@ -1,0 +1,1483 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Namaste Kalyan Event Entry Scanner</title>
+  <link rel="stylesheet" href="css/admin-animations.css?v=20260413-1">
+  <link rel="stylesheet" href="css/admin-module-theme.css?v=20260413-1">
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search || '');
+      if (!params.has('embedded') && !params.has('standalone')) {
+        window.location.replace('admin-portal.html#event-entry-scanner');
+      }
+    })();
+  </script>
+  <style>
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(105, 74, 43, 0.12);
+      box-shadow: 0 16px 34px rgba(66, 44, 21, 0.1);
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .panel-title h2 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .panel-subtle {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+    }
+
+    .hero {
+      margin-bottom: 18px;
+    }
+
+    .hero .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #6a4726;
+      background: linear-gradient(135deg, rgba(212, 175, 116, 0.28), rgba(255, 255, 255, 0.7));
+    }
+
+    .hero .eyebrow span:last-child {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2f9e44;
+      box-shadow: 0 0 0 5px rgba(47, 158, 68, 0.16);
+    }
+
+    .hero h1 {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .camera-shell {
+      overflow: hidden;
+    }
+
+    .camera-frame {
+      position: relative;
+      min-height: 250px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(32, 34, 40, 0.96), rgba(12, 14, 18, 0.98)),
+        radial-gradient(circle at top, rgba(212, 175, 116, 0.18), transparent 40%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    #reader {
+      min-height: 250px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .camera-frame::after {
+      content: '';
+      position: absolute;
+      inset: 22px;
+      border: 2px dashed rgba(212, 175, 116, 0.5);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .camera-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 26px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      pointer-events: none;
+    }
+
+    .camera-controls,
+    .manual-actions,
+    .queue-actions,
+    .summary-grid,
+    .queue-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .camera-controls,
+    .manual-actions,
+    .queue-toolbar {
+      margin-top: 14px;
+    }
+
+    .camera-controls button,
+    .manual-actions button,
+    .queue-actions button,
+    .queue-toolbar button {
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .camera-controls select,
+    .queue-toolbar select {
+      flex: 1 1 190px;
+      margin-bottom: 0;
+    }
+
+    .status-line {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 0.88rem;
+      background: rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(105, 74, 43, 0.1);
+      color: #6a4a30;
+    }
+
+    .summary-grid {
+      margin-top: 16px;
+    }
+
+    .summary-card {
+      flex: 1 1 130px;
+      min-width: 130px;
+      padding: 14px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 241, 232, 0.92));
+      border: 1px solid rgba(105, 74, 43, 0.1);
+    }
+
+    .summary-card .label {
+      color: var(--muted);
+      font-size: 0.77rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .summary-card .value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #5d3718;
+    }
+
+    textarea {
+      min-height: 108px;
+      resize: vertical;
+    }
+
+    .queue-wrap {
+      overflow-x: auto;
+      margin-top: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(105, 74, 43, 0.12);
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 880px;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(105, 74, 43, 0.1);
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.9rem;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #f5ecdf;
+      color: #6a4726;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .guest-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .guest-meta small,
+    .muted {
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .badge.valid {
+      background: rgba(47, 158, 68, 0.12);
+      color: #25783b;
+    }
+
+    .badge.confirmed {
+      background: rgba(31, 96, 196, 0.12);
+      color: #1f60c4;
+    }
+
+    .badge.error {
+      background: rgba(198, 40, 40, 0.1);
+      color: #a22222;
+    }
+
+    .badge.pending {
+      background: rgba(212, 175, 116, 0.18);
+      color: #7a531c;
+    }
+
+    .message-cell {
+      max-width: 260px;
+    }
+
+    .select-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .empty-state {
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 1.48rem;
+      }
+    }
+
+    /* ============================================================
+       MOBILE SAVE BAR — fixed at bottom, visible only on mobile
+    ============================================================ */
+    .mobile-save-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      flex-direction: column;
+      gap: 6px;
+      padding: 10px 14px;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+      background: rgba(250, 243, 233, 0.97);
+      border-top: 1px solid rgba(105, 74, 43, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 -4px 20px rgba(66, 44, 21, 0.12);
+    }
+
+    .mobile-save-bar .save-bar-info {
+      margin: 0;
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .mobile-save-bar .save-bar-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mobile-save-bar button {
+      flex: 1;
+      min-height: 50px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    /* ============================================================
+       MOBILE RESPONSIVE — ≤ 768px
+    ============================================================ */
+    @media (max-width: 768px) {
+      /* Show sticky save bar */
+      .mobile-save-bar { display: flex; }
+
+      /* Pad page content so it clears sticky bar */
+      .admin-module-page { padding-bottom: 96px; }
+
+      /* Hero */
+      .hero { padding: 14px; border-radius: 14px; }
+      .hero h1 { font-size: 1.18rem; }
+      .hero p  { font-size: 0.83rem; }
+
+      /* Panels */
+      .panel { padding: 14px; border-radius: 14px; }
+
+      /* Summary: 2-column grid */
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .summary-card { min-width: 0; flex: none; }
+      .summary-card .value { font-size: 1.28rem; }
+
+      /* Camera: taller for comfortable QR scanning */
+      .camera-frame,
+      #reader { min-height: 300px; }
+
+      /* Camera controls: select full-width, Start/Stop side-by-side */
+      .camera-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .camera-controls select { grid-column: 1 / -1; }
+      .camera-controls button { min-height: 48px; font-size: 0.9rem; }
+
+      /* Manual scan actions: 2-column */
+      .manual-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .manual-actions button { min-height: 48px; font-size: 0.9rem; }
+
+      /* Queue toolbar: 2×2 grid */
+      .queue-toolbar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .queue-toolbar button {
+        flex: unset;
+        min-width: unset;
+        min-height: 48px;
+        font-size: 0.88rem;
+      }
+
+      /* Prevent iOS viewport zoom on input focus */
+      input[type="text"],
+      input[type="number"],
+      textarea,
+      select { font-size: 16px !important; }
+
+      /* Compact bulk textarea */
+      textarea { min-height: 72px; }
+
+      /* ---- QUEUE TABLE → CARD LAYOUT ---- */
+      .queue-wrap {
+        overflow-x: visible;
+        border: none;
+        background: transparent;
+        border-radius: 0;
+        margin-top: 10px;
+      }
+
+      .queue-wrap table { min-width: 0; display: block; }
+      .queue-wrap thead { display: none; }
+      .queue-wrap tbody { display: block; }
+
+      /* Individual scan row → card */
+      .queue-wrap tbody tr {
+        display: block;
+        position: relative;
+        margin-bottom: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(105, 74, 43, 0.14);
+        background: #fff;
+        padding: 12px 44px 14px 12px; /* right padding leaves room for checkbox */
+        box-shadow: 0 2px 8px rgba(66, 44, 21, 0.07);
+      }
+
+      /* Empty-state row: reset card position */
+      .queue-wrap tbody tr.empty-row {
+        position: static;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid rgba(105, 74, 43, 0.1);
+      }
+
+      /* All cells: stacked blocks */
+      .queue-wrap td {
+        display: block;
+        border: none;
+        padding: 2px 0;
+        font-size: 0.88rem;
+      }
+
+      /* Label prefix from data-label attribute */
+      .queue-wrap td[data-label]::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.68rem;
+        font-weight: 800;
+        color: var(--muted);
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        margin-top: 9px;
+        margin-bottom: 2px;
+      }
+
+      /* Suppress label for self-describing cells */
+      .queue-wrap td.no-label::before { display: none; }
+      .queue-wrap td.no-label { padding: 0; }
+
+      /* Checkbox: absolute top-right of each card */
+      .queue-wrap tbody tr:not(.empty-row) > td:first-child {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 0;
+        border: none;
+        display: flex;
+        align-items: flex-start;
+      }
+      .queue-wrap td:first-child input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+        accent-color: #6a4726;
+      }
+
+      /* Arrived Now: full-width, large touch-friendly input */
+      .queue-wrap td input[type="number"] {
+        max-width: 100% !important;
+        width: 100% !important;
+        min-height: 48px;
+        font-size: 1.1rem;
+        padding: 10px 14px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin-top: 2px;
+      }
+
+      /* Message cell: no width cap */
+      .message-cell { max-width: none !important; }
+    }
+  </style>
+</head>
+<body class="admin-module-shell">
+  <div class="admin-module-page">
+    <section class="hero card reveal-card">
+      <div class="eyebrow">
+        <span>Live Event Entry</span>
+        <span aria-hidden="true"></span>
+      </div>
+      <h1>Scan multiple guest QRs, then confirm them together.</h1>
+      <p>Use the device camera for walk-in scanning, or paste QR text in bulk if a handheld scanner is acting like a keyboard. Every scan is cached locally first, so the gate flow stays fast even if the network is unstable. Only the final save sends the batch to the server.</p>
+    </section>
+
+    <div class="layout">
+      <section class="panel reveal-card camera-shell">
+        <div class="panel-title">
+          <h2>Camera Scanner</h2>
+          <span id="scannerStateBadge" class="badge pending">Idle</span>
+        </div>
+        <div class="panel-subtle">Best for gate entry. Scans are captured locally with audible feedback and saved only when staff confirms the batch.</div>
+
+        <div class="camera-frame">
+          <div id="reader"></div>
+          <div id="cameraPlaceholder" class="camera-placeholder">Start the scanner to use the rear camera for guest QR entry.</div>
+        </div>
+
+        <div class="camera-controls">
+          <select id="cameraSelect" aria-label="Camera device selection">
+            <option value="">Loading cameras...</option>
+          </select>
+          <button id="startScannerBtn" type="button">Start Scanner</button>
+          <button id="stopScannerBtn" type="button" class="secondary" disabled>Stop Scanner</button>
+        </div>
+
+        <div id="scannerStatus" class="status-line">Preparing scanner session...</div>
+
+        <div class="summary-grid">
+          <article class="summary-card">
+            <div class="label">Cached</div>
+            <div id="queuedCount" class="value">0</div>
+          </article>
+          <article class="summary-card">
+            <div class="label">Ready</div>
+            <div id="readyCount" class="value">0</div>
+          </article>
+          <article class="summary-card">
+            <div class="label">Saved</div>
+            <div id="confirmedCount" class="value">0</div>
+          </article>
+          <article class="summary-card">
+            <div class="label">Issues</div>
+            <div id="issueCount" class="value">0</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel reveal-card">
+        <div class="panel-title">
+          <h2>Queue And Confirm</h2>
+          <span id="authStateBadge" class="badge pending">Checking</span>
+        </div>
+        <div class="panel-subtle">Scans are stored in browser cache immediately and survive accidental refresh. Save when the batch is ready.</div>
+
+        <label for="manualScanInput">Single scan or scanner-wedge input</label>
+        <input id="manualScanInput" type="text" placeholder="Paste QR URL/text here and press Enter" autocomplete="off" />
+
+        <label for="bulkScanInput">Bulk paste</label>
+        <textarea id="bulkScanInput" placeholder="Paste one QR value per line"></textarea>
+
+        <div class="manual-actions">
+          <button id="addManualScanBtn" type="button">Add Single Scan</button>
+          <button id="addBulkScansBtn" type="button" class="secondary">Add Bulk Scans</button>
+        </div>
+
+        <div id="queueStatus" class="status-line">Queue is empty. New scans will be cached here first.</div>
+
+        <div class="queue-toolbar">
+          <button id="confirmSelectedBtn" type="button">Save Selected</button>
+          <button id="confirmAllBtn" type="button" class="secondary">Save All Ready</button>
+          <button id="removeSelectedBtn" type="button" class="secondary">Remove Selected</button>
+          <button id="clearQueueBtn" type="button" class="secondary">Clear Queue</button>
+        </div>
+
+        <div class="queue-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  <label class="select-all">
+                    <input id="selectAllRows" type="checkbox" />
+                    <span>Select</span>
+                  </label>
+                </th>
+                <th>Status</th>
+                <th>Guest / Ticket</th>
+                <th>Event</th>
+                <th>Type</th>
+                <th>Source</th>
+                <th>Arrived Now</th>
+                <th>Local Check</th>
+                <th>Message</th>
+                <th>Scanned</th>
+              </tr>
+            </thead>
+            <tbody id="queueTableBody">
+              <tr>
+                <td colspan="10" class="empty-state" style="padding:20px;text-align:center;">No QR scans queued yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="data-config.js?v=20260412-3"></script>
+      <!-- Mobile-only sticky save bar (hidden on desktop via CSS) -->
+      <div class="mobile-save-bar" id="mobileSaveBar">
+        <p class="save-bar-info" id="mobileSaveBarInfo">No scans queued</p>
+        <div class="save-bar-buttons">
+          <button id="mobileSaveAllBtn" type="button">Save All Ready</button>
+          <button id="mobileSaveSelBtn" type="button" class="secondary">Save Selected</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="data-config.js?v=20260412-3"></script>
+  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-ui-ux.js?v=20260413-1"></script>
+  <script src="https://unpkg.com/html5-qrcode" defer></script>
+  <script>
+    (function () {
+      const apiBase = (window.APPS_SCRIPT_URL || (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || '').split('?')[0];
+      const CACHE_KEY = 'nk_event_scanner_queue_v2';
+      const CACHE_SESSION_KEY = 'nk_admin_auth_session_v1';
+      const authClient = window.NKAdminAuth.createAuthClient({
+        apiBase: apiBase,
+        onAuthError: function (payload) {
+          setQueueStatus((payload && payload.message) || 'Session expired. Please reopen this module from the admin portal.', false);
+          setAuthBadge('Session required', 'error');
+        }
+      });
+
+      const queue = [];
+        let rowSequence = 1;
+        let html5QrCode = null;
+        let scannerRunning = false;
+        let recentScanText = '';
+        let recentScanTime = 0;
+        let audioContext = null;
+        let authReady = false;
+        let lastQueuedId = '';
+
+      const scannerStateBadge = document.getElementById('scannerStateBadge');
+      const authStateBadge = document.getElementById('authStateBadge');
+      const scannerStatus = document.getElementById('scannerStatus');
+      const queueStatus = document.getElementById('queueStatus');
+      const queuedCount = document.getElementById('queuedCount');
+      const readyCount = document.getElementById('readyCount');
+      const confirmedCount = document.getElementById('confirmedCount');
+      const issueCount = document.getElementById('issueCount');
+      const cameraSelect = document.getElementById('cameraSelect');
+      const startScannerBtn = document.getElementById('startScannerBtn');
+      const stopScannerBtn = document.getElementById('stopScannerBtn');
+      const cameraPlaceholder = document.getElementById('cameraPlaceholder');
+      const manualScanInput = document.getElementById('manualScanInput');
+      const bulkScanInput = document.getElementById('bulkScanInput');
+      const addManualScanBtn = document.getElementById('addManualScanBtn');
+      const addBulkScansBtn = document.getElementById('addBulkScansBtn');
+      const confirmSelectedBtn = document.getElementById('confirmSelectedBtn');
+      const confirmAllBtn = document.getElementById('confirmAllBtn');
+      const removeSelectedBtn = document.getElementById('removeSelectedBtn');
+      const clearQueueBtn = document.getElementById('clearQueueBtn');
+      const selectAllRows = document.getElementById('selectAllRows');
+      const queueTableBody = document.getElementById('queueTableBody');
+
+      function escapeHtml(value) {
+        return String(value || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function nowLabel() {
+        return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      }
+
+      function getQueryToken() {
+        try {
+          const params = new URLSearchParams(window.location.search || '');
+          return String(params.get('authToken') || '').trim();
+        } catch (err) {
+          return '';
+        }
+      }
+
+      function safeParseJson(text) {
+        try {
+          return JSON.parse(text);
+        } catch (err) {
+          return null;
+        }
+      }
+
+      function getStoredSession() {
+        const queryToken = getQueryToken();
+        if (queryToken) {
+          authClient.saveSession({ token: queryToken, expiresAt: '', user: null });
+          return authClient.getSession();
+        }
+
+        const raw = window.sessionStorage.getItem(CACHE_SESSION_KEY);
+        const parsed = safeParseJson(raw || '');
+        if (parsed && parsed.token) {
+          authClient.saveSession(parsed);
+          return parsed;
+        }
+        return null;
+      }
+
+      async function silentApiGet(action, params) {
+        const token = String(authClient.getToken() || '').trim();
+        if (!apiBase || !token) {
+          throw new Error('Admin session is not available.');
+        }
+
+        const query = new URLSearchParams(Object.assign({ action: action, token: token }, params || {}));
+        const response = await fetch(apiBase + '?' + query.toString(), { cache: 'no-store' });
+        const payload = await response.json();
+        if (!response.ok || !payload || payload.ok !== true) {
+          if (payload && payload.error) {
+            authClient.clearSession();
+          }
+          throw new Error((payload && (payload.message || payload.error)) || ('HTTP ' + response.status));
+        }
+        return payload;
+      }
+
+      function focusManualInput() {
+        window.requestAnimationFrame(function () {
+          if (manualScanInput && !scannerRunning) {
+            manualScanInput.focus();
+            manualScanInput.select();
+          }
+        });
+      }
+
+      function ensureAudioContext() {
+        const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextCtor) return null;
+        if (!audioContext) {
+          audioContext = new AudioContextCtor();
+        }
+        if (audioContext.state === 'suspended') {
+          audioContext.resume().catch(function () {});
+        }
+        return audioContext;
+      }
+
+      function playTone(frequency, durationMs, volume, waveType, startOffset) {
+        const context = ensureAudioContext();
+        if (!context) return;
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        const now = context.currentTime + (startOffset || 0);
+        oscillator.type = waveType || 'sine';
+        oscillator.frequency.setValueAtTime(frequency, now);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(Math.max(0.001, volume || 0.08), now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + ((durationMs || 120) / 1000));
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+        oscillator.start(now);
+        oscillator.stop(now + ((durationMs || 120) / 1000) + 0.03);
+      }
+
+      function playSuccessBeep() {
+        playTone(880, 90, 0.06, 'triangle', 0);
+        playTone(1174, 120, 0.05, 'triangle', 0.09);
+      }
+
+      function playFailureBeep() {
+        playTone(220, 130, 0.07, 'sawtooth', 0);
+        playTone(180, 180, 0.06, 'square', 0.08);
+      }
+
+      function parseLocalScan(rawScan) {
+        const text = String(rawScan || '').trim();
+        if (!text) return null;
+        const candidates = [text];
+        const questionIndex = text.indexOf('?');
+        if (questionIndex >= 0 && questionIndex < text.length - 1) {
+          candidates.push(text.substring(questionIndex + 1));
+        }
+
+        for (let index = 0; index < candidates.length; index += 1) {
+          const candidate = String(candidates[index] || '').trim();
+          if (!candidate) continue;
+
+          let params = null;
+          try {
+            if (/^https?:\/\//i.test(candidate)) {
+              params = new URL(candidate).searchParams;
+            } else {
+              params = new URLSearchParams(candidate.replace(/^[?#]/, ''));
+            }
+          } catch (err) {
+            params = null;
+          }
+
+          if (!params) continue;
+
+          const transactionId = String(params.get('tx') || params.get('transactionId') || '').trim();
+          const eventId = String(params.get('eventId') || '').trim();
+          const paymentId = String(params.get('paymentId') || params.get('pid') || '').trim();
+          const guestId = String(params.get('guestId') || params.get('gid') || '').trim();
+          const signature = String(params.get('sig') || params.get('signature') || '').trim();
+          if (transactionId && eventId && paymentId && signature) {
+            return {
+              transactionId: transactionId,
+              eventId: eventId,
+              paymentId: paymentId,
+              guestId: guestId,
+              signature: signature,
+              duplicateKey: guestId ? (transactionId + '::' + guestId) : transactionId
+            };
+          }
+        }
+        return null;
+      }
+
+      function serializeQueue() {
+        try {
+          const payload = {
+            rowSequence: rowSequence,
+            queue: queue
+          };
+          window.localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+        } catch (err) {
+          // Ignore cache write failures.
+        }
+      }
+
+      function restoreQueueFromCache() {
+        try {
+          const raw = window.localStorage.getItem(CACHE_KEY);
+          const parsed = safeParseJson(raw || '');
+          const items = parsed && Array.isArray(parsed.queue) ? parsed.queue : [];
+          queue.length = 0;
+          items.forEach(function (item) {
+            queue.push(Object.assign({
+              selected: false,
+              confirmed: false,
+              localValid: false,
+              localMessage: '',
+              saveFailed: false,
+              saveFailedMessage: '',
+              message: ''
+            }, item || {}));
+          });
+          rowSequence = Math.max(1, Number(parsed && parsed.rowSequence || 1) || 1);
+        } catch (err) {
+          queue.length = 0;
+          rowSequence = 1;
+        }
+      }
+
+      function setScannerStatus(message, ok) {
+        scannerStatus.textContent = String(message || '');
+        scannerStatus.style.color = ok ? '#246a38' : '#7a4f22';
+      }
+
+      function setQueueStatus(message, ok) {
+        queueStatus.textContent = String(message || '');
+        queueStatus.style.color = ok ? '#246a38' : '#7a4f22';
+      }
+
+      function setBadge(el, text, kind) {
+        if (!el) return;
+        el.textContent = String(text || '');
+        el.className = 'badge ' + String(kind || 'pending');
+      }
+
+      function setScannerBadge(text, kind) {
+        setBadge(scannerStateBadge, text, kind);
+      }
+
+      function setAuthBadge(text, kind) {
+        setBadge(authStateBadge, text, kind);
+      }
+
+      function formatBookingType(item) {
+        return item.bookingType || (item.gateway === 'free' ? 'Free' : 'Paid');
+      }
+
+      function formatStatusChip(item) {
+        if (item.confirmed) {
+          return '<span class="badge confirmed">Saved</span>';
+        }
+        if (item.saveFailed) {
+          return '<span class="badge error">Retry</span>';
+        }
+        if (item.localValid) {
+          return '<span class="badge valid">Ready</span>';
+        }
+        return '<span class="badge error">Issue</span>';
+      }
+
+      function formatLocalCheck(item) {
+        if (item.confirmed) {
+          return '<span class="badge confirmed">Saved</span>';
+        }
+        if (item.saveFailed && item.localValid) {
+          return '<span class="badge pending">Retry</span>';
+        }
+        if (item.localValid) {
+          return '<span class="badge valid">Queued</span>';
+        }
+        return '<span class="badge error">Blocked</span>';
+      }
+
+      function getSelectedQueueIds() {
+        return Array.from(queueTableBody.querySelectorAll('input[data-row-select]:checked')).map(function (input) {
+          return String(input.getAttribute('data-row-select') || '');
+        });
+      }
+
+      function getQueueItemById(id) {
+        return queue.find(function (item) {
+          return item.id === id;
+        }) || null;
+      }
+
+      function syncSelectAllState() {
+        const selectable = queue.filter(function (item) { return !item.confirmed; });
+        const selected = selectable.filter(function (item) { return !!item.selected; });
+        selectAllRows.checked = !!selectable.length && selected.length === selectable.length;
+        selectAllRows.indeterminate = selected.length > 0 && selected.length < selectable.length;
+      }
+
+      function renderQueue() {
+        if (!queue.length) {
+          queueTableBody.innerHTML = '<tr class="empty-row"><td colspan="10" class="empty-state" style="padding:20px;text-align:center;">No QR scans queued yet.</td></tr>';
+          queuedCount.textContent = '0';
+          readyCount.textContent = '0';
+          confirmedCount.textContent = '0';
+          issueCount.textContent = '0';
+          const mbi0 = document.getElementById('mobileSaveBarInfo');
+          if (mbi0) { mbi0.textContent = 'No scans queued'; }
+          syncSelectAllState();
+          return;
+        }
+
+        queueTableBody.innerHTML = queue.map(function (item) {
+          const guestTitle = item.guestName || item.guestLabel || item.customerName || 'Ticket Holder';
+          const ticketMeta = item.transactionId ? ('Tx: ' + item.transactionId) : 'QR not parsed yet';
+          const scannedAt = item.scannedAt || '-';
+          const disabled = item.confirmed ? 'disabled' : '';
+          const eventMeta = item.guestId ? ('Guest ID: ' + item.guestId) : (item.eventId ? ('Event ID: ' + item.eventId) : 'Awaiting save');
+          const admitDisabled = (item.confirmed || !item.localValid) ? 'disabled' : '';
+          const admitValue = Math.max(1, Number(item.admittedCount || 1) || 1);
+          return [
+            '<tr>',
+            '  <td class="no-label"><input type="checkbox" data-row-select="', escapeHtml(item.id), '" ', item.selected ? 'checked' : '', ' ', disabled, ' /></td>',
+            '  <td class="no-label">', formatStatusChip(item), '</td>',
+            '  <td data-label="Guest"><div class="guest-meta"><strong>', escapeHtml(guestTitle), '</strong><small>', escapeHtml(ticketMeta), '</small></div></td>',
+            '  <td data-label="Event"><div class="guest-meta"><strong>', escapeHtml(item.eventTitle || item.eventId || '-'), '</strong><small>', escapeHtml(eventMeta), '</small></div></td>',
+            '  <td data-label="Type">', escapeHtml(formatBookingType(item)), '</td>',
+            '  <td data-label="Source">', escapeHtml(item.source || '-'), '</td>',
+            '  <td data-label="Arrived Now"><input type="number" min="1" step="1" style="max-width:95px;" data-admit-count="', escapeHtml(item.id), '" value="', escapeHtml(admitValue), '" ', admitDisabled, ' /></td>',
+            '  <td data-label="Check">', formatLocalCheck(item), '</td>',
+            '  <td class="message-cell" data-label="Message">', escapeHtml(item.message || '-'), '</td>',
+            '  <td data-label="Scanned"><div class="guest-meta"><strong>', escapeHtml(scannedAt), '</strong><small>', escapeHtml(item.confirmedAt || ''), '</small></div></td>',
+            '</tr>'
+          ].join('');
+        }).join('');
+
+        const ready = queue.filter(function (item) { return item.localValid && !item.confirmed; }).length;
+        const confirmed = queue.filter(function (item) { return item.confirmed; }).length;
+        const issues = queue.filter(function (item) { return (!item.localValid || item.saveFailed) && !item.confirmed; }).length;
+        queuedCount.textContent = String(queue.length);
+        readyCount.textContent = String(ready);
+        confirmedCount.textContent = String(confirmed);
+        issueCount.textContent = String(issues);
+        const mbi = document.getElementById('mobileSaveBarInfo');
+        if (mbi) {
+          mbi.textContent = ready + ' ready · ' + confirmed + ' saved' + (issues ? ' · ' + issues + ' issue(s)' : '');
+        }
+        syncSelectAllState();
+
+        if (lastQueuedId) {
+          const target = queueTableBody.querySelector('input[data-row-select="' + lastQueuedId + '"]');
+          const row = target && target.closest('tr');
+          if (row) {
+            row.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+          lastQueuedId = '';
+        }
+      }
+
+      function createQueueItem(source, rawScan) {
+        const parsed = parseLocalScan(rawScan);
+        return {
+          id: 'scan-' + String(rowSequence++),
+          source: source,
+          rawScan: rawScan,
+          scannedAt: nowLabel(),
+          confirmed: false,
+          selected: true,
+          localValid: false,
+          localMessage: '',
+          saveFailed: false,
+          saveFailedMessage: '',
+          message: 'Stored locally. Not saved yet.',
+          transactionId: parsed ? parsed.transactionId : '',
+          eventId: parsed ? parsed.eventId : '',
+          paymentId: parsed ? parsed.paymentId : '',
+          guestId: parsed ? parsed.guestId : '',
+          signature: parsed ? parsed.signature : '',
+          duplicateKey: parsed ? parsed.duplicateKey : '',
+          admittedCount: 1
+        };
+      }
+
+      function recomputeLocalState() {
+        const seenKeys = {};
+        for (let index = queue.length - 1; index >= 0; index -= 1) {
+          const item = queue[index];
+          if (item.confirmed) {
+            continue;
+          }
+
+          item.localValid = false;
+          item.admittedCount = Math.max(1, Math.floor(Number(item.admittedCount || 1) || 1));
+          if (!item.transactionId || !item.eventId || !item.paymentId || !item.signature) {
+            item.localMessage = 'QR format looks incomplete. Save will be blocked.';
+            item.message = item.localMessage;
+            continue;
+          }
+
+          if (item.duplicateKey && seenKeys[item.duplicateKey]) {
+            item.localMessage = 'Already scanned in this device queue.';
+            item.message = item.localMessage;
+            continue;
+          }
+
+          if (item.duplicateKey) {
+            seenKeys[item.duplicateKey] = true;
+          }
+
+          item.localValid = true;
+          item.localMessage = 'Queued locally and ready to save.';
+          if (item.saveFailed && item.saveFailedMessage) {
+            item.message = item.saveFailedMessage;
+          } else if (!item.confirmed) {
+            item.message = item.localMessage;
+          }
+        }
+        serializeQueue();
+      }
+
+      function enqueueScan(rawScan, source) {
+        const normalized = String(rawScan || '').trim();
+        if (!normalized) {
+          setQueueStatus('Nothing to add. Provide a QR value first.', false);
+          playFailureBeep();
+          focusManualInput();
+          return;
+        }
+
+        const queueItem = createQueueItem(source, normalized);
+        queue.unshift(queueItem);
+        lastQueuedId = queueItem.id;
+        recomputeLocalState();
+        renderQueue();
+
+        if (queueItem.localValid) {
+          setQueueStatus('Scan cached locally. Continue scanning or save when ready.', true);
+          playSuccessBeep();
+        } else {
+          setQueueStatus(queueItem.message || 'Scan cached but blocked locally.', false);
+          playFailureBeep();
+        }
+        focusManualInput();
+      }
+
+      function addBulkScans(lines, source) {
+        const values = lines.map(function (line) { return String(line || '').trim(); }).filter(Boolean);
+        if (!values.length) {
+          setQueueStatus('Nothing to add. Provide at least one QR value.', false);
+          playFailureBeep();
+          focusManualInput();
+          return;
+        }
+
+        for (let index = 0; index < values.length; index += 1) {
+          enqueueScan(values[index], source);
+        }
+        setQueueStatus(String(values.length) + ' scan(s) cached locally.', true);
+        focusManualInput();
+      }
+
+      async function confirmQueueItems(items) {
+        const validItems = items.filter(function (item) {
+          return item && item.localValid && !item.confirmed;
+        });
+
+        if (!validItems.length) {
+          setQueueStatus('Select at least one locally valid QR before saving.', false);
+          playFailureBeep();
+          focusManualInput();
+          return;
+        }
+
+        setQueueStatus('Saving queued scans to the server...', true);
+        try {
+          const response = await authClient.apiPost({
+            action: 'admin_batch_checkin_event_qr',
+            scans: validItems.map(function (item) {
+              return {
+                scanText: item.rawScan,
+                admittedCount: Math.max(1, Math.floor(Number(item.admittedCount || 1) || 1))
+              };
+            })
+          });
+
+          (response.results || []).forEach(function (result, index) {
+            const item = validItems[index];
+            if (!item) return;
+            item.message = result.message || (result.ok ? 'Saved successfully.' : 'Save failed.');
+            item.status = result.status || item.status || '';
+            item.checkInStatus = result.checkInStatus || item.checkInStatus || '';
+            item.confirmed = !!result.ok;
+            item.saveFailed = !result.ok;
+            item.saveFailedMessage = !result.ok ? item.message : '';
+            item.eventTitle = result.eventTitle || item.eventTitle || item.eventId || '';
+            item.customerName = result.customerName || item.customerName || '';
+            item.guestName = result.guestName || item.guestName || '';
+            item.guestLabel = result.guestLabel || item.guestLabel || '';
+            item.bookingType = result.bookingType || item.bookingType || '';
+            item.gateway = result.gateway || item.gateway || '';
+            item.confirmedAt = result.checkedInAt ? ('Saved ' + new Date(result.checkedInAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })) : '';
+            if (result.ok && Number(result.remainingEntries || 0) > 0) {
+              item.message = `${item.message} (${Number(result.remainingEntries || 0)} remaining on same QR)`;
+            }
+            item.selected = false;
+            item.localValid = !result.ok ? item.localValid : false;
+          });
+
+          const totals = response.totals || { success: 0, failed: 0 };
+          recomputeLocalState();
+          if ((totals.failed || 0) > 0) {
+            playFailureBeep();
+          } else {
+            playSuccessBeep();
+          }
+          setQueueStatus('Batch completed. ' + String(totals.success || 0) + ' saved, ' + String(totals.failed || 0) + ' failed.', totals.failed === 0);
+        } catch (err) {
+          setQueueStatus(err && err.message ? err.message : 'Batch confirmation failed.', false);
+          playFailureBeep();
+        }
+
+        serializeQueue();
+        renderQueue();
+        focusManualInput();
+      }
+
+      function removeSelectedQueueItems() {
+        const selectedIds = getSelectedQueueIds();
+        if (!selectedIds.length) {
+          setQueueStatus('Select rows to remove.', false);
+          playFailureBeep();
+          focusManualInput();
+          return;
+        }
+
+        for (let index = queue.length - 1; index >= 0; index -= 1) {
+          if (selectedIds.indexOf(queue[index].id) !== -1) {
+            queue.splice(index, 1);
+          }
+        }
+        recomputeLocalState();
+        setQueueStatus('Selected rows removed.', true);
+        renderQueue();
+        focusManualInput();
+      }
+
+      function clearQueue() {
+        queue.length = 0;
+        selectAllRows.checked = false;
+        selectAllRows.indeterminate = false;
+        serializeQueue();
+        setQueueStatus('Queue cleared.', true);
+        renderQueue();
+        focusManualInput();
+      }
+
+      async function loadCameras() {
+        if (!window.Html5Qrcode || !window.Html5Qrcode.getCameras) {
+          cameraSelect.innerHTML = '<option value="">Camera library unavailable</option>';
+          startScannerBtn.disabled = true;
+          setScannerStatus('Camera scanning library could not be loaded. Manual mode is still available.', false);
+          return;
+        }
+
+        try {
+          const cameras = await window.Html5Qrcode.getCameras();
+          if (!cameras.length) {
+            cameraSelect.innerHTML = '<option value="">No cameras found</option>';
+            startScannerBtn.disabled = true;
+            setScannerStatus('No camera devices found on this device.', false);
+            return;
+          }
+
+          cameraSelect.innerHTML = cameras.map(function (camera, index) {
+            const label = camera.label || ('Camera ' + String(index + 1));
+            return '<option value="' + escapeHtml(camera.id) + '">' + escapeHtml(label) + '</option>';
+          }).join('');
+          startScannerBtn.disabled = false;
+          setScannerStatus('Camera ready. Pick a device and start scanning.', true);
+        } catch (err) {
+          cameraSelect.innerHTML = '<option value="">Camera access failed</option>';
+          startScannerBtn.disabled = true;
+          setScannerStatus(err && err.message ? err.message : 'Unable to load cameras.', false);
+        }
+      }
+
+      async function startScanner() {
+        if (scannerRunning) return;
+        const cameraId = String(cameraSelect.value || '').trim();
+        if (!cameraId) {
+          setScannerStatus('Choose a camera device first.', false);
+          return;
+        }
+
+        if (!window.Html5Qrcode) {
+          setScannerStatus('Scanner library unavailable.', false);
+          playFailureBeep();
+          return;
+        }
+
+        if (!html5QrCode) {
+          html5QrCode = new window.Html5Qrcode('reader');
+        }
+
+        try {
+          await html5QrCode.start(
+            cameraId,
+            { fps: 10, qrbox: { width: 220, height: 220 }, aspectRatio: 1.2 },
+            async function (decodedText) {
+              const normalized = String(decodedText || '').trim();
+              const now = Date.now();
+              if (!normalized) return;
+              if (normalized === recentScanText && (now - recentScanTime) < 1500) {
+                return;
+              }
+              recentScanText = normalized;
+              recentScanTime = now;
+              setScannerStatus('QR detected. Caching scan locally...', true);
+              enqueueScan(normalized, 'camera');
+            },
+            function () {}
+          );
+          scannerRunning = true;
+          startScannerBtn.disabled = true;
+          stopScannerBtn.disabled = false;
+          cameraPlaceholder.style.display = 'none';
+          setScannerBadge('Scanning', 'valid');
+          setScannerStatus('Scanner active. Hold guest QR inside the frame.', true);
+          ensureAudioContext();
+        } catch (err) {
+          setScannerStatus(err && err.message ? err.message : 'Unable to start scanner.', false);
+          setScannerBadge('Error', 'error');
+          playFailureBeep();
+        }
+      }
+
+      async function stopScanner() {
+        if (!html5QrCode || !scannerRunning) return;
+        try {
+          await html5QrCode.stop();
+          await html5QrCode.clear();
+        } catch (err) {
+          // Ignore scanner stop errors.
+        }
+        scannerRunning = false;
+        startScannerBtn.disabled = false;
+        stopScannerBtn.disabled = true;
+        cameraPlaceholder.style.display = 'flex';
+        setScannerBadge('Idle', 'pending');
+        setScannerStatus('Scanner stopped.', true);
+        focusManualInput();
+      }
+
+      async function bootstrap() {
+        setScannerBadge('Idle', 'pending');
+        setAuthBadge('Checking', 'pending');
+        restoreQueueFromCache();
+        recomputeLocalState();
+        renderQueue();
+        try {
+          const storedSession = getStoredSession();
+          if (!storedSession || !storedSession.token) {
+            throw new Error('Open this page from the admin portal to use the scanner.');
+          }
+          const session = await silentApiGet('auth_me');
+          authClient.saveSession({
+            token: authClient.getToken(),
+            expiresAt: storedSession.expiresAt || '',
+            user: session.user
+          });
+          const username = session && session.user && session.user.username ? session.user.username : 'staff';
+          authReady = true;
+          setAuthBadge(username, 'valid');
+          setQueueStatus(queue.length ? 'Cached queue restored. Save when ready.' : 'Session ready. Start scanning. New scans stay local until save.', true);
+          setScannerStatus('Choose a camera and start scanning.', true);
+          await loadCameras();
+        } catch (err) {
+          authReady = false;
+          setAuthBadge('Session required', 'error');
+          setScannerStatus('Staff session not available. Open this page from the admin portal.', false);
+          setQueueStatus(err && err.message ? err.message : 'Unable to restore admin session.', false);
+          startScannerBtn.disabled = true;
+        }
+        focusManualInput();
+      }
+
+      startScannerBtn.addEventListener('click', function () {
+        startScanner();
+      });
+
+      stopScannerBtn.addEventListener('click', function () {
+        stopScanner();
+      });
+
+      addManualScanBtn.addEventListener('click', function () {
+        ensureAudioContext();
+        const value = String(manualScanInput.value || '').trim();
+        manualScanInput.value = '';
+        enqueueScan(value, 'manual');
+      });
+
+      manualScanInput.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter') return;
+        event.preventDefault();
+        addManualScanBtn.click();
+      });
+
+      addBulkScansBtn.addEventListener('click', function () {
+        ensureAudioContext();
+        const lines = String(bulkScanInput.value || '').split(/\r?\n/);
+        bulkScanInput.value = '';
+        addBulkScans(lines, 'bulk');
+      });
+
+      confirmSelectedBtn.addEventListener('click', function () {
+        if (!authReady) {
+          setQueueStatus('Staff session not ready. Reopen the scanner page from the admin portal.', false);
+          playFailureBeep();
+          return;
+        }
+        const items = getSelectedQueueIds().map(getQueueItemById).filter(Boolean);
+        confirmQueueItems(items);
+      });
+
+      confirmAllBtn.addEventListener('click', function () {
+        if (!authReady) {
+          setQueueStatus('Staff session not ready. Reopen the scanner page from the admin portal.', false);
+          playFailureBeep();
+          return;
+        }
+        const items = queue.filter(function (item) {
+          return item.localValid && !item.confirmed;
+        });
+        confirmQueueItems(items);
+      });
+
+      removeSelectedBtn.addEventListener('click', function () {
+        removeSelectedQueueItems();
+      });
+
+      clearQueueBtn.addEventListener('click', function () {
+        clearQueue();
+      });
+
+      selectAllRows.addEventListener('change', function () {
+        const checked = !!selectAllRows.checked;
+        queue.forEach(function (item) {
+          if (!item.confirmed) {
+            item.selected = checked;
+          }
+        });
+        renderQueue();
+      });
+
+      queueTableBody.addEventListener('change', function (event) {
+        const target = event.target;
+        if (!target) return;
+
+        if (target.matches('input[data-row-select]')) {
+          const rowId = String(target.getAttribute('data-row-select') || '');
+          const item = getQueueItemById(rowId);
+          if (!item) return;
+          item.selected = !!target.checked;
+          syncSelectAllState();
+          return;
+        }
+
+        if (target.matches('input[data-admit-count]')) {
+          const rowId = String(target.getAttribute('data-admit-count') || '');
+          const item = getQueueItemById(rowId);
+          if (!item) return;
+          item.admittedCount = Math.max(1, Math.floor(Number(target.value || 1) || 1));
+          target.value = String(item.admittedCount);
+          serializeQueue();
+        }
+      });
+
+
+      window.addEventListener('beforeunload', function () {
+        stopScanner();
+      });
+
+      // Mobile sticky save bar wiring
+      const mobileSaveAllBtn = document.getElementById('mobileSaveAllBtn');
+      const mobileSaveSelBtn = document.getElementById('mobileSaveSelBtn');
+
+      if (mobileSaveAllBtn) {
+        mobileSaveAllBtn.addEventListener('click', function () {
+          if (!authReady) {
+            setQueueStatus('Staff session not ready. Reopen from the admin portal.', false);
+            playFailureBeep();
+            return;
+          }
+          confirmQueueItems(queue.filter(function (item) { return item.localValid && !item.confirmed; }));
+        });
+      }
+
+      if (mobileSaveSelBtn) {
+        mobileSaveSelBtn.addEventListener('click', function () {
+          if (!authReady) {
+            setQueueStatus('Staff session not ready. Reopen from the admin portal.', false);
+            playFailureBeep();
+            return;
+          }
+          confirmQueueItems(getSelectedQueueIds().map(getQueueItemById).filter(Boolean));
+        });
+      }
+
+      bootstrap();
+    })();
+  </script>
+</body>
+</html>

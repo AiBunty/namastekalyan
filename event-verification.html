@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event QR Verification | Namaste Kalyan</title>
+  <link rel="stylesheet" href="styles-copy.css?v=20260321-4">
+  <link rel="stylesheet" href="css/site-chrome.css?v=20260413-1">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #2e1b1b, #0e0909 65%);
+      color: #f8e6c9;
+    }
+
+    .verify-wrap {
+      min-height: 70vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: min(94vw, 520px);
+      background: rgba(21, 12, 12, 0.9);
+      border: 1px solid rgba(240, 196, 143, 0.35);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 1.45rem;
+      color: #f0c48f;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: rgba(255, 240, 220, 0.86);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .meta {
+      margin: 12px 0;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(240, 196, 143, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+      font-size: 0.8rem;
+      color: rgba(255, 240, 220, 0.75);
+      word-break: break-all;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+      color: #f5ddbc;
+      letter-spacing: 0.4px;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 12px;
+      border: 1px solid rgba(240, 196, 143, 0.3);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.24);
+      color: #f8e6c9;
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #f0c48f;
+      box-shadow: 0 0 0 2px rgba(240, 196, 143, 0.18);
+    }
+
+    .btn {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 14px;
+      background: linear-gradient(135deg, #f0c48f, #d79a72);
+      color: #25130d;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 14px;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 700;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(240, 196, 143, 0.18);
+      min-height: 18px;
+    }
+
+    .ok { color: #72e1a0; }
+    .bad { color: #ff9f9f; }
+  </style>
+</head>
+<body class="concept-body">
+  <div class="concept-shell">
+    <div id="nkSharedNavbar"></div>
+    <main class="verify-wrap">
+      <div class="card">
+        <h1>Event Ticket Verification</h1>
+        <p>Scan validates once only. Cancelled, refunded, expired, or used tickets will be rejected.</p>
+
+        <div id="qrMeta" class="meta">Reading QR payload...</div>
+
+        <label for="staffPasscode">Staff Passcode</label>
+        <input id="staffPasscode" type="password" maxlength="12" placeholder="Enter staff passcode">
+
+        <label for="verifiedBy">Verified By (name/device)</label>
+        <input id="verifiedBy" type="text" maxlength="60" placeholder="e.g. Counter-1">
+
+        <button id="verifyBtn" class="btn" type="button">Verify & Check-In</button>
+        <div id="status" class="status"></div>
+      </div>
+    </main>
+    <div id="nkSharedFooter"></div>
+  </div>
+
+  <script src="shared-site-chrome.js?v=20260413-1"></script>
+  <script src="data-config.js"></script>
+  <script>
+    (function () {
+      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const passcodeEl = document.getElementById('staffPasscode');
+      const verifiedByEl = document.getElementById('verifiedBy');
+      const verifyBtn = document.getElementById('verifyBtn');
+      const statusEl = document.getElementById('status');
+      const qrMetaEl = document.getElementById('qrMeta');
+
+      const params = new URLSearchParams(window.location.search);
+      const tx = String(params.get('tx') || '').trim();
+      const eventId = String(params.get('eventId') || '').trim();
+      const paymentId = String(params.get('paymentId') || params.get('pid') || '').trim();
+      const guestId = String(params.get('guestId') || params.get('gid') || '').trim();
+      const sig = String(params.get('sig') || '').trim();
+
+      qrMetaEl.textContent = tx && eventId && paymentId ?
+        `TX: ${tx}\nEvent: ${eventId}\nPayment: ${paymentId}${guestId ? `\nGuest: ${guestId}` : ''}` :
+        'Incomplete QR payload. Please scan a valid event ticket QR.';
+
+      function setStatus(message, ok) {
+        statusEl.textContent = message;
+        statusEl.className = ok ? 'status ok' : 'status bad';
+      }
+
+      async function verifyTicket() {
+        if (!apiBase) {
+          setStatus('Apps Script URL is missing in data-config.js', false);
+          return;
+        }
+
+        if (!tx || !eventId || !paymentId || !sig) {
+          setStatus('Invalid QR payload. Missing required fields.', false);
+          return;
+        }
+
+        const passcode = String(passcodeEl.value || '').trim();
+        if (!passcode) {
+          setStatus('Staff passcode is required.', false);
+          return;
+        }
+
+        verifyBtn.disabled = true;
+        setStatus('Verifying ticket...', true);
+
+        try {
+          const body = new URLSearchParams({
+            action: 'verify_event_qr',
+            passcode: passcode,
+            tx: tx,
+            eventId: eventId,
+            paymentId: paymentId,
+            guestId: guestId,
+            sig: sig,
+            verifiedBy: String(verifiedByEl.value || '').trim()
+          });
+
+          const response = await fetch(apiBase, {
+            method: 'POST',
+            body: body
+          });
+
+          const payload = await response.json();
+          if (!payload || payload.ok !== true) {
+            const reason = payload && (payload.message || payload.error) ? `${payload.message || payload.error}` : 'Verification failed.';
+            setStatus(reason, false);
+            return;
+          }
+
+          setStatus(`Checked in successfully. ${payload.guestLabel ? `${payload.guestLabel} • ` : ''}TX: ${payload.transactionId}`, true);
+        } catch (error) {
+          setStatus('Network or server error during verification.', false);
+        } finally {
+          verifyBtn.disabled = false;
+        }
+      }
+
+      verifyBtn.addEventListener('click', verifyTicket);
+    })();
+  </script>
+</body>
+</html>

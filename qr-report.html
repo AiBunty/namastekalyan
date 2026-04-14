@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Scan Report</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Segoe UI, Tahoma, sans-serif;
+      background: #f4f6fb;
+      color: #1f2937;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0f766e, #1d4ed8);
+      color: #fff;
+      padding: 22px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .hero p {
+      margin: 6px 0 0;
+      opacity: 0.9;
+      font-size: 14px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+    .value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1d4ed8;
+    }
+    .small {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 6px;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0 14px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: #1d4ed8;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn.secondary {
+      background: #334155;
+    }
+    .status {
+      font-size: 13px;
+      color: #475569;
+    }
+    .table-wrap {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      overflow: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      font-size: 13px;
+    }
+    th {
+      background: #f8fafc;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 12px;
+    }
+    .muted { color: #64748b; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>QR Scan Report</h1>
+    <p>Namaste Kalyan menu QR analytics</p>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <article class="card">
+        <div class="label">Total Scans</div>
+        <div id="totalScans" class="value">0</div>
+        <div class="small">All-time scans</div>
+      </article>
+      <article class="card">
+        <div class="label">Next Email Milestone</div>
+        <div id="nextMilestone" class="value">100</div>
+        <div id="untilNext" class="small">100 scans to go</div>
+      </article>
+      <article class="card">
+        <div class="label">Last Updated</div>
+        <div id="lastUpdated" class="value" style="font-size:18px;">-</div>
+        <div class="small">Auto refresh every 30 sec</div>
+      </article>
+    </section>
+
+    <div class="toolbar">
+      <div id="status" class="status">Loading report...</div>
+      <div>
+        <button class="btn secondary" onclick="window.close()">Close</button>
+        <button class="btn" onclick="loadReport()">Refresh</button>
+      </div>
+    </div>
+
+    <section class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Scan #</th>
+            <th>Timestamp</th>
+            <th>User Agent</th>
+            <th>Referer</th>
+            <th>IP Address</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody id="scanRows">
+          <tr><td colspan="6" class="muted">No data yet.</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="data-config.js"></script>
+  <script>
+    const APPS_SCRIPT_URL = (window.APPS_SCRIPT_URL || (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || '').trim();
+    const EMAIL_INTERVAL = 100;
+
+    function setUnavailableState(reason) {
+      const rowsEl = document.getElementById('scanRows');
+      document.getElementById('totalScans').textContent = 'N/A';
+      document.getElementById('nextMilestone').textContent = 'N/A';
+      document.getElementById('untilNext').textContent = 'N/A';
+      document.getElementById('lastUpdated').textContent = new Date().toLocaleString('en-IN');
+      rowsEl.innerHTML = '<tr><td colspan="6" class="muted">' + escapeHtml(reason || 'Report unavailable.') + '</td></tr>';
+    }
+
+    function escapeHtml(text) {
+      return String(text || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function formatDate(value) {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value || '-');
+      return date.toLocaleString('en-IN');
+    }
+
+    async function loadReport() {
+      const statusEl = document.getElementById('status');
+      const rowsEl = document.getElementById('scanRows');
+      statusEl.textContent = 'Loading report...';
+
+      if (!APPS_SCRIPT_URL) {
+        statusEl.textContent = 'Apps Script URL is missing in data-config.js';
+        setUnavailableState('Apps Script URL is missing in data-config.js');
+        return;
+      }
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL + '?action=qr_report', {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store'
+        });
+        if (!response.ok) {
+          statusEl.textContent = 'Could not load report.';
+          setUnavailableState('QR report request failed with HTTP ' + response.status + '.');
+          return;
+        }
+        const data = await response.json();
+
+        if (!data.ok) {
+          statusEl.textContent = 'Could not load report.';
+          setUnavailableState('QR report API returned an error response.');
+          return;
+        }
+
+        const total = Number(data.totalScans || 0);
+        const next = Math.ceil((total + 1) / EMAIL_INTERVAL) * EMAIL_INTERVAL;
+        const pending = next - total;
+
+        document.getElementById('totalScans').textContent = total.toLocaleString('en-IN');
+        document.getElementById('nextMilestone').textContent = next.toLocaleString('en-IN');
+        document.getElementById('untilNext').textContent = pending + ' scans to go';
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleString('en-IN');
+
+        const scans = Array.isArray(data.recentScans) ? data.recentScans : [];
+        if (!scans.length) {
+          rowsEl.innerHTML = '<tr><td colspan="6" class="muted">No scan records found yet.</td></tr>';
+        } else {
+          rowsEl.innerHTML = scans
+            .slice()
+            .reverse()
+            .map((row) => {
+              const timestamp = formatDate(row[0]);
+              const userAgent = escapeHtml(row[1] || '-');
+              const referer = escapeHtml(row[2] || 'Direct');
+              const ip = escapeHtml(row[3] || '-');
+              const scanNo = escapeHtml(row[4] || '-');
+              const location = [row[5], row[6], row[7]].filter(Boolean).join(', ');
+              return '<tr>' +
+                '<td>' + scanNo + '</td>' +
+                '<td>' + timestamp + '</td>' +
+                '<td>' + userAgent + '</td>' +
+                '<td>' + referer + '</td>' +
+                '<td>' + ip + '</td>' +
+                '<td>' + escapeHtml(location || '-') + '</td>' +
+                '</tr>';
+            })
+            .join('');
+        }
+
+        statusEl.textContent = 'Report loaded successfully.';
+      } catch (err) {
+        statusEl.textContent = 'Network error while loading report.';
+        setUnavailableState('Network/CORS error while loading report.');
+      }
+    }
+
+    loadReport();
+    setInterval(loadReport, 30000);
+  </script>
+</body>
+</html>

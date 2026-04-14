@@ -809,8 +809,11 @@ main > section,
 }
 
 .event-card img {
-    aspect-ratio: 0.78 / 1;
+    width: 100%;
+    display: block;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
+    object-position: center top;
 }
 
 .event-card-copy {
@@ -826,6 +829,16 @@ main > section,
     margin: 0;
     color: rgba(247, 242, 235, 0.72);
     line-height: 1.65;
+}
+
+.event-card-cta-inline {
+    margin-top: 12px;
+    display: inline-flex;
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: #f4d0a0;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
 }
 
 .gallery-section {

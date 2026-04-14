@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active Events | Namaste Kalyan</title>
+  <link rel="stylesheet" href="styles-copy.css?v=20260321-4">
+  <link rel="stylesheet" href="css/site-chrome.css?v=20260413-1">
+  <style>
+    body {
+      margin: 0;
+      font-family: Manrope, Arial, sans-serif;
+      background: radial-gradient(circle at 10% 8%, rgba(212, 175, 116, 0.16), transparent 42%), #110b0b;
+      color: #f5ead7;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+    .head {
+      margin-bottom: 18px;
+      border: 1px solid rgba(240, 196, 143, 0.25);
+      border-radius: 16px;
+      background: rgba(16, 10, 10, 0.9);
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+        try {
+          const response = await fetch(`${apiBase}?${query.toString()}`, { cache: 'no-store' });
+          if (!response.ok) {
+            setStatus(`Unable to load events (HTTP ${response.status}).`, true);
+            return;
+          }
+  
+          const payload = await response.json();
+          if (!payload || !payload.ok || !Array.isArray(payload.items)) {
+            setStatus('Unable to read active events right now.', true);
+            return;
+          }
+  
+          renderEvents(payload.items);
+        } catch (error) {
+          setStatus('Network error while loading active events.', true);
+        }
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(240, 196, 143, 0.34);
+      border-radius: 10px;
+      text-decoration: none;
+      color: #f0c48f;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      padding: 9px 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .status {
+      margin-bottom: 14px;
+      border: 1px solid rgba(240, 196, 143, 0.22);
+      border-radius: 12px;
+      background: rgba(16, 10, 10, 0.7);
+      padding: 12px;
+      color: rgba(255, 241, 219, 0.86);
+      font-size: 0.86rem;
+    }
+    .status.error {
+      color: #ffb1a1;
+      border-color: rgba(255, 130, 130, 0.45);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+    .event-card {
+      border: 1px solid rgba(240, 196, 143, 0.28);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(16, 10, 10, 0.88);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .event-card:hover,
+    .event-card.is-focus {
+      transform: translateY(-3px);
+      border-color: rgba(240, 196, 143, 0.58);
+    }
+    .event-card img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .event-copy {
+      padding: 12px;
+    }
+    .event-badge {
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 116, 0.44);
+      background: rgba(212, 175, 116, 0.18);
+      color: #f8e3c4;
+      padding: 3px 9px;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .event-copy h2 {
+      margin: 0;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .event-copy p {
+      margin: 8px 0 0;
+      color: rgba(255, 240, 220, 0.82);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+    .event-timeboard {
+      margin-top: 8px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(180deg, #222326 0%, #17181b 100%);
+    }
+    .event-timeboard-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 9px;
+      background: #08090b;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .event-timeboard-day {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffd7ac;
+      font-weight: 900;
+      letter-spacing: 0.45px;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 3px 9px;
+      border: 1px solid rgba(240, 196, 143, 0.34);
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.04);
+    }
+    .event-timeboard-date {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffe7c7;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 5px 11px;
+      border: 1px solid rgba(240, 196, 143, 0.3);
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.04);
+    }
+    .event-timeboard-flip {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+      gap: 8px;
+      padding: 10px 9px 11px;
+      align-items: end;
+    }
+    .event-timeboard-flip::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      border-top: 1px solid rgba(0, 0, 0, 0.8);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .event-timeboard-flip span {
+      display: grid;
+      place-items: center;
+      min-height: 42px;
+      border-radius: 8px;
+      font-size: 1.75rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #f4f4f5;
+      background: linear-gradient(180deg, #2a2c30 0%, #17191d 100%);
+    }
+    .event-timeboard-meridiem {
+      min-height: auto !important;
+      align-self: end;
+      margin-bottom: 2px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      font-size: 0.58rem !important;
+      letter-spacing: 0.5px;
+      font-weight: 800;
+      color: rgba(255, 237, 211, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.04);
+    }
+    .event-mini-countdown {
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(240, 196, 143, 0.24);
+      background: rgba(0, 0, 0, 0.26);
+      padding: 8px;
+    }
+    .event-mini-countdown-head {
+      color: rgba(255, 227, 192, 0.92);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.55px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .event-mini-countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 5px;
+    }
+    .event-mini-countdown-box {
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+      display: grid;
+      justify-items: center;
+      padding: 5px 4px;
+    }
+    .event-mini-countdown-value {
+      font-size: 0.95rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+    .event-mini-countdown-label {
+      margin-top: 2px;
+      font-size: 0.5rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.64);
+    }
+    .event-cta {
+      margin-top: 10px;
+      display: inline-flex;
+      color: #f4d0a0;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.45px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div id="nkSharedNavbar"></div>
+  <main class="wrap">
+    <header class="head">
+      <div>
+        <h1>All Active Events</h1>
+        <p>Choose your event from the active lineup, then continue to details and booking.</p>
+      </div>
+      <div class="head-links">
+        <a class="link-btn" href="index.html#events">Back To Home Events</a>
+        <a class="link-btn" href="index.html">Home</a>
+      </div>
+    </header>
+
+    <div id="eventsStatus" class="status">Loading active events...</div>
+    <section id="eventsGrid" class="grid" aria-live="polite"></section>
+  </main>
+  <div id="nkSharedFooter"></div>
+
+  <script src="data-config.js?v=20260412-4"></script>
+  <script src="shared-site-chrome.js?v=20260413-1"></script>
+  <script>
+    (function () {
+      const statusEl = document.getElementById('eventsStatus');
+      const gridEl = document.getElementById('eventsGrid');
+      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const EVENT_TIMEZONE = 'Asia/Kolkata';
+      const NK_EVENTS_CACHE_KEY = 'nk_events_list_cache_v1';
+      const NK_EVENTS_CACHE_TTL = 30 * 60 * 1000;
+      const focusedEventId = String(new URLSearchParams(window.location.search).get('eventId') || '').trim();
+      let countdownTimer = null;
+
+      const getCachedEventsPayload = () => {
+        try {
+          const raw = sessionStorage.getItem(NK_EVENTS_CACHE_KEY);
+          if (!raw) return null;
+          const parsed = JSON.parse(raw);
+          if (!parsed || !Array.isArray(parsed.items) || !parsed.timestamp) return null;
+          if (Date.now() - Number(parsed.timestamp) > NK_EVENTS_CACHE_TTL) {
+            sessionStorage.removeItem(NK_EVENTS_CACHE_KEY);
+            return null;
+          }
+          return parsed;
+        } catch (error) {
+          return null;
+        }
+      };
+
+      const setCachedEventsPayload = (payload) => {
+        try {
+          if (!payload || !Array.isArray(payload.items)) return;
+          sessionStorage.setItem(NK_EVENTS_CACHE_KEY, JSON.stringify({
+            items: payload.items,
+            timestamp: Date.now()
+          }));
+        } catch (error) {
+          // Ignore storage write errors.
+        }
+      };
+
+      const escapeHtml = (value) => String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+      const safeUrl = (value) => {
+        const text = String(value || '').trim();
+        if (!text) return '';
+        if (text.startsWith('http://') || text.startsWith('https://') || text.startsWith('/')) return text;
+        return '';
+      };
+
+      const normalizeTimeDisplayFormat = (value) => String(value || '').trim().toLowerCase() === '24h' ? '24h' : '12h';
+
+      const getBoardTimeParts = (parsed, timeDisplayFormat) => {
+        const format = normalizeTimeDisplayFormat(timeDisplayFormat);
+        if (format === '24h') {
+          return {
+            hour: parsed.toLocaleTimeString('en-GB', { hour: '2-digit', hour12: false, timeZone: EVENT_TIMEZONE }),
+            minute: parsed.toLocaleTimeString('en-GB', { minute: '2-digit', hour12: false, timeZone: EVENT_TIMEZONE }),
+            period: ''
+          };
+        }
+
+        const formatted = parsed.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+          timeZone: EVENT_TIMEZONE
+        });
+        const match = formatted.match(/^(\d{2}):(\d{2})\s*(AM|PM)$/i);
+        return {
+          hour: match ? match[1] : formatted,
+          minute: match ? match[2] : '00',
+          period: match ? String(match[3] || '').toUpperCase() : ''
+        };
+      };
+
+      const buildTimeBoardHtml = (startAtIso, timeDisplayFormat) => {
+        const raw = String(startAtIso || '').trim();
+        if (!raw) return '';
+
+        const parsed = new Date(raw);
+        if (Number.isNaN(parsed.getTime())) return '';
+
+        const boardTime = getBoardTimeParts(parsed, timeDisplayFormat);
+        const dayName = parsed.toLocaleDateString('en-US', { weekday: 'long', timeZone: EVENT_TIMEZONE }).toUpperCase();
+        const dayNumber = parsed.toLocaleDateString('en-GB', { day: '2-digit', timeZone: EVENT_TIMEZONE });
+        const monthName = parsed.toLocaleDateString('en-US', { month: 'long', timeZone: EVENT_TIMEZONE }).toUpperCase();
+        const dateLabel = `${dayNumber}. ${monthName}`;
+        const meridiemHtml = boardTime.period ? `<span class="event-timeboard-meridiem">${escapeHtml(boardTime.period)}</span>` : '';
+
+        return `
+          <div class="event-timeboard">
+            <div class="event-timeboard-head">
+              <span class="event-timeboard-day">${escapeHtml(dayName)}</span>
+              <span class="event-timeboard-date">${escapeHtml(dateLabel)}</span>
+            </div>
+            <div class="event-timeboard-flip" aria-hidden="true">
+              <span>${escapeHtml(boardTime.hour)}</span>
+              <span>${escapeHtml(boardTime.minute)}</span>
+              ${meridiemHtml}
+            </div>
+          </div>
+        `;
+      };
+
+      const pad2 = (value) => String(Math.max(0, Number(value) || 0)).padStart(2, '0');
+
+      const getCountdownTarget = (startAtIso, endAtIso) => {
+        const nowMs = Date.now();
+        const start = String(startAtIso || '').trim() ? new Date(startAtIso) : null;
+        const end = String(endAtIso || '').trim() ? new Date(endAtIso) : null;
+
+        if (start && !Number.isNaN(start.getTime()) && start.getTime() > nowMs) {
+          return { target: start.getTime(), heading: 'Starts In' };
+        }
+        if (end && !Number.isNaN(end.getTime()) && end.getTime() > nowMs) {
+          return { target: end.getTime(), heading: 'Ends In' };
+        }
+        if (end && !Number.isNaN(end.getTime()) && end.getTime() <= nowMs) {
+          return { target: 0, heading: 'Event Ended' };
+        }
+
+        return null;
+      };
+
+      const buildCountdownHtml = (startAtIso, endAtIso) => `
+        <div class="event-mini-countdown" data-event-countdown data-start="${escapeHtml(startAtIso || '')}" data-end="${escapeHtml(endAtIso || '')}">
+          <div class="event-mini-countdown-head" data-countdown-head>Starts In</div>
+          <div class="event-mini-countdown-grid">
+            <div class="event-mini-countdown-box"><span class="event-mini-countdown-value" data-countdown-days>00</span><span class="event-mini-countdown-label">Days</span></div>
+            <div class="event-mini-countdown-box"><span class="event-mini-countdown-value" data-countdown-hours>00</span><span class="event-mini-countdown-label">Hours</span></div>
+            <div class="event-mini-countdown-box"><span class="event-mini-countdown-value" data-countdown-minutes>00</span><span class="event-mini-countdown-label">Minutes</span></div>
+            <div class="event-mini-countdown-box"><span class="event-mini-countdown-value" data-countdown-seconds>00</span><span class="event-mini-countdown-label">Seconds</span></div>
+          </div>
+        </div>
+      `;
+
+      const updateCountdownNode = (node) => {
+        if (!node) return;
+
+        const startAtIso = node.getAttribute('data-start') || '';
+        const endAtIso = node.getAttribute('data-end') || '';
+        const targetInfo = getCountdownTarget(startAtIso, endAtIso);
+
+        const headEl = node.querySelector('[data-countdown-head]');
+        const daysEl = node.querySelector('[data-countdown-days]');
+        const hoursEl = node.querySelector('[data-countdown-hours]');
+        const minsEl = node.querySelector('[data-countdown-minutes]');
+        const secsEl = node.querySelector('[data-countdown-seconds]');
+        if (!headEl || !daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+        if (!targetInfo) {
+          node.hidden = true;
+          return;
+        }
+
+        node.hidden = false;
+        headEl.textContent = targetInfo.heading;
+
+        const diffMs = targetInfo.target > 0 ? Math.max(0, targetInfo.target - Date.now()) : 0;
+        const totalSeconds = Math.floor(diffMs / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        daysEl.textContent = pad2(days);
+        hoursEl.textContent = pad2(hours);
+        minsEl.textContent = pad2(minutes);
+        secsEl.textContent = pad2(seconds);
+      };
+
+      const refreshCountdowns = () => {
+        document.querySelectorAll('[data-event-countdown]').forEach(updateCountdownNode);
+      };
+
+      const startCountdowns = () => {
+        if (countdownTimer) {
+          window.clearInterval(countdownTimer);
+          countdownTimer = null;
+        }
+        refreshCountdowns();
+        countdownTimer = window.setInterval(refreshCountdowns, 1000);
+      };
+
+      const setStatus = (message, isError) => {
+        statusEl.textContent = String(message || '');
+        statusEl.classList.toggle('error', !!isError);
+      };
+
+      const renderEvents = (items) => {
+        const list = Array.isArray(items) ? items.slice() : [];
+        if (!list.length) {
+          gridEl.innerHTML = '';
+          setStatus('No active events available right now.', false);
+          return;
+        }
+
+        if (focusedEventId) {
+          list.sort((a, b) => {
+            const aMatch = String(a && a.id || '') === focusedEventId ? 1 : 0;
+            const bMatch = String(b && b.id || '') === focusedEventId ? 1 : 0;
+            return bMatch - aMatch;
+          });
+        }
+
+        gridEl.innerHTML = list.map((item) => {
+          const id = String(item && item.id || '').trim();
+          const title = escapeHtml(item && item.title || 'Upcoming Event');
+          const isPaid = !!(item && item.paymentEnabled) || String(item && item.eventType || '').toLowerCase() === 'paid';
+          const baseDescription = item && (item.subtitle || item.description) || 'Celebrate with us at Namaste Kalyan.';
+          const description = escapeHtml(isPaid ? `${baseDescription} No refund once pass is purchased.` : baseDescription);
+          const imageUrl = safeUrl(item && item.imageUrl) || 'assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.27.42 PM.jpeg';
+          const badge = escapeHtml(item && item.badgeText || (isPaid ? 'Paid Pass' : 'Active Event'));
+          const timeBoard = buildTimeBoardHtml(item && item.startAtIso, item && item.timeDisplayFormat);
+          const countdown = buildCountdownHtml(item && item.startAtIso, item && item.endAtIso);
+          const href = id ? `event.html?eventId=${encodeURIComponent(id)}` : 'event.html';
+          const focusClass = id && id === focusedEventId ? ' is-focus' : '';
+
+          return `
+            <a class="event-card${focusClass}" href="${href}">
+              <img src="${imageUrl}" alt="${title}">
+              <div class="event-copy">
+                <span class="event-badge">${badge}</span>
+                <h2>${title}</h2>
+                ${timeBoard}
+                ${countdown}
+                <p>${description}</p>
+                <span class="event-cta">Open Event Details</span>
+              </div>
+            </a>
+          `;
+        }).join('');
+
+        startCountdowns();
+        setStatus(`Showing ${list.length} active event(s).`, false);
+      };
+
+      const loadEvents = async () => {
+        if (!apiBase) {
+          setStatus('Apps Script URL missing in data-config.js.', true);
+          return;
+        }
+
+        {
+          const cached = getCachedEventsPayload();
+          if (cached && Array.isArray(cached.items) && cached.items.length > 0) {
+            renderEvents(cached.items);
+            return;
+          }
+        }
+
+        const query = new URLSearchParams({ action: 'events_list', limit: '20' });
+        try {
+          const response = await fetch(`${apiBase}?${query.toString()}`, { cache: 'no-store' });
+          if (!response.ok) {
+            setStatus(`Unable to load events (HTTP ${response.status}).`, true);
+            return;
+          }
+
+          const payload = await response.json();
+          if (!payload || !payload.ok || !Array.isArray(payload.items)) {
+            setStatus('Unable to read active events right now.', true);
+            return;
+          }
+
+          setCachedEventsPayload(payload);
+
+          renderEvents(payload.items);
+        } catch (error) {
+          setStatus('Network error while loading active events.', true);
+        }
+      };
+
+      loadEvents();
+    })();
+  </script>
+</body>
+</html>
