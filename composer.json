@@ -1,0 +1,28 @@
+{
+    "name": "namastekalyan/backend",
+    "description": "Namaste Kalyan Restaurant PHP/MySQL backend API",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "firebase/php-jwt": "^6.10",
+        "vlucas/phpdotenv": "^5.6",
+        "phpmailer/phpmailer": "^6.9",
+        "chillerlan/php-qrcode": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NK\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "audit": {
+            "ignore": {
+                "PKSA-y2cr-5h3j-g3ys": "Advisory acknowledged, no patch available in ^6.x."
+            },
+            "block-insecure": false,
+            "abandoned": "ignore"
+        }
+    }
+}

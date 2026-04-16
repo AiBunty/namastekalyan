@@ -234,7 +234,7 @@
   </main>
 
   <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-auth.js?v=20260416-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script>
     (function () {
@@ -284,6 +284,12 @@
         }
       });
 
+      function notifyModuleReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+        }
+      }
+
       function applyEmbeddedAuthUi() {
         if (!embeddedMode) return;
         if (authPanelEl) authPanelEl.style.display = 'none';
@@ -320,7 +326,11 @@
       }
 
       function setPermissionSelection(container, permissions) {
-        const granted = Array.isArray(permissions) ? permissions : [];
+        const granted = Array.isArray(permissions)
+          ? permissions
+          : (permissions && typeof permissions === 'object'
+            ? Object.keys(permissions).filter((key) => permissions[key])
+            : []);
         const map = {};
         granted.forEach((item) => { map[String(item)] = true; });
         container.querySelectorAll('input[data-perm]').forEach((input) => {
@@ -453,7 +463,14 @@
       }
 
       function renderApiSettings(payload) {
-        const items = Array.isArray(payload.items) ? payload.items : [];
+        const settingsObj = payload && payload.settings && typeof payload.settings === 'object' ? payload.settings : null;
+        const items = settingsObj
+          ? Object.keys(settingsObj).map((key) => ({
+              key: key,
+              label: getManagedSettingLabelByKey(key),
+              hasValue: !!String(settingsObj[key] || '').trim()
+            }))
+          : (Array.isArray(payload.items) ? payload.items : []);
         if (!items.length) {
           setApiSettingsStatus('No managed API settings found.');
           return;
@@ -500,7 +517,9 @@
           }
 
           clearApiSettingInputs();
-          const updated = Array.isArray(payload.updatedKeys) ? payload.updatedKeys : [];
+          const updated = Array.isArray(payload.updatedKeys)
+            ? payload.updatedKeys
+            : (Array.isArray(payload.acceptedKeys) ? payload.acceptedKeys : []);
           const labels = updated.map((key) => getManagedSettingLabelByKey(key));
           setApiSettingsStatus(labels.length
             ? `Updated: ${labels.join(', ')}\nNow click "Load Current Status" to verify masked values.`
@@ -657,8 +676,11 @@
         setPanelStatus('Loading users...');
         try {
           const payload = await apiGet('auth_list_users');
-          renderUsers(payload.items);
-          setPanelStatus(`Loaded ${Array.isArray(payload.items) ? payload.items.length : 0} user(s).`);
+          const users = Array.isArray(payload.items)
+            ? payload.items
+            : (Array.isArray(payload.users) ? payload.users : []);
+          renderUsers(users);
+          setPanelStatus(`Loaded ${users.length} user(s).`);
         } catch (err) {
           setPanelStatus(`Unable to load users: ${err.message}`);
         }
@@ -687,6 +709,7 @@
           await loadUsers();
           await loadApiSettings();
           setPasswordStatus('Use this form to update your own password.');
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock(`Login failed: ${err.message}`);
         } finally {
@@ -698,10 +721,12 @@
         try {
           const payload = await authClient.restoreSession();
           if (!payload) {
+            notifyModuleReady();
             return;
           }
           if (!payload.user || String(payload.user.role || '').toLowerCase() !== 'superadmin') {
             clearSessionAndLock('SuperAdmin role is required for this page.');
+            notifyModuleReady();
             return;
           }
           updateLockedUi(false);
@@ -709,8 +734,10 @@
           await loadUsers();
           await loadApiSettings();
           setPasswordStatus('Use this form to update your own password.');
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock('Session expired. Please login again.');
+          notifyModuleReady();
         }
       }
 
@@ -721,7 +748,7 @@
 
       async function createUser() {
         const username = String(newUsernameEl.value || '').replace(/\D/g, '').trim();
-        const displayName = String(newDisplayNameEl.value || '').trim();
+        const displayName = String(newDisplayNameEl.value || '').trim() || username;
         const role = String(newRoleEl.value || 'admin').trim().toLowerCase();
         const password = String(newPasswordEl.value || '').trim();
         const permissions = role === 'superadmin'
@@ -788,7 +815,7 @@
           await apiPost({
             action: 'auth_reset_password',
             username: username,
-            temporaryPassword: temporaryPassword
+            newPassword: temporaryPassword
           });
           setPanelStatus(`Password reset for ${username}. User must change it on next login.`);
           await loadUsers();

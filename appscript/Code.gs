@@ -287,6 +287,10 @@ function doPost(e) {
       return jsonResponse(handleAuthGetApiSettings_(data));
     }
 
+    if (action === 'auth_list_users') {
+      return jsonResponse(handleAuthListUsers_(data));
+    }
+
     if (action === 'auth_set_api_settings') {
       return jsonResponse(handleAuthSetApiSettings_(data));
     }
@@ -3948,6 +3952,21 @@ function normalizeMenuEditorVisibilityValue_(visible) {
   return toBoolean_(visible, true) ? 'Yes' : 'No';
 }
 
+function resolveMenuEditorRequestedSheet_(data) {
+  const payload = data && typeof data === 'object' ? data : {};
+
+  const directSheet = String(payload.sheetName || payload.sheet || '').trim();
+  if (directSheet) {
+    return directSheet;
+  }
+
+  const type = String(payload.sheetType || payload.type || '').trim().toLowerCase();
+  if (type === 'food') return 'AWGNK MENU';
+  if (type === 'bar') return 'BAR MENU NK';
+
+  return '';
+}
+
 function handleAdminMenuEditorLoad_(data) {
   const auth = authorizeAdminRequest_(data, 'admin');
   if (!auth.ok) {
@@ -3955,7 +3974,8 @@ function handleAdminMenuEditorLoad_(data) {
   }
 
   try {
-    const target = getMenuEditorSheetOrThrow_(data && (data.sheetName || data.sheet));
+    const requestedSheet = resolveMenuEditorRequestedSheet_(data);
+    const target = getMenuEditorSheetOrThrow_(requestedSheet);
     const sheet = target.sheet;
     const lastColumn = Math.max(sheet.getLastColumn(), 1);
     let headers = sheet.getRange(1, 1, 1, lastColumn).getDisplayValues()[0].map((value) => String(value || '').trim());

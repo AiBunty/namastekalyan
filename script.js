@@ -611,7 +611,14 @@ const setEventsLoadingState = (isLoading) => {
 };
 
 const fetchEventsApi = async (action, params = {}) => {
-    if (!nkEventsApiBase) return null;
+    const resolvedBase = (window.NK_DATA_API && typeof window.NK_DATA_API.resolveApiBaseForAction === 'function')
+        ? String(window.NK_DATA_API.resolveApiBaseForAction(action) || '').split('?')[0]
+        : nkEventsApiBase;
+    const fallbackBase = (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl)
+        ? String(window.NK_DATA_API.appsScriptUrl).split('?')[0].trim()
+        : nkEventsApiBase;
+
+    if (!resolvedBase && !fallbackBase) return null;
     
     // Check cache for events_list requests
     if (action === 'events_list') {
@@ -631,29 +638,42 @@ const fetchEventsApi = async (action, params = {}) => {
         }
     });
 
-    try {
-        // Set a 8-second timeout for the API call to prevent hanging
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000);
-        
-        const response = await fetch(`${nkEventsApiBase}?${query.toString()}`, { 
-            cache: 'no-store',
-            signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-        
-        if (!response.ok) return null;
-        const data = await response.json();
-        
-        // Cache events_list responses
-        if (action === 'events_list' && data && data.ok) {
-          nkEventsCache.set(data);
+        const tryBases = [resolvedBase];
+        if (fallbackBase && fallbackBase !== resolvedBase) {
+            tryBases.push(fallbackBase);
         }
-        
-        return data;
-    } catch (error) {
+
+        for (let i = 0; i < tryBases.length; i += 1) {
+            const base = tryBases[i];
+            if (!base) continue;
+
+            try {
+                // Set an 8-second timeout for each API attempt.
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+                const response = await fetch(`${base}?${query.toString()}`, {
+                    cache: 'no-store',
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+
+                if (!response.ok) continue;
+                const data = await response.json();
+                if (!data || !data.ok) continue;
+
+                // Cache events_list responses
+                if (action === 'events_list') {
+                    nkEventsCache.set(data);
+                }
+
+                return data;
+            } catch (error) {
+                // Try next base.
+            }
+        }
+
         return null;
-    }
 };
 
 const renderHomeEvents = (items) => {

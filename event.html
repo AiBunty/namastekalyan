@@ -1071,12 +1071,15 @@
       };
 
       const postAction = async (action, payload) => {
+        const resolvedBase = (window.NK_DATA_API && typeof window.NK_DATA_API.resolveApiBaseForAction === 'function')
+          ? window.NK_DATA_API.resolveApiBaseForAction(action)
+          : apiBase;
         const requestPayload = Object.assign({ action: action }, payload || {});
         const body = new URLSearchParams({
           payload: JSON.stringify(requestPayload)
         });
 
-        const response = await fetch(apiBase, {
+        const response = await fetch(resolvedBase, {
           method: 'POST',
           body: body
         });

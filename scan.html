@@ -225,7 +225,13 @@
 
       // ── Fire tracking to Apps Script ─────────────────────────────────
       function fireTracking(geoData) {
-        if (!APPS_SCRIPT_URL) return;
+        var targetBase = (window.NK_DATA_API && typeof window.NK_DATA_API.resolveApiBaseForAction === 'function')
+          ? String(window.NK_DATA_API.resolveApiBaseForAction('qr_scan_client') || '').trim()
+          : String(APPS_SCRIPT_URL || '').trim();
+        var fallbackBase = (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl)
+          ? String(window.NK_DATA_API.appsScriptUrl || '').trim()
+          : String(APPS_SCRIPT_URL || '').trim();
+        if (!targetBase && !fallbackBase) return;
 
         var ua = navigator.userAgent || '';
         var payload = {
@@ -246,23 +252,34 @@
         var body = 'payload=' + encodeURIComponent(JSON.stringify(payload));
 
         // sendBeacon: guaranteed delivery even during page navigation
+        var sentViaBeacon = false;
         if (navigator.sendBeacon) {
           try {
             var blob = new Blob([body], { type: 'application/x-www-form-urlencoded' });
-            navigator.sendBeacon(APPS_SCRIPT_URL, blob);
-            return;
+            sentViaBeacon = navigator.sendBeacon(targetBase, blob) === true;
+            if (sentViaBeacon) return;
           } catch (e) { /* fall through to fetch */ }
         }
 
         // Fallback: fetch with keepalive
         try {
-          fetch(APPS_SCRIPT_URL, {
+          fetch(targetBase, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: body,
             mode: 'no-cors',
             keepalive: true
-          }).catch(function () {});
+          }).catch(function () {
+            if (fallbackBase && fallbackBase !== targetBase) {
+              fetch(fallbackBase, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: body,
+                mode: 'no-cors',
+                keepalive: true
+              }).catch(function () {});
+            }
+          });
         } catch (e) {}
       }
 

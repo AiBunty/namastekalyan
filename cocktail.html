@@ -653,8 +653,9 @@
             if (!payload || payload.ok !== true) {
               throw new Error(payload && payload.error ? payload.error : 'APPS_SCRIPT_INVALID_RESPONSE');
             }
-            if (payload.sourceTab !== this.SOURCE_TAB) {
-              throw new Error(`TAB_MISMATCH_DETECTED — Apps Script returned ${payload.sourceTab || 'UNKNOWN'}`);
+            const sourceTab = String(payload.sourceTab || payload.tab || payload.sheetName || '').trim();
+            if (sourceTab && sourceTab.toLowerCase() !== this.SOURCE_TAB.toLowerCase()) {
+              throw new Error(`TAB_MISMATCH_DETECTED — Apps Script returned ${sourceTab || 'UNKNOWN'}`);
             }
             const headerMeta = Array.isArray(payload.headers)
               ? payload.headers.map(h => {
@@ -676,6 +677,22 @@
               throw new Error('TAB_MISMATCH_DETECTED — missing required "item name" column, unexpected sheet returned');
             }
 
+            const toCanonicalLookupKeys = (header) => {
+              const raw = String(header || '').trim();
+              const lower = raw.toLowerCase();
+              const compact = lower.replace(/[^a-z0-9]/g, '');
+              const camel = lower
+                .replace(/[^a-z0-9]+([a-z0-9])/g, (_, c) => c.toUpperCase())
+                .replace(/[^a-z0-9]/g, '');
+              const alias = {
+                'itemname': ['itemName'],
+                'description': ['subCategory'],
+                'subcategory': ['subCategory'],
+                'foodcategory': ['foodCategory']
+              };
+              return [raw, lower, compact, camel, ...(alias[compact] || [])];
+            };
+
             const excludedPriceKeys = new Set([
               'category', 'item name', 'description', 'availability',
               'image url', 'spice level', 'chef special', "chef's special", 'jain'
@@ -686,12 +703,36 @@
               return normalized !== '' && /^\d+(\.\d+)?$/.test(normalized);
             };
 
-            return rows.map((row, rowIdx) => {
+            const isUnavailable = (value) => {
+              const normalized = String(value || '').trim().toLowerCase();
+              return normalized === 'no' || normalized === 'unavailable' || normalized === 'inactive' || normalized === 'off' || normalized === 'false' || normalized === '0';
+            };
+
+            let missingItemNameCount = 0;
+            const parsed = rows.map((row) => {
               let item = {};
-              headers.forEach((h, i) => item[h] = (row[i] || '').toString().trim());
+              headers.forEach((h, i) => {
+                const label = headerMeta[i] ? headerMeta[i].label : h;
+                const byIndex = Array.isArray(row) ? row[i] : null;
+                const rowObj = row && typeof row === 'object' && !Array.isArray(row) ? row : null;
+                let byLabel = null;
+                if (rowObj) {
+                  const keys = [...new Set([
+                    ...toCanonicalLookupKeys(label),
+                    ...toCanonicalLookupKeys(h)
+                  ])];
+                  for (const key of keys) {
+                    if (Object.prototype.hasOwnProperty.call(rowObj, key) && rowObj[key] !== undefined && rowObj[key] !== null) {
+                      byLabel = rowObj[key];
+                      break;
+                    }
+                  }
+                }
+                item[h] = (byIndex ?? byLabel ?? '').toString().trim();
+              });
 
               if (!item['item name'] || item['item name'].length === 0) {
-                console.warn(`Row ${rowIdx + 2}: Missing item name, skipping`);
+                missingItemNameCount += 1;
                 return null;
               }
 
@@ -717,9 +758,22 @@
                 cat: item['category'] || 'Selection',
                 desc: item['description'] || '',
                 prices,
-                avail: item['availability'] !== 'No'
+                avail: !isUnavailable(item['availability'])
               };
-            }).filter(i => i !== null && i.name && i.avail);
+            }).filter(i => i !== null && i.name);
+
+            const availableItems = parsed.filter(i => i.avail);
+            const finalItems = availableItems.length ? availableItems : parsed;
+
+            if (missingItemNameCount > 0) {
+              console.info(`[BAR MENU NK] Skipped ${missingItemNameCount} rows without item name.`);
+            }
+
+            if (!availableItems.length && parsed.length) {
+              console.warn('[BAR MENU NK] All rows are marked unavailable; showing items to avoid an empty menu.');
+            }
+
+            return finalItems;
           },
 
         parseCSV(csv) {

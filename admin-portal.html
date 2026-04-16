@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Portal | Namaste Kalyan</title>
+  <link rel="icon" type="image/png" href="assets/Logo/Namaste Kalyan by AWG -02.png">
   <link rel="stylesheet" href="css/admin-animations.css?v=20260413-1">
   <style>
     :root {
@@ -537,7 +538,7 @@
       </div>
       <div class="workspace-body">
         <div id="dashboardView" class="dashboard"></div>
-        <iframe id="moduleFrame" class="module-iframe hidden" title="Admin Workspace"></iframe>
+        <div id="moduleFramePool"></div>
         <div id="moduleSwitchLoader" class="module-switch-loader hidden" aria-live="polite" aria-busy="true">
           <div class="module-switch-loader__spinner" aria-hidden="true"></div>
           <p id="moduleSwitchLoaderText" class="module-switch-loader__text">Loading module...</p>
@@ -546,8 +547,8 @@
     </section>
   </section>
 
-  <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260413-2"></script>
+  <script src="data-config.js?v=20260416-php-only-2"></script>
+  <script src="admin-auth.js?v=20260416-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script src="admin-cache.js?v=20260413-1"></script>
   <script>
@@ -568,8 +569,10 @@
         { id: 'event-entry-scanner', title: 'Event Entry Scanner', description: 'Scan multiple guest QRs and confirm gate entry in batches', permission: 'eventScanner', role: 'admin', href: 'admin-event-entry-scanner.html?embedded=1' },
         { id: 'event-management', title: 'Event Management', description: 'Create and manage events', permission: 'eventManagement', role: 'admin', href: 'admin-event-management.html?embedded=1' },
         { id: 'menu-editor', title: 'Menu Bulk Editor', description: 'Sheet-like editor for menu and cocktail rows', permission: 'menuEditor', role: 'admin', href: 'admin-menu-price-editor.html?embedded=1' },
+        { id: 'qr-code', title: 'QR Code Center', description: 'Generate and download Menu/Admin QR links', permission: 'dashboard', role: 'admin', href: 'qr-code.html?embedded=1' },
         { id: 'cash-approvals', title: 'Cash Approvals', description: 'SuperAdmin cash approval desk', permission: 'cashApprovals', role: 'superadmin', href: 'superadmin-cash-approvals.html?embedded=1' },
-        { id: 'user-management', title: 'User Management', description: 'Create users and assign access', permission: 'userManagement', role: 'superadmin', href: 'admin-user-management.html?embedded=1' }
+        { id: 'user-management', title: 'User Management', description: 'Create users and assign access', permission: 'userManagement', role: 'superadmin', href: 'admin-user-management.html?embedded=1' },
+        { id: 'settings', title: 'Settings', description: 'Manage WhatsApp number and menu blocker passcode', permission: 'settings', role: 'superadmin', href: 'admin_settings.html?embedded=1' }
       ];
 
       const loginShellEl = document.getElementById('loginShell');
@@ -588,7 +591,7 @@
       const navListEl = document.getElementById('navList');
       const navStatusEl = document.getElementById('navStatus');
       const dashboardViewEl = document.getElementById('dashboardView');
-      const moduleFrameEl = document.getElementById('moduleFrame');
+      const moduleFramePoolEl = document.getElementById('moduleFramePool');
       const moduleSwitchLoaderEl = document.getElementById('moduleSwitchLoader');
       const moduleSwitchLoaderTextEl = document.getElementById('moduleSwitchLoaderText');
       const workspaceTitleEl = document.getElementById('workspaceTitle');
@@ -604,6 +607,9 @@
       let currentModuleId = 'dashboard';
       let moduleLoaderShownAt = 0;
       let loadingModuleId = '';
+      const iframeCache = {};
+      let loaderFallbackTimer = null;
+      const LOADER_TIMEOUT_MS = 8000;
 
       function showModuleSwitchLoader(message) {
         if (!moduleSwitchLoaderEl) return;
@@ -621,6 +627,32 @@
         window.setTimeout(function () {
           moduleSwitchLoaderEl.classList.add('hidden');
         }, waitMs);
+      }
+
+      function getOrCreateModuleFrame(module) {
+        if (iframeCache[module.id]) return { frame: iframeCache[module.id], isNew: false };
+        const frame = document.createElement('iframe');
+        frame.className = 'module-iframe hidden';
+        frame.title = module.title + ' Admin Module';
+        frame.setAttribute('data-module-id', module.id);
+        moduleFramePoolEl.appendChild(frame);
+        iframeCache[module.id] = frame;
+        return { frame: frame, isNew: true };
+      }
+
+      function clearModuleFramePool() {
+        clearTimeout(loaderFallbackTimer);
+        Object.keys(iframeCache).forEach(function (id) {
+          const f = iframeCache[id];
+          if (f && f.parentNode) f.parentNode.removeChild(f);
+          delete iframeCache[id];
+        });
+      }
+
+      function hideAllModuleFrames() {
+        Object.keys(iframeCache).forEach(function (id) {
+          iframeCache[id].classList.add('hidden');
+        });
       }
 
       function setModuleButtonLoading(moduleId) {
@@ -646,9 +678,15 @@
         if (!user || normalizeRole(user.role) === 'superadmin') {
           return MODULES.map((item) => item.permission);
         }
-        const raw = Array.isArray(user.permissions) ? user.permissions : [];
+        const raw = user && user.permissions && typeof user.permissions === 'object' ? user.permissions : [];
         const map = {};
-        raw.forEach((item) => { map[String(item || '')] = true; });
+        if (Array.isArray(raw)) {
+          raw.forEach((item) => { map[String(item || '')] = true; });
+        } else {
+          Object.keys(raw).forEach((key) => {
+            if (raw[key]) map[String(key || '')] = true;
+          });
+        }
         if (map.eventManagement && !map.menuEditor) {
           map.menuEditor = true;
         }
@@ -750,22 +788,46 @@
         workspaceSubtitleEl.textContent = module.description;
         setNavStatus('');
 
+        clearTimeout(loaderFallbackTimer);
+
         if (module.id === 'dashboard') {
           clearModuleButtonLoading();
           hideModuleSwitchLoader();
-          moduleFrameEl.classList.add('hidden');
-          moduleFrameEl.removeAttribute('src');
+          hideAllModuleFrames();
           dashboardViewEl.classList.remove('hidden');
           renderDashboard();
         } else {
-          setModuleButtonLoading(module.id);
-          showModuleSwitchLoader(`Fetching ${module.title}...`);
           dashboardViewEl.classList.add('hidden');
-          moduleFrameEl.classList.remove('hidden');
-          const moduleHref = getEmbeddedModuleHref(module);
-          if (moduleFrameEl.getAttribute('src') !== moduleHref) {
-            moduleFrameEl.setAttribute('src', moduleHref);
+          const result = getOrCreateModuleFrame(module);
+          const frame = result.frame;
+          const isNew = result.isNew;
+          hideAllModuleFrames();
+          frame.classList.remove('hidden');
+
+          if (isNew) {
+            // First visit: load the module URL into this iframe
+            setModuleButtonLoading(module.id);
+            showModuleSwitchLoader('Fetching ' + module.title + '...');
+            frame.setAttribute('data-nk-loading', '1');
+            frame.setAttribute('src', getEmbeddedModuleHref(module));
+            loaderFallbackTimer = setTimeout(function () {
+              if (currentModuleId === module.id) {
+                clearModuleButtonLoading();
+                hideModuleSwitchLoader();
+              }
+            }, LOADER_TIMEOUT_MS);
+          } else if (frame.getAttribute('data-nk-ready') !== '1') {
+            // Returned before data finished loading - keep waiting
+            setModuleButtonLoading(module.id);
+            showModuleSwitchLoader('Fetching ' + module.title + '...');
+            loaderFallbackTimer = setTimeout(function () {
+              if (currentModuleId === module.id) {
+                clearModuleButtonLoading();
+                hideModuleSwitchLoader();
+              }
+            }, LOADER_TIMEOUT_MS);
           } else {
+            // Cached and ready — instant, no loader
             clearModuleButtonLoading();
             hideModuleSwitchLoader();
           }
@@ -814,8 +876,7 @@
         mobileTopbarEl.classList.add('hidden');
         closeSidebar();
 
-        moduleFrameEl.classList.add('hidden');
-        moduleFrameEl.removeAttribute('src');
+        clearModuleFramePool();
         dashboardViewEl.classList.remove('hidden');
         navListEl.innerHTML = '';
         window.location.hash = '';
@@ -943,15 +1004,23 @@
         openModule(requested);
       });
 
-      moduleFrameEl.addEventListener('load', function () {
-        clearModuleButtonLoading();
-        hideModuleSwitchLoader();
-      });
-
-      moduleFrameEl.addEventListener('error', function () {
-        clearModuleButtonLoading();
-        hideModuleSwitchLoader();
-        setNavStatus('Unable to load module. Please try again.');
+      window.addEventListener('message', function (event) {
+        if (!event.data || typeof event.data !== 'object') return;
+        if (event.data.type !== 'NK_MODULE_READY') return;
+        const ids = Object.keys(iframeCache);
+        for (var i = 0; i < ids.length; i++) {
+          const id = ids[i];
+          if (iframeCache[id].contentWindow === event.source) {
+            iframeCache[id].setAttribute('data-nk-ready', '1');
+            iframeCache[id].removeAttribute('data-nk-loading');
+            if (id === currentModuleId) {
+              clearTimeout(loaderFallbackTimer);
+              clearModuleButtonLoading();
+              hideModuleSwitchLoader();
+            }
+            break;
+          }
+        }
       });
 
       lockPanel('Panel is locked. Login as Admin or SuperAdmin.');

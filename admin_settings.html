@@ -1,0 +1,522 @@
+<!-- Admin Settings Management Panel -->
+<!-- File: admin_settings.html -->
+
+<div class="admin-settings-container">
+  <div class="settings-header">
+    <h2>🔧 App Settings</h2>
+    <p class="settings-subtitle">Manage WhatsApp number and Menu Blocker passcode</p>
+  </div>
+
+  <!-- Alert Messages -->
+  <div id="settingsAlert" class="alert" style="display: none;">
+    <span id="alertMessage"></span>
+    <button type="button" class="close-btn" onclick="closeAlert()">&times;</button>
+  </div>
+
+  <!-- Settings Form -->
+  <form id="settingsForm" class="settings-form">
+    <!-- Hotel WhatsApp Number -->
+    <div class="form-group">
+      <label for="hotelWhatsappNo" class="form-label">
+        <span class="label-icon">📱</span>
+        Hotel WhatsApp Number
+      </label>
+      <div class="input-wrapper">
+        <input 
+          type="tel" 
+          id="hotelWhatsappNo" 
+          name="hotelWhatsappNo"
+          placeholder="e.g., 91 9371 519 999"
+          pattern="[0-9\s\-\+]+"
+          required
+        />
+        <span class="input-hint">Include country code (e.g., 91 for India)</span>
+      </div>
+    </div>
+
+    <!-- Menu Blocker Staff Code -->
+    <div class="form-group">
+      <label for="menuBlockerStaffCode" class="form-label">
+        <span class="label-icon">🔐</span>
+        Menu Blocker Staff Code
+      </label>
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          id="menuBlockerStaffCode" 
+          name="menuBlockerStaffCode"
+          placeholder="e.g., NKSTAFF2026"
+          pattern="[A-Za-z0-9]{4,}"
+          minlength="4"
+          required
+        />
+        <span class="input-hint">Minimum 4 characters. Used by staff to bypass menu blocker.</span>
+      </div>
+    </div>
+
+    <!-- Last Updated Info -->
+    <div class="form-group info-group">
+      <div class="info-box">
+        <span class="info-icon">ℹ️</span>
+        <div class="info-content">
+          <p class="info-title">Last Updated</p>
+          <p id="lastUpdated" class="info-value">Loading...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="submit" id="saveBtn" class="btn btn-primary">
+        <span class="btn-icon">💾</span>
+        Save Settings
+      </button>
+      <button type="reset" class="btn btn-secondary">
+        <span class="btn-icon">↻</span>
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
+
+<style>
+.admin-settings-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.settings-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.settings-header h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.settings-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Alert Messages */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.alert .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Form Styles */
+.settings-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+}
+
+.label-icon {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper input {
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.input-wrapper input:invalid:not(:placeholder-shown) {
+  border-color: #dc3545;
+}
+
+.input-hint {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.4rem;
+}
+
+/* Info Group */
+.info-group {
+  margin-bottom: 1rem;
+}
+
+.info-box {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-left: 4px solid #17a2b8;
+  border-radius: 6px;
+  gap: 0.8rem;
+}
+
+.info-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.info-content {
+  flex: 1;
+}
+
+.info-title {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 0.3rem 0;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.btn-primary {
+  background-color: #ff6b35;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #e55a2a;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #d0d0d0;
+}
+
+/* Loading State */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.btn-primary.loading::after {
+  content: '';
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .admin-settings-container {
+    margin: 1rem auto;
+  }
+
+  .settings-form {
+    padding: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+</style>
+
+<script>
+/**
+ * Settings Management JavaScript
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+  initializeAuthState();
+  loadSettings();
+  setupEventListeners();
+});
+
+function getAuthToken() {
+  try {
+    const params = new URLSearchParams(window.location.search || '');
+    const queryToken = String(params.get('authToken') || '').trim();
+    if (queryToken) {
+      return queryToken;
+    }
+  } catch (err) {
+    // Ignore malformed URL data.
+  }
+
+  try {
+    const rawSession = sessionStorage.getItem('nk_admin_auth_session_v1');
+    if (!rawSession) {
+      return '';
+    }
+    const parsed = JSON.parse(rawSession);
+    return String(parsed && parsed.token ? parsed.token : '').trim();
+  } catch (err) {
+    return '';
+  }
+}
+
+function initializeAuthState() {
+  const saveBtn = document.getElementById('saveBtn');
+  if (!saveBtn) {
+    return;
+  }
+
+  const token = getAuthToken();
+  if (!token) {
+    saveBtn.disabled = true;
+    showAlert('SuperAdmin login is required to save settings.', 'info');
+    return;
+  }
+
+  saveBtn.disabled = false;
+}
+
+/**
+ * Load current settings from API
+ */
+function loadSettings() {
+  fetch('/backend/api_settings.php', {
+    method: 'GET',
+    credentials: 'same-origin'
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success && data.data) {
+      document.getElementById('hotelWhatsappNo').value = data.data.hotelWhatsappNo || '';
+      document.getElementById('menuBlockerStaffCode').value = data.data.menuBlockerStaffCode || '';
+      if (data.data.updatedAt) {
+        document.getElementById('lastUpdated').textContent = new Date(data.data.updatedAt).toLocaleString();
+      }
+    } else {
+      showAlert(data.error || 'Failed to load settings', 'error');
+    }
+  })
+  .catch(error => {
+    console.error('Error loading settings:', error);
+    showAlert('Failed to load settings: ' + error.message, 'error');
+  });
+}
+
+/**
+ * Setup form event listeners
+ */
+function setupEventListeners() {
+  const form = document.getElementById('settingsForm');
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    saveSettings();
+  });
+}
+
+/**
+ * Save settings to API
+ */
+function saveSettings() {
+  const saveBtn = document.getElementById('saveBtn');
+  const hotelWhatsappNo = document.getElementById('hotelWhatsappNo').value.trim();
+  const menuBlockerStaffCode = document.getElementById('menuBlockerStaffCode').value.trim();
+  const token = getAuthToken();
+
+  // Validation
+  if (!hotelWhatsappNo || !menuBlockerStaffCode) {
+    showAlert('Please fill in all fields', 'error');
+    return;
+  }
+
+  if (!token) {
+    showAlert('SuperAdmin login required before saving settings.', 'error');
+    saveBtn.disabled = true;
+    return;
+  }
+
+  // Disable submit button and show loading state
+  saveBtn.disabled = true;
+  saveBtn.classList.add('loading');
+
+  fetch('/backend/api_settings.php', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({
+      token: token,
+      hotelWhatsappNo: hotelWhatsappNo,
+      menuBlockerStaffCode: menuBlockerStaffCode
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    saveBtn.disabled = false;
+    saveBtn.classList.remove('loading');
+
+    if (data.success) {
+      showAlert('✓ Settings saved successfully!', 'success');
+      // Update last updated time
+      document.getElementById('lastUpdated').textContent = new Date(data.data.updatedAt).toLocaleString();
+    } else {
+      showAlert(data.error || 'Failed to save settings', 'error');
+    }
+  })
+  .catch(error => {
+    saveBtn.disabled = false;
+    saveBtn.classList.remove('loading');
+    console.error('Error saving settings:', error);
+    showAlert('Failed to save settings: ' + error.message, 'error');
+  });
+}
+
+/**
+ * Show alert message
+ */
+function showAlert(message, type = 'info') {
+  const alert = document.getElementById('settingsAlert');
+  const alertMessage = document.getElementById('alertMessage');
+  
+  alertMessage.textContent = message;
+  alert.className = 'alert ' + type;
+  alert.style.display = 'flex';
+
+  // Auto-close success alerts
+  if (type === 'success') {
+    setTimeout(closeAlert, 4000);
+  }
+}
+
+/**
+ * Close alert message
+ */
+function closeAlert() {
+  const alert = document.getElementById('settingsAlert');
+  alert.style.display = 'none';
+}
+</script>

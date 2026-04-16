@@ -967,22 +967,53 @@
          if (!payload || payload.ok !== true) {
            throw new Error(payload && payload.error ? payload.error : 'APPS_SCRIPT_INVALID_RESPONSE');
          }
-         if (payload.sourceTab !== SHEET_NAME) {
-           throw new Error(`TAB_MISMATCH_DETECTED_${payload.sourceTab || 'UNKNOWN'}`);
+         const sourceTab = String(payload.sourceTab || payload.tab || payload.sheetName || '').trim();
+         if (sourceTab && sourceTab.toLowerCase() !== String(SHEET_NAME).toLowerCase()) {
+           throw new Error(`TAB_MISMATCH_DETECTED_${sourceTab || 'UNKNOWN'}`);
          }
 
          const headers = Array.isArray(payload.headers) ? payload.headers.map(canonicalizeHeader) : [];
          const rawRows = Array.isArray(payload.rows) ? payload.rows : [];
          const cols = headers.map(label => ({ label }));
+         const toCanonicalLookupKeys = (header) => {
+           const raw = String(header || '').trim();
+           const lower = raw.toLowerCase();
+           const compact = lower.replace(/[^a-z0-9]/g, '');
+           const camel = lower
+             .replace(/[^a-z0-9]+([a-z0-9])/g, (_, c) => c.toUpperCase())
+             .replace(/[^a-z0-9]/g, '');
+           const alias = {
+             'itemname': ['itemName'],
+             'description': ['subCategory'],
+             'subcategory': ['subCategory'],
+             'foodcategory': ['foodCategory'],
+             'imageurl': ['imageUrl']
+           };
+           return [raw, lower, compact, camel, ...(alias[compact] || [])];
+         };
          const rows = rawRows.map(row => ({
-           c: headers.map((_, idx) => ({ v: row[idx] || null }))
+           c: headers.map((header, idx) => {
+             const byIndex = Array.isArray(row) ? row[idx] : null;
+             const rowObj = row && typeof row === 'object' && !Array.isArray(row) ? row : null;
+             let byHeader = null;
+             if (rowObj) {
+               const keys = [...new Set(toCanonicalLookupKeys(header))];
+               for (const key of keys) {
+                 if (Object.prototype.hasOwnProperty.call(rowObj, key) && rowObj[key] !== undefined && rowObj[key] !== null) {
+                   byHeader = rowObj[key];
+                   break;
+                 }
+               }
+             }
+             return { v: byIndex ?? byHeader ?? null };
+           })
          }));
 
          if (!rows.length || !cols.length) {
            throw new Error('EMPTY_SHEET_DATA');
          }
 
-         return { rows, cols, apiUrl: url, sheetName: payload.sourceTab };
+         return { rows, cols, apiUrl: url, sheetName: sourceTab || SHEET_NAME };
        }
 
        const start = text.indexOf('{');
@@ -1144,7 +1175,7 @@
            const vegXpcsCols = ["Veg 2Pcs", "Veg 4pcs", "Veg 6pcs", "Veg 9pcs", "Veg 12pcs"];
            const servingColumns = ["Unit (Pcs)", ...vegXpcsCols, "Chicken 2pcs", "Chicken 4pcs", "Chicken 6pcs", "Chicken 9pcs", "Chicken 12pcs", "Prawns 2pcs", "Prawns 4pcs", "Prawns 6pcs", "Prawns 9pcs", "Prawns 12pcs", "Half", "Full", "Plain", "Butter", "Medium", "Large"];
 
-           MENU_DB = rows.map((r, idx) => {
+             const parsedMenuItems = rows.map((r, idx) => {
                const d = r.c;
                if(!d[map["Item Name"]] || !d[map["Item Name"]].v) return null;
                
@@ -1226,7 +1257,13 @@
                    isVeg: finalIsVeg,
                    rowDiet: finalIsVeg ? 'veg' : 'nonveg'
                };
-                 }).filter(x => x && x.avail !== false);
+                 }).filter(x => x);
+
+           const availableMenuItems = parsedMenuItems.filter(x => x.avail !== false);
+           MENU_DB = availableMenuItems.length ? availableMenuItems : parsedMenuItems;
+           if (!availableMenuItems.length && parsedMenuItems.length) {
+             console.warn('[AWGNK MENU] All rows are marked unavailable; showing items to avoid an empty menu.');
+           }
 
            const footerSync = document.getElementById('footerSyncTime');
            const footerCount = document.getElementById('footerItemCount');
@@ -1615,7 +1652,7 @@ if (navMenu) {
     } catch(e) {}
   })();
 </script>
-<script src="menu-blocker.js?v=20260412-6" defer></script>
+<script src="menu-blocker.js?v=20260416-1" defer></script>
 <script src="script.js?v=20260414-11"></script>
 <script src="https://myappzchat.com/production/master/widget/embed-widget.umd.js" data-widget-id="edb91eb3-7293-4749-9138-9e5871f0082a" async></script>
  </body>

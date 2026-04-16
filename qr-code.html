@@ -25,10 +25,17 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
+            max-width: 780px;
             width: 100%;
             padding: 40px;
             text-align: center;
+        }
+
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin: 30px 0;
         }
 
         .header {
@@ -64,7 +71,7 @@
             background: #f8f9fa;
             padding: 30px;
             border-radius: 15px;
-            margin: 30px 0;
+            margin: 0;
         }
 
         .qr-label {
@@ -254,6 +261,10 @@
                 padding: 30px 20px;
             }
 
+            .qr-grid {
+                grid-template-columns: 1fr;
+            }
+
             h1 {
                 font-size: 24px;
             }
@@ -284,10 +295,18 @@
 
         <div id="alertBox" class="alert"></div>
 
-        <div class="qr-section">
-            <div class="qr-label">Scan to View Menu</div>
-            <div class="qr-code">
-                <img id="qrCodeImage" src="" alt="QR Code">
+        <div class="qr-grid">
+            <div class="qr-section">
+                <div class="qr-label">Scan to View Menu</div>
+                <div class="qr-code">
+                    <img id="qrCodeImage" src="" alt="Menu QR Code">
+                </div>
+            </div>
+            <div class="qr-section">
+                <div class="qr-label">Scan to Open Admin Panel</div>
+                <div class="qr-code">
+                    <img id="adminQrCodeImage" src="" alt="Admin Panel QR Code">
+                </div>
             </div>
         </div>
 
@@ -315,6 +334,7 @@
                 <li><strong>View Menu:</strong> They are directed to your digital menu</li>
                 <li><strong>Track Engagement:</strong> Every scan is tracked automatically with timestamp</li>
                 <li><strong>Get Notified:</strong> You receive an email every 100 scans to support@dcoresystem.com</li>
+                <li><strong>Admin QR:</strong> Staff can scan the admin QR to open the admin login panel directly</li>
             </ol>
         </div>
 
@@ -324,6 +344,12 @@
             </button>
             <button class="btn btn-secondary" onclick="copyMenuUrl()">
                 📋 Copy Menu URL
+            </button>
+            <button class="btn btn-primary" onclick="downloadAdminQrCode()">
+                ⬇️ Download Admin QR
+            </button>
+            <button class="btn btn-secondary" onclick="copyAdminUrl()">
+                🔐 Copy Admin URL
             </button>
             <button class="btn btn-secondary" onclick="viewReport()">
                 📊 View Full Report
@@ -342,11 +368,12 @@
         const MENU_URL = 'https://namastekalyan.asianwokandgrill.in/menu.html';
         // scan.html: tracks device, browser, OS, geo client-side before redirecting to menu
         const QR_TRACK_URL = 'https://namastekalyan.asianwokandgrill.in/scan.html';
+        const ADMIN_PANEL_URL = 'https://namastekalyan.asianwokandgrill.in/admin-portal.html';
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             ensureQrSheetReady();
-            generateQrCode();
+            generateQrCodes();
             loadScanStats();
             updateLastModified();
         });
@@ -364,13 +391,17 @@
         }
 
         // Generate QR Code
-        function generateQrCode() {
+        function generateQrCodes() {
             const qrCodeImg = document.getElementById('qrCodeImage');
+            const adminQrCodeImg = document.getElementById('adminQrCodeImage');
             // Using goqr.me service - no authentication needed
             const cacheBust = Date.now();
             const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(QR_TRACK_URL)}&v=${cacheBust}`;
+            const adminQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(ADMIN_PANEL_URL)}&v=${cacheBust}`;
             qrCodeImg.src = qrUrl;
             qrCodeImg.alt = 'Menu QR Code';
+            adminQrCodeImg.src = adminQrUrl;
+            adminQrCodeImg.alt = 'Admin Panel QR Code';
         }
 
         // Load scan statistics
@@ -408,8 +439,16 @@
 
         // Download QR Code
         async function downloadQrCode() {
+            await downloadQrImage('qrCodeImage', 'namastekalyan-menu-qr-code.png');
+        }
+
+        async function downloadAdminQrCode() {
+            await downloadQrImage('adminQrCodeImage', 'namastekalyan-admin-panel-qr-code.png');
+        }
+
+        async function downloadQrImage(imageElementId, fileName) {
             try {
-                const qrSrc = document.getElementById('qrCodeImage').src;
+                const qrSrc = document.getElementById(imageElementId).src;
                 const response = await fetch(qrSrc, { mode: 'cors' });
                 if (!response.ok) throw new Error('QR image fetch failed');
 
@@ -418,7 +457,7 @@
 
                 const link = document.createElement('a');
                 link.href = blobUrl;
-                link.download = 'namastekalyan-menu-qr-code.png';
+                link.download = fileName;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -427,7 +466,7 @@
                 showAlert('QR Code downloaded successfully!', 'success');
             } catch (err) {
                 // Fallback: open image in new tab if download is blocked by browser/CORS
-                const qrSrc = document.getElementById('qrCodeImage').src;
+                const qrSrc = document.getElementById(imageElementId).src;
                 window.open(qrSrc, '_blank', 'noopener,noreferrer');
                 showAlert('Direct download blocked by browser. QR image opened in new tab for manual save.', 'info');
             }
@@ -440,21 +479,34 @@
                 navigator.clipboard.writeText(text).then(() => {
                     showAlert('QR target URL copied to clipboard!', 'success');
                 }).catch(() => {
-                    fallbackCopy(text);
+                    fallbackCopy(text, 'QR target URL copied to clipboard!');
                 });
             } else {
-                fallbackCopy(text);
+                fallbackCopy(text, 'QR target URL copied to clipboard!');
             }
         }
 
-        function fallbackCopy(text) {
+        function copyAdminUrl() {
+            const text = ADMIN_PANEL_URL;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showAlert('Admin panel URL copied to clipboard!', 'success');
+                }).catch(() => {
+                    fallbackCopy(text, 'Admin panel URL copied to clipboard!');
+                });
+            } else {
+                fallbackCopy(text, 'Admin panel URL copied to clipboard!');
+            }
+        }
+
+        function fallbackCopy(text, message) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
             document.body.appendChild(textarea);
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            showAlert('QR target URL copied to clipboard!', 'success');
+            showAlert(message || 'URL copied to clipboard!', 'success');
         }
 
         // View full report

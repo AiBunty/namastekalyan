@@ -195,7 +195,7 @@
   </main>
 
   <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-auth.js?v=20260416-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
   <script>
@@ -259,6 +259,12 @@
           clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
         }
       });
+
+      function notifyModuleReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+        }
+      }
 
       function applyEmbeddedAuthUi() {
         if (!embeddedMode) return;
@@ -659,6 +665,7 @@
           refreshBtn.disabled = false;
           setLockStatus(`Panel unlocked for ${payload.user && payload.user.username ? payload.user.username : 'admin'}.`);
           await loadReport('');
+          notifyModuleReady();
         } catch (error) {
           clearSessionAndLock(`Login failed: ${error.message}`);
         } finally {
@@ -670,6 +677,7 @@
         try {
           const payload = await authClient.restoreSession();
           if (!payload) {
+            notifyModuleReady();
             return;
           }
           usernameEl.disabled = true;
@@ -680,8 +688,10 @@
           refreshBtn.disabled = false;
           setLockStatus(`Panel unlocked for ${payload.user && payload.user.username ? payload.user.username : 'admin'}.`);
           await loadReport(String(eventFilterEl.value || '').trim());
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock('Session expired. Please login again.');
+          notifyModuleReady();
         }
       }
 

@@ -318,6 +318,26 @@
     return turns + align;
   }
 
+  function resolveServerEndpoint() {
+    const fromResolver = (typeof window !== 'undefined'
+      && window.NK_DATA_API
+      && typeof window.NK_DATA_API.resolveApiBaseForAction === 'function')
+      ? String(window.NK_DATA_API.resolveApiBaseForAction('submit_lead') || '').trim()
+      : '';
+
+    const fromConfig = (typeof window !== 'undefined' && window.NK_DATA_API)
+      ? String(window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl || '').trim()
+      : '';
+
+    const base = (fromResolver || fromConfig || WEBHOOK_URL || '').split('?')[0].trim();
+
+    if (!base || base.indexOf('REPLACE_WITH_YOUR_WEBAPP_ID') !== -1) {
+      throw new Error('Server endpoint is not configured.');
+    }
+
+    return base;
+  }
+
   async function postLead(inputPayload) {
     const payload = {
       ...inputPayload,
@@ -325,13 +345,11 @@
       source: 'menu-blocker-web'
     };
 
-    if (!/^https:\/\/script\.google\.com\//.test(WEBHOOK_URL)) {
-      throw new Error('Server endpoint is not configured.');
-    }
+    const endpoint = resolveServerEndpoint();
 
     // Use simple form POST to avoid CORS preflight on local origins.
-    const formBody = new URLSearchParams({ payload: JSON.stringify(payload) });
-    const res = await fetch(WEBHOOK_URL, {
+    const formBody = new URLSearchParams({ payload: JSON.stringify({ action: 'submit_lead', ...payload }) });
+    const res = await fetch(endpoint, {
       method: 'POST',
       body: formBody
     });

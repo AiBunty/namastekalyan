@@ -652,7 +652,7 @@
     </div>
 
     <script src="data-config.js?v=20260412-3"></script>
-  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-auth.js?v=20260416-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script src="https://unpkg.com/html5-qrcode" defer></script>
   <script>
@@ -660,6 +660,9 @@
       const apiBase = (window.APPS_SCRIPT_URL || (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || '').split('?')[0];
       const CACHE_KEY = 'nk_event_scanner_queue_v2';
       const CACHE_SESSION_KEY = 'nk_admin_auth_session_v1';
+      const SCAN_DEDUP_MS = 1000;
+      const QUEUE_RENDER_BATCH_MS = 80;
+      const QUEUE_CACHE_BATCH_MS = 250;
       const authClient = window.NKAdminAuth.createAuthClient({
         apiBase: apiBase,
         onAuthError: function (payload) {
@@ -667,6 +670,12 @@
           setAuthBadge('Session required', 'error');
         }
       });
+
+      function notifyModuleReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+        }
+      }
 
       const queue = [];
         let rowSequence = 1;
@@ -677,6 +686,8 @@
         let audioContext = null;
         let authReady = false;
         let lastQueuedId = '';
+        let renderQueueTimer = null;
+        let persistQueueTimer = null;
 
       const scannerStateBadge = document.getElementById('scannerStateBadge');
       const authStateBadge = document.getElementById('authStateBadge');
@@ -700,6 +711,106 @@
       const clearQueueBtn = document.getElementById('clearQueueBtn');
       const selectAllRows = document.getElementById('selectAllRows');
       const queueTableBody = document.getElementById('queueTableBody');
+
+      function scheduleRenderQueue() {
+        if (renderQueueTimer) {
+          return;
+        }
+        renderQueueTimer = window.setTimeout(function () {
+          renderQueueTimer = null;
+          renderQueue();
+        }, QUEUE_RENDER_BATCH_MS);
+      }
+
+      function scheduleSerializeQueue() {
+        if (persistQueueTimer) {
+          window.clearTimeout(persistQueueTimer);
+        }
+        persistQueueTimer = window.setTimeout(function () {
+          persistQueueTimer = null;
+          serializeQueue();
+        }, QUEUE_CACHE_BATCH_MS);
+      }
+
+      function flushQueueState() {
+        if (renderQueueTimer) {
+          window.clearTimeout(renderQueueTimer);
+          renderQueueTimer = null;
+        }
+        if (persistQueueTimer) {
+          window.clearTimeout(persistQueueTimer);
+          persistQueueTimer = null;
+        }
+        serializeQueue();
+        renderQueue();
+      }
+
+      function getScannerConfig() {
+        const hardwareThreads = Number(window.navigator.hardwareConcurrency || 4);
+        const compactViewport = window.innerWidth <= 480;
+        const fps = hardwareThreads >= 8 ? 15 : 12;
+        const boxSize = compactViewport ? 220 : (hardwareThreads >= 8 ? 260 : 240);
+        return {
+          fps: fps,
+          qrbox: { width: boxSize, height: boxSize },
+          aspectRatio: 1.2,
+          disableFlip: false
+        };
+      }
+
+      function loadScriptOnce(src) {
+        return new Promise(function (resolve, reject) {
+          const existing = document.querySelector('script[src="' + src + '"]');
+          if (existing) {
+            if (window.Html5Qrcode) {
+              resolve(true);
+              return;
+            }
+          }
+
+          const script = existing || document.createElement('script');
+          if (!existing) {
+            script.src = src;
+            script.async = true;
+            document.head.appendChild(script);
+          }
+
+          const onLoad = function () { resolve(true); };
+          const onError = function () { reject(new Error('Failed to load scanner library from ' + src)); };
+          script.addEventListener('load', onLoad, { once: true });
+          script.addEventListener('error', onError, { once: true });
+
+          window.setTimeout(function () {
+            if (!window.Html5Qrcode) {
+              reject(new Error('Scanner script timed out for ' + src));
+            }
+          }, 5000);
+        });
+      }
+
+      async function ensureScannerLibrary() {
+        if (window.Html5Qrcode && window.Html5Qrcode.getCameras) {
+          return true;
+        }
+
+        const fallbackCdn = [
+          'https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/minified/html5-qrcode.min.js',
+          'https://unpkg.com/html5-qrcode'
+        ];
+
+        for (let i = 0; i < fallbackCdn.length; i += 1) {
+          try {
+            await loadScriptOnce(fallbackCdn[i]);
+            if (window.Html5Qrcode && window.Html5Qrcode.getCameras) {
+              return true;
+            }
+          } catch (err) {
+            // Try next CDN.
+          }
+        }
+
+        return false;
+      }
 
       function escapeHtml(value) {
         return String(value || '')
@@ -1051,7 +1162,7 @@
         };
       }
 
-      function recomputeLocalState() {
+      function recomputeLocalState(shouldPersist) {
         const seenKeys = {};
         for (let index = queue.length - 1; index >= 0; index -= 1) {
           const item = queue[index];
@@ -1085,32 +1196,50 @@
             item.message = item.localMessage;
           }
         }
-        serializeQueue();
+        if (shouldPersist !== false) {
+          scheduleSerializeQueue();
+        }
       }
 
-      function enqueueScan(rawScan, source) {
+      function enqueueScan(rawScan, source, options) {
+        const opts = options || {};
         const normalized = String(rawScan || '').trim();
         if (!normalized) {
           setQueueStatus('Nothing to add. Provide a QR value first.', false);
-          playFailureBeep();
-          focusManualInput();
+          if (!opts.silent) {
+            playFailureBeep();
+          }
+          if (!opts.deferFocus) {
+            focusManualInput();
+          }
           return;
         }
 
         const queueItem = createQueueItem(source, normalized);
         queue.unshift(queueItem);
         lastQueuedId = queueItem.id;
-        recomputeLocalState();
-        renderQueue();
+        recomputeLocalState(!opts.fastPath);
 
-        if (queueItem.localValid) {
-          setQueueStatus('Scan cached locally. Continue scanning or save when ready.', true);
-          playSuccessBeep();
+        if (opts.fastPath) {
+          scheduleRenderQueue();
+          scheduleSerializeQueue();
         } else {
-          setQueueStatus(queueItem.message || 'Scan cached but blocked locally.', false);
-          playFailureBeep();
+          renderQueue();
         }
-        focusManualInput();
+
+        if (!opts.silent) {
+          if (queueItem.localValid) {
+            setQueueStatus('Scan cached locally. Continue scanning or save when ready.', true);
+            playSuccessBeep();
+          } else {
+            setQueueStatus(queueItem.message || 'Scan cached but blocked locally.', false);
+            playFailureBeep();
+          }
+        }
+
+        if (!opts.deferFocus) {
+          focusManualInput();
+        }
       }
 
       function addBulkScans(lines, source) {
@@ -1122,10 +1251,22 @@
           return;
         }
 
-        for (let index = 0; index < values.length; index += 1) {
-          enqueueScan(values[index], source);
+        const seenInBulk = {};
+        const uniqueValues = values.filter(function (value) {
+          if (seenInBulk[value]) {
+            return false;
+          }
+          seenInBulk[value] = true;
+          return true;
+        });
+
+        for (let index = 0; index < uniqueValues.length; index += 1) {
+          enqueueScan(uniqueValues[index], source, { fastPath: true, silent: true, deferFocus: true });
         }
-        setQueueStatus(String(values.length) + ' scan(s) cached locally.', true);
+
+        flushQueueState();
+        setQueueStatus(String(uniqueValues.length) + ' scan(s) cached locally.', true);
+        playSuccessBeep();
         focusManualInput();
       }
 
@@ -1275,18 +1416,18 @@
         try {
           await html5QrCode.start(
             cameraId,
-            { fps: 10, qrbox: { width: 220, height: 220 }, aspectRatio: 1.2 },
-            async function (decodedText) {
+            getScannerConfig(),
+            function (decodedText) {
               const normalized = String(decodedText || '').trim();
               const now = Date.now();
               if (!normalized) return;
-              if (normalized === recentScanText && (now - recentScanTime) < 1500) {
+              if (normalized === recentScanText && (now - recentScanTime) < SCAN_DEDUP_MS) {
                 return;
               }
               recentScanText = normalized;
               recentScanTime = now;
               setScannerStatus('QR detected. Caching scan locally...', true);
-              enqueueScan(normalized, 'camera');
+              enqueueScan(normalized, 'camera', { fastPath: true, deferFocus: true });
             },
             function () {}
           );
@@ -1342,14 +1483,17 @@
           authReady = true;
           setAuthBadge(username, 'valid');
           setQueueStatus(queue.length ? 'Cached queue restored. Save when ready.' : 'Session ready. Start scanning. New scans stay local until save.', true);
-          setScannerStatus('Choose a camera and start scanning.', true);
+          setScannerStatus('Preparing scanner library and camera...', true);
+          await ensureScannerLibrary();
           await loadCameras();
+          notifyModuleReady();
         } catch (err) {
           authReady = false;
           setAuthBadge('Session required', 'error');
           setScannerStatus('Staff session not available. Open this page from the admin portal.', false);
           setQueueStatus(err && err.message ? err.message : 'Unable to restore admin session.', false);
           startScannerBtn.disabled = true;
+          notifyModuleReady();
         }
         focusManualInput();
       }
@@ -1441,7 +1585,7 @@
           if (!item) return;
           item.admittedCount = Math.max(1, Math.floor(Number(target.value || 1) || 1));
           target.value = String(item.admittedCount);
-          serializeQueue();
+          scheduleSerializeQueue();
         }
       });
 

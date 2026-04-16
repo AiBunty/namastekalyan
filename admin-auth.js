@@ -70,7 +70,25 @@
       settings.apiBase ||
       (window.APPS_SCRIPT_URL || (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || '')
     );
+    const appsScriptBase = normalizeApiBase(
+      (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || window.APPS_SCRIPT_URL || ''
+    );
     const onAuthError = typeof settings.onAuthError === 'function' ? settings.onAuthError : null;
+
+    function resolveApiBaseForAction(action) {
+      const resolver = window.NK_DATA_API && typeof window.NK_DATA_API.resolveApiBaseForAction === 'function'
+        ? window.NK_DATA_API.resolveApiBaseForAction
+        : null;
+
+      if (resolver) {
+        const resolved = normalizeApiBase(resolver(action));
+        if (resolved) {
+          return resolved;
+        }
+      }
+
+      return apiBase;
+    }
 
     let authSession = null;
     let pendingRequestCount = 0;
@@ -173,6 +191,17 @@
     }
 
     function requestError(response, payload) {
+      const errorCode = payload && payload.error ? String(payload.error) : '';
+      if (errorCode === 'ACCOUNT_LOCKED') {
+        return new Error('Login temporarily locked due to repeated failures. Please wait a few minutes and try again.');
+      }
+      if (AUTH_ERRORS[errorCode]) {
+        const details = payload && (payload.message || payload.error)
+          ? (payload.message || payload.error)
+          : 'Session expired or unauthorized request.';
+        return new Error('Session/Login required: ' + details);
+      }
+
       const message = payload && (payload.message || payload.error)
         ? (payload.message || payload.error)
         : ('HTTP ' + String(response && response.status ? response.status : '500'));
@@ -190,7 +219,8 @@
     }
 
     async function apiGet(action, params) {
-      if (!apiBase) {
+      const targetBase = resolveApiBaseForAction(action);
+      if (!targetBase) {
         throw new Error('Apps Script URL is missing in data-config.js.');
       }
 
@@ -202,20 +232,41 @@
       }
 
       try {
-        const response = await fetch(apiBase + '?' + query.toString(), { cache: 'no-store' });
-        const payload = await response.json();
-        if (!response.ok || !payload || payload.ok !== true) {
-          handleAuthFailure(payload);
-          throw requestError(response, payload);
+        const requestUrl = '?' + query.toString();
+
+        const tryBases = [targetBase];
+        if (appsScriptBase && appsScriptBase !== targetBase) {
+          tryBases.push(appsScriptBase);
         }
-        return payload;
+
+        let lastError = null;
+        for (let i = 0; i < tryBases.length; i += 1) {
+          const base = tryBases[i];
+          try {
+            const response = await fetch(base + requestUrl, { cache: 'no-store' });
+            const payload = await response.json();
+            if (!response.ok || !payload || payload.ok !== true) {
+              handleAuthFailure(payload);
+              lastError = requestError(response, payload);
+              continue;
+            }
+
+            return payload;
+          } catch (err) {
+            lastError = err;
+          }
+        }
+
+        throw (lastError || new Error('Request failed.'));
       } finally {
         endRequest();
       }
     }
 
     async function apiPost(body) {
-      if (!apiBase) {
+      const action = body && body.action ? String(body.action) : '';
+      const targetBase = resolveApiBaseForAction(action);
+      if (!targetBase) {
         throw new Error('Apps Script URL is missing in data-config.js.');
       }
 
@@ -230,17 +281,34 @@
       formBody.set('payload', JSON.stringify(postBody));
 
       try {
-        const response = await fetch(apiBase, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body: formBody.toString()
-        });
-        const payload = await response.json();
-        if (!response.ok || !payload || payload.ok !== true) {
-          handleAuthFailure(payload);
-          throw requestError(response, payload);
+        const tryBases = [targetBase];
+        if (appsScriptBase && appsScriptBase !== targetBase) {
+          tryBases.push(appsScriptBase);
         }
-        return payload;
+
+        let lastError = null;
+        for (let i = 0; i < tryBases.length; i += 1) {
+          const base = tryBases[i];
+          try {
+            const response = await fetch(base, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+              body: formBody.toString()
+            });
+            const payload = await response.json();
+            if (!response.ok || !payload || payload.ok !== true) {
+              handleAuthFailure(payload);
+              lastError = requestError(response, payload);
+              continue;
+            }
+
+            return payload;
+          } catch (err) {
+            lastError = err;
+          }
+        }
+
+        throw (lastError || new Error('Request failed.'));
       } finally {
         endRequest();
       }

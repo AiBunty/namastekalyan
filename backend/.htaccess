@@ -1,0 +1,23 @@
+Options -Indexes -MultiViews
+
+# Force PHP 8.2 handler (StackCP/cPanel)
+AddHandler application/x-httpd-php82 .php
+
+RewriteEngine On
+
+# Prevent rewrite recursion on the front controller.
+RewriteRule ^index\.php$ - [END]
+
+# Block direct access to sensitive files.
+RewriteRule ^\.env$ - [F,END]
+RewriteRule ^bootstrap\.php$ - [F,END]
+RewriteRule ^composer\.(json|lock)$ - [F,END]
+RewriteRule ^logs/ - [F,END]
+
+# If the target is an existing file/folder, do not rewrite.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [END]
+
+# Route remaining requests to the API front controller.
+RewriteRule ^ index.php [QSA,END]

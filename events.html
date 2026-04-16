@@ -533,7 +533,14 @@
       };
 
       const loadEvents = async () => {
-        if (!apiBase) {
+        const resolvedBase = (window.NK_DATA_API && typeof window.NK_DATA_API.resolveApiBaseForAction === 'function')
+          ? String(window.NK_DATA_API.resolveApiBaseForAction('events_list') || '').split('?')[0]
+          : apiBase;
+        const fallbackBase = (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl)
+          ? String(window.NK_DATA_API.appsScriptUrl || '').split('?')[0].trim()
+          : apiBase;
+
+        if (!resolvedBase && !fallbackBase) {
           setStatus('Apps Script URL missing in data-config.js.', true);
           return;
         }
@@ -547,25 +554,35 @@
         }
 
         const query = new URLSearchParams({ action: 'events_list', limit: '20' });
-        try {
-          const response = await fetch(`${apiBase}?${query.toString()}`, { cache: 'no-store' });
-          if (!response.ok) {
-            setStatus(`Unable to load events (HTTP ${response.status}).`, true);
-            return;
-          }
-
-          const payload = await response.json();
-          if (!payload || !payload.ok || !Array.isArray(payload.items)) {
-            setStatus('Unable to read active events right now.', true);
-            return;
-          }
-
-          setCachedEventsPayload(payload);
-
-          renderEvents(payload.items);
-        } catch (error) {
-          setStatus('Network error while loading active events.', true);
+        const tryBases = [resolvedBase];
+        if (fallbackBase && fallbackBase !== resolvedBase) {
+          tryBases.push(fallbackBase);
         }
+
+        for (let i = 0; i < tryBases.length; i += 1) {
+          const base = tryBases[i];
+          if (!base) continue;
+
+          try {
+            const response = await fetch(`${base}?${query.toString()}`, { cache: 'no-store' });
+            if (!response.ok) {
+              continue;
+            }
+
+            const payload = await response.json();
+            if (!payload || !payload.ok || !Array.isArray(payload.items)) {
+              continue;
+            }
+
+            setCachedEventsPayload(payload);
+            renderEvents(payload.items);
+            return;
+          } catch (error) {
+            // try next endpoint
+          }
+        }
+
+        setStatus('Unable to read active events right now.', true);
       };
 
       loadEvents();

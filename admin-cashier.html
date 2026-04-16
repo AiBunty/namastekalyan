@@ -120,13 +120,20 @@
   </main>
 
   <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-auth.js?v=20260416-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script>
     (function () {
       const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
       const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
       const authClient = window.NKAdminAuth.createAuthClient({ apiBase: apiBase, onAuthError: function (payload) { clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.'); } });
+
+      function notifyModuleReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+        }
+      }
+
       const usernameEl = document.getElementById('username');
       const passwordEl = document.getElementById('password');
       const loginBtn = document.getElementById('loginBtn');
@@ -361,6 +368,7 @@
           setAuthStatus(`Logged in as ${payload.user.username} (${payload.user.role}).`);
           await loadPaidEvents();
           await loadSummary();
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock(`Login failed: ${err.message}`);
         } finally { loginBtn.disabled = false; }
@@ -369,15 +377,24 @@
       async function restoreSessionIfAny() {
         try {
           const payload = await authClient.restoreSession();
-          if (!payload) return;
+          if (!payload) {
+            notifyModuleReady();
+            return;
+          }
           const role = String(payload.user && payload.user.role || '').toLowerCase();
-          if (role !== 'admin' && role !== 'superadmin') { clearSessionAndLock('Admin or SuperAdmin access is required.'); return; }
+          if (role !== 'admin' && role !== 'superadmin') {
+            clearSessionAndLock('Admin or SuperAdmin access is required.');
+            notifyModuleReady();
+            return;
+          }
           updateLockedUi(false);
           setAuthStatus(`Logged in as ${payload.user.username} (${payload.user.role}).`);
           await loadPaidEvents();
           await loadSummary();
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock('Session expired. Please login again.');
+          notifyModuleReady();
         }
       }
 

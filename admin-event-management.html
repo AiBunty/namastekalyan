@@ -238,7 +238,7 @@
   </main>
 
   <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-auth.js?v=20260416-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script>
     (function () {
@@ -250,6 +250,12 @@
           clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
         }
       });
+
+      function notifyModuleReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+        }
+      }
 
       const usernameEl = document.getElementById('username');
       const passwordEl = document.getElementById('password');
@@ -600,6 +606,7 @@
           setAuthStatus(`Logged in as ${payload.user.username} (${payload.user.role}).`);
           clearForm();
           await loadEvents();
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock(`Login failed: ${err.message}`);
         } finally {
@@ -610,14 +617,19 @@
       async function restoreSessionIfAny() {
         try {
           const payload = await authClient.restoreSession();
-          if (!payload) return;
+          if (!payload) {
+            notifyModuleReady();
+            return;
+          }
           currentUser = payload.user || null;
           updateLockedUi(false);
           setAuthStatus(`Logged in as ${payload.user.username} (${payload.user.role}).`);
           clearForm();
           await loadEvents();
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock('Session expired. Please login again.');
+          notifyModuleReady();
         }
       }
 

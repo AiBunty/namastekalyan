@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📱 App Settings - Namaste Kalyan Admin</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .alert {
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .alert.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .alert.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .alert.info {
+      background-color: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+
+    .alert .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: inherit;
+      padding: 0;
+      line-height: 1;
+      opacity: 0.7;
+    }
+
+    .alert .close-btn:hover {
+      opacity: 1;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group:last-of-type {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+    }
+
+    .label-icon {
+      margin-right: 0.5rem;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .auth-box {
+      background: #f8f9fb;
+      border: 1px solid #e4e8ef;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-box h3 {
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 0.6rem;
+    }
+
+    .auth-status {
+      font-size: 0.9rem;
+      margin-bottom: 0.9rem;
+      color: #555;
+    }
+
+    .auth-status.ok {
+      color: #1d6f42;
+      font-weight: 600;
+    }
+
+    .auth-status.warn {
+      color: #8f5f00;
+      font-weight: 600;
+    }
+
+    .auth-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .auth-actions {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .auth-actions .btn {
+      flex: unset;
+      min-width: 140px;
+      padding: 0.7rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    .input-hint {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    .info-box {
+      display: flex;
+      align-items: flex-start;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-left: 4px solid #667eea;
+      border-radius: 6px;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .info-content {
+      flex: 1;
+    }
+
+    .info-title {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0 0 0.3rem 0;
+      font-weight: 600;
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      color: #333;
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      word-break: break-all;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 1.5rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background-color: #d0d0d0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      font-family: 'Courier New', monospace;
+      word-break: break-all;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-1rem);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .loader {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .footer {
+      text-align: center;
+      color: white;
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .auth-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🔧 App Settings</h1>
+      <p>Manage WhatsApp & Menu Blocker Configuration</p>
+    </div>
+
+    <div class="card">
+      <!-- Alert Messages -->
+      <div id="settingsAlert" class="alert" style="display: none;">
+        <span id="alertMessage"></span>
+        <button type="button" class="close-btn" onclick="closeAlert()">&times;</button>
+      </div>
+
+      <div class="auth-box">
+        <h3>🔐 SuperAdmin Access</h3>
+        <p id="authStatus" class="auth-status">Checking session...</p>
+        <div class="auth-grid">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="authUsername">Username</label>
+            <input type="text" id="authUsername" autocomplete="username" placeholder="Enter admin username" />
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="authPassword">Password</label>
+            <input type="password" id="authPassword" autocomplete="current-password" placeholder="Enter password" />
+          </div>
+        </div>
+        <div class="auth-actions">
+          <button type="button" id="loginBtn" class="btn btn-primary">Login</button>
+          <button type="button" id="logoutBtn" class="btn btn-secondary" disabled>Logout</button>
+        </div>
+      </div>
+
+      <!-- Settings Form -->
+      <form id="settingsForm">
+        <!-- Current Settings Display -->
+        <div class="stats" style="margin-bottom: 2rem;">
+          <div class="stat-card">
+            <div class="stat-label">📱 WhatsApp</div>
+            <div class="stat-value" id="displayWhatsapp">Loading...</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">🔐 Staff Code</div>
+            <div class="stat-value">••••••••</div>
+          </div>
+        </div>
+
+        <!-- Hotel WhatsApp Number -->
+        <div class="form-group">
+          <label for="hotelWhatsappNo">
+            <span class="label-icon">📱</span>
+            Hotel WhatsApp Number
+          </label>
+          <input 
+            type="tel" 
+            id="hotelWhatsappNo" 
+            name="hotelWhatsappNo"
+            placeholder="e.g., 91 9371 519 999"
+            pattern="[0-9\s\-\+]+"
+            required
+          />
+          <span class="input-hint">Include country code (e.g., 91 for India)</span>
+        </div>
+
+        <!-- Menu Blocker Staff Code -->
+        <div class="form-group">
+          <label for="menuBlockerStaffCode">
+            <span class="label-icon">🔐</span>
+            Menu Blocker Staff Code
+          </label>
+          <input 
+            type="text" 
+            id="menuBlockerStaffCode" 
+            name="menuBlockerStaffCode"
+            placeholder="e.g., NKSTAFF2026"
+            pattern="[A-Za-z0-9]{4,}"
+            minlength="4"
+            required
+          />
+          <span class="input-hint">Minimum 4 characters. Used by staff to bypass menu blocker.</span>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+          <span class="info-icon">ℹ️</span>
+          <div class="info-content">
+            <p class="info-title">Last Updated</p>
+            <p id="lastUpdated" class="info-value">Loading...</p>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="submit" id="saveBtn" class="btn btn-primary">
+            <span>💾</span>
+            <span>Save Settings</span>
+          </button>
+          <button type="reset" class="btn btn-secondary">
+            <span>↻</span>
+            <span>Reset</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="footer">
+      <p>🔒 Settings are stored securely on the server</p>
+      <p id="footerInfo" style="font-size: 0.75rem; margin-top: 0.5rem;">Loading...</p>
+    </div>
+  </div>
+
+  <script src="data-config.js"></script>
+  <script src="admin-auth.js?v=20260413-1"></script>
+  <script>
+    /**
+     * Settings Panel Handler
+     */
+    let authClient = null;
+
+    document.addEventListener('DOMContentLoaded', async function() {
+      setupEventListeners();
+      initializeAuthClient();
+      await restoreAuthSession();
+      loadSettings();
+    });
+
+    function initializeAuthClient() {
+      if (!window.NKAdminAuth || typeof window.NKAdminAuth.createAuthClient !== 'function') {
+        setAuthStatus('Auth client unavailable on this page.', 'warn');
+        setSaveButtonEnabled(Boolean(getAuthToken()));
+        return;
+      }
+
+      authClient = window.NKAdminAuth.createAuthClient({
+        onAuthError: function() {
+          setAuthStatus('Session expired. Please login again.', 'warn');
+          setSaveButtonEnabled(false);
+          setAuthControls(false);
+        }
+      });
+    }
+
+    function getAuthToken() {
+      if (authClient && typeof authClient.getToken === 'function') {
+        const clientToken = String(authClient.getToken() || '').trim();
+        if (clientToken) return clientToken;
+      }
+
+      try {
+        const params = new URLSearchParams(window.location.search || '');
+        const queryToken = String(params.get('authToken') || '').trim();
+        if (queryToken) return queryToken;
+      } catch (err) {
+        // Ignore URL parsing failures.
+      }
+
+      try {
+        const rawSession = sessionStorage.getItem('nk_admin_auth_session_v1');
+        if (!rawSession) return '';
+        const parsed = JSON.parse(rawSession);
+        return String(parsed && parsed.token ? parsed.token : '').trim();
+      } catch (err) {
+        return '';
+      }
+    }
+
+    function isSuperAdmin(user) {
+      const role = String(user && user.role ? user.role : '').toLowerCase();
+      return role === 'superadmin';
+    }
+
+    function setSaveButtonEnabled(enabled) {
+      const saveBtn = document.getElementById('saveBtn');
+      if (saveBtn) {
+        saveBtn.disabled = !enabled;
+      }
+    }
+
+    function setAuthControls(isLoggedIn) {
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const authPassword = document.getElementById('authPassword');
+
+      if (loginBtn) loginBtn.disabled = !!isLoggedIn;
+      if (logoutBtn) logoutBtn.disabled = !isLoggedIn;
+      if (authPassword && isLoggedIn) authPassword.value = '';
+    }
+
+    function setAuthStatus(message, stateClass) {
+      const status = document.getElementById('authStatus');
+      if (!status) return;
+      status.textContent = message;
+      status.className = 'auth-status' + (stateClass ? (' ' + stateClass) : '');
+    }
+
+    async function restoreAuthSession() {
+      const token = getAuthToken();
+      if (!token) {
+        setAuthStatus('Not logged in. Login as SuperAdmin to save settings.', 'warn');
+        setSaveButtonEnabled(false);
+        setAuthControls(false);
+        return;
+      }
+
+      if (!authClient) {
+        setAuthStatus('Token detected. Saving is enabled for this session.', 'ok');
+        setSaveButtonEnabled(true);
+        setAuthControls(true);
+        return;
+      }
+
+      try {
+        const me = await authClient.restoreSession();
+        if (!me || !me.user || !isSuperAdmin(me.user)) {
+          setAuthStatus('Logged in user is not SuperAdmin.', 'warn');
+          setSaveButtonEnabled(false);
+          setAuthControls(false);
+          return;
+        }
+
+        setAuthStatus('Logged in as ' + me.user.username + ' (SuperAdmin).', 'ok');
+        setSaveButtonEnabled(true);
+        setAuthControls(true);
+      } catch (err) {
+        setAuthStatus('Session restore failed. Please login again.', 'warn');
+        setSaveButtonEnabled(false);
+        setAuthControls(false);
+      }
+    }
+
+    async function loginStandalone() {
+      if (!authClient) {
+        showAlert('❌ Login service unavailable in this page context.', 'error');
+        return;
+      }
+
+      const username = String(document.getElementById('authUsername').value || '').trim();
+      const password = String(document.getElementById('authPassword').value || '');
+      const loginBtn = document.getElementById('loginBtn');
+
+      if (!username || !password) {
+        showAlert('❌ Enter username and password.', 'error');
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
+
+      try {
+        const payload = await authClient.login(username, password, 'admin_settings_standalone');
+        const user = payload && payload.user ? payload.user : null;
+        if (!user || !isSuperAdmin(user)) {
+          setAuthStatus('Logged in user is not SuperAdmin.', 'warn');
+          setSaveButtonEnabled(false);
+          setAuthControls(false);
+          showAlert('❌ Only SuperAdmin can edit settings.', 'error');
+          return;
+        }
+
+        setAuthStatus('Logged in as ' + user.username + ' (SuperAdmin).', 'ok');
+        setSaveButtonEnabled(true);
+        setAuthControls(true);
+        showAlert('✓ Login successful.', 'success');
+      } catch (err) {
+        setAuthStatus('Login failed. Check credentials and try again.', 'warn');
+        setSaveButtonEnabled(false);
+        setAuthControls(false);
+        showAlert('❌ Login failed: ' + err.message, 'error');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
+      }
+    }
+
+    async function logoutStandalone() {
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.disabled = true;
+        logoutBtn.textContent = 'Logging out...';
+      }
+
+      try {
+        if (authClient) {
+          await authClient.logout();
+        } else {
+          sessionStorage.removeItem('nk_admin_auth_session_v1');
+        }
+      } catch (err) {
+        // Ignore logout transport errors.
+      }
+
+      setAuthStatus('Logged out. Login as SuperAdmin to save settings.', 'warn');
+      setSaveButtonEnabled(false);
+      setAuthControls(false);
+      showAlert('✓ Logged out successfully.', 'success');
+
+      if (logoutBtn) {
+        logoutBtn.textContent = 'Logout';
+      }
+    }
+
+    /**
+     * Load current settings from API
+     */
+    function loadSettings() {
+      const form = document.getElementById('settingsForm');
+      
+      fetch('/backend/api_settings.php', {
+        method: 'GET',
+        credentials: 'same-origin'
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success && data.data) {
+          // Populate form
+          document.getElementById('hotelWhatsappNo').value = data.data.hotelWhatsappNo || '';
+          document.getElementById('menuBlockerStaffCode').value = data.data.menuBlockerStaffCode || '';
+          
+          // Display stats
+          document.getElementById('displayWhatsapp').textContent = 
+            data.data.hotelWhatsappNo || 'Not set';
+          
+          // Show last updated
+          if (data.data.updatedAt) {
+            const date = new Date(data.data.updatedAt);
+            document.getElementById('lastUpdated').textContent = 
+              date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+          }
+        } else {
+          showAlert(data.error || 'Failed to load settings', 'error');
+        }
+        
+        document.getElementById('footerInfo').textContent = 
+          'API: /backend/api_settings.php | Status: Ready';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        showAlert('Failed to load settings: ' + error.message, 'error');
+        document.getElementById('footerInfo').textContent = 
+          'Error loading settings from API';
+      });
+    }
+
+    /**
+     * Setup form event listeners
+     */
+    function setupEventListeners() {
+      const form = document.getElementById('settingsForm');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const authPassword = document.getElementById('authPassword');
+      
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        saveSettings();
+      });
+
+      if (loginBtn) {
+        loginBtn.addEventListener('click', function() {
+          loginStandalone();
+        });
+      }
+
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+          logoutStandalone();
+        });
+      }
+
+      if (authPassword) {
+        authPassword.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            loginStandalone();
+          }
+        });
+      }
+    }
+
+    /**
+     * Save settings to API
+     */
+    function saveSettings() {
+      const saveBtn = document.getElementById('saveBtn');
+      const hotelWhatsappNo = document.getElementById('hotelWhatsappNo').value.trim();
+      const menuBlockerStaffCode = document.getElementById('menuBlockerStaffCode').value.trim();
+      const token = getAuthToken();
+
+      // Validation
+      if (!hotelWhatsappNo || !menuBlockerStaffCode) {
+        showAlert('❌ Please fill in all fields', 'error');
+        return;
+      }
+
+      if (!token) {
+        showAlert('❌ SuperAdmin login required before saving settings.', 'error');
+        return;
+      }
+
+      // Disable button
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = '<span class="loader"></span> <span>Saving...</span>';
+
+      fetch('/backend/api_settings.php', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          token: token,
+          hotelWhatsappNo: hotelWhatsappNo,
+          menuBlockerStaffCode: menuBlockerStaffCode
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<span>💾</span> <span>Save Settings</span>';
+
+        if (data.success) {
+          showAlert('✓ Settings saved successfully!', 'success');
+          
+          // Update display
+          document.getElementById('displayWhatsapp').textContent = data.data.hotelWhatsappNo;
+          
+          if (data.data.updatedAt) {
+            const date = new Date(data.data.updatedAt);
+            document.getElementById('lastUpdated').textContent = 
+              date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+          }
+
+          // Clear cache on all pages
+          if (window.MenuBlockerInitClearCache) {
+            window.MenuBlockerInitClearCache();
+          }
+        } else {
+          showAlert('❌ ' + (data.error || 'Failed to save settings'), 'error');
+        }
+      })
+      .catch(error => {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<span>💾</span> <span>Save Settings</span>';
+        console.error('Error:', error);
+        showAlert('❌ Failed to save settings: ' + error.message, 'error');
+      });
+    }
+
+    /**
+     * Show alert message
+     */
+    function showAlert(message, type = 'info') {
+      const alert = document.getElementById('settingsAlert');
+      const alertMessage = document.getElementById('alertMessage');
+      
+      alertMessage.textContent = message;
+      alert.className = 'alert ' + type;
+      alert.style.display = 'flex';
+
+      // Auto-close success alerts
+      if (type === 'success') {
+        setTimeout(closeAlert, 4000);
+      }
+    }
+
+    /**
+     * Close alert message
+     */
+    function closeAlert() {
+      const alert = document.getElementById('settingsAlert');
+      alert.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

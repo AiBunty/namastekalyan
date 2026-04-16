@@ -209,7 +209,7 @@
   </main>
 
   <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260413-2"></script>
+  <script src="admin-auth.js?v=20260416-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script>
     (function () {
@@ -221,6 +221,12 @@
           clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
         }
       });
+
+      function notifyModuleReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+        }
+      }
 
       const authPanelEl = document.getElementById('authPanel');
       const usernameEl = document.getElementById('username');
@@ -276,6 +282,65 @@
 
       function normalizeKey(value) {
         return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      }
+
+      function toLookupKeys(header) {
+        const raw = String(header || '').trim();
+        const lower = raw.toLowerCase();
+        const compact = lower.replace(/[^a-z0-9]/g, '');
+        const camel = lower
+          .replace(/[^a-z0-9]+([a-z0-9])/g, function (_, c) { return String(c || '').toUpperCase(); })
+          .replace(/[^a-z0-9]/g, '');
+        const aliases = {
+          itemname: ['itemName'],
+          subcategory: ['subCategory'],
+          foodcategory: ['foodCategory'],
+          availability: ['isAvailable']
+        };
+        return [raw, lower, compact, camel].concat(aliases[compact] || []);
+      }
+
+      function headerToPayloadKey(header) {
+        const key = normalizeKey(header);
+        const map = {
+          'category': 'category',
+          'sub category': 'subCategory',
+          'item name': 'itemName',
+          'availability': 'availability',
+          'food category': 'foodCategory',
+          'price': 'basePrice'
+        };
+        return map[key] || String(header || '').trim();
+      }
+
+      function normalizeEditorRows(rawRows) {
+        const source = Array.isArray(rawRows) ? rawRows : [];
+        return source.map(function (row, idx) {
+          const rowObj = row && typeof row === 'object' ? row : {};
+          const cells = {};
+          headers.forEach(function (header) {
+            let value = '';
+            const lookupKeys = toLookupKeys(header);
+            for (let i = 0; i < lookupKeys.length; i += 1) {
+              const lk = lookupKeys[i];
+              if (Object.prototype.hasOwnProperty.call(rowObj, lk) && rowObj[lk] != null) {
+                value = rowObj[lk];
+                break;
+              }
+            }
+            if (header === 'Availability') {
+              value = isVisibilityOn(value) ? 'Yes' : 'No';
+            }
+            cells[header] = value == null ? '' : String(value);
+          });
+
+          const rowId = Number(rowObj.id || 0);
+          return {
+            rowNumber: idx + 2,
+            id: Number.isFinite(rowId) ? rowId : 0,
+            cells: cells
+          };
+        });
       }
 
       function cellKey(rowNumber, header) {
@@ -504,11 +569,22 @@
         for (let i = 0; i < keys.length; i += 1) {
           const parsed = parseCellKey(keys[i]);
           if (!parsed.rowNumber || !parsed.header) continue;
-          const rowKey = String(parsed.rowNumber);
-          grouped[rowKey] = grouped[rowKey] || { rowNumber: parsed.rowNumber, cells: {} };
-          grouped[rowKey].cells[parsed.header] = changedCells[keys[i]];
+          const baseRow = getBaseRowByNumber(parsed.rowNumber);
+          if (!baseRow || !baseRow.id) continue;
+          const rowKey = String(baseRow.id);
+          grouped[rowKey] = grouped[rowKey] || { id: baseRow.id };
+          grouped[rowKey][headerToPayloadKey(parsed.header)] = changedCells[keys[i]];
         }
         return Object.keys(grouped).map((rowKey) => grouped[rowKey]);
+      }
+
+      function getSelectedRowIds() {
+        const ids = [];
+        getSelectedRowNumbers().forEach(function (rowNumber) {
+          const row = getBaseRowByNumber(rowNumber);
+          if (row && Number(row.id) > 0) ids.push(Number(row.id));
+        });
+        return ids;
       }
 
       async function loadSheet() {
@@ -532,7 +608,21 @@
             editableColumns[key] = type || (key === 'availability' ? 'visibility' : (key === 'item name' || key === 'description' || key === 'category' || key === 'image url' ? 'text' : 'price'));
           });
 
-          baseRows = Array.isArray(payload.items) ? payload.items : [];
+          if (!Object.keys(editableColumns).length) {
+            headers.forEach((header) => {
+              const key = normalizeKey(header);
+              if (key === 'availability') {
+                editableColumns[key] = 'visibility';
+              } else if (key === 'item name' || key === 'category' || key === 'sub category' || key === 'description') {
+                editableColumns[key] = 'text';
+              } else {
+                editableColumns[key] = 'price';
+              }
+            });
+          }
+
+          const rowSource = Array.isArray(payload.rows) ? payload.rows : (Array.isArray(payload.items) ? payload.items : []);
+          baseRows = normalizeEditorRows(rowSource);
           changedCells = {};
           selectedRows = {};
 
@@ -590,6 +680,7 @@
           passwordEl.value = '';
           setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
           await loadSheet();
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock('Login failed: ' + err.message);
         } finally {
@@ -600,19 +691,25 @@
       async function restoreSessionIfAny() {
         try {
           const payload = await authClient.restoreSession();
-          if (!payload) return;
+          if (!payload) {
+            notifyModuleReady();
+            return;
+          }
 
           const role = String(payload.user && payload.user.role || '').toLowerCase();
           if (role !== 'admin' && role !== 'superadmin') {
             clearSessionAndLock('Admin or SuperAdmin access is required.');
+            notifyModuleReady();
             return;
           }
 
           updateLockedUi(false);
           setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
           await loadSheet();
+          notifyModuleReady();
         } catch (err) {
           clearSessionAndLock('Session expired. Please login again.');
+          notifyModuleReady();
         }
       }
 
@@ -641,13 +738,13 @@
       }
 
       async function deleteSelectedRows() {
-        const rows = getSelectedRowNumbers();
-        if (!rows.length) {
+        const ids = getSelectedRowIds();
+        if (!ids.length) {
           setEditorStatus('Select at least one row to delete.');
           return;
         }
 
-        const typed = window.prompt('This will permanently delete ' + rows.length + ' row(s). Type DELETE to confirm.');
+        const typed = window.prompt('This will permanently delete ' + ids.length + ' row(s). Type DELETE to confirm.');
         if (typed !== 'DELETE') {
           setEditorStatus('Delete cancelled.');
           return;
@@ -659,7 +756,7 @@
           const payload = await authClient.apiPost({
             action: 'admin_menu_editor_delete_rows',
             sheetName: currentSheet,
-            rowNumbers: rows
+            ids: ids
           });
           selectedRows = {};
           setEditorStatus((payload && payload.message) || 'Rows deleted. Reloading latest sheet data...');
@@ -673,8 +770,8 @@
       }
 
       async function setVisibilityForSelection(visible) {
-        const rows = getSelectedRowNumbers();
-        if (!rows.length) {
+        const ids = getSelectedRowIds();
+        if (!ids.length) {
           setEditorStatus('Select at least one row first.');
           return;
         }
@@ -684,8 +781,8 @@
           const payload = await authClient.apiPost({
             action: 'admin_menu_editor_set_visibility',
             sheetName: currentSheet,
-            rowNumbers: rows,
-            visible: !!visible
+            ids: ids,
+            isAvailable: !!visible
           });
           setEditorStatus((payload && payload.message) || 'Visibility updated. Reloading latest sheet data...');
           await loadSheet();
@@ -709,7 +806,7 @@
           const payload = await authClient.apiPost({
             action: 'admin_menu_editor_save_changes',
             sheetName: currentSheet,
-            updates: updates
+            changes: updates
           });
 
           let message = (payload && payload.message) || 'Save completed.';

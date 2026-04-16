@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧪 Settings System - Test & Verify</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, monospace;
+      background: #f5f5f5;
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.5rem;
+    }
+
+    .test-item {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .test-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .test-label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.3rem;
+    }
+
+    .test-value {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #666;
+      word-break: break-all;
+      padding: 0.5rem;
+      background: #f9f9f9;
+      border-radius: 4px;
+      border-left: 3px solid #e0e0e0;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .status.ok {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .status.warning {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status.loading {
+      background: #d1ecf1;
+      color: #0c5460;
+    }
+
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-family: inherit;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    button.small {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-top: 0.5rem;
+    }
+
+    .code-block .cmd { color: #a6e22e; font-weight: bold; }
+    .code-block .str { color: #e6db74; }
+    .code-block .key { color: #f92672; }
+
+    .section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .section h3 {
+      color: #333;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .checklist {
+      list-style: none;
+    }
+
+    .checklist li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .checklist input {
+      cursor: pointer;
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: #1565c0;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .success-box {
+      background: #c8e6c9;
+      border-left: 4px solid #4caf50;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      color: #2e7d32;
+    }
+
+    .error-box {
+      background: #ffcdd2;
+      border-left: 4px solid #f44336;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Settings System - Test & Verify</h1>
+
+  <div class="grid">
+    <!-- System Status -->
+    <div class="card">
+      <h2>📊 System Status</h2>
+      
+      <div class="test-item">
+        <div class="test-label">API Endpoint</div>
+        <div class="test-value">/backend/api_settings.php</div>
+        <div id="statusApi" class="status loading">Checking...</div>
+      </div>
+
+      <div class="test-item">
+        <div class="test-label">Initializer Script</div>
+        <div class="test-value">/menu-blocker-init.js</div>
+        <div id="statusInit" class="status loading">Checking...</div>
+      </div>
+
+      <div class="test-item">
+        <div class="test-label">Cache</div>
+        <div class="test-value" id="cacheStatus">Checking...</div>
+        <div id="statusCache" class="status loading">Checking...</div>
+      </div>
+    </div>
+
+    <!-- Current Settings -->
+    <div class="card">
+      <h2>📱 Current Settings</h2>
+      
+      <div class="test-item">
+        <div class="test-label">WhatsApp Number</div>
+        <div class="test-value" id="currentWhatsapp">Loading...</div>
+      </div>
+
+      <div class="test-item">
+        <div class="test-label">Staff Code</div>
+        <div class="test-value">••••••••</div>
+      </div>
+
+      <div class="test-item">
+        <div class="test-label">Last Updated</div>
+        <div class="test-value" id="currentUpdated">Loading...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Browser Storage -->
+  <div class="section">
+    <h3>💾 Browser Storage</h3>
+    
+    <div class="test-item">
+      <div class="test-label">Menu Blocker Cache</div>
+      <div class="test-value" id="storageMB">Not found</div>
+      <div class="test-label" style="margin-top: 0.5rem; font-size: 0.9rem;">Menu Blocker Init Cache</div>
+      <div class="test-value" id="storageInit">Not found</div>
+    </div>
+
+    <button class="small" onclick="clearAllStorage()">🗑️ Clear All Storage</button>
+  </div>
+
+  <!-- Window Variables -->
+  <div class="section">
+    <h3>🔍 Window Variables</h3>
+    
+    <div class="test-item">
+      <div class="test-label">window.NK_DATA_API</div>
+      <div class="test-value" id="windowNK">Not set</div>
+    </div>
+
+    <div class="test-item">
+      <div class="test-label">window.MENU_BLOCKER_STAFF_CODE</div>
+      <div class="test-value" id="windowStaff">Not set</div>
+    </div>
+  </div>
+
+  <!-- API Tests -->
+  <div class="section">
+    <h3>🚀 API Tests</h3>
+    
+    <button onclick="testApiGet()">📥 Test GET Request</button>
+    <button onclick="testApiPost()">📤 Test POST Request (requires admin login)</button>
+    
+    <div id="apiTestResult" style="display: none; margin-top: 1rem;">
+      <div class="test-label">Result:</div>
+      <div class="code-block" id="apiTestCode"></div>
+    </div>
+  </div>
+
+  <!-- Manual Tests -->
+  <div class="section">
+    <h3>✅ Checklist</h3>
+    
+    <ul class="checklist">
+      <li>
+        <input type="checkbox" id="check1">
+        <label for="check1">System Status shows all checks passing</label>
+      </li>
+      <li>
+        <input type="checkbox" id="check2">
+        <label for="check2">Current Settings display WhatsApp number</label>
+      </li>
+      <li>
+        <input type="checkbox" id="check3">
+        <label for="check3">Browser Storage shows cached data</label>
+      </li>
+      <li>
+        <input type="checkbox" id="check4">
+        <label for="check4">Window Variables are set correctly</label>
+      </li>
+      <li>
+        <input type="checkbox" id="check5">
+        <label for="check5">GET API test returns success</label>
+      </li>
+      <li>
+        <input type="checkbox" id="check6">
+        <label for="check6">Can log in to admin and update settings</label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Instructions -->
+  <div class="section">
+    <h3>📝 Test Instructions</h3>
+    
+    <div class="info-box">
+      <p>
+        <strong>Step 1:</strong> Load this page in your browser<br>
+        <strong>Step 2:</strong> Check all green status indicators<br>
+        <strong>Step 3:</strong> Run the API tests<br>
+        <strong>Step 4:</strong> Check off items on the checklist<br>
+        <strong>Step 5:</strong> If any tests fail, see troubleshooting section<br>
+      </p>
+    </div>
+
+    <h4 style="margin-top: 1rem; color: #333;">Troubleshooting Tips:</h4>
+    <ul style="margin-left: 1.5rem; color: #666;">
+      <li>Check browser DevTools Console (F12) for error messages</li>
+      <li>Ensure `/backend/config/` directory exists</li>
+      <li>Verify `/backend/api_settings.php` is readable</li>
+      <li>Check Network tab to see if API calls are working</li>
+      <li>Clear browser cache and try again</li>
+    </ul>
+  </div>
+
+  <script>
+    // Perform checks on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      runAllChecks();
+      updateWindowVariables();
+      updateBrowserStorage();
+    });
+
+    function runAllChecks() {
+      // Check API
+      checkApi();
+      
+      // Check initializer script
+      checkInitializer();
+      
+      // Check cache
+      checkCache();
+      
+      // Load current settings
+      loadCurrentSettings();
+    }
+
+    function checkApi() {
+      fetch('/backend/api_settings.php')
+        .then(response => {
+          if (response.ok) {
+            document.getElementById('statusApi').className = 'status ok';
+            document.getElementById('statusApi').textContent = '✓ OK';
+            return response.json();
+          } else {
+            throw new Error(`HTTP ${response.status}`);
+          }
+        })
+        .catch(error => {
+          document.getElementById('statusApi').className = 'status error';
+          document.getElementById('statusApi').textContent = '✗ ' + error.message;
+        });
+    }
+
+    function checkInitializer() {
+      // Check if script is loaded
+      if (window.MenuBlockerInitClearCache && window.MenuBlockerInitReload) {
+        document.getElementById('statusInit').className = 'status ok';
+        document.getElementById('statusInit').textContent = '✓ Loaded';
+      } else {
+        document.getElementById('statusInit').className = 'status warning';
+        document.getElementById('statusInit').textContent = '⚠ Not detected';
+      }
+    }
+
+    function checkCache() {
+      const cached = localStorage.getItem('nk_menu_blocker_settings_cache');
+      
+      if (cached) {
+        document.getElementById('statusCache').className = 'status ok';
+        document.getElementById('statusCache').textContent = '✓ Found';
+        document.getElementById('cacheStatus').textContent = 'Cache exists: ' + new Date().toLocaleTimeString();
+      } else {
+        document.getElementById('statusCache').className = 'status warning';
+        document.getElementById('statusCache').textContent = '⚠ Not found';
+        document.getElementById('cacheStatus').textContent = 'No cache - will fetch on next API call';
+      }
+    }
+
+    function loadCurrentSettings() {
+      fetch('/backend/api_settings.php')
+        .then(r => r.json())
+        .then(data => {
+          if (data.success && data.data) {
+            document.getElementById('currentWhatsapp').textContent = 
+              data.data.hotelWhatsappNo || 'Not set';
+            
+            if (data.data.updatedAt) {
+              const date = new Date(data.data.updatedAt);
+              document.getElementById('currentUpdated').textContent = 
+                date.toLocaleString();
+            }
+          }
+        });
+    }
+
+    function updateWindowVariables() {
+      const nk = window.NK_DATA_API;
+      const staff = window.MENU_BLOCKER_STAFF_CODE;
+
+      if (nk && nk.hotelWhatsappNo) {
+        document.getElementById('windowNK').textContent = 
+          'Set: ' + nk.hotelWhatsappNo;
+      } else {
+        document.getElementById('windowNK').textContent = 'Not set (will use defaults)';
+      }
+
+      if (staff) {
+        document.getElementById('windowStaff').textContent = 
+          'Set: ' + staff;
+      } else {
+        document.getElementById('windowStaff').textContent = 'Not set (will use default)';
+      }
+    }
+
+    function updateBrowserStorage() {
+      const mbCache = localStorage.getItem('nk_menu_blocker_cache');
+      const initCache = localStorage.getItem('nk_menu_blocker_settings_cache');
+
+      document.getElementById('storageMB').textContent = 
+        mbCache ? 'Found (' + (mbCache.length / 1024).toFixed(2) + ' KB)' : 'Not found';
+
+      document.getElementById('storageInit').textContent = 
+        initCache ? 'Found (' + (initCache.length / 1024).toFixed(2) + ' KB)' : 'Not found';
+    }
+
+    function testApiGet() {
+      const result = document.getElementById('apiTestResult');
+      const code = document.getElementById('apiTestCode');
+      
+      result.style.display = 'block';
+      code.textContent = 'Loading...';
+
+      fetch('/backend/api_settings.php')
+        .then(r => r.json())
+        .then(data => {
+          code.textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          code.textContent = 'Error: ' + error.message;
+        });
+    }
+
+    function testApiPost() {
+      const result = document.getElementById('apiTestResult');
+      const code = document.getElementById('apiTestCode');
+      
+      result.style.display = 'block';
+      code.textContent = 'Loading...';
+
+      const testData = {
+        hotelWhatsappNo: '919876543210',
+        menuBlockerStaffCode: 'TEST2024'
+      };
+
+      fetch('/backend/api_settings.php', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(testData)
+      })
+        .then(r => r.json())
+        .then(data => {
+          code.textContent = JSON.stringify(data, null, 2);
+          if (data.success) {
+            setTimeout(() => loadCurrentSettings(), 1000);
+          }
+        })
+        .catch(error => {
+          code.textContent = 'Error: ' + error.message;
+        });
+    }
+
+    function clearAllStorage() {
+      if (confirm('Clear all cached settings?')) {
+        localStorage.removeItem('nk_menu_blocker_settings_cache');
+        localStorage.removeItem('nk_menu_blocker_cache');
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>

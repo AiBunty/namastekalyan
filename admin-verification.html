@@ -188,7 +188,7 @@
   </div>
 
   <script src="data-config.js?v=20260412-3"></script>
-  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="admin-auth.js?v=20260416-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script>
     const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
@@ -226,6 +226,12 @@
         clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
       }
     });
+
+    function notifyModuleReady() {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+      }
+    }
 
     function applyEmbeddedAuthUi() {
       if (!embeddedMode) return;
@@ -398,6 +404,7 @@
         if (payload.forcePasswordChange) {
           setResult('Login success. Password change is required soon.', true);
         }
+        notifyModuleReady();
       } catch (err) {
         authClient.clearSession();
         setAdminLockedState(true);
@@ -412,11 +419,14 @@
       try {
         const payload = await authClient.restoreSession();
         if (!payload) {
+          notifyModuleReady();
           return;
         }
         setAdminLockedState(false);
+        notifyModuleReady();
       } catch (err) {
         clearSessionAndLock('Session expired. Please login again.');
+        notifyModuleReady();
       }
     }
 
@@ -434,11 +444,6 @@
 
         const data = await apiGet('verify');
         if (!data) return;
-        if (!data.found) {
-          setResult('No Discount record found for this number.', false);
-          renderDetails({ phone: phoneValue(), status: 'Not Found' });
-          return;
-        }
         renderDetails(data);
 
         const isWinner = isWinnerPrize(data.prize);
@@ -473,25 +478,13 @@
         redeemBtn.disabled = true;
         const data = await apiGet('redeem');
         if (!data) return;
-        if (data.result === 'not_found') {
-          setResult('No record found to redeem.', false);
-          return;
+        setResult(data.message || `Redeemed successfully: ${lastVerifyData.prize || '-'}`, true);
+        setDetail('dStatus', 'Redeemed');
+        if (lastVerifyData && lastVerifyData.couponCode) {
+          setDetail('dCode', lastVerifyData.couponCode);
+          couponCodeView.textContent = lastVerifyData.couponCode;
+          couponTools.classList.add('show');
         }
-        if (data.result === 'already_redeemed') {
-          setResult(`Already Redeemed: ${data.prize}`, false);
-          return;
-        }
-        if (data.result === 'redeemed') {
-          setResult(`Redeemed successfully: ${data.prize}`, true);
-          setDetail('dStatus', 'Redeemed');
-          if (data.couponCode) {
-            setDetail('dCode', data.couponCode);
-            couponCodeView.textContent = data.couponCode;
-            couponTools.classList.add('show');
-          }
-          return;
-        }
-        setResult('Redeem response unknown.', false);
       } catch (err) {
         setResult(`Redeem failed: ${err.message}`, false);
       } finally {
@@ -555,16 +548,6 @@
         const data = await apiGet('regen_coupon', selectedGift ? { giftItem: selectedGift } : null);
         if (!data) return;
 
-        if (data.result === 'not_found') {
-          setResult('No record found for this number.', false);
-          return;
-        }
-
-        if (data.result === 'not_winner') {
-          setResult('This customer is not a winner, so no coupon code is generated.', false);
-          return;
-        }
-
         if (data.couponCode) {
           if (data.prize) {
             setDetail('dPrize', data.prize);
@@ -577,13 +560,14 @@
           couponTools.classList.add('show');
         }
 
-        if (data.result === 'generated_with_prize_update') {
-          setResult(`Gift updated to ${data.prize} and coupon generated: ${data.couponCode}`, true);
-        } else if (data.result === 'generated') {
-          setResult(`Coupon generated: ${data.couponCode}`, true);
-        } else {
-          setResult(`Coupon already exists: ${data.couponCode}`, true);
+        if (lastVerifyData) {
+          lastVerifyData.couponCode = String(data.couponCode || lastVerifyData.couponCode || '');
+          if (data.prize) {
+            lastVerifyData.prize = data.prize;
+          }
         }
+
+        setResult(data.message || (data.couponCode ? `Coupon generated: ${data.couponCode}` : 'Coupon regenerated.'), true);
       } catch (err) {
         setResult(`Coupon generation failed: ${err.message}`, false);
       } finally {
