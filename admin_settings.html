@@ -348,16 +348,39 @@
 }
 </style>
 
+<script src="data-config.js?v=20260416-php-only-3"></script>
+<script src="admin-auth.js?v=20260416-3"></script>
+
 <script>
 /**
  * Settings Management JavaScript
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-  initializeAuthState();
-  loadSettings();
+let authClient = null;
+
+document.addEventListener('DOMContentLoaded', async function() {
+  initializeAuthClient();
+  await initializeAuthState();
+  await loadSettings();
   setupEventListeners();
 });
+
+function initializeAuthClient() {
+  if (!window.NKAdminAuth || typeof window.NKAdminAuth.createAuthClient !== 'function') {
+    authClient = null;
+    return;
+  }
+
+  const apiBase = (
+    (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl)) ||
+    window.APPS_SCRIPT_URL ||
+    ''
+  ).split('?')[0];
+
+  authClient = window.NKAdminAuth.createAuthClient({
+    apiBase: apiBase
+  });
+}
 
 function getAuthToken() {
   try {
@@ -382,10 +405,18 @@ function getAuthToken() {
   }
 }
 
-function initializeAuthState() {
+async function initializeAuthState() {
   const saveBtn = document.getElementById('saveBtn');
   if (!saveBtn) {
     return;
+  }
+
+  if (authClient) {
+    try {
+      await authClient.restoreSession();
+    } catch (err) {
+      // Ignore restore failures and fall back to token existence checks.
+    }
   }
 
   const token = getAuthToken();
@@ -401,27 +432,25 @@ function initializeAuthState() {
 /**
  * Load current settings from API
  */
-function loadSettings() {
-  fetch('/backend/api_settings.php', {
-    method: 'GET',
-    credentials: 'same-origin'
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success && data.data) {
-      document.getElementById('hotelWhatsappNo').value = data.data.hotelWhatsappNo || '';
-      document.getElementById('menuBlockerStaffCode').value = data.data.menuBlockerStaffCode || '';
-      if (data.data.updatedAt) {
-        document.getElementById('lastUpdated').textContent = new Date(data.data.updatedAt).toLocaleString();
-      }
-    } else {
-      showAlert(data.error || 'Failed to load settings', 'error');
+async function loadSettings() {
+  if (!authClient) {
+    showAlert('Shared admin auth client is unavailable.', 'error');
+    return;
+  }
+
+  try {
+    const data = await authClient.apiPost({ action: 'auth_get_app_settings' });
+    const settings = data && data.settings ? data.settings : {};
+
+    document.getElementById('hotelWhatsappNo').value = settings.hotelWhatsappNo || '';
+    document.getElementById('menuBlockerStaffCode').value = settings.menuBlockerStaffCode || '';
+    if (data.updatedAt) {
+      document.getElementById('lastUpdated').textContent = new Date(data.updatedAt).toLocaleString();
     }
-  })
-  .catch(error => {
+  } catch (error) {
     console.error('Error loading settings:', error);
     showAlert('Failed to load settings: ' + error.message, 'error');
-  });
+  }
 }
 
 /**
@@ -439,7 +468,7 @@ function setupEventListeners() {
 /**
  * Save settings to API
  */
-function saveSettings() {
+async function saveSettings() {
   const saveBtn = document.getElementById('saveBtn');
   const hotelWhatsappNo = document.getElementById('hotelWhatsappNo').value.trim();
   const menuBlockerStaffCode = document.getElementById('menuBlockerStaffCode').value.trim();
@@ -457,42 +486,42 @@ function saveSettings() {
     return;
   }
 
+  if (!authClient) {
+    showAlert('Shared admin auth client is unavailable.', 'error');
+    return;
+  }
+
   // Disable submit button and show loading state
   saveBtn.disabled = true;
   saveBtn.classList.add('loading');
 
-  fetch('/backend/api_settings.php', {
-    method: 'POST',
-    credentials: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
-    },
-    body: JSON.stringify({
-      token: token,
-      hotelWhatsappNo: hotelWhatsappNo,
-      menuBlockerStaffCode: menuBlockerStaffCode
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
+  try {
+    const data = await authClient.apiPost({
+      action: 'auth_set_app_settings',
+      settings: {
+        hotelWhatsappNo: hotelWhatsappNo,
+        menuBlockerStaffCode: menuBlockerStaffCode
+      }
+    });
+
     saveBtn.disabled = false;
     saveBtn.classList.remove('loading');
 
-    if (data.success) {
+    if (data.ok) {
       showAlert('✓ Settings saved successfully!', 'success');
       // Update last updated time
-      document.getElementById('lastUpdated').textContent = new Date(data.data.updatedAt).toLocaleString();
+      if (data.updatedAt) {
+        document.getElementById('lastUpdated').textContent = new Date(data.updatedAt).toLocaleString();
+      }
     } else {
-      showAlert(data.error || 'Failed to save settings', 'error');
+      showAlert(data.message || data.error || 'Failed to save settings', 'error');
     }
-  })
-  .catch(error => {
+  } catch (error) {
     saveBtn.disabled = false;
     saveBtn.classList.remove('loading');
     console.error('Error saving settings:', error);
     showAlert('Failed to save settings: ' + error.message, 'error');
-  });
+  }
 }
 
 /**

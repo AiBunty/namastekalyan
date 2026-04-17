@@ -570,22 +570,23 @@
   <button id="scrollTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
    ▲
   </button>
-  <script src="data-config.js?v=20260412-2"></script>
+  <script src="data-config.js?v=20260417-linkfix-1"></script>
   <script>
-   /* ============================================================
-        ⚠️ MASTER OF TRUTH — BAR MENU NK TAB ONLY (LOCKED)
-        SOURCE: Google Sheet tab "BAR MENU NK"
-        DO NOT change PROXY_URL or SOURCE_TAB without bumping CACHE_KEY version.
-       ============================================================ */
+     /* ============================================================
+       ⚠️ MASTER OF TRUTH — BAR MENU NK TAB ONLY (LOCKED)
+       SOURCE: Google Sheet tab "BAR MENU NK" via PHP API.
+       DO NOT change SOURCE_TAB without bumping CACHE_KEY version.
+      ============================================================ */
     const APPS_SCRIPT_URL = window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl ? String(window.NK_DATA_API.appsScriptUrl).trim() : '';
     const DataLayer = {
       SOURCE_TAB: 'BAR MENU NK',
-      PROXY_URL: 'https://docs.google.com/spreadsheets/d/15-fEg0mC9oUcYi6WKW9hyrrtPyiLAvQk2Jhbk4uWYw8/gviz/tq?tqx=out:csv&sheet=BAR%20MENU%20NK',
         CACHE_KEY: 'awg_v5_cache:bar-menu-nk:v4',
         SUPPORTED_UNITS: ["Glass", "30ml", "Pint", "Pitcher", "Per Bottle"],
 
         getLiveUrl() {
-            if (!APPS_SCRIPT_URL) return this.PROXY_URL;
+            if (!APPS_SCRIPT_URL) {
+              throw new Error('PHP_API_NOT_CONFIGURED');
+            }
             return `${APPS_SCRIPT_URL}${APPS_SCRIPT_URL.includes('?') ? '&' : '?'}tab=${encodeURIComponent(this.SOURCE_TAB)}&shape=grid`;
         },
 
@@ -616,9 +617,9 @@
               throw new Error('EMPTY_RESPONSE');
             }
 
-            const data = APPS_SCRIPT_URL ? this.parseGridPayload(text) : this.parseCSV(text);
+            const data = this.parseGridPayload(text);
             if (!data || data.length === 0) {
-              throw new Error('EMPTY_CSV_RESPONSE');
+              throw new Error('EMPTY_API_RESPONSE');
             }
 
             console.log('Successfully parsed', data.length, 'menu items from BAR MENU NK tab');
@@ -994,7 +995,7 @@
 
     window.onload = async () => {
         console.log('[MASTER SOURCE] cocktail.html → BAR MENU NK (source of truth)');
-      console.log(`[DATA API] cocktail.html → ${APPS_SCRIPT_URL ? 'Apps Script' : 'GViz fallback'}`);
+      console.log(`[DATA API] cocktail.html → ${APPS_SCRIPT_URL ? 'PHP API' : 'MISSING PHP API CONFIG'}`);
         startCocktailLoaderTyping();
         try {
             console.log('Starting menu data fetch...');

@@ -12,6 +12,11 @@ use NK\Support\Validator;
 
 class AuthService
 {
+    private const APP_SETTINGS_DEFAULTS = [
+        'hotelWhatsappNo' => '919371519999',
+        'menuBlockerStaffCode' => 'NKSTAFF2026',
+    ];
+
     private UserRepository $users;
     private AuthAuditRepository $audit;
     private RevokedTokenRepository $revokedTokens;
@@ -526,6 +531,47 @@ class AuthService
         ];
     }
 
+    public function deleteUser(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $username = self::normalizeUsername((string) ($data['username'] ?? $data['mobile'] ?? ''));
+        if ($username === '') {
+            return ['ok' => false, 'error' => 'INVALID_INPUT', 'message' => 'username is required.'];
+        }
+
+        $target = $this->users->findByUsername($username);
+        if (!$target) {
+            return ['ok' => false, 'error' => 'NOT_FOUND', 'message' => 'User not found.'];
+        }
+
+        // Guard: cannot delete yourself
+        if ($target['username'] === $auth['user']['username']) {
+            return ['ok' => false, 'error' => 'FORBIDDEN', 'message' => 'You cannot delete your own account.'];
+        }
+
+        // Guard: cannot delete the last superadmin
+        if (($target['role'] ?? '') === 'superadmin') {
+            $allUsers = $this->users->listAll();
+            $superadminCount = count(array_filter($allUsers, static fn($u) => ($u['role'] ?? '') === 'superadmin'));
+            if ($superadminCount <= 1) {
+                return ['ok' => false, 'error' => 'FORBIDDEN', 'message' => 'Cannot delete the last superadmin account.'];
+            }
+        }
+
+        $this->users->deleteById((int) $target['id']);
+        $this->audit->log('auth_delete_user', $auth['user']['username'], 'success', 'target=' . $username);
+
+        return [
+            'ok'      => true,
+            'action'  => 'auth_delete_user',
+            'message' => 'User deleted.',
+        ];
+    }
+
     public function getApiSettings(array $data): array
     {
         $auth = $this->requireSuperadmin($data);
@@ -584,6 +630,147 @@ class AuthService
             'message' => 'Settings request accepted. Update environment values on server.',
             'acceptedKeys' => array_keys($accepted),
         ];
+    }
+
+    public function getAppSettings(array $data): array
+    {
+        $settings = $this->readAppSettings();
+
+        return [
+            'ok'       => true,
+            'action'   => 'auth_get_app_settings',
+            'settings' => [
+                'hotelWhatsappNo' => (string) ($settings['hotelWhatsappNo'] ?? ''),
+                'menuBlockerStaffCode' => (string) ($settings['menuBlockerStaffCode'] ?? ''),
+            ],
+            'updatedAt' => (string) ($settings['updatedAt'] ?? ''),
+        ];
+    }
+
+    public function setAppSettings(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $settings = $this->readAppSettings();
+        $updates = $data['settings'] ?? [];
+        if (!is_array($updates)) {
+            $updates = [];
+        }
+
+        $nextWhatsapp = array_key_exists('hotelWhatsappNo', $updates)
+            ? preg_replace('/\D/', '', (string) $updates['hotelWhatsappNo'])
+            : null;
+
+        $nextStaffCode = array_key_exists('menuBlockerStaffCode', $updates)
+            ? trim((string) $updates['menuBlockerStaffCode'])
+            : null;
+
+        if ($nextWhatsapp === null && $nextStaffCode === null) {
+            return [
+                'ok'      => false,
+                'error'   => 'INVALID_INPUT',
+                'message' => 'settings.hotelWhatsappNo and/or settings.menuBlockerStaffCode is required.',
+            ];
+        }
+
+        if ($nextWhatsapp !== null) {
+            if ($nextWhatsapp === '' || strlen($nextWhatsapp) < 10) {
+                return [
+                    'ok'      => false,
+                    'error'   => 'INVALID_INPUT',
+                    'message' => 'Invalid WhatsApp number. Must contain at least 10 digits.',
+                ];
+            }
+            $settings['hotelWhatsappNo'] = $nextWhatsapp;
+        }
+
+        if ($nextStaffCode !== null) {
+            if ($nextStaffCode === '' || strlen($nextStaffCode) < 4) {
+                return [
+                    'ok'      => false,
+                    'error'   => 'INVALID_INPUT',
+                    'message' => 'Staff code must be at least 4 characters.',
+                ];
+            }
+            $settings['menuBlockerStaffCode'] = $nextStaffCode;
+        }
+
+        $settings['updatedAt'] = date('Y-m-d H:i:s');
+        $settings['updatedBy'] = 'admin_' . (string) ($auth['user']['username'] ?? 'unknown');
+
+        if (!$this->writeAppSettings($settings)) {
+            return [
+                'ok'      => false,
+                'error'   => 'SERVER_ERROR',
+                'message' => 'Failed to save app settings.',
+            ];
+        }
+
+        $this->audit->log(
+            'auth_set_app_settings',
+            $auth['user']['username'],
+            'success',
+            'updated_app_settings'
+        );
+
+        return [
+            'ok'      => true,
+            'action'  => 'auth_set_app_settings',
+            'message' => 'Settings updated successfully.',
+            'settings' => [
+                'hotelWhatsappNo' => (string) ($settings['hotelWhatsappNo'] ?? ''),
+                'menuBlockerStaffCode' => (string) ($settings['menuBlockerStaffCode'] ?? ''),
+            ],
+            'updatedAt' => (string) ($settings['updatedAt'] ?? ''),
+        ];
+    }
+
+    private function appSettingsPath(): string
+    {
+        return dirname(__DIR__, 2) . '/config/app-settings.json';
+    }
+
+    private function readAppSettings(): array
+    {
+        $defaults = self::APP_SETTINGS_DEFAULTS;
+        $defaults['updatedAt'] = date('Y-m-d H:i:s');
+        $defaults['updatedBy'] = 'system';
+
+        $path = $this->appSettingsPath();
+        if (!is_file($path)) {
+            return $defaults;
+        }
+
+        $content = (string) file_get_contents($path);
+        if ($content === '') {
+            return $defaults;
+        }
+
+        $decoded = json_decode($content, true);
+        if (!is_array($decoded)) {
+            return $defaults;
+        }
+
+        return array_merge($defaults, $decoded);
+    }
+
+    private function writeAppSettings(array $settings): bool
+    {
+        $path = $this->appSettingsPath();
+        $dir = dirname($path);
+
+        if (!is_dir($dir) && !@mkdir($dir, 0755, true) && !is_dir($dir)) {
+            return false;
+        }
+
+        return file_put_contents(
+            $path,
+            json_encode($settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
+            LOCK_EX
+        ) !== false;
     }
 
     public static function verifyToken(string $token): array

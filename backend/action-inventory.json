@@ -1,0 +1,597 @@
+[
+  {
+    "action": "add_test_25_coupon",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "add_test_lead",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "add_test_qr_scan",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "qr-diagnostic.html"
+  },
+  {
+    "action": "add-test-lead",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "admin_batch_checkin_event_qr",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-event-entry-scanner.html"
+  },
+  {
+    "action": "admin_cash_summary",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "admin_create_event",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "admin_event_list",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "admin_issue_cash_paid_pass",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-cashier.html"
+  },
+  {
+    "action": "admin_list_events",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "admin_menu_editor_add_row",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-menu-price-editor.html"
+  },
+  {
+    "action": "admin_menu_editor_delete_rows",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-menu-price-editor.html"
+  },
+  {
+    "action": "admin_menu_editor_load",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-menu-price-editor.html"
+  },
+  {
+    "action": "admin_menu_editor_save_changes",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-menu-price-editor.html"
+  },
+  {
+    "action": "admin_menu_editor_set_visibility",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-menu-price-editor.html"
+  },
+  {
+    "action": "admin_preview_event_qr",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "admin_request_cash_cancel",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-cashier.html"
+  },
+  {
+    "action": "admin_request_cash_handover",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-cashier.html"
+  },
+  {
+    "action": "admin_toggle_event",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-event-management.html"
+  },
+  {
+    "action": "admin_update_event",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "auth_bootstrap_status",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "auth_change_password",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-portal.html; admin-user-management.html"
+  },
+  {
+    "action": "auth_create_user",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-user-management.html"
+  },
+  {
+    "action": "auth_get_api_settings",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-user-management.html"
+  },
+  {
+    "action": "auth_get_app_settings",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin_settings_standalone.html; admin_settings.html"
+  },
+  {
+    "action": "auth_list_users",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "auth_login",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-auth.js"
+  },
+  {
+    "action": "auth_logout",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-auth.js"
+  },
+  {
+    "action": "auth_me",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "auth_reset_password",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-user-management.html"
+  },
+  {
+    "action": "auth_set_api_settings",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-user-management.html"
+  },
+  {
+    "action": "auth_set_app_settings",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin_settings_standalone.html; admin_settings.html"
+  },
+  {
+    "action": "auth_set_user_permissions",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-user-management.html"
+  },
+  {
+    "action": "auth_set_user_status",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "admin-user-management.html"
+  },
+  {
+    "action": "confirm_event_payment",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "counter",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "create_event_order",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "create_qr_sheet",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "create_test_paid_tx",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "download_qr_code",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "ensure_qr_sheet",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": "qr-code.html"
+  },
+  {
+    "action": "event_detail",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": "event.html"
+  },
+  {
+    "action": "event_guest_report",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "event_list",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "event_popup",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "event_transactions_report",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "events_list",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": "event.html; events.html"
+  },
+  {
+    "action": "init_qr_sheet",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "init_schema",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "migrate_event_sheet_format",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "migrate_events_sheet_format",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "qr_report",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": "qr-code.html; qr-diagnostic.html; qr-report.html"
+  },
+  {
+    "action": "qr_scan_client",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "scan.html"
+  },
+  {
+    "action": "qr_scan_report_html",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "qr-scan-report-html",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "razorpay_webhook",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "redeem",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "regen_coupon",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "regen-coupon",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "regenerate_coupon",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "register_free_event",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "request_event_cancellation",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "resend_event_confirmation",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "reset_events_data",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "reset_events_sheet_format",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "schema",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "seed_dj_events",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "seed_dj_events_apr_2026",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "seed_event_sample",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "seed_events_sample",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "seed_paid_event",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "seed_paid_event_sample",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "seed_test_paid_tx",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "send_test_event_email",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "submit_lead",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "menu-blocker.js"
+  },
+  {
+    "action": "superadmin_approve_cash_handover",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "superadmin-cash-approvals.html"
+  },
+  {
+    "action": "superadmin_cash_dashboard",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "superadmin_resolve_cash_cancel",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "superadmin-cash-approvals.html"
+  },
+  {
+    "action": "sync_crm_by_phone",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "sync-crm-by-phone",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "test_25_coupon",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "test_event_email",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "test_qr_scan",
+    "inCodeGs": false,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": ""
+  },
+  {
+    "action": "verify",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "GET",
+    "frontendFiles": ""
+  },
+  {
+    "action": "verify_event_qr",
+    "inCodeGs": true,
+    "inRouter": true,
+    "method": "POST",
+    "frontendFiles": "event-verification.html"
+  }
+]

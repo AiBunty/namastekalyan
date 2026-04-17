@@ -474,8 +474,8 @@
     </div>
   </div>
 
-  <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260413-1"></script>
+  <script src="data-config.js?v=20260416-php-only-3"></script>
+  <script src="admin-auth.js?v=20260416-3"></script>
   <script>
     /**
      * Settings Panel Handler
@@ -486,7 +486,7 @@
       setupEventListeners();
       initializeAuthClient();
       await restoreAuthSession();
-      loadSettings();
+      await loadSettings();
     });
 
     function initializeAuthClient() {
@@ -667,43 +667,33 @@
     /**
      * Load current settings from API
      */
-    function loadSettings() {
-      const form = document.getElementById('settingsForm');
-      
-      fetch('/backend/api_settings.php', {
-        method: 'GET',
-        credentials: 'same-origin'
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success && data.data) {
-          // Populate form
-          document.getElementById('hotelWhatsappNo').value = data.data.hotelWhatsappNo || '';
-          document.getElementById('menuBlockerStaffCode').value = data.data.menuBlockerStaffCode || '';
-          
-          // Display stats
-          document.getElementById('displayWhatsapp').textContent = 
-            data.data.hotelWhatsappNo || 'Not set';
-          
-          // Show last updated
-          if (data.data.updatedAt) {
-            const date = new Date(data.data.updatedAt);
-            document.getElementById('lastUpdated').textContent = 
-              date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-          }
-        } else {
-          showAlert(data.error || 'Failed to load settings', 'error');
+    async function loadSettings() {
+      if (!authClient) {
+        showAlert('Auth/API client unavailable on this page.', 'error');
+        document.getElementById('footerInfo').textContent = 'API unavailable';
+        return;
+      }
+
+      try {
+        const data = await authClient.apiPost({ action: 'auth_get_app_settings' });
+        const settings = data && data.settings ? data.settings : {};
+
+        document.getElementById('hotelWhatsappNo').value = settings.hotelWhatsappNo || '';
+        document.getElementById('menuBlockerStaffCode').value = settings.menuBlockerStaffCode || '';
+        document.getElementById('displayWhatsapp').textContent = settings.hotelWhatsappNo || 'Not set';
+
+        if (data.updatedAt) {
+          const date = new Date(data.updatedAt);
+          document.getElementById('lastUpdated').textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
         }
-        
-        document.getElementById('footerInfo').textContent = 
-          'API: /backend/api_settings.php | Status: Ready';
-      })
-      .catch(error => {
+
+        const apiBase = typeof authClient.getApiBase === 'function' ? authClient.getApiBase() : '';
+        document.getElementById('footerInfo').textContent = 'API: ' + (apiBase || 'Unknown') + ' | Status: Ready';
+      } catch (error) {
         console.error('Error:', error);
         showAlert('Failed to load settings: ' + error.message, 'error');
-        document.getElementById('footerInfo').textContent = 
-          'Error loading settings from API';
-      });
+        document.getElementById('footerInfo').textContent = 'Error loading settings from API';
+      }
     }
 
     /**
@@ -745,7 +735,7 @@
     /**
      * Save settings to API
      */
-    function saveSettings() {
+    async function saveSettings() {
       const saveBtn = document.getElementById('saveBtn');
       const hotelWhatsappNo = document.getElementById('hotelWhatsappNo').value.trim();
       const menuBlockerStaffCode = document.getElementById('menuBlockerStaffCode').value.trim();
@@ -762,37 +752,36 @@
         return;
       }
 
+      if (!authClient) {
+        showAlert('❌ Auth/API client unavailable on this page.', 'error');
+        return;
+      }
+
       // Disable button
       saveBtn.disabled = true;
       saveBtn.innerHTML = '<span class="loader"></span> <span>Saving...</span>';
 
-      fetch('/backend/api_settings.php', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          token: token,
-          hotelWhatsappNo: hotelWhatsappNo,
-          menuBlockerStaffCode: menuBlockerStaffCode
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
+      try {
+        const data = await authClient.apiPost({
+          action: 'auth_set_app_settings',
+          settings: {
+            hotelWhatsappNo: hotelWhatsappNo,
+            menuBlockerStaffCode: menuBlockerStaffCode
+          }
+        });
+
         saveBtn.disabled = false;
         saveBtn.innerHTML = '<span>💾</span> <span>Save Settings</span>';
 
-        if (data.success) {
+        if (data.ok) {
           showAlert('✓ Settings saved successfully!', 'success');
-          
-          // Update display
-          document.getElementById('displayWhatsapp').textContent = data.data.hotelWhatsappNo;
-          
-          if (data.data.updatedAt) {
-            const date = new Date(data.data.updatedAt);
-            document.getElementById('lastUpdated').textContent = 
-              date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+          const settings = data.settings || {};
+          document.getElementById('displayWhatsapp').textContent = settings.hotelWhatsappNo || hotelWhatsappNo;
+
+          if (data.updatedAt) {
+            const date = new Date(data.updatedAt);
+            document.getElementById('lastUpdated').textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
           }
 
           // Clear cache on all pages
@@ -800,15 +789,14 @@
             window.MenuBlockerInitClearCache();
           }
         } else {
-          showAlert('❌ ' + (data.error || 'Failed to save settings'), 'error');
+          showAlert('❌ ' + (data.message || data.error || 'Failed to save settings'), 'error');
         }
-      })
-      .catch(error => {
+      } catch (error) {
         saveBtn.disabled = false;
         saveBtn.innerHTML = '<span>💾</span> <span>Save Settings</span>';
         console.error('Error:', error);
         showAlert('❌ Failed to save settings: ' + error.message, 'error');
-      });
+      }
     }
 
     /**

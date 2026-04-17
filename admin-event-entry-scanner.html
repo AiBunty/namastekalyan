@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -640,7 +640,6 @@
     </div>
   </div>
 
-  <script src="data-config.js?v=20260412-3"></script>
       <!-- Mobile-only sticky save bar (hidden on desktop via CSS) -->
       <div class="mobile-save-bar" id="mobileSaveBar">
         <p class="save-bar-info" id="mobileSaveBarInfo">No scans queued</p>
@@ -651,13 +650,17 @@
       </div>
     </div>
 
-    <script src="data-config.js?v=20260412-3"></script>
-  <script src="admin-auth.js?v=20260416-1"></script>
+    <script src="data-config.js?v=20260417-linkfix-1"></script>
+  <script src="admin-auth.js?v=20260417-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script src="https://unpkg.com/html5-qrcode" defer></script>
   <script>
     (function () {
-      const apiBase = (window.APPS_SCRIPT_URL || (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || '').split('?')[0];
+      const apiBase = (
+        (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl)) ||
+        window.APPS_SCRIPT_URL ||
+        ''
+      ).split('?')[0];
       const CACHE_KEY = 'nk_event_scanner_queue_v2';
       const CACHE_SESSION_KEY = 'nk_admin_auth_session_v1';
       const SCAN_DEDUP_MS = 1000;

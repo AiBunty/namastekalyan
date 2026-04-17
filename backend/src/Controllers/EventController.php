@@ -54,6 +54,28 @@ class EventController
         return $service->adminToggleEvent($body);
     }
 
+    public static function adminDeleteEvent(array $body, array $query): array
+    {
+        $service = new EventService();
+        return $service->adminDeleteEvent($body);
+    }
+
+    public static function adminCloneEvent(array $body, array $query): array
+    {
+        $service = new EventService();
+        return $service->adminCloneEvent($body);
+    }
+
+    public static function adminUploadEventImage(array $body, array $query): array
+    {
+        $tmpPath = '';
+        if (isset($_FILES['file']) && (int) ($_FILES['file']['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
+            $tmpPath = (string) ($_FILES['file']['tmp_name'] ?? '');
+        }
+        $service = new EventService();
+        return $service->adminUploadEventImage($body, $tmpPath);
+    }
+
     // Stubs for phase-2 migration (booking/payments, QR, reports)
     public static function registerFreeEvent(array $body, array $query): array
     {

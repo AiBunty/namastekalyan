@@ -187,13 +187,13 @@
     </div>
   </div>
 
-  <script src="data-config.js?v=20260412-3"></script>
-  <script src="admin-auth.js?v=20260416-1"></script>
+  <script src="data-config.js?v=20260417-linkfix-1"></script>
+  <script src="admin-auth.js?v=20260417-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script>
     const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
-    const APPS_SCRIPT_URL = (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl)
-      ? String(window.NK_DATA_API.appsScriptUrl).trim()
+    const API_BASE = (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl))
+      ? String(window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl).trim()
       : '';
     const HOTEL_WHATSAPP_NO = (window.NK_DATA_API && window.NK_DATA_API.hotelWhatsappNo)
       ? String(window.NK_DATA_API.hotelWhatsappNo).replace(/\D/g, '')
@@ -221,7 +221,7 @@
     const giftCoupon = document.getElementById('giftCoupon');
     const adminLockPanel = document.getElementById('adminLockPanel');
     const authClient = window.NKAdminAuth.createAuthClient({
-      apiBase: APPS_SCRIPT_URL,
+      apiBase: API_BASE,
       onAuthError: (payload) => {
         clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
       }
@@ -241,9 +241,9 @@
     let lastVerifyData = null;
     let adminUnlocked = false;
 
-    apiMeta.textContent = APPS_SCRIPT_URL
-      ? `API: ${APPS_SCRIPT_URL}`
-      : 'API: Missing. Please set appsScriptUrl in data-config.js';
+    apiMeta.textContent = API_BASE
+      ? `API: ${API_BASE}`
+      : 'API: Missing. Please set phpApiUrl in data-config.js';
 
     function phoneValue() {
       return String(phoneInput.value || '').trim();
@@ -353,8 +353,8 @@
     }
 
     async function apiGet(action, extraParams) {
-      if (!APPS_SCRIPT_URL) {
-        throw new Error('Apps Script URL missing in data-config.js');
+      if (!API_BASE) {
+        throw new Error('API URL missing in data-config.js');
       }
       if (!adminUnlocked || !sessionToken()) {
         throw new Error('ADMIN_LOCKED');
@@ -589,3 +589,4 @@
   </script>
 </body>
 </html>
+

@@ -75,10 +75,29 @@ class AuthController
         return $service->setApiSettings($body);
     }
 
+    public static function getAppSettings(array $body, array $query): array
+    {
+        $service = new AuthService();
+        $payload = array_merge($query, $body);
+        return $service->getAppSettings($payload);
+    }
+
+    public static function setAppSettings(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->setAppSettings($body);
+    }
+
     public static function listUsers(array $body, array $query): array
     {
         $service = new AuthService();
         $payload = array_merge($query, $body);
         return $service->listUsers($payload);
+    }
+
+    public static function deleteUser(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->deleteUser($body);
     }
 }

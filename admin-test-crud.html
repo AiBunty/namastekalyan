@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu CRUD Test | Namaste Kalyan</title>
+  <style>
+    :root {
+      --bg: #0e1117;
+      --panel: #161b22;
+      --border: #30363d;
+      --ink: #e6edf3;
+      --muted: #8b949e;
+      --accent: #d4af74;
+      --pass: #3fb950;
+      --fail: #f85149;
+      --warn: #d29922;
+      --info: #58a6ff;
+      --code-bg: #1c2128;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: "Segoe UI", Arial, sans-serif; font-size: 14px; padding: 24px; }
+    h1 { color: var(--accent); font-size: 1.5rem; margin-bottom: 4px; }
+    .subtitle { color: var(--muted); font-size: .82rem; margin-bottom: 24px; }
+
+    .config-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 2fr;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+    .config-panel label { display: block; color: var(--muted); font-size: .75rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .06em; }
+    .config-panel input, .config-panel select {
+      width: 100%; background: var(--code-bg); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--ink); padding: 8px 10px; font-size: .85rem;
+    }
+    .config-panel input:focus, .config-panel select:focus { outline: none; border-color: var(--accent); }
+
+    .btn {
+      padding: 9px 18px; border-radius: 7px; border: none; cursor: pointer;
+      font-size: .85rem; font-weight: 600; transition: opacity .15s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn:disabled { opacity: .4; cursor: not-allowed; }
+    .btn-primary { background: var(--accent); color: #1a1008; }
+    .btn-danger  { background: var(--fail);   color: #fff; }
+    .btn-ghost   { background: transparent; border: 1px solid var(--border); color: var(--ink); }
+
+    .steps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .step-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .step-card.running  { border-color: var(--info);  }
+    .step-card.pass     { border-color: var(--pass);  }
+    .step-card.fail     { border-color: var(--fail);  }
+    .step-card.skip     { opacity: .55; }
+
+    .step-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; cursor: pointer; user-select: none;
+    }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--code-bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 700; color: var(--muted); flex-shrink: 0;
+    }
+    .step-card.pass .step-num  { background: var(--pass);  border-color: var(--pass);  color: #000; }
+    .step-card.fail .step-num  { background: var(--fail);  border-color: var(--fail);  color: #fff; }
+    .step-card.running .step-num { background: var(--info); border-color: var(--info); color: #000; animation: spin 1s linear infinite; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .step-title  { font-weight: 600; flex: 1; }
+    .step-badge  { font-size: .72rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+    .badge-pass  { background: rgba(63,185,80,.15); color: var(--pass); }
+    .badge-fail  { background: rgba(248,81,73,.15);  color: var(--fail); }
+    .badge-run   { background: rgba(88,166,255,.15); color: var(--info); }
+    .badge-wait  { background: rgba(139,148,158,.1); color: var(--muted); }
+    .badge-skip  { background: rgba(210,153,34,.12); color: var(--warn); }
+
+    .step-body   { padding: 0 16px 14px; display: none; }
+    .step-card.open .step-body { display: block; }
+
+    .step-msg    { margin-bottom: 8px; font-size: .82rem; color: var(--ink); }
+    .step-msg.err { color: var(--fail); }
+
+    pre {
+      background: var(--code-bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: 10px; font-size: .72rem; line-height: 1.5;
+      max-height: 240px; overflow: auto; white-space: pre-wrap; word-break: break-all;
+      color: #adbac7;
+    }
+
+    .summary-bar {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 20px; display: flex; align-items: center; gap: 20px;
+    }
+    .stat { text-align: center; }
+    .stat-n { font-size: 1.6rem; font-weight: 700; }
+    .stat-l { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .stat-n.green { color: var(--pass); }
+    .stat-n.red   { color: var(--fail); }
+    .stat-n.grey  { color: var(--muted); }
+    .summary-msg  { flex: 1; font-size: .85rem; color: var(--muted); }
+
+    .controls { display: flex; gap: 10px; margin-bottom: 16px; }
+
+    @media (max-width: 700px) {
+      .config-panel { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Menu Editor · CRUD End-to-End Test</h1>
+<p class="subtitle">Login → Load → Add Row → Save Edit → Verify → Delete → Verify Deletion</p>
+
+<!-- Config -->
+<div class="config-panel">
+  <div>
+    <label>API Base URL</label>
+    <input id="cfgApi" type="url" value="http://localhost:8010/" />
+  </div>
+  <div>
+    <label>Username / Mobile</label>
+    <input id="cfgUser" type="text" value="9371519999" />
+  </div>
+  <div>
+    <label>Password</label>
+    <input id="cfgPass" type="password" value="8442" />
+  </div>
+  <div>
+    <label>Sheet Name</label>
+    <select id="cfgSheet">
+      <option value="AWGNK MENU">AWGNK MENU (Food)</option>
+      <option value="BAR MENU NK">BAR MENU NK (Bar)</option>
+    </select>
+  </div>
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <button class="btn btn-primary" id="runAllBtn" onclick="runAll()">▶ Run All Tests</button>
+  <button class="btn btn-ghost" id="resetBtn" onclick="resetAll()">↺ Reset</button>
+</div>
+
+<!-- Steps -->
+<div class="steps-grid" id="stepsGrid">
+  <!-- Rendered by JS -->
+</div>
+
+<!-- Summary -->
+<div class="summary-bar" id="summaryBar" style="display:none">
+  <div class="stat"><div class="stat-n green" id="sumPass">0</div><div class="stat-l">Passed</div></div>
+  <div class="stat"><div class="stat-n red"   id="sumFail">0</div><div class="stat-l">Failed</div></div>
+  <div class="stat"><div class="stat-n grey"  id="sumSkip">0</div><div class="stat-l">Skipped</div></div>
+  <div class="summary-msg" id="sumMsg">Running…</div>
+</div>
+
+<script>
+'use strict';
+
+/* ────────────────────────────── State ────────────────────────────── */
+const state = {
+  token: null,
+  baselineIds: [],          // IDs present before add-row
+  newRowId: null,           // ID of the freshly added row
+  testItemName: '__DUMMY_TEST_ENTRY_' + Date.now() + '__',
+  stepStatus: {},           // stepId → 'wait'|'running'|'pass'|'fail'|'skip'
+  stepMsg: {},
+  stepDetail: {},
+  running: false
+};
+
+/* ────────────────────────── Step Definitions ──────────────────────── */
+const STEPS = [
+  {
+    id: 's1', num: 1,
+    title: 'Login',
+    desc: 'POST auth_login with your credentials and retrieve a session token.',
+    run: stepLogin
+  },
+  {
+    id: 's2', num: 2,
+    title: 'Load Sheet (baseline)',
+    desc: 'POST admin_menu_editor_load — record the current row count and IDs.',
+    run: stepLoadBaseline
+  },
+  {
+    id: 's3', num: 3,
+    title: 'Add Blank Row',
+    desc: 'POST admin_menu_editor_add_row — insert a new empty row at end of sheet.',
+    run: stepAddRow
+  },
+  {
+    id: 's4', num: 4,
+    title: 'Reload & Find New Row',
+    desc: 'Reload the sheet, diff against baseline IDs, identify the new row ID.',
+    run: stepFindNewRow
+  },
+  {
+    id: 's5', num: 5,
+    title: 'Save Dummy Data',
+    desc: 'POST admin_menu_editor_save_changes — set Item Name to the test value.',
+    run: stepSaveEdit
+  },
+  {
+    id: 's6', num: 6,
+    title: 'Verify Save Persisted',
+    desc: 'Reload the sheet and check the test item name is stored.',
+    run: stepVerifySave
+  },
+  {
+    id: 's7', num: 7,
+    title: 'Delete Test Row',
+    desc: 'POST admin_menu_editor_delete_rows — remove the dummy row by its DB id.',
+    run: stepDelete
+  },
+  {
+    id: 's8', num: 8,
+    title: 'Verify Deletion',
+    desc: 'Reload the sheet and confirm row count is back to baseline.',
+    run: stepVerifyDelete
+  }
+];
+
+/* ─────────────────────────── Render steps ───────────────────────── */
+function renderSteps() {
+  const grid = document.getElementById('stepsGrid');
+  grid.innerHTML = STEPS.map(s => {
+    const st = state.stepStatus[s.id] || 'wait';
+    const badge = badgeHtml(st);
+    const msg = state.stepMsg[s.id] || s.desc;
+    const detail = state.stepDetail[s.id] || '';
+    const isOpen = st === 'fail' || st === 'running';
+    return `
+      <div class="step-card ${st} ${isOpen ? 'open' : ''}" id="card_${s.id}">
+        <div class="step-header" onclick="toggleCard('${s.id}')">
+          <div class="step-num">${s.num}</div>
+          <div class="step-title">${s.title}</div>
+          ${badge}
+        </div>
+        <div class="step-body" id="body_${s.id}">
+          <p class="step-msg ${st === 'fail' ? 'err' : ''}" id="msg_${s.id}">${escHtml(msg)}</p>
+          ${detail ? `<pre id="pre_${s.id}">${escHtml(detail)}</pre>` : `<pre id="pre_${s.id}" style="display:none"></pre>`}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function badgeHtml(st) {
+  const map = {
+    wait:    ['badge-wait', 'Waiting'],
+    running: ['badge-run',  'Running…'],
+    pass:    ['badge-pass', '✓ Pass'],
+    fail:    ['badge-fail', '✗ Fail'],
+    skip:    ['badge-skip', '— Skipped']
+  };
+  const [cls, label] = map[st] || map.wait;
+  return `<span class="step-badge ${cls}">${label}</span>`;
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function toggleCard(id) {
+  const card = document.getElementById('card_' + id);
+  if (card) card.classList.toggle('open');
+}
+
+/* ─────────────────────────── Step helpers ───────────────────────── */
+function setStep(id, status, msg, detail) {
+  state.stepStatus[id] = status;
+  state.stepMsg[id]    = msg || '';
+  state.stepDetail[id] = detail || '';
+
+  const card = document.getElementById('card_' + id);
+  if (!card) return;
+  // Classes
+  card.className = 'step-card ' + status + (status === 'fail' || status === 'running' ? ' open' : '');
+  // Badge
+  const hdr = card.querySelector('.step-header');
+  const oldBadge = hdr.querySelector('.step-badge');
+  if (oldBadge) oldBadge.outerHTML = badgeHtml(status);
+  // Message
+  const msgEl = document.getElementById('msg_' + id);
+  if (msgEl) { msgEl.textContent = msg || ''; msgEl.className = 'step-msg' + (status === 'fail' ? ' err' : ''); }
+  // Detail pre
+  const preEl = document.getElementById('pre_' + id);
+  if (preEl) {
+    if (detail) { preEl.textContent = detail; preEl.style.display = ''; }
+    else        { preEl.style.display = 'none'; }
+  }
+}
+
+/* ─────────────────────────── API helper ────────────────────────── */
+function cfg(key) {
+  const map = { api: 'cfgApi', user: 'cfgUser', pass: 'cfgPass', sheet: 'cfgSheet' };
+  const el = document.getElementById(map[key]);
+  return el ? el.value.trim() : '';
+}
+
+async function apiPost(body) {
+  const base = cfg('api').replace(/\/?$/, '/');
+  const payload = Object.assign({}, body);
+  if (state.token && !payload.token) payload.token = state.token;
+
+  const form = new URLSearchParams();
+  form.set('payload', JSON.stringify(payload));
+
+  const resp = await fetch(base, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    body: form.toString()
+  });
+  const json = await resp.json();
+  return { http: resp.status, data: json };
+}
+
+function fmt(obj) {
+  return JSON.stringify(obj, null, 2);
+}
+
+/* ────────────────────────── Individual Steps ────────────────────── */
+
+async function stepLogin(id) {
+  setStep(id, 'running', 'Posting auth_login…');
+  try {
+    const { http, data } = await apiPost({
+      action: 'auth_login',
+      username: cfg('user'),
+      password: cfg('pass')
+    });
+    if (data.ok && data.token) {
+      state.token = data.token;
+      setStep(id, 'pass',
+        `Logged in as "${data.username || cfg('user')}" | token received.`,
+        fmt({ http, username: data.username, role: data.role, permissions: data.permissions })
+      );
+      return true;
+    }
+    setStep(id, 'fail', `Login failed — ${data.message || data.error || 'unknown'}`, fmt({ http, data }));
+    return false;
+  } catch (e) {
+    setStep(id, 'fail', 'Network/fetch error: ' + e.message);
+    return false;
+  }
+}
+
+async function stepLoadBaseline(id) {
+  setStep(id, 'running', 'Loading sheet…');
+  try {
+    const { http, data } = await apiPost({ action: 'admin_menu_editor_load', sheetName: cfg('sheet') });
+    if (!data.ok) { setStep(id, 'fail', data.message || data.error, fmt({ http, data })); return false; }
+
+    const items = data.items || [];
+    state.baselineIds = items.map(r => Number(r.id || r.rowId || 0)).filter(Boolean);
+
+    setStep(id, 'pass',
+      `Sheet loaded. Rows: ${items.length} | IDs captured: ${state.baselineIds.length}`,
+      fmt({ http, rowCount: items.length, headers: data.headers, sampleRow: items[0] })
+    );
+    return true;
+  } catch (e) {
+    setStep(id, 'fail', 'Error: ' + e.message);
+    return false;
+  }
+}
+
+async function stepAddRow(id) {
+  setStep(id, 'running', 'Sending add-row request…');
+  try {
+    const { http, data } = await apiPost({ action: 'admin_menu_editor_add_row', sheetName: cfg('sheet') });
+    if (!data.ok) { setStep(id, 'fail', data.message || data.error, fmt({ http, data })); return false; }
+    setStep(id, 'pass', 'Add-row accepted by server.', fmt({ http, data }));
+    return true;
+  } catch (e) {
+    setStep(id, 'fail', 'Error: ' + e.message);
+    return false;
+  }
+}
+
+async function stepFindNewRow(id) {
+  setStep(id, 'running', 'Reloading to find the new row…');
+  try {
+    const { http, data } = await apiPost({ action: 'admin_menu_editor_load', sheetName: cfg('sheet') });
+    if (!data.ok) { setStep(id, 'fail', data.message || data.error, fmt({ http, data })); return false; }
+
+    const items = data.items || [];
+    const newRow = items.find(r => {
+      const rowId = Number(r.id || r.rowId || 0);
+      return rowId > 0 && !state.baselineIds.includes(rowId);
+    });
+
+    if (!newRow) {
+      setStep(id, 'fail',
+        `Could not detect new row. Expected ${state.baselineIds.length + 1} rows. Got ${items.length}.`,
+        fmt({ http, rowCount: items.length, baselineIds: state.baselineIds, lastThree: items.slice(-3) })
+      );
+      return false;
+    }
+
+    state.newRowId   = Number(newRow.id || newRow.rowId);
+    state.newRowNum  = Number(newRow.rowNumber || items.indexOf(newRow) + 2);
+
+    setStep(id, 'pass',
+      `New row found. DB id=${state.newRowId} | rowNumber=${state.newRowNum}`,
+      fmt({ http, newRow })
+    );
+    return true;
+  } catch (e) {
+    setStep(id, 'fail', 'Error: ' + e.message);
+    return false;
+  }
+}
+
+async function stepSaveEdit(id) {
+  setStep(id, 'running', `Setting Item Name → "${state.testItemName}"…`);
+  try {
+    const update = {
+      rowNumber: state.newRowNum,
+      id: state.newRowId,
+      cells: { 'Item Name': state.testItemName, 'Food Category': 'TEST_DUMMY' }
+    };
+    const { http, data } = await apiPost({
+      action: 'admin_menu_editor_save_changes',
+      sheetName: cfg('sheet'),
+      updates: [update]
+    });
+    if (!data.ok) { setStep(id, 'fail', data.message || data.error, fmt({ http, data })); return false; }
+    setStep(id, 'pass',
+      `Save accepted. Updated=${data.updated ?? '?'} | Saved=${data.saved ?? '?'}`,
+      fmt({ http, data, sentUpdate: update })
+    );
+    return true;
+  } catch (e) {
+    setStep(id, 'fail', 'Error: ' + e.message);
+    return false;
+  }
+}
+
+async function stepVerifySave(id) {
+  setStep(id, 'running', 'Reloading to verify saved data…');
+  try {
+    const { http, data } = await apiPost({ action: 'admin_menu_editor_load', sheetName: cfg('sheet') });
+    if (!data.ok) { setStep(id, 'fail', data.message || data.error, fmt({ http, data })); return false; }
+
+    const items = data.items || [];
+    // Find row: match by id
+    const found = items.find(r => Number(r.id || r.rowId || 0) === state.newRowId);
+    if (!found) {
+      setStep(id, 'fail', `Row id=${state.newRowId} not found in reload.`, fmt({ http, rowCount: items.length }));
+      return false;
+    }
+
+    // Check any field for the test name (raw keys vary by server)
+    const raw = JSON.stringify(found);
+    if (!raw.includes(state.testItemName)) {
+      setStep(id, 'fail',
+        `Row found but test name "${state.testItemName.substring(0, 30)}…" not in row data.`,
+        fmt({ http, found })
+      );
+      return false;
+    }
+
+    setStep(id, 'pass', `Data persisted correctly. Row id=${state.newRowId} has the test name.`, fmt({ http, found }));
+    return true;
+  } catch (e) {
+    setStep(id, 'fail', 'Error: ' + e.message);
+    return false;
+  }
+}
+
+async function stepDelete(id) {
+  setStep(id, 'running', `Deleting row id=${state.newRowId}…`);
+  try {
+    const { http, data } = await apiPost({
+      action: 'admin_menu_editor_delete_rows',
+      sheetName: cfg('sheet'),
+      ids: [state.newRowId]
+    });
+    if (!data.ok) { setStep(id, 'fail', data.message || data.error, fmt({ http, data })); return false; }
+    setStep(id, 'pass', `Delete accepted. Deleted count: ${data.deleted ?? '?'}`, fmt({ http, data }));
+    return true;
+  } catch (e) {
+    setStep(id, 'fail', 'Error: ' + e.message);
+    return false;
+  }
+}
+
+async function stepVerifyDelete(id) {
+  setStep(id, 'running', 'Reloading to confirm deletion…');
+  try {
+    const { http, data } = await apiPost({ action: 'admin_menu_editor_load', sheetName: cfg('sheet') });
+    if (!data.ok) { setStep(id, 'fail', data.message || data.error, fmt({ http, data })); return false; }
+
+    const items = data.items || [];
+    const stillThere = items.find(r => Number(r.id || r.rowId || 0) === state.newRowId);
+
+    if (stillThere) {
+      setStep(id, 'fail',
+        `Row id=${state.newRowId} still present after delete! Row count: ${items.length}.`,
+        fmt({ http, stillThere })
+      );
+      return false;
+    }
+
+    const finalCount = items.length;
+    const delta = state.baselineIds.length - finalCount;
+    if (finalCount !== state.baselineIds.length) {
+      setStep(id, 'fail',
+        `Count mismatch. Baseline: ${state.baselineIds.length}, now: ${finalCount} (delta ${delta}).`,
+        fmt({ http, finalCount, baselineCount: state.baselineIds.length })
+      );
+      return false;
+    }
+
+    setStep(id, 'pass',
+      `Row deleted. Count restored to baseline: ${finalCount} rows. All clean.`,
+      fmt({ http, finalCount, baselineCount: state.baselineIds.length })
+    );
+    return true;
+  } catch (e) {
+    setStep(id, 'fail', 'Error: ' + e.message);
+    return false;
+  }
+}
+
+/* ────────────────────────── Run All ────────────────────────────── */
+async function runAll() {
+  if (state.running) return;
+  state.running = true;
+  document.getElementById('runAllBtn').disabled = true;
+
+  // Reset state
+  state.token = null;
+  state.baselineIds = [];
+  state.newRowId = null;
+  state.testItemName = '__DUMMY_TEST_' + Date.now() + '__';
+
+  STEPS.forEach(s => { state.stepStatus[s.id] = 'wait'; state.stepMsg[s.id] = s.desc; state.stepDetail[s.id] = ''; });
+  renderSteps();
+  document.getElementById('summaryBar').style.display = 'none';
+
+  let pass = 0, fail = 0, skip = 0;
+
+  for (const step of STEPS) {
+    try {
+      const ok = await step.run(step.id);
+      if (ok) { pass++; }
+      else {
+        fail++;
+        // Skip remaining steps
+        const remaining = STEPS.slice(STEPS.indexOf(step) + 1);
+        remaining.forEach(rs => setStep(rs.id, 'skip', 'Skipped — previous step failed.'));
+        skip = remaining.length;
+        break;
+      }
+    } catch (e) {
+      setStep(step.id, 'fail', 'Unexpected error: ' + e.message);
+      fail++;
+      const remaining = STEPS.slice(STEPS.indexOf(step) + 1);
+      remaining.forEach(rs => setStep(rs.id, 'skip', 'Skipped — previous step failed.'));
+      skip = remaining.length;
+      break;
+    }
+    await new Promise(r => setTimeout(r, 120)); // small pause between steps
+  }
+
+  state.running = false;
+  document.getElementById('runAllBtn').disabled = false;
+
+  // Summary
+  document.getElementById('sumPass').textContent = pass;
+  document.getElementById('sumFail').textContent = fail;
+  document.getElementById('sumSkip').textContent = skip;
+  const total = STEPS.length;
+  const msg = fail === 0
+    ? `All ${pass}/${total} tests passed. CRUD cycle is working correctly.`
+    : `${fail} test(s) failed. Check highlighted steps above for details.`;
+  document.getElementById('sumMsg').textContent = msg;
+  document.getElementById('summaryBar').style.display = 'flex';
+}
+
+function resetAll() {
+  if (state.running) return;
+  state.token = null;
+  state.baselineIds = [];
+  state.newRowId = null;
+  state.newRowNum = null;
+  STEPS.forEach(s => { state.stepStatus[s.id] = 'wait'; state.stepMsg[s.id] = s.desc; state.stepDetail[s.id] = ''; });
+  renderSteps();
+  document.getElementById('summaryBar').style.display = 'none';
+}
+
+/* ───────────────────────── Init ──────────────────────────────────── */
+STEPS.forEach(s => { state.stepStatus[s.id] = 'wait'; state.stepMsg[s.id] = s.desc; });
+renderSteps();
+</script>
+</body>
+</html>

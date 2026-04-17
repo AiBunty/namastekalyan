@@ -357,12 +357,12 @@
       line-height: 1.55;
     }
 
-    .module-iframe {
+    #moduleContent {
       width: 100%;
-      height: 100%;
-      border: none;
-      background: #f7f2e9;
       min-height: calc(100vh - 120px);
+      overflow: auto;
+      padding: 18px;
+      box-sizing: border-box;
     }
 
     .module-switch-loader {
@@ -478,11 +478,21 @@
         border-right: 0;
       }
 
-      .module-iframe {
-        min-height: calc(100vh - 170px);
-      }
     }
   </style>
+  <script src="admin-modules/base.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/cash-approvals.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/cashier.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/verification.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/settings.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/qr-code.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/event-management.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/event-guests.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/user-management.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/menu-editor.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/menu-category-designer.js?v=20260417-spa-1"></script>
+  <script src="admin-modules/data-import.js?v=20260601-1"></script>
+  <script src="admin-modules/event-entry-scanner.js?v=20260417-spa-1"></script>
 </head>
 <body>
   <main id="loginShell" class="login-shell">
@@ -538,7 +548,7 @@
       </div>
       <div class="workspace-body">
         <div id="dashboardView" class="dashboard"></div>
-        <div id="moduleFramePool"></div>
+        <div id="moduleContent"></div>
         <div id="moduleSwitchLoader" class="module-switch-loader hidden" aria-live="polite" aria-busy="true">
           <div class="module-switch-loader__spinner" aria-hidden="true"></div>
           <p id="moduleSwitchLoaderText" class="module-switch-loader__text">Loading module...</p>
@@ -547,18 +557,40 @@
     </section>
   </section>
 
-  <script src="data-config.js?v=20260416-php-only-2"></script>
-  <script src="admin-auth.js?v=20260416-1"></script>
+  <script src="data-config.js?v=20260417-linkfix-1"></script>
+  <script src="admin-auth.js?v=20260417-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script src="admin-cache.js?v=20260413-1"></script>
   <script>
     (function () {
-      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const apiBase = (
+        (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl)) ||
+        window.APPS_SCRIPT_URL ||
+        ''
+      ).split('?')[0];
       const authClient = window.NKAdminAuth.createAuthClient({
         apiBase: apiBase,
         onAuthError: function (payload) {
           lockPanel((payload && payload.message) || 'Session expired. Please login again.');
         }
+      });
+      const debugMode = (function () {
+        try {
+          const params = new URLSearchParams(window.location.search || '');
+          return params.get('diag') === '1' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        } catch (err) {
+          return false;
+        }
+      })();
+
+      function debugLog(eventName, details) {
+        if (!debugMode || !window.console || typeof window.console.info !== 'function') return;
+        window.console.info('[NKAdminPortal]', eventName, details || {});
+      }
+
+      debugLog('init', {
+        apiBase: apiBase,
+        tokenPresentAtBoot: !!authClient.getToken()
       });
 
       const MODULES = [
@@ -569,6 +601,8 @@
         { id: 'event-entry-scanner', title: 'Event Entry Scanner', description: 'Scan multiple guest QRs and confirm gate entry in batches', permission: 'eventScanner', role: 'admin', href: 'admin-event-entry-scanner.html?embedded=1' },
         { id: 'event-management', title: 'Event Management', description: 'Create and manage events', permission: 'eventManagement', role: 'admin', href: 'admin-event-management.html?embedded=1' },
         { id: 'menu-editor', title: 'Menu Bulk Editor', description: 'Sheet-like editor for menu and cocktail rows', permission: 'menuEditor', role: 'admin', href: 'admin-menu-price-editor.html?embedded=1' },
+        { id: 'menu-category-designer', title: 'Menu Category Designer', description: 'Design Food and Cocktail category/item order', permission: 'menuEditor', role: 'admin', href: 'admin-menu-category-designer.html?embedded=1' },
+        { id: 'data-import', title: 'Data Import / Export', description: 'Import/export menu Excel, upload images, manage snapshots', permission: 'menuEditor', role: 'admin', href: '' },
         { id: 'qr-code', title: 'QR Code Center', description: 'Generate and download Menu/Admin QR links', permission: 'dashboard', role: 'admin', href: 'qr-code.html?embedded=1' },
         { id: 'cash-approvals', title: 'Cash Approvals', description: 'SuperAdmin cash approval desk', permission: 'cashApprovals', role: 'superadmin', href: 'superadmin-cash-approvals.html?embedded=1' },
         { id: 'user-management', title: 'User Management', description: 'Create users and assign access', permission: 'userManagement', role: 'superadmin', href: 'admin-user-management.html?embedded=1' },
@@ -591,7 +625,7 @@
       const navListEl = document.getElementById('navList');
       const navStatusEl = document.getElementById('navStatus');
       const dashboardViewEl = document.getElementById('dashboardView');
-      const moduleFramePoolEl = document.getElementById('moduleFramePool');
+      const moduleContentEl = document.getElementById('moduleContent');
       const moduleSwitchLoaderEl = document.getElementById('moduleSwitchLoader');
       const moduleSwitchLoaderTextEl = document.getElementById('moduleSwitchLoaderText');
       const workspaceTitleEl = document.getElementById('workspaceTitle');
@@ -607,9 +641,7 @@
       let currentModuleId = 'dashboard';
       let moduleLoaderShownAt = 0;
       let loadingModuleId = '';
-      const iframeCache = {};
-      let loaderFallbackTimer = null;
-      const LOADER_TIMEOUT_MS = 8000;
+      let currentModule = null;
 
       function showModuleSwitchLoader(message) {
         if (!moduleSwitchLoaderEl) return;
@@ -627,32 +659,6 @@
         window.setTimeout(function () {
           moduleSwitchLoaderEl.classList.add('hidden');
         }, waitMs);
-      }
-
-      function getOrCreateModuleFrame(module) {
-        if (iframeCache[module.id]) return { frame: iframeCache[module.id], isNew: false };
-        const frame = document.createElement('iframe');
-        frame.className = 'module-iframe hidden';
-        frame.title = module.title + ' Admin Module';
-        frame.setAttribute('data-module-id', module.id);
-        moduleFramePoolEl.appendChild(frame);
-        iframeCache[module.id] = frame;
-        return { frame: frame, isNew: true };
-      }
-
-      function clearModuleFramePool() {
-        clearTimeout(loaderFallbackTimer);
-        Object.keys(iframeCache).forEach(function (id) {
-          const f = iframeCache[id];
-          if (f && f.parentNode) f.parentNode.removeChild(f);
-          delete iframeCache[id];
-        });
-      }
-
-      function hideAllModuleFrames() {
-        Object.keys(iframeCache).forEach(function (id) {
-          iframeCache[id].classList.add('hidden');
-        });
       }
 
       function setModuleButtonLoading(moduleId) {
@@ -760,17 +766,6 @@
         `).join('');
       }
 
-      function getEmbeddedModuleHref(module) {
-        const href = String(module && module.href || '').trim();
-        if (!href) return href;
-
-        const token = String(authClient.getToken() || '').trim();
-        if (!token) return href;
-
-        const separator = href.indexOf('?') === -1 ? '?' : '&';
-        return `${href}${separator}authToken=${encodeURIComponent(token)}`;
-      }
-
       function openModule(moduleId) {
         const target = allowedModules.find((item) => item.id === moduleId);
         if (!target) {
@@ -788,48 +783,47 @@
         workspaceSubtitleEl.textContent = module.description;
         setNavStatus('');
 
-        clearTimeout(loaderFallbackTimer);
+        // Destroy previous module instance
+        if (currentModule && typeof currentModule.destroy === 'function') {
+          currentModule.destroy();
+          currentModule = null;
+        }
 
         if (module.id === 'dashboard') {
           clearModuleButtonLoading();
           hideModuleSwitchLoader();
-          hideAllModuleFrames();
+          moduleContentEl.innerHTML = '';
           dashboardViewEl.classList.remove('hidden');
           renderDashboard();
+          debugLog('module-open-dashboard', {});
         } else {
           dashboardViewEl.classList.add('hidden');
-          const result = getOrCreateModuleFrame(module);
-          const frame = result.frame;
-          const isNew = result.isNew;
-          hideAllModuleFrames();
-          frame.classList.remove('hidden');
+          moduleContentEl.innerHTML = '';
 
-          if (isNew) {
-            // First visit: load the module URL into this iframe
-            setModuleButtonLoading(module.id);
-            showModuleSwitchLoader('Fetching ' + module.title + '...');
-            frame.setAttribute('data-nk-loading', '1');
-            frame.setAttribute('src', getEmbeddedModuleHref(module));
-            loaderFallbackTimer = setTimeout(function () {
-              if (currentModuleId === module.id) {
-                clearModuleButtonLoading();
-                hideModuleSwitchLoader();
-              }
-            }, LOADER_TIMEOUT_MS);
-          } else if (frame.getAttribute('data-nk-ready') !== '1') {
-            // Returned before data finished loading - keep waiting
-            setModuleButtonLoading(module.id);
-            showModuleSwitchLoader('Fetching ' + module.title + '...');
-            loaderFallbackTimer = setTimeout(function () {
-              if (currentModuleId === module.id) {
-                clearModuleButtonLoading();
-                hideModuleSwitchLoader();
-              }
-            }, LOADER_TIMEOUT_MS);
-          } else {
-            // Cached and ready — instant, no loader
+          const modInstance = window.NK && window.NK.MODULES && window.NK.MODULES[module.id];
+          if (!modInstance) {
+            setNavStatus('Module "' + module.id + '" not found. Check script loading.');
+            clearModuleButtonLoading();
+            debugLog('module-not-found', { moduleId: module.id });
+            return;
+          }
+
+          currentModule = modInstance;
+          showModuleSwitchLoader('Loading ' + module.title + '...');
+          setModuleButtonLoading(module.id);
+          debugLog('module-open-spa', { moduleId: module.id });
+
+          try {
+            modInstance.init(moduleContentEl, authClient, currentUser);
             clearModuleButtonLoading();
             hideModuleSwitchLoader();
+            setNavStatus('');
+            debugLog('module-init-ok', { moduleId: module.id });
+          } catch (err) {
+            clearModuleButtonLoading();
+            hideModuleSwitchLoader();
+            setNavStatus('Module failed to load: ' + (err && err.message ? err.message : String(err)));
+            debugLog('module-init-error', { moduleId: module.id, error: err && err.message });
           }
         }
 
@@ -876,7 +870,11 @@
         mobileTopbarEl.classList.add('hidden');
         closeSidebar();
 
-        clearModuleFramePool();
+        if (currentModule && typeof currentModule.destroy === 'function') {
+          currentModule.destroy();
+          currentModule = null;
+        }
+        moduleContentEl.innerHTML = '';
         dashboardViewEl.classList.remove('hidden');
         navListEl.innerHTML = '';
         window.location.hash = '';
@@ -935,12 +933,19 @@
 
         loginBtn.disabled = true;
         setAuthStatus('Logging in...');
+        debugLog('login-start', { username: username });
         try {
           const payload = await authClient.login(username, password, 'admin-portal-unified');
           passwordEl.value = '';
           setAuthStatus(`Logged in as ${payload.user.username}.`, 'ok');
+          debugLog('login-success', {
+            username: payload.user.username,
+            role: payload.user.role,
+            tokenPresent: !!authClient.getToken()
+          });
           setUnlockedUi(payload.user || {});
         } catch (err) {
+          debugLog('login-failed', { error: err && err.message ? err.message : String(err) });
           lockPanel(`Login failed: ${err.message}`);
         } finally {
           loginBtn.disabled = false;
@@ -948,14 +953,22 @@
       }
 
       async function restoreSessionIfAny() {
+        debugLog('session-restore-start', { tokenPresent: !!authClient.getToken() });
         try {
           const payload = await authClient.restoreSession();
           if (!payload || !payload.user) {
+            debugLog('session-restore-empty', {});
             lockPanel('Panel is locked. Login as Admin or SuperAdmin.');
             return;
           }
+          debugLog('session-restore-success', {
+            username: payload.user.username,
+            role: payload.user.role,
+            tokenPresent: !!authClient.getToken()
+          });
           setUnlockedUi(payload.user);
         } catch (err) {
+          debugLog('session-restore-failed', { error: err && err.message ? err.message : String(err) });
           lockPanel('Session expired. Please login again.');
         }
       }
@@ -1004,28 +1017,10 @@
         openModule(requested);
       });
 
-      window.addEventListener('message', function (event) {
-        if (!event.data || typeof event.data !== 'object') return;
-        if (event.data.type !== 'NK_MODULE_READY') return;
-        const ids = Object.keys(iframeCache);
-        for (var i = 0; i < ids.length; i++) {
-          const id = ids[i];
-          if (iframeCache[id].contentWindow === event.source) {
-            iframeCache[id].setAttribute('data-nk-ready', '1');
-            iframeCache[id].removeAttribute('data-nk-loading');
-            if (id === currentModuleId) {
-              clearTimeout(loaderFallbackTimer);
-              clearModuleButtonLoading();
-              hideModuleSwitchLoader();
-            }
-            break;
-          }
-        }
-      });
-
       lockPanel('Panel is locked. Login as Admin or SuperAdmin.');
       restoreSessionIfAny();
     })();
   </script>
 </body>
 </html>
+

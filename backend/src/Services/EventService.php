@@ -741,6 +741,145 @@ class EventService
         ];
     }
 
+    public function adminDeleteEvent(array $data): array
+    {
+        $auth = AuthMiddleware::authorize($data, 'admin');
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        if (!AuthMiddleware::requirePermission($auth['user'], 'eventManagement')) {
+            return ['ok' => false, 'error' => 'FORBIDDEN', 'message' => 'Event management permission required.'];
+        }
+
+        $eventId = trim((string) ($data['eventId'] ?? $data['event_id'] ?? ''));
+        if ($eventId === '') {
+            return ['ok' => false, 'error' => 'INVALID_INPUT', 'message' => 'eventId is required.'];
+        }
+
+        $event = $this->repo->findByEventId($eventId);
+        if (!$event) {
+            return ['ok' => false, 'error' => 'NOT_FOUND', 'message' => 'Event not found.'];
+        }
+
+        $force = !empty($data['force']);
+        if (!$force && $this->repo->hasRegistrations($eventId)) {
+            return [
+                'ok'             => false,
+                'error'          => 'HAS_REGISTRATIONS',
+                'message'        => 'This event has active registrations. Pass force=true to delete anyway.',
+                'hasRegistrations' => true,
+            ];
+        }
+
+        $this->repo->deleteByEventId($eventId);
+
+        return [
+            'ok'      => true,
+            'action'  => 'admin_delete_event',
+            'message' => 'Event deleted.',
+        ];
+    }
+
+    public function adminCloneEvent(array $data): array
+    {
+        $auth = AuthMiddleware::authorize($data, 'admin');
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        if (!AuthMiddleware::requirePermission($auth['user'], 'eventManagement')) {
+            return ['ok' => false, 'error' => 'FORBIDDEN', 'message' => 'Event management permission required.'];
+        }
+
+        $eventId = trim((string) ($data['eventId'] ?? $data['event_id'] ?? ''));
+        if ($eventId === '') {
+            return ['ok' => false, 'error' => 'INVALID_INPUT', 'message' => 'eventId is required.'];
+        }
+
+        $source = $this->repo->findByEventId($eventId);
+        if (!$source) {
+            return ['ok' => false, 'error' => 'NOT_FOUND', 'message' => 'Event not found.'];
+        }
+
+        $newEventId = strtolower(preg_replace('/[^a-z0-9]+/i', '-', 'copy-' . ($source['title'] ?? 'event')))
+            . '-' . substr(md5(uniqid('', true)), 0, 6);
+        $newEventId = trim($newEventId, '-');
+
+        $clonePayload = $source;
+        $clonePayload['event_id']   = $newEventId;
+        $clonePayload['title']      = 'Copy of ' . ($source['title'] ?? '');
+        $clonePayload['is_active']  = 0;
+        $clonePayload['start_date'] = null;
+        $clonePayload['start_time'] = null;
+        $clonePayload['end_date']   = null;
+        $clonePayload['end_time']   = null;
+        unset($clonePayload['id'], $clonePayload['created_at'], $clonePayload['updated_at']);
+
+        $this->repo->create($clonePayload);
+
+        return [
+            'ok'         => true,
+            'action'     => 'admin_clone_event',
+            'newEventId' => $newEventId,
+            'message'    => 'Event cloned. Update the dates and activate when ready.',
+        ];
+    }
+
+    public function adminUploadEventImage(array $data, string $tmpPath): array
+    {
+        $auth = AuthMiddleware::authorize($data, 'admin');
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        if (!AuthMiddleware::requirePermission($auth['user'], 'eventManagement')) {
+            return ['ok' => false, 'error' => 'FORBIDDEN', 'message' => 'Event management permission required.'];
+        }
+
+        if ($tmpPath === '' || !is_uploaded_file($tmpPath)) {
+            return ['ok' => false, 'error' => 'NO_FILE', 'message' => 'No image uploaded.'];
+        }
+
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+        $mime  = $finfo->file($tmpPath);
+        $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+        if (!in_array($mime, $allowed, true)) {
+            return ['ok' => false, 'error' => 'INVALID_FILE', 'message' => 'Only JPEG, PNG, WebP or GIF images are allowed.'];
+        }
+
+        if (filesize($tmpPath) > 10 * 1024 * 1024) {
+            return ['ok' => false, 'error' => 'FILE_TOO_LARGE', 'message' => 'Image must be under 10 MB.'];
+        }
+
+        $saveDir = __DIR__ . '/../../public/event-images';
+        if (!is_dir($saveDir) && !mkdir($saveDir, 0755, true)) {
+            return ['ok' => false, 'error' => 'STORAGE_ERROR', 'message' => 'Could not create event-images directory.'];
+        }
+
+        $ext      = match ($mime) {
+            'image/png'  => 'png',
+            'image/webp' => 'webp',
+            'image/gif'  => 'gif',
+            default      => 'jpg',
+        };
+        $filename = 'evt-' . substr(md5(uniqid('', true)), 0, 12) . '.' . $ext;
+        $destPath = $saveDir . '/' . $filename;
+
+        if (!move_uploaded_file($tmpPath, $destPath)) {
+            return ['ok' => false, 'error' => 'STORAGE_ERROR', 'message' => 'Failed to save image.'];
+        }
+
+        $publicUrl = '/event-images/' . $filename;
+
+        return [
+            'ok'        => true,
+            'action'    => 'admin_event_image_upload',
+            'imageUrl'  => $publicUrl,
+            'message'   => 'Image uploaded.',
+        ];
+    }
+
     private function normalizeBatchScan(array $requestData): array
     {
         $scanText = trim((string) ($requestData['scanText'] ?? $requestData['rawScan'] ?? $requestData['qrText'] ?? ''));

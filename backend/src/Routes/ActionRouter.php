@@ -7,8 +7,10 @@ namespace NK\Routes;
 use NK\Controllers\AuthController;
 use NK\Controllers\CashierController;
 use NK\Controllers\EventController;
+use NK\Controllers\ImportController;
 use NK\Controllers\LeadController;
 use NK\Controllers\MenuController;
+use NK\Controllers\UtilityController;
 use NK\Controllers\WebhookController;
 
 class ActionRouter
@@ -27,7 +29,10 @@ class ActionRouter
         'auth_set_user_permissions'     => [AuthController::class, 'setUserPermissions'],
         'auth_get_api_settings'         => [AuthController::class, 'getApiSettings'],
         'auth_set_api_settings'         => [AuthController::class, 'setApiSettings'],
+        'auth_get_app_settings'         => [AuthController::class, 'getAppSettings'],
+        'auth_set_app_settings'         => [AuthController::class, 'setAppSettings'],
         'auth_list_users'               => [AuthController::class, 'listUsers'],
+        'auth_delete_user'              => [AuthController::class, 'deleteUser'],
 
         // ── Events (writes) ─────────────────────────────────────────────────────
         'register_free_event'           => [EventController::class, 'registerFreeEvent'],
@@ -38,6 +43,9 @@ class ActionRouter
         'admin_create_event'            => [EventController::class, 'adminCreateEvent'],
         'admin_update_event'            => [EventController::class, 'adminUpdateEvent'],
         'admin_toggle_event'            => [EventController::class, 'adminToggleEvent'],
+        'admin_delete_event'            => [EventController::class, 'adminDeleteEvent'],
+        'admin_clone_event'             => [EventController::class, 'adminCloneEvent'],
+        'admin_event_image_upload'      => [EventController::class, 'adminUploadEventImage'],
         'verify_event_qr'               => [EventController::class, 'verifyEventQr'],
         'admin_preview_event_qr'        => [EventController::class, 'adminPreviewEventQr'],
         'admin_batch_checkin_event_qr'  => [EventController::class, 'adminBatchCheckin'],
@@ -48,6 +56,23 @@ class ActionRouter
         'admin_menu_editor_add_row'          => [MenuController::class, 'addRow'],
         'admin_menu_editor_delete_rows'      => [MenuController::class, 'deleteRows'],
         'admin_menu_editor_set_visibility'   => [MenuController::class, 'setVisibility'],
+        'admin_menu_designer_load'           => [MenuController::class, 'designerLoad'],
+        'admin_menu_designer_save_category_order' => [MenuController::class, 'designerSaveCategoryOrder'],
+        'admin_menu_designer_save_item_order' => [MenuController::class, 'designerSaveItemOrder'],
+        'admin_menu_designer_toggle_category' => [MenuController::class, 'designerToggleCategory'],
+        'admin_menu_designer_toggle_item'    => [MenuController::class, 'designerToggleItem'],
+        'admin_menu_editor_add_column'       => [MenuController::class, 'addColumn'],
+        'admin_menu_editor_rename_column'    => [MenuController::class, 'renameColumn'],
+
+        // ── Import / Export / Snapshots / Images ─────────────────────────────────
+        'admin_import_preview'               => [ImportController::class, 'importPreview'],
+        'admin_import_execute'               => [ImportController::class, 'importExecute'],
+        'admin_export_xlsx'                  => [ImportController::class, 'exportXlsx'],
+        'admin_snapshot_list'                => [ImportController::class, 'snapshotList'],
+        'admin_snapshot_restore'             => [ImportController::class, 'snapshotRestore'],
+        'admin_image_upload'                 => [ImportController::class, 'imageUpload'],
+        'admin_menu_item_upload_image'        => [ImportController::class, 'uploadItemImage'],
+        'admin_download_template'             => [ImportController::class, 'downloadTemplate'],
 
         // ── Cashier ─────────────────────────────────────────────────────────────
         'admin_issue_cash_paid_pass'         => [CashierController::class, 'issueCashPaidPass'],
@@ -59,6 +84,14 @@ class ActionRouter
         // ── Lead / Spin & Win ───────────────────────────────────────────────────
         'submit_lead'                   => [LeadController::class, 'submitLead'],
         'qr_scan_client'                => [LeadController::class, 'qrScanClient'],
+        'add_test_qr_scan'              => [LeadController::class, 'addTestQrScan'],
+        'test_qr_scan'                  => [LeadController::class, 'addTestQrScan'],
+        'add_test_25_coupon'            => [LeadController::class, 'addTest25Coupon'],
+        'test_25_coupon'                => [LeadController::class, 'addTest25Coupon'],
+        'add_test_lead'                 => [LeadController::class, 'addTestLead'],
+        'add-test-lead'                 => [LeadController::class, 'addTestLead'],
+        'sync_crm_by_phone'             => [LeadController::class, 'syncCrmByPhone'],
+        'sync-crm-by-phone'             => [LeadController::class, 'syncCrmByPhone'],
 
         // ── Razorpay webhook ────────────────────────────────────────────────────
         'razorpay_webhook'              => [WebhookController::class, 'razorpayWebhook'],
@@ -75,6 +108,7 @@ class ActionRouter
         'event_guest_report'        => [EventController::class, 'eventGuestReport'],
         'event_transactions_report' => [EventController::class, 'eventTransactionsReport'],
         'admin_list_events'         => [EventController::class, 'adminListEvents'],
+        'admin_event_list'          => [EventController::class, 'adminListEvents'],
 
         // ── Cash (reads) ────────────────────────────────────────────────────────
         'admin_cash_summary'        => [CashierController::class, 'adminCashSummary'],
@@ -85,8 +119,31 @@ class ActionRouter
         'redeem'                    => [LeadController::class, 'redeem'],
         'regen_coupon'              => [LeadController::class, 'regenCoupon'],
         'regenerate_coupon'         => [LeadController::class, 'regenCoupon'],
+        'regen-coupon'              => [LeadController::class, 'regenCoupon'],
         'counter'                   => [LeadController::class, 'counter'],
         'qr_report'                 => [LeadController::class, 'qrReport'],
+        'init_schema'               => [LeadController::class, 'initSchema'],
+        'schema'                    => [LeadController::class, 'initSchema'],
+        'ensure_qr_sheet'           => [LeadController::class, 'ensureQrSheet'],
+        'init_qr_sheet'             => [LeadController::class, 'ensureQrSheet'],
+        'create_qr_sheet'           => [LeadController::class, 'ensureQrSheet'],
+        'create_test_paid_tx'       => [UtilityController::class, 'createTestPaidTx'],
+        'seed_test_paid_tx'         => [UtilityController::class, 'createTestPaidTx'],
+        'download_qr_code'          => [UtilityController::class, 'downloadQrCode'],
+        'qr_scan_report_html'       => [UtilityController::class, 'qrScanReportHtml'],
+        'qr-scan-report-html'       => [UtilityController::class, 'qrScanReportHtml'],
+        'migrate_events_sheet_format' => [UtilityController::class, 'migrateEventsSheetFormat'],
+        'migrate_event_sheet_format' => [UtilityController::class, 'migrateEventsSheetFormat'],
+        'reset_events_sheet_format' => [UtilityController::class, 'resetEventsSheetFormat'],
+        'reset_events_data'         => [UtilityController::class, 'resetEventsSheetFormat'],
+        'seed_events_sample'        => [UtilityController::class, 'seedEventsSample'],
+        'seed_event_sample'         => [UtilityController::class, 'seedEventsSample'],
+        'seed_dj_events_apr_2026'   => [UtilityController::class, 'seedDjEvents'],
+        'seed_dj_events'            => [UtilityController::class, 'seedDjEvents'],
+        'seed_paid_event_sample'    => [UtilityController::class, 'seedPaidEventSample'],
+        'seed_paid_event'           => [UtilityController::class, 'seedPaidEventSample'],
+        'send_test_event_email'     => [UtilityController::class, 'sendTestEventEmail'],
+        'test_event_email'          => [UtilityController::class, 'sendTestEventEmail'],
 
         // ── Auth (reads) ────────────────────────────────────────────────────────
         'auth_bootstrap_status'     => [AuthController::class, 'bootstrapStatus'],

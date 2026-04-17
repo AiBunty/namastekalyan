@@ -121,6 +121,17 @@ if (in_array($method, ['POST', 'PUT', 'PATCH'], true)) {
         $body = $_POST;
     }
 
+    // Multipart/form-data: merge $_POST fields into $body
+    // This supports file upload endpoints that also send JSON fields as form fields.
+    $contentType = (string) ($_SERVER['CONTENT_TYPE'] ?? '');
+    if (stripos($contentType, 'multipart/form-data') !== false && !empty($_POST)) {
+        foreach ($_POST as $k => $v) {
+            if (!isset($body[$k])) {
+                $body[$k] = $v;
+            }
+        }
+    }
+
     // Apps Script compatibility: payload={...json...}
     if (isset($body['payload']) && is_string($body['payload'])) {
         $decodedPayload = json_decode((string) $body['payload'], true);

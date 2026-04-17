@@ -21,6 +21,7 @@ class EventRepository
         $sql = 'SELECT *
                 FROM events
                 WHERE is_active = 1
+                  AND (end_date IS NULL OR end_date >= CURDATE())
                 ORDER BY start_date ASC, start_time ASC, priority DESC
                 LIMIT :lim';
 
@@ -199,5 +200,25 @@ class EventRepository
             ':updated_at' => date('Y-m-d H:i:s'),
             ':event_id'   => $eventId,
         ]);
+    }
+
+    public function deleteByEventId(string $eventId): bool
+    {
+        $stmt = $this->db->prepare('DELETE FROM events WHERE event_id = :event_id');
+        $stmt->execute([':event_id' => $eventId]);
+        return $stmt->rowCount() > 0;
+    }
+
+    public function hasRegistrations(string $eventId): bool
+    {
+        $stmt = $this->db->prepare(
+            'SELECT COUNT(*) FROM event_transactions WHERE event_id = :event_id AND status NOT IN (:s1, :s2)'
+        );
+        $stmt->execute([
+            ':event_id' => $eventId,
+            ':s1'       => 'cancelled',
+            ':s2'       => 'order_failed',
+        ]);
+        return (int) $stmt->fetchColumn() > 0;
     }
 }

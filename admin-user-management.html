@@ -233,12 +233,16 @@
     </section>
   </main>
 
-  <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260416-1"></script>
+  <script src="data-config.js?v=20260417-linkfix-1"></script>
+  <script src="admin-auth.js?v=20260417-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script>
     (function () {
-      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const apiBase = (
+        (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl)) ||
+        window.APPS_SCRIPT_URL ||
+        ''
+      ).split('?')[0];
       const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
 
       const usernameEl = document.getElementById('username');
@@ -919,3 +923,4 @@
   </script>
 </body>
 </html>
+

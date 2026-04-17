@@ -43,4 +43,46 @@ class MenuController
         $service = new MenuService();
         return $service->setVisibility($body);
     }
+
+    public static function designerLoad(array $body, array $query): array
+    {
+        $service = new MenuService();
+        return $service->designerLoad($body);
+    }
+
+    public static function designerSaveCategoryOrder(array $body, array $query): array
+    {
+        $service = new MenuService();
+        return $service->designerSaveCategoryOrder($body);
+    }
+
+    public static function designerSaveItemOrder(array $body, array $query): array
+    {
+        $service = new MenuService();
+        return $service->designerSaveItemOrder($body);
+    }
+
+    public static function designerToggleCategory(array $body, array $query): array
+    {
+        $service = new MenuService();
+        return $service->designerToggleCategory($body);
+    }
+
+    public static function designerToggleItem(array $body, array $query): array
+    {
+        $service = new MenuService();
+        return $service->designerToggleItem($body);
+    }
+
+    public static function addColumn(array $body, array $query): array
+    {
+        $service = new MenuService();
+        return $service->addColumn($body);
+    }
+
+    public static function renameColumn(array $body, array $query): array
+    {
+        $service = new MenuService();
+        return $service->renameColumn($body);
+    }
 }

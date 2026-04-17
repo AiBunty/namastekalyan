@@ -87,4 +87,21 @@ class LeadRepository
         $stmt = $this->db->query('SELECT COUNT(*) FROM leads');
         return (int) $stmt->fetchColumn();
     }
+
+    public function updateCrmSync(int $id, string $status, string $code, string $message): void
+    {
+        $sql = 'UPDATE leads
+                SET crm_sync_status = :status,
+                    crm_sync_code = :code,
+                    crm_sync_message = :message
+                WHERE id = :id';
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':status' => $status,
+            ':code' => $code,
+            ':message' => $message,
+            ':id' => $id,
+        ]);
+    }
 }

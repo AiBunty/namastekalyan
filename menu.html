@@ -804,7 +804,7 @@
     </article>
    </div>
   </footer>
-  <script src="data-config.js?v=20260412-2"></script>
+  <script src="data-config.js?v=20260417-linkfix-1"></script>
   <script>
   /* ============================================================
      ⚠️ MASTER OF TRUTH — AWGNK MENU TAB ONLY (LOCKED)
@@ -854,12 +854,16 @@
     };
     return aliases[key] || raw;
   };
-  const buildMenuApiUrl = (sheetName) => APPS_SCRIPT_URL
-    ? `${APPS_SCRIPT_URL}${APPS_SCRIPT_URL.includes('?') ? '&' : '?'}tab=${encodeURIComponent(sheetName)}&shape=grid`
-    : `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}`;
+  const buildMenuApiUrl = (sheetName) => {
+    if (!APPS_SCRIPT_URL) {
+      throw new Error('PHP_API_NOT_CONFIGURED');
+    }
+    return `${APPS_SCRIPT_URL}${APPS_SCRIPT_URL.includes('?') ? '&' : '?'}tab=${encodeURIComponent(sheetName)}&shape=grid`;
+  };
   let ACTIVE_MENU_API_URL = buildMenuApiUrl(SHEET_NAME);
 
    let MENU_DB = [];
+  let MENU_DESIGNER_ORDER = { categoryOrder: [], itemOrder: {} };
    let foodFilter = 'ALL'; 
    let showChefOnly = false; 
    let showJainOnly = false;
@@ -962,76 +966,61 @@
          throw new Error(`SHEET_HTTP_${res.status}`);
        }
 
-       if (APPS_SCRIPT_URL) {
-         const payload = JSON.parse(text);
-         if (!payload || payload.ok !== true) {
-           throw new Error(payload && payload.error ? payload.error : 'APPS_SCRIPT_INVALID_RESPONSE');
-         }
-         const sourceTab = String(payload.sourceTab || payload.tab || payload.sheetName || '').trim();
-         if (sourceTab && sourceTab.toLowerCase() !== String(SHEET_NAME).toLowerCase()) {
-           throw new Error(`TAB_MISMATCH_DETECTED_${sourceTab || 'UNKNOWN'}`);
-         }
+       const payload = JSON.parse(text);
+       if (!payload || payload.ok !== true) {
+         throw new Error(payload && payload.error ? payload.error : 'PHP_API_INVALID_RESPONSE');
+       }
+       const sourceTab = String(payload.sourceTab || payload.tab || payload.sheetName || '').trim();
+       if (sourceTab && sourceTab.toLowerCase() !== String(SHEET_NAME).toLowerCase()) {
+         throw new Error(`TAB_MISMATCH_DETECTED_${sourceTab || 'UNKNOWN'}`);
+       }
 
-         const headers = Array.isArray(payload.headers) ? payload.headers.map(canonicalizeHeader) : [];
-         const rawRows = Array.isArray(payload.rows) ? payload.rows : [];
-         const cols = headers.map(label => ({ label }));
-         const toCanonicalLookupKeys = (header) => {
-           const raw = String(header || '').trim();
-           const lower = raw.toLowerCase();
-           const compact = lower.replace(/[^a-z0-9]/g, '');
-           const camel = lower
-             .replace(/[^a-z0-9]+([a-z0-9])/g, (_, c) => c.toUpperCase())
-             .replace(/[^a-z0-9]/g, '');
-           const alias = {
-             'itemname': ['itemName'],
-             'description': ['subCategory'],
-             'subcategory': ['subCategory'],
-             'foodcategory': ['foodCategory'],
-             'imageurl': ['imageUrl']
-           };
-           return [raw, lower, compact, camel, ...(alias[compact] || [])];
+       const headers = Array.isArray(payload.headers) ? payload.headers.map(canonicalizeHeader) : [];
+       const rawRows = Array.isArray(payload.rows) ? payload.rows : [];
+       const cols = headers.map(label => ({ label }));
+       const toCanonicalLookupKeys = (header) => {
+         const raw = String(header || '').trim();
+         const lower = raw.toLowerCase();
+         const compact = lower.replace(/[^a-z0-9]/g, '');
+         const camel = lower
+           .replace(/[^a-z0-9]+([a-z0-9])/g, (_, c) => c.toUpperCase())
+           .replace(/[^a-z0-9]/g, '');
+         const alias = {
+           'itemname': ['itemName'],
+           'description': ['subCategory'],
+           'subcategory': ['subCategory'],
+           'foodcategory': ['foodCategory'],
+           'imageurl': ['imageUrl']
          };
-         const rows = rawRows.map(row => ({
-           c: headers.map((header, idx) => {
-             const byIndex = Array.isArray(row) ? row[idx] : null;
-             const rowObj = row && typeof row === 'object' && !Array.isArray(row) ? row : null;
-             let byHeader = null;
-             if (rowObj) {
-               const keys = [...new Set(toCanonicalLookupKeys(header))];
-               for (const key of keys) {
-                 if (Object.prototype.hasOwnProperty.call(rowObj, key) && rowObj[key] !== undefined && rowObj[key] !== null) {
-                   byHeader = rowObj[key];
-                   break;
-                 }
+         return [raw, lower, compact, camel, ...(alias[compact] || [])];
+       };
+       const rows = rawRows.map(row => ({
+         c: headers.map((header, idx) => {
+           const byIndex = Array.isArray(row) ? row[idx] : null;
+           const rowObj = row && typeof row === 'object' && !Array.isArray(row) ? row : null;
+           let byHeader = null;
+           if (rowObj) {
+             const keys = [...new Set(toCanonicalLookupKeys(header))];
+             for (const key of keys) {
+               if (Object.prototype.hasOwnProperty.call(rowObj, key) && rowObj[key] !== undefined && rowObj[key] !== null) {
+                 byHeader = rowObj[key];
+                 break;
                }
              }
-             return { v: byIndex ?? byHeader ?? null };
-           })
-         }));
-
-         if (!rows.length || !cols.length) {
-           throw new Error('EMPTY_SHEET_DATA');
-         }
-
-         return { rows, cols, apiUrl: url, sheetName: sourceTab || SHEET_NAME };
-       }
-
-       const start = text.indexOf('{');
-       const end = text.lastIndexOf('}');
-
-       if (start === -1 || end === -1 || end <= start) {
-         throw new Error('INVALID_GVIZ_PAYLOAD');
-       }
-
-       const json = JSON.parse(text.substring(start, end + 1));
-       const rows = json && json.table && Array.isArray(json.table.rows) ? json.table.rows : [];
-       const cols = json && json.table && Array.isArray(json.table.cols) ? json.table.cols : [];
+           }
+           return { v: byIndex ?? byHeader ?? null };
+         })
+       }));
 
        if (!rows.length || !cols.length) {
          throw new Error('EMPTY_SHEET_DATA');
        }
 
-       return { rows, cols, apiUrl: url, sheetName: SHEET_NAME };
+       const designer = payload && typeof payload === 'object' && payload.designer && typeof payload.designer === 'object'
+         ? payload.designer
+         : { categoryOrder: [], itemOrder: {} };
+
+       return { rows, cols, apiUrl: url, sheetName: sourceTab || SHEET_NAME, designer };
      }
 
      async function loadMenuDataWithCache() {
@@ -1046,11 +1035,19 @@
              cols,
              apiUrl: fresh.apiUrl,
              sheetName: fresh.sheetName,
+             designer: fresh.designer || { categoryOrder: [], itemOrder: {} },
              ts: Date.now()
            }));
          } catch (_) {}
 
-         return { rows, cols, apiUrl: fresh.apiUrl, sheetName: fresh.sheetName, fromCache: false };
+         return {
+           rows,
+           cols,
+           apiUrl: fresh.apiUrl,
+           sheetName: fresh.sheetName,
+           designer: fresh.designer || { categoryOrder: [], itemOrder: {} },
+           fromCache: false
+         };
        } catch (liveErr) {
          console.warn('Live menu API fetch failed, falling back to cache:', liveErr && liveErr.message ? liveErr.message : liveErr);
        }
@@ -1065,6 +1062,7 @@
                cols: parsed.cols,
                apiUrl: parsed.apiUrl || ACTIVE_MENU_API_URL,
                sheetName: parsed.sheetName || SHEET_NAME,
+                designer: parsed.designer || { categoryOrder: [], itemOrder: {} },
                fromCache: true
              };
            }
@@ -1090,12 +1088,18 @@
 
    async function init() {
        console.log('[MASTER SOURCE] menu.html → AWGNK MENU (source of truth)');
-       console.log(`[DATA API] menu.html → ${APPS_SCRIPT_URL ? 'Apps Script' : 'GViz fallback'}`);
+      console.log(`[DATA API] menu.html → ${APPS_SCRIPT_URL ? 'PHP API' : 'MISSING PHP API CONFIG'}`);
        try {
          const sheetData = await loadMenuDataWithCache();
          const rows = sheetData.rows;
          const cols = sheetData.cols;
          ACTIVE_MENU_API_URL = sheetData.apiUrl || ACTIVE_MENU_API_URL;
+         MENU_DESIGNER_ORDER = sheetData.designer && typeof sheetData.designer === 'object'
+           ? {
+               categoryOrder: Array.isArray(sheetData.designer.categoryOrder) ? sheetData.designer.categoryOrder : [],
+               itemOrder: sheetData.designer.itemOrder && typeof sheetData.designer.itemOrder === 'object' ? sheetData.designer.itemOrder : {}
+             }
+           : { categoryOrder: [], itemOrder: {} };
            
           const map = {};
           cols.forEach((c, idx) => {
@@ -1312,6 +1316,21 @@
        return `<section class="container menu-category" id="${slug}" data-accent="${accent}"><h2 class="section-title">${category}</h2><div class="grid">${items.map(i => generateCard(i)).join('')}</div></section>`;
   }
 
+  function getCategoryRank(categoryName) {
+    const order = Array.isArray(MENU_DESIGNER_ORDER.categoryOrder) ? MENU_DESIGNER_ORDER.categoryOrder : [];
+    const index = order.indexOf(categoryName);
+    return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+  }
+
+  function getItemRank(categoryName, itemId) {
+    const byCategory = MENU_DESIGNER_ORDER.itemOrder && typeof MENU_DESIGNER_ORDER.itemOrder === 'object'
+      ? MENU_DESIGNER_ORDER.itemOrder[categoryName]
+      : null;
+    if (!Array.isArray(byCategory)) return Number.MAX_SAFE_INTEGER;
+    const index = byCategory.indexOf(itemId);
+    return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+  }
+
   function render() {
        const main = document.getElementById('menuMain');
        const categoryList = document.getElementById('categoryList');
@@ -1341,9 +1360,25 @@
            });
          }
 
-       const categoryEntries = cats
-         .map(c => ({ name: c, items: db.filter(i => i.cat === c) }))
-         .filter(entry => entry.items.length);
+      const categoryEntries = cats
+         .map(c => ({
+           name: c,
+           items: db
+             .filter(i => i.cat === c)
+             .sort((a, b) => {
+               const rankA = getItemRank(c, a.id);
+               const rankB = getItemRank(c, b.id);
+               if (rankA !== rankB) return rankA - rankB;
+               return (a.id || 0) - (b.id || 0);
+             })
+         }))
+         .filter(entry => entry.items.length)
+         .sort((a, b) => {
+           const rankA = getCategoryRank(a.name);
+           const rankB = getCategoryRank(b.name);
+           if (rankA !== rankB) return rankA - rankB;
+           return String(a.name).localeCompare(String(b.name));
+         });
 
        const catHtml = categoryEntries.map(({ name: c }) => {
            const slug = c.replace(/[^a-z0-9]/gi, '-').toLowerCase();

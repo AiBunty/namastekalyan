@@ -401,11 +401,37 @@ class CashierController
             if ($db->inTransaction()) {
                 $db->rollBack();
             }
-            return [
-                'ok' => false,
-                'error' => 'DB_WRITE_FAILED',
-                'message' => 'Unable to request cancel.',
-            ];
+
+            // Backward-compat fallback for environments missing extended cancel audit columns.
+            try {
+                $db->beginTransaction();
+
+                $fallbackTxStmt = $db->prepare('UPDATE event_transactions
+                    SET status = "cancel_requested"
+                    WHERE transaction_id = :transaction_id');
+                $fallbackTxStmt->execute([
+                    ':transaction_id' => $transactionId,
+                ]);
+
+                $fallbackLedgerStmt = $db->prepare('UPDATE admin_cash_ledger
+                    SET status = "cancel_requested"
+                    WHERE transaction_id = :transaction_id');
+                $fallbackLedgerStmt->execute([
+                    ':transaction_id' => $transactionId,
+                ]);
+
+                $db->commit();
+            } catch (\Throwable $fallbackError) {
+                if ($db->inTransaction()) {
+                    $db->rollBack();
+                }
+
+                return [
+                    'ok' => false,
+                    'error' => 'DB_WRITE_FAILED',
+                    'message' => 'Unable to request cancel.',
+                ];
+            }
         }
 
         return [
@@ -594,11 +620,39 @@ class CashierController
             if ($db->inTransaction()) {
                 $db->rollBack();
             }
-            return [
-                'ok' => false,
-                'error' => 'DB_WRITE_FAILED',
-                'message' => 'Unable to review cancel request.',
-            ];
+
+            // Backward-compat fallback for environments missing extended cancel audit columns.
+            try {
+                $db->beginTransaction();
+
+                $fallbackTxStmt = $db->prepare('UPDATE event_transactions
+                    SET status = :status
+                    WHERE transaction_id = :transaction_id');
+                $fallbackTxStmt->execute([
+                    ':status' => $nextStatus,
+                    ':transaction_id' => $transactionId,
+                ]);
+
+                $fallbackLedgerStmt = $db->prepare('UPDATE admin_cash_ledger
+                    SET status = :status
+                    WHERE transaction_id = :transaction_id');
+                $fallbackLedgerStmt->execute([
+                    ':status' => $ledgerStatus,
+                    ':transaction_id' => $transactionId,
+                ]);
+
+                $db->commit();
+            } catch (\Throwable $fallbackError) {
+                if ($db->inTransaction()) {
+                    $db->rollBack();
+                }
+
+                return [
+                    'ok' => false,
+                    'error' => 'DB_WRITE_FAILED',
+                    'message' => 'Unable to review cancel request.',
+                ];
+            }
         }
 
         return [

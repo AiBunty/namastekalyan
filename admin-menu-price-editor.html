@@ -208,18 +208,41 @@
     </section>
   </main>
 
-  <script src="data-config.js"></script>
-  <script src="admin-auth.js?v=20260416-1"></script>
+  <script src="data-config.js?v=20260417-linkfix-1"></script>
+  <script src="admin-auth.js?v=20260417-1"></script>
   <script src="admin-ui-ux.js?v=20260413-1"></script>
   <script>
     (function () {
-      const apiBase = (window.APPS_SCRIPT_URL || '').split('?')[0];
+      const apiBase = (
+        (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl)) ||
+        window.APPS_SCRIPT_URL ||
+        ''
+      ).split('?')[0];
       const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
       const authClient = window.NKAdminAuth.createAuthClient({
         apiBase: apiBase,
         onAuthError: function (payload) {
           clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
         }
+      });
+      const debugMode = (function () {
+        try {
+          const params = new URLSearchParams(window.location.search || '');
+          return params.get('diag') === '1' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        } catch (err) {
+          return false;
+        }
+      })();
+
+      function debugLog(eventName, details) {
+        if (!debugMode || !window.console || typeof window.console.info !== 'function') return;
+        window.console.info('[NKMenuEditor]', eventName, details || {});
+      }
+
+      debugLog('init', {
+        embeddedMode: embeddedMode,
+        apiBase: apiBase,
+        tokenPresentAtBoot: !!authClient.getToken()
       });
 
       function notifyModuleReady() {
@@ -269,6 +292,9 @@
 
       function setEditorStatus(message) {
         editorStatusEl.textContent = String(message || '');
+        if (debugMode) {
+          window.__NK_MENU_EDITOR_LAST_STATUS__ = String(message || '');
+        }
       }
 
       function escapeHtml(value) {
@@ -295,7 +321,12 @@
           itemname: ['itemName'],
           subcategory: ['subCategory'],
           foodcategory: ['foodCategory'],
-          availability: ['isAvailable']
+          availability: ['isAvailable'],
+          imageurl: ['imageUrl'],
+          isjain: ['isJain'],
+          chefspecial: ['isChefSpecial'],
+          spicelevel: ['spiceLevel'],
+          servingunit: ['servingUnit']
         };
         return [raw, lower, compact, camel].concat(aliases[compact] || []);
       }
@@ -306,7 +337,15 @@
           'category': 'category',
           'sub category': 'subCategory',
           'item name': 'itemName',
+          'description': 'description',
+          'image url': 'imageUrl',
           'availability': 'availability',
+          'jain': 'isJain',
+          'chef special': 'isChefSpecial',
+          "chef's special": 'isChefSpecial',
+          'spice level': 'spiceLevel',
+          'unit (pcs)': 'servingUnit',
+          'serving unit': 'servingUnit',
           'food category': 'foodCategory',
           'price': 'basePrice'
         };
@@ -588,9 +627,26 @@
       }
 
       async function loadSheet() {
-        if (isLocked()) return;
+        if (isLocked()) {
+          setEditorStatus('Session is locked. Login/session restore is required before loading sheet data.');
+          debugLog('load-sheet-locked', {
+            embeddedMode: embeddedMode,
+            queryTokenPresent: (function () {
+              try {
+                return !!new URLSearchParams(window.location.search || '').get('authToken');
+              } catch (err) {
+                return false;
+              }
+            })()
+          });
+          return;
+        }
 
         currentSheet = String(sheetSelectEl.value || 'AWGNK MENU');
+        debugLog('load-sheet-start', {
+          sheetName: currentSheet,
+          tokenPresent: !!authClient.getToken()
+        });
         setEditorStatus('Loading ' + currentSheet + '...');
 
         try {
@@ -599,7 +655,26 @@
             sheetName: currentSheet
           });
 
-          headers = Array.isArray(payload.headers) ? payload.headers.slice() : [];
+          if (!payload || typeof payload !== 'object') {
+            throw new Error('Malformed payload from API: expected object.');
+          }
+
+          const rowSource = Array.isArray(payload.rows) ? payload.rows : (Array.isArray(payload.items) ? payload.items : []);
+          let resolvedHeaders = Array.isArray(payload.headers) ? payload.headers.slice() : [];
+          if (!resolvedHeaders.length && rowSource.length && rowSource[0] && typeof rowSource[0] === 'object') {
+            resolvedHeaders = Object.keys(rowSource[0]).filter((key) => String(key).toLowerCase() !== 'id');
+          }
+
+          if (!resolvedHeaders.length && rowSource.length) {
+            setEditorStatus('Headers missing from API response');
+            throw new Error('Malformed payload from API: missing headers for rows.');
+          }
+
+          if (!resolvedHeaders.length && !rowSource.length) {
+            setEditorStatus('Session restored but sheet payload empty');
+          }
+
+          headers = resolvedHeaders;
           editableColumns = {};
           const editableMeta = payload && payload.editableMeta && typeof payload.editableMeta === 'object' ? payload.editableMeta : {};
           (Array.isArray(payload.editableColumns) ? payload.editableColumns : []).forEach((header) => {
@@ -613,7 +688,20 @@
               const key = normalizeKey(header);
               if (key === 'availability') {
                 editableColumns[key] = 'visibility';
-              } else if (key === 'item name' || key === 'category' || key === 'sub category' || key === 'description') {
+              } else if (
+                key === 'item name' ||
+                key === 'category' ||
+                key === 'sub category' ||
+                key === 'description' ||
+                key === 'image url' ||
+                key === 'food category' ||
+                key === 'jain' ||
+                key === 'chef special' ||
+                key === "chef's special" ||
+                key === 'spice level' ||
+                key === 'unit (pcs)' ||
+                key === 'serving unit'
+              ) {
                 editableColumns[key] = 'text';
               } else {
                 editableColumns[key] = 'price';
@@ -621,13 +709,22 @@
             });
           }
 
-          const rowSource = Array.isArray(payload.rows) ? payload.rows : (Array.isArray(payload.items) ? payload.items : []);
           baseRows = normalizeEditorRows(rowSource);
           changedCells = {};
           selectedRows = {};
 
+          debugLog('load-sheet-payload', {
+            sheetName: currentSheet,
+            headersCount: headers.length,
+            rowCount: baseRows.length
+          });
+
           renderGrid();
-          setEditorStatus('Loaded ' + currentSheet + ' with ' + baseRows.length + ' row(s).');
+          if (!headers.length && !baseRows.length) {
+            setEditorStatus('No rows returned from API');
+          } else {
+            setEditorStatus('Loaded ' + currentSheet + ' with ' + baseRows.length + ' row(s). Headers: ' + headers.length + '.');
+          }
         } catch (err) {
           headers = [];
           editableColumns = {};
@@ -636,6 +733,10 @@
           selectedRows = {};
           renderGrid();
           setEditorStatus('Failed to load sheet: ' + err.message);
+          debugLog('load-sheet-failed', {
+            sheetName: currentSheet,
+            error: err && err.message ? err.message : String(err)
+          });
         }
       }
 
@@ -671,6 +772,7 @@
 
         loginBtn.disabled = true;
         setAuthStatus('Logging in...');
+        debugLog('login-start', { username: username });
         try {
           const payload = await authClient.login(username, password, 'admin-menu-price-editor');
           const role = String(payload.user && payload.user.role || '').toLowerCase();
@@ -679,9 +781,15 @@
           updateLockedUi(false);
           passwordEl.value = '';
           setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
+          debugLog('login-success', {
+            username: payload.user.username,
+            role: payload.user.role,
+            tokenPresent: !!authClient.getToken()
+          });
           await loadSheet();
           notifyModuleReady();
         } catch (err) {
+          debugLog('login-failed', { error: err && err.message ? err.message : String(err) });
           clearSessionAndLock('Login failed: ' + err.message);
         } finally {
           loginBtn.disabled = false;
@@ -689,9 +797,22 @@
       }
 
       async function restoreSessionIfAny() {
+        setEditorStatus('Restoring session...');
+        debugLog('session-restore-start', {
+          embeddedMode: embeddedMode,
+          queryTokenPresent: (function () {
+            try {
+              return !!new URLSearchParams(window.location.search || '').get('authToken');
+            } catch (err) {
+              return false;
+            }
+          })()
+        });
         try {
           const payload = await authClient.restoreSession();
           if (!payload) {
+            setEditorStatus('No active session found. Please login.');
+            debugLog('session-restore-empty', {});
             notifyModuleReady();
             return;
           }
@@ -705,9 +826,15 @@
 
           updateLockedUi(false);
           setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
+          debugLog('session-restore-success', {
+            username: payload.user.username,
+            role: payload.user.role,
+            tokenPresent: !!authClient.getToken()
+          });
           await loadSheet();
           notifyModuleReady();
         } catch (err) {
+          debugLog('session-restore-failed', { error: err && err.message ? err.message : String(err) });
           clearSessionAndLock('Session expired. Please login again.');
           notifyModuleReady();
         }
@@ -809,10 +936,18 @@
             changes: updates
           });
 
-          let message = (payload && payload.message) || 'Save completed.';
-          if (payload && Array.isArray(payload.errors) && payload.errors.length) {
-            const first = payload.errors.slice(0, 5).map((item) => 'Row ' + item.rowNumber + ': ' + item.message).join('\n');
-            message += '\n\nErrors:\n' + first + (payload.errors.length > 5 ? '\n...' : '');
+          if (!payload || payload.ok !== true) {
+            throw new Error((payload && payload.message) || 'Save failed.');
+          }
+
+          const updatedCount = Number(payload.updatedCount || 0);
+          if (!updatedCount) {
+            throw new Error((payload && payload.message) || 'No rows were updated.');
+          }
+
+          let message = 'Saved ' + updatedCount + ' row(s).';
+          if (payload && Array.isArray(payload.skipped) && payload.skipped.length) {
+            message += ' Skipped ' + payload.skipped.length + ' row(s).';
           }
 
           setEditorStatus(message + '\nReloading latest sheet data...');
@@ -922,3 +1057,4 @@
   </script>
 </body>
 </html>
+

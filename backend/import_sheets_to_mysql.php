@@ -308,8 +308,15 @@ try {
             ':headers' => json_encode($headers, JSON_UNESCAPED_UNICODE),
         ]);
 
-        $ins = $db->prepare('INSERT INTO menu_items (sheet_type, category, sub_category, item_name, is_available, base_price, price_columns, food_category, sort_order, created_at)
-                             VALUES (:sheet_type, :category, :sub_category, :item_name, :is_available, :base_price, :price_columns, :food_category, :sort_order, :created_at)');
+          $ins = $db->prepare('INSERT INTO menu_items (
+                                          sheet_type, category, sub_category, item_name, description, image_url,
+                                          is_available, is_jain, is_chef_special, spice_level, serving_unit,
+                                          base_price, price_columns, food_category, meta_json, sort_order, created_at
+                                      ) VALUES (
+                                          :sheet_type, :category, :sub_category, :item_name, :description, :image_url,
+                                          :is_available, :is_jain, :is_chef_special, :spice_level, :serving_unit,
+                                          :base_price, :price_columns, :food_category, :meta_json, :sort_order, :created_at
+                                      )');
 
         $sort = 1;
         foreach ($records as $row) {
@@ -317,20 +324,36 @@ try {
             $category = trim((string) findValue($row, ['Category'], ''));
             $subCategory = trim((string) findValue($row, ['Sub Category', 'SubCategory'], ''));
             $itemName = trim((string) findValue($row, ['Item Name', 'Item', 'Name'], ''));
+            $description = trim((string) findValue($row, ['Description'], ''));
+            $imageUrl = trim((string) findValue($row, ['Image URL', 'ImageUrl'], ''));
             $availabilityRaw = findValue($row, ['Availability', 'Available'], 'Available');
             $foodCategory = trim((string) findValue($row, ['Food Category', 'FoodCategory', 'Veg/NonVeg/Jain'], ''));
+            $isJainRaw = findValue($row, ['Jain', 'Is Jain'], '');
+            $isChefRaw = findValue($row, ['Chef Special', "Chef's Special", 'ChefSpecial'], '');
+            $spiceLevel = trim((string) findValue($row, ['Spice Level', 'SpiceLevel'], ''));
+            $servingUnit = trim((string) findValue($row, ['Unit (Pcs)', 'Serving Unit', 'ServingUnit'], ''));
 
             if ($itemName === '') {
                 continue;
             }
 
             $priceColumns = [];
+            $meta = [];
             $basePrice = null;
             foreach ($row as $key => $value) {
                 $keyStr = trim((string) $key);
                 if ($keyStr === '') continue;
                 $kNorm = strtolower($keyStr);
-                if (in_array($kNorm, ['category', 'sub category', 'subcategory', 'item name', 'item', 'name', 'availability', 'available', 'food category', 'foodcategory'], true)) {
+                if (in_array($kNorm, [
+                    'category', 'sub category', 'subcategory', 'item name', 'item', 'name',
+                    'description', 'image url', 'imageurl',
+                    'availability', 'available',
+                    'food category', 'foodcategory',
+                    'jain', 'is jain',
+                    'chef special', "chef's special", 'chefspecial',
+                    'spice level', 'spicelevel',
+                    'unit (pcs)', 'serving unit', 'servingunit'
+                ], true)) {
                     continue;
                 }
                 if (is_numeric((string) $value)) {
@@ -338,6 +361,8 @@ try {
                     if ($basePrice === null) {
                         $basePrice = (float) $value;
                     }
+                } elseif (trim((string) $value) !== '') {
+                    $meta[$keyStr] = $value;
                 }
             }
 
@@ -352,10 +377,17 @@ try {
                 ':category' => $category,
                 ':sub_category' => $subCategory,
                 ':item_name' => $itemName,
+                ':description' => $description,
+                ':image_url' => $imageUrl,
                 ':is_available' => parseAvailability($availabilityRaw),
+                ':is_jain' => parseAvailability($isJainRaw),
+                ':is_chef_special' => parseAvailability($isChefRaw),
+                ':spice_level' => $spiceLevel,
+                ':serving_unit' => $servingUnit,
                 ':base_price' => $basePrice,
                 ':price_columns' => json_encode($priceColumns, JSON_UNESCAPED_UNICODE),
                 ':food_category' => $foodCategory,
+                ':meta_json' => json_encode($meta, JSON_UNESCAPED_UNICODE),
                 ':sort_order' => $sort++,
                 ':created_at' => date('Y-m-d H:i:s'),
             ]);

@@ -1,0 +1,12 @@
+# Allow direct HTTP access to WebP images in this directory tree.
+# All other PHP execution is still denied.
+Options -Indexes
+
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
+
+# Allow .webp and .jpg/.png (fallback) files
+<FilesMatch "\.(webp|jpg|jpeg|png|gif)$">
+    Require all granted
+</FilesMatch>

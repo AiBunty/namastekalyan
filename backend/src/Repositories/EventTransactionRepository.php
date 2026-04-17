@@ -80,13 +80,16 @@ class EventTransactionRepository
 
     public function findLatestForEventAndCustomer(string $eventId, string $email, string $phone): ?array
     {
+        $email = trim($email);
+        $phone = trim($phone);
+
         $sql = 'SELECT *
                 FROM event_transactions
                 WHERE event_id = :event_id
                   AND (
-                    (:email <> "" AND LOWER(customer_email) = LOWER(:email))
+                (:email_check <> "" AND LOWER(customer_email) = LOWER(:email_match))
                     OR
-                    (:phone <> "" AND customer_phone = :phone)
+                (:phone_check <> "" AND customer_phone = :phone_match)
                   )
                   AND status IN ("pending", "paid", "free_confirmed")
                 ORDER BY id DESC
@@ -94,9 +97,11 @@ class EventTransactionRepository
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute([
-            ':event_id' => $eventId,
-            ':email'    => trim($email),
-            ':phone'    => trim($phone),
+            ':event_id'    => $eventId,
+            ':email_check' => $email,
+            ':email_match' => $email,
+            ':phone_check' => $phone,
+            ':phone_match' => $phone,
         ]);
         $row = $stmt->fetch();
         return $row ?: null;

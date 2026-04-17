@@ -52,4 +52,44 @@ class LeadController
         $payload = array_merge($query, $body);
         return $service->qrReport($payload);
     }
+
+    public static function initSchema(array $body, array $query): array
+    {
+        $service = new LeadService();
+        return $service->initSchema();
+    }
+
+    public static function ensureQrSheet(array $body, array $query): array
+    {
+        $service = new LeadService();
+        return $service->ensureQrSheet();
+    }
+
+    public static function addTestQrScan(array $body, array $query): array
+    {
+        $service = new LeadService();
+        $payload = array_merge($query, $body);
+        return $service->addTestQrScan($payload);
+    }
+
+    public static function addTest25Coupon(array $body, array $query): array
+    {
+        $service = new LeadService();
+        $payload = array_merge($query, $body);
+        return $service->addTest25Coupon($payload);
+    }
+
+    public static function addTestLead(array $body, array $query): array
+    {
+        $service = new LeadService();
+        $payload = array_merge($query, $body);
+        return $service->addTestLead($payload);
+    }
+
+    public static function syncCrmByPhone(array $body, array $query): array
+    {
+        $service = new LeadService();
+        $payload = array_merge($query, $body);
+        return $service->syncCrmByPhone($payload);
+    }
 }

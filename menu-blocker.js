@@ -1,6 +1,6 @@
 (function () {
   const configuredApi = (typeof window !== 'undefined' && window.APPS_SCRIPT_URL) ? String(window.APPS_SCRIPT_URL) : '';
-  const WEBHOOK_URL = configuredApi ? configuredApi.split('?')[0] : 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_WEBAPP_ID/exec';
+  const WEBHOOK_URL = configuredApi ? configuredApi.split('?')[0] : '';
   const configuredHotelWa = (typeof window !== 'undefined' && window.NK_DATA_API && window.NK_DATA_API.hotelWhatsappNo)
     ? String(window.NK_DATA_API.hotelWhatsappNo)
     : '';
@@ -332,7 +332,7 @@
     const base = (fromResolver || fromConfig || WEBHOOK_URL || '').split('?')[0].trim();
 
     if (!base || base.indexOf('REPLACE_WITH_YOUR_WEBAPP_ID') !== -1) {
-      throw new Error('Server endpoint is not configured.');
+      throw new Error('PHP API endpoint is not configured.');
     }
 
     return base;

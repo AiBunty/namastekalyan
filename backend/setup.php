@@ -235,22 +235,47 @@ if ($appsScriptUrl !== '') {
                 $schemaStmt = $db->prepare('INSERT INTO menu_schema (sheet_type, headers) VALUES (:t,:h) ON DUPLICATE KEY UPDATE headers=VALUES(headers)');
                 $schemaStmt->execute([':t' => $sheetType, ':h' => json_encode($headers, JSON_UNESCAPED_UNICODE)]);
 
-                $ins = $db->prepare('INSERT INTO menu_items (sheet_type,category,sub_category,item_name,is_available,base_price,price_columns,food_category,sort_order,created_at) VALUES (:st,:cat,:sub,:item,:avail,:price,:pcols,:fcat,:sort,:created)');
+                $ins = $db->prepare('INSERT INTO menu_items (
+                    sheet_type,category,sub_category,item_name,description,image_url,
+                    is_available,is_jain,is_chef_special,spice_level,serving_unit,
+                    base_price,price_columns,food_category,meta_json,sort_order,created_at
+                ) VALUES (
+                    :st,:cat,:sub,:item,:desc,:img,
+                    :avail,:jain,:chef,:spice,:unit,
+                    :price,:pcols,:fcat,:meta,:sort,:created
+                )');
                 $sort = 1;
                 foreach ($records as $row) {
                     $row      = (array) $row;
                     $itemName = trim((string) setupFindVal($row, ['Item Name','Item','Name'], ''));
+                    $description = trim((string) setupFindVal($row, ['Description'], ''));
+                    $imageUrl = trim((string) setupFindVal($row, ['Image URL', 'ImageUrl'], ''));
+                    $isJainRaw = setupFindVal($row, ['Jain', 'Is Jain'], '');
+                    $isChefRaw = setupFindVal($row, ['Chef Special', "Chef's Special", 'ChefSpecial'], '');
+                    $spiceLevel = trim((string) setupFindVal($row, ['Spice Level', 'SpiceLevel'], ''));
+                    $servingUnit = trim((string) setupFindVal($row, ['Unit (Pcs)', 'Serving Unit', 'ServingUnit'], ''));
                     if ($itemName === '') continue;
 
                     $priceColumns = [];
+                    $meta = [];
                     $basePrice    = null;
-                    $skipCols     = ['category','sub category','subcategory','item name','item','name','availability','available','food category','foodcategory','veg','jain'];
+                    $skipCols     = [
+                        'category','sub category','subcategory','item name','item','name',
+                        'description','image url','imageurl',
+                        'availability','available','food category','foodcategory',
+                        'veg','jain','is jain',
+                        'chef special',"chef's special",'chefspecial',
+                        'spice level','spicelevel',
+                        'unit (pcs)','serving unit','servingunit'
+                    ];
                     foreach ($row as $key => $value) {
                         $kn = strtolower(trim((string) $key));
                         if (in_array($kn, $skipCols, true)) continue;
                         if (is_numeric((string) $value)) {
                             $priceColumns[trim((string) $key)] = (float) $value;
                             if ($basePrice === null) $basePrice = (float) $value;
+                        } elseif (trim((string) $value) !== '') {
+                            $meta[trim((string) $key)] = $value;
                         }
                     }
 
@@ -259,10 +284,17 @@ if ($appsScriptUrl !== '') {
                         ':cat'     => trim((string) setupFindVal($row, ['Category'], '')),
                         ':sub'     => trim((string) setupFindVal($row, ['Sub Category','SubCategory'], '')),
                         ':item'    => $itemName,
+                        ':desc'    => $description,
+                        ':img'     => $imageUrl,
                         ':avail'   => setupAsBool(setupFindVal($row, ['Availability','Available'], 'Available') === '' ? 'yes' : setupFindVal($row, ['Availability','Available'], 'Available')),
+                        ':jain'    => setupAsBool($isJainRaw),
+                        ':chef'    => setupAsBool($isChefRaw),
+                        ':spice'   => $spiceLevel,
+                        ':unit'    => $servingUnit,
                         ':price'   => $basePrice,
                         ':pcols'   => json_encode($priceColumns, JSON_UNESCAPED_UNICODE),
                         ':fcat'    => $sheetType === 'food' ? trim((string) setupFindVal($row, ['Food Category','FoodCategory'], '')) : '',
+                        ':meta'    => json_encode($meta, JSON_UNESCAPED_UNICODE),
                         ':sort'    => $sort++,
                         ':created' => date('Y-m-d H:i:s'),
                     ]);

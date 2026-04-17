@@ -150,4 +150,11 @@ class UserRepository
             ':id'          => $id,
         ]);
     }
+
+    public function deleteById(int $id): bool
+    {
+        $stmt = $this->db->prepare('DELETE FROM users WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+        return $stmt->rowCount() > 0;
+    }
 }

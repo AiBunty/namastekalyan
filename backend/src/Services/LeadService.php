@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace NK\Services;
 
 use NK\Config\Constants;
+use NK\Config\Database;
 use NK\Middleware\AuthMiddleware;
 use NK\Repositories\LeadRepository;
 use NK\Repositories\QrScanRepository;
 use NK\Support\Validator;
-use Throwable;
 
 class LeadService
 {
@@ -231,15 +231,6 @@ class LeadService
         $totalScans = $this->qrScans->countRows();
         $source = 'mysql';
 
-        if ($totalScans === 0) {
-            $fallback = $this->fetchQrStatsFromLegacySheet();
-            if (is_array($fallback)) {
-                $rows = $fallback['rows'];
-                $totalScans = (int) $fallback['totalScans'];
-                $source = 'google_sheets';
-            }
-        }
-
         $recentScans = array_map([$this, 'formatQrRowForReport'], $rows);
 
         $response = [
@@ -256,6 +247,173 @@ class LeadService
         }
 
         return $response;
+    }
+
+    public function initSchema(): array
+    {
+        $db = Database::connection();
+        $tables = ['leads', 'qr_scans', 'events', 'event_transactions'];
+        $schema = [];
+
+        foreach ($tables as $table) {
+            $stmt = $db->prepare('SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = :table ORDER BY ORDINAL_POSITION');
+            $stmt->execute([':table' => $table]);
+            $cols = $stmt->fetchAll() ?: [];
+            $schema[$table] = array_values(array_map(
+                static fn(array $row): string => (string) ($row['COLUMN_NAME'] ?? ''),
+                $cols
+            ));
+        }
+
+        return [
+            'ok' => true,
+            'result' => 'schema_initialized',
+            'headers' => $schema,
+        ];
+    }
+
+    public function ensureQrSheet(): array
+    {
+        return [
+            'ok' => true,
+            'result' => 'qr_sheet_ready',
+            'sheetName' => 'qr_scans',
+            'totalScans' => $this->qrScans->countRows(),
+        ];
+    }
+
+    public function addTestQrScan(array $data): array
+    {
+        $scan = $this->qrScanClient([
+            'userAgent' => (string) ($data['userAgent'] ?? 'TestAgent/1.0'),
+            'referer' => (string) ($data['referer'] ?? 'https://localhost/test'),
+            'ip' => (string) ($data['ip'] ?? '127.0.0.1'),
+            'city' => (string) ($data['city'] ?? 'Kalyan'),
+            'region' => (string) ($data['region'] ?? 'Maharashtra'),
+            'country' => (string) ($data['country'] ?? 'IN'),
+            'device' => (string) ($data['device'] ?? 'desktop'),
+            'browser' => (string) ($data['browser'] ?? 'Chrome'),
+            'os' => (string) ($data['os'] ?? 'Windows'),
+            'language' => (string) ($data['language'] ?? 'en-IN'),
+            'screen' => (string) ($data['screen'] ?? '1920x1080'),
+        ]);
+
+        return [
+            'ok' => (bool) ($scan['ok'] ?? false),
+            'result' => 'added',
+            'scanNumber' => (int) ($scan['scanNumber'] ?? 0),
+        ];
+    }
+
+    public function addTest25Coupon(array $data): array
+    {
+        $phone = $this->testPhone((string) ($data['phone'] ?? ''), '8');
+        $name = trim((string) ($data['name'] ?? 'Test 25 Coupon'));
+        $source = trim((string) ($data['source'] ?? 'manual-test-25'));
+
+        $leadId = $this->leads->create([
+            'name' => $name,
+            'phone' => $phone,
+            'prize' => '25% OFF',
+            'status' => 'Unredeemed',
+            'date_of_birth' => $this->safeDate($data['dateOfBirth'] ?? '1998-01-01'),
+            'date_of_anniversary' => $this->safeDate($data['dateOfAnniversary'] ?? '2021-01-01'),
+            'source' => $source,
+            'visit_count' => 1,
+            'coupon_code' => $this->generateCouponCode($phone),
+            'crm_sync_status' => 'Skipped',
+            'crm_sync_code' => 'MANUAL_TEST',
+            'crm_sync_message' => 'Manually seeded test coupon in PHP runtime.',
+        ]);
+
+        $lead = $this->leads->findLatestByPhone($phone);
+
+        return [
+            'ok' => true,
+            'row' => $leadId,
+            'name' => $name,
+            'phone' => $phone,
+            'prize' => '25% OFF',
+            'status' => 'Unredeemed',
+            'couponCode' => (string) ($lead['coupon_code'] ?? ''),
+            'visitCount' => 1,
+        ];
+    }
+
+    public function addTestLead(array $data): array
+    {
+        $name = trim((string) ($data['name'] ?? 'Test'));
+        $phone = $this->testPhone((string) ($data['phone'] ?? ''), '9');
+        $source = trim((string) ($data['source'] ?? 'manual-crm-confirmed'));
+
+        $leadId = $this->leads->create([
+            'name' => $name,
+            'phone' => $phone,
+            'prize' => $this->pickPrizeByVisitCount(1),
+            'status' => 'Unredeemed',
+            'source' => $source,
+            'visit_count' => 1,
+            'coupon_code' => $this->generateCouponCode($phone),
+            'crm_sync_status' => (string) ($data['crmStatus'] ?? 'Success'),
+            'crm_sync_code' => (string) ($data['crmCode'] ?? '200'),
+            'crm_sync_message' => (string) ($data['crmMessage'] ?? 'Manual entry after CRM API success'),
+        ]);
+
+        return [
+            'ok' => true,
+            'result' => 'added',
+            'row' => $leadId,
+            'phone' => $phone,
+            'name' => $name,
+            'crmSync' => [
+                'attempted' => false,
+                'success' => true,
+                'status' => (string) ($data['crmCode'] ?? '200'),
+                'message' => (string) ($data['crmMessage'] ?? 'Manual entry after CRM API success'),
+            ],
+        ];
+    }
+
+    public function syncCrmByPhone(array $data): array
+    {
+        $phone = Validator::digitsOnly((string) ($data['phone'] ?? ''), 10);
+        if (!Validator::phone($phone)) {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_PHONE',
+                'message' => 'Valid 10-digit phone is required.',
+            ];
+        }
+
+        $lead = $this->leads->findLatestByPhone($phone);
+        if (!$lead) {
+            return [
+                'ok' => false,
+                'error' => 'NOT_FOUND',
+                'message' => 'Lead not found for given phone.',
+            ];
+        }
+
+        $this->leads->updateCrmSync(
+            (int) $lead['id'],
+            'Skipped',
+            'PHP_ONLY',
+            'CRM sync by phone is deprecated in PHP-only runtime.'
+        );
+
+        return [
+            'ok' => true,
+            'result' => 'crm_sync_attempted',
+            'row' => (int) $lead['id'],
+            'phone' => (string) $lead['phone'],
+            'crmSync' => [
+                'attempted' => true,
+                'success' => false,
+                'status' => 'PHP_ONLY',
+                'message' => 'CRM sync by phone is deprecated in PHP-only runtime.',
+                'attempts' => [],
+            ],
+        ];
     }
 
     private function formatQrRowForReport(array $row): array
@@ -275,122 +433,6 @@ class LeadService
             (string) ($row['language'] ?? ''),
             (string) ($row['screen'] ?? ''),
         ];
-    }
-
-    private function fetchQrStatsFromLegacySheet(): ?array
-    {
-        if (!function_exists('curl_init')) {
-            return null;
-        }
-
-        $legacyUrl = $this->resolveLegacyAppsScriptUrl();
-        if ($legacyUrl === '') {
-            return null;
-        }
-
-        $json = $this->fetchJson($legacyUrl . '?action=qr_report');
-        if (!is_array($json) || empty($json['ok'])) {
-            return null;
-        }
-
-        $recent = [];
-        $incomingRecent = $json['recentScans'] ?? [];
-        if (is_array($incomingRecent)) {
-            foreach ($incomingRecent as $row) {
-                if (is_array($row)) {
-                    $recent[] = [
-                        'scanned_at' => (string) ($row[0] ?? ''),
-                        'user_agent' => (string) ($row[1] ?? ''),
-                        'referer' => (string) ($row[2] ?? ''),
-                        'ip_address' => (string) ($row[3] ?? ''),
-                        'scan_number' => (string) ($row[4] ?? ''),
-                        'city' => (string) ($row[5] ?? ''),
-                        'region' => (string) ($row[6] ?? ''),
-                        'country' => (string) ($row[7] ?? ''),
-                        'device' => (string) ($row[8] ?? ''),
-                        'browser' => (string) ($row[9] ?? ''),
-                        'os' => (string) ($row[10] ?? ''),
-                        'language' => (string) ($row[11] ?? ''),
-                        'screen' => (string) ($row[12] ?? ''),
-                    ];
-                }
-            }
-        }
-
-        return [
-            'totalScans' => (int) ($json['totalScans'] ?? count($recent)),
-            'rows' => $recent,
-        ];
-    }
-
-    private function resolveLegacyAppsScriptUrl(): string
-    {
-        $envUrl = trim((string) ($_ENV['NK_APPS_SCRIPT_URL'] ?? ''));
-        if ($this->isAppsScriptUrl($envUrl)) {
-            return preg_replace('/\?.*$/', '', $envUrl) ?? $envUrl;
-        }
-
-        $dataConfigPath = dirname(__DIR__, 3) . '/data-config.js';
-        if (!is_file($dataConfigPath)) {
-            return '';
-        }
-
-        $content = (string) file_get_contents($dataConfigPath);
-        if ($content === '') {
-            return '';
-        }
-
-        if (preg_match("/legacyAppsScriptUrl\s*:\s*'([^']+)'/", $content, $m)) {
-            $value = ltrim(trim((string) ($m[1] ?? '')), '#');
-            if ($this->isAppsScriptUrl($value)) {
-                return preg_replace('/\?.*$/', '', $value) ?? $value;
-            }
-        }
-
-        if (preg_match("/appsScriptUrl\s*:\s*'([^']+)'/", $content, $m)) {
-            $value = ltrim(trim((string) ($m[1] ?? '')), '#');
-            if ($this->isAppsScriptUrl($value)) {
-                return preg_replace('/\?.*$/', '', $value) ?? $value;
-            }
-        }
-
-        return '';
-    }
-
-    private function isAppsScriptUrl(string $value): bool
-    {
-        return $value !== '' && str_contains(strtolower($value), 'script.google.com');
-    }
-
-    private function fetchJson(string $url): ?array
-    {
-        $ch = curl_init($url);
-        if ($ch === false) {
-            return null;
-        }
-
-        curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 8,
-            CURLOPT_FOLLOWLOCATION => true,
-        ]);
-
-        $raw = curl_exec($ch);
-        $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $error = curl_error($ch);
-        curl_close($ch);
-
-        if ($raw === false || $status < 200 || $status >= 300 || $error !== '') {
-            return null;
-        }
-
-        try {
-            $decoded = json_decode((string) $raw, true, 512, JSON_THROW_ON_ERROR);
-        } catch (Throwable) {
-            return null;
-        }
-
-        return is_array($decoded) ? $decoded : null;
     }
 
     private function safeDate($value): ?string
@@ -426,5 +468,16 @@ class LeadService
         $suffix = substr($phone, -4);
         $rand = strtoupper(substr(bin2hex(random_bytes(4)), 0, 6));
         return 'NK' . $suffix . $rand;
+    }
+
+    private function testPhone(string $incoming, string $leadingDigit): string
+    {
+        $digits = Validator::digitsOnly($incoming, 10);
+        if (Validator::phone($digits)) {
+            return $digits;
+        }
+
+        $randomTail = str_pad((string) random_int(0, 999999999), 9, '0', STR_PAD_LEFT);
+        return $leadingDigit . $randomTail;
     }
 }

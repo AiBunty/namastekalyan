@@ -9,13 +9,20 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
     `category`        VARCHAR(100) NOT NULL DEFAULT '',
     `sub_category`    VARCHAR(100) NOT NULL DEFAULT '',
     `item_name`       VARCHAR(200) NOT NULL,
+    `description`     TEXT         NULL,
+    `image_url`       VARCHAR(500) NULL,
     -- Visibility flag (maps to "Availability" column in the sheet)
     `is_available`    TINYINT(1)   NOT NULL DEFAULT 1,
+    `is_jain`         TINYINT(1)   NOT NULL DEFAULT 0,
+    `is_chef_special` TINYINT(1)   NOT NULL DEFAULT 0,
+    `spice_level`     VARCHAR(50)  NULL,
+    `serving_unit`    VARCHAR(100) NULL,
     -- Base/default price (kept for quick queries)
     `base_price`      DECIMAL(10,2) NULL DEFAULT NULL,
     -- All price-type columns stored as JSON: {"Half":150,"Full":250,"Veg":200,...}
     -- Column headers are preserved so the admin editor can reconstruct the original grid.
     `price_columns`   JSON         NULL,
+    `meta_json`       JSON         NULL,
     -- Food category classification (food sheet only)
     `food_category`   ENUM('Veg','NonVeg','Jain','') NOT NULL DEFAULT '',
     -- Display sort order within category

@@ -1,0 +1,2 @@
+# Deny all access to the tmp storage directory.
+Require all denied

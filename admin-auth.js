@@ -20,6 +20,20 @@
     return String(url || '').split('?')[0].trim();
   }
 
+  function normalizeClientError(err) {
+    if (!err) return new Error('Request failed.');
+    if (err instanceof SyntaxError) {
+      return new Error('Malformed payload from API.');
+    }
+
+    const message = String(err.message || err || '');
+    if (message.toLowerCase().indexOf('failed to fetch') !== -1) {
+      return new Error('Network error while contacting API.');
+    }
+
+    return err instanceof Error ? err : new Error(message || 'Request failed.');
+  }
+
   function ensureCenterLoaderStyle(doc) {
     if (!doc || doc.getElementById('nkAdminCenterLoaderStyle')) return;
     const style = doc.createElement('style');
@@ -66,14 +80,37 @@
   function createAuthClient(options) {
     const settings = options || {};
     const sessionKey = String(settings.sessionKey || 'nk_admin_auth_session_v1');
+    const debugMode = (function () {
+      if (settings.debug === true) return true;
+      try {
+        const params = new URLSearchParams(window.location.search || '');
+        return String(params.get('diag') || '').trim() === '1';
+      } catch (err) {
+        return false;
+      }
+    })();
+
+    function debugLog(eventName, details) {
+      if (!debugMode || !window.console || typeof window.console.info !== 'function') return;
+      try {
+        window.console.info('[NKAdminAuth]', eventName, details || {});
+      } catch (err) {
+        // Ignore diagnostics errors.
+      }
+    }
+
     const apiBase = normalizeApiBase(
       settings.apiBase ||
-      (window.APPS_SCRIPT_URL || (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || '')
-    );
-    const appsScriptBase = normalizeApiBase(
-      (window.NK_DATA_API && window.NK_DATA_API.appsScriptUrl) || window.APPS_SCRIPT_URL || ''
+      (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl)) ||
+      window.APPS_SCRIPT_URL ||
+      ''
     );
     const onAuthError = typeof settings.onAuthError === 'function' ? settings.onAuthError : null;
+
+    debugLog('init', {
+      apiBase: apiBase,
+      hasConfig: !!window.NK_DATA_API
+    });
 
     function resolveApiBaseForAction(action) {
       const resolver = window.NK_DATA_API && typeof window.NK_DATA_API.resolveApiBaseForAction === 'function'
@@ -191,6 +228,10 @@
     }
 
     function requestError(response, payload) {
+      if (!payload || typeof payload !== 'object') {
+        return new Error('Malformed payload from API.');
+      }
+
       const errorCode = payload && payload.error ? String(payload.error) : '';
       if (errorCode === 'ACCOUNT_LOCKED') {
         return new Error('Login temporarily locked due to repeated failures. Please wait a few minutes and try again.');
@@ -200,6 +241,10 @@
           ? (payload.message || payload.error)
           : 'Session expired or unauthorized request.';
         return new Error('Session/Login required: ' + details);
+      }
+
+      if (!errorCode && !payload.message) {
+        return new Error('Malformed payload from API.');
       }
 
       const message = payload && (payload.message || payload.error)
@@ -212,6 +257,11 @@
       const errorCode = payload && payload.error ? String(payload.error) : '';
       if (!AUTH_ERRORS[errorCode]) return;
 
+      debugLog('auth-failure', {
+        error: errorCode,
+        message: payload && payload.message ? String(payload.message) : ''
+      });
+
       clearSession();
       if (onAuthError) {
         onAuthError(payload);
@@ -221,8 +271,15 @@
     async function apiGet(action, params) {
       const targetBase = resolveApiBaseForAction(action);
       if (!targetBase) {
-        throw new Error('Apps Script URL is missing in data-config.js.');
+        debugLog('api-get-missing-base', { action: action });
+        throw new Error('API URL is missing in data-config.js.');
       }
+
+      debugLog('api-get-start', {
+        action: action,
+        targetBase: targetBase,
+        tokenPresent: !!sessionToken()
+      });
 
       beginRequest('Loading data...');
 
@@ -233,31 +290,35 @@
 
       try {
         const requestUrl = '?' + query.toString();
+        try {
+          const response = await fetch(targetBase + requestUrl, { cache: 'no-store' });
+          const payload = await response.json();
 
-        const tryBases = [targetBase];
-        if (appsScriptBase && appsScriptBase !== targetBase) {
-          tryBases.push(appsScriptBase);
-        }
+          debugLog('api-get-response', {
+            action: action,
+            status: response && response.status ? response.status : 0,
+            payloadOk: !!(payload && payload.ok === true)
+          });
 
-        let lastError = null;
-        for (let i = 0; i < tryBases.length; i += 1) {
-          const base = tryBases[i];
-          try {
-            const response = await fetch(base + requestUrl, { cache: 'no-store' });
-            const payload = await response.json();
-            if (!response.ok || !payload || payload.ok !== true) {
-              handleAuthFailure(payload);
-              lastError = requestError(response, payload);
-              continue;
-            }
-
-            return payload;
-          } catch (err) {
-            lastError = err;
+          if (!response.ok || !payload || payload.ok !== true) {
+            handleAuthFailure(payload);
+            throw requestError(response, payload);
           }
-        }
 
-        throw (lastError || new Error('Request failed.'));
+          debugLog('api-get-ok', {
+            action: action,
+            base: targetBase
+          });
+          return payload;
+        } catch (err) {
+          const normalized = normalizeClientError(err);
+          debugLog('api-get-error', {
+            action: action,
+            base: targetBase,
+            error: normalized && normalized.message ? normalized.message : ''
+          });
+          throw normalized;
+        }
       } finally {
         endRequest();
       }
@@ -267,8 +328,15 @@
       const action = body && body.action ? String(body.action) : '';
       const targetBase = resolveApiBaseForAction(action);
       if (!targetBase) {
-        throw new Error('Apps Script URL is missing in data-config.js.');
+        debugLog('api-post-missing-base', { action: action });
+        throw new Error('API URL is missing in data-config.js.');
       }
+
+      debugLog('api-post-start', {
+        action: action,
+        targetBase: targetBase,
+        tokenPresent: !!sessionToken()
+      });
 
       beginRequest('Fetching data...');
 
@@ -281,34 +349,39 @@
       formBody.set('payload', JSON.stringify(postBody));
 
       try {
-        const tryBases = [targetBase];
-        if (appsScriptBase && appsScriptBase !== targetBase) {
-          tryBases.push(appsScriptBase);
-        }
+        try {
+          const response = await fetch(targetBase, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+            body: formBody.toString()
+          });
+          const payload = await response.json();
 
-        let lastError = null;
-        for (let i = 0; i < tryBases.length; i += 1) {
-          const base = tryBases[i];
-          try {
-            const response = await fetch(base, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-              body: formBody.toString()
-            });
-            const payload = await response.json();
-            if (!response.ok || !payload || payload.ok !== true) {
-              handleAuthFailure(payload);
-              lastError = requestError(response, payload);
-              continue;
-            }
+          debugLog('api-post-response', {
+            action: action,
+            status: response && response.status ? response.status : 0,
+            payloadOk: !!(payload && payload.ok === true)
+          });
 
-            return payload;
-          } catch (err) {
-            lastError = err;
+          if (!response.ok || !payload || payload.ok !== true) {
+            handleAuthFailure(payload);
+            throw requestError(response, payload);
           }
-        }
 
-        throw (lastError || new Error('Request failed.'));
+          debugLog('api-post-ok', {
+            action: action,
+            base: targetBase
+          });
+          return payload;
+        } catch (err) {
+          const normalized = normalizeClientError(err);
+          debugLog('api-post-error', {
+            action: action,
+            base: targetBase,
+            error: normalized && normalized.message ? normalized.message : ''
+          });
+          throw normalized;
+        }
       } finally {
         endRequest();
       }
