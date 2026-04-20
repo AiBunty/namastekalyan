@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Bulk Editor | Namaste Kalyan</title>
+  <link rel="stylesheet" href="../css/admin-animations.css?v=20260413-1">
+  <link rel="stylesheet" href="../css/admin-module-theme.css?v=20260413-1">
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search || '');
+      if (!params.has('embedded') && !params.has('standalone')) {
+        window.location.replace('admin-portal.html#menu-editor');
+      }
+    })();
+  </script>
+  <style>
+    .page { max-width: 1400px; }
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .toolbar-left,
+    .toolbar-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar select {
+      min-width: 220px;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .filter-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      margin-right: 2px;
+    }
+    .filter-input,
+    .filter-select {
+      min-width: 160px;
+      padding: 7px 10px;
+      font-size: 0.84rem;
+      border-radius: 8px;
+      border: 1px solid rgba(123, 94, 67, 0.24);
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+    .filter-input {
+      min-width: 220px;
+      flex: 1 1 240px;
+    }
+    .filter-input:focus,
+    .filter-select:focus {
+      border-color: rgba(148, 89, 43, 0.5);
+      box-shadow: 0 0 0 2px rgba(182, 123, 69, 0.18);
+    }
+    .filter-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      user-select: none;
+    }
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.5);
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      font-weight: 700;
+    }
+    .meta-chip.warn {
+      color: #8d2f2f;
+      border-color: rgba(141, 47, 47, 0.28);
+      background: rgba(141, 47, 47, 0.12);
+    }
+    .table-wrap {
+      max-height: calc(100vh - 280px);
+      overflow: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 1100px;
+      width: max-content;
+    }
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #f5efe2;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 9px 10px;
+      white-space: nowrap;
+    }
+    tbody td {
+      border-bottom: 1px solid var(--border);
+      padding: 6px 8px;
+      min-width: 120px;
+      background: #fff;
+      vertical-align: middle;
+    }
+    tbody tr:hover td {
+      background: rgba(182, 123, 69, 0.06);
+    }
+    .col-select {
+      min-width: 52px;
+      width: 52px;
+      text-align: center;
+    }
+    .col-row {
+      min-width: 70px;
+      width: 70px;
+      text-align: right;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+    .row-selected td {
+      background: rgba(33, 64, 56, 0.08) !important;
+    }
+    .row-dirty td {
+      box-shadow: inset 3px 0 0 rgba(182, 123, 69, 0.7);
+    }
+    .grid-input,
+    .grid-visibility,
+    .grid-select {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 7px 8px;
+      font-size: 0.84rem;
+      border-radius: 8px;
+      border: 1px solid rgba(123, 94, 67, 0.24);
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+    .grid-input:focus,
+    .grid-visibility:focus,
+    .grid-select:focus {
+      border-color: rgba(148, 89, 43, 0.5);
+      box-shadow: 0 0 0 2px rgba(182, 123, 69, 0.18);
+    }
+    .cell-dirty {
+      background: rgba(182, 123, 69, 0.14) !important;
+      border-color: rgba(148, 89, 43, 0.56) !important;
+    }
+    .cell-readonly {
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      white-space: nowrap;
+    }
+    .status {
+      white-space: pre-line;
+    }
+    .danger {
+      background: rgba(164, 83, 72, 0.14);
+      border-color: rgba(164, 83, 72, 0.36);
+      color: #7a342b;
+    }
+    /* Sticky left columns */
+    .col-select {
+      position: sticky;
+      left: 0;
+      z-index: 3;
+      background: inherit;
+    }
+    .col-row {
+      position: sticky;
+      left: 52px;
+      z-index: 3;
+      background: inherit;
+    }
+    .col-sticky-cat {
+      position: sticky;
+      left: 122px;
+      z-index: 2;
+      min-width: 140px !important;
+      max-width: 140px !important;
+      width: 140px !important;
+      background: inherit;
+    }
+    .col-sticky-name {
+      position: sticky;
+      left: 262px;
+      z-index: 2;
+      min-width: 180px !important;
+      max-width: 220px !important;
+      width: 180px !important;
+      background: inherit;
+    }
+    thead th.col-select,
+    thead th.col-row,
+    thead th.col-sticky-cat,
+    thead th.col-sticky-name { z-index: 4; }
+    /* Column group header row */
+    .group-header-row th {
+      background: #e8dfd0;
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      color: #5c3d1e;
+      padding: 5px 6px;
+      border-bottom: 1px solid rgba(123, 94, 67, 0.3);
+      white-space: nowrap;
+    }
+    .group-header-row th.group-empty { background: #f5efe2; }
+    /* Narrow inputs for bool / price / sort */
+    .grid-input-bool,
+    .grid-select-bool { min-width: 70px; width: 70px; }
+    .grid-input-price { min-width: 72px; width: 80px; padding: 5px 6px; }
+    .grid-input-sort  { min-width: 60px; width: 64px; padding: 5px 6px; }
+    .grid-input-pricing-mode { min-width: 140px; width: 140px; }
+    .grid-input-image { min-width: 140px; width: 160px; }
+    .img-preview {
+      display: inline-block;
+      height: 28px;
+      width: 28px;
+      object-fit: cover;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-right: 4px;
+      border: 1px solid var(--border);
+    }
+    /* Variant sub-editor rows */
+    .variant-expand-btn {
+      padding: 4px 8px;
+      font-size: 0.76rem;
+      background: rgba(182, 123, 69, 0.12);
+      border: 1px solid rgba(182, 123, 69, 0.3);
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      color: #5c3d1e;
+    }
+    .variant-expand-btn:hover { background: rgba(182, 123, 69, 0.22); }
+    .variant-sub-row td {
+      background: #fdf6ed !important;
+      padding: 8px 12px !important;
+    }
+    .variant-sub-row .variant-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .variant-sub-row .variant-table th { padding: 4px 8px; text-align: left; color: var(--ink-soft); font-weight: 700; border-bottom: 1px solid var(--border); }
+    .variant-sub-row .variant-table td { padding: 3px 4px; border-bottom: 1px solid var(--border); }
+    .variant-sub-row .variant-table input { width: 100%; min-width: 0; padding: 4px 6px; font-size: 0.82rem; border: 1px solid rgba(123,94,67,0.24); border-radius: 6px; background: #fff; }
+    .variant-sub-row .variant-table input:focus { border-color: rgba(148,89,43,0.5); outline: none; }
+    .variant-add-btn { margin-top: 6px; padding: 4px 10px; font-size: 0.78rem; background: rgba(33,64,56,0.1); border: 1px solid rgba(33,64,56,0.3); border-radius: 6px; cursor: pointer; color: #214038; }
+    .variant-add-btn:hover { background: rgba(33,64,56,0.18); }
+    .variant-remove-btn { padding: 2px 7px; background: rgba(164,83,72,0.12); border: 1px solid rgba(164,83,72,0.3); border-radius: 5px; cursor: pointer; color: #7a342b; font-size: 0.76rem; }
+    .col-variants { min-width: 110px; width: 110px; }
+    @media (max-width: 900px) {
+      .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .toolbar-right {
+        width: 100%;
+      }
+      .table-wrap {
+        max-height: calc(100vh - 320px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Menu Bulk Editor</h1>
+      <p>Spreadsheet-style editing for the Food Menu and Bar Menu. Edits write directly to the database tables used by the live site.</p>
+    </section>
+
+    <section class="panel" id="authPanel">
+      <div class="row">
+        <input id="username" type="tel" inputmode="numeric" maxlength="15" placeholder="Username (mobile number)">
+        <input id="password" type="password" maxlength="64" placeholder="Password">
+        <button id="loginBtn" type="button">Login</button>
+        <button id="logoutBtn" class="secondary" type="button" hidden>Logout</button>
+      </div>
+      <div id="authStatus" class="status">Panel is locked. Login as Admin or SuperAdmin.</div>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <select id="sheetSelect" disabled>
+            <option value="food">Food Menu (food_menu_items)</option>
+            <option value="bar">Bar Menu (bar_menu_items)</option>
+          </select>
+          <button id="reloadBtn" class="secondary" type="button" disabled>Reload</button>
+          <button id="addRowBtn" type="button" disabled>Add Row</button>
+          <button id="deleteRowsBtn" class="danger" type="button" disabled>Delete Selected</button>
+          <button id="setVisibleBtn" class="secondary" type="button" disabled>Set Visible</button>
+          <button id="setHiddenBtn" class="secondary" type="button" disabled>Set Hidden</button>
+          <button id="discardBtn" class="secondary" type="button" disabled>Discard Changes</button>
+          <button id="saveBtn" type="button" disabled>Save Changes</button>
+        </div>
+        <div class="toolbar-right">
+          <span id="changedRowsChip" class="meta-chip">Changed rows: 0</span>
+          <span id="changedCellsChip" class="meta-chip">Changed cells: 0</span>
+          <span id="selectedRowsChip" class="meta-chip">Selected rows: 0</span>
+          <span id="visibleRowsChip" class="meta-chip">Visible rows: 0</span>
+        </div>
+      </div>
+      <div class="filter-bar">
+        <span class="filter-label">Filter:</span>
+        <input id="filterQuery" class="filter-input" type="search" placeholder="Search item, category, description">
+        <select id="filterCategory" class="filter-select">
+          <option value="">All categories</option>
+        </select>
+        <select id="filterAvailability" class="filter-select">
+          <option value="all">All visibility</option>
+          <option value="visible">Visible only</option>
+          <option value="hidden">Hidden only</option>
+        </select>
+        <select id="filterSpecial" class="filter-select">
+          <option value="all">All items</option>
+          <option value="special">Special only</option>
+          <option value="regular">Non-special only</option>
+        </select>
+        <label class="filter-check">
+          <input id="filterChangedOnly" type="checkbox">
+          Changed only
+        </label>
+        <button id="clearFiltersBtn" class="secondary" type="button">Clear Filters</button>
+      </div>
+      <div id="editorStatus" class="status muted" style="margin-top:8px;">Load a sheet to begin.</div>
+    </section>
+
+    <section class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead id="gridHead"></thead>
+          <tbody id="gridBody">
+            <tr><td class="muted">No data loaded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <datalist id="categoryOptionsList"></datalist>
+  </main>
+
+  <script src="../js/data-config.js?v=20260417-linkfix-1"></script>
+  <script src="../js/admin-auth.js?v=20260417-1"></script>
+  <script src="../js/admin-ui-ux.js?v=20260413-1"></script>
+  <script>
+    (function () {
+      const apiBase = (
+        (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl)) ||
+        window.APPS_SCRIPT_URL ||
+        ''
+      ).split('?')[0];
+      const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
+      const authClient = window.NKAdminAuth.createAuthClient({
+        apiBase: apiBase,
+        onAuthError: function (payload) {
+          clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
+        }
+      });
+      const debugMode = (function () {
+        try {
+          const params = new URLSearchParams(window.location.search || '');
+          return params.get('diag') === '1' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        } catch (err) {
+          return false;
+        }
+      })();
+
+      function debugLog(eventName, details) {
+        if (!debugMode || !window.console || typeof window.console.info !== 'function') return;
+        window.console.info('[NKMenuEditor]', eventName, details || {});
+      }
+
+      debugLog('init', {
+        embeddedMode: embeddedMode,
+        apiBase: apiBase,
+        tokenPresentAtBoot: !!authClient.getToken()
+      });
+
+      function notifyModuleReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+        }
+      }
+
+      const authPanelEl = document.getElementById('authPanel');
+      const usernameEl = document.getElementById('username');
+      const passwordEl = document.getElementById('password');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const authStatusEl = document.getElementById('authStatus');
+
+      const sheetSelectEl = document.getElementById('sheetSelect');
+      const reloadBtn = document.getElementById('reloadBtn');
+      const addRowBtn = document.getElementById('addRowBtn');
+      const deleteRowsBtn = document.getElementById('deleteRowsBtn');
+      const setVisibleBtn = document.getElementById('setVisibleBtn');
+      const setHiddenBtn = document.getElementById('setHiddenBtn');
+      const discardBtn = document.getElementById('discardBtn');
+      const saveBtn = document.getElementById('saveBtn');
+
+      const changedRowsChipEl = document.getElementById('changedRowsChip');
+      const changedCellsChipEl = document.getElementById('changedCellsChip');
+      const selectedRowsChipEl = document.getElementById('selectedRowsChip');
+      const visibleRowsChipEl = document.getElementById('visibleRowsChip');
+      const editorStatusEl = document.getElementById('editorStatus');
+      const gridHeadEl = document.getElementById('gridHead');
+      const gridBodyEl = document.getElementById('gridBody');
+      const filterQueryEl = document.getElementById('filterQuery');
+      const filterCategoryEl = document.getElementById('filterCategory');
+      const filterAvailabilityEl = document.getElementById('filterAvailability');
+      const filterSpecialEl = document.getElementById('filterSpecial');
+      const filterChangedOnlyEl = document.getElementById('filterChangedOnly');
+      const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+
+      let currentSheet = 'food';
+      let currentMenuType = 'food';  // 'food' | 'bar'
+      let columnGroups = [];           // from server: [{label, cols[]}]
+      let variantEdits = {};           // rowId → [{label, price, sort_order}]
+      let expandedVariantRows = {};    // rowNumber → true/false
+      let headers = [];
+      let editableColumns = {};
+      let categoryOptions = [];
+      let baseRows = [];
+      let changedCells = {};
+      let selectedRows = {};
+      let embeddedTokenApplied = false;
+      const filterState = {
+        query: '',
+        category: '',
+        availability: 'all',
+        special: 'all',
+        changedOnly: false
+      };
+
+      function applyEmbeddedAuthUi() {
+        if (!embeddedMode || !authPanelEl) return;
+        authPanelEl.dataset.embedded = '1';
+      }
+
+      function setAuthStatus(message) {
+        authStatusEl.textContent = String(message || '');
+      }
+
+      function setEditorStatus(message) {
+        editorStatusEl.textContent = String(message || '');
+        if (debugMode) {
+          window.__NK_MENU_EDITOR_LAST_STATUS__ = String(message || '');
+        }
+      }
+
+      function escapeHtml(value) {
+        return String(value == null ? '' : value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function normalizeKey(value) {
+        return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      }
+
+      function normalizeCategoryName(value) {
+        return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      }
+
+      function toLookupKeys(header) {
+        const raw = String(header || '').trim();
+        const lower = raw.toLowerCase();
+        const compact = lower.replace(/[^a-z0-9]/g, '');
+        const camel = lower
+          .replace(/[^a-z0-9]+([a-z0-9])/g, function (_, c) { return String(c || '').toUpperCase(); })
+          .replace(/[^a-z0-9]/g, '');
+        const aliases = {
+          itemname: ['itemName'],
+          subcategory: ['subCategory'],
+          foodcategory: ['foodCategory'],
+          availability: ['isAvailable'],
+          imageurl: ['imageUrl'],
+          isjain: ['isJain'],
+          chefspecial: ['isChefSpecial'],
+          spicelevel: ['spiceLevel'],
+          servingunit: ['servingUnit']
+        };
+        return [raw, lower, compact, camel].concat(aliases[compact] || []);
+      }
+
+      function headerToPayloadKey(header) {
+        // DB field names ARE the payload keys — identity function
+        return String(header || '').trim();
+      }
+
+      function normalizeEditorRows(rawRows) {
+        const source = Array.isArray(rawRows) ? rawRows : [];
+        return source.map(function (row, idx) {
+          const rowObj = row && typeof row === 'object' ? row : {};
+          const cells = {};
+          headers.forEach(function (header) {
+            let value = '';
+            // DB field names match header directly — try direct lookup first
+            if (Object.prototype.hasOwnProperty.call(rowObj, header) && rowObj[header] != null) {
+              value = rowObj[header];
+            } else {
+              // Fallback: normalised key lookup
+              const lookupKeys = toLookupKeys(header);
+              for (let i = 0; i < lookupKeys.length; i += 1) {
+                const lk = lookupKeys[i];
+                if (Object.prototype.hasOwnProperty.call(rowObj, lk) && rowObj[lk] != null) {
+                  value = rowObj[lk];
+                  break;
+                }
+              }
+            }
+            if (header === 'is_available') {
+              value = isVisibilityOn(value) ? 'Yes' : 'No';
+            }
+            cells[header] = value == null ? '' : String(value);
+          });
+
+          const rowId = Number(rowObj.id || 0);
+          return {
+            rowNumber: idx + 2,
+            id: Number.isFinite(rowId) ? rowId : 0,
+            cells: cells,
+            variants: Array.isArray(rowObj.variants) ? rowObj.variants : []
+          };
+        });
+      }
+
+      function cellKey(rowNumber, header) {
+        return String(rowNumber) + '|' + String(header || '');
+      }
+
+      function parseCellKey(key) {
+        const split = String(key || '').split('|');
+        return {
+          rowNumber: Number(split[0] || 0),
+          header: split.slice(1).join('|')
+        };
+      }
+
+      function getBaseRowByNumber(rowNumber) {
+        for (let i = 0; i < baseRows.length; i += 1) {
+          if (Number(baseRows[i].rowNumber) === Number(rowNumber)) return baseRows[i];
+        }
+        return null;
+      }
+
+      function getBaseValue(rowNumber, header) {
+        const row = getBaseRowByNumber(rowNumber);
+        if (!row || !row.cells) return '';
+        return String(row.cells[header] == null ? '' : row.cells[header]);
+      }
+
+      function getCurrentValue(rowNumber, header) {
+        const key = cellKey(rowNumber, header);
+        if (Object.prototype.hasOwnProperty.call(changedCells, key)) {
+          return String(changedCells[key] == null ? '' : changedCells[key]);
+        }
+        return getBaseValue(rowNumber, header);
+      }
+
+      function isVisibilityOn(value) {
+        const text = String(value == null ? '' : value).trim().toLowerCase();
+        if (!text) return true;
+        return !(text === 'no' || text === 'hidden' || text === 'inactive' || text === 'off' || text === '0' || text === 'false');
+      }
+
+      function visibilityText(value) {
+        return isVisibilityOn(value) ? 'Yes' : 'No';
+      }
+
+      function chefSpecialText(value) {
+        const text = String(value == null ? '' : value).trim().toLowerCase();
+        return (text === 'yes' || text === 'true' || text === '1' || text === 'on') ? 'Yes' : 'No';
+      }
+
+      function spiceLevelText(value) {
+        const text = String(value == null ? '' : value).trim();
+        if (!text) return '';
+        const key = text.toLowerCase();
+        const map = {
+          mild: 'Mild',
+          low: 'Mild',
+          medium: 'Medium',
+          med: 'Medium',
+          spicy: 'Spicy',
+          hot: 'Hot',
+          high: 'Hot'
+        };
+        return map[key] || text;
+      }
+
+      function buildSpiceOptionsHtml(value) {
+        const normalized = spiceLevelText(value);
+        const options = ['', 'Mild', 'Medium', 'Spicy', 'Hot'];
+        let html = options.map((opt) => {
+          const selected = String(opt) === String(normalized) ? 'selected' : '';
+          const label = opt || 'None';
+          return '<option value="' + escapeHtml(opt) + '" ' + selected + '>' + escapeHtml(label) + '</option>';
+        }).join('');
+
+        if (normalized && options.indexOf(normalized) === -1) {
+          html += '<option value="' + escapeHtml(normalized) + '" selected>' + escapeHtml(normalized) + '</option>';
+        }
+
+        return html;
+      }
+
+      function isLocked() {
+        return !authClient.getToken();
+      }
+
+      function getSelectedRowNumbers() {
+        const rows = Object.keys(selectedRows)
+          .filter((rowNumber) => !!selectedRows[rowNumber])
+          .map((rowNumber) => Number(rowNumber))
+          .filter((rowNumber) => Number.isFinite(rowNumber));
+        rows.sort((a, b) => a - b);
+        return rows;
+      }
+
+      function getDirtySummary() {
+        const dirtyRows = {};
+        const keys = Object.keys(changedCells);
+        for (let i = 0; i < keys.length; i += 1) {
+          const parsed = parseCellKey(keys[i]);
+          if (parsed.rowNumber > 1) dirtyRows[parsed.rowNumber] = true;
+        }
+        Object.keys(variantEdits).forEach(function (rowId) {
+          const baseRow = baseRows.find(function (row) { return Number(row.id) === Number(rowId); });
+          if (baseRow && baseRow.rowNumber > 1) {
+            dirtyRows[baseRow.rowNumber] = true;
+          }
+        });
+        const variantDirtyCount = Object.keys(variantEdits).length;
+        return {
+          changedCells: keys.length,
+          changedRows: Object.keys(dirtyRows).length,
+          variantDirtyCount: variantDirtyCount,
+          totalDirty: keys.length + variantDirtyCount
+        };
+      }
+
+      function getSpecialHeaderName() {
+        if (currentMenuType === 'bar' && headers.indexOf('barman_special') !== -1) return 'barman_special';
+        if (headers.indexOf('is_chef_special') !== -1) return 'is_chef_special';
+        return '';
+      }
+
+      function isTruthyFlag(value) {
+        const text = String(value == null ? '' : value).trim().toLowerCase();
+        return text === '1' || text === 'yes' || text === 'true' || text === 'on';
+      }
+
+      function normalizeSearchValue(value) {
+        return String(value == null ? '' : value).trim().toLowerCase().replace(/\s+/g, ' ');
+      }
+
+      function getAllCategoryNames() {
+        const names = {};
+        categoryOptions.forEach(function (option) {
+          const name = option && option.name ? String(option.name).trim() : '';
+          if (name) names[name] = true;
+        });
+        baseRows.forEach(function (row) {
+          const current = String(getCurrentValue(row.rowNumber, 'category') || '').trim();
+          if (current) names[current] = true;
+        });
+        return Object.keys(names).sort(function (a, b) { return a.localeCompare(b); });
+      }
+
+      function renderCategoryFilterOptions() {
+        const options = getAllCategoryNames();
+        const currentValue = String(filterState.category || '');
+        let html = '<option value="">All categories</option>';
+        options.forEach(function (name) {
+          const selected = name === currentValue ? ' selected' : '';
+          html += '<option value="' + escapeHtml(name) + '"' + selected + '>' + escapeHtml(name) + '</option>';
+        });
+        if (currentValue && options.indexOf(currentValue) === -1) {
+          html += '<option value="' + escapeHtml(currentValue) + '" selected>' + escapeHtml(currentValue) + '</option>';
+        }
+        filterCategoryEl.innerHTML = html;
+      }
+
+      function rowMatchesFilters(row) {
+        if (!row) return false;
+
+        const categoryValue = String(getCurrentValue(row.rowNumber, 'category') || '').trim();
+        if (filterState.category && normalizeCategoryName(categoryValue) !== normalizeCategoryName(filterState.category)) {
+          return false;
+        }
+
+        if (filterState.availability === 'visible' && !isVisibilityOn(getCurrentValue(row.rowNumber, 'is_available'))) {
+          return false;
+        }
+        if (filterState.availability === 'hidden' && isVisibilityOn(getCurrentValue(row.rowNumber, 'is_available'))) {
+          return false;
+        }
+
+        const specialHeader = getSpecialHeaderName();
+        if (filterState.special !== 'all' && specialHeader) {
+          const isSpecial = isTruthyFlag(getCurrentValue(row.rowNumber, specialHeader));
+          if (filterState.special === 'special' && !isSpecial) return false;
+          if (filterState.special === 'regular' && isSpecial) return false;
+        }
+
+        if (filterState.changedOnly) {
+          const dirtySummary = Object.keys(changedCells).some(function (key) {
+            return parseCellKey(key).rowNumber === Number(row.rowNumber);
+          }) || Object.prototype.hasOwnProperty.call(variantEdits, String(row.id));
+          if (!dirtySummary) return false;
+        }
+
+        const query = normalizeSearchValue(filterState.query);
+        if (query) {
+          const haystackParts = [
+            categoryValue,
+            getCurrentValue(row.rowNumber, 'item_name'),
+            getCurrentValue(row.rowNumber, 'description'),
+            getCurrentValue(row.rowNumber, 'spice_level'),
+            getCurrentValue(row.rowNumber, 'serving_unit')
+          ];
+          const searchable = normalizeSearchValue(haystackParts.join(' '));
+          const terms = query.split(' ').filter(Boolean);
+          for (let i = 0; i < terms.length; i += 1) {
+            if (searchable.indexOf(terms[i]) === -1) return false;
+          }
+        }
+
+        return true;
+      }
+
+      function getFilteredRows() {
+        return baseRows.filter(rowMatchesFilters);
+      }
+
+      function updateChips() {
+        const dirty = getDirtySummary();
+        const filteredRows = getFilteredRows();
+        changedRowsChipEl.textContent = 'Changed rows: ' + dirty.changedRows;
+        changedCellsChipEl.textContent = 'Changed cells: ' + dirty.changedCells;
+        selectedRowsChipEl.textContent = 'Selected rows: ' + getSelectedRowNumbers().length;
+        visibleRowsChipEl.textContent = 'Visible rows: ' + filteredRows.length + ' / ' + baseRows.length;
+
+        changedRowsChipEl.classList.toggle('warn', dirty.changedRows > 0);
+        changedCellsChipEl.classList.toggle('warn', dirty.changedCells > 0);
+        selectedRowsChipEl.classList.toggle('warn', getSelectedRowNumbers().length > 0);
+        visibleRowsChipEl.classList.toggle('warn', filteredRows.length !== baseRows.length);
+      }
+
+      function updateToolbarState() {
+        const locked = isLocked();
+        const hasRows = baseRows.length > 0;
+        const dirty = getDirtySummary();
+        const selectedCount = getSelectedRowNumbers().length;
+
+        sheetSelectEl.disabled = locked;
+        reloadBtn.disabled = locked;
+        addRowBtn.disabled = locked;
+        saveBtn.disabled = locked || dirty.totalDirty === 0;
+        discardBtn.disabled = locked || dirty.totalDirty === 0;
+        deleteRowsBtn.disabled = locked || selectedCount === 0;
+        setVisibleBtn.disabled = locked || selectedCount === 0;
+        setHiddenBtn.disabled = locked || selectedCount === 0;
+
+        if (!hasRows && !locked) {
+          setEditorStatus('No rows found in this sheet. Use Add Row to create entries.');
+        }
+      }
+
+      // ── Render helpers ────────────────────────────────────────────────────────
+
+      function friendlyHeader(col) {
+        const map = {
+          category: 'Category', item_name: 'Item Name', description: 'Description',
+          is_veg: 'Veg', is_nonveg: 'Non-Veg', is_jain: 'Jain Flag', is_universal: 'Universal',
+          is_chef_special: 'Chef Sp.', is_available: 'Avail.',
+          price_veg: 'Veg ₹', price_chicken: 'Chkn ₹', price_mutton: 'Mutton ₹',
+          price_basa: 'Basa ₹', price_prawns: 'Prawns ₹', price_surmai: 'Surmai ₹',
+          price_pomfret: 'Pomfret ₹', price_crab: 'Crab ₹', price_egg: 'Egg ₹',
+          price_half: 'Half ₹', price_full: 'Full ₹', price_plain: 'Plain ₹',
+          price_butter: 'Butter ₹', price_medium: 'Med ₹', price_large: 'Large ₹',
+          price_direct: 'Direct ₹', price_jain: 'Jain ₹',
+          spice_level: 'Spice', serving_unit: 'Unit', image_url: 'Image URL',
+          barman_special: 'Barman Sp.'
+        };
+        return map[col] || String(col).replace(/_/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      }
+
+      function buildBoolOptionsHtml(value) {
+        const normalized = String(value == null ? '' : value).trim();
+        const isOn = normalized === '1' || normalized.toLowerCase() === 'yes' || normalized.toLowerCase() === 'true';
+        return '<option value="1" ' + (isOn ? 'selected' : '') + '>Yes</option>'
+          + '<option value="0" ' + (!isOn ? 'selected' : '') + '>No</option>';
+      }
+
+      function renderCategoryOptionsList() {
+        const listEl = document.getElementById('categoryOptionsList');
+        if (!listEl) return;
+        listEl.innerHTML = categoryOptions.map(function (option) {
+          const name = option && option.name ? String(option.name) : '';
+          return '<option value="' + escapeHtml(name) + '"></option>';
+        }).join('');
+        renderCategoryFilterOptions();
+      }
+
+      function buildGroupHeaderRow() {
+        if (!columnGroups.length) return '';
+        const colSet = new Set(headers);
+        let html = '<tr class="group-header-row"><th colspan="2" class="group-empty"></th>';
+        columnGroups.forEach(function (group) {
+          const count = (group.cols || []).filter(function (c) { return colSet.has(c); }).length;
+          if (count > 0) html += '<th colspan="' + count + '">' + escapeHtml(group.label) + '</th>';
+        });
+        html += '<th class="group-empty col-variants"></th>';
+        html += '</tr>';
+        return html;
+      }
+
+      function renderVariantSubRow(rowNumber, rowId, variants, colSpan) {
+        const arr = Array.isArray(variants) ? variants : [];
+        const tableRows = arr.map(function (v, i) {
+          const label = String(v.label !== undefined ? v.label : (v.variant_label !== undefined ? v.variant_label : ''));
+          const price = String(v.price !== undefined ? v.price : '');
+          const sortOrder = String(v.sort_order !== undefined ? v.sort_order : (v.variant_sort_order !== undefined ? v.variant_sort_order : i));
+          return '<tr>'
+            + '<td><input class="variant-label-input" data-row="' + rowNumber + '" data-rid="' + rowId + '" data-vi="' + i + '" value="' + escapeHtml(label) + '" placeholder="Label e.g. Glass"></td>'
+            + '<td><input type="number" min="0" step="1" class="variant-price-input" data-row="' + rowNumber + '" data-rid="' + rowId + '" data-vi="' + i + '" value="' + escapeHtml(price) + '" placeholder="0"></td>'
+            + '<td><input type="number" min="0" step="1" class="variant-sort-input" data-row="' + rowNumber + '" data-rid="' + rowId + '" data-vi="' + i + '" value="' + escapeHtml(sortOrder) + '" placeholder="#"></td>'
+            + '<td><button type="button" class="variant-remove-btn" data-row="' + rowNumber + '" data-rid="' + rowId + '" data-vi-rm="' + i + '">×</button></td>'
+            + '</tr>';
+        }).join('');
+        return '<tr class="variant-sub-row" data-parent-row="' + rowNumber + '">'
+          + '<td colspan="' + colSpan + '">'
+          + '<table class="variant-table"><thead><tr><th style="width:200px">Label</th><th style="width:100px">Price ₹</th><th style="width:72px">Sort #</th><th style="width:50px"></th></tr></thead>'
+          + '<tbody>' + tableRows + '</tbody></table>'
+          + '<button type="button" class="variant-add-btn" data-row="' + rowNumber + '" data-rid="' + rowId + '">+ Add Variant</button>'
+          + '</td></tr>';
+      }
+
+      function getBaseVariantsForRow(rowId) {
+        for (let i = 0; i < baseRows.length; i += 1) {
+          if (Number(baseRows[i].id) === Number(rowId)) {
+            return (baseRows[i].variants || []).slice();
+          }
+        }
+        return [];
+      }
+
+      function ensureVariantEdits(rowId) {
+        const id = String(rowId);
+        if (variantEdits[id] === undefined) {
+          variantEdits[id] = getBaseVariantsForRow(rowId).map(function (v) {
+            return {
+              label: String(v.label !== undefined ? v.label : (v.variant_label !== undefined ? v.variant_label : '')),
+              price: v.price !== undefined ? v.price : '',
+              sort_order: v.sort_order !== undefined ? v.sort_order : (v.variant_sort_order !== undefined ? v.variant_sort_order : 0)
+            };
+          });
+        }
+        return variantEdits[id];
+      }
+
+      // ── Main render ───────────────────────────────────────────────────────────
+
+      function renderGrid() {
+        if (!headers.length) {
+          gridHeadEl.innerHTML = '';
+          gridBodyEl.innerHTML = '<tr><td class="muted">No data loaded.</td></tr>';
+          updateChips();
+          updateToolbarState();
+          return;
+        }
+
+        renderCategoryFilterOptions();
+
+        const colSpanTotal = headers.length + 3; // checkbox + row# + headers + variants
+        const filteredRows = getFilteredRows();
+        const allSelected = filteredRows.length > 0 && filteredRows.every(function (row) {
+          return !!selectedRows[String(row.rowNumber)];
+        });
+
+        gridHeadEl.innerHTML = buildGroupHeaderRow()
+          + '<tr>'
+          + '<th class="col-select"><input id="selectAllRows" type="checkbox" ' + (allSelected ? 'checked' : '') + '></th>'
+          + '<th class="col-row">Row</th>'
+          + headers.map(function (header, idx) {
+              const stickyClass = idx === 0 ? 'col-sticky-cat' : (idx === 1 ? 'col-sticky-name' : '');
+              return '<th class="' + stickyClass + '">' + escapeHtml(friendlyHeader(header)) + '</th>';
+            }).join('')
+          + '<th class="col-variants">Variants</th>'
+          + '</tr>';
+
+        if (!baseRows.length) {
+          gridBodyEl.innerHTML = '<tr><td colspan="' + colSpanTotal + '" class="muted">No rows found.</td></tr>';
+          updateChips();
+          updateToolbarState();
+          return;
+        }
+
+        if (!filteredRows.length) {
+          gridBodyEl.innerHTML = '<tr><td colspan="' + colSpanTotal + '" class="muted">No rows match the current filters.</td></tr>';
+          updateChips();
+          updateToolbarState();
+          return;
+        }
+
+        const rowsHtml = [];
+        filteredRows.forEach(function (row) {
+          const rowNumber = Number(row.rowNumber);
+          const rowSelected = !!selectedRows[String(rowNumber)];
+          const dirty = Object.keys(changedCells).some(function (key) {
+            return parseCellKey(key).rowNumber === rowNumber;
+          });
+
+          const cellsHtml = headers.map(function (header, idx) {
+            const key = cellKey(rowNumber, header);
+            const value = getCurrentValue(rowNumber, header);
+            const baseValue = getBaseValue(rowNumber, header);
+            const isDirty = Object.prototype.hasOwnProperty.call(changedCells, key);
+            const isEditable = !!editableColumns[normalizeKey(header)];
+            const editType = editableColumns[normalizeKey(header)] || '';
+            const stickyClass = idx === 0 ? 'col-sticky-cat' : (idx === 1 ? 'col-sticky-name' : '');
+            const tdCls = stickyClass ? ' class="' + stickyClass + '"' : '';
+            const dirtyCls = isDirty ? 'cell-dirty ' : '';
+
+            if (!isEditable) {
+              return '<td' + tdCls + '><span class="cell-readonly">' + escapeHtml(value) + '</span></td>';
+            }
+
+            if (editType === 'visibility') {
+              return '<td' + tdCls + '><select class="grid-visibility ' + dirtyCls + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '">'
+                + '<option value="Yes" ' + (isVisibilityOn(value) ? 'selected' : '') + '>Visible</option>'
+                + '<option value="No" ' + (!isVisibilityOn(value) ? 'selected' : '') + '>Hidden</option>'
+                + '</select></td>';
+            }
+
+            if (editType === 'bool') {
+              return '<td' + tdCls + '><select class="grid-select grid-select-bool ' + dirtyCls + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" data-edit-type="bool">'
+                + buildBoolOptionsHtml(value)
+                + '</select></td>';
+            }
+
+            if (editType === 'price') {
+              return '<td' + tdCls + '><input type="number" min="0" step="1" class="grid-input grid-input-price ' + dirtyCls + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" value="' + escapeHtml(value) + '"></td>';
+            }
+
+            if (editType === 'categoryPicker') {
+              return '<td' + tdCls + '><input class="grid-input grid-input-category ' + dirtyCls + '" list="categoryOptionsList" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" value="' + escapeHtml(value) + '" placeholder="Choose or create category"></td>';
+            }
+
+            if (editType === 'imageUrl') {
+              const preview = value ? '<img class="img-preview" src="' + escapeHtml(value) + '" onerror="this.style.display=\'none\'" alt="">' : '';
+              return '<td' + tdCls + '>' + preview + '<input class="grid-input grid-input-image ' + dirtyCls + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" value="' + escapeHtml(value) + '"></td>';
+            }
+
+            if (editType === 'chef') {
+              return '<td' + tdCls + '><select class="grid-select grid-select-bool ' + dirtyCls + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" data-edit-type="chef">'
+                + '<option value="Yes" ' + (chefSpecialText(value) === 'Yes' ? 'selected' : '') + '>Yes</option>'
+                + '<option value="No" ' + (chefSpecialText(value) === 'No' ? 'selected' : '') + '>No</option>'
+                + '</select></td>';
+            }
+
+            if (editType === 'spice') {
+              return '<td' + tdCls + '><select class="grid-select ' + dirtyCls + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" data-edit-type="spice">'
+                + buildSpiceOptionsHtml(value)
+                + '</select></td>';
+            }
+
+            // Default: text input
+            return '<td' + tdCls + '><input class="grid-input ' + dirtyCls + '" data-row="' + rowNumber + '" data-header="' + escapeHtml(header) + '" data-base="' + escapeHtml(baseValue) + '" value="' + escapeHtml(value) + '"></td>';
+          }).join('');
+
+          // Variants cell
+          const variantsForRow = variantEdits[String(row.id)] !== undefined
+            ? variantEdits[String(row.id)]
+            : (row.variants || []);
+          const variantCount = variantsForRow.length;
+          const variantExpanded = !!expandedVariantRows[String(rowNumber)];
+          const variantLabel = variantCount > 0
+            ? variantCount + ' variant' + (variantCount !== 1 ? 's' : '')
+            : 'Add';
+          const variantsCell = '<td class="col-variants">'
+            + '<button type="button" class="variant-expand-btn" data-row="' + rowNumber + '" data-rid="' + row.id + '">'
+            + (variantExpanded ? '▲ ' : '▼ ') + escapeHtml(variantLabel)
+            + '</button></td>';
+
+          rowsHtml.push('<tr class="' + (rowSelected ? 'row-selected ' : '') + (dirty ? 'row-dirty' : '') + '">'
+            + '<td class="col-select"><input class="row-select" type="checkbox" data-row="' + rowNumber + '" ' + (rowSelected ? 'checked' : '') + '></td>'
+            + '<td class="col-row">' + rowNumber + '</td>'
+            + cellsHtml
+            + variantsCell
+            + '</tr>');
+
+          if (variantExpanded) {
+            rowsHtml.push(renderVariantSubRow(rowNumber, row.id, variantsForRow, colSpanTotal));
+          }
+        });
+
+        gridBodyEl.innerHTML = rowsHtml.join('');
+        updateChips();
+        updateToolbarState();
+      }
+
+      function buildUpdatesPayload() {
+        const grouped = {};
+        const keys = Object.keys(changedCells);
+        for (let i = 0; i < keys.length; i += 1) {
+          const parsed = parseCellKey(keys[i]);
+          if (!parsed.rowNumber || !parsed.header) continue;
+          const baseRow = getBaseRowByNumber(parsed.rowNumber);
+          if (!baseRow || !baseRow.id) continue;
+          const rowKey = String(baseRow.id);
+          grouped[rowKey] = grouped[rowKey] || { id: baseRow.id };
+          grouped[rowKey][headerToPayloadKey(parsed.header)] = changedCells[keys[i]];
+        }
+        // Rows with only variant changes (no cell changes)
+        Object.keys(variantEdits).forEach(function (rowId) {
+          if (!grouped[rowId]) grouped[rowId] = { id: Number(rowId) };
+          grouped[rowId].variants = variantEdits[rowId];
+        });
+        // Rows with both cell + variant changes
+        Object.keys(grouped).forEach(function (rowId) {
+          if (variantEdits[rowId] !== undefined && grouped[rowId].variants === undefined) {
+            grouped[rowId].variants = variantEdits[rowId];
+          }
+        });
+        return Object.keys(grouped).map(function (rowKey) { return grouped[rowKey]; });
+      }
+
+      function getSelectedRowIds() {
+        const ids = [];
+        getSelectedRowNumbers().forEach(function (rowNumber) {
+          const row = getBaseRowByNumber(rowNumber);
+          if (row && Number(row.id) > 0) ids.push(Number(row.id));
+        });
+        return ids;
+      }
+
+      async function loadSheet() {
+        if (isLocked()) {
+          setEditorStatus('Session is locked. Login/session restore is required before loading sheet data.');
+          debugLog('load-sheet-locked', {
+            embeddedMode: embeddedMode,
+            queryTokenPresent: (function () {
+              try {
+                return !!new URLSearchParams(window.location.search || '').get('authToken');
+              } catch (err) {
+                return false;
+              }
+            })()
+          });
+          return;
+        }
+
+        currentSheet = String(sheetSelectEl.value || 'food');
+        debugLog('load-sheet-start', {
+          sheetName: currentSheet,
+          tokenPresent: !!authClient.getToken()
+        });
+        setEditorStatus('Loading ' + currentSheet + '...');
+
+        try {
+          const payload = await authClient.apiPost({
+            action: currentSheet === 'bar' ? 'admin_bar_menu_editor_load' : 'admin_food_menu_editor_load'
+          });
+
+          if (!payload || typeof payload !== 'object') {
+            throw new Error('Malformed payload from API: expected object.');
+          }
+
+          const rowSource = Array.isArray(payload.rows) ? payload.rows : (Array.isArray(payload.items) ? payload.items : []);
+          let resolvedHeaders = Array.isArray(payload.headers) ? payload.headers.slice() : [];
+          if (!resolvedHeaders.length && rowSource.length && rowSource[0] && typeof rowSource[0] === 'object') {
+            resolvedHeaders = Object.keys(rowSource[0]).filter((key) => String(key).toLowerCase() !== 'id');
+          }
+
+          if (!resolvedHeaders.length && rowSource.length) {
+            setEditorStatus('Headers missing from API response');
+            throw new Error('Malformed payload from API: missing headers for rows.');
+          }
+
+          if (!resolvedHeaders.length && !rowSource.length) {
+            setEditorStatus('Session restored but sheet payload empty');
+          }
+
+          headers = resolvedHeaders;
+          editableColumns = {};
+          columnGroups = Array.isArray(payload.columnGroups) ? payload.columnGroups : [];
+          currentMenuType = String(payload.menuType || currentSheet);
+          categoryOptions = Array.isArray(payload.categoryOptions) ? payload.categoryOptions : [];
+          renderCategoryOptionsList();
+          variantEdits = {};
+          expandedVariantRows = {};
+          const editableMeta = payload && payload.editableMeta && typeof payload.editableMeta === 'object' ? payload.editableMeta : {};
+          (Array.isArray(payload.editableColumns) ? payload.editableColumns : []).forEach(function (header) {
+            const key = normalizeKey(header);
+            const type = String(editableMeta[header] || '').trim();
+            editableColumns[key] = type || (
+              key === 'is_available' ? 'visibility'
+              : key === 'category' ? 'categoryPicker'
+              : key === 'image_url' ? 'imageUrl'
+              : key === 'spice_level' ? 'spice'
+              : (key === 'is_veg' || key === 'is_nonveg' || key === 'is_jain' || key === 'is_universal' || key === 'is_chef_special' || key === 'barman_special') ? 'bool'
+              : String(key).startsWith('price_') ? 'price'
+              : 'text'
+            );
+          });
+
+          if (!Object.keys(editableColumns).length) {
+            headers.forEach(function (header) {
+              const key = normalizeKey(header);
+              if (key === 'is_available') {
+                editableColumns[key] = 'visibility';
+              } else if (key === 'category') {
+                editableColumns[key] = 'categoryPicker';
+              } else if (key === 'image_url') {
+                editableColumns[key] = 'imageUrl';
+              } else if (key === 'spice_level') {
+                editableColumns[key] = 'spice';
+              } else if (key === 'is_veg' || key === 'is_nonveg' || key === 'is_jain' || key === 'is_universal'
+                      || key === 'is_chef_special' || key === 'barman_special') {
+                editableColumns[key] = 'bool';
+              } else if (key === 'item_name' || key === 'category' || key === 'description'
+                      || key === 'serving_unit') {
+                editableColumns[key] = 'text';
+              } else if (String(key).startsWith('price_')) {
+                editableColumns[key] = 'price';
+              } else {
+                editableColumns[key] = 'text';
+              }
+            });
+          }
+
+          baseRows = normalizeEditorRows(rowSource);
+          changedCells = {};
+          selectedRows = {};
+          if (filterState.category) {
+            const categoryMatch = getAllCategoryNames().some(function (name) {
+              return normalizeCategoryName(name) === normalizeCategoryName(filterState.category);
+            });
+            if (!categoryMatch) {
+              filterState.category = '';
+              filterCategoryEl.value = '';
+            }
+          }
+
+          debugLog('load-sheet-payload', {
+            sheetName: currentSheet,
+            headersCount: headers.length,
+            rowCount: baseRows.length
+          });
+
+          renderGrid();
+          if (!headers.length && !baseRows.length) {
+            setEditorStatus('No rows returned from API');
+          } else {
+            setEditorStatus('Loaded ' + currentSheet + ' with ' + baseRows.length + ' row(s). Headers: ' + headers.length + '.');
+          }
+        } catch (err) {
+          headers = [];
+          editableColumns = {};
+          categoryOptions = [];
+          renderCategoryOptionsList();
+          baseRows = [];
+          changedCells = {};
+          selectedRows = {};
+          renderGrid();
+          setEditorStatus('Failed to load sheet: ' + err.message);
+          debugLog('load-sheet-failed', {
+            sheetName: currentSheet,
+            error: err && err.message ? err.message : String(err)
+          });
+        }
+      }
+
+      function clearSessionAndLock(message) {
+        authClient.clearSession();
+        usernameEl.value = '';
+        passwordEl.value = '';
+        changedCells = {};
+        selectedRows = {};
+        headers = [];
+        editableColumns = {};
+        categoryOptions = [];
+        renderCategoryOptionsList();
+        baseRows = [];
+        renderGrid();
+        setAuthStatus(message || 'Panel is locked. Login as Admin or SuperAdmin.');
+        updateLockedUi(true);
+      }
+
+      function updateLockedUi(locked) {
+        if (embeddedMode) {
+          authPanelEl.style.display = locked ? '' : 'none';
+        }
+        usernameEl.disabled = !locked;
+        passwordEl.disabled = !locked;
+        loginBtn.hidden = !locked;
+        logoutBtn.hidden = locked;
+        updateToolbarState();
+      }
+
+      async function applyEmbeddedToken(token, reason) {
+        const nextToken = String(token || '').trim();
+        if (!nextToken) return false;
+
+        const currentToken = String(authClient.getToken() || '').trim();
+        if (currentToken === nextToken && embeddedTokenApplied) {
+          return true;
+        }
+
+        embeddedTokenApplied = true;
+        authClient.saveSession({
+          token: nextToken,
+          expiresAt: '',
+          user: authClient.getSession() && authClient.getSession().user ? authClient.getSession().user : null
+        });
+
+        debugLog('embedded-token-applied', {
+          reason: reason || 'message',
+          tokenLength: nextToken.length
+        });
+
+        try {
+          const payload = await authClient.restoreSession();
+          if (!payload || !payload.user) {
+            return false;
+          }
+
+          const role = String(payload.user.role || '').toLowerCase();
+          if (role !== 'admin' && role !== 'superadmin') {
+            clearSessionAndLock('Admin or SuperAdmin access is required.');
+            return false;
+          }
+
+          updateLockedUi(false);
+          setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
+          await loadSheet();
+          notifyModuleReady();
+          return true;
+        } catch (err) {
+          debugLog('embedded-token-restore-failed', {
+            reason: reason || 'message',
+            error: err && err.message ? err.message : String(err)
+          });
+          return false;
+        }
+      }
+
+      window.addEventListener('message', function (event) {
+        if (!embeddedMode || !event || !event.data || typeof event.data !== 'object') return;
+        if (event.origin !== window.location.origin) return;
+        if (event.data.type !== 'NK_EMBEDDED_AUTH') return;
+
+        applyEmbeddedToken(event.data.token, 'postmessage');
+      });
+
+      async function login() {
+        const username = String(usernameEl.value || '').replace(/\D/g, '').trim();
+        const password = String(passwordEl.value || '').trim();
+        if (!username || !password) {
+          setAuthStatus('Enter username and password first.');
+          return;
+        }
+
+        loginBtn.disabled = true;
+        setAuthStatus('Logging in...');
+        debugLog('login-start', { username: username });
+        try {
+          const payload = await authClient.login(username, password, 'admin-menu-price-editor');
+          const role = String(payload.user && payload.user.role || '').toLowerCase();
+          if (role !== 'admin' && role !== 'superadmin') throw new Error('Admin or SuperAdmin account is required.');
+
+          updateLockedUi(false);
+          passwordEl.value = '';
+          setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
+          debugLog('login-success', {
+            username: payload.user.username,
+            role: payload.user.role,
+            tokenPresent: !!authClient.getToken()
+          });
+          await loadSheet();
+          notifyModuleReady();
+        } catch (err) {
+          debugLog('login-failed', { error: err && err.message ? err.message : String(err) });
+          clearSessionAndLock('Login failed: ' + err.message);
+        } finally {
+          loginBtn.disabled = false;
+        }
+      }
+
+      async function restoreSessionIfAny() {
+        setEditorStatus('Restoring session...');
+        debugLog('session-restore-start', {
+          embeddedMode: embeddedMode,
+          queryTokenPresent: (function () {
+            try {
+              return !!new URLSearchParams(window.location.search || '').get('authToken');
+            } catch (err) {
+              return false;
+            }
+          })()
+        });
+        try {
+          const payload = await authClient.restoreSession();
+          if (!payload) {
+            if (embeddedMode) {
+              setEditorStatus('Waiting for portal session...');
+              debugLog('session-restore-empty', { embeddedMode: true });
+            } else {
+              setEditorStatus('No active session found. Please login.');
+              debugLog('session-restore-empty', {});
+            }
+            updateLockedUi(true);
+            notifyModuleReady();
+            return;
+          }
+
+          const role = String(payload.user && payload.user.role || '').toLowerCase();
+          if (role !== 'admin' && role !== 'superadmin') {
+            clearSessionAndLock('Admin or SuperAdmin access is required.');
+            notifyModuleReady();
+            return;
+          }
+
+          updateLockedUi(false);
+          setAuthStatus('Logged in as ' + payload.user.username + ' (' + payload.user.role + ').');
+          debugLog('session-restore-success', {
+            username: payload.user.username,
+            role: payload.user.role,
+            tokenPresent: !!authClient.getToken()
+          });
+          await loadSheet();
+          notifyModuleReady();
+        } catch (err) {
+          debugLog('session-restore-failed', { error: err && err.message ? err.message : String(err) });
+          clearSessionAndLock('Session expired. Please login again.');
+          notifyModuleReady();
+        }
+      }
+
+      async function logout() {
+        await authClient.logout();
+        clearSessionAndLock('Logged out successfully.');
+      }
+
+      async function addRow() {
+        if (isLocked()) return;
+        addRowBtn.disabled = true;
+        setEditorStatus('Adding a new row...');
+        try {
+          await authClient.apiPost({
+            action: currentSheet === 'bar' ? 'admin_bar_menu_editor_add_row' : 'admin_food_menu_editor_add_row'
+          });
+          setEditorStatus('Row added. Reloading latest sheet data...');
+          await loadSheet();
+        } catch (err) {
+          setEditorStatus('Add row failed: ' + err.message);
+        } finally {
+          addRowBtn.disabled = false;
+          updateToolbarState();
+        }
+      }
+
+      async function deleteSelectedRows() {
+        const ids = getSelectedRowIds();
+        if (!ids.length) {
+          setEditorStatus('Select at least one row to delete.');
+          return;
+        }
+
+        const typed = window.prompt('This will permanently delete ' + ids.length + ' row(s). Type DELETE to confirm.');
+        if (typed !== 'DELETE') {
+          setEditorStatus('Delete cancelled.');
+          return;
+        }
+
+        deleteRowsBtn.disabled = true;
+        setEditorStatus('Deleting selected rows...');
+        try {
+          const payload = await authClient.apiPost({
+            action: currentSheet === 'bar' ? 'admin_bar_menu_editor_delete' : 'admin_food_menu_editor_delete',
+            ids: ids
+          });
+          selectedRows = {};
+          setEditorStatus((payload && payload.message) || 'Rows deleted. Reloading latest sheet data...');
+          await loadSheet();
+        } catch (err) {
+          setEditorStatus('Delete failed: ' + err.message);
+        } finally {
+          deleteRowsBtn.disabled = false;
+          updateToolbarState();
+        }
+      }
+
+      async function setVisibilityForSelection(visible) {
+        const ids = getSelectedRowIds();
+        if (!ids.length) {
+          setEditorStatus('Select at least one row first.');
+          return;
+        }
+
+        setEditorStatus((visible ? 'Setting rows visible...' : 'Setting rows hidden...'));
+        try {
+          const payload = await authClient.apiPost({
+            action: currentSheet === 'bar' ? 'admin_bar_menu_editor_visible' : 'admin_food_menu_editor_visible',
+            ids: ids,
+            isAvailable: !!visible
+          });
+          setEditorStatus((payload && payload.message) || 'Visibility updated. Reloading latest sheet data...');
+          await loadSheet();
+        } catch (err) {
+          setEditorStatus('Visibility update failed: ' + err.message);
+        } finally {
+          updateToolbarState();
+        }
+      }
+
+      async function saveChanges() {
+        const updates = buildUpdatesPayload();
+        if (!updates.length) {
+          setEditorStatus('No pending changes to save.');
+          return;
+        }
+
+        const categoryMap = {};
+        categoryOptions.forEach(function (option) {
+          const name = option && option.name ? String(option.name) : '';
+          if (!name) return;
+          categoryMap[normalizeCategoryName(name)] = name;
+        });
+
+        const createCategories = [];
+        const handledUnknown = {};
+        for (let i = 0; i < updates.length; i += 1) {
+          if (!Object.prototype.hasOwnProperty.call(updates[i], 'category')) continue;
+          const raw = String(updates[i].category || '').trim();
+          if (!raw) {
+            setEditorStatus('Category cannot be blank.');
+            return;
+          }
+
+          const normalized = normalizeCategoryName(raw);
+          if (categoryMap[normalized]) {
+            updates[i].category = categoryMap[normalized];
+            continue;
+          }
+          if (handledUnknown[normalized]) {
+            updates[i].category = handledUnknown[normalized];
+            continue;
+          }
+
+          let suggestion = '';
+          Object.keys(categoryMap).some(function (key) {
+            if (key === normalized || key.indexOf(normalized) !== -1 || normalized.indexOf(key) !== -1) {
+              suggestion = categoryMap[key];
+              return true;
+            }
+            return false;
+          });
+
+          if (suggestion && window.confirm('Category "' + raw + '" is not in the canonical list. Use existing category "' + suggestion + '" instead?')) {
+            updates[i].category = suggestion;
+            handledUnknown[normalized] = suggestion;
+            continue;
+          }
+
+          if (!window.confirm('Create new canonical category "' + raw + '" for the ' + currentSheet + ' menu?')) {
+            setEditorStatus('Save cancelled. Category "' + raw + '" was not confirmed.');
+            return;
+          }
+
+          createCategories.push(raw);
+          handledUnknown[normalized] = raw;
+        }
+
+        saveBtn.disabled = true;
+        setEditorStatus('Saving ' + updates.length + ' changed row(s)...');
+        try {
+          const payload = await authClient.apiPost({
+            action: currentSheet === 'bar' ? 'admin_bar_menu_editor_save' : 'admin_food_menu_editor_save',
+            changes: updates,
+            createCategories: createCategories
+          });
+
+          if (!payload || payload.ok !== true) {
+            throw new Error((payload && payload.message) || 'Save failed.');
+          }
+
+          const updatedCount = Number(payload.updatedCount || 0);
+          if (!updatedCount) {
+            throw new Error((payload && payload.message) || 'No rows were updated.');
+          }
+
+          let message = 'Saved ' + updatedCount + ' row(s).';
+          if (payload && Array.isArray(payload.skipped) && payload.skipped.length) {
+            message += ' Skipped ' + payload.skipped.length + ' row(s).';
+          }
+
+          setEditorStatus(message + '\nReloading latest sheet data...');
+          await loadSheet();
+        } catch (err) {
+          setEditorStatus('Save failed: ' + err.message);
+        } finally {
+          saveBtn.disabled = false;
+          updateToolbarState();
+        }
+      }
+
+      function discardChanges() {
+        changedCells = {};
+        variantEdits = {};
+        expandedVariantRows = {};
+        renderGrid();
+        setEditorStatus('Unsaved edits were discarded.');
+      }
+
+      loginBtn.addEventListener('click', login);
+      logoutBtn.addEventListener('click', logout);
+      reloadBtn.addEventListener('click', loadSheet);
+      addRowBtn.addEventListener('click', addRow);
+      deleteRowsBtn.addEventListener('click', deleteSelectedRows);
+      setVisibleBtn.addEventListener('click', function () { setVisibilityForSelection(true); });
+      setHiddenBtn.addEventListener('click', function () { setVisibilityForSelection(false); });
+      saveBtn.addEventListener('click', saveChanges);
+      discardBtn.addEventListener('click', discardChanges);
+
+      usernameEl.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') login();
+      });
+      passwordEl.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') login();
+      });
+
+      sheetSelectEl.addEventListener('change', function () {
+        if (getDirtySummary().changedCells > 0) {
+          const shouldContinue = window.confirm('You have unsaved changes. Continue and discard them?');
+          if (!shouldContinue) {
+            sheetSelectEl.value = currentSheet;
+            return;
+          }
+        }
+        loadSheet();
+      });
+
+      filterQueryEl.addEventListener('input', function () {
+        filterState.query = String(filterQueryEl.value || '').trim();
+        renderGrid();
+      });
+
+      filterCategoryEl.addEventListener('change', function () {
+        filterState.category = String(filterCategoryEl.value || '').trim();
+        renderGrid();
+      });
+
+      filterAvailabilityEl.addEventListener('change', function () {
+        filterState.availability = String(filterAvailabilityEl.value || 'all');
+        renderGrid();
+      });
+
+      filterSpecialEl.addEventListener('change', function () {
+        filterState.special = String(filterSpecialEl.value || 'all');
+        renderGrid();
+      });
+
+      filterChangedOnlyEl.addEventListener('change', function () {
+        filterState.changedOnly = !!filterChangedOnlyEl.checked;
+        renderGrid();
+      });
+
+      clearFiltersBtn.addEventListener('click', function () {
+        filterState.query = '';
+        filterState.category = '';
+        filterState.availability = 'all';
+        filterState.special = 'all';
+        filterState.changedOnly = false;
+        filterQueryEl.value = '';
+        filterCategoryEl.value = '';
+        filterAvailabilityEl.value = 'all';
+        filterSpecialEl.value = 'all';
+        filterChangedOnlyEl.checked = false;
+        renderGrid();
+      });
+
+      gridHeadEl.addEventListener('change', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+        if (target.id !== 'selectAllRows') return;
+
+        const checked = !!target.checked;
+        getFilteredRows().forEach(function (row) {
+          const key = String(row.rowNumber);
+          if (checked) {
+            selectedRows[key] = true;
+          } else {
+            delete selectedRows[key];
+          }
+        });
+        renderGrid();
+      });
+
+      gridBodyEl.addEventListener('click', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+
+        // Variant expand/collapse toggle
+        if (target.classList.contains('variant-expand-btn')) {
+          const rowNumber = String(target.getAttribute('data-row') || '');
+          if (!rowNumber) return;
+          expandedVariantRows[rowNumber] = !expandedVariantRows[rowNumber];
+          renderGrid();
+          return;
+        }
+
+        // Add a blank variant
+        if (target.classList.contains('variant-add-btn')) {
+          const rowNumber = String(target.getAttribute('data-row') || '');
+          const rowId = String(target.getAttribute('data-rid') || '');
+          if (!rowNumber || !rowId) return;
+          const variants = ensureVariantEdits(rowId);
+          variants.push({ label: '', price: '', sort_order: variants.length });
+          updateChips();
+          updateToolbarState();
+          renderGrid();
+          return;
+        }
+
+        // Remove a variant row
+        if (target.classList.contains('variant-remove-btn')) {
+          const rowNumber = String(target.getAttribute('data-row') || '');
+          const rowId = String(target.getAttribute('data-rid') || '');
+          const viRm = Number(target.getAttribute('data-vi-rm'));
+          if (!rowNumber || !rowId || isNaN(viRm)) return;
+          const variants = ensureVariantEdits(rowId);
+          variants.splice(viRm, 1);
+          updateChips();
+          updateToolbarState();
+          renderGrid();
+        }
+      });
+
+      gridBodyEl.addEventListener('change', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+
+        if (target.classList.contains('row-select')) {
+          const row = String(target.getAttribute('data-row') || '');
+          if (!row) return;
+          selectedRows[row] = !!target.checked;
+          renderGrid();
+          return;
+        }
+
+        // Variant field changes
+        const isVariantField = target.classList.contains('variant-label-input')
+          || target.classList.contains('variant-price-input')
+          || target.classList.contains('variant-sort-input');
+        if (isVariantField) {
+          const rowNumber = String(target.getAttribute('data-row') || '');
+          const rowId = String(target.getAttribute('data-rid') || '');
+          const vi = Number(target.getAttribute('data-vi'));
+          if (!rowId || isNaN(vi)) return;
+          const variants = ensureVariantEdits(rowId);
+          if (!variants[vi]) return;
+          if (target.classList.contains('variant-label-input')) {
+            variants[vi].label = String(target.value || '').trim();
+          } else if (target.classList.contains('variant-price-input')) {
+            variants[vi].price = String(target.value || '').trim();
+          } else if (target.classList.contains('variant-sort-input')) {
+            variants[vi].sort_order = Number(target.value || 0);
+          }
+          updateChips();
+          updateToolbarState();
+          return;
+        }
+
+        if (target.classList.contains('grid-input') || target.classList.contains('grid-visibility') || target.classList.contains('grid-select')) {
+          const rowNumber = Number(target.getAttribute('data-row') || 0);
+          const header = String(target.getAttribute('data-header') || '');
+          if (!rowNumber || !header) return;
+
+          const key = cellKey(rowNumber, header);
+          const baseValue = getBaseValue(rowNumber, header);
+          let nextValue = String(target.value || '').trim();
+          if (target.classList.contains('grid-visibility')) {
+            nextValue = visibilityText(nextValue);
+          } else if (target.classList.contains('grid-select')) {
+            const editType = String(target.getAttribute('data-edit-type') || '').trim();
+            if (editType === 'chef') {
+              nextValue = chefSpecialText(nextValue);
+            } else if (editType === 'spice') {
+              nextValue = spiceLevelText(nextValue);
+            }
+            // Keep bool/select values in their raw normalized form.
+          }
+
+          if (String(baseValue) === String(nextValue)) {
+            delete changedCells[key];
+          } else {
+            changedCells[key] = nextValue;
+          }
+
+          renderGrid();
+        }
+      });
+
+      applyEmbeddedAuthUi();
+      clearSessionAndLock('Panel is locked. Login as Admin or SuperAdmin.');
+      restoreSessionIfAny();
+    })();
+  </script>
+</body>
+</html>
+

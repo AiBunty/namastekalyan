@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve A Table | Namaste Kalyan by AWG</title>
+    <meta
+        name="description"
+        content="Reserve a table at Namaste Kalyan using the official Aibunty booking form. Choose your date, time, and guest count in one place."
+    >
+    <link rel="canonical" href="https://namastekalyan.asianwokandgrill.in/booking/">
+    <meta property="og:title" content="Reserve A Table | Namaste Kalyan by AWG">
+    <meta property="og:description" content="Book your Namaste Kalyan table using the official Aibunty reservation form.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://namastekalyan.asianwokandgrill.in/booking/">
+    <meta property="og:image" content="https://namastekalyan.asianwokandgrill.in/assets/Logo/Namaste Kalyan by AWG -02.png">
+    <meta name="theme-color" content="#1a0a0a">
+
+    <link rel="icon" type="image/png" href="../assets/Logo/PHS. Logo -01.png?v=20260418-assetfix-3">
+    <link rel="apple-touch-icon" href="../assets/Logo/PHS. Logo -01.png?v=20260418-assetfix-3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles-copy.css?v=20260418-assetfix-3">
+    <link rel="stylesheet" href="../css/site-chrome.css?v=20260420-booking-page-1">
+    <style>
+        body.booking-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(201, 151, 64, 0.18), transparent 34%),
+                linear-gradient(180deg, #120909 0%, #1a0d0d 42%, #0d0807 100%);
+            color: #f7f0e6;
+        }
+
+        .booking-shell {
+            width: min(1180px, calc(100vw - 32px));
+            margin: 0 auto;
+            padding: 0 0 48px;
+        }
+
+        .booking-hero {
+            display: grid;
+            gap: 28px;
+            grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.88fr);
+            align-items: start;
+            padding: 16px 0 24px;
+        }
+
+        .booking-copy,
+        .booking-card {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+                rgba(13, 8, 7, 0.86);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .booking-copy {
+            padding: 34px;
+        }
+
+        .booking-copy .eyebrow {
+            margin: 0 0 12px;
+            color: #d4af74;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-size: 0.74rem;
+            font-weight: 800;
+        }
+
+        .booking-copy h1 {
+            margin: 0 0 14px;
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.05;
+            color: #fff7ea;
+        }
+
+        .booking-copy p {
+            margin: 0 0 16px;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(247, 240, 230, 0.8);
+        }
+
+        .booking-points {
+            display: grid;
+            gap: 12px;
+            margin: 22px 0 28px;
+        }
+
+        .booking-point {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .booking-point strong {
+            color: #fff7ea;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .booking-point span {
+            color: rgba(247, 240, 230, 0.74);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .booking-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .booking-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+        }
+
+        .booking-btn:hover,
+        .booking-btn:focus-visible {
+            transform: translateY(-2px);
+        }
+
+        .booking-btn-primary {
+            background: linear-gradient(135deg, #d4af74, #b6762d);
+            color: #23180f;
+            box-shadow: 0 18px 32px rgba(180, 118, 45, 0.28);
+        }
+
+        .booking-btn-secondary {
+            color: #f7f0e6;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .booking-card {
+            padding: 20px;
+        }
+
+        .booking-card-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .booking-card-head h2 {
+            margin: 0;
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.45rem, 2vw, 1.9rem);
+            color: #fff7ea;
+        }
+
+        .booking-card-head p {
+            margin: 4px 0 0;
+            color: rgba(247, 240, 230, 0.7);
+            font-size: 0.94rem;
+        }
+
+        .booking-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(212, 175, 116, 0.16);
+            color: #f6d396;
+            font-weight: 800;
+            font-size: 0.74rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .booking-frame-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            min-height: 840px;
+        }
+
+        .booking-loader {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 116, 0.18), transparent 28%),
+                radial-gradient(circle at 80% 18%, rgba(198, 40, 40, 0.16), transparent 24%),
+                linear-gradient(180deg, rgba(18, 9, 9, 0.96), rgba(10, 6, 6, 0.92));
+            z-index: 2;
+            transition: opacity 420ms ease, visibility 420ms ease;
+        }
+
+        .booking-frame-wrap.is-ready .booking-loader {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .booking-loader-inner {
+            width: min(100%, 360px);
+            display: grid;
+            justify-items: center;
+            gap: 18px;
+            text-align: center;
+        }
+
+        .booking-loader-stage {
+            position: relative;
+            width: 132px;
+            height: 132px;
+            display: grid;
+            place-items: center;
+        }
+
+        .booking-loader-ring,
+        .booking-loader-ring::before,
+        .booking-loader-ring::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px solid rgba(246, 211, 150, 0.26);
+        }
+
+        .booking-loader-ring {
+            animation: bookingLoaderOrbit 4.8s linear infinite;
+        }
+
+        .booking-loader-ring::before {
+            inset: 14px;
+            border-color: rgba(255, 255, 255, 0.16);
+            animation: bookingLoaderOrbitReverse 3.6s linear infinite;
+        }
+
+        .booking-loader-ring::after {
+            inset: 28px;
+            border-color: rgba(198, 40, 40, 0.22);
+            animation: bookingLoaderPulse 2.4s ease-in-out infinite;
+        }
+
+        .booking-loader-core {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            border-radius: 24px;
+            background:
+                linear-gradient(135deg, rgba(212, 175, 116, 0.92), rgba(182, 118, 45, 0.84)),
+                #d4af74;
+            box-shadow:
+                0 0 0 10px rgba(212, 175, 116, 0.08),
+                0 20px 45px rgba(182, 118, 45, 0.28);
+            overflow: hidden;
+        }
+
+        .booking-loader-core::before {
+            content: '';
+            position: absolute;
+            inset: -28%;
+            background: linear-gradient(115deg, transparent 24%, rgba(255, 255, 255, 0.82) 50%, transparent 76%);
+            transform: translateX(-120%) rotate(12deg);
+            animation: bookingLoaderShimmer 1.7s ease-in-out infinite;
+        }
+
+        .booking-loader-core::after {
+            content: 'NK';
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            color: #29190f;
+            font-family: 'Fraunces', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .booking-loader-title {
+            margin: 0;
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.3rem, 3vw, 1.7rem);
+            color: #fff7ea;
+        }
+
+        .booking-loader-text {
+            margin: 0;
+            color: rgba(247, 240, 230, 0.76);
+            line-height: 1.65;
+            font-size: 0.96rem;
+        }
+
+        .booking-loader-bar {
+            width: min(100%, 280px);
+            height: 7px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .booking-loader-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            width: 42%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, rgba(212, 175, 116, 0.1), rgba(246, 211, 150, 0.92), rgba(198, 40, 40, 0.56));
+            animation: bookingLoaderProgress 1.35s ease-in-out infinite;
+        }
+
+        .booking-frame {
+            width: 100%;
+            min-height: 840px;
+            border: 0;
+            background: #ffffff;
+            opacity: 0;
+            transition: opacity 420ms ease;
+        }
+
+        .booking-frame-wrap.is-ready .booking-frame {
+            opacity: 1;
+        }
+
+        .booking-help {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 6px 0;
+        }
+
+        .booking-help p {
+            margin: 0;
+            color: rgba(247, 240, 230, 0.72);
+            font-size: 0.92rem;
+        }
+
+        .booking-help a {
+            color: #f6d396;
+        }
+
+        @media (max-width: 960px) {
+            .booking-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-copy {
+                padding: 26px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .booking-shell {
+                width: min(100vw - 20px, 100%);
+            }
+
+            .booking-copy,
+            .booking-card {
+                border-radius: 22px;
+            }
+
+            .booking-copy {
+                padding: 22px 18px;
+            }
+
+            .booking-frame-wrap,
+            .booking-frame {
+                min-height: 760px;
+            }
+
+            .booking-card-head {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @keyframes bookingLoaderOrbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bookingLoaderOrbitReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        @keyframes bookingLoaderPulse {
+            0%, 100% { transform: scale(0.94); opacity: 0.5; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+
+        @keyframes bookingLoaderShimmer {
+            0% { transform: translateX(-120%) rotate(12deg); }
+            100% { transform: translateX(140%) rotate(12deg); }
+        }
+
+        @keyframes bookingLoaderProgress {
+            0% { transform: translateX(-120%); }
+            100% { transform: translateX(300%); }
+        }
+    </style>
+</head>
+<body class="booking-page">
+    <div class="booking-shell">
+        <div id="nkSharedNavbar"></div>
+
+        <main class="booking-hero">
+            <section class="booking-copy">
+                <p class="eyebrow">Reserve A Table</p>
+                <h1>Reserve your table at Namaste Kalyan.</h1>
+                <p>
+                    Welcome to Namaste Kalyan's official reservation page. Complete your booking below to request your preferred date, time, and table details directly with our team.
+                </p>
+
+                <div class="booking-points">
+                    <div class="booking-point">
+                        <div>01</div>
+                        <div>
+                            <strong>Choose your reservation details</strong>
+                            <span>Select your preferred visit date, time slot, and guest count for your table request.</span>
+                        </div>
+                    </div>
+                    <div class="booking-point">
+                        <div>02</div>
+                        <div>
+                            <strong>Submit your request</strong>
+                            <span>Enter your contact information and complete the booking form to send your reservation request.</span>
+                        </div>
+                    </div>
+                    <div class="booking-point">
+                        <div>03</div>
+                        <div>
+                            <strong>Contact Namaste Kalyan</strong>
+                            <span>For booking assistance, special requests, or celebration enquiries, connect with our team directly on WhatsApp or phone.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-actions">
+                    <a class="booking-btn booking-btn-secondary" href="https://wa.me/919371519999" target="_blank" rel="noopener noreferrer">WhatsApp Support</a>
+                </div>
+            </section>
+
+            <section class="booking-card" id="bookingForm">
+                <div class="booking-card-head">
+                    <div>
+                        <h2>Namaste Kalyan Reservation Form</h2>
+                        <p>Complete your official Namaste Kalyan booking request below.</p>
+                    </div>
+                    <div class="booking-badge">Live Booking</div>
+                </div>
+
+                <div class="booking-frame-wrap">
+                    <div class="booking-loader" id="bookingLoader" aria-live="polite">
+                        <div class="booking-loader-inner">
+                            <div class="booking-loader-stage" aria-hidden="true">
+                                <div class="booking-loader-ring"></div>
+                                <div class="booking-loader-core"></div>
+                            </div>
+                            <h3 class="booking-loader-title">Loading Namaste Kalyan reservations</h3>
+                            <p class="booking-loader-text">Please wait while we prepare the live booking form for your table request.</p>
+                            <div class="booking-loader-bar" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                    <iframe
+                        id="bookingFrame"
+                        class="booking-frame"
+                        src="https://admin.aibunty.com/u2/82800/namaste-kalyan-event-and-table-booking?isEmbeded=1"
+                        title="Aibunty reservation form for Namaste Kalyan"
+                        loading="eager"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allow="clipboard-write"
+                    ></iframe>
+                </div>
+
+                <div class="booking-help">
+                    <p>If the form does not load, use the direct Namaste Kalyan booking link: <a href="https://admin.aibunty.com/u2/82800/namaste-kalyan-event-and-table-booking?isEmbeded=1" target="_blank" rel="noopener noreferrer">Open Booking Form</a></p>
+                    <p>Reservation support: <a href="tel:+919371519999">+91 93715 19999</a></p>
+                </div>
+            </section>
+        </main>
+
+        <div id="nkSharedFooter"></div>
+    </div>
+
+    <script src="../js/data-config.js?v=20260418-assetfix-3"></script>
+    <script src="../js/shared-site-chrome.js?v=20260420-booking-page-1"></script>
+    <script>
+        (function () {
+            const frameWrap = document.querySelector('.booking-frame-wrap');
+            const frame = document.getElementById('bookingFrame');
+            if (!frameWrap || !frame) return;
+
+            const minimumLoaderMs = 900;
+            const startedAt = Date.now();
+            let didResolve = false;
+
+            const revealFrame = () => {
+                if (didResolve) return;
+                didResolve = true;
+                const elapsed = Date.now() - startedAt;
+                const delay = Math.max(0, minimumLoaderMs - elapsed);
+                window.setTimeout(() => {
+                    frameWrap.classList.add('is-ready');
+                }, delay);
+            };
+
+            frame.addEventListener('load', revealFrame, { once: true });
+            window.setTimeout(revealFrame, 6000);
+        })();
+    </script>
+</body>
+</html>

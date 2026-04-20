@@ -4,7 +4,7 @@
  * Database migration runner — CLI only.
  *
  * Usage:
- *   php backend/migrate.php
+ *   php migrate.php
  *
  * Runs all .sql files in database/migrations/ in filename order.
  * Each file is run once; already-applied migrations are skipped via
@@ -19,7 +19,7 @@ if (PHP_SAPI !== 'cli') {
     exit('403 Forbidden');
 }
 
-require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/bootstrap/app.php';
 
 date_default_timezone_set($_ENV['APP_TIMEZONE'] ?? 'Asia/Kolkata');
 

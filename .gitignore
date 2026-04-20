@@ -1,0 +1,46 @@
+# ==================================================
+# Environment & secrets — NEVER commit real credentials
+# ==================================================
+.env
+*.env.local
+
+# ==================================================
+# PHP dependencies
+# ==================================================
+/vendor/
+composer.phar
+
+# ==================================================
+# Logs & runtime storage
+# ==================================================
+/storage/logs/
+/storage/cache/
+/storage/tmp/
+*.log
+smoke-output.txt
+test-results-*.log
+
+# ==================================================
+# Build artefacts & temp files
+# ==================================================
+*.zip
+.tmp/
+*.phar
+
+# ==================================================
+# OS / editor junk
+# ==================================================
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# ==================================================
+# Import data (may contain PII — review before commit)
+# ==================================================
+# import-data/leads.json
+# import-data/users.json
+
+# ==================================================
+# Config with live runtime values (not template)
+# ==================================================
+/config/app-settings.json

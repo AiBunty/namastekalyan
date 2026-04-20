@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Connection Diagnostic | Namaste Kalyan</title>
+  <script src="../js/data-config.js"></script>
+  <style>
+    :root {
+      --bg: #f3ece1;
+      --panel: rgba(255, 252, 247, 0.95);
+      --ink: #241810;
+      --muted: #6c5a4f;
+      --accent: #9e3d1d;
+      --accent-dark: #6f2811;
+      --line: rgba(36, 24, 16, 0.12);
+      --ok: #1f7a43;
+      --warn: #a86508;
+      --bad: #b42318;
+      --shadow: 0 18px 40px rgba(61, 39, 24, 0.12);
+      --code-bg: #20140e;
+      --code-ink: #f4e6d4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(158, 61, 29, 0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(111, 40, 17, 0.14), transparent 30%),
+        linear-gradient(135deg, #fbf7f0 0%, var(--bg) 52%, #ead8c2 100%);
+      padding: 28px 16px 40px;
+    }
+
+    .shell {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 28px 28px 18px;
+      background: linear-gradient(135deg, rgba(158, 61, 29, 0.08), rgba(111, 40, 17, 0.02));
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .subhead {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .content {
+      padding: 24px 28px 30px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card,
+    .service,
+    .status,
+    .note {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .card,
+    .service,
+    .note {
+      padding: 16px;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .value {
+      font-size: 1.02rem;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 18px;
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      background: #eadbcb;
+      color: var(--ink);
+    }
+
+    button:disabled {
+      opacity: 0.58;
+      cursor: wait;
+      transform: none;
+    }
+
+    .status {
+      padding: 14px 16px;
+      line-height: 1.55;
+    }
+
+    .status.ok {
+      border-color: rgba(31, 122, 67, 0.22);
+      background: rgba(31, 122, 67, 0.07);
+      color: var(--ok);
+    }
+
+    .status.warn {
+      border-color: rgba(168, 101, 8, 0.24);
+      background: rgba(168, 101, 8, 0.08);
+      color: var(--warn);
+    }
+
+    .status.bad {
+      border-color: rgba(180, 35, 24, 0.25);
+      background: rgba(180, 35, 24, 0.08);
+      color: var(--bad);
+    }
+
+    .services {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .service-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .service-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #eee2d5;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .pill.ok {
+      background: rgba(31, 122, 67, 0.12);
+      color: var(--ok);
+    }
+
+    .pill.bad {
+      background: rgba(180, 35, 24, 0.12);
+      color: var(--bad);
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .detail-row strong {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    pre {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--code-bg);
+      color: var(--code-ink);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    @media (max-width: 680px) {
+      .hero,
+      .content {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .detail-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="panel">
+      <div class="hero">
+        <h1>Server Connection Diagnostic</h1>
+        <p class="subhead">Runs a non-destructive server-side check against the configured MySQL and FTP targets. It verifies DNS, raw TCP connectivity, database login, and FTP login/path access, then writes a diagnostic record to the server logs.</p>
+      </div>
+
+      <div class="content">
+        <div class="grid">
+          <div class="card">
+            <span class="label">Endpoint</span>
+            <div class="value" id="endpointLabel">server-connection-diagnostic.php</div>
+          </div>
+          <div class="card">
+            <span class="label">Profile</span>
+            <div class="value" id="profileValue">-</div>
+          </div>
+          <div class="card">
+            <span class="label">Generated At</span>
+            <div class="value" id="generatedAtValue">-</div>
+          </div>
+          <div class="card">
+            <span class="label">Overall Result</span>
+            <div class="value" id="overallValue">Waiting</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="runBtn" type="button">Run Diagnostic</button>
+          <button id="openBtn" class="secondary" type="button">Open Raw JSON</button>
+        </div>
+
+        <div id="summary" class="status warn">Waiting to run the server connection diagnostic.</div>
+
+        <div class="services">
+          <section class="service">
+            <div class="service-head">
+              <div class="service-title">MySQL</div>
+              <div id="dbPill" class="pill">Pending</div>
+            </div>
+            <div class="detail-list" id="dbDetails"></div>
+          </section>
+
+          <section class="service">
+            <div class="service-head">
+              <div class="service-title">FTP</div>
+              <div id="ftpPill" class="pill">Pending</div>
+            </div>
+            <div class="detail-list" id="ftpDetails"></div>
+          </section>
+        </div>
+
+        <div class="note">
+          <span class="label">What Gets Logged</span>
+          <div class="value">Each run appends a JSON entry to the server log file at <strong>logs/connection-diagnostic.log</strong> and also writes a summary line through the application logger.</div>
+        </div>
+
+        <pre id="rawOutput">No test run yet.</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search || '');
+    const configuredBase = (window.NK_DATA_API && window.NK_DATA_API.phpApiUrl)
+      ? String(window.NK_DATA_API.phpApiUrl).trim()
+      : '';
+    const endpoint = (function resolveEndpoint() {
+      const override = String(urlParams.get('endpoint') || '').trim();
+      if (override) {
+        return override;
+      }
+
+      if (configuredBase) {
+        try {
+          return new URL('public/admin/server-connection-diagnostic.php', configuredBase).toString();
+        } catch (error) {
+          // Fall through to the local relative path.
+        }
+      }
+
+      return 'server-connection-diagnostic.php';
+    })();
+    const runBtn = document.getElementById('runBtn');
+    const openBtn = document.getElementById('openBtn');
+    const summaryEl = document.getElementById('summary');
+    const rawOutputEl = document.getElementById('rawOutput');
+    const profileValueEl = document.getElementById('profileValue');
+    const generatedAtValueEl = document.getElementById('generatedAtValue');
+    const overallValueEl = document.getElementById('overallValue');
+    const dbPillEl = document.getElementById('dbPill');
+    const ftpPillEl = document.getElementById('ftpPill');
+    const dbDetailsEl = document.getElementById('dbDetails');
+    const ftpDetailsEl = document.getElementById('ftpDetails');
+
+    openBtn.addEventListener('click', () => {
+      window.open(endpoint, '_blank', 'noopener');
+    });
+    runBtn.addEventListener('click', runDiagnostic);
+
+    function setSummary(kind, text) {
+      summaryEl.className = 'status ' + kind;
+      summaryEl.textContent = text;
+    }
+
+    function setPill(node, ok, label) {
+      node.textContent = label;
+      node.className = 'pill ' + (ok === true ? 'ok' : ok === false ? 'bad' : '');
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderDetails(target, rows) {
+      target.innerHTML = rows.map((row) => {
+        return [
+          '<div class="detail-row">',
+          '<strong>' + escapeHtml(row.label) + '</strong>',
+          '<div>' + escapeHtml(row.value == null ? '' : row.value) + '</div>',
+          '</div>'
+        ].join('');
+      }).join('');
+    }
+
+    function buildServiceRows(service) {
+      const rows = [
+        { label: 'Stage', value: service.stage || '-' },
+        { label: 'Message', value: service.message || '-' },
+        { label: 'Host', value: service.host || '-' },
+        { label: 'Port', value: service.port != null ? service.port : '-' }
+      ];
+
+      if (service.database) {
+        rows.push({ label: 'Database', value: service.database });
+      }
+
+      if (service.remotePath) {
+        rows.push({ label: 'Remote Path', value: service.remotePath });
+      }
+
+      if (service.dns) {
+        rows.push({ label: 'DNS', value: service.dns.ok ? 'PASS: ' + (service.dns.resolved || service.host || '') : 'FAIL: ' + (service.dns.message || '') });
+      }
+
+      if (service.socket) {
+        rows.push({ label: 'Socket', value: service.socket.ok ? 'PASS: ' + (service.socket.target || '') : 'FAIL: ' + (service.socket.message || '') });
+      }
+
+      if (service.serverVersion) {
+        rows.push({ label: 'Server Version', value: service.serverVersion });
+      }
+
+      if (service.activeDatabase) {
+        rows.push({ label: 'Active DB', value: service.activeDatabase });
+      }
+
+      if (service.serverTime) {
+        rows.push({ label: 'Server Time', value: service.serverTime });
+      }
+
+      if (service.errorCode) {
+        rows.push({ label: 'Error Code', value: service.errorCode });
+      }
+
+      if (service.errorDetail) {
+        rows.push({ label: 'Error Detail', value: service.errorDetail });
+      }
+
+      if (Array.isArray(service.transcript) && service.transcript.length) {
+        rows.push({ label: 'FTP Transcript', value: service.transcript.map((entry) => {
+          return [entry.step, entry.code, Array.isArray(entry.lines) ? entry.lines.join(' | ') : ''].join(': ');
+        }).join('\n') });
+      }
+
+      return rows;
+    }
+
+    async function runDiagnostic() {
+      runBtn.disabled = true;
+      setSummary('warn', 'Running server connection diagnostic...');
+      rawOutputEl.textContent = 'Running...';
+      dbDetailsEl.innerHTML = '';
+      ftpDetailsEl.innerHTML = '';
+      setPill(dbPillEl, null, 'Running');
+      setPill(ftpPillEl, null, 'Running');
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json'
+          },
+          cache: 'no-store'
+        });
+
+        const text = await response.text();
+        rawOutputEl.textContent = text;
+
+        let data = null;
+        if (text.trim().startsWith('<?php')) {
+          throw new Error('This host is serving the PHP diagnostic file as plain text. Open the page through a PHP-enabled host or pass ?endpoint=FULL_URL_TO_PHP_FILE.');
+        }
+
+        try {
+          data = JSON.parse(text);
+        } catch (error) {
+          throw new Error('Diagnostic endpoint did not return JSON.');
+        }
+
+        profileValueEl.textContent = data.profile || '-';
+        generatedAtValueEl.textContent = data.generatedAt || '-';
+        overallValueEl.textContent = data.ok ? 'PASS' : 'CHECK';
+
+        const db = data.database || {};
+        const ftp = data.ftp || {};
+
+        setPill(dbPillEl, !!db.ok, db.ok ? 'PASS' : 'FAIL');
+        setPill(ftpPillEl, !!ftp.ok, ftp.ok ? 'PASS' : 'FAIL');
+        renderDetails(dbDetailsEl, buildServiceRows(db));
+        renderDetails(ftpDetailsEl, buildServiceRows(ftp));
+
+        if (data.ok) {
+          setSummary('ok', 'Both MySQL and FTP checks passed. Review the raw JSON for the full transcript.');
+        } else {
+          const failures = [];
+          if (!db.ok) failures.push('MySQL');
+          if (!ftp.ok) failures.push('FTP');
+          setSummary('bad', failures.join(' and ') + ' failed. Review the stage and error detail below.');
+        }
+      } catch (error) {
+        setSummary('bad', error.message || 'Diagnostic request failed.');
+      } finally {
+        runBtn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

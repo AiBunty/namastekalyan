@@ -1,0 +1,1309 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title>Food Menu | Namaste Kalyan by AWG — Multi-Cuisine Dining in Kalyan</title>
+  <meta name="description" content="Browse the full food menu at Namaste Kalyan by AWG — starters, grills, chef specials, mocktails, and signature plates. Multi-cuisine fine dining in Kalyan, Maharashtra.">
+  <meta name="keywords" content="Namaste Kalyan menu, food menu Kalyan, restaurant menu Kalyan, multi-cuisine menu, chef special Kalyan, fine dining menu, AWG menu">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://namastekalyan.asianwokandgrill.in/menu/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant.menu">
+  <meta property="og:title" content="Food Menu | Namaste Kalyan by AWG">
+  <meta property="og:description" content="Starters, grills, chef specials, mocktails & signature plates. Browse the full menu.">
+  <meta property="og:image" content="https://namastekalyan.asianwokandgrill.in/assets/Logo/Namaste Kalyan by AWG -02.png">
+  <meta property="og:url" content="https://namastekalyan.asianwokandgrill.in/menu/">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Food Menu | Namaste Kalyan by AWG">
+  <meta name="twitter:description" content="Explore starters, grills, chef specials & mocktails at Namaste Kalyan, Kalyan.">
+  <meta name="twitter:image" content="https://namastekalyan.asianwokandgrill.in/assets/Logo/Namaste Kalyan by AWG -02.png">
+  <meta name="theme-color" content="#1a0a0a">
+  <link rel="icon" type="image/png" href="../assets/Logo/PHS. Logo -01.png?v=20260418-assetfix-3">
+  <link rel="apple-touch-icon" href="../assets/Logo/PHS. Logo -01.png?v=20260418-assetfix-3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+  >
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/modal-styles.css">
+  <!-- New CSS Architecture -->
+  <link rel="stylesheet" href="../css/shared.css?v=20260407-1">
+  <link rel="stylesheet" href="../css/menu-page.css?v=20260407-1">
+  <link rel="stylesheet" href="../css/responsive.css?v=20260407-1">
+  <link rel="stylesheet" href="../css/popups.css?v=20260327-4">
+  <link rel="stylesheet" href="../css/loader.css">
+  <link rel="stylesheet" href="../css/menu-blocker.css?v=20260412-2">
+  <link rel="stylesheet" href="../css/site-chrome.css?v=20260418-2">
+  <style>
+   /* 1. CORE SYSTEM */
+   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Manrope', sans-serif; color: var(--color-text-primary); line-height: 1.6; overflow-x: hidden; transition: background 0.4s ease; }
+   .theme-icon-btn { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #fff; }
+   .top-controls-bar { position: sticky; top: var(--header-h); z-index: 999; display: flex; align-items: center; gap: 12px; background: var(--color-bg-primary); padding: 12px 1rem; border-bottom: 1px solid rgba(0,0,0,0.05); overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+   .square-toggle-group { display: flex; background: var(--color-bg-secondary); border-radius: 12px; padding: 3px; }
+   .square-btn { font-size: 0.65rem; font-weight: 700; padding: 6px 12px; border-radius: 9px; color: var(--color-text-secondary); border: none; background: transparent; text-transform: uppercase; cursor: pointer; }
+/* Category Highlighter: solid color for active */
+.square-btn.active {
+    background: var(--color-accent-maroon) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 10px rgba(198,40,40,0.10);
+}
+
+  #nkSharedFooter {
+    display: block;
+    margin-top: 40px;
+  }
+
+  .concept-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+   
+  /* ════════ HAMBURGER MENU BUTTON ════════ */
+  .hamburger-menu {
+    position: fixed; top: 14px; right: 16px; width: 40px; height: 40px;
+    background: var(--color-accent-maroon); color: #fff; border: none;
+    border-radius: 8px; cursor: pointer; z-index: 2600; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 5px; font-size: 1.2rem; font-weight: 800;
+  }
+  .hamburger-menu:hover { background: rgba(198, 40, 40, 0.9); }
+  .hamburger-line { width: 22px; height: 2px; background: #fff; border-radius: 1px; }
+  /* Hide navbar links - all navigation in hamburger menu only */
+  .concept-nav { display: none !important; }
+  .concept-header-actions { display: none !important; }
+
+  .floating-actions-group { position: fixed; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 2500; transition: transform 0.25s ease, opacity 0.25s ease; }
+  .floating-actions-group.is-hidden { transform: translateY(-50%) translateX(120%); opacity: 0; pointer-events: none; }
+  .floating-action-btn { border: none; cursor: pointer; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+  .floating-action-btn.menu-action { writing-mode: vertical-rl; text-orientation: mixed; background: var(--color-accent-maroon); padding: 20px 10px; border-radius: 12px 0 0 12px; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; min-height: 112px; }
+  .floating-action-btn.icon-action { width: 44px; height: 44px; border-radius: 12px 0 0 12px; font-size: 1.1rem; font-weight: 800; }
+  .floating-action-btn.whatsapp-action { background: #25d366; }
+  .floating-action-btn.call-action { background: var(--color-accent-gold); color: #23180f; }
+  .floating-action-btn.hide-action { width: 32px; height: 32px; border-radius: 10px 0 0 10px; background: rgba(22, 22, 22, 0.9); font-size: 0.95rem; }
+  #floatingActionsReveal { position: fixed; right: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 64px; border: none; border-radius: 12px 0 0 12px; background: rgba(22, 22, 22, 0.94); color: #fff; display: none; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; z-index: 2500; cursor: pointer; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+  #floatingActionsReveal.visible { display: flex; }
+  #reviewBtn { position: fixed; left: 20px; bottom: 72px; background: var(--color-accent-gold); color: #23180f; padding: 8px 12px; border-radius: 12px; font-weight: 800; font-size: 0.75rem; border: none; cursor: pointer; z-index: 2600; display: none; box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
+  #reviewBtn:hover { filter: brightness(0.96); }
+  #scrollTopBtn { position: fixed; left: 20px; bottom: 24px; background: var(--color-accent-maroon); color: #fff; padding: 10px 12px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; border: none; cursor: pointer; z-index: 2600; display: none; box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
+   #sideNavContainer { position: fixed; right: -280px; top: 0; bottom: 0; width: 260px; background: var(--color-bg-secondary); z-index: 3000; padding: 40px 20px; box-shadow: -10px 0 30px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+   #sideNavContainer.open { transform: translateX(-280px); }
+   #categoryNavOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2800; display: none; backdrop-filter: blur(2px); }
+  #categoryNav { position: fixed; right: -280px; top: 0; bottom: 0; width: 260px; background: rgba(16, 12, 12, 0.82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-left: 1px solid rgba(255,255,255,0.08); z-index: 3000; padding: 40px 20px; box-shadow: -10px 0 30px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+   #categoryNav.open { transform: translateX(-280px); }
+   .cat-link { padding: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: rgba(255, 255, 255, 0.95); text-align: center; cursor: pointer; border: 1px solid rgba(0,0,0,0.05); transition: all 0.2s ease; text-decoration: none; display: block; }
+   .cat-link:hover { background: rgba(0, 0, 0, 0.4); transform: translateX(-2px); }
+
+   main { position: relative; width: 100%; min-height: 80vh; } 
+   .container { padding: 1rem; max-width: 1200px; margin: 0 auto; scroll-margin-top: 160px; }
+   .menu-category {
+     --category-accent: var(--color-accent-gold);
+     --category-accent-soft: rgba(240, 196, 143, 0.18);
+     --category-accent-glow: rgba(240, 196, 143, 0.16);
+     content-visibility: auto;
+     contain-intrinsic-size: 1200px;
+   }
+   .menu-category[data-accent="gold"] {
+     --category-accent: #f0c48f;
+     --category-accent-soft: rgba(240, 196, 143, 0.18);
+     --category-accent-glow: rgba(240, 196, 143, 0.16);
+   }
+   .menu-category[data-accent="copper"] {
+     --category-accent: #d79a72;
+     --category-accent-soft: rgba(215, 154, 114, 0.18);
+     --category-accent-glow: rgba(215, 154, 114, 0.16);
+   }
+   .menu-category[data-accent="ruby"] {
+     --category-accent: #d66a7a;
+     --category-accent-soft: rgba(214, 106, 122, 0.16);
+     --category-accent-glow: rgba(214, 106, 122, 0.14);
+   }
+   .menu-category[data-accent="olive"] {
+     --category-accent: #a7b07c;
+     --category-accent-soft: rgba(167, 176, 124, 0.16);
+     --category-accent-glow: rgba(167, 176, 124, 0.14);
+   }
+   .menu-category .section-title {
+     width: min(100%, 620px);
+     margin: 2rem auto 1.5rem;
+     padding: 18px 28px;
+     font-size: 1.5rem;
+     color: var(--color-text-primary);
+     font-weight: 700;
+     text-transform: capitalize;
+     letter-spacing: 2px;
+     text-align: center;
+     position: relative;
+     border: 1px solid var(--category-accent-soft);
+     border-left: 4px solid var(--category-accent);
+     border-right: 4px solid var(--category-accent);
+     border-bottom: 1px solid var(--category-accent-soft);
+     border-radius: 20px;
+     background:
+       radial-gradient(circle at center, var(--category-accent-soft) 0%, rgba(0, 0, 0, 0) 72%),
+       linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.18));
+     box-shadow:
+       0 16px 34px rgba(0, 0, 0, 0.24),
+       0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+       0 0 22px var(--category-accent-glow);
+     overflow: hidden;
+   }
+   .menu-category .section-title::before {
+     content: "";
+     position: absolute;
+     inset: 8px;
+     border: 1px solid rgba(255, 255, 255, 0.08);
+     border-radius: 14px;
+     pointer-events: none;
+   }
+   .menu-category .section-title::after {
+     content: "";
+     position: absolute;
+     left: 50%;
+     bottom: 8px;
+     transform: translateX(-50%);
+     width: 120px;
+     height: 2px;
+     background: linear-gradient(90deg, transparent, var(--category-accent), transparent);
+     box-shadow: 0 0 16px var(--category-accent-glow);
+   }
+   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; }
+   @media (min-width: 1024px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+   
+   .card { background: var(--color-card-bg); border-radius: var(--radius-card); overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: var(--shadow-soft); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid rgba(0,0,0,0.02); }
+   .card:hover, .card:active { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--color-accent-gold); }
+   .card { contain: layout paint style; }
+   .img-box { padding: 15px 15px 0; display: flex; justify-content: center; align-items: center; transition: 0.3s; position: relative; }
+   .img-container-circle { width: 100%; aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; border: 3px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+   .img-main { width: 100%; height: 100%; object-fit: cover; }
+   
+
+   .card-body { padding: 12px; flex-grow: 1; position: relative; }
+   .card-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; width: 100%; margin-bottom: 4px; }
+   .header-right-symbols { display: flex; align-items: center; gap: 5px; flex-shrink: 0; margin-left: auto; }
+   
+   .badge-type { width: 18px; height: 18px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; border: 1px solid #ddd; }
+   .dot { width: 8px; height: 8px; border-radius: 50%; }
+   .dot.veg { background: var(--color-veg); }
+   .dot.nonveg { background: var(--color-nonveg); }
+   .dot.jain { background: var(--color-jain); }
+   
+   .jain-badge { background: var(--color-jain); color: #fff; font-size: 0.5rem; font-weight: 900; padding: 2px 5px; border-radius: 4px; text-transform: uppercase; line-height: 1; }
+   .chef-badge { background: #fff; color: var(--color-accent-maroon); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+   .item-name { font-size: 0.95rem; font-weight: 600; color: var(--color-text-primary); line-height: 1.2; flex: 1; }
+   .serving-remark { font-size: 0.65rem; color: var(--color-accent-gold); font-weight: 700; background: rgba(184, 147, 85, 0.1); padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; }
+   .spice-indicator { display: inline-flex; gap: 2px; font-size: 0.85rem; line-height: 1; vertical-align: middle; flex-shrink: 0; }
+   .item-desc { font-size: 0.75rem; color: var(--color-text-secondary); margin: 4px 0 10px 0; line-height: 1.4; cursor: pointer; overflow: hidden; }
+  .item-desc.collapsed { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; }
+   .item-desc::after { content: "▾ More"; display: block; font-size: 0.6rem; color: var(--color-accent-gold); margin-top: 4px; font-weight: 700; }
+   .item-desc.expanded::after { content: "▴ Less"; }
+   
+   .variant-chip, .qty-chip { padding: 5px 12px; border-radius: 8px; font-size: 0.65rem; font-weight: 800; background: var(--color-bg-primary); color: var(--color-text-secondary); cursor: pointer; white-space: nowrap; transition: 0.2s; border: 1px solid rgba(0,0,0,0.05); margin-bottom: 4px; }
+   .variant-chip.active.v-veg { background: var(--color-veg) !important; color: #FFFFFF !important; border-color: var(--color-veg) !important; }
+   .variant-chip.active.v-non { background: var(--color-nonveg) !important; color: #FFFFFF !important; border-color: var(--color-nonveg) !important; }
+   .variant-chip.active.v-jain { background: var(--color-jain) !important; color: #FFFFFF !important; border-color: var(--color-jain) !important; }
+  .qty-chip.active { background: var(--color-accent-maroon); color: #FFFFFF; border-color: var(--color-accent-maroon); box-shadow: 0 0 0 2px rgba(255,255,255,0.32), 0 8px 18px rgba(0,0,0,0.16); transform: translateY(-1px); }
+  .qty-chip.active.chip-medium,
+  .qty-chip.active.chip-large { background: linear-gradient(135deg, #b71c1c, #d84343); border-color: #d84343; }
+   
+   .price { font-size: 1.1rem; font-weight: 800; color: var(--color-text-primary); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 10px; margin-top: 5px; display: flex; justify-content: space-between; align-items: center; }
+
+   body.menu-performance-mode .card {
+     backdrop-filter: none !important;
+     -webkit-backdrop-filter: none !important;
+     box-shadow: 0 12px 24px rgba(0,0,0,0.16) !important;
+   }
+   body.menu-performance-mode .card:hover,
+   body.menu-performance-mode .card:active {
+     transform: none;
+     box-shadow: 0 14px 26px rgba(0,0,0,0.18) !important;
+   }
+   body.menu-performance-mode .menu-category .section-title,
+   body.menu-performance-mode #sideNavOverlay {
+     backdrop-filter: none;
+     -webkit-backdrop-filter: none;
+   }
+   body.menu-performance-mode .img-container-circle {
+     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+   }
+
+   footer { background: #000000; color: #F2EDE4; padding: 4rem 1.5rem; text-align: center; border-top: 2px solid var(--color-accent-gold); }
+   .branch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; text-align: left; max-width: 1200px; margin: 0 auto; }
+   /* legacy site-header-menu CSS removed — navbar provided by concept-header in styles-copy.css */
+   .branch-item { background: #111; padding: 20px; border-radius: 15px; border: 1px solid #333; }
+   .branch-logo { height: 50px; margin-bottom: 15px; object-fit: contain; }
+   .branch-socials { display: flex; gap: 15px; margin-top: 15px; align-items: center; }
+   .branch-socials a svg { width: 22px; height: 22px; fill: var(--color-accent-gold); transition: 0.3s; }
+   .branch-socials a:hover svg { fill: #fff; transform: translateY(-3px); }
+   .sync-info { font-size: 0.65rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; margin-top: 3rem; }
+  #loader { position: fixed; inset: 0; background: radial-gradient(circle at 20% 20%, #17202f 0%, #090d14 58%, #000 100%); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; transition: opacity 0.45s ease; }
+  #loader.fade-out { opacity: 0; pointer-events: none; }
+  .loader-orbit { position: relative; width: 92px; height: 92px; display: grid; place-items: center; }
+  .loader-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(255,255,255,0.15); border-top-color: var(--color-accent-gold); animation: spin 1.05s linear infinite; }
+  .loader-ring.inner { inset: 12px; border-top-color: var(--color-accent-maroon); animation-duration: 1.5s; animation-direction: reverse; }
+  .loader-dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px rgba(255,255,255,0.8); animation: pulse 0.95s ease-in-out infinite alternate; }
+  .loader-typed { min-height: 20px; font-size: 0.72rem; letter-spacing: 2px; color: #fff; text-transform: uppercase; }
+  .loader-sub { color: rgba(255,255,255,0.65); font-size: 0.63rem; letter-spacing: 1.2px; text-transform: uppercase; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes pulse { from { transform: scale(0.75); opacity: 0.6; } to { transform: scale(1.05); opacity: 1; } }
+  /* Responsive tweaks: compact legend/symbol cards on smaller screens */
+  @media (max-width: 768px) {
+    .legend-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .legend-card { padding: 10px !important; border-radius: 10px !important; }
+    .legend-card > div { font-size: 0.98rem !important; }
+    .legend-card span { font-size: 0.85rem !important; color: #777 !important; }
+    .legend-title { font-size: 1.1rem !important; }
+    .menu-category .section-title {
+      width: 100%;
+      padding: 16px 18px;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+    .menu-category .section-title::after { width: 88px; }
+  }
+
+  @media (max-width: 420px) {
+    .legend-grid { grid-template-columns: repeat(1, 1fr) !important; gap: 10px !important; }
+    .legend-card { padding: 8px !important; display: flex !important; flex-direction: row !important; align-items: center !important; gap: 10px !important; }
+    .legend-card > div { font-size: 0.95rem !important; margin: 0 !important; flex: 0 0 auto !important; }
+    .legend-card span { font-size: 0.82rem !important; }
+    .legend-card span + span { display: none !important; }
+    .legend-title { font-size: 1rem !important; margin-bottom: 1rem !important; }
+  }
+
+  </style>
+  <link rel="stylesheet" href="../css/shared-page.css?v=20260327-1">
+
+ </head>
+ <body class="concept-body" id="menuBody">
+  <div id="loader">
+   <img alt="AWG Namaste Kalyan logo" src="../assets/Logo/Namaste Kalyan by AWG -02.png?v=20260418-assetfix-3" style="height:80px;object-fit:contain;"/>
+     <div class="loader-orbit" aria-hidden="true">
+      <div class="loader-ring"></div>
+      <div class="loader-ring inner"></div>
+      <div class="loader-dot"></div>
+     </div>
+     <div id="loaderTypedText" class="loader-typed"></div>
+    <div class="loader-sub">Fetching live menu from Namaste Kalyans Kitchen</div>
+  </div>
+
+  <div id="menuBlockerOverlay" class="mb-overlay hidden" aria-modal="true" role="dialog" aria-label="Unlock menu">
+    <div class="mb-card">
+      <div id="mbStepForm" class="mb-step active">
+        <h2 class="mb-title">Spin &amp; Win Discounts</h2>
+        <p class="mb-subtitle">Win upto 50% off on your food bill u just need to fill the form below.</p>
+        <label class="mb-label" for="mbName">Name *</label>
+        <input id="mbName" class="mb-input" type="text" maxlength="60" placeholder="Enter your name" autocomplete="name" />
+        <label class="mb-label" for="mbPhone">Mobile Number *</label>
+        <div class="mb-phone-row">
+          <select id="mbCountryCode" class="mb-select" aria-label="Country code">
+            <option value="93">AF +93</option>
+            <option value="355">AL +355</option>
+            <option value="213">DZ +213</option>
+            <option value="376">AD +376</option>
+            <option value="244">AO +244</option>
+            <option value="54">AR +54</option>
+            <option value="374">AM +374</option>
+            <option value="61">AU +61</option>
+            <option value="43">AT +43</option>
+            <option value="994">AZ +994</option>
+            <option value="973">BH +973</option>
+            <option value="880">BD +880</option>
+            <option value="375">BY +375</option>
+            <option value="32">BE +32</option>
+            <option value="501">BZ +501</option>
+            <option value="229">BJ +229</option>
+            <option value="975">BT +975</option>
+            <option value="591">BO +591</option>
+            <option value="387">BA +387</option>
+            <option value="267">BW +267</option>
+            <option value="55">BR +55</option>
+            <option value="673">BN +673</option>
+            <option value="359">BG +359</option>
+            <option value="226">BF +226</option>
+            <option value="257">BI +257</option>
+            <option value="855">KH +855</option>
+            <option value="237">CM +237</option>
+            <option value="1">CA +1</option>
+            <option value="238">CV +238</option>
+            <option value="236">CF +236</option>
+            <option value="235">TD +235</option>
+            <option value="56">CL +56</option>
+            <option value="86">CN +86</option>
+            <option value="57">CO +57</option>
+            <option value="269">KM +269</option>
+            <option value="242">CG +242</option>
+            <option value="243">CD +243</option>
+            <option value="506">CR +506</option>
+            <option value="385">HR +385</option>
+            <option value="53">CU +53</option>
+            <option value="357">CY +357</option>
+            <option value="420">CZ +420</option>
+            <option value="45">DK +45</option>
+            <option value="253">DJ +253</option>
+            <option value="1">DO +1</option>
+            <option value="593">EC +593</option>
+            <option value="20">EG +20</option>
+            <option value="503">SV +503</option>
+            <option value="240">GQ +240</option>
+            <option value="291">ER +291</option>
+            <option value="372">EE +372</option>
+            <option value="251">ET +251</option>
+            <option value="679">FJ +679</option>
+            <option value="358">FI +358</option>
+            <option value="33">FR +33</option>
+            <option value="241">GA +241</option>
+            <option value="220">GM +220</option>
+            <option value="995">GE +995</option>
+            <option value="49">DE +49</option>
+            <option value="233">GH +233</option>
+            <option value="30">GR +30</option>
+            <option value="502">GT +502</option>
+            <option value="224">GN +224</option>
+            <option value="245">GW +245</option>
+            <option value="592">GY +592</option>
+            <option value="509">HT +509</option>
+            <option value="504">HN +504</option>
+            <option value="36">HU +36</option>
+            <option value="354">IS +354</option>
+            <option value="91" selected>IN +91</option>
+            <option value="62">ID +62</option>
+            <option value="98">IR +98</option>
+            <option value="964">IQ +964</option>
+            <option value="353">IE +353</option>
+            <option value="972">IL +972</option>
+            <option value="39">IT +39</option>
+            <option value="225">CI +225</option>
+            <option value="1">JM +1</option>
+            <option value="81">JP +81</option>
+            <option value="962">JO +962</option>
+            <option value="7">KZ +7</option>
+            <option value="254">KE +254</option>
+            <option value="965">KW +965</option>
+            <option value="996">KG +996</option>
+            <option value="856">LA +856</option>
+            <option value="371">LV +371</option>
+            <option value="961">LB +961</option>
+            <option value="266">LS +266</option>
+            <option value="231">LR +231</option>
+            <option value="218">LY +218</option>
+            <option value="423">LI +423</option>
+            <option value="370">LT +370</option>
+            <option value="352">LU +352</option>
+            <option value="261">MG +261</option>
+            <option value="265">MW +265</option>
+            <option value="60">MY +60</option>
+            <option value="960">MV +960</option>
+            <option value="223">ML +223</option>
+            <option value="356">MT +356</option>
+            <option value="222">MR +222</option>
+            <option value="230">MU +230</option>
+            <option value="52">MX +52</option>
+            <option value="373">MD +373</option>
+            <option value="377">MC +377</option>
+            <option value="976">MN +976</option>
+            <option value="382">ME +382</option>
+            <option value="212">MA +212</option>
+            <option value="258">MZ +258</option>
+            <option value="95">MM +95</option>
+            <option value="264">NA +264</option>
+            <option value="977">NP +977</option>
+            <option value="31">NL +31</option>
+            <option value="64">NZ +64</option>
+            <option value="505">NI +505</option>
+            <option value="227">NE +227</option>
+            <option value="234">NG +234</option>
+            <option value="850">KP +850</option>
+            <option value="47">NO +47</option>
+            <option value="968">OM +968</option>
+            <option value="92">PK +92</option>
+            <option value="970">PS +970</option>
+            <option value="507">PA +507</option>
+            <option value="675">PG +675</option>
+            <option value="595">PY +595</option>
+            <option value="51">PE +51</option>
+            <option value="63">PH +63</option>
+            <option value="48">PL +48</option>
+            <option value="351">PT +351</option>
+            <option value="974">QA +974</option>
+            <option value="40">RO +40</option>
+            <option value="7">RU +7</option>
+            <option value="250">RW +250</option>
+            <option value="966">SA +966</option>
+            <option value="221">SN +221</option>
+            <option value="381">RS +381</option>
+            <option value="248">SC +248</option>
+            <option value="232">SL +232</option>
+            <option value="65">SG +65</option>
+            <option value="421">SK +421</option>
+            <option value="386">SI +386</option>
+            <option value="27">ZA +27</option>
+            <option value="82">KR +82</option>
+            <option value="211">SS +211</option>
+            <option value="34">ES +34</option>
+            <option value="94">LK +94</option>
+            <option value="249">SD +249</option>
+            <option value="597">SR +597</option>
+            <option value="46">SE +46</option>
+            <option value="41">CH +41</option>
+            <option value="963">SY +963</option>
+            <option value="886">TW +886</option>
+            <option value="992">TJ +992</option>
+            <option value="255">TZ +255</option>
+            <option value="66">TH +66</option>
+            <option value="228">TG +228</option>
+            <option value="216">TN +216</option>
+            <option value="90">TR +90</option>
+            <option value="993">TM +993</option>
+            <option value="256">UG +256</option>
+            <option value="380">UA +380</option>
+            <option value="971">AE +971</option>
+            <option value="44">UK +44</option>
+            <option value="1">US +1</option>
+            <option value="598">UY +598</option>
+            <option value="998">UZ +998</option>
+            <option value="58">VE +58</option>
+            <option value="84">VN +84</option>
+            <option value="967">YE +967</option>
+            <option value="260">ZM +260</option>
+            <option value="263">ZW +263</option>
+          </select>
+          <input id="mbPhone" class="mb-input" type="tel" maxlength="10" placeholder="Enter mobile number" autocomplete="tel" inputmode="numeric" />
+        </div>
+        <div class="mb-two-col">
+          <div>
+            <label class="mb-label" for="mbDob">Date of Birth</label>
+            <div class="mb-date-wrap">
+              <input id="mbDob" class="mb-input mb-date-input" type="text" maxlength="10" placeholder="DD/MM/YYYY" inputmode="numeric" autocomplete="bday" />
+              <button id="mbDobPickerBtn" class="mb-date-btn" type="button" aria-label="Select date of birth">📅</button>
+              <input id="mbDobPicker" class="mb-date-picker" type="date" tabindex="-1" aria-hidden="true" />
+            </div>
+            <p class="mb-date-help">Type DD/MM/YYYY or use calendar.</p>
+          </div>
+          <div>
+            <label class="mb-label" for="mbAnniversary">Date of Anniversary</label>
+            <div class="mb-date-wrap">
+              <input id="mbAnniversary" class="mb-input mb-date-input" type="text" maxlength="10" placeholder="DD/MM/YYYY" inputmode="numeric" autocomplete="off" />
+              <button id="mbAnniversaryPickerBtn" class="mb-date-btn" type="button" aria-label="Select date of anniversary">📅</button>
+              <input id="mbAnniversaryPicker" class="mb-date-picker" type="date" tabindex="-1" aria-hidden="true" />
+            </div>
+            <p class="mb-date-help">Optional. Leave blank if not applicable.</p>
+          </div>
+        </div>
+        <p id="mbFormStatus" class="mb-subtitle">Fill details and submit to continue to spin.</p>
+        <p id="mbFormError" class="mb-error" aria-live="polite"></p>
+        <div class="mb-row">
+          <button id="mbFormSubmitBtn" class="mb-btn" type="button">Submit &amp; Continue To Spin</button>
+        </div>
+        <div class="mb-staff-toggle-row">
+          <button id="mbStaffToggle" class="mb-staff-toggle" type="button">Staff Device Access</button>
+        </div>
+        <div id="mbStaffPanel" class="mb-staff-panel" aria-hidden="true">
+          <input id="mbStaffCode" class="mb-input" type="password" maxlength="40" placeholder="Enter staff secret code" autocomplete="off" />
+          <div class="mb-row">
+            <button id="mbStaffBypassBtn" class="mb-btn mb-btn-secondary" type="button">Bypass Blocker</button>
+          </div>
+          <p id="mbStaffMsg" class="mb-error" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div id="mbStepSpin" class="mb-step">
+        <h2 class="mb-title">Lucky Spin Wheel</h2>
+        <p class="mb-subtitle">You can win upto 50% off. Spin now.</p>
+        <div class="mb-wheel-wrap">
+          <canvas id="mbWheelCanvas" width="320" height="320" aria-label="Prize wheel"></canvas>
+          <div class="mb-pointer"></div>
+        </div>
+        <div class="mb-row">
+          <button id="mbSpinBtn" class="mb-btn">Spin Now</button>
+        </div>
+        <p id="mbSpinStatus" class="mb-status" aria-live="polite"></p>
+      </div>
+
+      <div id="mbStepResult" class="mb-step">
+        <h2 class="mb-title">Your Result</h2>
+        <p id="mbResultText" class="mb-result">Try Again Next Time</p>
+        <p id="mbResultHint" class="mb-subtitle"></p>
+        <p id="mbCouponCode" class="mb-result-code" hidden></p>
+        <div id="mbCouponActions" class="mb-row" hidden>
+          <button id="mbCopyCouponBtn" class="mb-btn" type="button">Copy Coupon Code</button>
+          <button id="mbSendCouponBtn" class="mb-btn mb-btn-secondary" type="button">Send To Admin WhatsApp</button>
+        </div>
+        <p id="mbCouponActionStatus" class="mb-status" aria-live="polite"></p>
+        <div class="mb-row">
+          <button id="mbContinueBtn" class="mb-btn">View Menu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FRESH MENU GUIDE POPUP ═══ -->
+  <div id="menuGuidePopupId">
+    <div class="guide-modal">
+      <button class="guide-close" onclick="dismissMenuGuidePopup()" aria-label="Close popup">&times;</button>
+      <div class="guide-content">
+        <h2 class="guide-title">Menu Symbols Guide</h2>
+        <p class="guide-subtitle">Learn what each icon means</p>
+        
+        <div class="symbols-container">
+          <div class="symbol-guide-card">
+            <div class="symbol-guide-row">
+              <span class="symbol-icon"><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(255,255,255,0.93);border-radius:4px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--color-veg);display:block;"></span></span></span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Veg</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Vegetarian</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon"><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(255,255,255,0.93);border-radius:4px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--color-nonveg);display:block;"></span></span></span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Non-Veg</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Meat/Seafood</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon"><span style="display:inline-flex;align-items:center;justify-content:center;gap:2px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:rgba(255,255,255,0.93);border-radius:3px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--color-jain);display:block;"></span></span><span style="background:var(--color-jain);color:#fff;font-size:0.35rem;font-weight:900;padding:1px 3px;border-radius:2px;text-transform:uppercase;white-space:nowrap;">Jain</span></span></span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Jain</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">No roots</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🌶️🌶️</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Spicy</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Very hot</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🌶️</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Medium</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Moderate heat</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🍃</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Mild</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">No heat</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🍯</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Sweet</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Sweet taste</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">🍬</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Mild Sweet</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Lightly sweet</span></div>
+            </div>
+            <div class="symbol-guide-row">
+              <span class="symbol-icon">👨‍🍳</span>
+              <div class="symbol-text"><span class="symbol-label" style="display:block;color:#fff;opacity:1;visibility:visible;">Chef Pick</span><span class="symbol-desc" style="display:block;color:rgba(255,255,255,0.72);opacity:1;visibility:visible;">Recommended</span></div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="guide-button" onclick="dismissMenuGuidePopup()">Explore Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-shell">
+
+  <div id="nkSharedNavbar"></div>
+  <div class="top-controls-bar">
+   <div class="square-toggle-group">
+    <button class="square-btn active" id="f-all" onclick="updateFilter('ALL')">
+     ALL
+    </button>
+    <button class="square-btn" id="f-veg" onclick="updateFilter('VEG')">
+     VEG
+    </button>
+    <button class="square-btn" id="f-non" onclick="updateFilter('NON')">
+     NON
+    </button>
+   </div>
+   <div class="square-toggle-group">
+    <button class="square-btn active" id="jain-off" onclick="setJainToggle(false)">
+     ALL
+    </button>
+    <button class="square-btn" id="jain-on" onclick="setJainToggle(true)">
+     JAIN
+    </button>
+   </div>
+   <div class="square-toggle-group">
+    <button class="square-btn active" id="chef-off" onclick="setChefToggle(false)">
+     ALL
+    </button>
+    <button class="square-btn" id="chef-on" onclick="setChefToggle(true)">
+     ⭐ CHEF
+    </button>
+   </div>
+    <div class="menu-search-wrap">
+     <input id="menuSearchInput" type="search" placeholder="Search dishes, category, spice..." aria-label="Search menu items" oninput="setMenuSearchQuery(this.value)">
+    </div>
+    <button class="square-btn" type="button" onclick="toggleCategoryNav(true)">CATEGORIES</button>
+  </div>
+  <button id="reviewBtn" onclick="openGoogleReview()" aria-label="Write a Google review">⭐ REVIEW</button>
+  <button id="scrollTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">↑ TOP</button>
+  <div id="categoryNavOverlay" onclick="toggleCategoryNav(false)"></div>
+  <div id="categoryNav">
+   <div id="categoryList">
+   </div>
+  </div>
+  <main id="menuMain">
+  </main>
+
+  <!-- ═══ SYMBOL LEGEND ═══ -->
+  <section id="symbol-legend" class="legend-section">
+    <h2 class="legend-title">Menu Symbols Guide</h2>
+    <p class="legend-subtitle">Understand the icons used across our menu</p>
+    <div class="legend-grid">
+      <div class="legend-card">
+        <span class="legend-icon"><span class="badge-type"><span class="dot veg"></span></span></span>
+        <span class="legend-label">Vegetarian</span>
+        <span class="legend-desc">Pure veg preparation</span>
+      </div>
+      <div class="legend-card">
+        <span class="legend-icon"><span class="badge-type"><span class="dot nonveg"></span></span></span>
+        <span class="legend-label">Non-Vegetarian</span>
+        <span class="legend-desc">Contains meat / seafood</span>
+      </div>
+      <div class="legend-card">
+        <span class="legend-icon"><span class="badge-type"><span class="dot jain"></span></span> <span class="jain-badge">JAIN</span></span>
+        <span class="legend-label">Jain</span>
+        <span class="legend-desc">No onion, no garlic</span>
+      </div>
+      <div class="legend-card">
+        <span class="legend-icon legend-emoji">🌶️🌶️</span>
+        <span class="legend-label">Spicy</span>
+        <span class="legend-desc">Bold &amp; fiery heat</span>
+      </div>
+      <div class="legend-card">
+        <span class="legend-icon legend-emoji">🌶️</span>
+        <span class="legend-label">Medium Spicy</span>
+        <span class="legend-desc">Moderate warmth</span>
+      </div>
+      <div class="legend-card">
+        <span class="legend-icon legend-emoji">🍃</span>
+        <span class="legend-label">Non Spicy</span>
+        <span class="legend-desc">Mild &amp; gentle flavour</span>
+      </div>
+      <div class="legend-card">
+        <span class="legend-icon legend-emoji">🍯</span>
+        <span class="legend-label">Sweet</span>
+        <span class="legend-desc">Rich sweet profile</span>
+      </div>
+      <div class="legend-card">
+        <span class="legend-icon legend-emoji">🍬</span>
+        <span class="legend-label">Mild Sweet</span>
+        <span class="legend-desc">Subtle sweetness</span>
+      </div>
+      <div class="legend-card">
+        <span class="legend-icon legend-emoji">👨‍🍳</span>
+        <span class="legend-label">Chef Special</span>
+        <span class="legend-desc">Handpicked by our chef</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="order-online" style="padding:40px 20px;background:#fff8ef;text-align:center;">
+  <h2 style="margin:0 0 24px;font-size:38px;letter-spacing:1px;color:#1f0000;font-family:'Cormorant Garamond', serif;">Order Online</h2>
+  <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;">
+    <a href="https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane/" target="_blank" rel="noopener" aria-label="Order on Zomato" style="display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border:1px solid #e7d5b4;border-radius:999px;background:#ffffff;text-decoration:none;color:#1f0000;font-family:'Poppins', sans-serif;font-weight:600;">
+      <img src="https://cdn.simpleicons.org/zomato/e23744" alt="Zomato" style="width:30px;height:30px;">
+      <span>Zomato</span>
+    </a>
+    <a href="https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout" target="_blank" rel="noopener" aria-label="Order on Swiggy" style="display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border:1px solid #e7d5b4;border-radius:999px;background:#ffffff;text-decoration:none;color:#1f0000;font-family:'Poppins', sans-serif;font-weight:600;">
+      <img src="https://cdn.simpleicons.org/swiggy/fc8019" alt="Swiggy" style="width:30px;height:30px;">
+      <span>Swiggy</span>
+    </a>
+  </div>
+</section>
+
+  <div id="nkSharedFooter"></div>
+  </div>
+  <script src="../js/data-config.js?v=20260418-assetfix-3"></script>
+  <script src="../js/shared-site-chrome.js?v=20260420-booking-page-1"></script>
+  <script>
+  // ============================================================
+  //  DB API — source of truth for menu data (replaces Google Sheets)
+  // ============================================================
+  const FOOD_MENU_API_URL = (window.NK_DATA_API && window.NK_DATA_API.phpApiUrl)
+    ? window.NK_DATA_API.phpApiUrl + '?action=food_menu_items'
+    : '/?action=food_menu_items';
+
+   let MENU_DB = [];
+   let foodFilter = 'ALL'; 
+   let showChefOnly = false; 
+   let showJainOnly = false;
+  let menuSearchQuery = '';
+   let activeVariant = {}; 
+   let activeQty = {}; 
+
+    const MENU_CACHE_KEY = 'menu-cache:db:v1';
+    const MENU_WARM_IMAGE_LIMIT = 10;
+    const MENU_FETCH_TIMEOUT_MS = 15000;
+    let menuRenderToken = 0;
+    let menuPerformanceMode = false;
+
+     function shouldEnableMenuPerformanceMode(itemCount = 0) {
+       const ua = navigator.userAgent || '';
+       const mobileViewport = window.matchMedia('(max-width: 900px)').matches;
+       const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+       const saveData = !!(navigator.connection && navigator.connection.saveData);
+       const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
+       const isMobileChrome = /(Chrome|CriOS)\//i.test(ua) && !/(EdgA|OPR|SamsungBrowser)\//i.test(ua) && /(Android|iPhone|iPad|iPod)/i.test(ua);
+       return mobileViewport && coarsePointer && (isMobileChrome || lowMemory || saveData || itemCount >= 90);
+     }
+
+     function applyMenuPerformanceMode(itemCount = 0) {
+       menuPerformanceMode = shouldEnableMenuPerformanceMode(itemCount);
+       document.body.classList.toggle('menu-performance-mode', menuPerformanceMode);
+     }
+
+     function normalizeImageUrl(rawUrl) {
+       const fallback = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400';
+       const value = String(rawUrl || '').trim();
+       if (!value) return fallback;
+
+       if (value.startsWith('//')) return `https:${value}`;
+       if (/^https?:\/\//i.test(value)) return value.replace(/\s/g, '%20');
+
+       try {
+         const resolved = new URL(value, window.location.href).toString();
+         return resolved.replace(/\s/g, '%20');
+       } catch (_) {
+         return fallback;
+       }
+     }
+
+     function registerMenuCacheWorker() {
+       if (!('serviceWorker' in navigator)) return;
+       const swUrl = new URL('../js/menu-cache-sw.js', window.location.href).pathname;
+       navigator.serviceWorker.register(swUrl, { scope: './' }).catch(() => {});
+     }
+
+     async function fetchFoodMenuFromDb() {
+       const controller = new AbortController();
+       const tid = setTimeout(() => { try { controller.abort(); } catch (_) {} }, MENU_FETCH_TIMEOUT_MS);
+       try {
+         const res = await fetch(FOOD_MENU_API_URL, { cache: 'no-store', signal: controller.signal });
+         if (!res.ok) throw new Error(`DB_HTTP_${res.status}`);
+         const data = await res.json();
+         if (!data || !data.ok) throw new Error(data && data.error ? data.error : 'DB_API_ERROR');
+         return Array.isArray(data.items) ? data.items : [];
+       } finally {
+         clearTimeout(tid);
+       }
+     }
+
+     async function loadMenuDataWithCache() {
+       try {
+         const items = await fetchFoodMenuFromDb();
+         try { localStorage.setItem(MENU_CACHE_KEY, JSON.stringify({ items, ts: Date.now() })); } catch (_) {}
+         return { items, fromCache: false };
+       } catch (liveErr) {
+         console.warn('Live DB menu fetch failed, trying cache:', liveErr && liveErr.message ? liveErr.message : liveErr);
+       }
+       try {
+         const cached = JSON.parse(localStorage.getItem(MENU_CACHE_KEY) || 'null');
+         if (cached && Array.isArray(cached.items) && cached.items.length) {
+           return { items: cached.items, fromCache: true };
+         }
+       } catch (_) {}
+       throw new Error('MENU_UNAVAILABLE_NO_CACHE');
+     }
+
+     function warmMenuAssets(items) {
+       if (!('serviceWorker' in navigator) || menuPerformanceMode) return;
+       if (navigator.connection && navigator.connection.saveData) return;
+       const warmLimit = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4 ? 4 : MENU_WARM_IMAGE_LIMIT;
+       const imageUrls = [...new Set((items || []).map(i => i && i.img).filter(Boolean))].slice(0, warmLimit);
+       const urls = [FOOD_MENU_API_URL, ...imageUrls];
+       navigator.serviceWorker.ready.then((reg) => {
+         const target = reg.active || reg.waiting || reg.installing;
+         if (target) target.postMessage({ type: 'WARM_CACHE', urls });
+       }).catch(() => {});
+     }
+
+     registerMenuCacheWorker();
+
+   async function init() {
+       console.log('[DATA API] menu.html → DB API (' + FOOD_MENU_API_URL + ')');
+       try {
+         const { items, fromCache } = await loadMenuDataWithCache();
+         if (fromCache) console.warn('[MENU] Loaded from localStorage cache');
+
+         window.NON_VEG_WORDS = ['chicken','mutton','basa','prawns','prawn','surmai','pomfret','crab','egg','eggs'];
+
+         const PROTEIN_COLS = {
+           price_veg: 'Veg', price_chicken: 'Chicken', price_mutton: 'Mutton',
+           price_basa: 'Basa', price_prawns: 'Prawns', price_surmai: 'Surmai',
+           price_pomfret: 'Pomfret', price_crab: 'Crab', price_egg: 'Egg'
+         };
+         const SERVING_COLS = {
+           price_half: 'Half', price_full: 'Full', price_plain: 'Plain',
+           price_butter: 'Butter', price_medium: 'Medium', price_large: 'Large',
+           price_direct: 'Direct'
+         };
+         const VEG_XPCS = ['Veg 2Pcs', 'Veg 4pcs', 'Veg 6pcs', 'Veg 9pcs', 'Veg 12pcs'];
+         const VARIANT_PROTEIN_LABELS = new Set(['Veg','Chicken','Mutton','Basa','Prawns','Surmai','Pomfret','Crab','Egg']);
+         const VARIANT_SERVING_LABELS = new Set(['Half','Full','Plain','Butter','Medium','Large','Direct', ...VEG_XPCS]);
+
+         const parsedMenuItems = items.map(item => {
+           const proteins = {};
+           const servings = {};
+           if (item.pricing_mode === 'custom_variants') {
+             (item.variants || []).slice().sort((a, b) => a.variant_sort_order - b.variant_sort_order).forEach(v => {
+               if (VEG_XPCS.includes(v.variant_label)) servings[v.variant_label] = v.price;
+               else if (VARIANT_PROTEIN_LABELS.has(v.variant_label)) proteins[v.variant_label] = v.price;
+               else if (VARIANT_SERVING_LABELS.has(v.variant_label)) servings[v.variant_label] = v.price;
+               else proteins[v.variant_label] = v.price;
+             });
+           } else {
+             Object.entries(PROTEIN_COLS).forEach(([col, label]) => {
+               const val = item[col];
+               if (val !== null && val !== undefined) proteins[label] = val;
+             });
+             Object.entries(SERVING_COLS).forEach(([col, label]) => {
+               const val = item[col];
+               if (val !== null && val !== undefined) servings[label] = val;
+             });
+           }
+           const jainPrice = (item.price_jain !== null && item.price_jain !== undefined) ? item.price_jain : null;
+           const isVeg = !!item.is_veg;
+           return {
+             id: item.id,
+             cat: item.category || 'Other',
+             name: item.item_name || '',
+             desc: item.description || '',
+             proteins,
+             servings,
+             dynamic: {},
+             servingUnit: item.serving_unit || null,
+             chef: !!item.is_chef_special,
+             spice: item.spice_level || '',
+             jainPrice,
+             avail: !!item.is_available,
+             img: normalizeImageUrl(item.image_url),
+             isVeg,
+             isUniversal: !!item.is_universal,
+             rowDiet: item.is_universal ? 'universal' : (isVeg ? 'veg' : 'nonveg'),
+             catSortOrder: item.category_sort_order || 0,
+             itemSortOrder: item.item_sort_order || 0
+           };
+         }).filter(x => x && x.name);
+
+           const availableMenuItems = parsedMenuItems.filter(x => x.avail !== false);
+           MENU_DB = availableMenuItems.length ? availableMenuItems : parsedMenuItems;
+           if (!availableMenuItems.length && parsedMenuItems.length) {
+             console.warn('[MENU] All items marked unavailable; showing all to avoid empty menu.');
+           }
+
+           const footerSync = document.getElementById('footerSyncTime');
+           const footerCount = document.getElementById('footerItemCount');
+           if (footerSync) {
+             footerSync.innerText = `Last synced: Today at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+           }
+           if (footerCount) {
+             footerCount.innerText = `Total Selections: ${MENU_DB.length}`;
+           }
+               applyMenuPerformanceMode(MENU_DB.length);
+               warmMenuAssets(MENU_DB);
+    hideMenuLoader();
+
+  render();
+  checkURLParams();
+         } catch (e) { console.error(e); hideMenuLoader(); }
+   }
+
+  // Exemption helper: common-to-all categories are visible regardless of veg/non-veg filter
+  // unless the item's name or description explicitly contains a non-veg keyword.
+  // Rule: BREADS, DESSERT, MOCKTAILS, ICY VIRGIN MARGARITAS, SHAKES & SMOOTHIES,
+  //       ALL TIME FAVOURITE, ICED TEA, LEMONADES, COLD ONES  → common to Jain / Veg / Non-Veg
+  function isExemptItem(item) {
+    return !!item.isUniversal;
+  }
+
+  // ── Adapter helpers ─────────────────────────────────────────────────────────
+
+  function filterItems(db, { foodFilter: ff, showJainOnly: jain, showChefOnly: chef, query }) {
+    let out = db;
+    if (jain) {
+      out = out.filter(i => (i.jainPrice !== null && i.isVeg) || isExemptItem(i));
+    } else {
+      if (ff === 'VEG') out = out.filter(i => i.isVeg || isExemptItem(i));
+      if (ff === 'NON') out = out.filter(i => !i.isVeg || isExemptItem(i));
+    }
+    if (chef) out = out.filter(i => i.chef);
+    if (query) {
+      const q = String(query || '').trim().toLowerCase();
+      if (q) {
+        out = out.filter(i => {
+          const searchable = [
+            i.name, i.desc, i.cat, i.spice,
+            Object.keys(i.proteins || {}).join(' '),
+            Object.keys(i.servings || {}).join(' '),
+            Object.keys(i.dynamic || {}).join(' ')
+          ].join(' ').toLowerCase();
+          return searchable.includes(q);
+        });
+      }
+    }
+    return out;
+  }
+
+  function getItemPricing(item) {
+    const selV = activeVariant[item.id];
+    const servingKeys = Object.keys(item.servings).filter(k => k !== 'Unit (Pcs)');
+    if (selV === 'Jain') return item.jainPrice;
+    if (servingKeys.includes(selV)) return item.servings[selV];
+    if (Object.prototype.hasOwnProperty.call(item.proteins, selV)) return item.proteins[selV];
+    return '--';
+  }
+
+  function getBadge(item, selVariant) {
+    if (item.isUniversal) return 'none'; // no diet badge for universal items
+    const vegXpcs = ['Veg 2Pcs', 'Veg 4pcs', 'Veg 6pcs', 'Veg 9pcs', 'Veg 12pcs'];
+    const sv = String(selVariant || '').trim().toLowerCase();
+    if (sv === 'jain') return 'jain';
+    const isVeg = sv === 'veg' || vegXpcs.some(v => v.toLowerCase() === sv);
+    if (isVeg) return 'veg';
+    const isNonVeg = (window.NON_VEG_WORDS || []).some(w => sv.includes(String(w).toLowerCase()));
+    if (isNonVeg) return 'nonveg';
+    return item.rowDiet === 'veg' ? 'veg' : 'nonveg';
+  }
+
+  function buildCategoryMarkup(category, items, index) {
+       const accentCycle = ['gold', 'copper', 'ruby', 'olive'];
+       const slug = category.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+       const accent = accentCycle[index % accentCycle.length];
+       return `<section class="container menu-category" id="${slug}" data-accent="${accent}"><h2 class="section-title">${category}</h2><div class="grid">${items.map(i => generateCard(i)).join('')}</div></section>`;
+  }
+
+  function getCategoryRank(categoryName) {
+    const found = MENU_DB.find(i => i.cat === categoryName);
+    return found ? (found.catSortOrder || Number.MAX_SAFE_INTEGER) : Number.MAX_SAFE_INTEGER;
+  }
+
+  function getItemRank(categoryName, itemId) {
+    const found = MENU_DB.find(i => i.id === itemId);
+    return found ? (found.itemSortOrder || Number.MAX_SAFE_INTEGER) : Number.MAX_SAFE_INTEGER;
+  }
+
+  function render() {
+       const main = document.getElementById('menuMain');
+       const categoryList = document.getElementById('categoryList');
+       const cats = [...new Set(MENU_DB.map(i => i.cat))];
+       let db = MENU_DB;
+
+         db = filterItems(db, { foodFilter, showJainOnly, showChefOnly, query: menuSearchQuery });
+      const categoryEntries = cats
+         .map(c => ({
+           name: c,
+           items: db
+             .filter(i => i.cat === c)
+             .sort((a, b) => {
+               const rankA = getItemRank(c, a.id);
+               const rankB = getItemRank(c, b.id);
+               if (rankA !== rankB) return rankA - rankB;
+               return (a.id || 0) - (b.id || 0);
+             })
+         }))
+         .filter(entry => entry.items.length)
+         .sort((a, b) => {
+           const rankA = getCategoryRank(a.name);
+           const rankB = getCategoryRank(b.name);
+           if (rankA !== rankB) return rankA - rankB;
+           return String(a.name).localeCompare(String(b.name));
+         });
+
+       const catHtml = categoryEntries.map(({ name: c }) => {
+           const slug = c.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+           return `<div class="cat-link" onclick="snapTo('${slug}'); toggleCategoryNav(false);">${c}</div>`;
+       }).join('');
+
+       if (categoryList) {
+         categoryList.innerHTML = catHtml;
+       }
+
+       if (!categoryEntries.length) {
+         main.innerHTML = `<section class="container menu-category"><div class="empty-search-state">No items found. Try a different keyword.</div></section>`;
+         return;
+       }
+
+       const renderToken = ++menuRenderToken;
+       if (!menuPerformanceMode) {
+         main.innerHTML = categoryEntries.map((entry, index) => buildCategoryMarkup(entry.name, entry.items, index)).join('');
+         return;
+       }
+
+       main.innerHTML = '';
+       let cursor = 0;
+       const batchSize = 2;
+
+       function appendNextBatch() {
+         if (renderToken !== menuRenderToken) return;
+
+         const batch = categoryEntries.slice(cursor, cursor + batchSize);
+         const fragment = document.createDocumentFragment();
+
+         batch.forEach((entry, index) => {
+           const wrapper = document.createElement('div');
+           wrapper.innerHTML = buildCategoryMarkup(entry.name, entry.items, cursor + index);
+           if (wrapper.firstElementChild) {
+             fragment.appendChild(wrapper.firstElementChild);
+           }
+         });
+
+         main.appendChild(fragment);
+         cursor += batch.length;
+
+         if (cursor < categoryEntries.length) {
+           requestAnimationFrame(appendNextBatch);
+         }
+       }
+
+       requestAnimationFrame(appendNextBatch);
+   }
+
+   function setMenuSearchQuery(value) {
+     menuSearchQuery = String(value || '');
+     render();
+   }
+
+     function generateCardBody(i) {
+       const proteinKeys = Object.keys(i.proteins);
+        const servingKeys = Object.keys(i.servings).filter(k => k !== "Unit (Pcs)");
+        const displayServingKeys = servingKeys.filter(k => k !== "Direct");
+       const vegXpcs = ["Veg 2Pcs", "Veg 4pcs", "Veg 6pcs", "Veg 9pcs", "Veg 12pcs"];
+         const classifyQtyChip = (label) => {
+           const k = String(label || '').trim().toLowerCase();
+           if (k === 'plain') return 'chip-plain';
+           if (k === 'butter') return 'chip-butter';
+           if (k === 'half') return 'chip-half';
+           if (k === 'full') return 'chip-full';
+           if (k === 'medium') return 'chip-medium';
+           if (k === 'large') return 'chip-large';
+           return '';
+         };
+       
+       if(!activeVariant[i.id]) {
+           if(showJainOnly && i.jainPrice !== null) activeVariant[i.id] = 'Jain';
+           else if(foodFilter === 'VEG') activeVariant[i.id] = proteinKeys.find(k => k === "Veg") || servingKeys.find(k => vegXpcs.includes(k)) || proteinKeys[0] || servingKeys[0];
+           else if(foodFilter === 'NON') activeVariant[i.id] = proteinKeys.find(k => k !== "Veg") || proteinKeys[0] || servingKeys[0];
+           else activeVariant[i.id] = proteinKeys[0] || servingKeys[0];
+       }
+       
+      const selV = activeVariant[i.id];
+      const normalizeVariantKey = (val) => String(val || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      const isSelectedVariant = (candidate) => normalizeVariantKey(selV) === normalizeVariantKey(candidate);
+
+      const dietType = getBadge(i, selV);
+      const displayPrice = getItemPricing(i);
+
+       let spiceIcons = "";
+       const rawSpice = (i.spice || "").toString().trim().toLowerCase();
+       if (rawSpice === "spicy") spiceIcons = "🌶️🌶️";
+       else if (rawSpice === "medium spicy" || rawSpice === "medium") spiceIcons = "🌶️";
+       else if (rawSpice === "sweet") spiceIcons = "🍯";
+       else if (rawSpice === "mild sweet") spiceIcons = "🍬";
+       else if (rawSpice === "non spicy" || rawSpice === "not spicy") spiceIcons = "🍃";
+
+         return `<div class="card-body">
+               <div class="card-header-row">
+                    <div class="item-name">${i.name} ${spiceIcons ? `<span class="spice-indicator">${spiceIcons}</span>` : ''}</div>
+                    <div class="header-right-symbols">
+                        ${dietType === 'jain' ? `<div class="jain-badge">JAIN</div>` : dietType === 'none' ? '' : `<div class="badge-type"><div class="dot ${dietType}"></div></div>`}
+                        ${i.chef ? `<div class="chef-badge">👨‍🍳</div>` : ''}
+                    </div>
+               </div>
+               ${i.servingUnit ? `<div class="serving-remark">Serving: ${i.servingUnit}</div>` : ''}
+               <div class="item-desc collapsed" onclick="toggleDesc(this)">${i.desc}</div>
+               <div class="variant-container">
+                     ${proteinKeys.map(v => `<div class="variant-chip ${isSelectedVariant(v) ? 'active ' + (v === 'Veg' ? 'v-veg' : 'v-non') : ''}" onclick="setVariant(${i.id}, '${v}')">${v}</div>`).join('')}
+                     ${vegXpcs.filter(k => i.servings[k]).map(v => `<div class="variant-chip ${isSelectedVariant(v) ? 'active v-veg' : ''}" onclick="setVariant(${i.id}, '${v}')">${v}</div>`).join('')}
+                     ${i.jainPrice !== null ? `<div class="variant-chip jain-type ${isSelectedVariant('Jain') ? 'active v-jain' : ''}" onclick="setVariant(${i.id}, 'Jain')">Jain</div>` : ''}
+               </div>
+                   ${Object.keys(i.dynamic || {}).length ? `<div class="variant-container">${Object.entries(i.dynamic).map(([k,v]) => `<div class="variant-chip" title="${v}">${k}</div>`).join('')}</div>` : ''}
+               <div class="qty-container">
+                  ${displayServingKeys.filter(k => !vegXpcs.includes(k)).map(q => `<div class="qty-chip ${classifyQtyChip(q)} ${isSelectedVariant(q) ? 'active ' + (dietType === 'veg' ? 'v-veg' : 'v-non') : ''}" onclick="setVariant(${i.id}, '${q}')">${q}</div>`).join('')}
+               </div>
+               <div class="price"><span>Total</span> ₹${displayPrice}</div>
+           </div>
+       `;
+   }
+
+   function generateCard(i) {
+       const catSlug = String(i.cat || '').trim().toLowerCase();
+       return `<div class="card" id="card-${i.id}" data-cat="${catSlug}">
+           <div class="img-box">
+               <div class="img-container-circle">
+                   <img src="${i.img}" class="img-main" alt="" loading="lazy" decoding="async" fetchpriority="low" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'">
+               </div>
+           </div>
+           ${generateCardBody(i)}
+       </div>`;
+   }
+
+   function setVariant(id, v) {
+     activeVariant[id] = v;
+     const item = MENU_DB.find(x => x.id === id);
+     const card = document.getElementById(`card-${id}`);
+     if(item && card) {
+       const body = card.querySelector('.card-body');
+       if(body) {
+         body.outerHTML = generateCardBody(item);
+         return;
+       }
+     }
+     render();
+   }
+   function toggleDesc(el) { el.classList.toggle('collapsed'); el.classList.toggle('expanded'); }
+   function snapTo(id) { const el = document.getElementById(id); if(el) { toggleSideNav(false); window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 160, behavior: 'smooth' }); } }
+   function updateFilter(val) { foodFilter = val; if(val !== 'VEG') showJainOnly = false; activeVariant = {}; document.querySelectorAll('.top-controls-bar .square-btn').forEach(b => { if(b.id && b.id.startsWith('f-')) b.classList.remove('active'); }); document.getElementById('f-' + val.toLowerCase()).classList.add('active'); render(); }
+   function setChefToggle(val) { showChefOnly = val; document.getElementById('chef-on').classList.toggle('active', val); document.getElementById('chef-off').classList.toggle('active', !val); render(); }
+   function setJainToggle(val) { showJainOnly = val; activeVariant = {}; if(val) updateFilter('VEG'); document.getElementById('jain-on').classList.toggle('active', val); document.getElementById('jain-off').classList.toggle('active', !val); render(); }
+   function toggleTheme() { const target = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; document.body.setAttribute('data-theme', target); document.getElementById('themeIconBtn').innerText = target === 'dark' ? '☀️' : '🌙'; }
+   function toggleSideNav(show) { const drawer = document.getElementById('sideNavContainer'); const overlay = document.getElementById('sideNavOverlay'); if(show) { drawer.classList.add('open'); overlay.style.display = 'block'; } else { drawer.classList.remove('open'); overlay.style.display = 'none'; } }
+   function toggleCategoryNav(show) { const drawer = document.getElementById('categoryNav'); const overlay = document.getElementById('categoryNavOverlay'); if(show) { drawer.classList.add('open'); overlay.style.display = 'block'; } else { drawer.classList.remove('open'); overlay.style.display = 'none'; } }
+   function openFloatingMenuAction() { toggleCategoryNav(true); }
+  function toggleFloatingActions(show) {
+    const group = document.getElementById('floatingActionsGroup');
+    const reveal = document.getElementById('floatingActionsReveal');
+    if (!group || !reveal) return;
+    group.classList.toggle('is-hidden', !show);
+    reveal.classList.toggle('visible', !show);
+  }
+  function openGoogleReview() { window.open('https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1', '_blank', 'noopener,noreferrer'); }
+   // Scroll-to-top behavior
+   function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+   let menuLoaderTypingTimer = null;
+   let menuLoaderTypingIndex = 0;
+   const MENU_LOADER_TEXT = 'Loading signature menu...';
+
+   function startMenuLoaderTyping() {
+     const el = document.getElementById('loaderTypedText');
+     if (!el) return;
+     if (menuLoaderTypingTimer) clearInterval(menuLoaderTypingTimer);
+     menuLoaderTypingIndex = 0;
+     el.textContent = '';
+     menuLoaderTypingTimer = setInterval(() => {
+       menuLoaderTypingIndex = (menuLoaderTypingIndex + 1) % (MENU_LOADER_TEXT.length + 1);
+       el.textContent = MENU_LOADER_TEXT.slice(0, menuLoaderTypingIndex);
+     }, 65);
+   }
+
+   function hideMenuLoader() {
+     const loader = document.getElementById('loader');
+     if (!loader) return;
+     if (menuLoaderTypingTimer) clearInterval(menuLoaderTypingTimer);
+     loader.classList.add('fade-out');
+     setTimeout(() => { loader.style.display = 'none'; }, 460);
+   }
+   (function setupScrollTop() {
+     const btn = document.getElementById('scrollTopBtn');
+     const reviewBtn = document.getElementById('reviewBtn');
+     if(!btn) return;
+     function onScroll() {
+      if(window.scrollY > 300) {
+        btn.style.display = 'block';
+        if (reviewBtn) reviewBtn.style.display = 'block';
+      } else {
+        btn.style.display = 'none';
+        if (reviewBtn) reviewBtn.style.display = 'none';
+      }
+     }
+     window.addEventListener('scroll', onScroll, { passive: true });
+     // initial state
+     onScroll();
+   })();
+
+  window.onload = () => { startMenuLoaderTyping(); init(); };
+  </script>
+<script>
+  // Auto Chef Special from URL and handle hash navigation
+function checkURLParams() {
+  const params = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
+
+  // QR scan tracking removed (Google Sheets endpoint no longer used)
+  if (params.get("chef") === "true") {
+    showChefOnly = true;
+    document.getElementById('chef-on').classList.add('active');
+    document.getElementById('chef-off').classList.remove('active');
+  }
+  if (hash === '#chef-special') {
+    showChefOnly = true;
+    document.getElementById('chef-on').classList.add('active');
+    document.getElementById('chef-off').classList.remove('active');
+  }
+  
+  // Handle hash anchor after categories are rendered.
+  if (hash) {
+    const targetId = decodeURIComponent(hash.substring(1));
+    let attempts = 0;
+    const maxAttempts = 8;
+    const tryNavigate = () => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        snapTo(targetId);
+        return;
+      }
+      attempts += 1;
+      if (attempts <= maxAttempts) {
+        setTimeout(tryNavigate, 120);
+      }
+    };
+    setTimeout(tryNavigate, 80);
+  }
+}
+
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash;
+  if (!hash || hash === '#chef-special') return;
+  const targetId = decodeURIComponent(hash.substring(1));
+  setTimeout(() => snapTo(targetId), 40);
+});
+
+/* ===== HAMBURGER MENU ===== */
+const hamburgerMenu = document.getElementById('hamburger-menu');
+const navMenu = document.querySelector('.main-nav-menu');
+
+if (hamburgerMenu) {
+  hamburgerMenu.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburgerMenu.classList.toggle('active');
+  });
+}
+
+if (navMenu) {
+  document.querySelectorAll('.main-nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+      if (hamburgerMenu) hamburgerMenu.classList.remove('active');
+    });
+  });
+}
+</script>
+<script>
+  /* ── Fresh Menu Guide Popup Handler ── */
+  function dismissMenuGuidePopup() {
+    const popup = document.getElementById('menuGuidePopupId');
+    if (popup) {
+      popup.classList.add('hidden');
+      setTimeout(() => {
+        popup.remove();
+        try { sessionStorage.setItem('menuGuideSeen', '1'); } catch(e) {}
+      }, 300);
+    }
+  }
+  
+  (function initMenuGuide() {
+    try {
+      if (sessionStorage.getItem('menuGuideSeen') === '1') {
+        const popup = document.getElementById('menuGuidePopupId');
+        if (popup) popup.remove();
+      }
+    } catch(e) {}
+  })();
+</script>
+<script src="../js/menu-blocker-init.js?v=1" defer></script>
+<script src="../js/menu-blocker.js?v=20260419-milestones-1" defer></script>
+<script src="../js/script.js?v=20260418-assetfix-3"></script>
+<script src="https://myappzchat.com/production/master/widget/embed-widget.umd.js" data-widget-id="edb91eb3-7293-4749-9138-9e5871f0082a" async></script>
+ </body>
+</html>

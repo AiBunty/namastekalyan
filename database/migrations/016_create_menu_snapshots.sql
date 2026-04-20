@@ -1,16 +1,17 @@
--- Migration 016: Menu snapshots table
--- Stores point-in-time full copies of a sheet for restore/rollback.
+-- Migration 016: Menu import snapshots
+-- Keeps up to the last 10 snapshots per sheet_type for rollback.
+-- snapshot_data: full JSON of all menu_items rows at time of snapshot.
+-- triggered_by: 'import' | 'manual' | 'schedule'
 
 CREATE TABLE IF NOT EXISTS `menu_snapshots` (
-    `id`              BIGINT   UNSIGNED NOT NULL AUTO_INCREMENT,
-    `sheet_type`      ENUM('food','bar') NOT NULL,
-    `label`           VARCHAR(200) NOT NULL DEFAULT '',
-    `snapshot_data`   LONGTEXT    NOT NULL,
-    `row_count`       INT UNSIGNED NOT NULL DEFAULT 0,
-    `triggered_by`    VARCHAR(100) NOT NULL DEFAULT '',
-    `created_by`      VARCHAR(100) NOT NULL DEFAULT '',
-    `created_at`      DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `id`           INT      UNSIGNED NOT NULL AUTO_INCREMENT,
+    `sheet_type`   ENUM('food','bar') NOT NULL,
+    `label`        VARCHAR(120)       NOT NULL DEFAULT '' COMMENT 'Human readable label e.g. "Before Excel import 2026-04-17"',
+    `snapshot_data` LONGTEXT          NOT NULL             COMMENT 'JSON array of all menu_items for this sheet_type',
+    `row_count`    SMALLINT UNSIGNED  NOT NULL DEFAULT 0,
+    `triggered_by` ENUM('import','manual','schedule') NOT NULL DEFAULT 'import',
+    `created_by`   VARCHAR(100)       NULL COMMENT 'Admin username',
+    `created_at`   DATETIME           NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
-    INDEX `idx_sheet_type` (`sheet_type`),
-    INDEX `idx_created`    (`created_at`)
+    INDEX `idx_sheet_created` (`sheet_type`, `created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

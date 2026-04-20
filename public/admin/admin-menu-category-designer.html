@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Category Designer | Namaste Kalyan</title>
+  <link rel="stylesheet" href="../css/admin-animations.css?v=20260413-1">
+  <link rel="stylesheet" href="../css/admin-module-theme.css?v=20260413-1">
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search || '');
+      if (!params.has('embedded') && !params.has('standalone')) {
+        window.location.replace('admin-portal.html#menu-category-designer');
+      }
+    })();
+  </script>
+  <style>
+    .page { max-width: 1280px; }
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .toolbar-left,
+    .toolbar-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.5);
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      font-weight: 700;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 14px;
+    }
+    .list-wrap {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .list-head {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      background: #f5efe2;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      font-weight: 700;
+    }
+    .list-body {
+      max-height: calc(100vh - 320px);
+      overflow: auto;
+      padding: 8px;
+    }
+    .row-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px;
+      margin-bottom: 8px;
+      background: #fff;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease, transform 0.16s ease;
+    }
+    .row-item.active {
+      border-color: rgba(148, 89, 43, 0.45);
+      box-shadow: 0 0 0 2px rgba(182, 123, 69, 0.14);
+      background: rgba(182, 123, 69, 0.08);
+    }
+    .row-item.dimmed {
+      opacity: 0.62;
+    }
+    .row-item.draggable {
+      cursor: grab;
+    }
+    .row-item.dragging {
+      opacity: 0.45;
+      transform: scale(0.985);
+    }
+    .row-item.drag-over {
+      border-color: rgba(148, 89, 43, 0.65);
+      box-shadow: 0 0 0 3px rgba(182, 123, 69, 0.16);
+    }
+    .row-item.drop-before {
+      box-shadow: inset 0 4px 0 0 rgba(182, 123, 69, 0.62), 0 0 0 3px rgba(182, 123, 69, 0.12);
+    }
+    .row-item.drop-after {
+      box-shadow: inset 0 -4px 0 0 rgba(182, 123, 69, 0.62), 0 0 0 3px rgba(182, 123, 69, 0.12);
+    }
+    .row-item.touch-dragging {
+      z-index: 4;
+      box-shadow: 0 18px 32px rgba(62, 42, 29, 0.18);
+    }
+    .drag-handle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      min-height: 44px;
+      border: 1px dashed rgba(123, 94, 67, 0.32);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(245, 239, 226, 0.92), rgba(255, 255, 255, 0.98));
+      color: var(--ink-soft);
+      font-size: 1rem;
+      font-weight: 700;
+      user-select: none;
+      cursor: grab;
+      touch-action: none;
+    }
+    .row-item.dragging .drag-handle,
+    .row-item.draggable:active .drag-handle {
+      cursor: grabbing;
+    }
+    .row-main {
+      min-width: 0;
+    }
+    .row-title {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 0.9rem;
+    }
+    .row-sub {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+    .row-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .icon-btn {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 0.75rem;
+      padding: 5px 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .icon-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .tag.off {
+      background: rgba(164, 83, 72, 0.14);
+      border-color: rgba(164, 83, 72, 0.28);
+      color: #7a342b;
+    }
+    .status {
+      white-space: pre-line;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .list-body {
+        max-height: 46vh;
+      }
+      .drag-handle {
+        width: 42px;
+        min-height: 48px;
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Menu Category Designer</h1>
+      <p>Control category order and item order independently for Food (AWGNK MENU) and Cocktail (BAR MENU NK). Toggle full category visibility or individual items, then save order changes.</p>
+    </section>
+
+    <section class="panel" id="authPanel">
+      <div class="row">
+        <input id="username" type="tel" inputmode="numeric" maxlength="15" placeholder="Username (mobile number)">
+        <input id="password" type="password" maxlength="64" placeholder="Password">
+        <button id="loginBtn" type="button">Login</button>
+        <button id="logoutBtn" class="secondary" type="button" hidden>Logout</button>
+      </div>
+      <div id="authStatus" class="status">Panel is locked. Login as Admin or SuperAdmin.</div>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <select id="sheetSelect" disabled>
+            <option value="AWGNK MENU">Food (AWGNK MENU)</option>
+            <option value="BAR MENU NK">Cocktail (BAR MENU NK)</option>
+          </select>
+          <button id="reloadBtn" class="secondary" type="button" disabled>Reload</button>
+          <button id="saveCategoryBtn" type="button" disabled>Save Category Order</button>
+          <button id="saveItemBtn" type="button" disabled>Save Item Order</button>
+        </div>
+        <div class="toolbar-right">
+          <span id="categoryChip" class="meta-chip">Categories: 0</span>
+          <span id="itemChip" class="meta-chip">Items: 0</span>
+        </div>
+      </div>
+      <div id="designerStatus" class="status muted" style="margin-top:8px;">Load a sheet to start designing order.</div>
+    </section>
+
+    <section class="layout">
+      <section class="panel list-wrap">
+        <div class="list-head">Categories</div>
+        <div id="categoryList" class="list-body"></div>
+      </section>
+      <section class="panel list-wrap">
+        <div class="list-head">Items in Selected Category</div>
+        <div id="itemList" class="list-body"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../js/data-config.js?v=20260417-linkfix-1"></script>
+  <script src="../js/admin-auth.js?v=20260417-1"></script>
+  <script src="../js/admin-ui-ux.js?v=20260413-1"></script>
+  <script>
+    (function () {
+      const apiBase = (
+        (window.NK_DATA_API && (window.NK_DATA_API.phpApiUrl || window.NK_DATA_API.appsScriptUrl)) ||
+        window.APPS_SCRIPT_URL ||
+        ''
+      ).split('?')[0];
+      const embeddedMode = new URLSearchParams(window.location.search || '').has('embedded');
+      const authClient = window.NKAdminAuth.createAuthClient({
+        apiBase: apiBase,
+        onAuthError: function (payload) {
+          clearSessionAndLock((payload && payload.message) || 'Session expired. Please login again.');
+        }
+      });
+      const debugMode = (function () {
+        try {
+          const params = new URLSearchParams(window.location.search || '');
+          return params.get('diag') === '1' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        } catch (err) {
+          return false;
+        }
+      })();
+
+      function debugLog(eventName, details) {
+        if (!debugMode || !window.console || typeof window.console.info !== 'function') return;
+        window.console.info('[NKCategoryDesigner]', eventName, details || {});
+      }
+
+      const state = {
+        user: null,
+        sheetName: 'AWGNK MENU',
+        categories: [],
+        selectedCategory: '',
+        itemOrderDirty: false,
+        categoryOrderDirty: false,
+        embeddedTokenApplied: false,
+        drag: {
+          type: '',
+          index: -1,
+          position: 'before',
+          targetIndex: -1,
+          touchId: null,
+          touchStartY: 0,
+          sourceElement: null,
+        },
+      };
+
+      const authPanelEl = document.getElementById('authPanel');
+      const usernameEl = document.getElementById('username');
+      const passwordEl = document.getElementById('password');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const authStatusEl = document.getElementById('authStatus');
+
+      const sheetSelect = document.getElementById('sheetSelect');
+      const reloadBtn = document.getElementById('reloadBtn');
+      const saveCategoryBtn = document.getElementById('saveCategoryBtn');
+      const saveItemBtn = document.getElementById('saveItemBtn');
+      const designerStatus = document.getElementById('designerStatus');
+      const categoryListEl = document.getElementById('categoryList');
+      const itemListEl = document.getElementById('itemList');
+      const categoryChip = document.getElementById('categoryChip');
+      const itemChip = document.getElementById('itemChip');
+
+      function notifyModuleReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NK_MODULE_READY' }, '*');
+        }
+      }
+
+      function setStatus(text, variant) {
+        designerStatus.textContent = text;
+        designerStatus.classList.toggle('muted', !variant || variant === 'muted');
+        designerStatus.classList.toggle('ok', variant === 'ok');
+        designerStatus.classList.toggle('warn', variant === 'warn');
+      }
+
+      function clearSessionAndLock(message) {
+        state.user = null;
+        state.categories = [];
+        state.selectedCategory = '';
+        authClient.clearSession();
+        if (embeddedMode) {
+          authPanelEl.style.display = '';
+        }
+        authPanelEl.classList.remove('hidden');
+        authStatusEl.textContent = message || 'Panel is locked. Login as Admin or SuperAdmin.';
+        authStatusEl.className = 'status';
+        loginBtn.hidden = false;
+        logoutBtn.hidden = true;
+        sheetSelect.disabled = true;
+        reloadBtn.disabled = true;
+        saveCategoryBtn.disabled = true;
+        saveItemBtn.disabled = true;
+        categoryListEl.innerHTML = '';
+        itemListEl.innerHTML = '';
+        categoryChip.textContent = 'Categories: 0';
+        itemChip.textContent = 'Items: 0';
+      }
+
+      function setUnlocked(user, message) {
+        state.user = user;
+        if (embeddedMode) {
+          authPanelEl.style.display = 'none';
+        }
+        authPanelEl.classList.add('hidden');
+        authStatusEl.textContent = message || `Logged in as ${user.username}.`;
+        authStatusEl.className = 'status ok';
+        loginBtn.hidden = true;
+        logoutBtn.hidden = false;
+        sheetSelect.disabled = false;
+        reloadBtn.disabled = false;
+        saveCategoryBtn.disabled = false;
+        saveItemBtn.disabled = false;
+      }
+
+      function clearDragState() {
+        if (state.drag.sourceElement) {
+          state.drag.sourceElement.classList.remove('dragging', 'drag-over', 'drop-before', 'drop-after', 'touch-dragging');
+          state.drag.sourceElement.style.transform = '';
+        }
+
+        state.drag.type = '';
+        state.drag.index = -1;
+        state.drag.position = 'before';
+        state.drag.targetIndex = -1;
+        state.drag.touchId = null;
+        state.drag.touchStartY = 0;
+        state.drag.sourceElement = null;
+
+        document.querySelectorAll('.row-item.dragging, .row-item.drag-over, .row-item.drop-before, .row-item.drop-after, .row-item.touch-dragging').forEach(function (element) {
+          element.classList.remove('dragging', 'drag-over', 'drop-before', 'drop-after', 'touch-dragging');
+          element.style.transform = '';
+        });
+      }
+
+      function moveEntry(list, fromIndex, insertionIndex) {
+        if (!Array.isArray(list)) return false;
+        if (fromIndex < 0 || insertionIndex < 0 || fromIndex >= list.length || insertionIndex > list.length) {
+          return false;
+        }
+
+        if (insertionIndex === fromIndex || insertionIndex === fromIndex + 1) {
+          return false;
+        }
+
+        const [entry] = list.splice(fromIndex, 1);
+        list.splice(insertionIndex > fromIndex ? insertionIndex - 1 : insertionIndex, 0, entry);
+        return true;
+      }
+
+      function resolveInsertionIndex(fromIndex, targetIndex, position) {
+        if (targetIndex < 0) return -1;
+        return position === 'after' ? targetIndex + 1 : targetIndex;
+      }
+
+      function reorderCategories(fromIndex, toIndex, position) {
+        if (moveEntry(state.categories, fromIndex, resolveInsertionIndex(fromIndex, toIndex, position))) {
+          state.categoryOrderDirty = true;
+          renderCategories();
+        }
+      }
+
+      function reorderItems(fromIndex, toIndex, position) {
+        const category = state.categories.find(c => c.name === state.selectedCategory);
+        if (!category || !Array.isArray(category.items)) return;
+        if (moveEntry(category.items, fromIndex, resolveInsertionIndex(fromIndex, toIndex, position))) {
+          state.itemOrderDirty = true;
+          renderItems();
+        }
+      }
+
+      function getRowFromEventTarget(target, type) {
+        if (!target || typeof target.closest !== 'function') return null;
+        const selector = `.row-item[data-drag-type="${type}"]`;
+        return target.closest(selector);
+      }
+
+      function clearDropIndicators() {
+        document.querySelectorAll('.row-item.drag-over, .row-item.drop-before, .row-item.drop-after').forEach(function (element) {
+          element.classList.remove('drag-over', 'drop-before', 'drop-after');
+        });
+      }
+
+      function resolveDropPosition(clientY, element) {
+        const rect = element.getBoundingClientRect();
+        const halfway = rect.top + (rect.height / 2);
+        return clientY > halfway ? 'after' : 'before';
+      }
+
+      function markDropTarget(element, position) {
+        clearDropIndicators();
+        if (!element) return;
+        element.classList.add('drag-over');
+        element.classList.add(position === 'after' ? 'drop-after' : 'drop-before');
+      }
+
+      function syncTouchDragVisual(touch) {
+        if (!state.drag.sourceElement || !touch) return;
+        const deltaY = touch.clientY - state.drag.touchStartY;
+        state.drag.sourceElement.style.transform = `translateY(${deltaY}px)`;
+      }
+
+      function handleDragStart(type, index, event) {
+        state.drag.type = type;
+        state.drag.index = Number(index);
+        state.drag.position = 'before';
+        state.drag.targetIndex = Number(index);
+        state.drag.sourceElement = event && event.currentTarget ? event.currentTarget : null;
+
+        if (event && event.dataTransfer) {
+          event.dataTransfer.effectAllowed = 'move';
+          event.dataTransfer.setData('text/plain', `${type}:${index}`);
+        }
+
+        if (event && event.currentTarget) {
+          event.currentTarget.classList.add('dragging');
+        }
+      }
+
+      function handleDragOver(type, index, event) {
+        if (!event || state.drag.type !== type || state.drag.index < 0 || state.drag.index === Number(index)) return;
+        event.preventDefault();
+        if (event.dataTransfer) {
+          event.dataTransfer.dropEffect = 'move';
+        }
+        if (event.currentTarget) {
+          state.drag.targetIndex = Number(index);
+          state.drag.position = resolveDropPosition(event.clientY, event.currentTarget);
+          markDropTarget(event.currentTarget, state.drag.position);
+        }
+      }
+
+      function handleDragLeave(event) {
+        if (event && event.currentTarget) {
+          event.currentTarget.classList.remove('drag-over', 'drop-before', 'drop-after');
+        }
+      }
+
+      function handleDrop(type, index, event) {
+        if (!event || state.drag.type !== type) return;
+        event.preventDefault();
+        if (event.currentTarget) {
+          state.drag.position = resolveDropPosition(event.clientY, event.currentTarget);
+          state.drag.targetIndex = Number(index);
+        }
+
+        const fromIndex = state.drag.index;
+        const toIndex = state.drag.targetIndex;
+        const position = state.drag.position;
+        clearDragState();
+
+        if (type === 'category') {
+          reorderCategories(fromIndex, toIndex, position);
+        } else if (type === 'item') {
+          reorderItems(fromIndex, toIndex, position);
+        }
+      }
+
+      function handleDragEnd() {
+        clearDragState();
+      }
+
+      function startTouchDrag(type, index, rowElement, touch) {
+        clearDragState();
+        state.drag.type = type;
+        state.drag.index = Number(index);
+        state.drag.position = 'before';
+        state.drag.targetIndex = Number(index);
+        state.drag.touchId = touch.identifier;
+        state.drag.touchStartY = touch.clientY;
+        state.drag.sourceElement = rowElement;
+        rowElement.classList.add('dragging', 'touch-dragging');
+        syncTouchDragVisual(touch);
+      }
+
+      function getActiveTouch(event) {
+        if (!event || state.drag.touchId === null || !event.changedTouches) return null;
+        for (let index = 0; index < event.changedTouches.length; index += 1) {
+          const touch = event.changedTouches[index];
+          if (touch.identifier === state.drag.touchId) {
+            return touch;
+          }
+        }
+        return null;
+      }
+
+      function handleTouchStart(event) {
+        const handle = event.target && typeof event.target.closest === 'function'
+          ? event.target.closest('.drag-handle')
+          : null;
+        if (!handle) return;
+
+        const rowElement = handle.closest('.row-item.draggable');
+        if (!rowElement) return;
+
+        const type = String(rowElement.getAttribute('data-drag-type') || '');
+        const index = Number(rowElement.getAttribute('data-index') || -1);
+        const touch = event.changedTouches && event.changedTouches[0];
+        if (!type || index < 0 || !touch) return;
+
+        event.preventDefault();
+        startTouchDrag(type, index, rowElement, touch);
+      }
+
+      function handleTouchMove(event) {
+        if (!state.drag.type || state.drag.touchId === null) return;
+        const touch = getActiveTouch(event);
+        if (!touch) return;
+
+        event.preventDefault();
+        syncTouchDragVisual(touch);
+
+        const target = document.elementFromPoint(touch.clientX, touch.clientY);
+        const rowElement = getRowFromEventTarget(target, state.drag.type);
+        if (!rowElement) {
+          clearDropIndicators();
+          return;
+        }
+
+        const nextIndex = Number(rowElement.getAttribute('data-index') || -1);
+        if (nextIndex < 0 || nextIndex === state.drag.index) {
+          clearDropIndicators();
+          return;
+        }
+
+        state.drag.targetIndex = nextIndex;
+        state.drag.position = resolveDropPosition(touch.clientY, rowElement);
+        markDropTarget(rowElement, state.drag.position);
+      }
+
+      function finishTouchDrag(event) {
+        if (!state.drag.type || state.drag.touchId === null) return;
+        const touch = getActiveTouch(event);
+        if (!touch) return;
+
+        const fromIndex = state.drag.index;
+        const toIndex = state.drag.targetIndex;
+        const position = state.drag.position;
+        const type = state.drag.type;
+        clearDragState();
+
+        if (toIndex < 0 || toIndex === fromIndex) {
+          return;
+        }
+
+        if (type === 'category') {
+          reorderCategories(fromIndex, toIndex, position);
+        } else if (type === 'item') {
+          reorderItems(fromIndex, toIndex, position);
+        }
+      }
+
+      async function callAction(action, payload) {
+        return authClient.apiPost(Object.assign({ action: action }, payload || {}));
+      }
+
+      async function applyEmbeddedToken(token, reason) {
+        const nextToken = String(token || '').trim();
+        if (!nextToken) return false;
+
+        const currentToken = String(authClient.getToken() || '').trim();
+        if (currentToken === nextToken && state.embeddedTokenApplied) {
+          return true;
+        }
+
+        state.embeddedTokenApplied = true;
+        authClient.saveSession({
+          token: nextToken,
+          expiresAt: '',
+          user: authClient.getSession() && authClient.getSession().user ? authClient.getSession().user : null
+        });
+
+        debugLog('embedded-token-applied', {
+          reason: reason || 'message',
+          tokenLength: nextToken.length
+        });
+
+        try {
+          const payload = await authClient.restoreSession();
+          if (!payload || !payload.user) {
+            return false;
+          }
+          setUnlocked(payload.user || {}, `Session restored for ${payload.user.username}.`);
+          sheetSelect.value = state.sheetName;
+          await loadDesigner();
+          return true;
+        } catch (err) {
+          debugLog('embedded-token-restore-failed', {
+            reason: reason || 'message',
+            error: err && err.message ? err.message : String(err)
+          });
+          return false;
+        }
+      }
+
+      window.addEventListener('message', function (event) {
+        if (!embeddedMode || !event || !event.data || typeof event.data !== 'object') return;
+        if (event.origin !== window.location.origin) return;
+        if (event.data.type !== 'NK_EMBEDDED_AUTH') return;
+
+        applyEmbeddedToken(event.data.token, 'postmessage');
+      });
+
+      async function loadDesigner() {
+        setStatus('Loading category designer...', 'muted');
+        const payload = await callAction('admin_menu_designer_load', { sheetName: state.sheetName });
+        const categories = Array.isArray(payload.categories) ? payload.categories : [];
+        state.categories = categories.map(c => ({
+          name: String(c.name || ''),
+          isAvailable: !!c.isAvailable,
+          items: Array.isArray(c.items) ? c.items.map(i => ({
+            id: Number(i.id || 0),
+            itemName: String(i.itemName || ''),
+            isAvailable: !!i.isAvailable,
+            basePrice: i.basePrice,
+          })) : []
+        }));
+
+        if (!state.selectedCategory || !state.categories.some(c => c.name === state.selectedCategory)) {
+          state.selectedCategory = state.categories[0] ? state.categories[0].name : '';
+        }
+
+        state.categoryOrderDirty = false;
+        state.itemOrderDirty = false;
+
+        renderCategories();
+        renderItems();
+        updateCounters();
+        setStatus(`Loaded ${state.categories.length} categories for ${state.sheetName}.`, 'ok');
+        notifyModuleReady();
+      }
+
+      async function saveCategoryOrder() {
+        const categories = state.categories.map(c => c.name);
+        await callAction('admin_menu_designer_save_category_order', {
+          sheetName: state.sheetName,
+          categories: categories
+        });
+        state.categoryOrderDirty = false;
+        setStatus('Category order saved.', 'ok');
+      }
+
+      async function saveItemOrder() {
+        const category = state.categories.find(c => c.name === state.selectedCategory);
+        if (!category) {
+          setStatus('Select a category first.', 'warn');
+          return;
+        }
+        await callAction('admin_menu_designer_save_item_order', {
+          sheetName: state.sheetName,
+          category: category.name,
+          itemIds: category.items.map(i => i.id)
+        });
+        state.itemOrderDirty = false;
+        setStatus(`Item order saved for ${category.name}.`, 'ok');
+      }
+
+      async function toggleCategory(index) {
+        const category = state.categories[index];
+        if (!category) return;
+        const nextValue = !category.isAvailable;
+        await callAction('admin_menu_designer_toggle_category', {
+          sheetName: state.sheetName,
+          category: category.name,
+          isAvailable: nextValue
+        });
+        category.isAvailable = nextValue;
+        category.items.forEach(i => { i.isAvailable = nextValue; });
+        renderCategories();
+        renderItems();
+        setStatus(`${category.name} is now ${nextValue ? 'visible' : 'hidden'}.`, 'ok');
+      }
+
+      async function toggleItem(index) {
+        const category = state.categories.find(c => c.name === state.selectedCategory);
+        if (!category) return;
+        const item = category.items[index];
+        if (!item) return;
+        const nextValue = !item.isAvailable;
+
+        await callAction('admin_menu_designer_toggle_item', {
+          sheetName: state.sheetName,
+          id: item.id,
+          isAvailable: nextValue
+        });
+
+        item.isAvailable = nextValue;
+        category.isAvailable = category.items.some(i => i.isAvailable);
+        renderCategories();
+        renderItems();
+        setStatus(`${item.itemName} is now ${nextValue ? 'visible' : 'hidden'}.`, 'ok');
+      }
+
+      async function cloneCategory(index) {
+        const category = state.categories[index];
+        if (!category) return;
+
+        const newName = window.prompt('New category name', category.name + ' Copy');
+        if (!newName || !String(newName).trim()) {
+          setStatus('Clone cancelled.', 'muted');
+          return;
+        }
+
+        const cloneItems = window.confirm('Clone all items from "' + category.name + '" into "' + String(newName).trim() + '"? Click Cancel to create an empty category only.');
+
+        await callAction('admin_menu_designer_clone_category', {
+          sheetName: state.sheetName,
+          sourceCategory: category.name,
+          newCategoryName: String(newName).trim(),
+          cloneItems: cloneItems ? 1 : 0
+        });
+
+        await loadDesigner();
+        state.selectedCategory = String(newName).trim();
+        renderCategories();
+        renderItems();
+        setStatus(cloneItems ? 'Category and items cloned.' : 'Category cloned.', 'ok');
+      }
+
+      function updateCounters() {
+        const totalItems = state.categories.reduce((acc, c) => acc + c.items.length, 0);
+        categoryChip.textContent = `Categories: ${state.categories.length}${state.categoryOrderDirty ? ' *' : ''}`;
+        itemChip.textContent = `Items: ${totalItems}${state.itemOrderDirty ? ' *' : ''}`;
+      }
+
+      function renderCategories() {
+        if (!state.categories.length) {
+          categoryListEl.innerHTML = '<div class="muted" style="padding:8px;">No categories found.</div>';
+          updateCounters();
+          return;
+        }
+
+        categoryListEl.innerHTML = state.categories.map(function (category, index) {
+          const isSelected = category.name === state.selectedCategory;
+          const itemCount = Array.isArray(category.items) ? category.items.length : 0;
+          return `
+            <div class="row-item draggable ${isSelected ? 'active' : ''} ${category.isAvailable ? '' : 'dimmed'}"
+              draggable="true"
+              data-drag-type="category"
+              data-index="${index}"
+              ondragstart="window.NKCategoryDesigner.handleDragStart('category', ${index}, event)"
+              ondragover="window.NKCategoryDesigner.handleDragOver('category', ${index}, event)"
+              ondragleave="window.NKCategoryDesigner.handleDragLeave(event)"
+              ondrop="window.NKCategoryDesigner.handleDrop('category', ${index}, event)"
+              ondragend="window.NKCategoryDesigner.handleDragEnd()">
+              <div class="drag-handle" aria-hidden="true" title="Drag or touch-drag to reorder">::</div>
+              <div class="row-main" onclick="window.NKCategoryDesigner.selectCategory('${encodeURIComponent(category.name)}')" style="cursor:pointer;">
+                <div class="row-title">${category.name}</div>
+                <div class="row-sub">${itemCount} item(s) <span class="tag ${category.isAvailable ? '' : 'off'}">${category.isAvailable ? 'Visible' : 'Hidden'}</span></div>
+              </div>
+              <div class="row-actions">
+                <button class="icon-btn" onclick="window.NKCategoryDesigner.toggleCategory(${index})">${category.isAvailable ? 'Hide' : 'Show'}</button>
+                <button class="icon-btn" onclick="window.NKCategoryDesigner.cloneCategory(${index})">Clone</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        updateCounters();
+      }
+
+      function renderItems() {
+        const category = state.categories.find(c => c.name === state.selectedCategory);
+        if (!category) {
+          itemListEl.innerHTML = '<div class="muted" style="padding:8px;">Select a category to view items.</div>';
+          updateCounters();
+          return;
+        }
+
+        if (!category.items.length) {
+          itemListEl.innerHTML = '<div class="muted" style="padding:8px;">No items in this category.</div>';
+          updateCounters();
+          return;
+        }
+
+        itemListEl.innerHTML = category.items.map(function (item, index) {
+          const price = item.basePrice !== null && item.basePrice !== undefined && item.basePrice !== ''
+            ? `₹${item.basePrice}`
+            : '--';
+
+          return `
+            <div class="row-item draggable ${item.isAvailable ? '' : 'dimmed'}"
+              draggable="true"
+              data-drag-type="item"
+              data-index="${index}"
+              ondragstart="window.NKCategoryDesigner.handleDragStart('item', ${index}, event)"
+              ondragover="window.NKCategoryDesigner.handleDragOver('item', ${index}, event)"
+              ondragleave="window.NKCategoryDesigner.handleDragLeave(event)"
+              ondrop="window.NKCategoryDesigner.handleDrop('item', ${index}, event)"
+              ondragend="window.NKCategoryDesigner.handleDragEnd()">
+              <div class="drag-handle" aria-hidden="true" title="Drag or touch-drag to reorder">::</div>
+              <div class="row-main">
+                <div class="row-title">${item.itemName}</div>
+                <div class="row-sub">ID: ${item.id} | Base: ${price} <span class="tag ${item.isAvailable ? '' : 'off'}">${item.isAvailable ? 'Visible' : 'Hidden'}</span></div>
+              </div>
+              <div class="row-actions">
+                <button class="icon-btn" onclick="window.NKCategoryDesigner.toggleItem(${index})">${item.isAvailable ? 'Hide' : 'Show'}</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        updateCounters();
+      }
+
+      function bindEvents() {
+        loginBtn.addEventListener('click', async function () {
+          const username = String(usernameEl.value || '').trim();
+          const password = String(passwordEl.value || '');
+          if (!username || !password) {
+            authStatusEl.textContent = 'Username and password are required.';
+            authStatusEl.className = 'status warn';
+            return;
+          }
+
+          loginBtn.disabled = true;
+          authStatusEl.textContent = 'Logging in...';
+          authStatusEl.className = 'status muted';
+
+          try {
+            const payload = await authClient.login(username, password, 'admin-menu-category-designer');
+            passwordEl.value = '';
+            setUnlocked(payload.user || {}, `Logged in as ${payload.user.username}.`);
+            await loadDesigner();
+          } catch (err) {
+            authStatusEl.textContent = `Login failed: ${err.message}`;
+            authStatusEl.className = 'status warn';
+          } finally {
+            loginBtn.disabled = false;
+          }
+        });
+
+        logoutBtn.addEventListener('click', async function () {
+          logoutBtn.disabled = true;
+          try {
+            await authClient.logout();
+          } catch (_) {
+            // Ignore logout failures and force lock.
+          } finally {
+            logoutBtn.disabled = false;
+            clearSessionAndLock('Logged out.');
+          }
+        });
+
+        sheetSelect.addEventListener('change', async function () {
+          state.sheetName = sheetSelect.value;
+          await loadDesigner();
+        });
+
+        reloadBtn.addEventListener('click', async function () {
+          await loadDesigner();
+        });
+
+        saveCategoryBtn.addEventListener('click', async function () {
+          saveCategoryBtn.disabled = true;
+          try {
+            await saveCategoryOrder();
+          } catch (err) {
+            setStatus(`Save category order failed: ${err.message}`, 'warn');
+          } finally {
+            saveCategoryBtn.disabled = false;
+            updateCounters();
+          }
+        });
+
+        saveItemBtn.addEventListener('click', async function () {
+          saveItemBtn.disabled = true;
+          try {
+            await saveItemOrder();
+          } catch (err) {
+            setStatus(`Save item order failed: ${err.message}`, 'warn');
+          } finally {
+            saveItemBtn.disabled = false;
+            updateCounters();
+          }
+        });
+
+        categoryListEl.addEventListener('touchstart', handleTouchStart, { passive: false });
+        itemListEl.addEventListener('touchstart', handleTouchStart, { passive: false });
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', finishTouchDrag, { passive: false });
+        document.addEventListener('touchcancel', finishTouchDrag, { passive: false });
+      }
+
+      window.NKCategoryDesigner = {
+        selectCategory: function (encodedName) {
+          state.selectedCategory = decodeURIComponent(String(encodedName || ''));
+          renderCategories();
+          renderItems();
+        },
+        handleDragStart: function (type, index, event) {
+          handleDragStart(String(type || ''), Number(index), event);
+        },
+        handleDragOver: function (type, index, event) {
+          handleDragOver(String(type || ''), Number(index), event);
+        },
+        handleDragLeave: function (event) {
+          handleDragLeave(event);
+        },
+        handleDrop: function (type, index, event) {
+          handleDrop(String(type || ''), Number(index), event);
+        },
+        handleDragEnd: function () {
+          handleDragEnd();
+        },
+        toggleCategory: async function (index) {
+          try {
+            await toggleCategory(Number(index));
+          } catch (err) {
+            setStatus(`Category toggle failed: ${err.message}`, 'warn');
+          }
+        },
+        toggleItem: async function (index) {
+          try {
+            await toggleItem(Number(index));
+          } catch (err) {
+            setStatus(`Item toggle failed: ${err.message}`, 'warn');
+          }
+        },
+        cloneCategory: async function (index) {
+          try {
+            await cloneCategory(Number(index));
+          } catch (err) {
+            setStatus(`Category clone failed: ${err.message}`, 'warn');
+          }
+        }
+      };
+
+      async function bootstrap() {
+        clearSessionAndLock('Panel is locked. Login as Admin or SuperAdmin.');
+        bindEvents();
+        debugLog('bootstrap-start', {
+          embeddedMode: embeddedMode,
+          tokenPresentAtBoot: !!authClient.getToken()
+        });
+
+        try {
+          const payload = await authClient.restoreSession();
+          if (!payload || !payload.user) {
+            if (embeddedMode) {
+              setStatus('Waiting for portal session...', 'muted');
+            }
+            return;
+          }
+          setUnlocked(payload.user || {}, `Session restored for ${payload.user.username}.`);
+          sheetSelect.value = state.sheetName;
+          await loadDesigner();
+        } catch (_) {
+          // Keep locked; user can login manually.
+        }
+      }
+
+      bootstrap();
+    })();
+  </script>
+</body>
+</html>
+

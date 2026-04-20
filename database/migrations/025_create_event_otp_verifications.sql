@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `event_otp_verifications` (
+    `id`                        BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `event_id`                  VARCHAR(50) NOT NULL,
+    `email`                     VARCHAR(150) NOT NULL,
+    `customer_name`             VARCHAR(150) NOT NULL DEFAULT '',
+    `otp_hash`                  VARCHAR(255) NOT NULL DEFAULT '',
+    `attempt_count`             SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    `otp_requested_at`          DATETIME NULL DEFAULT NULL,
+    `resend_allowed_at`         DATETIME NULL DEFAULT NULL,
+    `expires_at`                DATETIME NULL DEFAULT NULL,
+    `verified_at`               DATETIME NULL DEFAULT NULL,
+    `verification_token_hash`   VARCHAR(255) NOT NULL DEFAULT '',
+    `verification_expires_at`   DATETIME NULL DEFAULT NULL,
+    `created_at`                DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`                DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uq_event_email` (`event_id`, `email`),
+    KEY `idx_expires_at` (`expires_at`),
+    KEY `idx_verification_expires_at` (`verification_expires_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

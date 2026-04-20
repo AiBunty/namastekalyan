@@ -78,21 +78,21 @@ register_shutdown_function(static function () use ($__nkWriteBootLog): void {
     }
 });
 
-$bootstrapFile = __DIR__ . '/bootstrap.php';
+$bootstrapFile = __DIR__ . '/bootstrap/app.php';
 if (!is_file($bootstrapFile)) {
     $__nkSendStartupError(
         'DEPLOYMENT_INCOMPLETE',
         'Required deployment files are missing from the API directory.',
-        ['missing' => ['bootstrap.php']]
+        ['missing' => ['bootstrap/app.php']]
     );
 }
 
-$routerFile = __DIR__ . '/src/Routes/ActionRouter.php';
+$routerFile = __DIR__ . '/app/Routes/ActionRouter.php';
 if (!is_file($routerFile)) {
     $__nkSendStartupError(
         'DEPLOYMENT_INCOMPLETE',
         'Required deployment files are missing from the API directory.',
-        ['missing' => ['src/Routes/ActionRouter.php']]
+        ['missing' => ['app/Routes/ActionRouter.php']]
     );
 }
 
@@ -121,6 +121,17 @@ if (in_array($method, ['POST', 'PUT', 'PATCH'], true)) {
         $body = $_POST;
     }
 
+    // Multipart/form-data: merge $_POST fields into $body
+    // This supports file upload endpoints that also send JSON fields as form fields.
+    $contentType = (string) ($_SERVER['CONTENT_TYPE'] ?? '');
+    if (stripos($contentType, 'multipart/form-data') !== false && !empty($_POST)) {
+        foreach ($_POST as $k => $v) {
+            if (!isset($body[$k])) {
+                $body[$k] = $v;
+            }
+        }
+    }
+
     // Apps Script compatibility: payload={...json...}
     if (isset($body['payload']) && is_string($body['payload'])) {
         $decodedPayload = json_decode((string) $body['payload'], true);
@@ -135,22 +146,6 @@ if (in_array($method, ['POST', 'PUT', 'PATCH'], true)) {
 
 // 3. Determine action
 $action = (string) ($body['action'] ?? $query['action'] ?? '');
-
-// If this file is reached directly for a normal browser page load,
-// serve the website homepage instead of returning API UNKNOWN_ACTION.
-if ($action === '' && $method === 'GET') {
-    $accept = (string) ($_SERVER['HTTP_ACCEPT'] ?? '');
-    $wantsHtml = $accept === '' || stripos($accept, 'text/html') !== false;
-    $homepage = __DIR__ . '/index.html';
-
-    if ($wantsHtml && is_file($homepage)) {
-        if (!headers_sent()) {
-            header('Content-Type: text/html; charset=utf-8');
-        }
-        readfile($homepage);
-        exit;
-    }
-}
 
 // Direct Razorpay webhooks may not include action parameter.
 if ($action === '' && isset($_SERVER['HTTP_X_RAZORPAY_SIGNATURE']) && $_SERVER['HTTP_X_RAZORPAY_SIGNATURE'] !== '') {
