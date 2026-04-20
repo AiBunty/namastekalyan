@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaste Kalyan by AWG | Premium Dining & Celebration Venue in Kalyan</title>
+    <meta
+        name="description"
+        content="Namaste Kalyan by Asian Wok & Grill — Kalyan's premier fine-dining destination featuring signature multi-cuisine menus, elegant celebration spaces, and a rooftop ambience you won't forget. Reserve your table today."
+    >
+    <!-- Canonical -->
+    <link rel="canonical" href="https://namastekalyan.asianwokandgrill.in/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="restaurant">
+    <meta property="og:site_name" content="Namaste Kalyan by AWG">
+    <meta property="og:title" content="Namaste Kalyan by AWG | Premium Dining & Celebration Venue in Kalyan">
+    <meta property="og:description" content="Kalyan's premier fine-dining destination — signature multi-cuisine menus, elegant celebration spaces, and a rooftop ambience you won't forget.">
+    <meta property="og:image" content="https://namastekalyan.asianwokandgrill.in/assets/Logo/Namaste Kalyan by AWG -02.png">
+    <meta property="og:url" content="https://namastekalyan.asianwokandgrill.in/">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Namaste Kalyan by AWG | Premium Dining in Kalyan">
+    <meta name="twitter:description" content="Signature multi-cuisine menus, celebration spaces & rooftop ambience at Kalyan's finest restaurant.">
+    <meta name="twitter:image" content="https://namastekalyan.asianwokandgrill.in/assets/Logo/Namaste Kalyan by AWG -02.png">
+
+    <!-- Geo & Keyword Meta -->
+    <meta name="keywords" content="Namaste Kalyan, restaurant in Kalyan, fine dining Kalyan, best restaurant Kalyan, celebration venue Kalyan, rooftop restaurant Kalyan, Asian Wok and Grill, AWG, party hall Kalyan, cocktail bar Kalyan, birthday party venue Kalyan, corporate dinner Kalyan">
+    <meta name="geo.region" content="IN-MH">
+    <meta name="geo.placename" content="Kalyan, Maharashtra">
+    <meta name="geo.position" content="19.2437;73.1355">
+    <meta name="ICBM" content="19.2437, 73.1355">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Namaste Kalyan by AWG">
+    <meta name="theme-color" content="#1a0a0a">
+
+    <link rel="icon" type="image/png" href="assets/Logo/PHS. Logo -01.png?v=20260418-assetfix-3">
+    <link rel="apple-touch-icon" href="assets/Logo/PHS. Logo -01.png?v=20260418-assetfix-3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles-copy.css?v=20260418-assetfix-3">
+    <link rel="stylesheet" href="css/modal-styles.css">
+    <!-- New CSS Architecture -->
+
+    <link rel="stylesheet" href="css/popups.css">
+    <link rel="stylesheet" href="css/menu-blocker.css?v=20260412-3">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/country-picker.css">
+
+    <style>
+      /* ════════ HAMBURGER MENU BUTTON ════════ */
+      .hamburger-menu {
+        position: fixed; top: 14px; right: 16px; width: 40px; height: 40px;
+        background: var(--color-accent-maroon); color: #fff; border: none;
+        border-radius: 8px; cursor: pointer; z-index: 2600; display: flex;
+        flex-direction: column; align-items: center; justify-content: center;
+        gap: 5px; font-size: 1.2rem; font-weight: 800;
+      }
+      .hamburger-menu:hover { background: rgba(198, 40, 40, 0.9); }
+      .hamburger-line { width: 22px; height: 2px; background: #fff; border-radius: 1px; }
+      /* Hide navbar links - all navigation in hamburger menu only */
+      .concept-nav { display: none !important; }
+      .concept-header-actions { display: none !important; }
+      
+      #sideNavOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2800; display: none; backdrop-filter: blur(2px); }
+      #sideNavContainer { position: fixed; right: -280px; top: 0; bottom: 0; width: 260px; background: var(--color-bg-secondary); z-index: 3000; padding: 40px 20px; box-shadow: -10px 0 30px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+      #sideNavContainer.open { transform: translateX(-280px); }
+      .cat-link { padding: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: rgba(255, 255, 255, 0.95); text-align: center; cursor: pointer; border: 1px solid rgba(0,0,0,0.05); transition: all 0.2s ease; text-decoration: none; display: block; }
+      .cat-link:hover { background: rgba(0, 0, 0, 0.4); transform: translateX(-2px); }
+    .floating-actions-group { position: fixed; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 2500; transition: transform 0.25s ease, opacity 0.25s ease; }
+    .floating-actions-group.is-hidden { transform: translateY(-50%) translateX(120%); opacity: 0; pointer-events: none; }
+    .floating-action-btn { border: none; cursor: pointer; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+    .floating-action-btn.menu-action { writing-mode: vertical-rl; text-orientation: mixed; background: var(--color-accent-maroon); padding: 20px 10px; border-radius: 12px 0 0 12px; font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; min-height: 112px; }
+    .floating-action-btn.icon-action { width: 44px; height: 44px; border-radius: 12px 0 0 12px; font-size: 1.1rem; font-weight: 800; }
+    .floating-action-btn.whatsapp-action { background: #25d366; }
+    .floating-action-btn.call-action { background: var(--color-accent-gold); color: #23180f; }
+    .floating-action-btn.hide-action { width: 32px; height: 32px; border-radius: 10px 0 0 10px; background: rgba(22, 22, 22, 0.9); font-size: 0.95rem; }
+    #floatingActionsReveal { position: fixed; right: 0; top: 50%; transform: translateY(-50%); width: 38px; height: 64px; border: none; border-radius: 12px 0 0 12px; background: rgba(22, 22, 22, 0.94); color: #fff; display: none; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; z-index: 2500; cursor: pointer; box-shadow: -4px 0 15px rgba(0,0,0,0.2); }
+    #floatingActionsReveal.visible { display: flex; }
+            #reviewBtn { position: fixed; left: 20px; bottom: 82px; background: var(--color-accent-gold); color: #23180f; padding: 8px 12px; border-radius: 12px; font-weight: 800; font-size: 0.75rem; border: none; cursor: pointer; z-index: 2600; display: none; box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
+            #reviewBtn:hover { filter: brightness(0.96); }
+            #scrollTopBtn.scroll-top-btn { left: 20px; right: auto; bottom: 24px; z-index: 2600; }
+
+            .events-live-strip {
+                margin: 16px 0 10px;
+                padding: 24px 16px;
+                border-radius: 20px;
+                background:
+                    radial-gradient(circle at 0% 0%, rgba(212, 175, 116, 0.24), transparent 46%),
+                    radial-gradient(circle at 100% 100%, rgba(198, 40, 40, 0.18), transparent 50%),
+                    linear-gradient(135deg, rgba(18, 10, 10, 0.98), rgba(40, 20, 20, 0.98));
+                border: 1px solid rgba(240, 196, 143, 0.25);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+            }
+
+            .events-live-strip[hidden] {
+                display: none !important;
+            }
+
+            .events-live-header {
+                display: flex;
+                align-items: end;
+                justify-content: space-between;
+                gap: 12px;
+                margin-bottom: 14px;
+            }
+
+            .events-live-header h2 {
+                margin: 0;
+                font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+                color: #fff;
+                font-family: 'Fraunces', serif;
+            }
+
+            .events-live-header p {
+                margin: 6px 0 0;
+                color: rgba(255, 245, 227, 0.8);
+                font-size: 0.92rem;
+            }
+
+            .events-live-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                color: #25130d;
+                background: linear-gradient(135deg, #f0c48f, #d79a72);
+                border-radius: 999px;
+                padding: 8px 12px;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
+
+            .events-live-all-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                color: #ffe4be;
+                border: 1px solid rgba(240, 196, 143, 0.34);
+                border-radius: 999px;
+                padding: 8px 12px;
+                text-decoration: none;
+                font-size: 0.7rem;
+                font-weight: 800;
+                letter-spacing: 0.4px;
+                text-transform: uppercase;
+                background: rgba(10, 7, 7, 0.35);
+            }
+
+            .events-live-grid {
+                display: grid;
+                gap: 12px;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+
+            .events-loading {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 14px;
+                border-radius: 999px;
+                border: 1px solid rgba(240, 196, 143, 0.24);
+                background: rgba(0, 0, 0, 0.22);
+                color: rgba(255, 242, 221, 0.9);
+                font-size: 0.78rem;
+                font-weight: 700;
+                letter-spacing: 0.35px;
+            }
+
+            .events-loading[hidden] {
+                display: none !important;
+            }
+
+            .events-loading-orbit {
+                position: relative;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: 1px solid rgba(240, 196, 143, 0.18);
+                animation: eventsLoadingSpin 1.9s linear infinite;
+            }
+
+            .events-loading-orbit::before,
+            .events-loading-orbit::after {
+                content: '';
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            .events-loading-orbit::before {
+                inset: 8px;
+                background: rgba(240, 196, 143, 0.28);
+                box-shadow: 0 0 18px rgba(240, 196, 143, 0.28);
+            }
+
+            .events-loading-orbit::after {
+                width: 7px;
+                height: 7px;
+                top: -2px;
+                left: 50%;
+                margin-left: -3.5px;
+                background: linear-gradient(135deg, #ffd8a9, #f08e67);
+                box-shadow: 0 0 12px rgba(255, 170, 120, 0.72);
+            }
+
+            .events-loading-inline {
+                margin: 14px 0 18px;
+            }
+
+            .events-live-loading-wrap {
+                margin-top: 10px;
+            }
+
+            @keyframes eventsLoadingSpin {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .events-live-card {
+                display: grid;
+                grid-template-rows: auto 1fr;
+                text-decoration: none;
+                border-radius: 14px;
+                overflow: hidden;
+                background: rgba(9, 6, 6, 0.55);
+                border: 1px solid rgba(240, 196, 143, 0.25);
+                transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            }
+
+            .events-live-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.38);
+                border-color: rgba(240, 196, 143, 0.5);
+            }
+
+            .events-live-card img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 3 / 4;
+                object-fit: cover;
+                object-position: center top;
+                display: block;
+            }
+
+            .events-live-copy {
+                padding: 12px;
+            }
+
+            .events-live-badge {
+                display: inline-flex;
+                border-radius: 999px;
+                background: rgba(212, 175, 116, 0.18);
+                border: 1px solid rgba(212, 175, 116, 0.4);
+                color: #f8e3c4;
+                font-size: 0.66rem;
+                font-weight: 800;
+                letter-spacing: 0.4px;
+                padding: 3px 8px;
+                margin-bottom: 8px;
+            }
+
+            .events-live-copy h3 {
+                margin: 0;
+                font-size: 1rem;
+                color: #fff;
+            }
+
+            .events-live-copy p {
+                margin: 8px 0 0;
+                color: rgba(255, 240, 220, 0.84);
+                font-size: 0.84rem;
+                line-height: 1.45;
+            }
+
+            .events-live-cta-inline {
+                margin-top: 10px;
+                display: inline-flex;
+                color: #f4d0a0;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.45px;
+                text-transform: uppercase;
+            }
+
+            .event-timeboard {
+                margin-top: 10px;
+                border-radius: 10px;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                background: linear-gradient(180deg, #222326 0%, #17181b 100%);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            }
+
+            .event-timeboard-head {
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 8px;
+                padding: 6px 9px;
+                background: #08090b;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            }
+
+            .event-timeboard-day {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffd7ac;
+                font-weight: 900;
+                letter-spacing: 0.45px;
+                font-size: 0.62rem;
+                text-transform: uppercase;
+                border-radius: 999px;
+                padding: 3px 9px;
+                border: 1px solid rgba(240, 196, 143, 0.34);
+                background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+                box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.04);
+            }
+
+            .event-timeboard-date {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffe7c7;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                border-radius: 999px;
+                padding: 5px 11px;
+                border: 1px solid rgba(240, 196, 143, 0.3);
+                background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+                box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.04);
+            }
+
+            .event-timeboard-flip {
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+                gap: 8px;
+                padding: 10px 9px 11px;
+                align-items: end;
+            }
+
+            .event-timeboard-flip::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+                border-top: 1px solid rgba(0, 0, 0, 0.8);
+                transform: translateY(-50%);
+                pointer-events: none;
+            }
+
+            .event-timeboard-flip span {
+                position: relative;
+                display: grid;
+                place-items: center;
+                min-height: 42px;
+                border-radius: 8px;
+                font-size: 1.75rem;
+                line-height: 1;
+                font-weight: 800;
+                color: #f4f4f5;
+                background: linear-gradient(180deg, #2a2c30 0%, #17191d 100%);
+                box-shadow: inset 0 8px 16px rgba(255, 255, 255, 0.03), inset 0 -14px 20px rgba(255, 255, 255, 0.05);
+            }
+
+            .event-timeboard-meridiem {
+                min-height: auto !important;
+                align-self: end;
+                margin-bottom: 2px;
+                padding: 4px 6px;
+                border-radius: 6px;
+                font-size: 0.58rem !important;
+                letter-spacing: 0.5px;
+                font-weight: 800;
+                color: rgba(255, 237, 211, 0.92);
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+                box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.04);
+            }
+
+            .event-card .event-timeboard {
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+
+            .event-card .event-timeboard-flip span {
+                min-height: 56px;
+                font-size: 2.2rem;
+            }
+
+            .events-live-copy .event-timeboard {
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+
+            .event-mini-countdown {
+                margin-top: 8px;
+                border-radius: 10px;
+                border: 1px solid rgba(240, 196, 143, 0.24);
+                background: rgba(0, 0, 0, 0.26);
+                padding: 8px;
+            }
+
+            .event-mini-countdown-head {
+                color: rgba(255, 227, 192, 0.92);
+                font-size: 0.62rem;
+                font-weight: 800;
+                letter-spacing: 0.55px;
+                text-transform: uppercase;
+                margin-bottom: 7px;
+            }
+
+            .event-mini-countdown-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 5px;
+            }
+
+            .event-mini-countdown-box {
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                background: linear-gradient(180deg, #2a2d31 0%, #17191d 100%);
+                display: grid;
+                justify-items: center;
+                padding: 5px 4px;
+            }
+
+            .event-mini-countdown-value {
+                font-size: 0.95rem;
+                line-height: 1;
+                font-weight: 800;
+                color: #fff;
+                font-variant-numeric: tabular-nums;
+            }
+
+            .event-mini-countdown-label {
+                margin-top: 2px;
+                font-size: 0.5rem;
+                letter-spacing: 0.4px;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.64);
+            }
+
+            .events-live-price {
+                display: inline-flex;
+                background: rgba(212, 175, 116, 0.22);
+                border: 1px solid rgba(240, 196, 143, 0.4);
+                border-radius: 8px;
+                padding: 5px 10px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                color: #ffd7ac;
+                font-size: 0.85rem;
+                font-weight: 800;
+                letter-spacing: 0.35px;
+            }
+
+            .carousel-wrapper {
+                position: relative;
+                display: grid;
+            }
+
+            .carousel-viewport {
+                display: grid;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+                gap: 12px;
+                padding-bottom: 8px;
+            }
+
+            .carousel-viewport::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .carousel-viewport::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 3px;
+            }
+
+            .carousel-viewport::-webkit-scrollbar-thumb {
+                background: rgba(212, 175, 116, 0.32);
+                border-radius: 3px;
+            }
+
+            .carousel-viewport::-webkit-scrollbar-thumb:hover {
+                background: rgba(212, 175, 116, 0.5);
+            }
+
+            .carousel-grid {
+                display: grid;
+                grid-auto-flow: column;
+                grid-auto-columns: var(--carousel-card-width, 100%);
+                gap: 12px;
+            }
+
+            .carousel-grid .events-live-card {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+
+            .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(10, 7, 7, 0.7);
+                border: 1px solid rgba(240, 196, 143, 0.34);
+                color: #f0c48f;
+                padding: 8px 12px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1.2rem;
+                z-index: 10;
+                transition: background 0.2s ease, border-color 0.2s ease;
+            }
+
+            .carousel-nav:hover {
+                background: rgba(10, 7, 7, 0.9);
+                border-color: rgba(240, 196, 143, 0.58);
+            }
+
+            .carousel-nav:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+
+            .carousel-nav-prev {
+                left: 8px;
+            }
+
+            .carousel-nav-next {
+                right: 8px;
+            }
+
+            @media (max-width: 767px) {
+                .carousel-grid {
+                    grid-auto-columns: 100%;
+                }
+
+                .carousel-nav {
+                    padding: 6px 9px;
+                    font-size: 1rem;
+                }
+            }
+
+            @media (min-width: 768px) {
+                .carousel-grid {
+                    grid-auto-columns: 50%;
+                }
+            }
+    </style>
+
+    <!-- Structured Data: Restaurant (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Namaste Kalyan by AWG",
+      "alternateName": "Namaste Kalyan by Asian Wok and Grill",
+            "image": "https://namastekalyan.asianwokandgrill.in/assets/Logo/Namaste Kalyan by AWG -02.png",
+            "url": "https://namastekalyan.asianwokandgrill.in/",
+      "telephone": "+919371519999",
+      "email": "namastekalyan09@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+                "streetAddress": "4th Floor, Shop No. 421 to 426, Rockmount Residency, Commercial Hub, Kadakpada Circle",
+        "addressLocality": "Kalyan",
+        "addressRegion": "Maharashtra",
+        "postalCode": "421301",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.2437,
+        "longitude": 73.1355
+      },
+      "servesCuisine": ["Multi-Cuisine", "Asian", "Indian", "Continental"],
+      "priceRange": "₹₹₹",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "12:00",
+          "closes": "23:30"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/namaste_kalyan_by_awg/",
+        "https://www.facebook.com/namastekalyanbyawg",
+        "https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane"
+      ],
+      "hasMenu": {
+        "@type": "Menu",
+        "url": "https://namastekalyan.asianwokandgrill.in/menu/"
+      },
+      "acceptsReservations": "True",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Rooftop Seating", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Private Dining", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Full Bar", "value": true }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Website Search (Sitelinks Searchbox) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Namaste Kalyan by AWG",
+            "url": "https://namastekalyan.asianwokandgrill.in/"
+    }
+    </script>
+
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://namastekalyan.asianwokandgrill.in/" },
+        { "@type": "ListItem", "position": 2, "name": "Menu", "item": "https://namastekalyan.asianwokandgrill.in/menu/" },
+        { "@type": "ListItem", "position": 3, "name": "Bar Menu", "item": "https://namastekalyan.asianwokandgrill.in/cocktails/" }
+      ]
+    }
+    </script>
+</head>
+<body class="concept-body">
+    <div class="concept-shell">
+        <div id="nkSharedNavbar"></div>
+
+        <main id="top">
+            <section class="hero-stage">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Kalyan's Finest Dining Experience</p>
+                    <h1>Where every meal is a celebration and every evening feels unforgettable.</h1>
+
+                    <div class="hero-actions">
+                        <a class="header-pill" href="#menu">Explore Menu</a>
+                        <a class="ghost-link ghost-link-large" href="events/">View Live Events</a>
+                    </div>
+                </div>
+
+                <div class="hero-media reveal">
+                    <article class="hero-video-frame hero-video-frame-main">
+                        <video id="heroMainVideo" autoplay muted playsinline data-skip-asset-normalize="true" poster="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.28.41 PM.jpeg?v=20260418-assetfix-3">
+                            <source src="assets/01 (1).mp4?v=20260418-assetfix-3" type="video/mp4">
+                        </video>
+                    </article>
+
+                    <article class="hero-brand-panel">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -02.png?v=20260418-assetfix-3" alt="Namaste Kalyan logo">
+                        <p class="script-line">Crafted with Love</p>
+                        <p>Fine food, refined ambience, and celebration-first hospitality under one roof.</p>
+                    </article>
+
+                    <article class="hero-video-frame hero-video-frame-tall">
+                        <video autoplay muted loop playsinline data-skip-asset-normalize="true" poster="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.24.50 PM.jpeg?v=20260418-assetfix-3">
+                            <source src="assets/45.mp4?v=20260418-assetfix-3" type="video/mp4">
+                        </video>
+                    </article>
+                </div>
+            </section>
+
+            <section class="concept-ribbon" aria-label="Partner brands">
+                <div class="concept-ribbon-track">
+                    <div class="concept-ribbon-group">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -04.png?v=20260418-assetfix-3" alt="Asian Wok and Grill parent franchise logo">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -02.png?v=20260418-assetfix-3" alt="Namaste Kalyan by AWG logo">
+                    </div>
+                    <div class="concept-ribbon-group" aria-hidden="true">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -04.png?v=20260418-assetfix-3" alt="">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -02.png?v=20260418-assetfix-3" alt="">
+                    </div>
+                    <div class="concept-ribbon-group" aria-hidden="true">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -04.png?v=20260418-assetfix-3" alt="">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -02.png?v=20260418-assetfix-3" alt="">
+                    </div>
+                    <div class="concept-ribbon-group" aria-hidden="true">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -04.png?v=20260418-assetfix-3" alt="">
+                        <img src="assets/Logo/Namaste Kalyan by AWG -02.png?v=20260418-assetfix-3" alt="">
+                    </div>
+                </div>
+            </section>
+
+            <section class="events-live-strip" id="events-live-strip" hidden>
+                <div class="events-live-header">
+                    <div>
+                        <h2>Live Events This Week</h2>
+                        <p>Music nights, curated experiences, and celebration energy - happening now.</p>
+                    </div>
+                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+                        <span class="events-live-pill">NOW LIVE</span>
+                        <a class="events-live-all-link" href="events/">View All Active Events</a>
+                    </div>
+                </div>
+                <div class="events-live-loading-wrap">
+                    <div class="events-loading" id="events-live-loading" hidden>
+                        <span class="events-loading-orbit" aria-hidden="true"></span>
+                        <span>Loading live events...</span>
+                    </div>
+                </div>
+                <div class="events-live-grid" id="events-live-grid"></div>
+            </section>
+
+            <section class="signature-section" id="menu">
+                <div class="section-copy reveal">
+                    <p class="eyebrow">Signature Menus</p>
+                    <h2>Each menu lane feels like its own moment.</h2>
+                    <p>
+                        From the plating to the pours, every item on the menu is designed to feel like a celebration of its own - and a perfect fit for the occasion of your choice. 
+                    </p>
+                </div>
+
+                <div class="signature-grid">
+                    <a id="foodMenuCard" class="signature-card reveal" href="menu/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://storage.files-vault.com/landing_pages/92217/5e3b0748e4a7b0c25ce667b2306a973e-5e3b0748e4a7b0c25ce667b2306a973e-mixed-wrap-with-cherry-tomato.webp" alt="Food Menu">
+                        <div class="signature-card-copy">
+                            <span>01</span>
+                            <h3>Food Menu</h3>
+                            <p>Signature plates, sharables, grills, and full-table dining.</p>
+                        </div>
+                    </a>
+
+                    <a class="signature-card reveal" href="menu/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://storage.files-vault.com/landing_pages/92217/13492b5dd3ef07bed712d2259807400e-13492b5dd3ef07bed712d2259807400e-pre-prepared-food-showcasing-ready-eat-delicious-meals-go.webp" alt="Chef Special">
+                        <div class="signature-card-copy">
+                            <span>02</span>
+                            <h3>Chef Special</h3>
+                            <p>House highlights with richer plating and celebration energy.</p>
+                        </div>
+                    </a>
+
+                    <a class="signature-card reveal" href="menu/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://storage.files-vault.com/landing_pages/92217/5e9be2fc03a4d06ae3d6c00fb428397a-5e9be2fc03a4d06ae3d6c00fb428397a-Artboard-1-copy.webp" alt="Mocktails">
+                        <div class="signature-card-copy">
+                            <span>03</span>
+                            <h3>Mocktails</h3>
+                            <p>Fresh pours, colour, and balance designed for social tables.</p>
+                        </div>
+                    </a>
+
+                    <a class="signature-card reveal" href="cocktails/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://storage.files-vault.com/landing_pages/92217/9c28070e985d8ca2da50edb8407d7116-9b805b71c701212424a62acad65e2c65-Artboard-1-copy-2.webp" alt="Cocktails">
+                        <div class="signature-card-copy">
+                            <span>04</span>
+                            <h3>Cocktails</h3>
+                            <p>Spirit-forward drinks for longer evenings and lounge hours.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="food-gallery-section" id="gallery">
+                <div class="section-copy reveal">
+                    <p class="eyebrow">Food Gallery</p>
+                    <h2>Explore Our Culinary Creations</h2>
+                    <p>
+                        A visual tour of the plating, pours, and presentation that set the tone for a Namaste Kalyan evening.
+                    </p>
+                </div>
+
+                <div class="food-gallery-shell reveal" data-food-gallery-grid>
+                    <div class="food-gallery-smoke food-gallery-smoke-one" aria-hidden="true"></div>
+                    <div class="food-gallery-smoke food-gallery-smoke-two" aria-hidden="true"></div>
+                    <div class="food-gallery-grid">
+                        <button class="gallery-item food-gallery-card" type="button" data-food-gallery-slot data-full="assets/food-gallery/food-01.jpg" aria-label="Open food gallery image 1">
+                            <img src="assets/food-gallery/food-01.jpg" alt="Signature plated dish from Namaste Kalyan food gallery">
+                            <span class="food-gallery-card-copy">
+                                <span class="food-gallery-card-tag">Chef's Pick</span>
+                                <strong class="food-gallery-card-title">Signature Plate</strong>
+                            </span>
+                        </button>
+                        <button class="gallery-item food-gallery-card" type="button" data-food-gallery-slot data-full="assets/food-gallery/food-02.jpg" aria-label="Open food gallery image 2">
+                            <img src="assets/food-gallery/food-02.jpg" alt="Fresh plated meal from Namaste Kalyan food gallery">
+                            <span class="food-gallery-card-copy">
+                                <span class="food-gallery-card-tag">Fresh Drop</span>
+                                <strong class="food-gallery-card-title">Kitchen Showcase</strong>
+                            </span>
+                        </button>
+                        <button class="gallery-item food-gallery-card" type="button" data-food-gallery-slot data-full="assets/food-gallery/food-03.webp" aria-label="Open food gallery image 3">
+                            <img src="assets/food-gallery/food-03.webp" alt="Close-up plating detail from Namaste Kalyan food gallery">
+                            <span class="food-gallery-card-copy">
+                                <span class="food-gallery-card-tag">Table Star</span>
+                                <strong class="food-gallery-card-title">Plating Detail</strong>
+                            </span>
+                        </button>
+                        <button class="gallery-item food-gallery-card" type="button" data-food-gallery-slot data-full="assets/food-gallery/food-04.jpg" aria-label="Open food gallery image 4">
+                            <img src="assets/food-gallery/food-04.jpg" alt="Restaurant food presentation from Namaste Kalyan food gallery">
+                            <span class="food-gallery-card-copy">
+                                <span class="food-gallery-card-tag">Chef's Pick</span>
+                                <strong class="food-gallery-card-title">Dining Moment</strong>
+                            </span>
+                        </button>
+                        <button class="gallery-item food-gallery-card" type="button" data-food-gallery-slot data-full="assets/food-gallery/food-05.jpg" aria-label="Open food gallery image 5">
+                            <img src="assets/food-gallery/food-05.jpg" alt="Premium dish styling from Namaste Kalyan food gallery">
+                            <span class="food-gallery-card-copy">
+                                <span class="food-gallery-card-tag">Fresh Drop</span>
+                                <strong class="food-gallery-card-title">Premium Bite</strong>
+                            </span>
+                        </button>
+                        <button class="gallery-item food-gallery-card" type="button" data-food-gallery-slot data-full="assets/food-gallery/food-06.jpg" aria-label="Open food gallery image 6">
+                            <img src="assets/food-gallery/food-06.jpg" alt="Curated dish selection from Namaste Kalyan food gallery">
+                            <span class="food-gallery-card-copy">
+                                <span class="food-gallery-card-tag">Table Star</span>
+                                <strong class="food-gallery-card-title">Curated Course</strong>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="events-section" id="events">
+                <div class="section-copy reveal">
+                    <p class="eyebrow">Celebrate Here</p>
+                    <h2>Plan your events at Namaste Kalyan.</h2>
+                    <p>Spaces that flex between intimate dinners, premium group bookings, and full celebration evenings.</p>
+                </div>
+
+                <div class="events-loading events-loading-inline" id="events-home-loading" hidden>
+                    <span class="events-loading-orbit" aria-hidden="true"></span>
+                    <span>Loading event cards...</span>
+                </div>
+
+                <div class="event-grid" data-allow-dynamic>
+                </div>
+
+                <div class="event-grid event-grid-static">
+                    <article class="event-card reveal is-visible">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.28.41 PM.jpeg?v=20260418-assetfix-3" alt="Birthday celebrations at Namaste Kalyan" loading="lazy" decoding="async">
+                        <div class="event-card-copy">
+                            <span class="event-card-badge">Birthday</span>
+                            <h3>Birthday Celebrations</h3>
+                            <p>Host birthdays with mood lighting, chef-led dining, and a celebration setup that feels premium from entry to cake-cutting.</p>
+                            <span class="event-card-cta-inline">Plan Birthday Event</span>
+                        </div>
+                    </article>
+
+                    <article class="event-card reveal is-visible">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.26.20 PM.jpeg?v=20260418-assetfix-3" alt="Corporate events at Namaste Kalyan" loading="lazy" decoding="async">
+                        <div class="event-card-copy">
+                            <span class="event-card-badge">Corporate Events</span>
+                            <h3>Corporate Events</h3>
+                            <p>Set up team dinners, client evenings, and business celebrations with polished service, group seating, and a strong hosting experience.</p>
+                            <span class="event-card-cta-inline">Plan Corporate Event</span>
+                        </div>
+                    </article>
+
+                    <article class="event-card reveal is-visible">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.24.50 PM.jpeg?v=20260418-assetfix-3" alt="Kitty party venue at Namaste Kalyan" loading="lazy" decoding="async">
+                        <div class="event-card-copy">
+                            <span class="event-card-badge">Kitty Party</span>
+                            <h3>Kitty Party</h3>
+                            <p>Book stylish afternoon or evening kitty gatherings with curated food, comfortable seating, and a setting made for relaxed catch-ups.</p>
+                            <span class="event-card-cta-inline">Plan Kitty Party</span>
+                        </div>
+                    </article>
+
+                    <article class="event-card reveal is-visible">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.27.42 PM.jpeg?v=20260418-assetfix-3" alt="Special occasions at Namaste Kalyan" loading="lazy" decoding="async">
+                        <div class="event-card-copy">
+                            <span class="event-card-badge">Special Occasions</span>
+                            <h3>Special Occasions</h3>
+                            <p>From anniversaries to family milestones, celebrate special occasions with a venue that balances ambience, food, and memorable service.</p>
+                            <span class="event-card-cta-inline">Plan Special Occasion</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="gallery-section" id="venue-gallery">
+                <div class="section-copy reveal">
+                    <p class="eyebrow">Gallery</p>
+                    <h2>Visual moments from the floor, the bar, and the table.</h2>
+                </div>
+
+                <div class="gallery-grid">
+                    <button class="gallery-item gallery-item-tall reveal" type="button" data-full="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.24.50 PM.jpeg" aria-label="Open gallery image 1">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.24.50 PM.jpeg" alt="Restaurant dining plate presentation">
+                    </button>
+                    <button class="gallery-item reveal" type="button" data-full="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.28.41 PM.jpeg" aria-label="Open gallery image 2">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.28.41 PM.jpeg" alt="Interior seating ambience">
+                    </button>
+                    <button class="gallery-item reveal" type="button" data-full="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.26.20 PM.jpeg" aria-label="Open gallery image 3">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.26.20 PM.jpeg" alt="Beverage and tabletop styling">
+                    </button>
+                    <button class="gallery-item reveal" type="button" data-full="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.24.32 PM.jpeg" aria-label="Open gallery image 4">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.24.32 PM.jpeg" alt="Signature plated dish">
+                    </button>
+                    <button class="gallery-item gallery-item-wide reveal" type="button" data-full="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.27.19 PM.jpeg" aria-label="Open gallery image 5">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.27.19 PM.jpeg" alt="Lounge beverage visual">
+                    </button>
+                    <button class="gallery-item reveal" type="button" data-full="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.25.35 PM.jpeg" aria-label="Open gallery image 6">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.25.35 PM.jpeg" alt="Restaurant ambience and seating details">
+                    </button>
+                    <button class="gallery-item reveal" type="button" data-full="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.26.22 PM.jpeg" aria-label="Open gallery image 7">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.26.22 PM.jpeg" alt="Dining setup and service presentation">
+                    </button>
+                    <button class="gallery-item reveal" type="button" data-full="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.27.42 PM.jpeg" aria-label="Open gallery image 8">
+                        <img src="assets/Hotel Pics/WhatsApp Image 2026-03-20 at 5.27.42 PM.jpeg" alt="Evening restaurant mood and table styling">
+                    </button>
+                </div>
+            </section>
+
+            <section class="contact-stage" id="contact">
+                <div class="contact-panel reveal">
+                    <p class="eyebrow">Reserve The Evening</p>
+                    <h2>Bring your next dinner, celebration, or private booking to Namaste Kalyan.</h2>
+                    <p>
+                        4th Floor, Shop No. 421 to 426, Rockmount Commercial Hub, Kadakpada Circle, Kalyan, Thane, Maharashtra 421301. For group bookings, table reservations, and direct dining enquiries, use the links below.
+                    </p>
+                    <div class="contact-actions">
+                        <a class="header-pill" href="https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout" target="_blank" rel="noopener noreferrer">Order on Swiggy</a>
+                        <a class="ghost-link ghost-link-large" href="booking/">Reserve a Table</a>
+                    </div>
+                </div>
+
+                <div class="contact-stack reveal">
+                    <div class="contact-chip">
+                        <span>Phone</span>
+                        <a href="tel:+919371519999">+91 93715 19999</a>
+                    </div>
+                    <div class="contact-chip">
+                        <span>WhatsApp</span>
+                        <a class="whatsapp-btn" href="https://wa.me/919371519999" target="_blank" rel="noopener noreferrer">Start Chat</a>
+                    </div>
+                    <div class="contact-chip">
+                        <span>Instagram</span>
+                        <a href="https://www.instagram.com/namaste_kalyan_by_awg/" target="_blank" rel="noopener noreferrer">@namaste_kalyan_by_awg</a>
+                    </div>
+                    <div class="contact-chip">
+                        <span>Mail</span>
+                        <a href="mailto:namastekalyan09@gmail.com">namastekalyan09@gmail.com</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="nkSharedFooter"></div>
+    </div>
+
+    <div class="lightbox" aria-hidden="true">
+        <button class="lightbox-close" type="button" aria-label="Close image viewer">Close</button>
+        <img class="lightbox-image" src="" alt="Expanded gallery view">
+    </div>
+
+    <button id="reviewBtn" onclick="openGoogleReview()" aria-label="Write a Google review">⭐ REVIEW</button>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" title="Back to top">
+        <img class="scroll-top-icon" src="assets/icons/ui/arrow-up.svg?v=20260321-3" alt="" loading="lazy" decoding="async">
+    </button>
+
+        <div id="menuBlockerOverlay" class="mb-overlay hidden" aria-modal="true" role="dialog" aria-label="Unlock menu">
+            <div class="mb-card">
+                <div id="mbStepForm" class="mb-step active">
+                    <h2 class="mb-title">Spin &amp; Win Discounts</h2>
+                    <p class="mb-subtitle">Win upto 50% off on your food bill u just need to fill the form below.</p>
+                    <label class="mb-label" for="mbName">Name *</label>
+                    <input id="mbName" class="mb-input" type="text" maxlength="60" placeholder="Enter your name" autocomplete="name" />
+
+                    <label class="mb-label" for="mbPhone">Mobile Number *</label>
+                    <div class="mb-phone-row">
+                        <select id="mbCountryCode" class="mb-select" aria-label="Country code">
+                            <option value="93">AF +93</option>
+                            <option value="355">AL +355</option>
+                            <option value="213">DZ +213</option>
+                            <option value="376">AD +376</option>
+                            <option value="244">AO +244</option>
+                            <option value="54">AR +54</option>
+                            <option value="374">AM +374</option>
+                            <option value="61">AU +61</option>
+                            <option value="43">AT +43</option>
+                            <option value="994">AZ +994</option>
+                            <option value="973">BH +973</option>
+                            <option value="880">BD +880</option>
+                            <option value="375">BY +375</option>
+                            <option value="32">BE +32</option>
+                            <option value="501">BZ +501</option>
+                            <option value="229">BJ +229</option>
+                            <option value="975">BT +975</option>
+                            <option value="591">BO +591</option>
+                            <option value="387">BA +387</option>
+                            <option value="267">BW +267</option>
+                            <option value="55">BR +55</option>
+                            <option value="673">BN +673</option>
+                            <option value="359">BG +359</option>
+                            <option value="226">BF +226</option>
+                            <option value="257">BI +257</option>
+                            <option value="855">KH +855</option>
+                            <option value="237">CM +237</option>
+                            <option value="1">CA +1</option>
+                            <option value="238">CV +238</option>
+                            <option value="236">CF +236</option>
+                            <option value="235">TD +235</option>
+                            <option value="56">CL +56</option>
+                            <option value="86">CN +86</option>
+                            <option value="57">CO +57</option>
+                            <option value="269">KM +269</option>
+                            <option value="242">CG +242</option>
+                            <option value="243">CD +243</option>
+                            <option value="506">CR +506</option>
+                            <option value="385">HR +385</option>
+                            <option value="53">CU +53</option>
+                            <option value="357">CY +357</option>
+                            <option value="420">CZ +420</option>
+                            <option value="45">DK +45</option>
+                            <option value="253">DJ +253</option>
+                            <option value="1">DO +1</option>
+                            <option value="593">EC +593</option>
+                            <option value="20">EG +20</option>
+                            <option value="503">SV +503</option>
+                            <option value="240">GQ +240</option>
+                            <option value="291">ER +291</option>
+                            <option value="372">EE +372</option>
+                            <option value="251">ET +251</option>
+                            <option value="679">FJ +679</option>
+                            <option value="358">FI +358</option>
+                            <option value="33">FR +33</option>
+                            <option value="241">GA +241</option>
+                            <option value="220">GM +220</option>
+                            <option value="995">GE +995</option>
+                            <option value="49">DE +49</option>
+                            <option value="233">GH +233</option>
+                            <option value="30">GR +30</option>
+                            <option value="502">GT +502</option>
+                            <option value="224">GN +224</option>
+                            <option value="245">GW +245</option>
+                            <option value="592">GY +592</option>
+                            <option value="509">HT +509</option>
+                            <option value="504">HN +504</option>
+                            <option value="36">HU +36</option>
+                            <option value="354">IS +354</option>
+                            <option value="91" selected>IN +91</option>
+                            <option value="62">ID +62</option>
+                            <option value="98">IR +98</option>
+                            <option value="964">IQ +964</option>
+                            <option value="353">IE +353</option>
+                            <option value="972">IL +972</option>
+                            <option value="39">IT +39</option>
+                            <option value="225">CI +225</option>
+                            <option value="1">JM +1</option>
+                            <option value="81">JP +81</option>
+                            <option value="962">JO +962</option>
+                            <option value="7">KZ +7</option>
+                            <option value="254">KE +254</option>
+                            <option value="965">KW +965</option>
+                            <option value="996">KG +996</option>
+                            <option value="856">LA +856</option>
+                            <option value="371">LV +371</option>
+                            <option value="961">LB +961</option>
+                            <option value="266">LS +266</option>
+                            <option value="231">LR +231</option>
+                            <option value="218">LY +218</option>
+                            <option value="423">LI +423</option>
+                            <option value="370">LT +370</option>
+                            <option value="352">LU +352</option>
+                            <option value="261">MG +261</option>
+                            <option value="265">MW +265</option>
+                            <option value="60">MY +60</option>
+                            <option value="960">MV +960</option>
+                            <option value="223">ML +223</option>
+                            <option value="356">MT +356</option>
+                            <option value="222">MR +222</option>
+                            <option value="230">MU +230</option>
+                            <option value="52">MX +52</option>
+                            <option value="373">MD +373</option>
+                            <option value="377">MC +377</option>
+                            <option value="976">MN +976</option>
+                            <option value="382">ME +382</option>
+                            <option value="212">MA +212</option>
+                            <option value="258">MZ +258</option>
+                            <option value="95">MM +95</option>
+                            <option value="264">NA +264</option>
+                            <option value="977">NP +977</option>
+                            <option value="31">NL +31</option>
+                            <option value="64">NZ +64</option>
+                            <option value="505">NI +505</option>
+                            <option value="227">NE +227</option>
+                            <option value="234">NG +234</option>
+                            <option value="850">KP +850</option>
+                            <option value="47">NO +47</option>
+                            <option value="968">OM +968</option>
+                            <option value="92">PK +92</option>
+                            <option value="970">PS +970</option>
+                            <option value="507">PA +507</option>
+                            <option value="675">PG +675</option>
+                            <option value="595">PY +595</option>
+                            <option value="51">PE +51</option>
+                            <option value="63">PH +63</option>
+                            <option value="48">PL +48</option>
+                            <option value="351">PT +351</option>
+                            <option value="974">QA +974</option>
+                            <option value="40">RO +40</option>
+                            <option value="7">RU +7</option>
+                            <option value="250">RW +250</option>
+                            <option value="966">SA +966</option>
+                            <option value="221">SN +221</option>
+                            <option value="381">RS +381</option>
+                            <option value="248">SC +248</option>
+                            <option value="232">SL +232</option>
+                            <option value="65">SG +65</option>
+                            <option value="421">SK +421</option>
+                            <option value="386">SI +386</option>
+                            <option value="27">ZA +27</option>
+                            <option value="82">KR +82</option>
+                            <option value="211">SS +211</option>
+                            <option value="34">ES +34</option>
+                            <option value="94">LK +94</option>
+                            <option value="249">SD +249</option>
+                            <option value="597">SR +597</option>
+                            <option value="46">SE +46</option>
+                            <option value="41">CH +41</option>
+                            <option value="963">SY +963</option>
+                            <option value="886">TW +886</option>
+                            <option value="992">TJ +992</option>
+                            <option value="255">TZ +255</option>
+                            <option value="66">TH +66</option>
+                            <option value="228">TG +228</option>
+                            <option value="216">TN +216</option>
+                            <option value="90">TR +90</option>
+                            <option value="993">TM +993</option>
+                            <option value="256">UG +256</option>
+                            <option value="380">UA +380</option>
+                            <option value="971">AE +971</option>
+                            <option value="44">UK +44</option>
+                            <option value="1">US +1</option>
+                            <option value="598">UY +598</option>
+                            <option value="998">UZ +998</option>
+                            <option value="58">VE +58</option>
+                            <option value="84">VN +84</option>
+                            <option value="967">YE +967</option>
+                            <option value="260">ZM +260</option>
+                            <option value="263">ZW +263</option>
+                        </select>
+                        <input id="mbPhone" class="mb-input" type="tel" maxlength="10" placeholder="Enter mobile number" autocomplete="tel" inputmode="numeric" />
+                    </div>
+
+                    <div class="mb-two-col">
+                        <div>
+                            <label class="mb-label" for="mbDob">Date of Birth</label>
+                            <div class="mb-date-wrap">
+                                <input id="mbDob" class="mb-input mb-date-input" type="text" maxlength="10" placeholder="DD/MM/YYYY" inputmode="numeric" autocomplete="bday" />
+                                <button id="mbDobPickerBtn" class="mb-date-btn" type="button" aria-label="Select date of birth">📅</button>
+                                <input id="mbDobPicker" class="mb-date-picker" type="date" tabindex="-1" aria-hidden="true" />
+                            </div>
+                            <p class="mb-date-help">Type DD/MM/YYYY or use calendar.</p>
+                        </div>
+                        <div>
+                            <label class="mb-label" for="mbAnniversary">Date of Anniversary</label>
+                            <div class="mb-date-wrap">
+                                <input id="mbAnniversary" class="mb-input mb-date-input" type="text" maxlength="10" placeholder="DD/MM/YYYY" inputmode="numeric" autocomplete="off" />
+                                <button id="mbAnniversaryPickerBtn" class="mb-date-btn" type="button" aria-label="Select date of anniversary">📅</button>
+                                <input id="mbAnniversaryPicker" class="mb-date-picker" type="date" tabindex="-1" aria-hidden="true" />
+                            </div>
+                            <p class="mb-date-help">Optional. Leave blank if not applicable.</p>
+                        </div>
+                    </div>
+
+                    <p id="mbFormStatus" class="mb-subtitle">Fill details and submit to continue to spin.</p>
+                    <p id="mbFormError" class="mb-error" aria-live="polite"></p>
+                    <div class="mb-row">
+                        <button id="mbFormSubmitBtn" class="mb-btn" type="button">Submit &amp; Continue To Spin</button>
+                    </div>
+
+                    <div class="mb-staff-toggle-row">
+                        <button id="mbStaffToggle" class="mb-staff-toggle" type="button">Staff Device Access</button>
+                    </div>
+                    <div id="mbStaffPanel" class="mb-staff-panel" aria-hidden="true">
+                        <input id="mbStaffCode" class="mb-input" type="password" maxlength="40" placeholder="Enter staff secret code" autocomplete="off" />
+                        <div class="mb-row">
+                            <button id="mbStaffBypassBtn" class="mb-btn mb-btn-secondary" type="button">Bypass Blocker</button>
+                        </div>
+                        <p id="mbStaffMsg" class="mb-error" aria-live="polite"></p>
+                    </div>
+                </div>
+
+                <div id="mbStepSpin" class="mb-step">
+                    <h2 class="mb-title">Lucky Spin Wheel</h2>
+                    <p class="mb-subtitle">You can win upto 50% off. Spin now.</p>
+                    <div class="mb-wheel-wrap">
+                        <canvas id="mbWheelCanvas" width="320" height="320" aria-label="Prize wheel"></canvas>
+                        <div class="mb-pointer"></div>
+                    </div>
+                    <div class="mb-row">
+                        <button id="mbSpinBtn" class="mb-btn">Spin Now</button>
+                    </div>
+                    <p id="mbSpinStatus" class="mb-status" aria-live="polite"></p>
+                </div>
+
+                <div id="mbStepResult" class="mb-step">
+                    <h2 class="mb-title">Your Result</h2>
+                    <p id="mbResultText" class="mb-result">Try Again Next Time</p>
+                    <p id="mbResultHint" class="mb-subtitle"></p>
+                    <p id="mbCouponCode" class="mb-result-code" hidden></p>
+                    <div id="mbCouponActions" class="mb-row" hidden>
+                        <button id="mbCopyCouponBtn" class="mb-btn" type="button">Copy Coupon Code</button>
+                        <button id="mbSendCouponBtn" class="mb-btn mb-btn-secondary" type="button">Send To Admin WhatsApp</button>
+                    </div>
+                    <p id="mbCouponActionStatus" class="mb-status" aria-live="polite"></p>
+                    <div class="mb-row">
+                        <button id="mbContinueBtn" class="mb-btn">View Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/data-config.js?v=20260418-assetfix-3"></script>
+    <script src="js/shared-site-chrome.js?v=20260420-booking-page-1"></script>
+    <script src="js/script.js?v=20260420-food-menu-landing-1"></script>
+    <script src="js/country-picker.js"></script>
+        <script src="js/menu-blocker-init.js?v=1" defer></script>
+        <script src="js/menu-blocker.js?v=20260419-milestones-1" defer></script>
+    <script src="https://myappzchat.com/production/master/widget/embed-widget.umd.js" data-widget-id="edb91eb3-7293-4749-9138-9e5871f0082a" async></script>
+    
+    <script>
+      function toggleSideNav(show) {
+        const drawer = document.getElementById('sideNavContainer');
+        const overlay = document.getElementById('sideNavOverlay');
+        if(show) {
+          drawer.classList.add('open');
+          overlay.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        } else {
+          drawer.classList.remove('open');
+          overlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      }
+
+            function toggleFloatingActions(show) {
+                const group = document.getElementById('floatingActionsGroup');
+                const reveal = document.getElementById('floatingActionsReveal');
+                if (!group || !reveal) return;
+                group.classList.toggle('is-hidden', !show);
+                reveal.classList.toggle('visible', !show);
+            }
+
+            function openGoogleReview() {
+                window.open('https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1', '_blank', 'noopener,noreferrer');
+            }
+
+            (function setupReviewButton() {
+                const reviewBtn = document.getElementById('reviewBtn');
+                if (!reviewBtn) return;
+                function onScroll() {
+                    reviewBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+                }
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
+            })();
+    </script>     
+</body>
+</html>

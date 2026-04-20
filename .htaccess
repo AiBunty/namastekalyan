@@ -3,28 +3,47 @@ Options -Indexes -MultiViews
 # Force PHP 8.2 handler (StackCP/cPanel)
 AddHandler application/x-httpd-php82 .php
 
-# Prefer website homepage over API front controller.
 DirectoryIndex index.html index.php
 
 RewriteEngine On
 
-# Prevent rewrite recursion on the front controller.
+# ── 1. No rewrite loop on the API front controller ───────────────────────────
 RewriteRule ^index\.php$ - [END]
 
-# Block direct access to sensitive files.
+# ── 1b. Allow root PHP endpoint files to execute directly ────────────────────
+#    (e.g. api_settings.php — not protected by blocked-dir rules below)
+RewriteRule ^api_settings\.php$ - [END]
+
+# ── 2. Block sensitive backend files and directories ─────────────────────────
 RewriteRule ^\.env$ - [F,END]
-RewriteRule ^bootstrap\.php$ - [F,END]
 RewriteRule ^composer\.(json|lock)$ - [F,END]
-RewriteRule ^logs/ - [F,END]
+RewriteRule ^(app|bootstrap|vendor|config|database|storage|logs|scripts|legacy)/ - [F,END]
 
-# If the target is an existing file/folder, do not rewrite.
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [END]
+# ── 3. Block direct /public/... access (clean URLs only) ─────────────────────
+RewriteRule ^public/ - [F,END]
 
-# Route to API front controller only when explicit action is provided.
+# ── 4. Route API requests (?action=) to PHP front controller ─────────────────
 RewriteCond %{QUERY_STRING} (^|&)action= [NC]
 RewriteRule ^ index.php [QSA,END]
 
-# For other unmatched requests, show a normal 404 instead of API JSON error.
-RewriteRule ^ - [END]
+# ── 4b. Route POST requests to root → PHP ────────────────────────────────────
+#    Catches form-encoded API calls (menu-blocker, lead submit, etc.)
+#    that POST to / without ?action= in the URL.
+RewriteCond %{REQUEST_METHOD} ^(POST|PUT|PATCH|DELETE)$ [NC]
+RewriteRule ^$ index.php [QSA,END]
+
+# ── 4c. Dynamic QR slug routes use the shared redirect page ──────────────────
+RewriteRule ^qr/[^/]+/?$ public/qr/scan.html [END,QSA]
+
+# ── 5. Frontend: map all requests to public/ ─────────────────────────────────
+#    Special-case the site root so it doesn't rewrite to /public/ and hit the
+#    direct-public access block above.
+RewriteRule ^$ public/index.html [END]
+
+#    Matches both exact files (-f) and directories with an index (-d).
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
+RewriteRule ^(.*)$ public/$1 [END,QSA]
+
+# ── 6. Fallback → homepage ───────────────────────────────────────────────────
+RewriteRule ^ public/index.html [END]
