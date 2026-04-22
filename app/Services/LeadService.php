@@ -9,6 +9,7 @@ use NK\Config\Database;
 use NK\Middleware\AuthMiddleware;
 use NK\Repositories\ContactRepository;
 use NK\Repositories\CrmPushLogRepository;
+use NK\Repositories\EventRepository;
 use NK\Repositories\LeadRepository;
 use NK\Repositories\QrRedirectRepository;
 use NK\Repositories\QrRedirectSettingsRepository;
@@ -23,9 +24,11 @@ class LeadService
     private ContactRepository $contacts;
     private CrmPushLogRepository $crmPushLogs;
     private CrmService $crm;
+    private EventRepository $events;
     private QrScanRepository $qrScans;
     private QrRedirectSettingsRepository $qrRedirectSettings;
     private QrRedirectRepository $qrRedirects;
+    private WhatsAppCloudService $whatsapp;
 
     public function __construct()
     {
@@ -33,9 +36,11 @@ class LeadService
         $this->contacts = new ContactRepository();
         $this->crmPushLogs = new CrmPushLogRepository();
         $this->crm = new CrmService();
+        $this->events = new EventRepository();
         $this->qrScans = new QrScanRepository();
         $this->qrRedirectSettings = new QrRedirectSettingsRepository();
         $this->qrRedirects = new QrRedirectRepository();
+        $this->whatsapp = new WhatsAppCloudService();
     }
 
     public function submitLead(array $data): array
@@ -53,12 +58,27 @@ class LeadService
             ];
         }
 
+        $cooldownLead = $this->leads->findLatestCompletedByPhone($phone);
+        $cooldown = $this->buildSpinCooldownState($cooldownLead);
+        if ($cooldown['active']) {
+            return [
+                'ok' => false,
+                'error' => 'COOLDOWN_ACTIVE',
+                'message' => 'This number has already completed a spin in the last 24 hours.',
+                'retryAfter' => $cooldown['retryAfter'],
+                'retryAfterEpochMs' => $cooldown['retryAfterEpochMs'],
+                'remainingMs' => $cooldown['remainingMs'],
+                'remainingMinutes' => $cooldown['remainingMinutes'],
+                'existingLead' => $cooldownLead ? $this->formatSpinLeadSummary($cooldownLead) : null,
+            ];
+        }
+
         $existing = $this->leads->findLatestByPhone($phone);
         $visitCount = $existing ? ((int) ($existing['visit_count'] ?? 0) + 1) : 1;
-    $leadNumber = $this->leads->countRows() + 1;
+        $leadNumber = $this->leads->countRows() + 1;
 
-    $prize = $this->pickPrizeByLeadNumber($leadNumber);
-    $couponCode = $this->isWinningPrize($prize) ? $this->generateCouponCode($phone) : '';
+        $prize = $this->pickPrizeByLeadNumber($leadNumber);
+        $couponCode = $this->isWinningPrize($prize) ? $this->generateCouponCode($phone) : '';
         $dateOfBirth = $prepared['dateOfBirth'];
         $dateOfAnniversary = $prepared['dateOfAnniversary'];
         $source = $prepared['source'];
@@ -67,6 +87,7 @@ class LeadService
 
         $leadId = $this->leads->create([
             'created_at'          => $createdAt,
+            'spin_completed_at'   => null,
             'name'                => $name,
             'phone'               => $phone,
             'prize'               => $prize,
@@ -109,11 +130,73 @@ class LeadService
             'name'       => $name,
             'prize'      => $prize,
             'leadNumber' => $leadNumber,
+            'leadId'     => $leadId,
             'visitCount' => $visitCount,
             'phone'      => $phone,
             'countryCode'=> $countryCode,
             'couponCode' => $couponCode,
             'crmSync'    => $crmSync,
+        ];
+    }
+
+    public function completeSpin(array $data): array
+    {
+        $leadId = (int) ($data['leadId'] ?? $data['row'] ?? 0);
+        $phone = Validator::digitsOnly((string) ($data['phone'] ?? ''), 10);
+
+        if ($leadId <= 0 || !Validator::phone($phone)) {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'Valid leadId and phone are required.',
+            ];
+        }
+
+        $lead = $this->leads->findById($leadId);
+        if (!$lead || (string) ($lead['phone'] ?? '') !== $phone) {
+            return [
+                'ok' => false,
+                'error' => 'NOT_FOUND',
+                'message' => 'Lead record not found for this phone.',
+            ];
+        }
+
+        $existingCompletedAt = trim((string) ($lead['spin_completed_at'] ?? ''));
+        if ($existingCompletedAt !== '') {
+            $cooldown = $this->buildSpinCooldownState($lead);
+            return [
+                'ok' => true,
+                'result' => 'already_completed',
+                'leadId' => $leadId,
+                'spinCompletedAt' => $existingCompletedAt,
+                'retryAfter' => $cooldown['retryAfter'],
+                'retryAfterEpochMs' => $cooldown['retryAfterEpochMs'],
+            ];
+        }
+
+        $completedAt = date('Y-m-d H:i:s');
+        $this->leads->markSpinCompleted($leadId, $completedAt);
+
+        $whatsAppResult = null;
+        if ($this->isWinningPrize((string) ($lead['prize'] ?? '')) && trim((string) ($lead['coupon_code'] ?? '')) !== '') {
+            $whatsAppResult = $this->whatsapp->triggerEvent('winner_coupon_issued', (string) ($lead['phone'] ?? ''), [
+                'customerName' => (string) ($lead['name'] ?? ''),
+                'rewardLabel' => (string) ($lead['prize'] ?? ''),
+                'couponCode' => (string) ($lead['coupon_code'] ?? ''),
+            ], [
+                'leadId' => $leadId,
+                'countryCode' => '91',
+            ]);
+        }
+
+        return [
+            'ok' => true,
+            'result' => 'spin_completed',
+            'leadId' => $leadId,
+            'spinCompletedAt' => $completedAt,
+            'retryAfter' => date('Y-m-d H:i:s', strtotime($completedAt . ' +' . Constants::SPIN_COOLDOWN_HOURS . ' hours')),
+            'retryAfterEpochMs' => (strtotime($completedAt . ' +' . Constants::SPIN_COOLDOWN_HOURS . ' hours') ?: time()) * 1000,
+            'whatsapp' => $whatsAppResult,
         ];
     }
 
@@ -137,14 +220,30 @@ class LeadService
             ];
         }
 
+        $reward = $this->activeRewardState($lead);
+
         return [
             'ok'        => true,
             'phone'     => $lead['phone'],
             'name'      => $lead['name'],
             'prize'     => $lead['prize'],
+            'originalPrize' => $lead['prize'],
             'status'    => $lead['status'],
-            'couponCode'=> $lead['coupon_code'],
+            'couponCode'=> $reward['couponCode'],
+            'winnerCouponCode' => (string) ($lead['coupon_code'] ?? ''),
+            'surpriseCouponCode' => (string) ($lead['surprise_coupon_code'] ?? ''),
+            'activeRewardLabel' => $reward['label'],
+            'activeRewardSource' => $reward['source'],
+            'canRedeem' => $reward['canRedeem'],
+            'canIssueSurprise' => $this->canIssueSurprise($lead),
+            'canRegenerateWinnerCoupon' => $this->isWinningPrize((string) ($lead['prize'] ?? '')),
+            'surpriseIssuedAt' => (string) ($lead['surprise_issued_at'] ?? ''),
+            'surpriseIssuedBy' => (string) ($lead['surprise_issued_by'] ?? ''),
             'visitCount'=> (int) ($lead['visit_count'] ?? 0),
+            'dob' => (string) ($lead['date_of_birth'] ?? ''),
+            'anniversary' => (string) ($lead['date_of_anniversary'] ?? ''),
+            'source' => (string) ($lead['source'] ?? ''),
+            'timestamp' => (string) ($lead['created_at'] ?? ''),
         ];
     }
 
@@ -181,12 +280,49 @@ class LeadService
             ];
         }
 
-        $this->leads->updateRedemption((int) $lead['id'], true);
+        $reward = $this->activeRewardState($lead);
+        if ($reward['source'] === 'none') {
+            return [
+                'ok' => false,
+                'error' => 'NO_REWARD',
+                'message' => 'There is no redeemable reward for this mobile number.',
+            ];
+        }
+
+        if (!$reward['canRedeem']) {
+            return [
+                'ok' => false,
+                'error' => 'ALREADY_REDEEMED',
+                'message' => 'This reward has already been redeemed.',
+            ];
+        }
+
+        if ($reward['source'] === 'surprise') {
+            $this->leads->redeemSurpriseReward((int) $lead['id']);
+        } else {
+            $this->leads->updateRedemption((int) $lead['id'], true);
+        }
+
+        $updatedLead = $this->leads->findById((int) $lead['id']) ?: $lead;
+        $crmSync = $this->syncRewardToCrm($updatedLead, $reward['label'], 'Redeemed');
+        $whatsAppResult = $this->whatsapp->triggerEvent('coupon_redeemed', (string) ($lead['phone'] ?? ''), [
+            'customerName' => (string) ($lead['name'] ?? ''),
+            'rewardLabel' => $reward['label'],
+            'couponCode' => $reward['couponCode'],
+        ], [
+            'leadId' => (int) ($lead['id'] ?? 0),
+            'countryCode' => '91',
+        ]);
 
         return [
             'ok'      => true,
             'action'  => 'redeem',
             'message' => 'Coupon redeemed successfully.',
+            'rewardLabel' => $reward['label'],
+            'rewardSource' => $reward['source'],
+            'couponCode' => $reward['couponCode'],
+            'crmSync' => $crmSync,
+            'whatsapp' => $whatsAppResult,
         ];
     }
 
@@ -223,14 +359,60 @@ class LeadService
             ];
         }
 
+        $reward = $this->activeRewardState($lead);
+
+        if ($this->isWinningPrize((string) ($lead['prize'] ?? ''))) {
+            $couponCode = $this->generateCouponCode($phone);
+            $this->leads->updateCouponCode((int) $lead['id'], $couponCode);
+            $updatedLead = $this->leads->findById((int) $lead['id']) ?: $lead;
+            $crmSync = $this->syncRewardToCrm($updatedLead, (string) ($lead['prize'] ?? ''), 'Unredeemed');
+
+            return [
+                'ok' => true,
+                'action' => 'regen_coupon',
+                'couponCode' => $couponCode,
+                'prize' => (string) ($lead['prize'] ?? ''),
+                'rewardSource' => 'winner',
+                'crmSync' => $crmSync,
+                'message' => 'Winner coupon regenerated.',
+            ];
+        }
+
+        $selectedGift = trim((string) ($data['giftItem'] ?? $data['giftOverride'] ?? ''));
+        if ($selectedGift === '' && $reward['source'] !== 'surprise') {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'Select a surprise reward before issuing a coupon to a Try Again customer.',
+            ];
+        }
+
+        $rewardLabel = $selectedGift !== '' ? $selectedGift : $reward['label'];
         $couponCode = $this->generateCouponCode($phone);
-        $this->leads->updateCouponCode((int) $lead['id'], $couponCode);
+        $issuedBy = (string) ($auth['user']['username'] ?? 'system');
+        $this->leads->issueSurpriseReward((int) $lead['id'], $rewardLabel, $couponCode, $issuedBy);
+        $updatedLead = $this->leads->findById((int) $lead['id']) ?: $lead;
+        $crmSync = $this->syncRewardToCrm($updatedLead, $rewardLabel, 'Unredeemed');
+        $whatsAppResult = $this->whatsapp->triggerEvent('try_again_surprise_issued', (string) ($lead['phone'] ?? ''), [
+            'customerName' => (string) ($lead['name'] ?? ''),
+            'rewardLabel' => $rewardLabel,
+            'couponCode' => $couponCode,
+        ], [
+            'leadId' => (int) ($lead['id'] ?? 0),
+            'countryCode' => '91',
+        ]);
 
         return [
-            'ok'         => true,
-            'action'     => 'regen_coupon',
+            'ok' => true,
+            'action' => 'issue_surprise_coupon',
             'couponCode' => $couponCode,
-            'message'    => 'Coupon regenerated.',
+            'prize' => $rewardLabel,
+            'rewardSource' => 'surprise',
+            'crmSync' => $crmSync,
+            'whatsapp' => $whatsAppResult,
+            'message' => ($whatsAppResult['success'] ?? false)
+                ? 'Surprise coupon issued and WhatsApp message sent.'
+                : 'Surprise coupon issued. WhatsApp message was not sent automatically.',
         ];
     }
 
@@ -977,6 +1159,56 @@ class LeadService
         ];
     }
 
+    private function buildSpinCooldownState(?array $lead): array
+    {
+        if (!$lead) {
+            return [
+                'active' => false,
+                'retryAfter' => '',
+                'retryAfterEpochMs' => 0,
+                'remainingMs' => 0,
+                'remainingMinutes' => 0,
+            ];
+        }
+
+        $completedAtRaw = trim((string) ($lead['spin_completed_at'] ?? ''));
+        $completedAtTs = $completedAtRaw !== '' ? strtotime($completedAtRaw) : false;
+        if ($completedAtTs === false) {
+            return [
+                'active' => false,
+                'retryAfter' => '',
+                'retryAfterEpochMs' => 0,
+                'remainingMs' => 0,
+                'remainingMinutes' => 0,
+            ];
+        }
+
+        $retryAfterTs = strtotime('+' . Constants::SPIN_COOLDOWN_HOURS . ' hours', $completedAtTs);
+        $remainingMs = max(0, (($retryAfterTs ?: $completedAtTs) * 1000) - ((int) round(microtime(true) * 1000)));
+
+        return [
+            'active' => $remainingMs > 0,
+            'retryAfter' => date('Y-m-d H:i:s', $retryAfterTs ?: $completedAtTs),
+            'retryAfterEpochMs' => ($retryAfterTs ?: $completedAtTs) * 1000,
+            'remainingMs' => $remainingMs,
+            'remainingMinutes' => (int) ceil($remainingMs / 60000),
+        ];
+    }
+
+    private function formatSpinLeadSummary(array $lead): array
+    {
+        return [
+            'id' => (int) ($lead['id'] ?? 0),
+            'name' => (string) ($lead['name'] ?? ''),
+            'phone' => (string) ($lead['phone'] ?? ''),
+            'prize' => (string) ($lead['prize'] ?? ''),
+            'couponCode' => (string) ($lead['coupon_code'] ?? ''),
+            'status' => (string) ($lead['status'] ?? ''),
+            'createdAt' => (string) ($lead['created_at'] ?? ''),
+            'spinCompletedAt' => (string) ($lead['spin_completed_at'] ?? ''),
+        ];
+    }
+
     private function formatLeadForCrmPanel(array $lead): array
     {
         return [
@@ -1090,6 +1322,75 @@ class LeadService
         }
 
         return 'Won';
+    }
+
+    private function activeRewardState(array $lead): array
+    {
+        $surpriseRewardLabel = trim((string) ($lead['surprise_reward_label'] ?? ''));
+        $surpriseCouponCode = trim((string) ($lead['surprise_coupon_code'] ?? ''));
+        $surpriseRedeemedAt = trim((string) ($lead['surprise_redeemed_at'] ?? ''));
+
+        if ($surpriseRewardLabel !== '' && $surpriseCouponCode !== '') {
+            return [
+                'source' => 'surprise',
+                'label' => $surpriseRewardLabel,
+                'couponCode' => $surpriseCouponCode,
+                'canRedeem' => $surpriseRedeemedAt === '',
+            ];
+        }
+
+        $prize = trim((string) ($lead['prize'] ?? ''));
+        if ($this->isWinningPrize($prize)) {
+            return [
+                'source' => 'winner',
+                'label' => $prize,
+                'couponCode' => trim((string) ($lead['coupon_code'] ?? '')),
+                'canRedeem' => strtolower(trim((string) ($lead['status'] ?? ''))) !== 'redeemed',
+            ];
+        }
+
+        return [
+            'source' => 'none',
+            'label' => '',
+            'couponCode' => '',
+            'canRedeem' => false,
+        ];
+    }
+
+    private function canIssueSurprise(array $lead): bool
+    {
+        if ($this->isWinningPrize((string) ($lead['prize'] ?? ''))) {
+            return false;
+        }
+
+        return trim((string) ($lead['surprise_reward_label'] ?? '')) === ''
+            || trim((string) ($lead['surprise_redeemed_at'] ?? '')) !== '';
+    }
+
+    private function syncRewardToCrm(array $lead, string $rewardLabel, string $status): array
+    {
+        return $this->syncLeadToCrm((int) ($lead['id'] ?? 0), [
+            'name' => (string) ($lead['name'] ?? ''),
+            'phone' => (string) ($lead['phone'] ?? ''),
+            'country_code' => '91',
+            'prize' => $rewardLabel,
+            'status' => $status,
+            'source' => (string) ($lead['source'] ?? 'menu-blocker-web'),
+            'visit_count' => (int) ($lead['visit_count'] ?? 1),
+            'date_of_birth' => $this->safeDate($lead['date_of_birth'] ?? null),
+            'date_of_anniversary' => $this->safeDate($lead['date_of_anniversary'] ?? null),
+            'created_at' => (string) ($lead['created_at'] ?? date('Y-m-d H:i:s')),
+        ], $this->upsertCanonicalContact((int) ($lead['id'] ?? 0), [
+            'name' => (string) ($lead['name'] ?? ''),
+            'phone' => (string) ($lead['phone'] ?? ''),
+            'source' => (string) ($lead['source'] ?? 'menu-blocker-web'),
+            'date_of_birth' => $this->safeDate($lead['date_of_birth'] ?? null),
+            'date_of_anniversary' => $this->safeDate($lead['date_of_anniversary'] ?? null),
+            'created_at' => (string) ($lead['created_at'] ?? date('Y-m-d H:i:s')),
+            'crm_sync_status' => (string) ($lead['crm_sync_status'] ?? 'Pending'),
+            'crm_sync_code' => (string) ($lead['crm_sync_code'] ?? ''),
+            'crm_sync_message' => (string) ($lead['crm_sync_message'] ?? ''),
+        ]));
     }
 
     private function formatQrRowForReport(array $row): array
@@ -1381,12 +1682,72 @@ class LeadService
 
     private function getQrPresetMap(): array
     {
-        return [
+        return array_merge([
             'home' => ['label' => 'Home Page', 'url' => SiteUrl::resolve('home')],
             'menu' => ['label' => 'Food Menu', 'url' => SiteUrl::resolve('menu')],
             'cocktail' => ['label' => 'Cocktail Menu', 'url' => SiteUrl::resolve('cocktail')],
             'admin' => ['label' => 'Admin Portal', 'url' => SiteUrl::resolve('admin')],
-        ];
+            'events' => ['label' => 'All Active Events', 'url' => $this->buildEventsListingUrl()],
+        ], $this->buildActiveEventPresetMap());
+    }
+
+    private function buildActiveEventPresetMap(): array
+    {
+        $presets = [];
+        foreach ($this->events->listAllActive() as $row) {
+            if (!$this->isEventAvailableForQrPreset($row)) {
+                continue;
+            }
+
+            $eventId = trim((string) ($row['event_id'] ?? ''));
+            if ($eventId === '') {
+                continue;
+            }
+
+            $title = trim((string) ($row['title'] ?? ''));
+            $presets['event:' . $eventId] = [
+                'label' => $title !== '' ? ('Event: ' . $title) : ('Event: ' . $eventId),
+                'url' => $this->buildEventDetailUrl($eventId),
+            ];
+        }
+
+        return $presets;
+    }
+
+    private function isEventAvailableForQrPreset(array $row): bool
+    {
+        if ((int) ($row['is_active'] ?? 0) !== 1) {
+            return false;
+        }
+
+        $endDate = trim((string) ($row['end_date'] ?? ''));
+        $endTime = trim((string) ($row['end_time'] ?? ''));
+        $startDate = trim((string) ($row['start_date'] ?? ''));
+        $startTime = trim((string) ($row['start_time'] ?? ''));
+        $cutoffDate = $endDate !== '' ? $endDate : $startDate;
+        $cutoffTime = $endDate !== '' ? ($endTime !== '' ? $endTime : '23:59:59') : ($startTime !== '' ? $startTime : '23:59:59');
+
+        if ($cutoffDate === '') {
+            return true;
+        }
+
+        try {
+            $cutoff = new \DateTimeImmutable($cutoffDate . ' ' . $cutoffTime, new \DateTimeZone('Asia/Kolkata'));
+            $now = new \DateTimeImmutable('now', new \DateTimeZone('Asia/Kolkata'));
+            return $cutoff >= $now;
+        } catch (\Throwable) {
+            return true;
+        }
+    }
+
+    private function buildEventsListingUrl(): string
+    {
+        return rtrim(SiteUrl::resolve('home'), '/') . '/events/';
+    }
+
+    private function buildEventDetailUrl(string $eventId): string
+    {
+        return rtrim(SiteUrl::resolve('home'), '/') . '/events/event.html?eventId=' . rawurlencode($eventId);
     }
 
     private function isValidHttpsUrl(string $url): bool

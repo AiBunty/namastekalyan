@@ -6,7 +6,7 @@
   const COOKIE_KEY = 'nk_menu_blocker_has_spun';
   const STAFF_BYPASS_KEY = 'nk_menu_blocker_staff_bypass_v1';
   const LAST_COMPLETED_AT_KEY = 'nk_menu_blocker_last_completed_at_v1';
-  const COOKIE_DAYS = 30;
+  const COOKIE_DAYS = 1;
   const SPIN_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 
   const PRIZES = [
@@ -28,6 +28,7 @@
   let leadPayload = null;
   let leadMeta = { result: '', status: '' };
   let latestCouponCode = '';
+  let latestLeadId = 0;
 
   function $(id) {
     return document.getElementById(id);
@@ -143,7 +144,7 @@
       + '        <button id="mbSendCouponBtn" class="mb-primary-btn" type="button">Send to Admin</button>'
       + '      </div>'
       + '      <div id="mbTryAgainActions" class="mb-actions-row" hidden>'
-      + '        <button id="mbTryAgainWhatsappBtn" class="mb-primary-btn" type="button">Unlock Surprise Offer on WhatsApp</button>'
+      + '        <button id="mbTryAgainWhatsappBtn" class="mb-primary-btn" type="button">Ask Captain For Surprise on WhatsApp</button>'
       + '      </div>'
       + '      <div id="mbCouponActionStatus" class="mb-status" aria-live="polite"></div>'
       + '      <button id="mbContinueBtn" class="mb-primary-btn" type="button">Continue to Menu</button>'
@@ -202,9 +203,35 @@
   }
 
   function markCompleted() {
+    markSeenBlockerOnce();
     localStorage.setItem(STORAGE_KEY, '1');
     localStorage.setItem(LAST_COMPLETED_AT_KEY, String(Date.now()));
     setCookie(COOKIE_KEY, '1', COOKIE_DAYS);
+  }
+
+  function markCompletedUntil(retryAfterEpochMs) {
+    const retryAfter = Number(retryAfterEpochMs || 0);
+    if (!Number.isFinite(retryAfter) || retryAfter <= Date.now()) {
+      markCompleted();
+      return;
+    }
+
+    const completedAt = retryAfter - SPIN_COOLDOWN_MS;
+    const remainingMs = retryAfter - Date.now();
+    markSeenBlockerOnce();
+    localStorage.setItem(STORAGE_KEY, '1');
+    localStorage.setItem(LAST_COMPLETED_AT_KEY, String(completedAt));
+    setCookie(COOKIE_KEY, '1', Math.max(remainingMs / SPIN_COOLDOWN_MS, 1 / (24 * 60)));
+  }
+
+  function createApiError(response) {
+    const error = new Error((response && response.message) ? response.message : 'Unable to process request.');
+    if (response && typeof response === 'object') {
+      Object.keys(response).forEach((key) => {
+        error[key] = response[key];
+      });
+    }
+    return error;
   }
 
   function showStep(stepId) {
@@ -269,9 +296,11 @@
       '',
       `Name: ${leadPayload.name || ''}`,
       `Mobile: ${phoneIntl || '-'}`,
+      `DOB: ${leadPayload.dateOfBirth || '-'}`,
+      `Anniversary: ${leadPayload.dateOfAnniversary || '-'}`,
       '',
-      'I have got try again, and I would like to know about the surprise offer.',
-      'Please let me know what special offer is available for me.',
+      'I got Try Again, and I want a surprise.',
+      'Please let me know the surprise offer available for me.',
       '',
       'Thank you.'
     ];
@@ -333,9 +362,7 @@
 
     if (hint) {
       if (showTryAgainAction) {
-        hint.textContent = isDuplicate
-          ? 'This number already has a Try Again result. Tap WhatsApp to ask the captain about your surprise offer.'
-          : 'Tap WhatsApp now and ask the captain about the surprise offer waiting for you.';
+        hint.textContent = 'Try Again. Do not get disheartened. Ask Captain for a surprise on WhatsApp.';
       } else if (isDuplicate) {
         hint.textContent = 'This mobile already exists. Showing your previously assigned result.';
       } else {
@@ -610,7 +637,7 @@
   async function submitLeadAndGetPrize(payload) {
     const response = await postLead(payload);
     if (!response || response.ok !== true) {
-      throw new Error((response && response.message) ? response.message : 'Unable to process request.');
+      throw createApiError(response);
     }
     leadMeta = {
       result: String(response.result || ''),
@@ -619,8 +646,35 @@
     return {
       prize: response && response.prize ? String(response.prize) : 'Try Again',
       row: response.row || null,
+      leadId: Number(response.leadId || response.row || 0),
       couponCode: response && response.couponCode ? String(response.couponCode) : ''
     };
+  }
+
+  async function completeSpinOnServer() {
+    if (!leadPayload || !latestLeadId) return null;
+
+    const endpoint = resolveServerEndpoint();
+    const formBody = new URLSearchParams({
+      payload: JSON.stringify({
+        action: 'complete_spin',
+        leadId: latestLeadId,
+        phone: leadPayload.phone,
+        source: leadPayload.source || 'menu-blocker-web'
+      })
+    });
+
+    const res = await fetch(endpoint.split('?')[0] + '?action=complete_spin', {
+      method: 'POST',
+      body: formBody
+    });
+
+    if (!res.ok) throw new Error(`Complete spin failed: ${res.status}`);
+    const json = await res.json();
+    if (!json || json.ok !== true) {
+      throw createApiError(json);
+    }
+    return json;
   }
 
   function unlockMenu(reason) {
@@ -763,7 +817,9 @@
           };
 
           const server = await submitLeadAndGetPrize(leadPayload);
+          markSeenBlockerOnce();
           targetPrize = server.prize;
+          latestLeadId = Number(server.leadId || 0);
           latestCouponCode = server.couponCode || '';
 
           if (String(leadMeta.result || '').toLowerCase() === 'duplicate') {
@@ -785,6 +841,15 @@
 
           moveToSpinStep();
         } catch (err) {
+          if (err && err.error === 'COOLDOWN_ACTIVE') {
+            if (err.retryAfterEpochMs) {
+              markCompletedUntil(err.retryAfterEpochMs);
+            } else {
+              markCompleted();
+            }
+            unlockMenu('server-cooldown-active');
+            return;
+          }
           if (error) error.textContent = err && err.message ? err.message : 'Submission failed. Please try again.';
           if (status) status.textContent = 'Fill details and submit to continue to spin.';
           formSubmitBtn.disabled = false;
@@ -811,6 +876,30 @@
         const duration = 4200;
         const startTime = performance.now();
 
+        const finalizeSpin = async () => {
+          if (status) status.textContent = 'Finalizing your reward...';
+
+          try {
+            const completion = await completeSpinOnServer();
+            if (completion && completion.retryAfterEpochMs) {
+              markCompletedUntil(completion.retryAfterEpochMs);
+            } else {
+              markCompleted();
+            }
+          } catch (err) {
+            markCompleted();
+          }
+
+          if (status) status.textContent = '';
+          renderResultStep();
+
+          if (typeof document !== 'undefined') {
+            document.dispatchEvent(new CustomEvent('nk:spin-finished', {
+              detail: { prize: targetPrize, couponCode: latestCouponCode || '' }
+            }));
+          }
+        };
+
         const animate = (now) => {
           const t = Math.min((now - startTime) / duration, 1);
           const eased = 1 - Math.pow(1 - t, 4);
@@ -823,15 +912,7 @@
           }
 
           spinning = false;
-          markCompleted();
-          renderResultStep();
-
-          if (typeof document !== 'undefined') {
-            document.dispatchEvent(new CustomEvent('nk:spin-finished', {
-              detail: { prize: targetPrize, couponCode: latestCouponCode || '' }
-            }));
-          }
-
+          void finalizeSpin();
         };
 
         requestAnimationFrame(animate);

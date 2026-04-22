@@ -29,6 +29,14 @@ class ActionRouter
         'auth_set_user_permissions'     => [AuthController::class, 'setUserPermissions'],
         'auth_get_api_settings'         => [AuthController::class, 'getApiSettings'],
         'auth_set_api_settings'         => [AuthController::class, 'setApiSettings'],
+        'auth_get_whatsapp_workspace'   => [AuthController::class, 'getWhatsAppWorkspace'],
+        'auth_save_whatsapp_config'     => [AuthController::class, 'saveWhatsAppConfig'],
+        'auth_sync_whatsapp_templates'  => [AuthController::class, 'syncWhatsAppTemplates'],
+        'auth_save_whatsapp_mapping'    => [AuthController::class, 'saveWhatsAppEventMapping'],
+        'auth_send_test_whatsapp_template' => [AuthController::class, 'sendTestWhatsAppTemplate'],
+        'auth_save_whatsapp_template_draft' => [AuthController::class, 'saveWhatsAppTemplateDraft'],
+        'auth_submit_whatsapp_template_draft' => [AuthController::class, 'submitWhatsAppTemplateDraft'],
+        'auth_run_whatsapp_scheduler'   => [AuthController::class, 'runWhatsAppScheduler'],
         'auth_get_app_settings'         => [AuthController::class, 'getAppSettings'],
         'auth_set_app_settings'         => [AuthController::class, 'setAppSettings'],
         'auth_get_qr_redirect_settings' => [AuthController::class, 'getQrRedirectSettings'],
@@ -36,6 +44,7 @@ class ActionRouter
         'auth_list_qr_redirects'        => [AuthController::class, 'listQrRedirects'],
         'auth_save_qr_redirect'         => [AuthController::class, 'saveQrRedirect'],
         'auth_set_qr_redirect_active'   => [AuthController::class, 'setQrRedirectActive'],
+        'auth_delete_qr_redirect'       => [AuthController::class, 'deleteQrRedirect'],
         'auth_list_users'               => [AuthController::class, 'listUsers'],
         'auth_delete_user'              => [AuthController::class, 'deleteUser'],
 
@@ -117,6 +126,7 @@ class ActionRouter
 
         // ── Lead / Spin & Win ───────────────────────────────────────────────────
         'submit_lead'                   => [LeadController::class, 'submitLead'],
+        'complete_spin'                 => [LeadController::class, 'completeSpin'],
         'qr_scan_client'                => [LeadController::class, 'qrScanClient'],
         'add_test_qr_scan'              => [LeadController::class, 'addTestQrScan'],
         'test_qr_scan'                  => [LeadController::class, 'addTestQrScan'],
@@ -139,6 +149,7 @@ class ActionRouter
 
         // ── Razorpay webhook ────────────────────────────────────────────────────
         'razorpay_webhook'              => [WebhookController::class, 'razorpayWebhook'],
+        'whatsapp_webhook'              => [WebhookController::class, 'whatsAppWebhook'],
     ];
 
     /** GET action → [ControllerClass, method] */
@@ -196,6 +207,7 @@ class ActionRouter
         'auth_bootstrap_status'     => [AuthController::class, 'bootstrapStatus'],
         'auth_me'                   => [AuthController::class, 'me'],
         'auth_list_users'           => [AuthController::class, 'listUsers'],
+        'whatsapp_webhook'          => [WebhookController::class, 'whatsAppWebhook'],
 
         // ── Public menu reads (new DB-backed) ────────────────────────────────
         'food_menu_items'           => [MenuController::class, 'publicFoodMenu'],

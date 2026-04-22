@@ -1043,6 +1043,32 @@
       let bookingOtpRequestInFlight = false;
       let bookingOtpVerifyInFlight = false;
 
+      const scrollToRegistrationPanel = () => {
+        if (window.location.hash !== '#register' || !bookingPanelEl || bookingPanelEl.hidden) {
+          return;
+        }
+
+        window.setTimeout(() => {
+          if (!bookingPanelEl || bookingPanelEl.hidden) {
+            return;
+          }
+
+          bookingPanelEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+          const focusTarget = (bookingNameEl && !bookingNameEl.disabled)
+            ? bookingNameEl
+            : bookingEmailEl;
+
+          if (focusTarget && typeof focusTarget.focus === 'function') {
+            focusTarget.focus({ preventScroll: true });
+          }
+        }, 80);
+      };
+
+      window.addEventListener('hashchange', () => {
+        scrollToRegistrationPanel();
+      });
+
       if (bookingDuplicateActionsEl) bookingDuplicateActionsEl.hidden = true;
 
       const safeUrl = (value) => {
@@ -2205,6 +2231,7 @@
           }
           syncAttendeeField();
           syncOtpPanelState();
+          scrollToRegistrationPanel();
         }
 
         if (ctaUrl) {

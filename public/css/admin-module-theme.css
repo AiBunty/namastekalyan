@@ -29,6 +29,7 @@ body {
   min-height: 100vh;
   font-family: "Avenir Next", "Trebuchet MS", Verdana, sans-serif;
   color: var(--ink);
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(182, 123, 69, 0.14), transparent 24%),
     radial-gradient(circle at 88% 18%, rgba(61, 109, 94, 0.12), transparent 26%),
@@ -42,6 +43,7 @@ body.admin-module-centered {
 }
 
 .page {
+  width: min(100%, 1180px);
   max-width: 1180px;
   margin: 0 auto;
   padding: 22px 16px 40px;
@@ -228,16 +230,19 @@ button:disabled {
 
 .table-wrap {
   overflow: auto;
+  max-width: 100%;
   border-radius: 16px;
   border: 1px solid var(--border);
   margin-top: 10px;
   background: var(--panel-strong);
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 960px;
+  min-width: 760px;
   background: transparent;
 }
 
@@ -313,5 +318,110 @@ th {
   .page {
     padding-left: 12px;
     padding-right: 12px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .page {
+    padding: 18px 14px 28px;
+  }
+
+  .hero,
+  .panel,
+  .card {
+    padding: 16px;
+  }
+
+  table {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 900px) {
+  .row,
+  .filters,
+  .lock-row,
+  .toolbar {
+    align-items: stretch;
+  }
+
+  .row > *,
+  .filters > *,
+  .lock-row > *,
+  .toolbar > * {
+    flex: 1 1 220px;
+    min-width: 0;
+  }
+
+  .toolbar > h1,
+  .toolbar > h2,
+  .toolbar > h3,
+  .toolbar > h4,
+  .toolbar > p,
+  .toolbar > div:first-child {
+    flex-basis: 100%;
+  }
+
+  th,
+  td {
+    padding: 10px 9px;
+  }
+}
+
+@media (max-width: 768px) {
+  body.admin-module-centered {
+    display: block;
+    padding: 14px 10px 26px;
+  }
+
+  .page {
+    padding: 14px 10px 24px;
+  }
+
+  .hero,
+  .panel,
+  .card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .card {
+    width: min(100%, 580px);
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  button {
+    min-height: 46px;
+  }
+
+  table {
+    min-width: 640px;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .row > *,
+  .filters > *,
+  .lock-row > *,
+  .toolbar > * {
+    flex-basis: 100%;
+  }
+
+  th,
+  td {
+    font-size: 0.84rem;
+  }
+
+  .status,
+  .muted,
+  .lock-status {
+    font-size: 0.82rem;
   }
 }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Namaste Kalyan Staff Coupon Check</title>
   <link rel="stylesheet" href="../css/admin-animations.css?v=20260413-1">
-  <link rel="stylesheet" href="../css/admin-module-theme.css?v=20260413-1">
+  <link rel="stylesheet" href="../css/admin-module-theme.css?v=20260422-responsive-1">
   <script>
     (function () {
       const params = new URLSearchParams(window.location.search || '');
@@ -89,6 +89,10 @@
     .coupon-tools.show {
       display: block;
     }
+
+    .coupon-tools .row {
+      margin-top: 8px;
+    }
     .coupon-code {
       font-size: 0.95rem;
       font-weight: 800;
@@ -115,7 +119,49 @@
       font-weight: 700;
     }
 
+    @media (max-width: 768px) {
+      body.admin-module-centered {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .card {
+        width: min(100%, 580px);
+      }
+
+      .lock-row {
+        align-items: stretch;
+      }
+
+      .lock-row input,
+      .lock-row button,
+      .row button {
+        min-width: 0;
+      }
+
+      .gift-summary .gift-line,
+      .line {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      input,
+      select {
+        font-size: 16px;
+      }
+    }
+
     @media (max-width: 520px) {
+      .meta,
+      #result,
+      .gift-summary,
+      .details,
+      .coupon-tools,
+      .lock-panel {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
       .line {
         grid-template-columns: 1fr;
         gap: 2px;

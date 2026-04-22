@@ -38,6 +38,7 @@
       min-height: 100vh;
       font-family: "Avenir Next", "Trebuchet MS", Verdana, sans-serif;
       color: var(--ink);
+      overflow-x: hidden;
       background:
         radial-gradient(circle at top left, rgba(182, 123, 69, 0.14), transparent 24%),
         radial-gradient(circle at 88% 18%, rgba(61, 109, 94, 0.12), transparent 26%),
@@ -225,6 +226,24 @@
       margin-top: 12px;
     }
 
+    .nav-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav-group + .nav-group {
+      margin-top: 6px;
+    }
+
+    .nav-group-title {
+      padding: 2px 4px 0;
+      color: rgba(244, 239, 230, 0.62);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
     .nav-btn {
       width: 100%;
       text-align: left;
@@ -329,11 +348,30 @@
     .dashboard {
       padding: 18px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+      gap: 18px;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)),
         transparent;
+    }
+
+    .dashboard-group {
+      display: grid;
+      gap: 12px;
+    }
+
+    .dashboard-group-title {
+      margin: 0;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dashboard-group-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
     }
 
     .dashboard-card {
@@ -442,6 +480,19 @@
       z-index: 40;
     }
 
+    @media (max-width: 1200px) {
+      .app-shell {
+        grid-template-columns: 272px minmax(0, 1fr);
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .sidebar {
+        top: 12px;
+        padding: 16px;
+      }
+    }
+
     @media (max-width: 960px) {
       .mobile-topbar { display: flex; }
 
@@ -453,13 +504,14 @@
 
       .sidebar {
         position: fixed;
-        right: -300px;
+        right: -320px;
         top: 0;
-        width: 300px;
-        max-width: 92vw;
+        width: min(320px, 88vw);
+        max-width: 88vw;
         height: 100vh;
         z-index: 60;
         border-radius: 0;
+        overflow-y: auto;
         transition: right 0.25s ease;
       }
 
@@ -478,24 +530,99 @@
         border-right: 0;
       }
 
+
+      .workspace-top,
+      .dashboard,
+      #moduleContent {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .dashboard-group-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .nav-btn {
+        padding: 11px 12px;
+      }
+
+      .nav-btn small {
+        font-size: 0.75rem;
+      }
+
+      .workspace-subtitle {
+        max-width: 56ch;
+      }
+
+    }
+
+    @media (max-width: 768px) {
+      .login-shell {
+        padding: 16px 10px 28px;
+      }
+
+      .hero,
+      .panel {
+        padding: 16px;
+        border-radius: 16px;
+      }
+
+      .row input,
+      .row button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .mobile-topbar {
+        padding: 10px 12px;
+      }
+
+      .sidebar {
+        width: 100vw;
+        max-width: 100vw;
+        right: -100vw;
+        padding: 16px 14px 22px;
+      }
+
+      .workspace-top,
+      .dashboard,
+      #moduleContent {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .dashboard-group-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .mobile-topbar h2 {
+        font-size: 0.92rem;
+      }
+
+      .hamburger {
+        width: 38px;
+        height: 38px;
+      }
     }
   </style>
   <script src="../js/admin-modules/base.js?v=20260417-spa-1"></script>
   <script src="../js/admin-modules/cash-approvals.js?v=20260417-spa-1"></script>
   <script src="../js/admin-modules/cashier.js?v=20260417-spa-1"></script>
-  <script src="../js/admin-modules/verification.js?v=20260417-spa-1"></script>
+  <script src="../js/admin-modules/verification.js?v=20260422-responsive-1"></script>
   <script src="../js/admin-modules/settings.js?v=20260417-spa-1"></script>
   <script src="../js/admin-modules/crm-panel.js?v=20260419-2"></script>
   <script src="../js/admin-modules/crm-leads.js?v=20260419-1"></script>
-  <script src="../js/admin-modules/landing-routing.js?v=20260418-1"></script>
-  <script src="../js/admin-modules/qr-code.js?v=20260417-spa-1"></script>
+  <script src="../js/admin-modules/whatsapp-cloud.js?v=20260421-1"></script>
+  <script src="../js/admin-modules/landing-routing.js?v=20260422-routing-qr-preview-1"></script>
   <script src="../js/admin-modules/event-management.js?v=20260417-spa-1"></script>
   <script src="../js/admin-modules/event-guests.js?v=20260417-spa-1"></script>
   <script src="../js/admin-modules/user-management.js?v=20260419-userfix-1"></script>
   <script src="../js/admin-modules/menu-editor.js?v=20260417-spa-1"></script>
   <script src="../js/admin-modules/menu-category-designer.js?v=20260417-spa-1"></script>
   <script src="../js/admin-modules/data-import.js?v=20260601-1"></script>
-  <script src="../js/admin-modules/event-entry-scanner.js?v=20260417-spa-1"></script>
+  <script src="../js/admin-modules/event-entry-scanner.js?v=20260422-responsive-1"></script>
 </head>
 <body>
   <main id="loginShell" class="login-shell">
@@ -596,23 +723,25 @@
         tokenPresentAtBoot: !!authClient.getToken()
       });
 
+      const MODULE_GROUP_ORDER = ['Operations', 'Events', 'Menu', 'Growth', 'Routing & Access', 'System'];
+
       const MODULES = [
-        { id: 'dashboard', title: 'Dashboard', description: 'Overview and quick module launch', permission: 'dashboard', role: 'admin', href: '' },
-        { id: 'cashier', title: 'Cashier', description: 'Issue cash passes and handovers', permission: 'cashier', role: 'admin', href: 'admin-cashier.html?embedded=1' },
-        { id: 'verification', title: 'Coupon Verification', description: 'Verify and redeem coupons', permission: 'verification', role: 'admin', href: 'admin-verification.html?embedded=1' },
-        { id: 'event-guests', title: 'Event Guests', description: 'Registration and guest reports', permission: 'eventGuests', role: 'admin', href: 'admin-event-guests.html?embedded=1' },
-        { id: 'event-entry-scanner', title: 'Event Entry Scanner', description: 'Scan multiple guest QRs and confirm gate entry in batches', permission: 'eventScanner', role: 'admin', href: 'admin-event-entry-scanner.html?embedded=1' },
-        { id: 'event-management', title: 'Event Management', description: 'Create and manage events', permission: 'eventManagement', role: 'admin', href: 'admin-event-management.html?embedded=1' },
-        { id: 'menu-editor', title: 'Menu Bulk Editor', description: 'Sheet-like editor for menu and cocktail rows', permission: 'menuEditor', role: 'admin', href: 'admin-menu-price-editor.html?embedded=1' },
-        { id: 'menu-category-designer', title: 'Menu Category Designer', description: 'Design Food and Cocktail category/item order', permission: 'menuEditor', role: 'admin', href: 'admin-menu-category-designer.html?embedded=1' },
-        { id: 'data-import', title: 'Data Import / Export', description: 'Import/export menu Excel, upload images, manage snapshots', permission: 'menuEditor', role: 'admin', href: '' },
-        { id: 'qr-code', title: 'QR Code Center', description: 'View, copy, and download all saved QR redirects', permission: 'dashboard', role: 'admin', href: 'qr-code.html?embedded=1' },
-        { id: 'crm-panel', title: 'CRM Sync Panel', description: 'Send a controlled lead to CRM and inspect payload and response details', permission: 'dashboard', role: 'admin', href: '' },
-        { id: 'crm-leads', title: 'CRM Leads', description: 'Review all raw leads with Won or Try Again outcomes and export them', permission: 'dashboard', role: 'admin', href: '' },
-        { id: 'landing-routing', title: 'Landing Routing', description: 'Choose blocker pages and stable QR destination', permission: 'settings', role: 'superadmin', href: '' },
-        { id: 'cash-approvals', title: 'Cash Approvals', description: 'SuperAdmin cash approval desk', permission: 'cashApprovals', role: 'superadmin', href: 'superadmin-cash-approvals.html?embedded=1' },
-        { id: 'user-management', title: 'User Management', description: 'Create users and assign access', permission: 'userManagement', role: 'superadmin', href: 'admin-user-management.html?embedded=1' },
-        { id: 'settings', title: 'Passcode / WhatsApp Settings', description: 'Manage WhatsApp number, menu blocker passcode, and event entry passcode', permission: 'settings', role: 'superadmin', href: 'admin_settings.html?embedded=1' }
+        { id: 'dashboard', title: 'Dashboard', description: 'Overview and quick module launch', permission: 'dashboard', role: 'admin', href: '', group: 'Operations' },
+        { id: 'cashier', title: 'Cashier', description: 'Issue cash passes and handovers', permission: 'cashier', role: 'admin', href: 'admin-cashier.html?embedded=1', group: 'Operations' },
+        { id: 'verification', title: 'Coupon Verification', description: 'Verify and redeem coupons', permission: 'verification', role: 'admin', href: 'admin-verification.html?embedded=1', group: 'Operations' },
+        { id: 'cash-approvals', title: 'Cash Approvals', description: 'SuperAdmin cash approval desk', permission: 'cashApprovals', role: 'superadmin', href: 'superadmin-cash-approvals.html?embedded=1', group: 'Operations' },
+        { id: 'event-management', title: 'Event Management', description: 'Create and manage events', permission: 'eventManagement', role: 'admin', href: 'admin-event-management.html?embedded=1', group: 'Events' },
+        { id: 'event-guests', title: 'Event Guests', description: 'Registration and guest reports', permission: 'eventGuests', role: 'admin', href: 'admin-event-guests.html?embedded=1', group: 'Events' },
+        { id: 'event-entry-scanner', title: 'Event Entry Scanner', description: 'Scan multiple guest QRs and confirm gate entry in batches', permission: 'eventScanner', role: 'admin', href: 'admin-event-entry-scanner.html?embedded=1', group: 'Events' },
+        { id: 'menu-editor', title: 'Menu Bulk Editor', description: 'Sheet-like editor for menu and cocktail rows', permission: 'menuEditor', role: 'admin', href: 'admin-menu-price-editor.html?embedded=1', group: 'Menu' },
+        { id: 'menu-category-designer', title: 'Menu Category Designer', description: 'Design Food and Cocktail category/item order', permission: 'menuEditor', role: 'admin', href: 'admin-menu-category-designer.html?embedded=1', group: 'Menu' },
+        { id: 'data-import', title: 'Data Import / Export', description: 'Import/export menu Excel, upload images, manage snapshots', permission: 'menuEditor', role: 'admin', href: '', group: 'Menu' },
+        { id: 'crm-panel', title: 'CRM Sync Panel', description: 'Send a controlled lead to CRM and inspect payload and response details', permission: 'dashboard', role: 'admin', href: '', group: 'Growth' },
+        { id: 'crm-leads', title: 'CRM Leads', description: 'Review all raw leads with Won or Try Again outcomes and export them', permission: 'dashboard', role: 'admin', href: '', group: 'Growth' },
+        { id: 'whatsapp-cloud', title: 'WhatsApp Cloud API', description: 'Configure Meta Cloud API, sync approved templates, map events, and inspect sends', permission: 'settings', role: 'superadmin', href: '', group: 'Growth' },
+        { id: 'landing-routing', title: 'Routing & QR Center', description: 'Control blocker placement, stable QR routing, downloads, and QR scan visibility', permission: 'settings', role: 'superadmin', href: '', group: 'Routing & Access' },
+        { id: 'settings', title: 'Passcode / WhatsApp Settings', description: 'Manage WhatsApp number, menu blocker passcode, and event entry passcode', permission: 'settings', role: 'superadmin', href: 'admin_settings.html?embedded=1', group: 'Routing & Access' },
+        { id: 'user-management', title: 'User Management', description: 'Create users and assign access', permission: 'userManagement', role: 'superadmin', href: 'admin-user-management.html?embedded=1', group: 'System' }
       ];
 
       const loginShellEl = document.getElementById('loginShell');
@@ -743,18 +872,27 @@
       }
 
       function renderDashboard() {
-        const moduleCards = allowedModules
-          .filter((item) => item.id !== 'dashboard')
-          .map((item) => `
-            <article class="dashboard-card">
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-              <div class="row" style="margin-top:10px;">
-                <button type="button" data-open-module="${item.id}" class="secondary">Open ${item.title}</button>
-              </div>
-            </article>
-          `)
-          .join('');
+        const groupedModules = MODULE_GROUP_ORDER.map((groupName) => ({
+          groupName,
+          items: allowedModules.filter((item) => item.id !== 'dashboard' && item.group === groupName)
+        })).filter((group) => group.items.length > 0);
+
+        const moduleCards = groupedModules.map((group) => `
+          <section class="dashboard-group">
+            <h2 class="dashboard-group-title">${group.groupName}</h2>
+            <div class="dashboard-group-grid">
+              ${group.items.map((item) => `
+                <article class="dashboard-card">
+                  <h3>${item.title}</h3>
+                  <p>${item.description}</p>
+                  <div class="row" style="margin-top:10px;">
+                    <button type="button" data-open-module="${item.id}" class="secondary">Open ${item.title}</button>
+                  </div>
+                </article>
+              `).join('')}
+            </div>
+          </section>
+        `).join('');
 
         dashboardViewEl.innerHTML = `
           <section id="dashboardStats" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:20px;">
@@ -802,11 +940,21 @@
       }
 
       function renderSidebar() {
-        navListEl.innerHTML = allowedModules.map((item) => `
-          <button class="nav-btn" type="button" data-module="${item.id}">
-            <span>${item.title}</span>
-            <small>${item.description}</small>
-          </button>
+        const groupedModules = MODULE_GROUP_ORDER.map((groupName) => ({
+          groupName,
+          items: allowedModules.filter((item) => item.group === groupName)
+        })).filter((group) => group.items.length > 0);
+
+        navListEl.innerHTML = groupedModules.map((group) => `
+          <section class="nav-group">
+            <div class="nav-group-title">${group.groupName}</div>
+            ${group.items.map((item) => `
+              <button class="nav-btn" type="button" data-module="${item.id}">
+                <span>${item.title}</span>
+                <small>${item.description}</small>
+              </button>
+            `).join('')}
+          </section>
         `).join('');
       }
 

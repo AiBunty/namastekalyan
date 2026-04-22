@@ -152,6 +152,18 @@ if ($action === '' && isset($_SERVER['HTTP_X_RAZORPAY_SIGNATURE']) && $_SERVER['
     $action = 'razorpay_webhook';
 }
 
+// Meta webhook verification and callback requests also arrive without an action parameter.
+if (
+    $action === ''
+    && (
+        isset($query['hub_mode'])
+        || isset($query['hub.mode'])
+        || isset($_SERVER['HTTP_X_HUB_SIGNATURE_256'])
+    )
+) {
+    $action = 'whatsapp_webhook';
+}
+
 // 4. Dispatch
 try {
     $result = ActionRouter::dispatch($method, $action, $body, $query);

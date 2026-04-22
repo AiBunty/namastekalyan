@@ -178,7 +178,7 @@
         window.NK_DATA_API && typeof window.NK_DATA_API.resolveSiteUrl === 'function'
       )
         ? String(window.NK_DATA_API.resolveSiteUrl('menu') || '').trim()
-        : 'https://namastekalyan.asianwokandgrill.in/menu.html';
+        : 'https://namastekalyan.asianwokandgrill.in/menu/';
       var resolvedDestinationUrl = defaultMenuUrl;
       var resolvedDestinationLabel = 'food menu';
       var resolvedDestinationKey = 'menu';
@@ -362,32 +362,34 @@
 
       // ── Main flow ────────────────────────────────────────────────────
       setProgress(10);
-      setStatus('Detecting your location…');
-      loadDestinationSettings();
+      setStatus('Preparing your destination…');
+      loadDestinationSettings().finally(function () {
+        setStatus('Detecting your location…');
 
-      // Fetch IP geolocation client-side (gives real device info)
-      fetch('https://ipapi.co/json/?fields=ip,city,region,country_name', {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-store'
-      })
-        .then(function (resp) {
-          if (!resp.ok) throw new Error('geo_fail');
-          return resp.json();
+        // Fetch IP geolocation client-side (gives real device info)
+        fetch('https://ipapi.co/json/?fields=ip,city,region,country_name', {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store'
         })
-        .then(function (geo) {
-          setProgress(70);
-          setStatus('Almost there… opening ' + resolvedDestinationLabel + '.');
-          fireTracking(geo);
-          // Small delay so sendBeacon / fetch has time to enqueue before navigation
-          setTimeout(redirect, 250);
-        })
-        .catch(function () {
-          // ipapi failed — still track (device/browser only, no geo)
-          setProgress(50);
-          fireTracking({});
-          setTimeout(redirect, 150);
-        });
+          .then(function (resp) {
+            if (!resp.ok) throw new Error('geo_fail');
+            return resp.json();
+          })
+          .then(function (geo) {
+            setProgress(70);
+            setStatus('Almost there… opening ' + resolvedDestinationLabel + '.');
+            fireTracking(geo);
+            // Small delay so sendBeacon / fetch has time to enqueue before navigation
+            setTimeout(redirect, 250);
+          })
+          .catch(function () {
+            // ipapi failed — still track (device/browser only, no geo)
+            setProgress(50);
+            fireTracking({});
+            setTimeout(redirect, 150);
+          });
+      });
 
     })();
   </script>

@@ -151,6 +151,128 @@
           + '<div><strong>System QR:</strong> ' + String(systemCount) + '</div>';
       }
 
+      function buildQrImageUrl(publicUrl) {
+        return 'https://api.qrserver.com/v1/create-qr-code/?size=900x900&data=' + encodeURIComponent(String(publicUrl || '').trim()) + '&format=png';
+      }
+
+      function loadImage(src) {
+        return new Promise(function (resolve, reject) {
+          var image = new Image();
+          image.crossOrigin = 'anonymous';
+          image.onload = function () { resolve(image); };
+          image.onerror = reject;
+          image.src = src;
+        });
+      }
+
+      function deriveDesignerTitle(item) {
+        var destinationKey = String(item && item.destinationKey || '').toLowerCase();
+        var slug = String(item && item.slug || '').toLowerCase();
+        var name = String(item && item.name || '').toLowerCase();
+        if (destinationKey === 'admin' || slug.indexOf('admin') !== -1 || name.indexOf('admin') !== -1) return 'Admin QR';
+        return 'Guest QR';
+      }
+
+      function renderDesignerQr(item) {
+        var publicUrl = String(item && item.publicUrl || '').trim();
+        if (!publicUrl) {
+          return Promise.reject(new Error('QR URL is unavailable.'));
+        }
+
+        var logoUrl = new URL('../assets/Logo/Namaste%20Kalyan%20by%20AWG%20-01.png', window.location.href).href;
+        return Promise.allSettled([loadImage(logoUrl), loadImage(buildQrImageUrl(publicUrl))]).then(function (results) {
+          var logo = results[0].status === 'fulfilled' ? results[0].value : null;
+          if (results[1].status !== 'fulfilled') throw new Error('Unable to load QR image.');
+          var qrImage = results[1].value;
+          var title = deriveDesignerTitle(item);
+          var canvas = document.createElement('canvas');
+          canvas.width = 1400;
+          canvas.height = 1900;
+          var ctx = canvas.getContext('2d');
+
+          var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+          gradient.addColorStop(0, '#fcf9f2');
+          gradient.addColorStop(0.55, '#f5efe3');
+          gradient.addColorStop(1, '#ebe1d0');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = 'rgba(182, 123, 69, 0.08)';
+          ctx.beginPath();
+          ctx.arc(180, 180, 210, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = 'rgba(219, 230, 223, 0.9)';
+          ctx.beginPath();
+          ctx.arc(canvas.width - 180, canvas.height - 220, 240, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#94592b';
+          ctx.fillRect(68, 68, canvas.width - 136, canvas.height - 136);
+          ctx.fillStyle = '#ead7bf';
+          ctx.fillRect(92, 92, canvas.width - 184, canvas.height - 184);
+          ctx.fillStyle = '#fffdf8';
+          ctx.fillRect(122, 122, canvas.width - 244, canvas.height - 244);
+
+          if (logo) {
+            var logoMaxWidth = 440;
+            var ratio = logo.width > 0 ? (logo.height / logo.width) : 0.28;
+            var width = Math.min(logo.width || logoMaxWidth, logoMaxWidth);
+            var height = width * (ratio || 0.28);
+            ctx.drawImage(logo, (canvas.width - width) / 2, 182, width, height);
+          } else {
+            ctx.fillStyle = '#2f241b';
+            ctx.textAlign = 'center';
+            ctx.font = '700 58px Georgia';
+            ctx.fillText('Namaste Kalyan', canvas.width / 2, 270);
+          }
+
+          ctx.fillStyle = '#7d6a59';
+          ctx.textAlign = 'center';
+          ctx.font = '600 34px Avenir Next, Trebuchet MS, sans-serif';
+          ctx.fillText('Scan to Open', canvas.width / 2, 430);
+
+          var cardX = 250;
+          var cardY = 500;
+          var cardSize = 900;
+          ctx.shadowColor = 'rgba(80, 57, 36, 0.16)';
+          ctx.shadowBlur = 36;
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(cardX, cardY, cardSize, cardSize);
+          ctx.shadowBlur = 0;
+          ctx.strokeStyle = '#b67b45';
+          ctx.lineWidth = 16;
+          ctx.strokeRect(cardX, cardY, cardSize, cardSize);
+          ctx.drawImage(qrImage, cardX + 60, cardY + 60, cardSize - 120, cardSize - 120);
+
+          ctx.fillStyle = '#2f241b';
+          ctx.font = '700 44px Avenir Next, Trebuchet MS, sans-serif';
+          ctx.fillText(String(item && item.name || title), canvas.width / 2, 1540);
+          ctx.fillStyle = '#7d6a59';
+          ctx.font = '600 28px Avenir Next, Trebuchet MS, sans-serif';
+          ctx.fillText(title, canvas.width / 2, 1612);
+          ctx.fillStyle = '#94592b';
+          ctx.font = '500 22px Avenir Next, Trebuchet MS, sans-serif';
+          ctx.fillText(publicUrl, canvas.width / 2, 1710);
+
+          return new Promise(function (resolve) {
+            canvas.toBlob(function (blob) {
+              resolve(blob);
+            }, 'image/png');
+          });
+        });
+      }
+
+      function downloadBlob(blob, fileName) {
+        var url = URL.createObjectURL(blob);
+        var anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = fileName;
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+        URL.revokeObjectURL(url);
+      }
+
       function renderRegistry(items) {
         setRegistrySummary(items);
         if (!items.length) {
@@ -188,6 +310,7 @@
             + '      <button class="qrc-btn qrc-btn-primary" type="button" data-copy-url="' + escapeHtml(item.publicUrl || '') + '">Copy URL</button>'
             + '      <button class="qrc-btn qrc-btn-secondary" type="button" data-open-url="' + escapeHtml(item.publicUrl || '') + '">Open</button>'
             + '      <button class="qrc-btn qrc-btn-secondary" type="button" data-download-img="qrcDynamicImg' + String(index) + '" data-download-name="' + escapeHtml((item.slug || ('qr-' + String(index + 1))) + '.png') + '">Download QR</button>'
+            + '      <button class="qrc-btn qrc-btn-primary" type="button" data-designer-index="' + String(index) + '">Designer PNG</button>'
             + '    </div>'
             + '  </div>'
             + '</article>';
@@ -219,6 +342,29 @@
         Array.prototype.forEach.call(registryGridEl.querySelectorAll('[data-download-img]'), function (button) {
           button.addEventListener('click', function () {
             downloadQrImage(button.getAttribute('data-download-img'), button.getAttribute('data-download-name') || 'namastekalyan-qr.png');
+          });
+        });
+
+        Array.prototype.forEach.call(registryGridEl.querySelectorAll('[data-designer-index]'), function (button) {
+          button.addEventListener('click', function () {
+            var item = items[Number(button.getAttribute('data-designer-index') || -1)] || null;
+            if (!item) {
+              showAlert('Unable to find selected QR record.', 'info');
+              return;
+            }
+            button.disabled = true;
+            renderDesignerQr(item)
+              .then(function (blob) {
+                if (!blob) throw new Error('Unable to generate PNG.');
+                downloadBlob(blob, (item.slug || 'qr') + '-designer.png');
+                showAlert('Designer PNG downloaded successfully!', 'success');
+              })
+              .catch(function (err) {
+                showAlert('Failed to create designer PNG: ' + err.message, 'info');
+              })
+              .finally(function () {
+                button.disabled = false;
+              });
           });
         });
       }

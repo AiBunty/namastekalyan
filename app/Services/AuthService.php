@@ -14,6 +14,7 @@ use NK\Repositories\RevokedTokenRepository;
 use NK\Repositories\UserRepository;
 use NK\Support\SiteUrl;
 use NK\Support\Validator;
+use NK\Services\WhatsAppCloudService;
 
 class AuthService
 {
@@ -668,6 +669,282 @@ class AuthService
         ];
     }
 
+    public function getWhatsAppWorkspace(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $service = new WhatsAppCloudService();
+
+        return [
+            'ok' => true,
+            'action' => 'auth_get_whatsapp_workspace',
+            'workspace' => $service->getWorkspace(),
+        ];
+    }
+
+    public function saveWhatsAppConfig(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $updates = $data['settings'] ?? [];
+        if (!is_array($updates) || empty($updates)) {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'settings object is required.',
+            ];
+        }
+
+        $accepted = [];
+        foreach ($updates as $key => $value) {
+            $settingKey = (string) $key;
+            if (str_starts_with($settingKey, 'WHATSAPP_META_') && in_array($settingKey, Constants::MANAGED_SETTING_KEYS, true)) {
+                $accepted[$settingKey] = trim((string) $value);
+            }
+        }
+
+        if ($accepted === []) {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'At least one WhatsApp Meta setting is required.',
+            ];
+        }
+
+        $this->apiSettings->upsertMany($accepted);
+
+        $this->audit->log(
+            'auth_save_whatsapp_config',
+            $auth['user']['username'],
+            'success',
+            'accepted_keys=' . implode(',', array_keys($accepted))
+        );
+
+        $service = new WhatsAppCloudService();
+
+        return [
+            'ok' => true,
+            'action' => 'auth_save_whatsapp_config',
+            'message' => 'WhatsApp Meta settings saved.',
+            'workspace' => $service->getWorkspace(),
+        ];
+    }
+
+    public function syncWhatsAppTemplates(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $service = new WhatsAppCloudService();
+        $result = $service->syncApprovedTemplates((string) ($auth['user']['username'] ?? 'system'));
+        if (!($result['ok'] ?? false)) {
+            return $result;
+        }
+
+        $this->audit->log(
+            'auth_sync_whatsapp_templates',
+            $auth['user']['username'],
+            'success',
+            'synced=' . (string) ($result['synced'] ?? 0)
+        );
+
+        return [
+            'ok' => true,
+            'action' => 'auth_sync_whatsapp_templates',
+            'message' => (string) ($result['message'] ?? 'WhatsApp templates synced.'),
+            'workspace' => $service->getWorkspace(),
+        ];
+    }
+
+    public function saveWhatsAppEventMapping(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $eventKey = trim((string) ($data['eventKey'] ?? $data['event_key'] ?? ''));
+        $mapping = $data['mapping'] ?? [];
+        if ($eventKey === '' || !is_array($mapping)) {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'eventKey and mapping are required.',
+            ];
+        }
+
+        $service = new WhatsAppCloudService();
+        $result = $service->saveEventMapping($eventKey, $mapping, (string) ($auth['user']['username'] ?? 'system'));
+        if (!($result['ok'] ?? false)) {
+            return $result;
+        }
+
+        $this->audit->log(
+            'auth_save_whatsapp_mapping',
+            $auth['user']['username'],
+            'success',
+            'event=' . $eventKey
+        );
+
+        return [
+            'ok' => true,
+            'action' => 'auth_save_whatsapp_mapping',
+            'message' => (string) ($result['message'] ?? 'WhatsApp event mapping saved.'),
+            'workspace' => $service->getWorkspace(),
+        ];
+    }
+
+    public function sendTestWhatsAppTemplate(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $eventKey = trim((string) ($data['eventKey'] ?? $data['event_key'] ?? ''));
+        $phone = trim((string) ($data['phone'] ?? $data['mobile'] ?? ''));
+        $customerName = trim((string) ($data['customerName'] ?? $data['name'] ?? 'Test Guest'));
+        $rewardLabel = trim((string) ($data['rewardLabel'] ?? $data['reward'] ?? 'Surprise reward'));
+        $couponCode = trim((string) ($data['couponCode'] ?? $data['coupon'] ?? 'TEST' . date('His')));
+
+        if ($eventKey === '' || $phone === '') {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'eventKey and phone are required.',
+            ];
+        }
+
+        $service = new WhatsAppCloudService();
+        $result = $service->sendTestMessage($eventKey, $phone, [
+            'customerName' => $customerName,
+            'rewardLabel' => $rewardLabel,
+            'couponCode' => $couponCode,
+        ]);
+
+        $this->audit->log(
+            'auth_send_test_whatsapp_template',
+            $auth['user']['username'],
+            !empty($result['ok']) ? 'success' : 'failed',
+            'event=' . $eventKey . ';phone=' . preg_replace('/\D+/', '', $phone)
+        );
+
+        return [
+            'ok' => !empty($result['ok']),
+            'action' => 'auth_send_test_whatsapp_template',
+            'message' => (string) ($result['message'] ?? 'WhatsApp test send completed.'),
+            'result' => $result,
+            'workspace' => $service->getWorkspace(),
+        ];
+    }
+
+    public function saveWhatsAppTemplateDraft(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $draft = $data['draft'] ?? [];
+        if (!is_array($draft)) {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'draft payload is required.',
+            ];
+        }
+
+        $service = new WhatsAppCloudService();
+        $result = $service->saveTemplateDraft($draft, (string) ($auth['user']['username'] ?? 'system'));
+        if (!($result['ok'] ?? false)) {
+            return $result;
+        }
+
+        $this->audit->log(
+            'auth_save_whatsapp_template_draft',
+            $auth['user']['username'],
+            'success',
+            'draft_id=' . (string) ($result['draftId'] ?? 0)
+        );
+
+        return [
+            'ok' => true,
+            'action' => 'auth_save_whatsapp_template_draft',
+            'message' => (string) ($result['message'] ?? 'WhatsApp template draft saved.'),
+            'workspace' => $service->getWorkspace(),
+        ];
+    }
+
+    public function submitWhatsAppTemplateDraft(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $draftId = (int) ($data['draftId'] ?? $data['draft_id'] ?? 0);
+        if ($draftId <= 0) {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'draftId is required.',
+            ];
+        }
+
+        $service = new WhatsAppCloudService();
+        $result = $service->submitTemplateDraft($draftId, (string) ($auth['user']['username'] ?? 'system'));
+
+        $this->audit->log(
+            'auth_submit_whatsapp_template_draft',
+            $auth['user']['username'],
+            !empty($result['ok']) ? 'success' : 'failed',
+            'draft_id=' . $draftId
+        );
+
+        return [
+            'ok' => !empty($result['ok']),
+            'action' => 'auth_submit_whatsapp_template_draft',
+            'message' => (string) ($result['message'] ?? 'WhatsApp template draft submission completed.'),
+            'result' => $result,
+            'workspace' => $service->getWorkspace(),
+        ];
+    }
+
+    public function runWhatsAppScheduler(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $limit = max(1, min(200, (int) ($data['limit'] ?? 50)));
+        $service = new WhatsAppCloudService();
+        $result = $service->runScheduler((string) ($auth['user']['username'] ?? 'system'), $limit);
+
+        $this->audit->log(
+            'auth_run_whatsapp_scheduler',
+            $auth['user']['username'],
+            'success',
+            'processed=' . (string) ($result['processed'] ?? 0)
+        );
+
+        return [
+            'ok' => true,
+            'action' => 'auth_run_whatsapp_scheduler',
+            'message' => (string) ($result['message'] ?? 'WhatsApp scheduler completed.'),
+            'result' => $result,
+            'workspace' => $service->getWorkspace(),
+        ];
+    }
+
     public function getAppSettings(array $data): array
     {
         $auth = $this->requireSuperadmin($data);
@@ -956,6 +1233,57 @@ class AuthService
             'ok' => true,
             'action' => 'auth_set_qr_redirect_active',
             'message' => 'QR redirect status updated.',
+            'items' => $this->buildQrRedirectListResponse(),
+            'presetOptions' => $this->buildQrPresetOptions(),
+        ];
+    }
+
+    public function deleteQrRedirect(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $recordId = (int) ($data['id'] ?? 0);
+        if ($recordId <= 0) {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'Valid QR redirect id is required.',
+            ];
+        }
+
+        $existing = $this->qrRedirects->findById($recordId);
+        if (!$existing) {
+            return [
+                'ok' => false,
+                'error' => 'NOT_FOUND',
+                'message' => 'QR redirect record not found.',
+            ];
+        }
+
+        if ((int) ($existing['is_system'] ?? 0) === 1 || trim((string) ($existing['legacy_channel'] ?? '')) !== '') {
+            return [
+                'ok' => false,
+                'error' => 'FORBIDDEN',
+                'message' => 'System QR redirects cannot be deleted.',
+            ];
+        }
+
+        $this->qrRedirects->delete($recordId);
+
+        $this->audit->log(
+            'auth_delete_qr_redirect',
+            (string) ($auth['user']['username'] ?? 'system'),
+            'success',
+            'qr_id=' . $recordId . ',slug=' . (string) ($existing['slug'] ?? '')
+        );
+
+        return [
+            'ok' => true,
+            'action' => 'auth_delete_qr_redirect',
+            'message' => 'QR redirect deleted.',
             'items' => $this->buildQrRedirectListResponse(),
             'presetOptions' => $this->buildQrPresetOptions(),
         ];
@@ -1527,7 +1855,7 @@ class AuthService
 
     private function buildEventDetailUrl(string $eventId): string
     {
-        return rtrim(SiteUrl::resolve('home'), '/') . '/events/event.html?id=' . rawurlencode($eventId);
+        return rtrim(SiteUrl::resolve('home'), '/') . '/events/event.html?eventId=' . rawurlencode($eventId);
     }
 
     private function isValidHttpsUrl(string $url): bool

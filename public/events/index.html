@@ -502,7 +502,7 @@
           const badge = escapeHtml(item && item.badgeText || (isPaid ? 'Paid Pass' : 'Active Event'));
           const timeBoard = buildTimeBoardHtml(item && item.startAtIso, item && item.timeDisplayFormat);
           const countdown = buildCountdownHtml(item && item.startAtIso, item && item.endAtIso);
-          const href = id ? `event.html?eventId=${encodeURIComponent(id)}` : 'event.html';
+          const href = id ? `event.html?eventId=${encodeURIComponent(id)}#register` : 'event.html';
           const focusClass = id && id === focusedEventId ? ' is-focus' : '';
 
           return `
@@ -514,7 +514,7 @@
                 ${timeBoard}
                 ${countdown}
                 <p>${description}</p>
-                <span class="event-cta">Open Event Details</span>
+                <span class="event-cta">Register Now</span>
               </div>
             </a>
           `;

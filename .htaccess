@@ -40,6 +40,11 @@ RewriteRule ^qr/[^/]+/?$ public/qr/scan.html [END,QSA]
 #    direct-public access block above.
 RewriteRule ^$ public/index.html [END]
 
+#    Resolve clean directory URLs like /menu/, /booking/, /events/, and
+#    /cocktails/ to their public/<dir>/index.html entrypoints.
+RewriteCond %{DOCUMENT_ROOT}/public/$1/index.html -f
+RewriteRule ^(.+?)/?$ public/$1/index.html [END,QSA]
+
 #    Matches both exact files (-f) and directories with an index (-d).
 RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
 RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d

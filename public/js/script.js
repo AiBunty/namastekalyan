@@ -449,6 +449,12 @@ const buildEventDetailUrl = (eventId, eventData) => {
     return nkResolvePublicUrl(`events/event.html?eventId=${encodeURIComponent(id)}`);
 };
 
+const buildEventRegistrationUrl = (eventId, eventData) => {
+    const detailUrl = buildEventDetailUrl(eventId, eventData);
+    if (detailUrl === '#events') return detailUrl;
+    return `${detailUrl}#register`;
+};
+
 const buildEventsListingUrl = (eventId) => {
     const id = String(eventId || '').trim();
     return id
@@ -770,8 +776,8 @@ const renderHomeEvents = (items) => {
         const imageAttr = escapeHtml(imageUrl);
         const fallbackAttr = escapeHtml(NK_EVENT_FALLBACK_IMAGE);
         const badge = escapeHtml(item.badgeText || (isPaid ? 'Paid Pass' : 'Upcoming'));
-        const ctaUrl = buildEventDetailUrl(item.id, item);
-        const ctaLabel = 'Choose Event';
+        const ctaUrl = buildEventRegistrationUrl(item.id, item);
+        const ctaLabel = 'Register Now';
         const timeBoard = buildEventTimeBoardHtml(item.startAtIso, item.timeDisplayFormat);
         const countdown = buildEventCountdownHtml(item.startAtIso, item.endAtIso);
 
@@ -818,8 +824,8 @@ const renderLiveEventsStrip = (items) => {
         const imageAttr = escapeHtml(imageUrl);
         const fallbackAttr = escapeHtml(NK_EVENT_FALLBACK_IMAGE);
         const badge = escapeHtml(item.badgeText || (isPaid ? 'Paid Pass' : 'Live Event'));
-        const ctaUrl = buildEventDetailUrl(item.id, item);
-        const ctaLabel = 'Choose Event';
+        const ctaUrl = buildEventRegistrationUrl(item.id, item);
+        const ctaLabel = 'Register Now';
         const timeBoard = buildEventTimeBoardHtml(item.startAtIso, item.timeDisplayFormat);
         const countdown = buildEventCountdownHtml(item.startAtIso, item.endAtIso);
         const price = Number(item.ticketPrice || item.price || 0);
@@ -1341,14 +1347,11 @@ const loadHomeEvents = async () => {
         
         if (!response || !response.ok || !Array.isArray(response.items)) {
             setEventsLoadingState(false);
-            renderHomeEvents([]);
             renderLiveEventsStrip([]);
             return;
         }
         const ordered = sortEventsByPriority(response.items);
-        // Priority render: live strip first for faster visible event feedback.
         renderLiveEventsStrip(ordered);
-        renderHomeEvents(ordered);
     } catch (err) {
         // Silently fail - events section just won't show
         renderLiveEventsStrip([]);

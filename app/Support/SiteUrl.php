@@ -12,14 +12,14 @@ class SiteUrl
         'home' => '',
         'menu' => 'public/menu/',
         'cocktail' => 'public/cocktails/cocktail.html',
-        'admin' => 'public/admin/',
+        'admin' => 'public/admin/admin-portal.html#',
     ];
 
     private const LIVE_ROUTE_MAP = [
         'home' => '',
-        'menu' => 'menu.html',
-        'cocktail' => 'cocktail.html',
-        'admin' => 'admin/',
+        'menu' => 'menu/',
+        'cocktail' => 'cocktails/cocktail.html',
+        'admin' => 'admin/admin-portal.html#',
     ];
 
     public static function resolve(string $key): string

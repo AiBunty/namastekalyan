@@ -73,12 +73,12 @@ class LeadRepository
     public function create(array $payload): int
     {
         $sql = 'INSERT INTO leads (
-                    created_at, name, phone, prize, status,
+                    created_at, spin_completed_at, name, phone, prize, status,
                     date_of_birth, date_of_anniversary, source,
                     visit_count, coupon_code, crm_sync_status,
                     crm_sync_code, crm_sync_message
                 ) VALUES (
-                    :created_at, :name, :phone, :prize, :status,
+                    :created_at, :spin_completed_at, :name, :phone, :prize, :status,
                     :date_of_birth, :date_of_anniversary, :source,
                     :visit_count, :coupon_code, :crm_sync_status,
                     :crm_sync_code, :crm_sync_message
@@ -87,6 +87,7 @@ class LeadRepository
         $stmt = $this->db->prepare($sql);
         $stmt->execute([
             ':created_at'           => $payload['created_at'] ?? date('Y-m-d H:i:s'),
+            ':spin_completed_at'    => $payload['spin_completed_at'] ?? null,
             ':name'                 => $payload['name'],
             ':phone'                => $payload['phone'],
             ':prize'                => $payload['prize'] ?? '',
@@ -125,6 +126,47 @@ class LeadRepository
         $stmt->execute([
             ':coupon_code' => $couponCode,
             ':id'          => $id,
+        ]);
+    }
+
+    public function issueSurpriseReward(int $id, string $rewardLabel, string $couponCode, string $issuedBy): void
+    {
+        $sql = 'UPDATE leads
+                SET surprise_reward_label = :reward_label,
+                    surprise_coupon_code = :coupon_code,
+                    surprise_issued_at = :issued_at,
+                    surprise_issued_by = :issued_by,
+                    surprise_redeemed_at = NULL,
+                    status = :status,
+                    redeemed_at = NULL
+                WHERE id = :id';
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':reward_label' => $rewardLabel,
+            ':coupon_code' => $couponCode,
+            ':issued_at' => date('Y-m-d H:i:s'),
+            ':issued_by' => $issuedBy,
+            ':status' => 'Unredeemed',
+            ':id' => $id,
+        ]);
+    }
+
+    public function redeemSurpriseReward(int $id): void
+    {
+        $sql = 'UPDATE leads
+                SET status = :status,
+                    redeemed_at = :redeemed_at,
+                    surprise_redeemed_at = :surprise_redeemed_at
+                WHERE id = :id';
+
+        $now = date('Y-m-d H:i:s');
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':status' => 'Redeemed',
+            ':redeemed_at' => $now,
+            ':surprise_redeemed_at' => $now,
+            ':id' => $id,
         ]);
     }
 
@@ -247,6 +289,23 @@ class LeadRepository
             ':message' => $message,
             ':id' => $id,
         ]);
+    }
+
+    public function markSpinCompleted(int $id, ?string $completedAt = null): void
+    {
+        $stmt = $this->db->prepare('UPDATE leads SET spin_completed_at = :spin_completed_at WHERE id = :id');
+        $stmt->execute([
+            ':spin_completed_at' => $completedAt ?? date('Y-m-d H:i:s'),
+            ':id' => $id,
+        ]);
+    }
+
+    public function findLatestCompletedByPhone(string $phone): ?array
+    {
+        $stmt = $this->db->prepare('SELECT * FROM leads WHERE phone = :phone AND spin_completed_at IS NOT NULL ORDER BY spin_completed_at DESC, id DESC LIMIT 1');
+        $stmt->execute([':phone' => $phone]);
+        $row = $stmt->fetch();
+        return $row ?: null;
     }
 
     private function buildFilters(array $filters, array &$params): array

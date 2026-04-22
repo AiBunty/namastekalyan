@@ -192,6 +192,122 @@ class MailerService
         ]);
     }
 
+        public function sendGuestCheckinConfirmation(array $payload): array
+        {
+                $email = trim((string) ($payload['customerEmail'] ?? ''));
+                if ($email === '') {
+                        return ['ok' => false, 'error' => 'EMAIL_REQUIRED', 'message' => 'Customer email is required.'];
+                }
+
+                $customerName = trim((string) ($payload['customerName'] ?? 'Guest'));
+                $eventTitle = trim((string) ($payload['eventTitle'] ?? 'Namaste Kalyan Event'));
+                $eventSubtitle = trim((string) ($payload['eventSubtitle'] ?? ''));
+                $transactionId = trim((string) ($payload['transactionId'] ?? '-'));
+                $checkedInAt = (string) ($payload['checkedInAt'] ?? '');
+                $admittedCount = max(1, (int) ($payload['admittedCount'] ?? 1));
+                $remainingEntries = max(0, (int) ($payload['remainingEntries'] ?? 0));
+                $bookingType = trim((string) ($payload['bookingType'] ?? 'Event Entry'));
+                $eventImageUrl = $this->absolutizeUrl((string) ($payload['eventImageUrl'] ?? ''));
+                $verificationUrl = $this->absolutizeUrl((string) ($payload['verificationUrl'] ?? ''));
+                $attendeeNames = $payload['attendeeNames'] ?? [];
+                if (!is_array($attendeeNames)) {
+                        $attendeeNames = [];
+                }
+
+                $attendeeItems = '';
+                foreach ($attendeeNames as $attendeeName) {
+                        $value = trim((string) $attendeeName);
+                        if ($value === '') {
+                                continue;
+                        }
+                        $attendeeItems .= '<li style="margin:0 0 4px 0;">' . $this->escape($value) . '</li>';
+                }
+
+                $logoUrl = $this->assetUrl('assets/Logo/Namaste%20Kalyan%20by%20AWG%20-02.png');
+                $summaryLine = $admittedCount === 1
+                        ? 'Your event check-in is complete for 1 guest.'
+                        : 'Your event check-in is complete for ' . $admittedCount . ' guests.';
+                $nextStepLine = $remainingEntries > 0
+                        ? $remainingEntries . ' entr' . ($remainingEntries === 1 ? 'y is' : 'ies are') . ' still available on this booking.'
+                        : 'All guests on this booking have now been checked in.';
+
+                $html = '
+                    <html>
+                        <body style="margin:0;padding:0;background:#080506;font-family:Segoe UI,Arial,sans-serif;color:#f7f2eb;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#080506;padding:20px 10px;">
+                                <tr>
+                                    <td align="center">
+                                        <table role="presentation" width="640" cellspacing="0" cellpadding="0" style="max-width:640px;background:#130d10;border-radius:16px;overflow:hidden;border:1px solid #3b2527;">
+                                            <tr>
+                                                <td style="padding:24px;background:linear-gradient(135deg,#330003,#130d10 70%,#1b0e12);color:#f7f2eb;border-bottom:1px solid #5c3f20;">
+                                                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td style="vertical-align:middle;padding:0 12px 0 0;"><img src="' . $logoUrl . '" alt="Namaste Kalyan" style="display:block;height:56px;width:auto;max-width:230px;" /></td>
+                                                            <td style="vertical-align:middle;text-align:right;">
+                                                                <p style="margin:0;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#f2c48a;">Entry Confirmed</p>
+                                                                <h1 style="margin:6px 0 0 0;font-size:22px;line-height:1.2;color:#f7f2eb;">Check-In Completed</h1>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:24px;">
+                                                    ' . ($eventImageUrl !== '' ? '<div style="margin:0 0 18px 0;overflow:hidden;border-radius:14px;border:1px solid #402726;background:#120d0f;"><img src="' . $this->escape($eventImageUrl) . '" alt="' . $this->escape($eventTitle) . '" style="display:block;width:100%;max-height:260px;object-fit:cover;" /></div>' : '') . '
+                                                    <p style="margin:0 0 12px 0;font-size:16px;color:#f7f2eb;">Hello <strong>' . $this->escape($customerName) . '</strong>,</p>
+                                                    <p style="margin:0 0 12px 0;font-size:15px;line-height:1.6;color:#eadfd3;">' . $this->escape($summaryLine) . ' We have recorded your entry for <strong style="color:#f2c48a;">' . $this->escape($eventTitle) . '</strong>.</p>
+                                                    ' . ($eventSubtitle !== '' ? '<p style="margin:0 0 16px 0;font-size:13px;color:#d2c4b8;">' . $this->escape($eventSubtitle) . '</p>' : '') . '
+                                                    <p style="margin:0 0 18px 0;font-size:14px;color:#d2c4b8;">' . $this->escape($nextStepLine) . '</p>
+                                                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #3b2527;border-radius:10px;overflow:hidden;margin-bottom:18px;background:#1b0e12;">
+                                                        <tr><td style="padding:12px 14px;background:#2a1519;font-size:13px;color:#d2c4b8;">Transaction ID</td><td style="padding:12px 14px;font-size:14px;font-weight:600;color:#f7f2eb;">' . $this->escape($transactionId) . '</td></tr>
+                                                        <tr><td style="padding:12px 14px;background:#2a1519;font-size:13px;color:#d2c4b8;">Check-In Completed At</td><td style="padding:12px 14px;font-size:14px;color:#f7f2eb;">' . $this->escape($this->formatDateTime($checkedInAt)) . '</td></tr>
+                                                        <tr><td style="padding:12px 14px;background:#2a1519;font-size:13px;color:#d2c4b8;">Booking Type</td><td style="padding:12px 14px;font-size:14px;color:#f7f2eb;">' . $this->escape($bookingType) . '</td></tr>
+                                                        <tr><td style="padding:12px 14px;background:#2a1519;font-size:13px;color:#d2c4b8;">Guests Checked In</td><td style="padding:12px 14px;font-size:14px;color:#f2c48a;">' . $admittedCount . '</td></tr>
+                                                        <tr><td style="padding:12px 14px;background:#2a1519;font-size:13px;color:#d2c4b8;">Remaining Entries</td><td style="padding:12px 14px;font-size:14px;color:#f7f2eb;">' . $remainingEntries . '</td></tr>
+                                                    </table>
+                                                    ' . ($attendeeItems !== '' ? '<div style="margin:0 0 16px 0;padding:10px 12px;background:#261116;border:1px solid #5c3f20;border-radius:10px;"><p style="margin:0 0 8px 0;font-size:13px;color:#f2c48a;"><strong>Members Checked In</strong></p><ul style="margin:0;padding-left:18px;font-size:13px;color:#eadfd3;">' . $attendeeItems . '</ul></div>' : '') . '
+                                                    <p style="margin:0 0 8px 0;font-size:14px;color:#eadfd3;"><strong>Venue:</strong> ' . $this->escape($this->venueAddress()) . '</p>
+                                                    <p style="margin:0 0 18px 0;font-size:14px;color:#eadfd3;"><strong>Support:</strong> ' . $this->escape($this->supportPhone()) . '</p>
+                                                    ' . ($verificationUrl !== '' ? '<div style="text-align:center;padding:14px;border:1px dashed #5c3f20;border-radius:12px;background:#170f13;"><p style="margin:0 0 10px 0;font-size:13px;color:#d2c4b8;">Need to review this booking later?</p><p style="margin:0;font-size:12px;word-break:break-all;"><a href="' . $this->escape($verificationUrl) . '" style="color:#f2c48a;text-decoration:none;">' . $this->escape($verificationUrl) . '</a></p></div>' : '') . '
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:16px 24px;background:#1b0e12;border-top:1px solid #3b2527;font-size:12px;color:#d2c4b8;">This is an automated check-in confirmation from Namaste Kalyan. Please keep it for your records.</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </body>
+                    </html>';
+
+                $textLines = [
+                        'Hello ' . $customerName . ',',
+                        'Your check-in has been completed for ' . $eventTitle . '.',
+                        'Transaction ID: ' . $transactionId,
+                        'Check-In Completed At: ' . $this->formatDateTime($checkedInAt),
+                        'Booking Type: ' . $bookingType,
+                        'Guests Checked In: ' . $admittedCount,
+                        'Remaining Entries: ' . $remainingEntries,
+                ];
+                if ($attendeeNames !== []) {
+                        $textLines[] = 'Members Checked In: ' . implode(', ', array_map(static fn($value): string => trim((string) $value), $attendeeNames));
+                }
+                $textLines[] = 'Venue: ' . $this->venueAddress();
+                $textLines[] = 'Support: ' . $this->supportPhone();
+                if ($verificationUrl !== '') {
+                        $textLines[] = 'Verification Link: ' . $verificationUrl;
+                }
+
+                return $this->send($email, 'Check-In Confirmed - ' . $eventTitle, $html, implode("\n", $textLines), [
+                        'kind' => 'event_checkin_confirmation',
+                        'transactionId' => $transactionId,
+                        'eventTitle' => $eventTitle,
+                        'qty' => $admittedCount,
+                        'isFreeRegistration' => false,
+                ]);
+        }
+
     private function send(string $to, string $subject, string $htmlBody, string $textBody, array $meta = []): array
     {
         if (!$this->isConfigured()) {

@@ -129,4 +129,10 @@ class QrRedirectRepository
             ':updated_by' => $updatedBy,
         ]);
     }
+
+    public function delete(int $id): void
+    {
+        $stmt = $this->db->prepare('DELETE FROM qr_redirects WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+    }
 }

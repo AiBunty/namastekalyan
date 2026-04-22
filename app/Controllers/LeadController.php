@@ -17,6 +17,13 @@ class LeadController
         return $service->submitLead($body);
     }
 
+    public static function completeSpin(array $body, array $query): array
+    {
+        $service = new LeadService();
+        $payload = array_merge($query, $body);
+        return $service->completeSpin($payload);
+    }
+
     public static function verify(array $body, array $query): array
     {
         $service = new LeadService();

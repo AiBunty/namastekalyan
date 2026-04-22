@@ -81,6 +81,54 @@ class AuthController
         return $service->setApiSettings($body);
     }
 
+    public static function getWhatsAppWorkspace(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->getWhatsAppWorkspace($body);
+    }
+
+    public static function saveWhatsAppConfig(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->saveWhatsAppConfig($body);
+    }
+
+    public static function syncWhatsAppTemplates(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->syncWhatsAppTemplates($body);
+    }
+
+    public static function saveWhatsAppEventMapping(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->saveWhatsAppEventMapping($body);
+    }
+
+    public static function sendTestWhatsAppTemplate(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->sendTestWhatsAppTemplate($body);
+    }
+
+    public static function saveWhatsAppTemplateDraft(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->saveWhatsAppTemplateDraft($body);
+    }
+
+    public static function submitWhatsAppTemplateDraft(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->submitWhatsAppTemplateDraft($body);
+    }
+
+    public static function runWhatsAppScheduler(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->runWhatsAppScheduler($body);
+    }
+
     public static function getAppSettings(array $body, array $query): array
     {
         $service = new AuthService();
@@ -121,6 +169,12 @@ class AuthController
     {
         $service = new AuthService();
         return $service->setQrRedirectActive($body);
+    }
+
+    public static function deleteQrRedirect(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->deleteQrRedirect($body);
     }
 
     public static function listUsers(array $body, array $query): array

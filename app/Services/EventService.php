@@ -13,6 +13,7 @@ use NK\Repositories\EventRepository;
 use NK\Repositories\EventTransactionRepository;
 use NK\Support\SiteUrl;
 use NK\Support\Validator;
+use NK\Services\WhatsAppCloudService;
 
 class EventService
 {
@@ -23,6 +24,7 @@ class EventService
     private RazorpayService $razorpay;
     private MailerService $mailer;
     private OtpService $otpService;
+    private WhatsAppCloudService $whatsapp;
 
     public function __construct()
     {
@@ -33,6 +35,7 @@ class EventService
         $this->razorpay = new RazorpayService();
         $this->mailer = new MailerService();
         $this->otpService = new OtpService();
+        $this->whatsapp = new WhatsAppCloudService();
     }
 
     public function sendEventOtp(array $data): array
@@ -129,6 +132,15 @@ class EventService
         ], true, true);
 
         $emailSent = !empty($emailResult['ok']);
+        $whatsAppResult = $this->dispatchRegistrationWhatsApp($event, [
+            'transaction_id' => $transactionId,
+            'customer_name' => $customer['name'],
+            'customer_phone' => $customer['phone'],
+            'qty' => $customer['qty'],
+            'qr_url' => $qr['qrUrl'],
+            'event_id' => (string) ($event['event_id'] ?? ''),
+            'event_title' => (string) ($event['title'] ?? ''),
+        ], true);
 
         return [
             'ok'               => true,
@@ -144,6 +156,7 @@ class EventService
             'registrationStored' => true,
             'savedAt'          => $createdAt,
             'canResendEmail'   => true,
+            'whatsapp'         => $whatsAppResult,
             'message'          => $emailSent
                 ? 'Registration confirmed. A confirmation email has been sent to your registered email address.'
                 : 'Registration confirmed. Email delivery failed, so please keep the confirmation details shown below.',
@@ -283,6 +296,10 @@ class EventService
             'paid_at' => date('Y-m-d H:i:s'),
             'status' => 'paid',
         ]), false, true);
+        $whatsAppResult = $this->dispatchRegistrationWhatsApp($event, array_merge($txn, [
+            'payment_id' => $paymentId,
+            'status' => 'paid',
+        ]), false);
 
         return [
             'ok'             => true,
@@ -298,6 +315,7 @@ class EventService
             'registrationStored' => true,
             'savedAt'        => (string) ($txn['created_at'] ?? date('Y-m-d H:i:s')),
             'canResendEmail' => trim((string) ($txn['customer_email'] ?? '')) !== '',
+            'whatsapp'       => $whatsAppResult,
             'policy'         => $_ENV['EVENT_NO_REFUND_POLICY'] ?? 'No refund once pass is purchased.',
         ];
     }
@@ -1552,6 +1570,25 @@ class EventService
             'created_at' => $checkinTimestamp,
         ]);
 
+        $emailResult = $this->sendGuestCheckinConfirmationEmail($txn, [
+            'eventId' => $eventId,
+            'checkedInAt' => $checkedInAt,
+            'admittedCount' => $admit,
+            'admittedGuestNames' => $admittedGuestNames,
+            'remainingEntries' => max(0, $qty - $nextCheckedIn),
+        ]);
+
+        $whatsAppResult = $this->dispatchGuestCheckinWhatsApp($txn, [
+            'eventId' => $eventId,
+            'checkedInAt' => $checkedInAt,
+            'admittedCount' => $admit,
+            'admittedGuestNames' => $admittedGuestNames,
+        ]);
+
+        $this->whatsapp->scheduleCheckinFollowUp($txn, [
+            'checkedInAt' => $checkedInAt,
+        ]);
+
         $remainingAfter = max(0, $qty - $nextCheckedIn);
         $remainingAfterNames = $this->removeGuestNamesFromPool($remainingNames, $admittedGuestNames);
         return [
@@ -1572,10 +1609,130 @@ class EventService
             'admittedGuestNames' => $admittedGuestNames,
             'remainingAttendeeNames' => $remainingAfterNames,
             'duplicateKey' => $duplicateKey,
+            'email' => $emailResult,
+            'whatsapp' => $whatsAppResult,
             'message' => $remainingAfter > 0
                 ? ($admit . ' entr' . ($admit === 1 ? 'y' : 'ies') . ' confirmed. ' . $remainingAfter . ' remaining on this QR.')
                 : 'Ticket checked in successfully.',
         ];
+    }
+
+    private function dispatchRegistrationWhatsApp(array $event, array $transaction, bool $isFreeRegistration): array
+    {
+        $phone = trim((string) ($transaction['customer_phone'] ?? ''));
+        if ($phone === '') {
+            return [
+                'ok' => false,
+                'attempted' => false,
+                'success' => false,
+                'message' => 'Customer phone is not available for WhatsApp registration confirmation.',
+            ];
+        }
+
+        $context = [
+            'customerName' => (string) ($transaction['customer_name'] ?? 'Guest'),
+            'eventTitle' => (string) (($event['title'] ?? '') ?: ($transaction['event_title'] ?? 'Namaste Kalyan Event')),
+            'eventDate' => $this->formatEventDateLabel((string) ($event['start_date'] ?? '')),
+            'eventTime' => $this->formatEventTimeLabel((string) ($event['start_time'] ?? '')),
+            'transactionId' => (string) ($transaction['transaction_id'] ?? ''),
+            'bookingType' => $isFreeRegistration ? 'Free Registration' : 'Paid Booking',
+            'qrUrl' => (string) ($transaction['qr_url'] ?? ''),
+        ];
+
+        $result = $this->whatsapp->triggerEvent('event_registration_confirmed', $phone, $context, [
+            'countryCode' => '91',
+            'leadId' => null,
+        ]);
+
+        $this->whatsapp->scheduleEventReminders($event, $transaction);
+
+        return $result;
+    }
+
+    private function dispatchGuestCheckinWhatsApp(array $transaction, array $context): array
+    {
+        $phone = trim((string) ($transaction['customer_phone'] ?? ''));
+        if ($phone === '') {
+            return [
+                'ok' => false,
+                'attempted' => false,
+                'success' => false,
+                'message' => 'Customer phone is not available for WhatsApp guest check-in confirmation.',
+            ];
+        }
+
+        return $this->whatsapp->triggerEvent('guest_checked_in', $phone, [
+            'customerName' => (string) ($transaction['customer_name'] ?? 'Guest'),
+            'eventTitle' => (string) (($transaction['event_title'] ?? '') ?: 'Namaste Kalyan Event'),
+            'admittedCount' => (string) ($context['admittedCount'] ?? '1'),
+            'checkedInAt' => $this->formatDateTimeLabel((string) ($context['checkedInAt'] ?? '')),
+        ], [
+            'countryCode' => '91',
+            'leadId' => null,
+        ]);
+    }
+
+    private function sendGuestCheckinConfirmationEmail(array $transaction, array $context): array
+    {
+        $emailAddress = trim((string) ($transaction['customer_email'] ?? ''));
+        if ($emailAddress === '') {
+            return [
+                'ok' => false,
+                'error' => 'EMAIL_REQUIRED',
+                'message' => 'No registered email address is available for this transaction.',
+            ];
+        }
+
+        $eventId = trim((string) ($context['eventId'] ?? $transaction['event_id'] ?? ''));
+        $event = $eventId !== '' ? ($this->events->findByEventId($eventId) ?: []) : [];
+
+        return $this->mailer->sendGuestCheckinConfirmation([
+            'customerEmail' => $emailAddress,
+            'customerName' => (string) ($transaction['customer_name'] ?? 'Guest'),
+            'eventTitle' => (string) (($event['title'] ?? '') ?: ($transaction['event_title'] ?? 'Namaste Kalyan Event')),
+            'eventSubtitle' => (string) ($event['subtitle'] ?? ''),
+            'eventImageUrl' => (string) ($event['image_url'] ?? ''),
+            'transactionId' => (string) ($transaction['transaction_id'] ?? ''),
+            'checkedInAt' => (string) ($context['checkedInAt'] ?? ''),
+            'admittedCount' => (int) ($context['admittedCount'] ?? 1),
+            'attendeeNames' => is_array($context['admittedGuestNames'] ?? null) ? $context['admittedGuestNames'] : [],
+            'remainingEntries' => (int) ($context['remainingEntries'] ?? 0),
+            'bookingType' => strtolower((string) ($transaction['gateway'] ?? 'free')) === 'free' ? 'Free Entry' : 'Paid Booking',
+            'verificationUrl' => $this->buildVerificationUrl((string) ($transaction['transaction_id'] ?? '')),
+        ]);
+    }
+
+    private function formatEventDateLabel(string $date): string
+    {
+        $date = trim($date);
+        if ($date === '') {
+            return '';
+        }
+
+        $ts = strtotime($date);
+        return $ts ? date('d M Y', $ts) : $date;
+    }
+
+    private function formatEventTimeLabel(string $time): string
+    {
+        $time = trim($time);
+        if ($time === '') {
+            return '';
+        }
+
+        $ts = strtotime($time);
+        return $ts ? date('g:i A', $ts) : $time;
+    }
+
+    private function formatDateTimeLabel(string $dateTime): string
+    {
+        $dateTime = trim($dateTime);
+        if ($dateTime === '') {
+            return '';
+        }
+
+        $ts = strtotime($dateTime);
+        return $ts ? date('d M Y g:i A', $ts) : $dateTime;
     }
 
     private function buildCheckinPreview(array $normalized, bool $requireSignedPayload): array

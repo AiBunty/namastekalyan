@@ -333,7 +333,7 @@
 
       if (configuredBase) {
         try {
-          return new URL('public/admin/server-connection-diagnostic.php', configuredBase).toString();
+          return new URL('admin/server-connection-diagnostic.php', configuredBase).toString();
         } catch (error) {
           // Fall through to the local relative path.
         }

@@ -19,8 +19,28 @@
         ? String(window.NK_DATA_API.hotelWhatsappNo).replace(/\D/g, '')
         : '919371519999';
 
-      container.innerHTML = '<div class="admin-module-centered" style="min-height:60vh;">'
-        + '<div class="card" style="max-width:540px;margin:0 auto;">'
+      var styleEl = document.createElement('style');
+      styleEl.textContent = [
+        '.vf-shell { min-height:60vh; }',
+        '.vf-card { max-width:540px; margin:0 auto; }',
+        '.vf-summary-line,.vf-detail-line { display:grid; grid-template-columns:130px 1fr; gap:8px; font-size:0.9rem; margin-bottom:6px; }',
+        '.vf-summary-line { font-size:0.93rem; }',
+        '.vf-label { color: var(--muted); }',
+        '@media (max-width:768px) {',
+        '  .vf-card { max-width:100%; }',
+        '  .vf-summary-line,.vf-detail-line { grid-template-columns:1fr; gap:2px; }',
+        '  .vf-shell .row { align-items:stretch; }',
+        '  .vf-shell .row > * { flex: 1 1 100%; min-width:0; }',
+        '  .vf-shell input, .vf-shell select { font-size:16px; }',
+        '}',
+        '@media (max-width:520px) {',
+        '  .vf-card { padding:14px; }',
+        '}'
+      ].join('\n');
+      container.appendChild(styleEl);
+
+      container.innerHTML = '<div class="admin-module-centered vf-shell">'
+        + '<div class="card vf-card">'
         + '<h1 style="margin:0 0 8px;">Staff Coupon Verification</h1>'
         + '<p style="margin:0 0 14px;">Check customer mobile number and redeem offer at billing counter.</p>'
         + '<input id="vfPhone" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter 10-digit mobile" style="width:100%;margin-bottom:12px;">'
@@ -44,15 +64,15 @@
 
         + '<div id="vfGiftSummary" style="display:none;margin-top:12px;padding:12px;background:rgba(108,74,50,0.06);border-radius:12px;">'
         + '<div style="color:#6c4a32;font-size:0.82rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-weight:800;">Winner Redemption Summary</div>'
-        + '<div style="display:grid;grid-template-columns:130px 1fr;gap:8px;margin-bottom:6px;font-size:0.93rem;"><span style="color:var(--muted);">Gift Item</span><span id="vfGiftPrize">-</span></div>'
-        + '<div style="display:grid;grid-template-columns:130px 1fr;gap:8px;font-size:0.93rem;"><span style="color:var(--muted);">Coupon Code</span><span id="vfGiftCoupon">-</span></div>'
+        + '<div class="vf-summary-line"><span class="vf-label">Gift Item</span><span id="vfGiftPrize">-</span></div>'
+        + '<div class="vf-summary-line"><span class="vf-label">Coupon Code</span><span id="vfGiftCoupon">-</span></div>'
         + '</div>'
 
         + '<div id="vfDetails" style="display:none;margin-top:14px;padding:12px;background:rgba(108,74,50,0.06);border-radius:12px;">'
-        + ['Name','Mobile','Prize','Status','Coupon Code','DOB','Anniversary','Source','Timestamp'].map(function (label, i) {
-            var id = ['vfDName','vfDPhone','vfDPrize','vfDStatus','vfDCode','vfDDob','vfDAnn','vfDSource','vfDTime'][i];
-            return '<div style="display:grid;grid-template-columns:130px 1fr;gap:8px;font-size:0.9rem;margin-bottom:6px;">'
-              + '<span style="color:var(--muted);">' + label + '</span><span id="' + id + '">-</span></div>';
+        + ['Name','Mobile','Original Spin','Active Reward','Status','Coupon Code','DOB','Anniversary','Source','Timestamp'].map(function (label, i) {
+            var id = ['vfDName','vfDPhone','vfDOriginalPrize','vfDActiveReward','vfDStatus','vfDCode','vfDDob','vfDAnn','vfDSource','vfDTime'][i];
+            return '<div class="vf-detail-line">'
+              + '<span class="vf-label">' + label + '</span><span id="' + id + '">-</span></div>';
           }).join('')
         + '</div>'
 
@@ -91,15 +111,22 @@
         if (el) el.textContent = value || '-';
       }
 
-      function isWinnerPrize(prize) {
-        var value = String(prize || '').trim().toLowerCase();
-        return !!value && !value.startsWith('try again');
+      function updateRegenButtonState(data) {
+        if (!regenBtn) return;
+        if (data && data.canIssueSurprise) {
+          regenBtn.textContent = 'Issue Surprise Coupon';
+        } else if (data && data.activeRewardSource === 'surprise') {
+          regenBtn.textContent = 'Regenerate Surprise Coupon';
+        } else {
+          regenBtn.textContent = 'Generate Missing Coupon';
+        }
       }
 
       function renderDetails(data) {
         setDetail('vfDName', data.name);
         setDetail('vfDPhone', data.phone);
-        setDetail('vfDPrize', data.prize);
+        setDetail('vfDOriginalPrize', data.originalPrize || data.prize);
+        setDetail('vfDActiveReward', data.activeRewardLabel || '-');
         setDetail('vfDStatus', data.status);
         setDetail('vfDCode', data.couponCode || '-');
         setDetail('vfDDob', data.dob);
@@ -109,31 +136,33 @@
         details.style.display = 'block';
 
         var couponCode = String(data.couponCode || '').trim();
-        var isWinner = isWinnerPrize(data.prize);
-        if (isWinner) {
-          giftPrize.textContent = data.prize || '-';
+        var hasActiveReward = !!String(data.activeRewardLabel || '').trim();
+        if (hasActiveReward) {
+          giftPrize.textContent = data.activeRewardLabel || '-';
           giftCoupon.textContent = couponCode || 'Not generated yet';
           giftSummary.style.display = 'block';
         } else {
           giftSummary.style.display = 'none';
         }
-        if (isWinner && couponCode) {
+        if (hasActiveReward && couponCode) {
           couponCodeView.textContent = couponCode;
           couponTools.style.display = 'block';
         } else {
           couponCodeView.textContent = '-';
           couponTools.style.display = 'none';
         }
+        updateRegenButtonState(data);
       }
 
       function clearDetails() {
-        ['vfDName','vfDPhone','vfDPrize','vfDStatus','vfDCode','vfDDob','vfDAnn','vfDSource','vfDTime'].forEach(function (id) {
+        ['vfDName','vfDPhone','vfDOriginalPrize','vfDActiveReward','vfDStatus','vfDCode','vfDDob','vfDAnn','vfDSource','vfDTime'].forEach(function (id) {
           setDetail(id, '-');
         });
         details.style.display = 'none';
         couponCodeView.textContent = '-';
         couponTools.style.display = 'none';
         giftSummary.style.display = 'none';
+        updateRegenButtonState(null);
       }
 
       function apiGetVerification(action, extraParams) {
@@ -155,19 +184,25 @@
           .then(function (data) {
             if (!data) return;
             renderDetails(data);
-            var isWinner = isWinnerPrize(data.prize);
-            var alreadyRedeemed = String(data.status || '').toLowerCase() === 'redeemed';
-            if (!isWinner) {
-              setResult('No discount coupon for this mobile number.', false);
+            if (data.canRedeem) {
+              module._lastVerifyData = data;
+              redeemBtn.disabled = false;
+              setResult('Redeemable reward: ' + (data.activeRewardLabel || '-'), true);
               return;
             }
-            if (alreadyRedeemed) {
-              setResult('Already Redeemed: ' + data.prize, false);
+
+            if (data.canIssueSurprise) {
+              module._lastVerifyData = data;
+              setResult('Try Again customer found. Select a surprise reward to issue a coupon.', false);
               return;
             }
-            module._lastVerifyData = data;
-            redeemBtn.disabled = false;
-            setResult('Winner: ' + data.prize, true);
+
+            if (data.activeRewardLabel) {
+              setResult('Already Redeemed: ' + data.activeRewardLabel, false);
+              return;
+            }
+
+            setResult('No redeemable reward found for this mobile number.', false);
           })
           .catch(function (err) {
             if (err.message !== 'Invalid phone') {
@@ -193,6 +228,7 @@
               couponCodeView.textContent = module._lastVerifyData.couponCode;
               couponTools.style.display = 'block';
             }
+            redeemBtn.disabled = true;
           })
           .catch(function (err) {
             setResult('Redeem failed: ' + err.message, false);
@@ -213,7 +249,7 @@
             if (!data) return;
             if (data.couponCode) {
               if (data.prize) {
-                setDetail('vfDPrize', data.prize);
+                setDetail('vfDActiveReward', data.prize);
                 giftPrize.textContent = data.prize;
               }
               setDetail('vfDCode', data.couponCode);
@@ -224,8 +260,12 @@
             }
             if (module._lastVerifyData) {
               module._lastVerifyData.couponCode = String(data.couponCode || module._lastVerifyData.couponCode || '');
-              if (data.prize) module._lastVerifyData.prize = data.prize;
+              module._lastVerifyData.activeRewardLabel = String(data.prize || module._lastVerifyData.activeRewardLabel || '');
+              module._lastVerifyData.activeRewardSource = String(data.rewardSource || module._lastVerifyData.activeRewardSource || '');
+              module._lastVerifyData.canRedeem = true;
+              module._lastVerifyData.canIssueSurprise = false;
             }
+            redeemBtn.disabled = false;
             setResult(data.message || (data.couponCode ? 'Coupon generated: ' + data.couponCode : 'Coupon regenerated.'), true);
           })
           .catch(function (err) {

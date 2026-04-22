@@ -76,7 +76,7 @@
             setStatus('Opening ' + resolvedDestinationLabel + '...');
           })
           .catch(function () {
-            resolvedDestinationUrl = 'https://namastekalyan.asianwokandgrill.in/admin/';
+            resolvedDestinationUrl = 'https://namastekalyan.asianwokandgrill.in/admin/admin-portal.html#';
             resolvedDestinationLabel = 'admin portal';
             resolvedDestinationKey = 'admin';
           });
@@ -103,12 +103,14 @@
 
       var safetyTimer = setTimeout(redirect, MAX_WAIT_MS);
       setProgress(10);
-      setStatus('Detecting your location…');
-      loadDestinationSettings();
-      fetch('https://ipapi.co/json/?fields=ip,city,region,country_name', { method: 'GET', mode: 'cors', cache: 'no-store' })
-        .then(function (resp) { if (!resp.ok) throw new Error('geo_fail'); return resp.json(); })
-        .then(function (geo) { setProgress(70); setStatus('Almost there… opening ' + resolvedDestinationLabel + '.'); fireTracking(geo); setTimeout(redirect, 250); })
-        .catch(function () { setProgress(50); fireTracking({}); setTimeout(redirect, 150); });
+      setStatus('Preparing your destination…');
+      loadDestinationSettings().finally(function () {
+        setStatus('Detecting your location…');
+        fetch('https://ipapi.co/json/?fields=ip,city,region,country_name', { method: 'GET', mode: 'cors', cache: 'no-store' })
+          .then(function (resp) { if (!resp.ok) throw new Error('geo_fail'); return resp.json(); })
+          .then(function (geo) { setProgress(70); setStatus('Almost there… opening ' + resolvedDestinationLabel + '.'); fireTracking(geo); setTimeout(redirect, 250); })
+          .catch(function () { setProgress(50); fireTracking({}); setTimeout(redirect, 150); });
+      });
     })();
   </script>
 </body>

@@ -122,13 +122,13 @@
     home: '',
     menu: 'menu/',
     cocktail: 'cocktails/cocktail.html',
-    admin: 'admin/'
+    admin: 'admin/admin-portal.html#'
   };
   const remoteSitePathMap = {
     home: '',
-    menu: 'menu.html',
-    cocktail: 'cocktail.html',
-    admin: 'admin/'
+    menu: 'menu/',
+    cocktail: 'cocktails/cocktail.html',
+    admin: 'admin/admin-portal.html#'
   };
 
   const resolveSiteUrl = function resolveSiteUrl(pageKey) {
@@ -174,9 +174,12 @@
       'auth_login', 'auth_logout', 'auth_me', 'auth_change_password',
       'auth_create_user', 'auth_set_user_status', 'auth_reset_password',
       'auth_set_user_permissions', 'auth_get_api_settings', 'auth_set_api_settings',
+      'auth_get_whatsapp_workspace', 'auth_save_whatsapp_config',
+      'auth_sync_whatsapp_templates', 'auth_save_whatsapp_mapping', 'auth_send_test_whatsapp_template',
+      'auth_save_whatsapp_template_draft', 'auth_submit_whatsapp_template_draft', 'auth_run_whatsapp_scheduler',
       'auth_get_app_settings', 'auth_set_app_settings',
       'auth_get_qr_redirect_settings', 'auth_set_qr_redirect_settings',
-      'auth_list_qr_redirects', 'auth_save_qr_redirect', 'auth_set_qr_redirect_active',
+      'auth_list_qr_redirects', 'auth_save_qr_redirect', 'auth_set_qr_redirect_active', 'auth_delete_qr_redirect',
       'auth_list_users', 'auth_bootstrap_status',
       // Events
       'events_list', 'event_list', 'event_detail', 'event_popup',
@@ -194,7 +197,7 @@
       'admin_request_cash_cancel', 'superadmin_approve_cash_handover',
       'superadmin_resolve_cash_cancel', 'admin_cash_summary', 'superadmin_cash_dashboard',
       // Leads / Spin & Win
-      'submit_lead', 'verify', 'redeem', 'regen_coupon', 'regenerate_coupon',
+      'submit_lead', 'complete_spin', 'verify', 'redeem', 'regen_coupon', 'regenerate_coupon',
       'counter', 'qr_report', 'qr_scan_client', 'qr_redirect_resolve',
       'admin_crm_panel_status', 'admin_list_crm_contacts', 'admin_list_crm_push_logs',
       'admin_backfill_crm_contacts', 'admin_export_crm_contacts',
