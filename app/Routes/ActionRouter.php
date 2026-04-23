@@ -36,6 +36,7 @@ class ActionRouter
         'auth_send_test_whatsapp_template' => [AuthController::class, 'sendTestWhatsAppTemplate'],
         'auth_save_whatsapp_template_draft' => [AuthController::class, 'saveWhatsAppTemplateDraft'],
         'auth_submit_whatsapp_template_draft' => [AuthController::class, 'submitWhatsAppTemplateDraft'],
+        'auth_preview_whatsapp_template' => [AuthController::class, 'previewWhatsAppTemplate'],
         'auth_run_whatsapp_scheduler'   => [AuthController::class, 'runWhatsAppScheduler'],
         'auth_get_app_settings'         => [AuthController::class, 'getAppSettings'],
         'auth_set_app_settings'         => [AuthController::class, 'setAppSettings'],

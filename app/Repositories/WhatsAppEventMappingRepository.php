@@ -42,13 +42,15 @@ class WhatsAppEventMappingRepository
     public function upsert(array $mapping): void
     {
         $sql = 'INSERT INTO whatsapp_event_mappings (
-                    event_key, template_name, language_code, is_enabled, updated_by, updated_at
+                    event_key, template_name, language_code, mapped_version_id, mapped_template_uid, is_enabled, updated_by, updated_at
                 ) VALUES (
-                    :event_key, :template_name, :language_code, :is_enabled, :updated_by, :updated_at
+                    :event_key, :template_name, :language_code, :mapped_version_id, :mapped_template_uid, :is_enabled, :updated_by, :updated_at
                 )
                 ON DUPLICATE KEY UPDATE
                     template_name = VALUES(template_name),
                     language_code = VALUES(language_code),
+                    mapped_version_id = VALUES(mapped_version_id),
+                    mapped_template_uid = VALUES(mapped_template_uid),
                     is_enabled = VALUES(is_enabled),
                     updated_by = VALUES(updated_by),
                     updated_at = VALUES(updated_at)';
@@ -58,6 +60,8 @@ class WhatsAppEventMappingRepository
             ':event_key' => (string) ($mapping['event_key'] ?? ''),
             ':template_name' => (string) ($mapping['template_name'] ?? ''),
             ':language_code' => (string) ($mapping['language_code'] ?? ''),
+            ':mapped_version_id' => isset($mapping['mapped_version_id']) && (int) $mapping['mapped_version_id'] > 0 ? (int) $mapping['mapped_version_id'] : null,
+            ':mapped_template_uid' => (string) ($mapping['mapped_template_uid'] ?? ''),
             ':is_enabled' => !empty($mapping['is_enabled']) ? 1 : 0,
             ':updated_by' => (string) ($mapping['updated_by'] ?? ''),
             ':updated_at' => (string) ($mapping['updated_at'] ?? date('Y-m-d H:i:s')),

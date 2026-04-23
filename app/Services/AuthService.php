@@ -814,6 +814,8 @@ class AuthService
         $customerName = trim((string) ($data['customerName'] ?? $data['name'] ?? 'Test Guest'));
         $rewardLabel = trim((string) ($data['rewardLabel'] ?? $data['reward'] ?? 'Surprise reward'));
         $couponCode = trim((string) ($data['couponCode'] ?? $data['coupon'] ?? 'TEST' . date('His')));
+        $verificationUrl = trim((string) ($data['verificationUrl'] ?? 'https://namastekalyan.asianwokandgrill.in/events/verification.html?transactionId=TEST-260423-001'));
+        $qrUrl = trim((string) ($data['qrUrl'] ?? ('https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=' . rawurlencode($verificationUrl))));
 
         if ($eventKey === '' || $phone === '') {
             return [
@@ -828,6 +830,14 @@ class AuthService
             'customerName' => $customerName,
             'rewardLabel' => $rewardLabel,
             'couponCode' => $couponCode,
+            'eventTitle' => trim((string) ($data['eventTitle'] ?? 'Night With DJ Adaa')),
+            'eventDate' => trim((string) ($data['eventDate'] ?? '25 Apr 2026')),
+            'eventTime' => trim((string) ($data['eventTime'] ?? '8:00 PM')),
+            'transactionId' => trim((string) ($data['transactionId'] ?? 'TEST-260423-001')),
+            'bookingType' => trim((string) ($data['bookingType'] ?? 'Paid Booking')),
+            'verificationUrl' => $verificationUrl,
+            'qrUrl' => $qrUrl,
+            'headerImageUrl' => $qrUrl,
         ]);
 
         $this->audit->log(
@@ -879,6 +889,7 @@ class AuthService
             'ok' => true,
             'action' => 'auth_save_whatsapp_template_draft',
             'message' => (string) ($result['message'] ?? 'WhatsApp template draft saved.'),
+            'result' => $result,
             'workspace' => $service->getWorkspace(),
         ];
     }
@@ -915,6 +926,38 @@ class AuthService
             'message' => (string) ($result['message'] ?? 'WhatsApp template draft submission completed.'),
             'result' => $result,
             'workspace' => $service->getWorkspace(),
+        ];
+    }
+
+    public function previewWhatsAppTemplate(array $data): array
+    {
+        $auth = $this->requireSuperadmin($data);
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        $eventKey = trim((string) ($data['eventKey'] ?? $data['event_key'] ?? ''));
+        if ($eventKey === '') {
+            return [
+                'ok' => false,
+                'error' => 'INVALID_INPUT',
+                'message' => 'eventKey is required.',
+            ];
+        }
+
+        $service = new WhatsAppCloudService();
+        $result = $service->previewTemplate([
+            'eventKey' => $eventKey,
+            'templateName' => (string) ($data['templateName'] ?? $data['template_name'] ?? ''),
+            'languageCode' => (string) ($data['languageCode'] ?? $data['language_code'] ?? ''),
+            'draft' => is_array($data['draft'] ?? null) ? $data['draft'] : null,
+        ]);
+
+        return [
+            'ok' => !empty($result['ok']),
+            'action' => 'auth_preview_whatsapp_template',
+            'message' => (string) ($result['message'] ?? 'WhatsApp template preview generated.'),
+            'preview' => $result['preview'] ?? null,
         ];
     }
 

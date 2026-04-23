@@ -8,6 +8,7 @@
     _authClient: null,
     _allGuestRows: [],
     _filteredGuestRows: [],
+    _allQrRows: [],
     _allReconRows: [],
 
     init: function (container, authClient) {
@@ -15,6 +16,7 @@
       this._authClient = authClient;
       this._allGuestRows = [];
       this._filteredGuestRows = [];
+      this._allQrRows = [];
       this._allReconRows = [];
 
       var module = this;
@@ -36,6 +38,7 @@
       this._authClient = null;
       this._allGuestRows = [];
       this._filteredGuestRows = [];
+      this._allQrRows = [];
       this._allReconRows = [];
     },
 
@@ -112,13 +115,16 @@
         var selectedEventId = report.selectedEventId || eventId || null;
         var totals = report.totals || {};
         var guests = Array.isArray(report.guests) ? report.guests : [];
+        var qrWiseSummary = Array.isArray(report.qrWiseSummary) ? report.qrWiseSummary : [];
         var recon = report.razorpayReconciliation || {};
 
         module._allGuestRows = guests;
+        module._allQrRows = qrWiseSummary;
         module._allReconRows = Array.isArray(recon.entries) ? recon.entries : [];
 
         module._renderEventOptions(summary, selectedEventId);
         module._updateStats(totals);
+        module._renderQrSummaryTable(qrWiseSummary);
         module._renderReconciliation(recon);
         module._applyGuestFilters();
 
@@ -391,6 +397,36 @@
       }).join('');
     },
 
+    _renderQrSummaryTable: function (rows) {
+      var module = this;
+      var c = module._container;
+      if (!c) return;
+      var tbody = c.querySelector('#evgQrRows');
+      if (!tbody) return;
+      var esc = module._esc.bind(module);
+      var countEl = c.querySelector('#evgQrCount');
+      if (countEl) countEl.textContent = rows.length + ' row(s)';
+
+      if (!rows.length) {
+        tbody.innerHTML = '<tr><td colspan="8" class="evg-muted">No QR-wise check-in summary found.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = rows.map(function (item) {
+        var verificationUrl = item.verificationUrl ? '<div class="evg-muted"><a href="' + esc(item.verificationUrl) + '" target="_blank" rel="noopener noreferrer">Open verification link</a></div>' : '';
+        return '<tr>'
+          + '<td>' + esc(item.transactionId || '') + verificationUrl + '</td>'
+          + '<td>' + esc(item.eventTitle || '') + '</td>'
+          + '<td>' + esc(item.guestName || '') + '</td>'
+          + '<td>' + esc(item.bookingType || '') + '</td>'
+          + '<td>' + esc(String(item.checkedInCount || 0)) + ' / ' + esc(String(item.tickets || 0)) + '<div class="evg-muted">Remaining: ' + esc(String(item.remainingEntries || 0)) + '</div></td>'
+          + '<td>' + esc(item.checkInStatus || '') + (item.checkedInAt ? '<div class="evg-muted">' + esc(item.checkedInAt) + '</div>' : '') + '</td>'
+          + '<td>' + esc(item.attendees || '') + '</td>'
+          + '<td>' + esc(item.checkinHistorySummary || '') + '</td>'
+          + '</tr>';
+      }).join('');
+    },
+
     _renderMailLogTable: function (rows) {
       var module = this;
       var c = module._container;
@@ -570,6 +606,22 @@
         '  <div class="evg-stat-card"><div class="evg-stat-val" id="evgStatCashCollected">--</div><div class="evg-stat-label">Cash Collected</div></div>',
         '  <div class="evg-stat-card"><div class="evg-stat-val" id="evgStatRazorpayPending">--</div><div class="evg-stat-label">Razorpay Pending</div></div>',
         '</div>',
+
+        '<section class="evg-panel">',
+        '  <div class="evg-panel-header">',
+        '    <h3 class="evg-subheading">QR-wise Check-In Summary <span id="evgQrCount" class="evg-count-chip"></span></h3>',
+        '  </div>',
+        '  <div class="evg-table-wrap">',
+        '    <table class="evg-table">',
+        '      <thead>',
+        '        <tr>',
+        '          <th>QR / Transaction</th><th>Event</th><th>Primary Guest</th><th>Type</th><th>Checked In</th><th>Status</th><th>Attendees</th><th>History</th>',
+        '        </tr>',
+        '      </thead>',
+        '      <tbody id="evgQrRows"><tr><td colspan="8" class="evg-muted">Loading...</td></tr></tbody>',
+        '    </table>',
+        '  </div>',
+        '</section>',
 
         // Guest table
         '<section class="evg-panel">',

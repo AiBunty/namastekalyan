@@ -4946,23 +4946,10 @@ function finalizeEventPaymentByOrderId_(orderId, paymentId, options) {
     guestPassesJson: serializeGuestPasses_(guestPasses)
   });
 
-  const crmSync = pushPaidEventToCrm_({
-    customerName: customerName,
-    customerEmail: customerEmail,
-    customerPhone: customerPhone,
-    eventId: eventId,
-    eventTitle: eventTitle,
-    transactionId: transactionId,
-    amount: amount,
-    qty: qty,
-    paymentId: paymentId,
-    orderId: orderId
-  });
-
   updateTransactionColumns_(sheet, tx.row, {
-    crmSyncStatus: crmSync && crmSync.success ? 'Success' : (crmSync && crmSync.attempted ? 'Failed' : 'Skipped'),
-    crmSyncCode: crmSync && crmSync.status ? crmSync.status : '',
-    crmSyncMessage: crmSync && crmSync.message ? crmSync.message : ''
+    crmSyncStatus: 'Skipped',
+    crmSyncCode: 'SKIPPED_NON_FORM_TRIGGER',
+    crmSyncMessage: 'CRM sync skipped for paid event payment confirmation. Only initial spin form submissions should push to CRM.'
   });
 
   const emailResult = sendEventTicketEmail_(customerEmail, {
@@ -5385,30 +5372,6 @@ function escapeHtml_(value) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
-}
-
-function pushPaidEventToCrm_(payload) {
-  const token = getCrmApiToken_();
-  if (!token) {
-    return { attempted: false, success: false, status: '', message: 'CRM_API_TOKEN missing in Script Properties', attempts: [] };
-  }
-
-  const crmPayload = {
-    api_token: token,
-    contact_name: payload.customerName,
-    contact_email: payload.customerEmail,
-    contact_phone: toPlusInternationalPhone_(payload.customerPhone),
-    source: 'paid-event',
-    event_id: payload.eventId,
-    event_title: payload.eventTitle,
-    transaction_id: payload.transactionId,
-    amount_paid: payload.amount,
-    quantity: payload.qty,
-    payment_id: payload.paymentId,
-    order_id: payload.orderId
-  };
-
-  return pushLeadToCrm_(crmPayload);
 }
 
 function handleRegisterFreeEvent_(data) {

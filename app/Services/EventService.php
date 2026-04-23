@@ -11,6 +11,7 @@ use NK\Repositories\ApiSettingsRepository;
 use NK\Repositories\EventCheckinLogRepository;
 use NK\Repositories\EventRepository;
 use NK\Repositories\EventTransactionRepository;
+use NK\Support\Logger;
 use NK\Support\SiteUrl;
 use NK\Support\Validator;
 use NK\Services\WhatsAppCloudService;
@@ -1215,6 +1216,8 @@ class EventService
             }
         }
 
+        $qrWiseSummary = $this->buildQrWiseGuestSummary($guests);
+
         $eventSummary = array_values($summaryByEvent);
         usort($eventSummary, static function (array $left, array $right): int {
             return strcasecmp((string) ($left['eventTitle'] ?? ''), (string) ($right['eventTitle'] ?? ''));
@@ -1231,12 +1234,53 @@ class EventService
             'selectedEventId' => $targetEventId,
             'totals' => $totals,
             'eventSummary' => $eventSummary,
+            'qrWiseSummary' => $qrWiseSummary,
             'guests' => $guests,
             'razorpayReconciliation' => [
                 'totals' => $reconTotals,
                 'entries' => $reconEntries,
             ],
         ];
+    }
+
+    private function buildQrWiseGuestSummary(array $guests): array
+    {
+        $summaryByTransaction = [];
+
+        foreach ($guests as $item) {
+            $transactionId = trim((string) ($item['transactionId'] ?? ''));
+            if ($transactionId === '' || isset($summaryByTransaction[$transactionId])) {
+                continue;
+            }
+
+            $summaryByTransaction[$transactionId] = [
+                'transactionId' => $transactionId,
+                'eventTitle' => (string) ($item['eventTitle'] ?? ''),
+                'guestName' => (string) (($item['guestName'] ?? '') ?: ($item['customerName'] ?? '')),
+                'bookingType' => (string) ($item['bookingType'] ?? ''),
+                'tickets' => max(1, (int) ($item['tickets'] ?? $item['qty'] ?? 1)),
+                'checkedInCount' => max(0, (int) ($item['checkedInCount'] ?? 0)),
+                'remainingEntries' => max(0, (int) ($item['remainingEntries'] ?? 0)),
+                'checkInStatus' => (string) ($item['checkInStatus'] ?? ''),
+                'checkedInAt' => (string) ($item['checkedInAt'] ?? ''),
+                'attendees' => (string) ($item['attendees'] ?? ''),
+                'checkinHistorySummary' => (string) ($item['checkinHistorySummary'] ?? ''),
+                'verificationUrl' => $this->buildVerificationUrl($transactionId),
+            ];
+        }
+
+        $summary = array_values($summaryByTransaction);
+        usort($summary, static function (array $left, array $right): int {
+            $leftTime = strtotime((string) ($left['checkedInAt'] ?? '')) ?: 0;
+            $rightTime = strtotime((string) ($right['checkedInAt'] ?? '')) ?: 0;
+            if ($leftTime !== $rightTime) {
+                return $rightTime <=> $leftTime;
+            }
+
+            return strcasecmp((string) ($left['transactionId'] ?? ''), (string) ($right['transactionId'] ?? ''));
+        });
+
+        return $summary;
     }
 
     private function buildAdminMailLogReport(string $requestedFile, int $limit): array
@@ -1570,24 +1614,36 @@ class EventService
             'created_at' => $checkinTimestamp,
         ]);
 
-        $emailResult = $this->sendGuestCheckinConfirmationEmail($txn, [
-            'eventId' => $eventId,
-            'checkedInAt' => $checkedInAt,
-            'admittedCount' => $admit,
-            'admittedGuestNames' => $admittedGuestNames,
-            'remainingEntries' => max(0, $qty - $nextCheckedIn),
-        ]);
+        $emailResult = $this->safeCheckinSideEffect('guest check-in email', function () use ($txn, $eventId, $checkedInAt, $admit, $qty, $nextCheckedIn, $admittedGuestNames): array {
+            return $this->sendGuestCheckinConfirmationEmail($txn, [
+                'eventId' => $eventId,
+                'checkedInAt' => $checkedInAt,
+                'admittedCount' => $admit,
+                'admittedGuestNames' => $admittedGuestNames,
+                'remainingEntries' => max(0, $qty - $nextCheckedIn),
+            ]);
+        });
 
-        $whatsAppResult = $this->dispatchGuestCheckinWhatsApp($txn, [
-            'eventId' => $eventId,
-            'checkedInAt' => $checkedInAt,
-            'admittedCount' => $admit,
-            'admittedGuestNames' => $admittedGuestNames,
-        ]);
+        $whatsAppResult = $this->safeCheckinSideEffect('guest check-in WhatsApp', function () use ($txn, $eventId, $checkedInAt, $admit, $admittedGuestNames): array {
+            return $this->dispatchGuestCheckinWhatsApp($txn, [
+                'eventId' => $eventId,
+                'checkedInAt' => $checkedInAt,
+                'admittedCount' => $admit,
+                'admittedGuestNames' => $admittedGuestNames,
+            ]);
+        });
 
-        $this->whatsapp->scheduleCheckinFollowUp($txn, [
-            'checkedInAt' => $checkedInAt,
-        ]);
+        $followUpResult = $this->safeCheckinSideEffect('check-in follow-up scheduling', function () use ($txn, $checkedInAt): array {
+            $this->whatsapp->scheduleCheckinFollowUp($txn, [
+                'checkedInAt' => $checkedInAt,
+            ]);
+
+            return [
+                'ok' => true,
+                'attempted' => true,
+                'message' => 'Check-in follow-up scheduling completed.',
+            ];
+        });
 
         $remainingAfter = max(0, $qty - $nextCheckedIn);
         $remainingAfterNames = $this->removeGuestNamesFromPool($remainingNames, $admittedGuestNames);
@@ -1611,10 +1667,39 @@ class EventService
             'duplicateKey' => $duplicateKey,
             'email' => $emailResult,
             'whatsapp' => $whatsAppResult,
+            'followUp' => $followUpResult,
             'message' => $remainingAfter > 0
                 ? ($admit . ' entr' . ($admit === 1 ? 'y' : 'ies') . ' confirmed. ' . $remainingAfter . ' remaining on this QR.')
                 : 'Ticket checked in successfully.',
         ];
+    }
+
+    private function safeCheckinSideEffect(string $sideEffect, callable $callback): array
+    {
+        try {
+            $result = $callback();
+            if (is_array($result)) {
+                return $result;
+            }
+
+            return [
+                'ok' => true,
+                'attempted' => true,
+                'message' => ucfirst($sideEffect) . ' completed.',
+            ];
+        } catch (\Throwable $exception) {
+            Logger::error('Guest check-in side effect failed after check-in was saved.', [
+                'sideEffect' => $sideEffect,
+                'error' => $exception->getMessage(),
+            ]);
+
+            return [
+                'ok' => false,
+                'attempted' => true,
+                'error' => 'SIDE_EFFECT_FAILED',
+                'message' => ucfirst($sideEffect) . ' failed after check-in was saved.',
+            ];
+        }
     }
 
     private function dispatchRegistrationWhatsApp(array $event, array $transaction, bool $isFreeRegistration): array
@@ -1629,14 +1714,17 @@ class EventService
             ];
         }
 
+        $transactionId = (string) ($transaction['transaction_id'] ?? '');
         $context = [
             'customerName' => (string) ($transaction['customer_name'] ?? 'Guest'),
             'eventTitle' => (string) (($event['title'] ?? '') ?: ($transaction['event_title'] ?? 'Namaste Kalyan Event')),
             'eventDate' => $this->formatEventDateLabel((string) ($event['start_date'] ?? '')),
             'eventTime' => $this->formatEventTimeLabel((string) ($event['start_time'] ?? '')),
-            'transactionId' => (string) ($transaction['transaction_id'] ?? ''),
+            'transactionId' => $transactionId,
             'bookingType' => $isFreeRegistration ? 'Free Registration' : 'Paid Booking',
+            'verificationUrl' => $this->buildVerificationUrl($transactionId),
             'qrUrl' => (string) ($transaction['qr_url'] ?? ''),
+            'headerImageUrl' => (string) ($transaction['qr_url'] ?? ''),
         ];
 
         $result = $this->whatsapp->triggerEvent('event_registration_confirmed', $phone, $context, [

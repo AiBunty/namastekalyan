@@ -1,82 +1,134 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Apps Script: Redeploy Active Web App",
-      "type": "shell",
-      "command": "pwsh",
-      "args": [
-        "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        "${workspaceFolder}/appscript/Deploy-AppScript.ps1",
-        "-Mode",
-        "redeploy",
-        "-DeploymentId",
-        "${input:appsScriptDeploymentId}",
-        "-Description",
-        "${input:appsScriptDeployDescription}",
-        "-UpdateConfig",
-        "-SmokeTest"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}/appscript"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Apps Script: Create New Web App Deployment",
-      "type": "shell",
-      "command": "pwsh",
-      "args": [
-        "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        "${workspaceFolder}/appscript/Deploy-AppScript.ps1",
-        "-Mode",
-        "new",
-        "-Description",
-        "${input:appsScriptDeployDescription}",
-        "-UpdateConfig",
-        "-SmokeTest"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}/appscript"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Apps Script: Smoke Test Current URL",
-      "type": "shell",
-      "command": "pwsh",
-      "args": [
-        "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        "${workspaceFolder}/appscript/Test-AppScript.ps1",
-        "-FromConfig"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}/appscript"
-      },
-      "problemMatcher": []
-    }
-  ],
-  "inputs": [
-    {
-      "id": "appsScriptDeploymentId",
-      "type": "promptString",
-      "description": "Existing Apps Script deployment ID to redeploy",
-      "default": "AKfycbxZSs8zvsEg0O9lnDqDZikw4Ar936hzKGMzmZCZvFqdIm-ZHd6Uw5-urtUH3hzNLaeX"
-    },
-    {
-      "id": "appsScriptDeployDescription",
-      "type": "promptString",
-      "description": "Version and deployment description",
-      "default": "Apps Script deploy from VS Code"
-    }
-  ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Apps Script: Redeploy Active Web App",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/appscript/Deploy-AppScript.ps1",
+				"-Mode",
+				"redeploy",
+				"-DeploymentId",
+				"${input:appsScriptDeploymentId}",
+				"-Description",
+				"${input:appsScriptDeployDescription}",
+				"-UpdateConfig",
+				"-SmokeTest"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/appscript"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Apps Script: Create New Web App Deployment",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/appscript/Deploy-AppScript.ps1",
+				"-Mode",
+				"new",
+				"-Description",
+				"${input:appsScriptDeployDescription}",
+				"-UpdateConfig",
+				"-SmokeTest"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/appscript"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Apps Script: Smoke Test Current URL",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/appscript/Test-AppScript.ps1",
+				"-FromConfig"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/appscript"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Upload WhatsApp Live Slice",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/tmp_deploy_whatsapp_live.ps1"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Upload WhatsApp Public Migration Wrappers",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"Set-Location '${workspaceFolder}'; function Get-EnvMap([string]$Path){$map=@{};$lines=Get-Content -Path $Path -Raw -Encoding UTF8;foreach($rawLine in ($lines -split \"`r?`n\")){ $line=$rawLine.Trim(); if([string]::IsNullOrWhiteSpace($line) -or $line.StartsWith('#')){continue}; $idx=$line.IndexOf('='); if($idx -lt 1){continue}; $key=$line.Substring(0,$idx).Trim(); $val=$line.Substring($idx+1).Trim(); if((($val.StartsWith('\"') -and $val.EndsWith('\"')) -or ($val.StartsWith(\"'\") -and $val.EndsWith(\"'\"))) -and $val.Length -ge 2){$val=$val.Substring(1,$val.Length-2)}; $map[$key]=$val}; $map }; $envMap=Get-EnvMap '.env'; $ftpHost=[string]$envMap['FTP_HOST_LIVE']; if(-not $ftpHost.StartsWith('ftp://') -and -not $ftpHost.StartsWith('ftps://')){$ftpHost='ftp://'+$ftpHost}; $auth=([string]$envMap['FTP_USER_LIVE'])+':' +([string]$envMap['FTP_PASS_LIVE']); $remoteBase=([string]$envMap['FTP_REMOTE_PATH_LIVE']).Trim('/','\\\\'); foreach($rel in @('public/tmp_run_migration_031.php','public/tmp_run_migration_032.php')){ Write-Host \"Uploading $rel\"; & curl.exe --silent --show-error --fail --ftp-create-dirs -u $auth -T (Join-Path (Get-Location) $rel) \"$ftpHost/$remoteBase/$rel\" | Out-Null; if($LASTEXITCODE -ne 0){ throw \"Upload failed: $rel\" } }; Write-Host 'Public migration wrappers uploaded.'"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Upload WhatsApp Live Slice With Wrappers",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/tmp_deploy_whatsapp_live.ps1"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Cleanup WhatsApp Live Migration Endpoints",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/tmp_cleanup_whatsapp_live.ps1"
+			],
+			"isBackground": false
+		}
+	],
+	"inputs": [
+		{
+			"id": "appsScriptDeploymentId",
+			"type": "promptString",
+			"description": "Existing Apps Script deployment ID to redeploy",
+			"default": "AKfycbxZSs8zvsEg0O9lnDqDZikw4Ar936hzKGMzmZCZvFqdIm-ZHd6Uw5-urtUH3hzNLaeX"
+		},
+		{
+			"id": "appsScriptDeployDescription",
+			"type": "promptString",
+			"description": "Version and deployment description",
+			"default": "Apps Script deploy from VS Code"
+		}
+	]
 }

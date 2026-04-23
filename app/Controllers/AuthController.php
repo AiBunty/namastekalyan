@@ -123,6 +123,12 @@ class AuthController
         return $service->submitWhatsAppTemplateDraft($body);
     }
 
+    public static function previewWhatsAppTemplate(array $body, array $query): array
+    {
+        $service = new AuthService();
+        return $service->previewWhatsAppTemplate($body);
+    }
+
     public static function runWhatsAppScheduler(array $body, array $query): array
     {
         $service = new AuthService();

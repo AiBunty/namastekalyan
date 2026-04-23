@@ -303,8 +303,6 @@ class LeadService
             $this->leads->updateRedemption((int) $lead['id'], true);
         }
 
-        $updatedLead = $this->leads->findById((int) $lead['id']) ?: $lead;
-        $crmSync = $this->syncRewardToCrm($updatedLead, $reward['label'], 'Redeemed');
         $whatsAppResult = $this->whatsapp->triggerEvent('coupon_redeemed', (string) ($lead['phone'] ?? ''), [
             'customerName' => (string) ($lead['name'] ?? ''),
             'rewardLabel' => $reward['label'],
@@ -321,7 +319,6 @@ class LeadService
             'rewardLabel' => $reward['label'],
             'rewardSource' => $reward['source'],
             'couponCode' => $reward['couponCode'],
-            'crmSync' => $crmSync,
             'whatsapp' => $whatsAppResult,
         ];
     }
@@ -364,16 +361,12 @@ class LeadService
         if ($this->isWinningPrize((string) ($lead['prize'] ?? ''))) {
             $couponCode = $this->generateCouponCode($phone);
             $this->leads->updateCouponCode((int) $lead['id'], $couponCode);
-            $updatedLead = $this->leads->findById((int) $lead['id']) ?: $lead;
-            $crmSync = $this->syncRewardToCrm($updatedLead, (string) ($lead['prize'] ?? ''), 'Unredeemed');
-
             return [
                 'ok' => true,
                 'action' => 'regen_coupon',
                 'couponCode' => $couponCode,
                 'prize' => (string) ($lead['prize'] ?? ''),
                 'rewardSource' => 'winner',
-                'crmSync' => $crmSync,
                 'message' => 'Winner coupon regenerated.',
             ];
         }
@@ -391,8 +384,6 @@ class LeadService
         $couponCode = $this->generateCouponCode($phone);
         $issuedBy = (string) ($auth['user']['username'] ?? 'system');
         $this->leads->issueSurpriseReward((int) $lead['id'], $rewardLabel, $couponCode, $issuedBy);
-        $updatedLead = $this->leads->findById((int) $lead['id']) ?: $lead;
-        $crmSync = $this->syncRewardToCrm($updatedLead, $rewardLabel, 'Unredeemed');
         $whatsAppResult = $this->whatsapp->triggerEvent('try_again_surprise_issued', (string) ($lead['phone'] ?? ''), [
             'customerName' => (string) ($lead['name'] ?? ''),
             'rewardLabel' => $rewardLabel,
@@ -408,7 +399,6 @@ class LeadService
             'couponCode' => $couponCode,
             'prize' => $rewardLabel,
             'rewardSource' => 'surprise',
-            'crmSync' => $crmSync,
             'whatsapp' => $whatsAppResult,
             'message' => ($whatsAppResult['success'] ?? false)
                 ? 'Surprise coupon issued and WhatsApp message sent.'
@@ -1365,32 +1355,6 @@ class LeadService
 
         return trim((string) ($lead['surprise_reward_label'] ?? '')) === ''
             || trim((string) ($lead['surprise_redeemed_at'] ?? '')) !== '';
-    }
-
-    private function syncRewardToCrm(array $lead, string $rewardLabel, string $status): array
-    {
-        return $this->syncLeadToCrm((int) ($lead['id'] ?? 0), [
-            'name' => (string) ($lead['name'] ?? ''),
-            'phone' => (string) ($lead['phone'] ?? ''),
-            'country_code' => '91',
-            'prize' => $rewardLabel,
-            'status' => $status,
-            'source' => (string) ($lead['source'] ?? 'menu-blocker-web'),
-            'visit_count' => (int) ($lead['visit_count'] ?? 1),
-            'date_of_birth' => $this->safeDate($lead['date_of_birth'] ?? null),
-            'date_of_anniversary' => $this->safeDate($lead['date_of_anniversary'] ?? null),
-            'created_at' => (string) ($lead['created_at'] ?? date('Y-m-d H:i:s')),
-        ], $this->upsertCanonicalContact((int) ($lead['id'] ?? 0), [
-            'name' => (string) ($lead['name'] ?? ''),
-            'phone' => (string) ($lead['phone'] ?? ''),
-            'source' => (string) ($lead['source'] ?? 'menu-blocker-web'),
-            'date_of_birth' => $this->safeDate($lead['date_of_birth'] ?? null),
-            'date_of_anniversary' => $this->safeDate($lead['date_of_anniversary'] ?? null),
-            'created_at' => (string) ($lead['created_at'] ?? date('Y-m-d H:i:s')),
-            'crm_sync_status' => (string) ($lead['crm_sync_status'] ?? 'Pending'),
-            'crm_sync_code' => (string) ($lead['crm_sync_code'] ?? ''),
-            'crm_sync_message' => (string) ($lead['crm_sync_message'] ?? ''),
-        ]));
     }
 
     private function formatQrRowForReport(array $row): array
