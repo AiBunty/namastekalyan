@@ -6,11 +6,12 @@ $FoodTab = 'AWGNK MENU'
 $BarTab = 'BAR MENU NK'
 
 $WebsiteUrl = 'https://namastekalyan.asianwokandgrill.in/'
-$FoodMenuUrl = 'https://namastekalyan.asianwokandgrill.in/menu.html'
-$CocktailMenuUrl = 'https://namastekalyan.asianwokandgrill.in/cocktail.html'
+$FoodMenuUrl = 'https://namastekalyan.asianwokandgrill.in/menu/'
+$CocktailMenuUrl = 'https://namastekalyan.asianwokandgrill.in/cocktails/'
+$CocktailCategoryUrl = 'https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html'
 $ReviewUrl = 'https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1'
 $GoogleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=RockMount+Residency%2C+4th+Floor%2C+Khadakpada+Circle%2C+Kalyan%2C+Maharashtra+421301'
-$ReserveUrl = 'https://admin.aibunty.com/u2/82800/reservation-for-awg'
+$ReserveUrl = 'https://namastekalyan.asianwokandgrill.in/booking/'
 $SwiggyUrl = 'https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout'
 $ZomatoOrderUrl = 'https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane'
 $ManagerMobile = '+91 93715 19999'
@@ -221,11 +222,11 @@ function Parse-BarItems([object[]]$headers, [object[]]$rows) {
 
 function Get-CategorySlug([string]$category, [string]$section) {
   if ($section -eq 'food') {
-    # Match menu.html exactly: category.replace(/[^a-z0-9]/gi, '-').toLowerCase()
+    # Match public/menu/index.html exactly: category.replace(/[^a-z0-9]/gi, '-').toLowerCase()
     return (($category.ToLower()) -replace '[^a-z0-9]', '-')
   }
 
-  # Match cocktail.html exactly:
+  # Match public/cocktails/cocktail.html exactly:
   # categoryName.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
   return ((($category.Trim().ToLower()) -replace '\s+', '-') -replace '[^a-z0-9-]', '')
 }
@@ -236,7 +237,7 @@ function Get-CategoryLink([string]$category, [string]$section) {
     return ('{0}#{1}' -f $FoodMenuUrl, $slug)
   }
 
-  return ('{0}#{1}' -f $CocktailMenuUrl, $slug)
+  return ('{0}#{1}' -f $CocktailCategoryUrl, $slug)
 }
 
 function Get-LocaleText([string]$lang) {

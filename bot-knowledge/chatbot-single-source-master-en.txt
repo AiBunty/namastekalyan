@@ -5,15 +5,15 @@ Generation Version: 2.0
 
 CRITICAL URL OVERRIDE - READ THIS FIRST BEFORE ANSWERING ANYTHING
 The restaurant website domain is: https://namastekalyan.asianwokandgrill.in/
-CORRECT main food menu link: https://namastekalyan.asianwokandgrill.in/menu.html
-CORRECT cocktail/drinks/bar menu link: https://namastekalyan.asianwokandgrill.in/cocktail.html
-CORRECT reservation link: https://admin.aibunty.com/u2/82800/reservation-for-awg
+CORRECT main food menu link: https://namastekalyan.asianwokandgrill.in/menu/
+CORRECT cocktail/drinks/bar menu link: https://namastekalyan.asianwokandgrill.in/cocktails/
+CORRECT reservation link: https://namastekalyan.asianwokandgrill.in/booking/
 Only use links listed in this file. Never invent, transform, or guess URLs.
 
 BASIC INFORMATION
 Website: https://namastekalyan.asianwokandgrill.in/
-Food Menu: https://namastekalyan.asianwokandgrill.in/menu.html
-Cocktail Menu: https://namastekalyan.asianwokandgrill.in/cocktail.html
+Food Menu: https://namastekalyan.asianwokandgrill.in/menu/
+Cocktail Menu: https://namastekalyan.asianwokandgrill.in/cocktails/
 Google Review: https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1
 Location: 4th Floor, Shop No. 421 to 426, Rockmount Residency, Commercial Hub, Kadakpada Circle, Kalyan, Maharashtra 421301
 Google Maps: https://www.google.com/maps/search/?api=1&query=RockMount+Residency%2C+4th+Floor%2C+Khadakpada+Circle%2C+Kalyan%2C+Maharashtra+421301
@@ -22,7 +22,7 @@ WhatsApp: https://wa.me/919371519999
 Email: namastekalyan09@gmail.com
 Business/Collab Contact (qualified leads only): Mr. Kunal +91 88795 91324
 Timings: Daily 12:00 PM to 11:30 PM.
-Reservation: https://admin.aibunty.com/u2/82800/reservation-for-awg
+Reservation: https://namastekalyan.asianwokandgrill.in/booking/
 Swiggy: https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout
 Zomato: https://www.zomato.com/mumbai/namaste-kalyan-by-asian-wok-and-grill-kalyan-thane
 
@@ -54,7 +54,7 @@ BOT RULES
 
 MANDATORY BOOKING RESPONSE
 To book a table, please use our reservation page:
-- https://admin.aibunty.com/u2/82800/reservation-for-awg
+- https://namastekalyan.asianwokandgrill.in/booking/
 Steps:
 - Open the link
 - Select date in the calendar
@@ -68,9 +68,9 @@ For reservation help:
 
 APPROVED LINKS
 - Website: https://namastekalyan.asianwokandgrill.in/
-- Food Menu: https://namastekalyan.asianwokandgrill.in/menu.html
-- Cocktail Menu: https://namastekalyan.asianwokandgrill.in/cocktail.html
-- Reservation: https://admin.aibunty.com/u2/82800/reservation-for-awg
+- Food Menu: https://namastekalyan.asianwokandgrill.in/menu/
+- Cocktail Menu: https://namastekalyan.asianwokandgrill.in/cocktails/
+- Reservation: https://namastekalyan.asianwokandgrill.in/booking/
 - Google Review: https://search.google.com/local/writereview?placeid=ChIJIdXER6mX5zsReLG1LBIMRqE&source=search&review=1
 - Google Maps: https://www.google.com/maps/search/?api=1&query=RockMount+Residency%2C+4th+Floor%2C+Khadakpada+Circle%2C+Kalyan%2C+Maharashtra+421301
 - Swiggy: https://www.swiggy.com/restaurants/namaste-kalyan-by-asian-wok-and-grill-kalyan-mumbai-1000913/dineout
@@ -78,73 +78,73 @@ APPROVED LINKS
 - Business/Collab (qualified only): Mr. Kunal +91 88795 91324
 
 CATEGORY DIRECT LINKS - FOOD MENU
-- All Time Favourite: https://namastekalyan.asianwokandgrill.in/menu.html#all-time-favourite
-- Bao: https://namastekalyan.asianwokandgrill.in/menu.html#bao
-- Bowls: https://namastekalyan.asianwokandgrill.in/menu.html#bowls
-- Breads: https://namastekalyan.asianwokandgrill.in/menu.html#breads
-- Chicken Wings: https://namastekalyan.asianwokandgrill.in/menu.html#chicken-wings
-- Cold Ones: https://namastekalyan.asianwokandgrill.in/menu.html#cold-ones
-- Crackers & Dahi: https://namastekalyan.asianwokandgrill.in/menu.html#crackers---dahi
-- Curries: https://namastekalyan.asianwokandgrill.in/menu.html#curries
-- Dal Wali Gali: https://namastekalyan.asianwokandgrill.in/menu.html#dal-wali-gali
-- Deep Fry: https://namastekalyan.asianwokandgrill.in/menu.html#deep-fry
-- Dessert: https://namastekalyan.asianwokandgrill.in/menu.html#dessert
-- Dimsum: https://namastekalyan.asianwokandgrill.in/menu.html#dimsum
-- Fish Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu.html#fish-curry-specialities
-- From The Grill: https://namastekalyan.asianwokandgrill.in/menu.html#from-the-grill
-- Ghosht Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu.html#ghosht-curry-specialities
-- Iced Tea: https://namastekalyan.asianwokandgrill.in/menu.html#iced-tea
-- Icy Virgin Margaritas: https://namastekalyan.asianwokandgrill.in/menu.html#icy-virgin-margaritas
-- Indian Mains Bageeche Se: https://namastekalyan.asianwokandgrill.in/menu.html#indian-mains-bageeche-se
-- Koyle Ka Kamal: https://namastekalyan.asianwokandgrill.in/menu.html#koyle-ka-kamal
-- Lemonades: https://namastekalyan.asianwokandgrill.in/menu.html#lemonades
-- Lettuce Cups: https://namastekalyan.asianwokandgrill.in/menu.html#lettuce-cups
-- Main Course: https://namastekalyan.asianwokandgrill.in/menu.html#main-course
-- Mocktails: https://namastekalyan.asianwokandgrill.in/menu.html#mocktails
-- Murg Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu.html#murg-curry-specialities
-- Noodles: https://namastekalyan.asianwokandgrill.in/menu.html#noodles
-- Pasta: https://namastekalyan.asianwokandgrill.in/menu.html#pasta
-- Pehels Kadam: https://namastekalyan.asianwokandgrill.in/menu.html#pehels-kadam
-- Pizza: https://namastekalyan.asianwokandgrill.in/menu.html#pizza
-- Rice: https://namastekalyan.asianwokandgrill.in/menu.html#rice
-- Rolls: https://namastekalyan.asianwokandgrill.in/menu.html#rolls
-- Salads: https://namastekalyan.asianwokandgrill.in/menu.html#salads
-- Sancks: https://namastekalyan.asianwokandgrill.in/menu.html#sancks
-- Sandwiches: https://namastekalyan.asianwokandgrill.in/menu.html#sandwiches
-- Shakes& Smoothies: https://namastekalyan.asianwokandgrill.in/menu.html#shakes--smoothies
-- Sizzlers: https://namastekalyan.asianwokandgrill.in/menu.html#sizzlers
-- Sizzling Plate: https://namastekalyan.asianwokandgrill.in/menu.html#sizzling-plate
-- Skewers: https://namastekalyan.asianwokandgrill.in/menu.html#skewers
-- Soup: https://namastekalyan.asianwokandgrill.in/menu.html#soup
-- Western Specialities: https://namastekalyan.asianwokandgrill.in/menu.html#western-specialities
-- Wok Tossed: https://namastekalyan.asianwokandgrill.in/menu.html#wok-tossed
+- All Time Favourite: https://namastekalyan.asianwokandgrill.in/menu/#all-time-favourite
+- Bao: https://namastekalyan.asianwokandgrill.in/menu/#bao
+- Bowls: https://namastekalyan.asianwokandgrill.in/menu/#bowls
+- Breads: https://namastekalyan.asianwokandgrill.in/menu/#breads
+- Chicken Wings: https://namastekalyan.asianwokandgrill.in/menu/#chicken-wings
+- Cold Ones: https://namastekalyan.asianwokandgrill.in/menu/#cold-ones
+- Crackers & Dahi: https://namastekalyan.asianwokandgrill.in/menu/#crackers---dahi
+- Curries: https://namastekalyan.asianwokandgrill.in/menu/#curries
+- Dal Wali Gali: https://namastekalyan.asianwokandgrill.in/menu/#dal-wali-gali
+- Deep Fry: https://namastekalyan.asianwokandgrill.in/menu/#deep-fry
+- Dessert: https://namastekalyan.asianwokandgrill.in/menu/#dessert
+- Dimsum: https://namastekalyan.asianwokandgrill.in/menu/#dimsum
+- Fish Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu/#fish-curry-specialities
+- From The Grill: https://namastekalyan.asianwokandgrill.in/menu/#from-the-grill
+- Ghosht Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu/#ghosht-curry-specialities
+- Iced Tea: https://namastekalyan.asianwokandgrill.in/menu/#iced-tea
+- Icy Virgin Margaritas: https://namastekalyan.asianwokandgrill.in/menu/#icy-virgin-margaritas
+- Indian Mains Bageeche Se: https://namastekalyan.asianwokandgrill.in/menu/#indian-mains-bageeche-se
+- Koyle Ka Kamal: https://namastekalyan.asianwokandgrill.in/menu/#koyle-ka-kamal
+- Lemonades: https://namastekalyan.asianwokandgrill.in/menu/#lemonades
+- Lettuce Cups: https://namastekalyan.asianwokandgrill.in/menu/#lettuce-cups
+- Main Course: https://namastekalyan.asianwokandgrill.in/menu/#main-course
+- Mocktails: https://namastekalyan.asianwokandgrill.in/menu/#mocktails
+- Murg Curry Specialities: https://namastekalyan.asianwokandgrill.in/menu/#murg-curry-specialities
+- Noodles: https://namastekalyan.asianwokandgrill.in/menu/#noodles
+- Pasta: https://namastekalyan.asianwokandgrill.in/menu/#pasta
+- Pehels Kadam: https://namastekalyan.asianwokandgrill.in/menu/#pehels-kadam
+- Pizza: https://namastekalyan.asianwokandgrill.in/menu/#pizza
+- Rice: https://namastekalyan.asianwokandgrill.in/menu/#rice
+- Rolls: https://namastekalyan.asianwokandgrill.in/menu/#rolls
+- Salads: https://namastekalyan.asianwokandgrill.in/menu/#salads
+- Sancks: https://namastekalyan.asianwokandgrill.in/menu/#sancks
+- Sandwiches: https://namastekalyan.asianwokandgrill.in/menu/#sandwiches
+- Shakes& Smoothies: https://namastekalyan.asianwokandgrill.in/menu/#shakes--smoothies
+- Sizzlers: https://namastekalyan.asianwokandgrill.in/menu/#sizzlers
+- Sizzling Plate: https://namastekalyan.asianwokandgrill.in/menu/#sizzling-plate
+- Skewers: https://namastekalyan.asianwokandgrill.in/menu/#skewers
+- Soup: https://namastekalyan.asianwokandgrill.in/menu/#soup
+- Western Specialities: https://namastekalyan.asianwokandgrill.in/menu/#western-specialities
+- Wok Tossed: https://namastekalyan.asianwokandgrill.in/menu/#wok-tossed
 
 CATEGORY DIRECT LINKS - COCKTAIL MENU
-- Awg & Classic Botanical Mixology: https://namastekalyan.asianwokandgrill.in/cocktail.html#awg--classic-botanical-mixology
-- Beer'S: https://namastekalyan.asianwokandgrill.in/cocktail.html#beers
-- Bourbon / Irish Whisky: https://namastekalyan.asianwokandgrill.in/cocktail.html#bourbon--irish-whisky
-- Brandy: https://namastekalyan.asianwokandgrill.in/cocktail.html#brandy
-- Breezers: https://namastekalyan.asianwokandgrill.in/cocktail.html#breezers
-- Bull Base Cocktail: https://namastekalyan.asianwokandgrill.in/cocktail.html#bull-base-cocktail
-- Dessert  Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#dessert-wine
-- Domestic Rum: https://namastekalyan.asianwokandgrill.in/cocktail.html#domestic-rum
-- Domestic Vodka: https://namastekalyan.asianwokandgrill.in/cocktail.html#domestic-vodka
-- Gin: https://namastekalyan.asianwokandgrill.in/cocktail.html#gin
-- Imported Vodka: https://namastekalyan.asianwokandgrill.in/cocktail.html#imported-vodka
-- Liit Long Glass: https://namastekalyan.asianwokandgrill.in/cocktail.html#liit-long-glass
-- Liquer: https://namastekalyan.asianwokandgrill.in/cocktail.html#liquer
-- Liqueurs: https://namastekalyan.asianwokandgrill.in/cocktail.html#liqueurs
-- Premium Whisky: https://namastekalyan.asianwokandgrill.in/cocktail.html#premium-whisky
-- Red Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#red-wine
-- Rose Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#rose-wine
-- Sangria: https://namastekalyan.asianwokandgrill.in/cocktail.html#sangria
-- Scotch Whisky: https://namastekalyan.asianwokandgrill.in/cocktail.html#scotch-whisky
-- Shots: https://namastekalyan.asianwokandgrill.in/cocktail.html#shots
-- Single Malt: https://namastekalyan.asianwokandgrill.in/cocktail.html#single-malt
-- Sparkling Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#sparkling-wine
-- Special Modern Mixology: https://namastekalyan.asianwokandgrill.in/cocktail.html#special-modern-mixology
-- Tequila: https://namastekalyan.asianwokandgrill.in/cocktail.html#tequila
-- White Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#white-wine
+- Awg & Classic Botanical Mixology: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#awg--classic-botanical-mixology
+- Beer'S: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#beers
+- Bourbon / Irish Whisky: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#bourbon--irish-whisky
+- Brandy: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#brandy
+- Breezers: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#breezers
+- Bull Base Cocktail: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#bull-base-cocktail
+- Dessert  Wine: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#dessert-wine
+- Domestic Rum: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#domestic-rum
+- Domestic Vodka: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#domestic-vodka
+- Gin: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#gin
+- Imported Vodka: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#imported-vodka
+- Liit Long Glass: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#liit-long-glass
+- Liquer: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#liquer
+- Liqueurs: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#liqueurs
+- Premium Whisky: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#premium-whisky
+- Red Wine: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#red-wine
+- Rose Wine: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#rose-wine
+- Sangria: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#sangria
+- Scotch Whisky: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#scotch-whisky
+- Shots: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#shots
+- Single Malt: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#single-malt
+- Sparkling Wine: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#sparkling-wine
+- Special Modern Mixology: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#special-modern-mixology
+- Tequila: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#tequila
+- White Wine: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#white-wine
 
 COLLABORATION / SERVICE INQUIRY HANDLING
 Use this when user wants to collaborate, perform/sing, do digital marketing, sell services, or influencer tie-up.
@@ -4810,4 +4810,7 @@ Category: White Wine
 - Item: Fratelli Chardonnay
   Description: Description not available.
   Prices/Variants: Glass: 349 | Btl: 1599
+
+
+
 

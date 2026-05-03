@@ -65,65 +65,22 @@ Hinglish trigger phrases:
 When responding to each intent, include relevant hash anchors:
 
 FOOD MENU CATEGORIES WITH HASH ANCHORS:
-#food-all-time-favourite - All Time Favourite dishes
-#food-bao - Bao selections
-#food-bowls - Noodle & rice bowls
-#food-breads - Breads & rotis
-#food-chicken-wings - Chicken wings
-#food-cold-ones - Cold appetizers
-#food-crackers-dahi - Crackers with dahi
-#food-curries - Various curries
-#food-dal-wali-gali - Dal preparations
-#food-deep-fry - Deep fried items
-#food-dessert - Desserts
-#food-dimsum - Dim sum selection
-#food-fish-curry-specialities - Fish specialties
-#food-from-the-grill - Grilled items
-#food-ghosht-curry-specialities - Meat curries
-#food-iced-tea - Iced teas
-#food-icy-virgin-margaritas - Mocktails
-#food-indian-mains-bageeche-se - Indian main courses
-#food-koyle-ka-kamal - Special selections
-#food-lemonades - Lemonades
-#food-lettuce-cups - Lettuce wraps
-#food-main-course - Main course
-#food-mocktails - Mocktails
-#food-murg-curry-specialities - Chicken curries
-#food-noodles - Noodle dishes
-#food-pasta - Pasta dishes
-#food-pehels-kadam - First steps/starters
-#food-pizza - Pizzas
-#food-rice - Rice dishes
-#food-salads - Salads
-#food-semi-cooked - Semi-cooked items
-#food-short-eats - Short eats
-#food-soups - Soups
-#food-spring-rolls - Spring rolls
-#food-steamed-momos - Steamed dumplings
-#food-stir-fry - Stir fry options
-#food-tandoori - Tandoori items
-#food-thai-selection - Thai dishes
-#food-toast - Toast options
-#food-vietnamese-specialities - Vietnamese dishes
-#food-whole-wheat-pizza - Wheat pizzas
+Use the real section IDs from the live food menu route: https://namastekalyan.asianwokandgrill.in/menu/
+Examples:
+#all-time-favourite - All Time Favourite dishes
+#bao - Bao selections
+#pehels-kadam - Starters
+#murg-curry-specialities - Chicken curries
+#rice - Rice dishes
 
 COCKTAIL MENU CATEGORIES WITH HASH ANCHORS:
-#cocktails-blended-margaritas - Blended margaritas
-#cocktails-champagne-prosecco - Champagne & Prosecco
-#cocktails-cognacs - Cognacs
-#cocktails-dark-rum - Dark Rum
-#cocktails-gin - Gin cocktails
-#cocktails-house-cocktails - House specials
-#cocktails-light-rum - Light Rum
-#cocktails-mocktails - Non-alcoholic cocktails
-#cocktails-premium-vodka - Premium vodka drinks
-#cocktails-rum - Rum cocktails
-#cocktails-sangria-wine - Sangria & Wine
-#cocktails-single-malt - Single Malt Scotch
-#cocktails-sparkling-wine - Sparkling wine
-#cocktails-special-modern-mixology - Modern creations
-#cocktails-tequila - Tequila drinks
-#cocktails-white-wine - White wine options
+Use the real section IDs from the live cocktail menu page: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html
+Examples:
+#mocktails - Non-alcoholic cocktails
+#single-malt - Single Malt Scotch
+#sparkling-wine - Sparkling wine
+#gin - Gin cocktails
+#special-modern-mixology - Modern creations
 
 ==================================================
 4) CUSTOMER PROMPTS THAT SHOULD ACTIVATE AI
@@ -146,7 +103,7 @@ Examples:
 MAIN FOOD MENU REQUEST:
 Triggers: Send menu | Menu link | Food menu | Show menu items | Category options
 Response approach: Provide Food Menu link with category hash anchor suggestions
-Hash links: https://namastekalyan.asianwokandgrill.in/menu.html#food-{category}
+Hash links: https://namastekalyan.asianwokandgrill.in/menu/#{category-slug}
 
 Examples:
 - "Send me menu"
@@ -162,7 +119,7 @@ Examples:
 COCKTAIL/BAR MENU REQUEST:
 Triggers: Cocktail | Bar menu | Drinks menu | Beverage | Liquor | Alcohol
 Response approach: Provide Cocktail Menu link with category hash anchors
-Hash links: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-{category}
+Hash links: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#{category-slug}
 
 Examples:
 - "Send cocktail menu"
@@ -177,7 +134,7 @@ Examples:
 CATEGORY RECOMMENDATIONS:
 Triggers: What should I order | Best seller | Recommend | Suggest | First time
 Response approach: Suggest relevant category hash link based on dietary preference
-Hash links: https://namastekalyan.asianwokandgrill.in/menu.html#food-{specific-category}
+Hash links: https://namastekalyan.asianwokandgrill.in/menu/#{specific-category-slug}
 
 Examples:
 - "What should I order?"
@@ -193,7 +150,7 @@ Examples:
 VEGETARIAN INTENT:
 Triggers: Veg | Vegetarian | Pure veg | No meat | Plant-based
 Response approach: Direct to food menu with veg-friendly category hash links
-Hash links: #food-all-time-favourite or #food-pehels-kadam (veg starters)
+Hash links: https://namastekalyan.asianwokandgrill.in/menu/#all-time-favourite or https://namastekalyan.asianwokandgrill.in/menu/#pehels-kadam
 
 Examples:
 - "Do you have veg options?"
@@ -207,7 +164,7 @@ Examples:
 JAIN FOOD INTENT:
 Triggers: Jain | Without onion garlic | Jain-friendly | No onion | No garlic
 Response approach: Direct to food menu noting Jain availability; reference menu
-Hash links: https://namastekalyan.asianwokandgrill.in/menu.html (note: check Jain column in master file)
+Hash links: https://namastekalyan.asianwokandgrill.in/menu/ (note: check Jain column in master file)
 
 Examples:
 - "Jain food available?"
@@ -222,7 +179,7 @@ Examples:
 SPICE LEVEL INTENT:
 Triggers: Spicy | Mild | Hot | Less spice | Non spicy | Kids menu | Medium spice
 Response approach: Direct to food menu; offer to mention spice preference
-Hash links: https://namastekalyan.asianwokandgrill.in/menu.html (reference spice level column)
+Hash links: https://namastekalyan.asianwokandgrill.in/menu/ (reference spice level column)
 
 Examples:
 - "Is food spicy?"
@@ -237,7 +194,7 @@ Examples:
 PRICE/BUDGET INTENT:
 Triggers: Price | Cost | Budget | Expensive | Affordable | How much | Kitna
 Response approach: STRICT: NEVER quote price; redirect to menu link immediately
-Hash links: https://namastekalyan.asianwokandgrill.in/menu.html or #cocktails-{category}
+Hash links: https://namastekalyan.asianwokandgrill.in/menu/ or https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#{category-slug}
 
 Response template:
 "Please visit our menu for current pricing: {link}"
@@ -259,7 +216,7 @@ Examples:
 RESERVATION & BOOKING INTENT:
 Triggers: Book | Reservation | Table | Dinner booking | Lunch booking | Party booking
 Response approach: Provide only the reservation link and booking steps. Do not ask for date/time/party size/name/phone in chat.
-Hash links: https://admin.aibunty.com/u2/82800/reservation-for-awg
+Hash links: https://namastekalyan.asianwokandgrill.in/booking/
 
 Examples:
 - "Table booking available?"
@@ -463,36 +420,35 @@ Examples:
 ==================================================
 
 FOOD MENU:
-Base: https://namastekalyan.asianwokandgrill.in/menu.html
+Base: https://namastekalyan.asianwokandgrill.in/menu/
 With category anchor examples:
-- All Time Favourite: https://namastekalyan.asianwokandgrill.in/menu.html#food-all-time-favourite
-- Starters: https://namastekalyan.asianwokandgrill.in/menu.html#food-pehels-kadam
-- Breads: https://namastekalyan.asianwokandgrill.in/menu.html#food-breads
-- Chicken Curries: https://namastekalyan.asianwokandgrill.in/menu.html#food-murg-curry-specialities
-- Meat Curries: https://namastekalyan.asianwokandgrill.in/menu.html#food-ghosht-curry-specialities
-- Fish: https://namastekalyan.asianwokandgrill.in/menu.html#food-fish-curry-specialities
-- Noodles: https://namastekalyan.asianwokandgrill.in/menu.html#food-noodles
-- Rice: https://namastekalyan.asianwokandgrill.in/menu.html#food-rice
-- Pasta: https://namastekalyan.asianwokandgrill.in/menu.html#food-pasta
-- Tandoori: https://namastekalyan.asianwokandgrill.in/menu.html#food-tandoori
-- Mocktails: https://namastekalyan.asianwokandgrill.in/menu.html#food-mocktails
-- Desserts: https://namastekalyan.asianwokandgrill.in/menu.html#food-dessert
+- All Time Favourite: https://namastekalyan.asianwokandgrill.in/menu/#all-time-favourite
+- Starters: https://namastekalyan.asianwokandgrill.in/menu/#pehels-kadam
+- Breads: https://namastekalyan.asianwokandgrill.in/menu/#breads
+- Chicken Curries: https://namastekalyan.asianwokandgrill.in/menu/#murg-curry-specialities
+- Meat Curries: https://namastekalyan.asianwokandgrill.in/menu/#ghosht-curry-specialities
+- Fish: https://namastekalyan.asianwokandgrill.in/menu/#fish-curry-specialities
+- Noodles: https://namastekalyan.asianwokandgrill.in/menu/#noodles
+- Rice: https://namastekalyan.asianwokandgrill.in/menu/#rice
+- Pasta: https://namastekalyan.asianwokandgrill.in/menu/#pasta
+- Mocktails: https://namastekalyan.asianwokandgrill.in/menu/#mocktails
+- Desserts: https://namastekalyan.asianwokandgrill.in/menu/#dessert
 (Full list available in chatbot-single-source-master-en.txt with all category hash anchors)
 
 COCKTAIL MENU:
-Base: https://namastekalyan.asianwokandgrill.in/cocktail.html
+Base: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html
 With category anchor examples:
-- Mocktails: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-mocktails
-- Sparkling Wine: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-sparkling-wine
-- Single Malt: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-single-malt
-- Rum: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-rum
-- Vodka: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-premium-vodka
-- Gin: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-gin
-- Special Modern Mixology: https://namastekalyan.asianwokandgrill.in/cocktail.html#cocktails-special-modern-mixology
+- Mocktails: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#mocktails
+- Sparkling Wine: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#sparkling-wine
+- Single Malt: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#single-malt
+- Rum: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#rum
+- Vodka: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#imported-vodka
+- Gin: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#gin
+- Special Modern Mixology: https://namastekalyan.asianwokandgrill.in/cocktails/cocktail.html#special-modern-mixology
 (Full list available in chatbot-single-source-master-en.txt)
 
 OTHER KEY LINKS:
-Reservation: https://admin.aibunty.com/u2/82800/reservation-for-awg
+Reservation: https://namastekalyan.asianwokandgrill.in/booking/
 Website: https://namastekalyan.asianwokandgrill.in/
 Phone: +91 93715 19999
 WhatsApp: https://wa.me/919371519999
@@ -512,9 +468,9 @@ When intent is AMBIGUOUS:
 "Would you like menu links, reservation help, delivery info, or location details?"
 
 When user asks for PRICE specifically:
-"Please visit our menus for current pricing: https://namastekalyan.asianwokandgrill.in/menu.html"
+"Please visit our menus for current pricing: https://namastekalyan.asianwokandgrill.in/menu/"
 OR
-"Check our menus for latest prices: https://namastekalyan.asianwokandgrill.in/menu.html or https://namastekalyan.asianwokandgrill.in/cocktail.html"
+"Check our menus for latest prices: https://namastekalyan.asianwokandgrill.in/menu/ or https://namastekalyan.asianwokandgrill.in/cocktails/"
 
 When user asks for TIMINGS specifically:
 "We are open Daily 12:00 PM to 11:30 PM."
@@ -536,7 +492,7 @@ When user provides UNCLEAR LOCATION/TIMING:
 ==================================================
 ✓ DO:
 - Always include hash links when directing to menus
-- Use category anchors in menu links (e.g., #food-all-time-favourite)
+- Use category anchors in menu links (e.g., #all-time-favourite)
 - Provide direct phone/WhatsApp for complex inquiries
 - Show empathy for complaints
 - For booking intent, send the reservation link and booking steps only
@@ -563,20 +519,20 @@ Hindi/Hinglish Greeting:
 "Namaste! Namaste Kalyan mein aapka swagat hai. Main aapki kya madad kar sakta hoon?"
 
 English Menu Request:
-"Here's our food menu: https://namastekalyan.asianwokandgrill.in/menu.html#food-all-time-favourite"
+"Here's our food menu: https://namastekalyan.asianwokandgrill.in/menu/#all-time-favourite"
 
 Hindi Menu Request:
-"Yeh menu dekho: https://namastekalyan.asianwokandgrill.in/menu.html#food-all-time-favourite"
+"Yeh menu dekho: https://namastekalyan.asianwokandgrill.in/menu/#all-time-favourite"
 
 English Price Query (correct response):
-"Please check our menus for current pricing: https://namastekalyan.asianwokandgrill.in/menu.html"
+"Please check our menus for current pricing: https://namastekalyan.asianwokandgrill.in/menu/"
 
 Hindi Price Query (correct response):
-"Kripaya pricing ke liye menu check karo: https://namastekalyan.asianwokandgrill.in/menu.html"
+"Kripaya pricing ke liye menu check karo: https://namastekalyan.asianwokandgrill.in/menu/"
 
 English Booking:
 "To book a table, please use our reservation page:
-- https://admin.aibunty.com/u2/82800/reservation-for-awg
+- https://namastekalyan.asianwokandgrill.in/booking/
 Steps:
 - Open the link
 - Select date in the calendar
@@ -587,7 +543,7 @@ Steps:
 
 Hindi Booking:
 "Table booking ke liye hamara reservation page use kijiye:
-- https://admin.aibunty.com/u2/82800/reservation-for-awg
+- https://namastekalyan.asianwokandgrill.in/booking/
 Steps:
 - Link open kijiye
 - Date select kijiye
