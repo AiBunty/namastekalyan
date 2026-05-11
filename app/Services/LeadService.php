@@ -1446,32 +1446,41 @@ class LeadService
 
     private function pickPrizeByLeadNumber(int $leadNumber): string
     {
-        if ($leadNumber > 0 && $leadNumber % 500 === 0) {
+        if ($leadNumber <= 0) {
+            return 'Try Again';
+        }
+
+        if ($leadNumber % 500 === 0) {
             return '25% OFF';
         }
 
-        if ($leadNumber > 0 && $leadNumber % 300 === 0) {
+        if ($leadNumber % 300 === 0) {
             return '20% OFF';
         }
 
-        if ($leadNumber > 0 && $leadNumber % 125 === 0) {
+        if ($leadNumber % 125 === 0) {
             return '15% OFF';
         }
 
-        if ($leadNumber > 0 && $leadNumber % 51 === 0) {
+        if ($leadNumber % 51 === 0) {
             return '10% OFF';
         }
 
-        if ($leadNumber > 0 && $leadNumber % 50 === 49) {
+        if ($leadNumber >= 49 && (($leadNumber - 49) % 50) === 0) {
             return 'Starter on the House';
         }
 
-        if ($leadNumber >= 18 && ($leadNumber - 18) % 10 === 0) {
-            $cycleIndex = (int) floor(($leadNumber - 18) / 10);
-            return $cycleIndex % 2 === 0 ? 'Dessert on the House' : 'Aerated Drink on the House';
+        if ($leadNumber >= 18) {
+            if ((($leadNumber - 18) % 20) === 0) {
+                return 'Dessert on the House';
+            }
+
+            if ((($leadNumber - 28) % 20) === 0) {
+                return 'Aerated Drink on the House';
+            }
         }
 
-        if ($leadNumber > 0 && $leadNumber % 10 === 0) {
+        if ($leadNumber % 10 === 0) {
             return 'Mocktail on the House';
         }
 
