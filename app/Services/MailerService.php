@@ -11,6 +11,58 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class MailerService
 {
+    public function smtpHealthCheck(): array
+    {
+        $host = $this->env('SMTP_HOST');
+        $port = $this->env('SMTP_PORT', '465');
+        $secure = strtolower($this->env('SMTP_SECURE', 'ssl'));
+        $user = $this->env('SMTP_USER');
+
+        $response = [
+            'ok' => false,
+            'configured' => $this->isConfigured(),
+            'smtp' => [
+                'host' => $host,
+                'port' => (int) $port,
+                'secure' => $secure,
+                'userMasked' => $this->maskEmail($user),
+            ],
+            'checks' => [
+                'smtpHostSet' => $host !== '',
+                'smtpPortSet' => trim((string) $port) !== '',
+                'smtpUserSet' => $user !== '',
+                'smtpPassSet' => $this->env('SMTP_PASS') !== '',
+            ],
+        ];
+
+        if (!$response['configured']) {
+            $response['error'] = 'MAILER_NOT_CONFIGURED';
+            $response['message'] = 'SMTP configuration is incomplete.';
+            return $response;
+        }
+
+        try {
+            $mailer = $this->createMailer();
+            // Open and close SMTP transport without sending an actual email.
+            $connected = $mailer->smtpConnect();
+            if ($connected !== true) {
+                $response['error'] = 'SMTP_CONNECT_FAILED';
+                $response['message'] = 'SMTP server connection failed.';
+                return $response;
+            }
+
+            $mailer->smtpClose();
+
+            $response['ok'] = true;
+            $response['message'] = 'SMTP connection and authentication succeeded.';
+            return $response;
+        } catch (\Throwable $exception) {
+            $response['error'] = 'SMTP_EXCEPTION';
+            $response['message'] = $exception->getMessage();
+            return $response;
+        }
+    }
+
     public function isConfigured(): bool
     {
         return $this->env('SMTP_HOST') !== ''

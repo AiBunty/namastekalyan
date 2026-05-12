@@ -529,6 +529,30 @@ class EventService
         ];
     }
 
+    public function adminSmtpHealth(array $data): array
+    {
+        $auth = AuthMiddleware::authorize($data, 'admin');
+        if (!$auth['ok']) {
+            return $auth;
+        }
+
+        if (!AuthMiddleware::requirePermission($auth['user'], 'eventGuests')) {
+            return [
+                'ok' => false,
+                'error' => 'FORBIDDEN',
+                'message' => 'Event guests permission required.',
+            ];
+        }
+
+        $health = $this->mailer->smtpHealthCheck();
+
+        return [
+            'ok' => !empty($health['ok']),
+            'action' => 'admin_smtp_health',
+            'health' => $health,
+        ];
+    }
+
     public function adminPreviewEventQr(array $data): array
     {
         $normalized = $this->normalizeBatchScan($data);

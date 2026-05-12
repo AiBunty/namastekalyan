@@ -164,6 +164,7 @@ class ActionRouter
         'event_guest_report'        => [EventController::class, 'eventGuestReport'],
         'event_transactions_report' => [EventController::class, 'eventTransactionsReport'],
         'admin_mail_log_report'     => [EventController::class, 'adminMailLogReport'],
+        'admin_smtp_health'         => [EventController::class, 'adminSmtpHealth'],
         'admin_list_events'         => [EventController::class, 'adminListEvents'],
         'admin_event_list'          => [EventController::class, 'adminListEvents'],
 

@@ -165,4 +165,11 @@ class EventController
         $payload = array_merge($query, $body);
         return $service->adminMailLogReport($payload);
     }
+
+    public static function adminSmtpHealth(array $body, array $query): array
+    {
+        $service = new EventService();
+        $payload = array_merge($query, $body);
+        return $service->adminSmtpHealth($payload);
+    }
 }
